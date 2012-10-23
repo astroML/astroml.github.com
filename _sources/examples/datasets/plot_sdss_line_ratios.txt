@@ -1,0 +1,67 @@
+
+
+.. _example_datasets_plot_sdss_line_ratios:
+
+
+SDSS Line-ratio Diagrams
+------------------------
+This shows how to plot line-ratio diagrams for the SDSS spectra.  These
+diagrams are often called BPT plots [1]_, Osterbrock diagrams [2]_,
+or Kewley diagrams [3]_. The location of the dividing line is taken from
+from Kewley et al 2001.
+
+References
+~~~~~~~~~~
+.. [1] Baldwin, J. A.; Phillips, M. M.; Terlevich, R. (1981)
+       http://adsabs.harvard.edu/abs/1981PASP...93....5B
+.. [2] Osterbrock, D. E.; De Robertis, M. M. (1985)
+       http://adsabs.harvard.edu/abs/1985PASP...97.1129O
+.. [3] Kewley, L. J. `et al.` (2001)
+       http://adsabs.harvard.edu/abs/2001ApJ...556..121K
+
+
+
+.. image:: ../images/datasets/plot_sdss_line_ratios_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_sdss_line_ratios.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_sdss_line_ratios.py
+    :lines: 18-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_sdss_line_ratios.py] <plot_sdss_line_ratios.py>`
+
+.. raw:: html
+    
+    </div>
+

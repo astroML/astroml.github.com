@@ -1,0 +1,122 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_appendix:
+
+Appendix
+--------
+There are several appendices, covering topics from the efficient use of
+Python code to the practical use of Fourier transforms.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_broadcast_visual
+
+   ./fig_plotting_examples
+
+   ./fig_sdss_filters
+
+   ./fig_fft_text_example
+
+   ./fig_gauss_kernel
+
+   ./fig_neural_network
+
+   ./fig_ball_dualtree
+
+   ./fig_kd_dualtree
+
+   ./fig_LIGO_bandpower
+
+   ./fig_LIGO_wavelets
+
+
+
+.. figure:: ./../images/appendix/fig_broadcast_visual_1_thumb.png
+    :target: ./fig_broadcast_visual.html
+
+    :ref:`book_fig_appendix_fig_broadcast_visual`
+
+.. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
+    :target: ./fig_plotting_examples.html
+
+    :ref:`book_fig_appendix_fig_plotting_examples`
+
+.. figure:: ./../images/appendix/fig_sdss_filters_1_thumb.png
+    :target: ./fig_sdss_filters.html
+
+    :ref:`book_fig_appendix_fig_sdss_filters`
+
+.. figure:: ./../images/appendix/fig_fft_text_example_1_thumb.png
+    :target: ./fig_fft_text_example.html
+
+    :ref:`book_fig_appendix_fig_fft_text_example`
+
+.. figure:: ./../images/appendix/fig_gauss_kernel_1_thumb.png
+    :target: ./fig_gauss_kernel.html
+
+    :ref:`book_fig_appendix_fig_gauss_kernel`
+
+.. figure:: ./../images/appendix/fig_neural_network_1_thumb.png
+    :target: ./fig_neural_network.html
+
+    :ref:`book_fig_appendix_fig_neural_network`
+
+.. figure:: ./../images/appendix/fig_ball_dualtree_1_thumb.png
+    :target: ./fig_ball_dualtree.html
+
+    :ref:`book_fig_appendix_fig_ball_dualtree`
+
+.. figure:: ./../images/appendix/fig_kd_dualtree_1_thumb.png
+    :target: ./fig_kd_dualtree.html
+
+    :ref:`book_fig_appendix_fig_kd_dualtree`
+
+.. figure:: ./../images/appendix/fig_LIGO_bandpower_1_thumb.png
+    :target: ./fig_LIGO_bandpower.html
+
+    :ref:`book_fig_appendix_fig_LIGO_bandpower`
+
+.. figure:: ./../images/appendix/fig_LIGO_wavelets_1_thumb.png
+    :target: ./fig_LIGO_wavelets.html
+
+    :ref:`book_fig_appendix_fig_LIGO_wavelets`
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

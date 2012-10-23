@@ -1,0 +1,58 @@
+
+
+.. _example_datasets_plot_sdss_galaxy_colors:
+
+
+SDSS Galaxy Colors
+------------------
+The function :func:`fetch_sdss_galaxy_colors` used below actually queries
+the SDSS CASjobs server for the colors of the 50,000 galaxies.  Below we
+extract the :math:`u - g` and :math:`g - r` colors for 5000 stars, and
+scatter-plot the results
+
+
+
+.. image:: ../images/datasets/plot_sdss_galaxy_colors_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_sdss_galaxy_colors.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_sdss_galaxy_colors.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_sdss_galaxy_colors.py] <plot_sdss_galaxy_colors.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,64 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_root:
+
+Textbook Figures
+----------------
+
+This section makes available the source code used to generate every figure
+in the book `Statistics, Data Mining, and Machine Learning in Astronomy`.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+   chapter1/index
+   chapter2/index
+   chapter3/index
+   chapter4/index
+   chapter5/index
+   chapter6/index
+   chapter7/index
+   chapter8/index
+   chapter9/index
+   chapter10/index
+   appendix/index
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

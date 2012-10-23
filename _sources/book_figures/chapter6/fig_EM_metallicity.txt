@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter6_fig_EM_metallicity:
+
+
+EM example: Gaussian Mixture Models
+-----------------------------------
+This shows a gaussian mixture model of the metallicity data from the
+SDSS Segue Stellar Parameters Pipeline.
+
+
+
+.. image:: ../images/chapter6/fig_EM_metallicity_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_EM_metallicity.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_EM_metallicity.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_EM_metallicity.py] <fig_EM_metallicity.py>`
+
+.. raw:: html
+    
+    </div>
+

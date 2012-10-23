@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>astroML.filters &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Module code" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for astroML.filters</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span><span class="p">,</span> <span class="n">fftpack</span><span class="p">,</span> <span class="n">signal</span>
+
+
+<span class="c"># Note: there is a scipy PR to include an improved SG filter within the</span>
+<span class="c"># scipy.signal submodule.  It should replace this when it&#39;s finished.</span>
+<span class="c"># see http://github.com/scipy/scipy/pull/304</span>
+<div class="viewcode-block" id="savitzky_golay"><a class="viewcode-back" href="../../modules/generated/astroML.filters.savitzky_golay.html#astroML.filters.savitzky_golay">[docs]</a><span class="k">def</span> <span class="nf">savitzky_golay</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">deriv</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                   <span class="n">use_fft</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Smooth (and optionally differentiate) data with a Savitzky-Golay filter</span>
+
+<span class="sd">    This implementation is based on [1]_.</span>
+
+<span class="sd">    The Savitzky-Golay filter removes high frequency noise from data.</span>
+<span class="sd">    It has the advantage of preserving the original shape and</span>
+<span class="sd">    features of the signal better than other types of filtering</span>
+<span class="sd">    approaches, such as moving averages techhniques.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : array_like, shape (N,)</span>
+<span class="sd">        the values of the time history of the signal.</span>
+<span class="sd">    window_size : int</span>
+<span class="sd">        the length of the window. Must be an odd integer number.</span>
+<span class="sd">    order : int</span>
+<span class="sd">        the order of the polynomial used in the filtering.</span>
+<span class="sd">        Must be less then `window_size` - 1.</span>
+<span class="sd">    deriv: int</span>
+<span class="sd">        the order of the derivative to compute</span>
+<span class="sd">        (default = 0 means only smoothing)</span>
+<span class="sd">    use_fft : bool</span>
+<span class="sd">        if True (default) then convolue using FFT for speed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    y_smooth : ndarray, shape (N)</span>
+<span class="sd">        the smoothed signal (or it&#39;s n-th derivative).</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The Savitzky-Golay is a type of low-pass filter, particularly</span>
+<span class="sd">    suited for smoothing noisy data. The main idea behind this</span>
+<span class="sd">    approach is to make for each point a least-square fit with a</span>
+<span class="sd">    polynomial of high order over a odd-sized window centered at</span>
+<span class="sd">    the point.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; t = np.linspace(-4, 4, 500)</span>
+<span class="sd">    &gt;&gt;&gt; y = np.exp(-t ** 2)</span>
+<span class="sd">    &gt;&gt;&gt; np.random.seed(0)</span>
+<span class="sd">    &gt;&gt;&gt; y_noisy = y + np.random.normal(0, 0.05, t.shape)</span>
+<span class="sd">    &gt;&gt;&gt; y_smooth = savitzky_golay(y, window_size=31, order=4)</span>
+<span class="sd">    &gt;&gt;&gt; print np.rms(y_noisy - y)</span>
+<span class="sd">    &gt;&gt;&gt; print np.rms(y_smooth - y)</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] http://www.scipy.org/Cookbook/SavitzkyGolay</span>
+<span class="sd">    .. [2] A. Savitzky, M. J. E. Golay, Smoothing and Differentiation of</span>
+<span class="sd">       Data by Simplified Least Squares Procedures. Analytical</span>
+<span class="sd">       Chemistry, 1964, 36 (8), pp 1627-1639.</span>
+<span class="sd">    .. [3] Numerical Recipes 3rd Edition: The Art of Scientific Computing</span>
+<span class="sd">       W.H. Press, S.A. Teukolsky, W.T. Vetterling, B.P. Flannery</span>
+<span class="sd">       Cambridge University Press ISBN-13: 9780521880688</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">window_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">window_size</span><span class="p">))</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">order</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;window_size and order have to be of type int&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">window_size</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">window_size</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;window_size size must be a positive odd number&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">window_size</span> <span class="o">&lt;</span> <span class="n">order</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;window_size is too small for the polynomials order&quot;</span><span class="p">)</span>
+
+    <span class="n">order_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">half_window</span> <span class="o">=</span> <span class="p">(</span><span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="c"># precompute coefficients</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">([[</span><span class="n">k</span> <span class="o">**</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">order_range</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">half_window</span><span class="p">,</span> <span class="n">half_window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">deriv</span><span class="p">]</span>
+
+    <span class="c"># pad the signal at the extremes with</span>
+    <span class="c"># values taken from the signal itself</span>
+    <span class="n">firstvals</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">half_window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">lastvals</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">half_window</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">firstvals</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lastvals</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">use_fft</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">signal</span><span class="o">.</span><span class="n">fftconvolve</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;valid&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;valid&#39;</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="wiener_filter"><a class="viewcode-back" href="../../modules/generated/astroML.filters.wiener_filter.html#astroML.filters.wiener_filter">[docs]</a><span class="k">def</span> <span class="nf">wiener_filter</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">signal</span><span class="o">=</span><span class="s">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="s">&#39;flat&#39;</span><span class="p">,</span>
+                  <span class="n">return_PSDs</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute a Wiener-filtered time-series</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t : array_like</span>
+<span class="sd">        evenly-sampled time series, length N</span>
+<span class="sd">    h : array_like</span>
+<span class="sd">        observations at each t</span>
+<span class="sd">    signal : str (optional)</span>
+<span class="sd">        currently only &#39;gaussian&#39; is supported</span>
+<span class="sd">    noise : str (optional)</span>
+<span class="sd">        currently only &#39;flat&#39; is supported</span>
+<span class="sd">    return_PSDs : bool (optional)</span>
+<span class="sd">        if True, then return (PSD, P_S, P_N)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    h_smooth : ndarray</span>
+<span class="sd">        a smoothed version of h, length N</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The Wiener filter operates by fitting a functional form to the PSD::</span>
+
+<span class="sd">       PSD = P_S + P_N</span>
+
+<span class="sd">    The resulting frequency-space filter is given by::</span>
+
+<span class="sd">       Phi = P_S / (P_S + P_N)</span>
+
+<span class="sd">    This entire operation is equivalent to a kernel smoothing by a</span>
+<span class="sd">    kernel whose Fourier transform is Phi.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    scipy.signal.wiener : a static (non-adaptive) wiener filter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">signal</span> <span class="o">!=</span> <span class="s">&#39;gaussian&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;only signal=&#39;gaussian&#39; is supported&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">noise</span> <span class="o">!=</span> <span class="s">&#39;flat&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;only noise=&#39;flat&#39; is supported&quot;</span><span class="p">)</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;t and h must be equal-length 1-dimensional arrays&#39;</span><span class="p">)</span>
+
+    <span class="c"># compute the PSD of the input</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">Df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">Df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">H</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">PSD</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">H</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="c"># Set up the Wiener filter:</span>
+    <span class="c">#  fit a model to the PSD: sum of signal form and noise form</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">width</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">min_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">PSD</span> <span class="o">-</span> <span class="n">signal</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                                 <span class="o">-</span> <span class="n">noise</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">v0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">fmin</span><span class="p">(</span><span class="n">min_func</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span>
+
+    <span class="n">P_S</span> <span class="o">=</span> <span class="n">signal</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">P_N</span> <span class="o">=</span> <span class="n">noise</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">Phi</span> <span class="o">=</span> <span class="n">P_S</span> <span class="o">/</span> <span class="p">(</span><span class="n">P_S</span> <span class="o">+</span> <span class="n">P_N</span><span class="p">)</span>
+
+    <span class="c"># Use Phi to filter and smooth the values</span>
+    <span class="n">h_smooth</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">Phi</span> <span class="o">*</span> <span class="n">H</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+        <span class="n">h_smooth</span> <span class="o">=</span> <span class="n">h_smooth</span><span class="o">.</span><span class="n">real</span>
+
+    <span class="k">if</span> <span class="n">return_PSDs</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">h_smooth</span><span class="p">,</span> <span class="n">PSD</span><span class="p">,</span> <span class="n">P_S</span><span class="p">,</span> <span class="n">P_N</span><span class="p">,</span> <span class="n">Phi</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">h_smooth</span>
+
+</div>
+<div class="viewcode-block" id="min_component_filter"><a class="viewcode-back" href="../../modules/generated/astroML.filters.min_component_filter.html#astroML.filters.min_component_filter">[docs]</a><span class="k">def</span> <span class="nf">min_component_filter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">feature_mask</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fcut</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Minimum component filtering</span>
+
+<span class="sd">    Minimum component filtering is useful for determining the background</span>
+<span class="sd">    component of a signal in the presence of spikes</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array_like</span>
+<span class="sd">        1D array of evenly spaced x values</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        1D array of y values corresponding to x</span>
+<span class="sd">    feature_mask : array_like</span>
+<span class="sd">        1D mask array giving the locations of features in the data which</span>
+<span class="sd">        should be ignored for smoothing</span>
+<span class="sd">    p : integer (optional)</span>
+<span class="sd">        polynomial degree to be used for the fit (default = 1)</span>
+<span class="sd">    fcut : float (optional)</span>
+<span class="sd">        the cutoff frequency for the low-pass filter.  Default value is</span>
+<span class="sd">        f_nyq / sqrt(N)</span>
+<span class="sd">    Q : float (optional)</span>
+<span class="sd">        the strength of the low-pass filter.  Larger Q means a steeper cutoff</span>
+<span class="sd">        default value is 0.1 * fcut</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    y_filtered : ndarray</span>
+<span class="sd">        The filtered version of y.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This code follows the procedure explained in the book</span>
+<span class="sd">    &quot;Practical Statistics for Astronomers&quot; by Wall &amp; Jenkins book, as</span>
+<span class="sd">    well as in Wall, J, A&amp;A 122:371, 1997</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">feature_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">feature_mask</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span>
+                                                  <span class="n">feature_mask</span><span class="o">.</span><span class="n">shape</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;x, y, and feature_mask must be 1 dimensional &#39;</span>
+                         <span class="s">&#39;with matching lengths&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fcut</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">f_nyquist</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">fcut</span> <span class="o">=</span> <span class="n">f_nyquist</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">Q</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">Q</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">fcut</span>
+
+    <span class="c"># compute polynomial features</span>
+    <span class="n">XX</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c"># compute least-squares fit to non-masked data</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">XX</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># subtract polynomial fit and mask the data</span>
+    <span class="n">y_mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+    <span class="n">y_mask</span><span class="p">[</span><span class="n">feature_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c"># get Fourier transforms of arrays</span>
+    <span class="n">yFT_mask</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y_mask</span><span class="p">)</span>
+
+    <span class="c"># compute (shifted) frequency array for filter</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="c"># construct low-pass filter</span>
+    <span class="n">filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="n">Q</span> <span class="o">*</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">-</span> <span class="n">fcut</span><span class="p">)</span> <span class="o">/</span> <span class="n">fcut</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">filt</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">fcut</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c"># reconstruct filtered signal</span>
+    <span class="n">y_filtered</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">yFT_mask</span> <span class="o">*</span> <span class="n">filt</span><span class="p">)</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">y_filtered</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

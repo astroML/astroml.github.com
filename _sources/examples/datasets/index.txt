@@ -1,0 +1,188 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _example_datasets:
+
+Data set Examples
+-----------------
+These plots show some of the data set loaders available in astroML, and some
+of the ways that astronomical data can be visualized and processed using
+open source python tools.  The dataset loaders are in the submodule
+:mod:`astroML.datasets`, and start with the word ``fetch_``.
+
+The first time a dataset loader is called, it will attempt to download the
+dataset from the web and store it locally on disk.  The default location
+is ``~/astroML_data``, but this location can be changed by specifying an
+alternative directory in the ``ASTROML_DATA`` environment variable.  On
+subsequent calls, the cached version of the data is used.
+
+For more examples, see the :ref:`figures <book_fig_root>` from the textbook.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_nasa_atlas
+
+   ./plot_dr7_quasar
+
+   ./plot_sdss_filters
+
+   ./plot_sdss_imaging
+
+   ./plot_moving_objects
+
+   ./plot_corrected_spectra
+
+   ./plot_LIGO_spectrum
+
+   ./plot_sdss_galaxy_colors
+
+   ./compute_sdss_pca
+
+   ./plot_sdss_S82standards
+
+   ./plot_wmap_raw
+
+   ./plot_great_wall
+
+   ./plot_sdss_specgals
+
+   ./plot_rrlyrae_mags
+
+   ./plot_sdss_spectrum
+
+   ./plot_SDSS_SSPP
+
+   ./plot_wmap_power_spectra
+
+   ./plot_sdss_line_ratios
+
+
+
+.. figure:: ./../images/datasets/plot_nasa_atlas_1_thumb.png
+    :target: ./plot_nasa_atlas.html
+
+    :ref:`example_datasets_plot_nasa_atlas`
+
+.. figure:: ./../images/datasets/plot_dr7_quasar_1_thumb.png
+    :target: ./plot_dr7_quasar.html
+
+    :ref:`example_datasets_plot_dr7_quasar`
+
+.. figure:: ./../images/datasets/plot_sdss_filters_1_thumb.png
+    :target: ./plot_sdss_filters.html
+
+    :ref:`example_datasets_plot_sdss_filters`
+
+.. figure:: ./../images/datasets/plot_sdss_imaging_1_thumb.png
+    :target: ./plot_sdss_imaging.html
+
+    :ref:`example_datasets_plot_sdss_imaging`
+
+.. figure:: ./../images/datasets/plot_moving_objects_1_thumb.png
+    :target: ./plot_moving_objects.html
+
+    :ref:`example_datasets_plot_moving_objects`
+
+.. figure:: ./../images/datasets/plot_corrected_spectra_1_thumb.png
+    :target: ./plot_corrected_spectra.html
+
+    :ref:`example_datasets_plot_corrected_spectra`
+
+.. figure:: ./../images/datasets/plot_LIGO_spectrum_1_thumb.png
+    :target: ./plot_LIGO_spectrum.html
+
+    :ref:`example_datasets_plot_LIGO_spectrum`
+
+.. figure:: ./../images/datasets/plot_sdss_galaxy_colors_1_thumb.png
+    :target: ./plot_sdss_galaxy_colors.html
+
+    :ref:`example_datasets_plot_sdss_galaxy_colors`
+
+.. figure:: ./../images/datasets/compute_sdss_pca_1_thumb.png
+    :target: ./compute_sdss_pca.html
+
+    :ref:`example_datasets_compute_sdss_pca`
+
+.. figure:: ./../images/datasets/plot_sdss_S82standards_1_thumb.png
+    :target: ./plot_sdss_S82standards.html
+
+    :ref:`example_datasets_plot_sdss_S82standards`
+
+.. figure:: ./../images/datasets/plot_wmap_raw_1_thumb.png
+    :target: ./plot_wmap_raw.html
+
+    :ref:`example_datasets_plot_wmap_raw`
+
+.. figure:: ./../images/datasets/plot_great_wall_1_thumb.png
+    :target: ./plot_great_wall.html
+
+    :ref:`example_datasets_plot_great_wall`
+
+.. figure:: ./../images/datasets/plot_sdss_specgals_1_thumb.png
+    :target: ./plot_sdss_specgals.html
+
+    :ref:`example_datasets_plot_sdss_specgals`
+
+.. figure:: ./../images/datasets/plot_rrlyrae_mags_1_thumb.png
+    :target: ./plot_rrlyrae_mags.html
+
+    :ref:`example_datasets_plot_rrlyrae_mags`
+
+.. figure:: ./../images/datasets/plot_sdss_spectrum_1_thumb.png
+    :target: ./plot_sdss_spectrum.html
+
+    :ref:`example_datasets_plot_sdss_spectrum`
+
+.. figure:: ./../images/datasets/plot_SDSS_SSPP_1_thumb.png
+    :target: ./plot_SDSS_SSPP.html
+
+    :ref:`example_datasets_plot_SDSS_SSPP`
+
+.. figure:: ./../images/datasets/plot_wmap_power_spectra_1_thumb.png
+    :target: ./plot_wmap_power_spectra.html
+
+    :ref:`example_datasets_plot_wmap_power_spectra`
+
+.. figure:: ./../images/datasets/plot_sdss_line_ratios_1_thumb.png
+    :target: ./plot_sdss_line_ratios.html
+
+    :ref:`example_datasets_plot_sdss_line_ratios`
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

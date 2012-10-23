@@ -1,0 +1,58 @@
+
+
+.. _book_fig_chapter5_fig_posterior_binomial:
+
+
+Binomial Posterior
+------------------
+
+This figure shows the posterior for the estimation of the parameter :math:`b`
+from a sampled binomial distribution, and over-plots the gaussian
+approximation to this posterior.
+
+
+
+.. image:: ../images/chapter5/fig_posterior_binomial_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_posterior_binomial.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_posterior_binomial.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_posterior_binomial.py] <fig_posterior_binomial.py>`
+
+.. raw:: html
+    
+    </div>
+

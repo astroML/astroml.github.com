@@ -1,0 +1,64 @@
+
+
+.. _example_datasets_plot_sdss_S82standards:
+
+
+SDSS Standard Star catalog
+--------------------------
+This demonstrates how to fetch and plot the colors of the SDSS Stripe 82
+standard stars, both alone and with the cross-matched 2MASS colors.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/datasets/plot_sdss_S82standards_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/datasets/plot_sdss_S82standards_2.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_sdss_S82standards.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_sdss_S82standards.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_sdss_S82standards.py] <plot_sdss_S82standards.py>`
+
+.. raw:: html
+    
+    </div>
+

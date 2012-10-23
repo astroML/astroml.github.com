@@ -1,0 +1,7 @@
+astroML.lumfunc.bootstrap_Cminus
+================================
+
+.. currentmodule:: astroML.lumfunc
+
+.. autofunction:: bootstrap_Cminus
+

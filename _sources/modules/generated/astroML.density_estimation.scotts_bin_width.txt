@@ -1,0 +1,7 @@
+astroML.density_estimation.scotts_bin_width
+===========================================
+
+.. currentmodule:: astroML.density_estimation
+
+.. autofunction:: scotts_bin_width
+

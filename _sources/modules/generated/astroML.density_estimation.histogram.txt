@@ -1,0 +1,7 @@
+astroML.density_estimation.histogram
+====================================
+
+.. currentmodule:: astroML.density_estimation
+
+.. autofunction:: histogram
+

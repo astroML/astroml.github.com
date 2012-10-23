@@ -1,0 +1,11 @@
+astroML.time_series.MultiTermFit
+================================
+
+.. currentmodule:: astroML.time_series
+
+.. autoclass:: MultiTermFit
+
+   
+   .. automethod:: __init__
+   
+

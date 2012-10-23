@@ -1,0 +1,55 @@
+
+
+.. _book_fig_chapter10_fig_autocorrelation:
+
+
+Autocorrelation Function
+------------------------
+Compute and plot the auto-correlation function for simulated Quasar data
+
+
+
+.. image:: ../images/chapter10/fig_autocorrelation_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_autocorrelation.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_autocorrelation.py
+    :lines: 6-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_autocorrelation.py] <fig_autocorrelation.py>`
+
+.. raw:: html
+    
+    </div>
+

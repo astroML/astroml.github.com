@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter1_fig_S82_scatter_contour:
+
+
+SDSS Stripe 82 Standard Stars
+-----------------------------
+This example shows how to use a combination scatter and contour plot to
+more effectively show very dense scatter plots.
+
+
+
+.. image:: ../images/chapter1/fig_S82_scatter_contour_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_S82_scatter_contour.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_S82_scatter_contour.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_S82_scatter_contour.py] <fig_S82_scatter_contour.py>`
+
+.. raw:: html
+    
+    </div>
+

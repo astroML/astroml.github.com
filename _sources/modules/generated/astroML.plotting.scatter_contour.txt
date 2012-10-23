@@ -1,0 +1,7 @@
+astroML.plotting.scatter_contour
+================================
+
+.. currentmodule:: astroML.plotting
+
+.. autofunction:: scatter_contour
+

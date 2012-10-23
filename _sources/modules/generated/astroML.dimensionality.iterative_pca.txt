@@ -1,0 +1,7 @@
+astroML.dimensionality.iterative_pca
+====================================
+
+.. currentmodule:: astroML.dimensionality
+
+.. autofunction:: iterative_pca
+

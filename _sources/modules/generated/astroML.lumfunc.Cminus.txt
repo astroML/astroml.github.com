@@ -1,0 +1,7 @@
+astroML.lumfunc.Cminus
+======================
+
+.. currentmodule:: astroML.lumfunc
+
+.. autofunction:: Cminus
+

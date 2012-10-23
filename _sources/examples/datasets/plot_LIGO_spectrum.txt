@@ -1,0 +1,61 @@
+
+
+.. _example_datasets_plot_LIGO_spectrum:
+
+
+Plot the power spectrum of LIGO
+-------------------------------
+This compares the power spectrum computed using the raw FFT, and using
+Welch's method (i.e. overlapping window functions that reduce noise).
+The top panel shows the raw signal, which is the measurements of the
+change in baseline length.  The bottom panel shows the raw and smoothed
+power spectrum, used by the LIGO team to characterize the noise
+of the detector.  The particular data used here is the injected
+`Big Dog <http://www.ligo.org/news/blind-injection.php>`_ event.
+
+
+
+.. image:: ../images/datasets/plot_LIGO_spectrum_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_LIGO_spectrum.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_LIGO_spectrum.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_LIGO_spectrum.py] <plot_LIGO_spectrum.py>`
+
+.. raw:: html
+    
+    </div>
+

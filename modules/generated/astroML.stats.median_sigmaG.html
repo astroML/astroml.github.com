@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.6.5. astroML.stats.median_sigmaG &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="10. Class reference" href="../classes.html" />
+    <link rel="next" title="10.6.6. astroML.stats.mean_sigma" href="astroML.stats.mean_sigma.html" />
+    <link rel="prev" title="10.6.4. astroML.stats.sigmaG" href="astroML.stats.sigmaG.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="astroML.stats.sigmaG.html" title="10.6.4. astroML.stats.sigmaG"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    10.6.4. astroML....
+	    </span>
+	    <span class="hiddenrellink">
+	    10.6.4. astroML.stats.sigmaG
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="astroML.stats.mean_sigma.html" title="10.6.6. astroML.stats.mean_sigma"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    10.6.6. astroML....
+	    </span>
+	    <span class="hiddenrellink">
+	    10.6.6. astroML.stats.mean_sigma
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../classes.html" title="10. Class reference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	10. Class refere...
+	</span>
+	<span class="hiddenrellink">
+	10. Class reference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">10.6.5. astroML.stats.median_sigmaG</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="astroml-stats-median-sigmag">
+<h1>10.6.5. astroML.stats.median_sigmaG<a class="headerlink" href="#astroml-stats-median-sigmag" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="astroML.stats.median_sigmaG">
+<tt class="descclassname">astroML.stats.</tt><tt class="descname">median_sigmaG</tt><big>(</big><em>a</em>, <em>axis=None</em>, <em>overwrite_input=False</em>, <em>keepdims=False</em><big>)</big><a class="headerlink" href="#astroML.stats.median_sigmaG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute median and rank-based estimate of the standard deviation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>a</strong> : array_like</p>
+<blockquote>
+<div><p>Array containing numbers whose mean is desired. If <cite>a</cite> is not an
+array, a conversion is attempted.</p>
+</div></blockquote>
+<p><strong>axis</strong> : int, optional</p>
+<blockquote>
+<div><p>Axis along which the means are computed. The default is to compute
+the mean of the flattened array.</p>
+</div></blockquote>
+<p><strong>overwrite_input</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, then allow use of memory of input array <cite>a</cite> for
+calculations. The input array will be modified by the call to
+median. This will save memory when you do not need to preserve
+the contents of the input array. Treat the input as undefined,
+but it will probably be fully or partially sorted.
+Default is False. Note that, if <cite>overwrite_input</cite> is True and the
+input is not already an array, an error will be raised.</p>
+</div></blockquote>
+<p><strong>keepdims</strong> : bool, optional</p>
+<blockquote>
+<div><p>If this is set to True, the axes which are reduced are left
+in the result as dimensions with size one. With this option,
+the result will broadcast correctly against the original <cite>arr</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>median</strong> : ndarray, see dtype parameter above</p>
+<blockquote>
+<div><p>array containing the median values</p>
+</div></blockquote>
+<p><strong>sigmaG</strong> : ndarray, see dtype parameter above.</p>
+<blockquote class="last">
+<div><p>array containing the robust estimator of the standard deviation</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="astroML.stats.mean_sigma.html#astroML.stats.mean_sigma" title="astroML.stats.mean_sigma"><tt class="xref py py-obj docutils literal"><span class="pre">mean_sigma</span></tt></a></dt>
+<dd>non-robust version of this calculation</dd>
+<dt><a class="reference internal" href="astroML.stats.sigmaG.html#astroML.stats.sigmaG" title="astroML.stats.sigmaG"><tt class="xref py py-obj docutils literal"><span class="pre">sigmaG</span></tt></a></dt>
+<dd>robust rank-based estimate of standard deviation</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This routine uses a single call to <tt class="docutils literal"><span class="pre">np.percentile</span></tt> to find the
+quartiles along the given axis, and uses these to compute the
+median and sigmaG:</p>
+<p>median = q50
+sigmaG = (q75 - q25) * 0.7413</p>
+<p>where 0.7413 ~ 1 / (2 sqrt(2) erf^-1(0.5))</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/modules/generated/astroML.stats.median_sigmaG.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

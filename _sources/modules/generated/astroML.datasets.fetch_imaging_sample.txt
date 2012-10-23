@@ -1,0 +1,7 @@
+astroML.datasets.fetch_imaging_sample
+=====================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_imaging_sample
+

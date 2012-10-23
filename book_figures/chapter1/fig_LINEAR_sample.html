@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Phased LINEAR Light Curve &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Chapter 1: Introduction" href="index.html" />
+    <link rel="next" title="SDSS Moving Object Data" href="fig_moving_objects.html" />
+    <link rel="prev" title="SDSS Stripe 82 Standard Stars" href="fig_sdss_S82standards.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="fig_sdss_S82standards.html" title="SDSS Stripe 82 Standard Stars"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    SDSS Stripe 82 S...
+	    </span>
+	    <span class="hiddenrellink">
+	    SDSS Stripe 82 Standard Stars
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="fig_moving_objects.html" title="SDSS Moving Object Data"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    SDSS Moving Obje...
+	    </span>
+	    <span class="hiddenrellink">
+	    SDSS Moving Object Data
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Chapter 1: Introduction" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Chapter 1: Intro...
+	</span>
+	<span class="hiddenrellink">
+	Chapter 1: Introduction
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Phased LINEAR Light Curve</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="phased-linear-light-curve">
+<span id="book-fig-chapter1-fig-linear-sample"></span><h1>Phased LINEAR Light Curve<a class="headerlink" href="#phased-linear-light-curve" title="Permalink to this headline">¶</a></h1>
+<p>Plot the colors, magnitudes, and periods of the LINEAR variable stars,
+as well as the phased light curve of a single LINEAR object.</p>
+<img alt="../../_images/fig_LINEAR_sample_1.png" class="align-center" src="../../_images/fig_LINEAR_sample_1.png" style="width: 100%;" />
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><pre>Downloading http://www.astro.washington.edu/users/ivezic/linear/allDataFinal/allLINEARfinal_targets.dat
+[=                                      ]  25.0kb / 1001.2kb   [==                                     ]  50.1kb / 1001.2kb   [===                                    ]  75.1kb / 1001.2kb   [====                                   ]  100.1kb / 1001.2kb   [=====                                  ]  125.2kb / 1001.2kb   [======                                 ]  150.2kb / 1001.2kb   [=======                                ]  175.2kb / 1001.2kb   [========                               ]  200.2kb / 1001.2kb   [=========                              ]  225.3kb / 1001.2kb   [==========                             ]  250.3kb / 1001.2kb   [===========                            ]  275.3kb / 1001.2kb   [============                           ]  300.4kb / 1001.2kb   [=============                          ]  325.4kb / 1001.2kb   [==============                         ]  350.4kb / 1001.2kb   [===============                        ]  375.5kb / 1001.2kb   [================                       ]  400.5kb / 1001.2kb   [=================                      ]  425.5kb / 1001.2kb   [==================                     ]  450.5kb / 1001.2kb   [===================                    ]  475.6kb / 1001.2kb   [====================                   ]  500.6kb / 1001.2kb   [=====================                  ]  525.6kb / 1001.2kb   [======================                 ]  550.7kb / 1001.2kb   [=======================                ]  575.7kb / 1001.2kb   [========================               ]  600.7kb / 1001.2kb   [=========================              ]  625.8kb / 1001.2kb   [==========================             ]  650.8kb / 1001.2kb   [===========================            ]  675.8kb / 1001.2kb   [============================           ]  700.8kb / 1001.2kb   [=============================          ]  725.9kb / 1001.2kb   [==============================         ]  750.9kb / 1001.2kb   [===============================        ]  775.9kb / 1001.2kb   [================================       ]  801.0kb / 1001.2kb   [=================================      ]  826.0kb / 1001.2kb   [==================================     ]  851.0kb / 1001.2kb   [===================================    ]  876.1kb / 1001.2kb   [====================================   ]  901.1kb / 1001.2kb   [=====================================  ]  926.1kb / 1001.2kb   [====================================== ]  951.2kb / 1001.2kb   [=======================================]  976.2kb / 1001.2kb   [========================================]  1001.2kb / 1001.2kb   [=========================================]  1001.2kb / 1001.2kb   
+Downloading http://www.astro.washington.edu/users/ivezic/linear/allDataFinal/allLINEARfinal_dat.tar.gz
+[=                                      ]  410.9kb / 16.05Mb   [==                                     ]  821.9kb / 16.05Mb   [===                                    ]  1.20Mb / 16.05Mb   [====                                   ]  1.61Mb / 16.05Mb   [=====                                  ]  2.01Mb / 16.05Mb   [======                                 ]  2.41Mb / 16.05Mb   [=======                                ]  2.81Mb / 16.05Mb   [========                               ]  3.21Mb / 16.05Mb   [=========                              ]  3.61Mb / 16.05Mb   [==========                             ]  4.01Mb / 16.05Mb   [===========                            ]  4.41Mb / 16.05Mb   [============                           ]  4.82Mb / 16.05Mb   [=============                          ]  5.22Mb / 16.05Mb   [==============                         ]  5.62Mb / 16.05Mb   [===============                        ]  6.02Mb / 16.05Mb   [================                       ]  6.42Mb / 16.05Mb   [=================                      ]  6.82Mb / 16.05Mb   [==================                     ]  7.22Mb / 16.05Mb   [===================                    ]  7.62Mb / 16.05Mb   [====================                   ]  8.03Mb / 16.05Mb   [=====================                  ]  8.43Mb / 16.05Mb   [======================                 ]  8.83Mb / 16.05Mb   [=======================                ]  9.23Mb / 16.05Mb   [========================               ]  9.63Mb / 16.05Mb   [=========================              ]  10.03Mb / 16.05Mb   [==========================             ]  10.43Mb / 16.05Mb   [===========================            ]  10.84Mb / 16.05Mb   [============================           ]  11.24Mb / 16.05Mb   [=============================          ]  11.64Mb / 16.05Mb   [==============================         ]  12.04Mb / 16.05Mb   [===============================        ]  12.44Mb / 16.05Mb   [================================       ]  12.84Mb / 16.05Mb   [=================================      ]  13.24Mb / 16.05Mb   [==================================     ]  13.64Mb / 16.05Mb   [===================================    ]  14.05Mb / 16.05Mb   [====================================   ]  14.45Mb / 16.05Mb   [=====================================  ]  14.85Mb / 16.05Mb   [====================================== ]  15.25Mb / 16.05Mb   [=======================================]  15.65Mb / 16.05Mb   [========================================]  16.05Mb / 16.05Mb   [=========================================]  16.05Mb / 16.05Mb   
+</pre>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c"># License: BSD</span>
+<span class="c">#   The figure produced by this code is published in the textbook</span>
+<span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
+<span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_LINEAR_sample</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># Get data for the plot</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_LINEAR_sample</span><span class="p">()</span>
+
+<span class="c"># Compute the phased light curve for a single object.</span>
+<span class="c"># the best-fit period in the file is not accurate enough</span>
+<span class="c"># for light curve phasing.  The frequency below is</span>
+<span class="c"># calculated using Lomb Scargle (see chapter10/fig_LINEAR_LS.py)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="mi">18525697</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mf">10.82722481</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">phase</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">omega</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span>
+
+<span class="c"># Select colors, magnitudes, and periods from the global set</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="s">&#39;LP1&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">targets</span><span class="p">[</span><span class="s">&#39;r&#39;</span><span class="p">]</span>
+<span class="n">gr</span> <span class="o">=</span> <span class="n">targets</span><span class="p">[</span><span class="s">&#39;gr&#39;</span><span class="p">]</span>
+<span class="n">ri</span> <span class="o">=</span> <span class="n">targets</span><span class="p">[</span><span class="s">&#39;ri&#39;</span><span class="p">]</span>
+<span class="n">logP</span> <span class="o">=</span> <span class="n">targets</span><span class="p">[</span><span class="s">&#39;LP1&#39;</span><span class="p">]</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                    <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">phase</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;phase&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;magnitude&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;example of</span><span class="se">\n</span><span class="s">phased light curve&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">ri</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;g-r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;r-i&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">logP</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-2</span><span class="p">,</span> <span class="mf">1E2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;principal period (days)&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="s">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="n">logP</span><span class="p">,</span> <span class="n">ri</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">1E-2</span><span class="p">,</span> <span class="mf">1E2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;principal period (days)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" href="../../_downloads/fig_LINEAR_sample.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_LINEAR_sample.py]</span></tt></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter1/fig_LINEAR_sample.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

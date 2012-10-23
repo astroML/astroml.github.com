@@ -1,0 +1,7 @@
+astroML.resample.jackknife
+==========================
+
+.. currentmodule:: astroML.resample
+
+.. autofunction:: jackknife
+

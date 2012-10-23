@@ -1,0 +1,7 @@
+astroML.fourier.IFT_continuous
+==============================
+
+.. currentmodule:: astroML.fourier
+
+.. autofunction:: IFT_continuous
+

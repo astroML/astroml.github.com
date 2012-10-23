@@ -1,0 +1,7 @@
+astroML.datasets.fetch_sdss_corrected_spectra
+=============================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_sdss_corrected_spectra
+

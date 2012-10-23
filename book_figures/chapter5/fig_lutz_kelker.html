@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Eddington-Malmquist &amp; Lutz-Kelker Biases &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Chapter 5: Bayesian Statistical Inference" href="index.html" />
+    <link rel="next" title="Log-likelihood for Gaussian Distribution" href="fig_likelihood_gaussian.html" />
+    <link rel="prev" title="Malmquist Bias Example" href="fig_malmquist_bias.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="fig_malmquist_bias.html" title="Malmquist Bias Example"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    Malmquist Bias E...
+	    </span>
+	    <span class="hiddenrellink">
+	    Malmquist Bias Example
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="fig_likelihood_gaussian.html" title="Log-likelihood for Gaussian Distribution"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    Log-likelihood f...
+	    </span>
+	    <span class="hiddenrellink">
+	    Log-likelihood for Gaussian Distribution
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Chapter 5: Bayesian Statistical Inference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Chapter 5: Bayes...
+	</span>
+	<span class="hiddenrellink">
+	Chapter 5: Bayesian Statistical Inference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Eddington-Malmquist &amp; Lutz-Kelker Biases</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="eddington-malmquist-lutz-kelker-biases">
+<span id="book-fig-chapter5-fig-lutz-kelker"></span><h1>Eddington-Malmquist &amp; Lutz-Kelker Biases<a class="headerlink" href="#eddington-malmquist-lutz-kelker-biases" title="Permalink to this headline">¶</a></h1>
+<p>These plots show the magnitude biases that result from the Eddington-Malmquist
+and Lutz-Kelker Biases.</p>
+<img alt="../../_images/fig_lutz_kelker_1.png" class="align-center" src="../../_images/fig_lutz_kelker_1.png" style="width: 100%;" />
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
+</pre></div>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c"># License: BSD</span>
+<span class="c">#   The figure produced by this code is published in the textbook</span>
+<span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
+<span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="kn">import</span> <span class="n">median_sigmaG</span>
+
+
+<span class="k">def</span> <span class="nf">generate_magnitudes</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">m_min</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    generate magnitudes from a distribution with</span>
+<span class="sd">      p(m) ~ 10^(k m)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">klog10</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">Pmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">klog10</span> <span class="o">*</span> <span class="n">m_min</span><span class="p">)</span>
+    <span class="n">Pmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">klog10</span> <span class="o">*</span> <span class="n">m_max</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">klog10</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Pmin</span> <span class="o">+</span> <span class="p">(</span><span class="n">Pmax</span> <span class="o">-</span> <span class="n">Pmin</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">mag_errors</span><span class="p">(</span><span class="n">m_true</span><span class="p">,</span> <span class="n">m5</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span> <span class="n">fGamma</span><span class="o">=</span><span class="mf">0.039</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    compute magnitude errors based on the true magnitude and the</span>
+<span class="sd">    5-sigma limiting magnitude, m5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">mtrue</span> <span class="o">-</span> <span class="n">m5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mf">0.04</span> <span class="o">-</span> <span class="n">fGamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">fGamma</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># Compute the Eddington-Malmquist bias &amp; scatter</span>
+
+<span class="n">mtrue</span> <span class="o">=</span> <span class="n">generate_magnitudes</span><span class="p">(</span><span class="mf">1E6</span><span class="p">,</span> <span class="n">m_min</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">photomErr</span> <span class="o">=</span> <span class="n">mag_errors</span><span class="p">(</span><span class="n">mtrue</span><span class="p">)</span>
+
+<span class="n">m1</span> <span class="o">=</span> <span class="n">mtrue</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">photomErr</span><span class="p">)</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">mtrue</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">photomErr</span><span class="p">)</span>
+<span class="n">dm</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">-</span> <span class="n">m2</span>
+
+<span class="n">mGrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">medGrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mGrid</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">sigGrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mGrid</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mGrid</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">medGrid</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sigGrid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">median_sigmaG</span><span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="n">m1</span> <span class="o">&lt;</span> <span class="n">mGrid</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># Lutz-Kelker bias and scatter</span>
+
+<span class="n">mtrue</span> <span class="o">=</span> <span class="n">generate_magnitudes</span><span class="p">(</span><span class="mf">1E6</span><span class="p">,</span> <span class="n">m_min</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">relErr</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">mtrue</span> <span class="o">-</span> <span class="mi">20</span><span class="p">))</span>
+
+<span class="n">pErrGrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">deltaM2</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">relErr</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">deltaM4</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">relErr</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">med2</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">deltaM2</span><span class="p">[</span><span class="n">relErr</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">])</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">pErrGrid</span><span class="p">]</span>
+<span class="n">med4</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">deltaM4</span><span class="p">[</span><span class="n">relErr</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">])</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">pErrGrid</span><span class="p">]</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mGrid</span><span class="p">,</span> <span class="n">sigGrid</span><span class="p">,</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;scatter&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mGrid</span><span class="p">,</span> <span class="n">medGrid</span><span class="p">,</span> <span class="s">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;bias&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mGrid</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">mGrid</span><span class="p">,</span> <span class="s">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">r&#39;$m_{\rm obs}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;bias/scatter (mag)&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.01</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_minorticklines</span><span class="p">():</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">set_markersize</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pErrGrid</span><span class="p">,</span> <span class="n">med2</span><span class="p">,</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;p=2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pErrGrid</span><span class="p">,</span> <span class="n">med4</span><span class="p">,</span> <span class="s">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;p=4&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">r&#39;$\sigma_\pi / \pi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;absolute magnitude bias&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.301</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.701</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" href="../../_downloads/fig_lutz_kelker.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_lutz_kelker.py]</span></tt></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter5/fig_lutz_kelker.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+astroML.fourier.FT_continuous
+=============================
+
+.. currentmodule:: astroML.fourier
+
+.. autofunction:: FT_continuous
+

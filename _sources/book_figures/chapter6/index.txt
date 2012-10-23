@@ -1,0 +1,171 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_chapter6:
+
+Chapter 6: Searching for Structure in Point Data
+------------------------------------------------
+This chapter covers high-dimensional point statistics, including density
+estimation, clustering, and correlation functions.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_great_wall
+
+   ./fig_hist_to_kernel
+
+   ./fig_kernels
+
+   ./fig_great_wall_KDE
+
+   ./fig_density_estimation
+
+   ./fig_EM_metallicity
+
+   ./fig_GMM_density_estimation
+
+   ./fig_GMM_clone
+
+   ./fig_great_wall_GMM
+
+   ./fig_XD_example
+
+   ./fig_stellar_XD
+
+   ./fig_GMM_nclusters
+
+   ./fig_kmeans_metallicity
+
+   ./fig_meanshift_metallicity
+
+   ./fig_great_wall_MST
+
+   ./fig_corr_diagram
+
+   ./fig_correlation_function
+
+
+
+.. figure:: ./../images/chapter6/fig_great_wall_1_thumb.png
+    :target: ./fig_great_wall.html
+
+    :ref:`book_fig_chapter6_fig_great_wall`
+
+.. figure:: ./../images/chapter6/fig_hist_to_kernel_1_thumb.png
+    :target: ./fig_hist_to_kernel.html
+
+    :ref:`book_fig_chapter6_fig_hist_to_kernel`
+
+.. figure:: ./../images/chapter6/fig_kernels_1_thumb.png
+    :target: ./fig_kernels.html
+
+    :ref:`book_fig_chapter6_fig_kernels`
+
+.. figure:: ./../images/chapter6/fig_great_wall_KDE_1_thumb.png
+    :target: ./fig_great_wall_KDE.html
+
+    :ref:`book_fig_chapter6_fig_great_wall_KDE`
+
+.. figure:: ./../images/chapter6/fig_density_estimation_1_thumb.png
+    :target: ./fig_density_estimation.html
+
+    :ref:`book_fig_chapter6_fig_density_estimation`
+
+.. figure:: ./../images/chapter6/fig_EM_metallicity_1_thumb.png
+    :target: ./fig_EM_metallicity.html
+
+    :ref:`book_fig_chapter6_fig_EM_metallicity`
+
+.. figure:: ./../images/chapter6/fig_GMM_density_estimation_1_thumb.png
+    :target: ./fig_GMM_density_estimation.html
+
+    :ref:`book_fig_chapter6_fig_GMM_density_estimation`
+
+.. figure:: ./../images/chapter6/fig_GMM_clone_1_thumb.png
+    :target: ./fig_GMM_clone.html
+
+    :ref:`book_fig_chapter6_fig_GMM_clone`
+
+.. figure:: ./../images/chapter6/fig_great_wall_GMM_1_thumb.png
+    :target: ./fig_great_wall_GMM.html
+
+    :ref:`book_fig_chapter6_fig_great_wall_GMM`
+
+.. figure:: ./../images/chapter6/fig_XD_example_1_thumb.png
+    :target: ./fig_XD_example.html
+
+    :ref:`book_fig_chapter6_fig_XD_example`
+
+.. figure:: ./../images/chapter6/fig_stellar_XD_1_thumb.png
+    :target: ./fig_stellar_XD.html
+
+    :ref:`book_fig_chapter6_fig_stellar_XD`
+
+.. figure:: ./../images/chapter6/fig_GMM_nclusters_1_thumb.png
+    :target: ./fig_GMM_nclusters.html
+
+    :ref:`book_fig_chapter6_fig_GMM_nclusters`
+
+.. figure:: ./../images/chapter6/fig_kmeans_metallicity_1_thumb.png
+    :target: ./fig_kmeans_metallicity.html
+
+    :ref:`book_fig_chapter6_fig_kmeans_metallicity`
+
+.. figure:: ./../images/chapter6/fig_meanshift_metallicity_1_thumb.png
+    :target: ./fig_meanshift_metallicity.html
+
+    :ref:`book_fig_chapter6_fig_meanshift_metallicity`
+
+.. figure:: ./../images/chapter6/fig_great_wall_MST_1_thumb.png
+    :target: ./fig_great_wall_MST.html
+
+    :ref:`book_fig_chapter6_fig_great_wall_MST`
+
+.. figure:: ./../images/chapter6/fig_corr_diagram_1_thumb.png
+    :target: ./fig_corr_diagram.html
+
+    :ref:`book_fig_chapter6_fig_corr_diagram`
+
+.. figure:: ./../images/chapter6/fig_correlation_function_1_thumb.png
+    :target: ./fig_correlation_function.html
+
+    :ref:`book_fig_chapter6_fig_correlation_function`
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

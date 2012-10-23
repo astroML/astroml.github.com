@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter6_fig_GMM_nclusters:
+
+
+Number of Clusters for Gaussian Mixtures
+----------------------------------------
+This figure shows the BIC-optimized number of clusters for
+a Gaussian mixture model with several sizes of data.
+
+
+
+.. image:: ../images/chapter6/fig_GMM_nclusters_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_GMM_nclusters.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_GMM_nclusters.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_GMM_nclusters.py] <fig_GMM_nclusters.py>`
+
+.. raw:: html
+    
+    </div>
+

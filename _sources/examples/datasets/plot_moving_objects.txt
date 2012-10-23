@@ -1,0 +1,69 @@
+
+
+.. _example_datasets_plot_moving_objects:
+
+
+SDSS Stripe 82 Moving Object Catalog
+------------------------------------
+
+This plot demonstrates how to fetch data from the SDSS Moving object catalog,
+and plot using a multicolor plot similar to that used in figures 3-4 of [1]_
+
+References
+~~~~~~~~~~
+.. [1] Parker `et al.` 2008 http://adsabs.harvard.edu/abs/2008Icar..198..138P
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/datasets/plot_moving_objects_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/datasets/plot_moving_objects_2.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_moving_objects.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_moving_objects.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_moving_objects.py] <plot_moving_objects.py>`
+
+.. raw:: html
+    
+    </div>
+

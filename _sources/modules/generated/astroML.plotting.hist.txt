@@ -1,0 +1,7 @@
+astroML.plotting.hist
+=====================
+
+.. currentmodule:: astroML.plotting
+
+.. autofunction:: hist
+

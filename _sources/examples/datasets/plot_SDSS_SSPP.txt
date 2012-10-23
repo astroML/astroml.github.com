@@ -1,0 +1,59 @@
+
+
+.. _example_datasets_plot_SDSS_SSPP:
+
+
+Stellar Parameters Hess Diagram
+-------------------------------
+This example shows how to create Hess diagrams of the Segue Stellar Parameters
+Pipeline (SSPP) data to show multiple features on a single plot.  The left
+panel shows the density of the points on the plot.  The right panel shows
+the average metallicity in each pixel, with contours reflecting the density
+shown in the left plot.
+
+
+
+.. image:: ../images/datasets/plot_SDSS_SSPP_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_SDSS_SSPP.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_SDSS_SSPP.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_SDSS_SSPP.py] <plot_SDSS_SSPP.py>`
+
+.. raw:: html
+    
+    </div>
+

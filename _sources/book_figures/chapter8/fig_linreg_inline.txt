@@ -1,0 +1,64 @@
+
+
+.. _book_fig_chapter8_fig_linreg_inline:
+
+
+Inline Bayesian Linear Regression
+---------------------------------
+This figure shows a schematic of how Bayesian ideas can be used for a
+linear regression problem with (asymmetric) errors in the data.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter8/fig_linreg_inline_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter8/fig_linreg_inline_2.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_linreg_inline.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_linreg_inline.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_linreg_inline.py] <fig_linreg_inline.py>`
+
+.. raw:: html
+    
+    </div>
+

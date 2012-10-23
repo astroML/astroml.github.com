@@ -1,0 +1,7 @@
+astroML.stats.median_sigmaG
+===========================
+
+.. currentmodule:: astroML.stats
+
+.. autofunction:: median_sigmaG
+

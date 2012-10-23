@@ -1,0 +1,58 @@
+
+
+.. _book_fig_chapter5_fig_poisson_continuous:
+
+
+Unbinned Poisson Data
+---------------------
+This figure shows an example of regression with unbinned data.  The data is
+unbinned poisson-distributed data, drawn from a distribution p(x) ~ a*x + b
+between 0 and 10.  The goal is to estimate the single parameter a from the
+unbinned data (b is determined by normalization).
+
+
+
+.. image:: ../images/chapter5/fig_poisson_continuous_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_continuous.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_continuous.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_poisson_continuous.py] <fig_poisson_continuous.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,7 @@
+astroML.stats.mean_sigma
+========================
+
+.. currentmodule:: astroML.stats
+
+.. autofunction:: mean_sigma
+

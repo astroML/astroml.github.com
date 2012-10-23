@@ -1,0 +1,67 @@
+
+
+.. _book_fig_chapter6_fig_hist_to_kernel:
+
+
+Histogram vs Kernel Density Estimation
+--------------------------------------
+These figures show how histograms are related to kernel density estimation.
+The first figure shows how histograms with the same binwidth but different
+bin locations can lead to very different ideas of what the data looks like.
+The second figure shows how the histogram idea leads to the concept of
+Kernel Density Estimation (KDE).
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter6/fig_hist_to_kernel_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter6/fig_hist_to_kernel_2.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_hist_to_kernel.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_hist_to_kernel.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_hist_to_kernel.py] <fig_hist_to_kernel.py>`
+
+.. raw:: html
+    
+    </div>
+

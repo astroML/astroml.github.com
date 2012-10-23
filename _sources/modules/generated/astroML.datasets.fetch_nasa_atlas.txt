@@ -1,0 +1,7 @@
+astroML.datasets.fetch_nasa_atlas
+=================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_nasa_atlas
+

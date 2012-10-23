@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter10_fig_powerlaw:
+
+
+Generating Power-law Light Curves
+---------------------------------
+This shows how to generate power-law light-curves using the Timmer & Koenig
+method.
+
+References
+~~~~~~~~~~
+.. [1] Timmer, J. & Koenig, M. On Generating Power Law Noise. A&A 300:707
+
+
+
+.. image:: ../images/chapter10/fig_powerlaw_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_powerlaw.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_powerlaw.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_powerlaw.py] <fig_powerlaw.py>`
+
+.. raw:: html
+    
+    </div>
+

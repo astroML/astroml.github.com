@@ -1,0 +1,7 @@
+astroML.datasets.fetch_dr7_quasar
+=================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_dr7_quasar
+

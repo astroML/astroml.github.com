@@ -1,0 +1,7 @@
+astroML.time_series.generate_power_law
+======================================
+
+.. currentmodule:: astroML.time_series
+
+.. autofunction:: generate_power_law
+

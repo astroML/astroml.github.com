@@ -1,0 +1,7 @@
+astroML.density_estimation.freedman_bin_width
+=============================================
+
+.. currentmodule:: astroML.density_estimation
+
+.. autofunction:: freedman_bin_width
+

@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter5_fig_distribution_gaussgauss:
+
+
+Gaussian/Gaussian distribution
+------------------------------
+This shows the resulting observed distribution when points drawn from a
+gaussian also have gaussian error bars
+
+
+
+.. image:: ../images/chapter5/fig_distribution_gaussgauss_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_distribution_gaussgauss.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_distribution_gaussgauss.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_distribution_gaussgauss.py] <fig_distribution_gaussgauss.py>`
+
+.. raw:: html
+    
+    </div>
+

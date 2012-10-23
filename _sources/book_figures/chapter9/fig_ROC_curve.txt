@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter9_fig_ROC_curve:
+
+
+RR Lyrae ROC Curves
+-------------------
+Plot Receiver Operating Characteristic (ROC) curves to compare several
+classification methods used in this chapter.
+
+
+
+.. image:: ../images/chapter9/fig_ROC_curve_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_ROC_curve.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_ROC_curve.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_ROC_curve.py] <fig_ROC_curve.py>`
+
+.. raw:: html
+    
+    </div>
+

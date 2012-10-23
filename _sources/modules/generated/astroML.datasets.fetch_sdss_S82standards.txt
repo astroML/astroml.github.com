@@ -1,0 +1,7 @@
+astroML.datasets.fetch_sdss_S82standards
+========================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_sdss_S82standards
+

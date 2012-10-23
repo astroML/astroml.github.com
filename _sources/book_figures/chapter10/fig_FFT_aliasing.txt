@@ -1,0 +1,64 @@
+
+
+.. _book_fig_chapter10_fig_FFT_aliasing:
+
+
+The effect of Sampling
+----------------------
+This figure shows the effect of sampling on a light curve.  We show the
+data and window function in both temporal space and frequency space.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter10/fig_FFT_aliasing_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter10/fig_FFT_aliasing_2.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_FFT_aliasing.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_FFT_aliasing.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_FFT_aliasing.py] <fig_FFT_aliasing.py>`
+
+.. raw:: html
+    
+    </div>
+

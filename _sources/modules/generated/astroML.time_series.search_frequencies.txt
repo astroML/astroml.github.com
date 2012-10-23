@@ -1,0 +1,7 @@
+astroML.time_series.search_frequencies
+======================================
+
+.. currentmodule:: astroML.time_series
+
+.. autofunction:: search_frequencies
+

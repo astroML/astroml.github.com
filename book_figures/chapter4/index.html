@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Chapter 4: Classical Statistical Inference &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Textbook Figures" href="../index.html" />
+    <link rel="next" title="Evaluating a model fit with chi-square" href="fig_chi2_eval.html" />
+    <link rel="prev" title="Random Number Generation" href="../chapter3/fig_clone_distribution.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="../chapter3/fig_clone_distribution.html" title="Random Number Generation"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    Random Number Ge...
+	    </span>
+	    <span class="hiddenrellink">
+	    Random Number Generation
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="fig_chi2_eval.html" title="Evaluating a model fit with chi-square"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    Evaluating a mod...
+	    </span>
+	    <span class="hiddenrellink">
+	    Evaluating a model fit with chi-square
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Textbook Figures" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Textbook Figures
+	</span>
+	<span class="hiddenrellink">
+	Textbook Figures
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Chapter 4: Classical Statistical Inference</a><ul>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <style type="text/css">
+.figure {
+    float: left;
+    margin: 10px;
+    width: auto;
+    height: 200px;
+    width: 180px;
+}
+
+.figure img {
+    display: inline;
+    }
+
+.figure .caption {
+    width: 170px;
+    text-align: center !important;
+}
+</style><div class="section" id="chapter-4-classical-statistical-inference">
+<span id="book-fig-chapter4"></span><h1>Chapter 4: Classical Statistical Inference<a class="headerlink" href="#chapter-4-classical-statistical-inference" title="Permalink to this headline">¶</a></h1>
+<p>This chapter develops the classical or &#8220;frequentist&#8221; approach to  statistics.</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_chi2_eval.html"><img alt="../../_images/fig_chi2_eval_1_thumb.png" src="../../_images/fig_chi2_eval_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_chi2_eval.html#book-fig-chapter4-fig-chi2-eval"><em>Evaluating a model fit with chi-square</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_GMM_1D.html"><img alt="../../_images/fig_GMM_1D_1_thumb.png" src="../../_images/fig_GMM_1D_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_GMM_1D.html#book-fig-chapter4-fig-gmm-1d"><em>1D Gaussian Mixture Example</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_bootstrap_gaussian.html"><img alt="../../_images/fig_bootstrap_gaussian_1_thumb.png" src="../../_images/fig_bootstrap_gaussian_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_bootstrap_gaussian.html#book-fig-chapter4-fig-bootstrap-gaussian"><em>Bootstrap Calculations of Error on Mean</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_jackknife_gaussian.html"><img alt="../../_images/fig_jackknife_gaussian_1_thumb.png" src="../../_images/fig_jackknife_gaussian_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_jackknife_gaussian.html#book-fig-chapter4-fig-jackknife-gaussian"><em>Jackknife Calculations of Error on Mean</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_classification_example.html"><img alt="../../_images/fig_classification_example_1_thumb.png" src="../../_images/fig_classification_example_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_classification_example.html#book-fig-chapter4-fig-classification-example"><em>Example of classification</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_benjamini_method.html"><img alt="../../_images/fig_benjamini_method_1_thumb.png" src="../../_images/fig_benjamini_method_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_benjamini_method.html#book-fig-chapter4-fig-benjamini-method"><em>Example of Benjamini &amp; Hochberg Method</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_anderson_darling.html"><img alt="../../_images/fig_anderson_darling_1_thumb.png" src="../../_images/fig_anderson_darling_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_anderson_darling.html#book-fig-chapter4-fig-anderson-darling"><em>Gaussianity Tests</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_lyndenbell_setup.html"><img alt="../../_images/fig_lyndenbell_setup_1_thumb.png" src="../../_images/fig_lyndenbell_setup_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_lyndenbell_setup.html#book-fig-chapter4-fig-lyndenbell-setup"><em>Lynden-Bell C- setup</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_lyndenbell_toy.html"><img alt="../../_images/fig_lyndenbell_toy_1_thumb.png" src="../../_images/fig_lyndenbell_toy_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_lyndenbell_toy.html#book-fig-chapter4-fig-lyndenbell-toy"><em>Luminosity function code on toy data</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_lyndenbell_gals.html"><img alt="../../_images/fig_lyndenbell_gals_1_thumb.png" src="../../_images/fig_lyndenbell_gals_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_lyndenbell_gals.html#book-fig-chapter4-fig-lyndenbell-gals"><em>Lynden-Bell Luminosity function</em></a></p>
+</div>
+<div style="clear: both"></div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter4/index.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

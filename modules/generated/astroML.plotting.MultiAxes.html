@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.1.2.1. astroML.plotting.MultiAxes &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="10. Class reference" href="../classes.html" />
+    <link rel="next" title="10.2.1.1. astroML.density_estimation.histogram" href="astroML.density_estimation.histogram.html" />
+    <link rel="prev" title="10.1.1.2. astroML.plotting.scatter_contour" href="astroML.plotting.scatter_contour.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="astroML.plotting.scatter_contour.html" title="10.1.1.2. astroML.plotting.scatter_contour"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    10.1.1.2. astroM...
+	    </span>
+	    <span class="hiddenrellink">
+	    10.1.1.2. astroML.plotting.scatter_contour
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="astroML.density_estimation.histogram.html" title="10.2.1.1. astroML.density_estimation.histogram"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    10.2.1.1. astroM...
+	    </span>
+	    <span class="hiddenrellink">
+	    10.2.1.1. astroML.density_estimation.histogram
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../classes.html" title="10. Class reference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	10. Class refere...
+	</span>
+	<span class="hiddenrellink">
+	10. Class reference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">10.1.2.1. astroML.plotting.MultiAxes</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="astroml-plotting-multiaxes">
+<h1>10.1.2.1. astroML.plotting.MultiAxes<a class="headerlink" href="#astroml-plotting-multiaxes" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="astroML.plotting.MultiAxes">
+<em class="property">class </em><tt class="descclassname">astroML.plotting.</tt><tt class="descname">MultiAxes</tt><big>(</big><em>ndim</em>, <em>inner_labels=False</em>, <em>fig=None</em>, <em>left=None</em>, <em>bottom=None</em>, <em>right=None</em>, <em>top=None</em>, <em>wspace=None</em>, <em>hspace=None</em><big>)</big><a class="headerlink" href="#astroML.plotting.MultiAxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualize Multiple-dimensional data</p>
+<p>This class enables the visualization of multi-dimensional data, using
+a triangular grid of 2D plots.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>ndim</strong> : integer</p>
+<blockquote>
+<div><p>Number of data dimensions</p>
+</div></blockquote>
+<p><strong>inner_labels</strong> : bool</p>
+<blockquote>
+<div><p>If true, then label the inner axes.  If false, then only the outer
+axes will be labeled</p>
+</div></blockquote>
+<p><strong>fig</strong> : matplotlib.Figure</p>
+<blockquote>
+<div><p>if specified, draw the plot on this figure.  Otherwise, use the
+current active figure.</p>
+</div></blockquote>
+<p><strong>left, bottom, right, top, wspace, hspace</strong> : floats</p>
+<blockquote class="last">
+<div><p>these parameters control the layout of the plots.  They behave have
+an identical effect as the arguments to plt.subplots_adjust.  If not
+specified, default values from the rc file will be used.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>A grid of scatter plots can be created as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c"># projection matrix</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">MultiAxes</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_labels</span><span class="p">([</span><span class="s">&#39;x1&#39;</span><span class="p">,</span> <span class="s">&#39;x2&#39;</span><span class="p">,</span> <span class="s">&#39;x3&#39;</span><span class="p">,</span> <span class="s">&#39;x4&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Alternatively, the scatter plot can be visualized as a density:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">MultiAxes</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">density</span></tt>(data[,&nbsp;bins])</td>
+<td>Density plot of data</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">plot</span></tt>(data,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>Plot data</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">scatter</span></tt>(data,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>Scatter plot data</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">set_formatters</span></tt>(formatters)</td>
+<td>Set the tick formatters for the outer edge of plots</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">set_labels</span></tt>(labels)</td>
+<td>Set the axes labels</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">set_limits</span></tt>(limits)</td>
+<td>Set the axes limits</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">set_locators</span></tt>(locators)</td>
+<td>Set the tick locators for the plots</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="astroML.plotting.MultiAxes.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>ndim</em>, <em>inner_labels=False</em>, <em>fig=None</em>, <em>left=None</em>, <em>bottom=None</em>, <em>right=None</em>, <em>top=None</em>, <em>wspace=None</em>, <em>hspace=None</em><big>)</big><a class="headerlink" href="#astroML.plotting.MultiAxes.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/modules/generated/astroML.plotting.MultiAxes.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

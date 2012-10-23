@@ -1,0 +1,55 @@
+
+
+.. _book_fig_chapter9_fig_bayes_DB:
+
+
+Bayes Decision Boundary
+-----------------------
+This figure plots a schematic of a decision boundary for classification
+
+
+
+.. image:: ../images/chapter9/fig_bayes_DB_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_bayes_DB.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_bayes_DB.py
+    :lines: 6-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_bayes_DB.py] <fig_bayes_DB.py>`
+
+.. raw:: html
+    
+    </div>
+

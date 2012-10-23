@@ -1,0 +1,57 @@
+
+
+.. _book_fig_chapter5_fig_outlier_likelihood:
+
+
+Plot the posterior of mu vs g1 with outliers
+--------------------------------------------
+This plot shows an example of dealing with outliers in a Bayesian fashion.
+Here we plot the posterior marginalized over all parameters except the
+mean, and the probability of a particular point being an outlier.
+
+
+
+.. image:: ../images/chapter5/fig_outlier_likelihood_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_outlier_likelihood.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_outlier_likelihood.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_outlier_likelihood.py] <fig_outlier_likelihood.py>`
+
+.. raw:: html
+    
+    </div>
+

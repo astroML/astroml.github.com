@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Catalog cross-matching &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Data Processing Algorithms" href="index.html" />
+    <link rel="next" title="Bayesian Blocks for Histograms" href="plot_bayesian_blocks.html" />
+    <link rel="prev" title="Data Processing Algorithms" href="index.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="index.html" title="Data Processing Algorithms"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    Data Processing ...
+	    </span>
+	    <span class="hiddenrellink">
+	    Data Processing Algorithms
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="plot_bayesian_blocks.html" title="Bayesian Blocks for Histograms"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    Bayesian Blocks ...
+	    </span>
+	    <span class="hiddenrellink">
+	    Bayesian Blocks for Histograms
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Data Processing Algorithms" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Data Processing ...
+	</span>
+	<span class="hiddenrellink">
+	Data Processing Algorithms
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Catalog cross-matching</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="catalog-cross-matching">
+<span id="example-algorithms-plot-crossmatch"></span><h1>Catalog cross-matching<a class="headerlink" href="#catalog-cross-matching" title="Permalink to this headline">¶</a></h1>
+<p>This plots the cross-matched samples between the SDSS imaging data and
+the SDSS Stripe 82 standard stars.</p>
+<img alt="../../_images/plot_crossmatch_1.png" class="align-center" src="../../_images/plot_crossmatch_1.png" style="width: 100%;" />
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><pre>downloading cross-matched SDSS/2MASS dataset from http://www.astro.washington.edu/users/ivezic/sdss/catalogs/stripe82calibStars_v2.6.dat.gz to /home/vanderplas/astroML_data
+Downloading http://www.astro.washington.edu/users/ivezic/sdss/catalogs/stripe82calibStars_v2.6.dat.gz
+[=                                      ]  1.59Mb / 63.58Mb   [==                                     ]  3.18Mb / 63.58Mb   [===                                    ]  4.77Mb / 63.58Mb   [====                                   ]  6.36Mb / 63.58Mb   [=====                                  ]  7.95Mb / 63.58Mb   [======                                 ]  9.54Mb / 63.58Mb   [=======                                ]  11.13Mb / 63.58Mb   [========                               ]  12.72Mb / 63.58Mb   [=========                              ]  14.31Mb / 63.58Mb   [==========                             ]  15.89Mb / 63.58Mb   [===========                            ]  17.48Mb / 63.58Mb   [============                           ]  19.07Mb / 63.58Mb   [=============                          ]  20.66Mb / 63.58Mb   [==============                         ]  22.25Mb / 63.58Mb   [===============                        ]  23.84Mb / 63.58Mb   [================                       ]  25.43Mb / 63.58Mb   [=================                      ]  27.02Mb / 63.58Mb   [==================                     ]  28.61Mb / 63.58Mb   [===================                    ]  30.20Mb / 63.58Mb   [====================                   ]  31.79Mb / 63.58Mb   [=====================                  ]  33.38Mb / 63.58Mb   [======================                 ]  34.97Mb / 63.58Mb   [=======================                ]  36.56Mb / 63.58Mb   [========================               ]  38.15Mb / 63.58Mb   [=========================              ]  39.74Mb / 63.58Mb   [==========================             ]  41.33Mb / 63.58Mb   [===========================            ]  42.92Mb / 63.58Mb   [============================           ]  44.51Mb / 63.58Mb   [=============================          ]  46.10Mb / 63.58Mb   [==============================         ]  47.68Mb / 63.58Mb   [===============================        ]  49.27Mb / 63.58Mb   [================================       ]  50.86Mb / 63.58Mb   [=================================      ]  52.45Mb / 63.58Mb   [==================================     ]  54.04Mb / 63.58Mb   [===================================    ]  55.63Mb / 63.58Mb   [====================================   ]  57.22Mb / 63.58Mb   [=====================================  ]  58.81Mb / 63.58Mb   [====================================== ]  60.40Mb / 63.58Mb   [=======================================]  61.99Mb / 63.58Mb   [========================================]  63.58Mb / 63.58Mb   [=========================================]  63.58Mb / 63.58Mb   
+uncompressing file...
+Optimization terminated successfully.
+         Current function value: -82328.648708
+         Iterations: 19
+         Function evaluations: 52
+</pre>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c"># License: BSD</span>
+<span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_imaging_sample</span><span class="p">,</span> <span class="n">fetch_sdss_S82standards</span>
+<span class="kn">from</span> <span class="nn">astroML.crossmatch</span> <span class="kn">import</span> <span class="n">crossmatch</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">hist</span>
+
+<span class="c"># get imaging data</span>
+<span class="n">image_data</span> <span class="o">=</span> <span class="n">fetch_imaging_sample</span><span class="p">()</span>
+<span class="n">imX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">image_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">imX</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">image_data</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">]</span>
+<span class="n">imX</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">image_data</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">]</span>
+
+<span class="c"># get standard stars</span>
+<span class="n">standards_data</span> <span class="o">=</span> <span class="n">fetch_sdss_S82standards</span><span class="p">()</span>
+<span class="n">stX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">standards_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">stX</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">standards_data</span><span class="p">[</span><span class="s">&#39;RA&#39;</span><span class="p">]</span>
+<span class="n">stX</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">standards_data</span><span class="p">[</span><span class="s">&#39;DEC&#39;</span><span class="p">]</span>
+
+<span class="c"># crossmatch catalogs</span>
+<span class="n">max_radius</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">3600</span>  <span class="c"># 1 arcsec</span>
+<span class="n">dist</span><span class="p">,</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">crossmatch</span><span class="p">(</span><span class="n">imX</span><span class="p">,</span> <span class="n">stX</span><span class="p">,</span> <span class="n">max_radius</span><span class="p">)</span>
+<span class="n">match</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+
+<span class="n">dist_match</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">match</span><span class="p">]</span>
+<span class="n">dist_match</span> <span class="o">*=</span> <span class="mi">3600</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">dist_match</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s">&#39;knuth&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+     <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">&#39;#AAAAAA&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;radius of match (arcsec)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;N(r, r+dr)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s">&quot;Total objects: </span><span class="si">%i</span><span class="se">\n</span><span class="s">Number with match: </span><span class="si">%i</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">imX</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                      <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">match</span><span class="p">)),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" href="../../_downloads/plot_crossmatch.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_crossmatch.py]</span></tt></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/examples/algorithms/plot_crossmatch.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+
+
+.. _book_fig_chapter1_fig_projections:
+
+
+Spherical Projections
+---------------------
+
+Example of plotting several spherical projections available in matplotlib.
+Note that the matplotlib basemap toolkit has some much more sophisticated
+tools for this sort of plot.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter1/fig_projections_2.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter1/fig_projections_1.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_projections.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_projections.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_projections.py] <fig_projections.py>`
+
+.. raw:: html
+    
+    </div>
+

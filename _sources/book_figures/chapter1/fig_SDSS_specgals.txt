@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter1_fig_SDSS_specgals:
+
+
+SDSS Spectroscopic Galaxy Sample
+--------------------------------
+This example shows how to fetch photometric data from the SDSS spectroscopic
+sample and plot a simple color-magnitude diagram.
+
+
+
+.. image:: ../images/chapter1/fig_SDSS_specgals_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_SDSS_specgals.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_SDSS_specgals.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_SDSS_specgals.py] <fig_SDSS_specgals.py>`
+
+.. raw:: html
+    
+    </div>
+

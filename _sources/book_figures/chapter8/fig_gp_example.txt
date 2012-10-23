@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter8_fig_gp_example:
+
+
+Gaussian Process Example
+------------------------
+This shows an example of Gaussian Process Regression, as well as some panels
+that help describe what it does.
+
+
+
+.. image:: ../images/chapter8/fig_gp_example_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_gp_example.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_gp_example.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_gp_example.py] <fig_gp_example.py>`
+
+.. raw:: html
+    
+    </div>
+

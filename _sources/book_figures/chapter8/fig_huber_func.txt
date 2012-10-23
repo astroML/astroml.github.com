@@ -1,0 +1,55 @@
+
+
+.. _book_fig_chapter8_fig_huber_func:
+
+
+Huber Functional Form
+---------------------
+This plots the form of the huber loss function :math:`\Phi(t)`.
+
+
+
+.. image:: ../images/chapter8/fig_huber_func_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_huber_func.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_huber_func.py
+    :lines: 6-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_huber_func.py] <fig_huber_func.py>`
+
+.. raw:: html
+    
+    </div>
+

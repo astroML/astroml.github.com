@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.1.1.2. astroML.plotting.scatter_contour &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="10. Class reference" href="../classes.html" />
+    <link rel="next" title="10.1.2.1. astroML.plotting.MultiAxes" href="astroML.plotting.MultiAxes.html" />
+    <link rel="prev" title="10.1.1.1. astroML.plotting.hist" href="astroML.plotting.hist.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="astroML.plotting.hist.html" title="10.1.1.1. astroML.plotting.hist"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    10.1.1.1. astroM...
+	    </span>
+	    <span class="hiddenrellink">
+	    10.1.1.1. astroML.plotting.hist
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="astroML.plotting.MultiAxes.html" title="10.1.2.1. astroML.plotting.MultiAxes"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    10.1.2.1. astroM...
+	    </span>
+	    <span class="hiddenrellink">
+	    10.1.2.1. astroML.plotting.MultiAxes
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../classes.html" title="10. Class reference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	10. Class refere...
+	</span>
+	<span class="hiddenrellink">
+	10. Class reference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">10.1.1.2. astroML.plotting.scatter_contour</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="astroml-plotting-scatter-contour">
+<h1>10.1.1.2. astroML.plotting.scatter_contour<a class="headerlink" href="#astroml-plotting-scatter-contour" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="astroML.plotting.scatter_contour">
+<tt class="descclassname">astroML.plotting.</tt><tt class="descname">scatter_contour</tt><big>(</big><em>x</em>, <em>y</em>, <em>levels=10</em>, <em>threshold=100</em>, <em>log_counts=False</em>, <em>histogram2d_args={}</em>, <em>plot_args={}</em>, <em>contour_args={}</em>, <em>ax=None</em><big>)</big><a class="headerlink" href="#astroML.plotting.scatter_contour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scatter plot with contour over dense regions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x, y</strong> : arrays</p>
+<blockquote>
+<div><p>x and y data for the contour plot</p>
+</div></blockquote>
+<p><strong>levels</strong> : integer or array (optional, default=10)</p>
+<blockquote>
+<div><p>number of contour levels, or array of contour levels</p>
+</div></blockquote>
+<p><strong>threshold</strong> : float (default=100)</p>
+<blockquote>
+<div><p>number of points per 2D bin at which to begin drawing contours</p>
+</div></blockquote>
+<p><strong>log_counts :boolean (optional)</strong> :</p>
+<blockquote>
+<div><p>if True, contour levels are the base-10 logarithm of bin counts.</p>
+</div></blockquote>
+<p><strong>histogram2d_args</strong> : dict</p>
+<blockquote>
+<div><p>keyword arguments passed to numpy.histogram2d
+see doc string of numpy.histogram2d for more information</p>
+</div></blockquote>
+<p><strong>plot_args</strong> : dict</p>
+<blockquote>
+<div><p>keyword arguments passed to pylab.scatter
+see doc string of pylab.scatter for more information</p>
+</div></blockquote>
+<p><strong>contourf_args</strong> : dict</p>
+<blockquote>
+<div><p>keyword arguments passed to pylab.contourf
+see doc string of pylab.contourf for more information</p>
+</div></blockquote>
+<p><strong>ax</strong> : pylab.Axes instance</p>
+<blockquote class="last">
+<div><p>the axes on which to plot.  If not specified, the current
+axes will be used</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/modules/generated/astroML.plotting.scatter_contour.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

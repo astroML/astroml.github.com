@@ -1,0 +1,55 @@
+
+
+.. _book_fig_appendix_fig_broadcast_visual:
+
+
+Broadcast Visualization
+-----------------------
+This figure visualizes numpy broadcasting rules for three cases
+
+
+
+.. image:: ../images/appendix/fig_broadcast_visual_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_broadcast_visual.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_broadcast_visual.py
+    :lines: 6-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_broadcast_visual.py] <fig_broadcast_visual.py>`
+
+.. raw:: html
+    
+    </div>
+

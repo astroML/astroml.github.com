@@ -1,0 +1,7 @@
+astroML.fourier.sinegauss_PSD
+=============================
+
+.. currentmodule:: astroML.fourier
+
+.. autofunction:: sinegauss_PSD
+

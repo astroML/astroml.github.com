@@ -1,0 +1,7 @@
+astroML.datasets.generate_mu_z
+==============================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: generate_mu_z
+

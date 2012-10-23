@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Star/Quasar Classification ROC Curves &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Chapter 9: Classification" href="index.html" />
+    <link rel="next" title="Chapter 10: Time Series Analysis" href="../chapter10/index.html" />
+    <link rel="prev" title="RR Lyrae ROC Curves" href="fig_ROC_curve.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="fig_ROC_curve.html" title="RR Lyrae ROC Curves"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    RR Lyrae ROC Cur...
+	    </span>
+	    <span class="hiddenrellink">
+	    RR Lyrae ROC Curves
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="../chapter10/index.html" title="Chapter 10: Time Series Analysis"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    Chapter 10: Time...
+	    </span>
+	    <span class="hiddenrellink">
+	    Chapter 10: Time Series Analysis
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Chapter 9: Classification" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Chapter 9: Class...
+	</span>
+	<span class="hiddenrellink">
+	Chapter 9: Classification
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Star/Quasar Classification ROC Curves</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="star-quasar-classification-roc-curves">
+<span id="book-fig-chapter9-fig-star-quasar-roc"></span><h1>Star/Quasar Classification ROC Curves<a class="headerlink" href="#star-quasar-classification-roc-curves" title="Permalink to this headline">¶</a></h1>
+<p>This script uses several methods to photometrically classify stars
+and quasars, and plot the ROC curve for these objects.</p>
+<img alt="../../_images/fig_star_quasar_ROC_1.png" class="align-center" src="../../_images/fig_star_quasar_ROC_1.png" style="width: 100%;" />
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><pre>@pickle_results: using precomputed results from 'star_quasar_ROC.pkl'
+</pre>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c"># License: BSD</span>
+<span class="c">#   The figure produced by this code is published in the textbook</span>
+<span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
+<span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">astroML.utils</span> <span class="kn">import</span> <span class="n">split_samples</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.lda</span> <span class="kn">import</span> <span class="n">LDA</span>
+<span class="kn">from</span> <span class="nn">sklearn.qda</span> <span class="kn">import</span> <span class="n">QDA</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">astroML.classification</span> <span class="kn">import</span> <span class="n">GMMBayes</span>
+
+<span class="kn">from</span> <span class="nn">astroML.decorators</span> <span class="kn">import</span> <span class="n">pickle_results</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># Fetch data and split into training and test samples</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_dr7_quasar</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_sspp</span>
+
+<span class="n">quasars</span> <span class="o">=</span> <span class="n">fetch_dr7_quasar</span><span class="p">()</span>
+<span class="n">stars</span> <span class="o">=</span> <span class="n">fetch_sdss_sspp</span><span class="p">()</span>
+
+<span class="c"># Truncate data for speed</span>
+<span class="n">quasars</span> <span class="o">=</span> <span class="n">quasars</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">stars</span> <span class="o">=</span> <span class="n">stars</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c"># stack colors into matrix X</span>
+<span class="n">Nqso</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">quasars</span><span class="p">)</span>
+<span class="n">Nstars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">stars</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">Nqso</span> <span class="o">+</span> <span class="n">Nstars</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">X</span><span class="p">[:</span><span class="n">Nqso</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">quasars</span><span class="p">[</span><span class="s">&#39;mag_u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">quasars</span><span class="p">[</span><span class="s">&#39;mag_g&#39;</span><span class="p">]</span>
+<span class="n">X</span><span class="p">[:</span><span class="n">Nqso</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">quasars</span><span class="p">[</span><span class="s">&#39;mag_g&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">quasars</span><span class="p">[</span><span class="s">&#39;mag_r&#39;</span><span class="p">]</span>
+<span class="n">X</span><span class="p">[:</span><span class="n">Nqso</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">quasars</span><span class="p">[</span><span class="s">&#39;mag_r&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">quasars</span><span class="p">[</span><span class="s">&#39;mag_i&#39;</span><span class="p">]</span>
+<span class="n">X</span><span class="p">[:</span><span class="n">Nqso</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">quasars</span><span class="p">[</span><span class="s">&#39;mag_i&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">quasars</span><span class="p">[</span><span class="s">&#39;mag_z&#39;</span><span class="p">]</span>
+
+<span class="n">X</span><span class="p">[</span><span class="n">Nqso</span><span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;upsf&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;gpsf&#39;</span><span class="p">]</span>
+<span class="n">X</span><span class="p">[</span><span class="n">Nqso</span><span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;gpsf&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;rpsf&#39;</span><span class="p">]</span>
+<span class="n">X</span><span class="p">[</span><span class="n">Nqso</span><span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;rpsf&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;ipsf&#39;</span><span class="p">]</span>
+<span class="n">X</span><span class="p">[</span><span class="n">Nqso</span><span class="p">:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;ipsf&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;zpsf&#39;</span><span class="p">]</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nqso</span> <span class="o">+</span> <span class="n">Nstars</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[:</span><span class="n">Nqso</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c"># split into training and test sets</span>
+<span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">),</span> <span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">split_samples</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+                                                     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># Compute fits for all the classifiers</span>
+<span class="nd">@pickle_results</span><span class="p">(</span><span class="s">&#39;star_quasar_ROC.pkl&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compute_results</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">classifier</span><span class="o">.</span><span class="n">__name__</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">y_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="n">probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">names</span><span class="p">,</span> <span class="n">probs</span>
+
+<span class="n">LRclass_weight</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+
+<span class="n">names</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span> <span class="n">compute_results</span><span class="p">((</span><span class="n">GaussianNB</span><span class="p">,</span> <span class="p">{}),</span>
+                               <span class="p">(</span><span class="n">LDA</span><span class="p">,</span> <span class="p">{}),</span>
+                               <span class="p">(</span><span class="n">QDA</span><span class="p">,</span> <span class="p">{}),</span>
+                               <span class="p">(</span><span class="n">LogisticRegression</span><span class="p">,</span>
+                                <span class="nb">dict</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="n">LRclass_weight</span><span class="p">)),</span>
+                               <span class="p">(</span><span class="n">KNeighborsClassifier</span><span class="p">,</span>
+                                <span class="nb">dict</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">warn_on_equidistant</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span>
+                               <span class="p">(</span><span class="n">DecisionTreeClassifier</span><span class="p">,</span>
+                                <span class="nb">dict</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                                     <span class="n">criterion</span><span class="o">=</span><span class="s">&#39;entropy&#39;</span><span class="p">)),</span>
+                               <span class="p">(</span><span class="n">GMMBayes</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_covar</span><span class="o">=</span><span class="mf">1E-5</span><span class="p">,</span>
+                                               <span class="n">covariance_type</span><span class="o">=</span><span class="s">&#39;full&#39;</span><span class="p">)))</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># Plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="c"># First axis shows the data</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$u - g$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$g - r$&#39;</span><span class="p">)</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">GaussianNB</span><span class="o">=</span><span class="s">&#39;GNB&#39;</span><span class="p">,</span>
+              <span class="n">LDA</span><span class="o">=</span><span class="s">&#39;LDA&#39;</span><span class="p">,</span>
+              <span class="n">QDA</span><span class="o">=</span><span class="s">&#39;QDA&#39;</span><span class="p">,</span>
+              <span class="n">KNeighborsClassifier</span><span class="o">=</span><span class="s">&#39;KNN&#39;</span><span class="p">,</span>
+              <span class="n">DecisionTreeClassifier</span><span class="o">=</span><span class="s">&#39;DT&#39;</span><span class="p">,</span>
+              <span class="n">GMMBayes</span><span class="o">=</span><span class="s">&#39;GMMB&#39;</span><span class="p">,</span>
+              <span class="n">LogisticRegression</span><span class="o">=</span><span class="s">&#39;LR&#39;</span><span class="p">)</span>
+
+<span class="c"># Second axis shows the ROC curves</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_prob</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">probs</span><span class="p">):</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+
+    <span class="n">fpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fpr</span><span class="p">])</span>
+    <span class="n">tpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tpr</span><span class="p">])</span>
+
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;false positive rate&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;true positive rate&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" href="../../_downloads/fig_star_quasar_ROC.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_star_quasar_ROC.py]</span></tt></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter9/fig_star_quasar_ROC.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

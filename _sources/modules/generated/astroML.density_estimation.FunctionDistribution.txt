@@ -1,0 +1,11 @@
+astroML.density_estimation.FunctionDistribution
+===============================================
+
+.. currentmodule:: astroML.density_estimation
+
+.. autoclass:: FunctionDistribution
+
+   
+   .. automethod:: __init__
+   
+

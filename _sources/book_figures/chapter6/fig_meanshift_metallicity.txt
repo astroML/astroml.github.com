@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter6_fig_meanshift_metallicity:
+
+
+Mean Shift Example
+------------------
+This shows an example of the Mean Shift clustering algorithm on the data
+from the SDSS Segue Stellar Parameters Pipeline
+
+
+
+.. image:: ../images/chapter6/fig_meanshift_metallicity_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_meanshift_metallicity.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_meanshift_metallicity.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_meanshift_metallicity.py] <fig_meanshift_metallicity.py>`
+
+.. raw:: html
+    
+    </div>
+

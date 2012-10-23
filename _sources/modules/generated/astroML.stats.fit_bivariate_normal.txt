@@ -1,0 +1,7 @@
+astroML.stats.fit_bivariate_normal
+==================================
+
+.. currentmodule:: astroML.stats
+
+.. autofunction:: fit_bivariate_normal
+

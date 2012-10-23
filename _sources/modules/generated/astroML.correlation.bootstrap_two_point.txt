@@ -1,0 +1,7 @@
+astroML.correlation.bootstrap_two_point
+=======================================
+
+.. currentmodule:: astroML.correlation
+
+.. autofunction:: bootstrap_two_point
+

@@ -1,0 +1,7 @@
+astroML.datasets.fetch_wmap_temperatures
+========================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_wmap_temperatures
+

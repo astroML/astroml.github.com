@@ -1,0 +1,7 @@
+astroML.time_series.generate_damped_RW
+======================================
+
+.. currentmodule:: astroML.time_series
+
+.. autofunction:: generate_damped_RW
+

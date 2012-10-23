@@ -1,0 +1,64 @@
+
+
+.. _book_fig_chapter5_fig_odds_ratio_coin:
+
+
+Coin Odds Ratio
+---------------
+
+This figure shows the odds ratio for a coin flip.  The curves show the
+odds ratio between model :math:`M_1`, in which the probability of landing
+heads is known to be :math:`b^*`, and model :math:`M_2`, where the probability
+of landing heads is unknown.
+
+Here we plot the odds ratio between the models, :math:`O_{21}`, as a function
+of :math:`k` heads observed :math:`n` coin tosses.  Comparing the panels, it
+is clear that, as expected, observing more tosses gives better constraints
+on models via the odds ratio.
+
+
+
+.. image:: ../images/chapter5/fig_odds_ratio_coin_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_odds_ratio_coin.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_odds_ratio_coin.py
+    :lines: 15-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_odds_ratio_coin.py] <fig_odds_ratio_coin.py>`
+
+.. raw:: html
+    
+    </div>
+

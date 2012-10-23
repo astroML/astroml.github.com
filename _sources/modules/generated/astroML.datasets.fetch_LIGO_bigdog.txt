@@ -1,0 +1,7 @@
+astroML.datasets.fetch_LIGO_bigdog
+==================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_LIGO_bigdog
+

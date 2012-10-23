@@ -1,0 +1,11 @@
+astroML.density_estimation.EmpiricalDistribution
+================================================
+
+.. currentmodule:: astroML.density_estimation
+
+.. autoclass:: EmpiricalDistribution
+
+   
+   .. automethod:: __init__
+   
+

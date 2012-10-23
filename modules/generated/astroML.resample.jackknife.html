@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.13.2. astroML.resample.jackknife &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="10. Class reference" href="../classes.html" />
+    <link rel="next" title="10.14.1. astroML_addons.periodogram.lomb_scargle" href="astroML_addons.periodogram.lomb_scargle.html" />
+    <link rel="prev" title="10.13.1. astroML.resample.bootstrap" href="astroML.resample.bootstrap.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="astroML.resample.bootstrap.html" title="10.13.1. astroML.resample.bootstrap"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    10.13.1. astroML...
+	    </span>
+	    <span class="hiddenrellink">
+	    10.13.1. astroML.resample.bootstrap
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="astroML_addons.periodogram.lomb_scargle.html" title="10.14.1. astroML_addons.periodogram.lomb_scargle"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    10.14.1. astroML...
+	    </span>
+	    <span class="hiddenrellink">
+	    10.14.1. astroML_addons.periodogram.lomb_scargle
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../classes.html" title="10. Class reference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	10. Class refere...
+	</span>
+	<span class="hiddenrellink">
+	10. Class reference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">10.13.2. astroML.resample.jackknife</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="astroml-resample-jackknife">
+<h1>10.13.2. astroML.resample.jackknife<a class="headerlink" href="#astroml-resample-jackknife" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="astroML.resample.jackknife">
+<tt class="descclassname">astroML.resample.</tt><tt class="descname">jackknife</tt><big>(</big><em>data</em>, <em>user_statistic</em>, <em>kwargs=None</em>, <em>return_raw_distribution=False</em>, <em>pass_indices=False</em><big>)</big><a class="reference internal" href="../../_modules/astroML/resample.html#jackknife"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.resample.jackknife" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute first-order jackknife statistics of the data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>data</strong> : array_like</p>
+<blockquote>
+<div><p>A 1-dimensional data array of size n_samples</p>
+</div></blockquote>
+<p><strong>user_statistic</strong> : function</p>
+<blockquote>
+<div><p>The statistic to be computed.  This should take an array of data
+of size (n_samples, n_samples - 1) and return an array of size
+n_samples or tuple of arrays of size n_samples, representing the
+row-wise statistics of the input.</p>
+</div></blockquote>
+<p><strong>kwargs</strong> : dictionary (optional)</p>
+<blockquote>
+<div><p>A dictionary of keyword arguments to be passed to the
+user_statistic function.</p>
+</div></blockquote>
+<p><strong>return_raw_distribution</strong> : boolean (optional)</p>
+<blockquote>
+<div><p>if True, return the raw jackknife distribution.  Be aware that
+this distribution is not reflective of the true distribution:
+it is simply an intermediate step in the jackknife calculation</p>
+</div></blockquote>
+<p><strong>pass_indices</strong> : boolean (optional)</p>
+<blockquote>
+<div><p>if True, then the indices of the points rather than the points
+themselves are passed to <cite>user_statistic</cite></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>mean, stdev</strong> : floats</p>
+<blockquote>
+<div><p>The mean and standard deviation of the jackknifed distribution</p>
+</div></blockquote>
+<p><strong>raw_distribution</strong> : ndarray</p>
+<blockquote class="last">
+<div><p>Returned only if <cite>return_raw_distribution</cite> is True
+The array containing the raw distribution (length n_samples)
+Be aware that this distribution is not reflective of the true
+distribution: it is simply an intermediate step in the jackknife
+calculation</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>This implementation is a leave-one-out jackknife.
+Jackknife resampling is known to fail on rank-based statistics
+(e.g. median, quartiles, etc.)  It works well on smooth statistics
+(e.g. mean, standard deviation, etc.)</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/modules/generated/astroML.resample.jackknife.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

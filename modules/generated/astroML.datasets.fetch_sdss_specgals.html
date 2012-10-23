@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.4.10. astroML.datasets.fetch_sdss_specgals &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="10. Class reference" href="../classes.html" />
+    <link rel="next" title="10.4.11. astroML.datasets.fetch_great_wall" href="astroML.datasets.fetch_great_wall.html" />
+    <link rel="prev" title="10.4.9. astroML.datasets.fetch_sdss_sspp" href="astroML.datasets.fetch_sdss_sspp.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="astroML.datasets.fetch_sdss_sspp.html" title="10.4.9. astroML.datasets.fetch_sdss_sspp"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    10.4.9. astroML....
+	    </span>
+	    <span class="hiddenrellink">
+	    10.4.9. astroML.datasets.fetch_sdss_sspp
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="astroML.datasets.fetch_great_wall.html" title="10.4.11. astroML.datasets.fetch_great_wall"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    10.4.11. astroML...
+	    </span>
+	    <span class="hiddenrellink">
+	    10.4.11. astroML.datasets.fetch_great_wall
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../classes.html" title="10. Class reference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	10. Class refere...
+	</span>
+	<span class="hiddenrellink">
+	10. Class reference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">10.4.10. astroML.datasets.fetch_sdss_specgals</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="astroml-datasets-fetch-sdss-specgals">
+<h1>10.4.10. astroML.datasets.fetch_sdss_specgals<a class="headerlink" href="#astroml-datasets-fetch-sdss-specgals" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="astroML.datasets.fetch_sdss_specgals">
+<tt class="descclassname">astroML.datasets.</tt><tt class="descname">fetch_sdss_specgals</tt><big>(</big><em>data_home=None</em>, <em>download_if_missing=True</em><big>)</big><a class="headerlink" href="#astroML.datasets.fetch_sdss_specgals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loader for SDSS Galaxies with spectral information</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>data_home</strong> : optional, default=None</p>
+<blockquote>
+<div><p>Specify another download and cache folder for the datasets. By default
+all scikit learn data is stored in &#8216;~/astroML_data&#8217; subfolders.</p>
+</div></blockquote>
+<p><strong>download_if_missing</strong> : optional, default=True</p>
+<blockquote>
+<div><p>If False, raise a IOError if the data is not locally available
+instead of trying to download the data from the source site.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>data</strong> : recarray, shape = (327260,)</p>
+<blockquote class="last">
+<div><p>record array containing pipeline parameters</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>These were compiled from the SDSS database using the following SQL query:</p>
+<div class="highlight-python"><pre>SELECT
+  G.ra, G.dec, S.mjd, S.plate, S.fiberID, --- basic identifiers
+  --- basic spectral data
+  S.z, S.zErr, S.rChi2, S.velDisp, S.velDispErr,
+  --- some useful imaging parameters
+  G.extinction_r, G.petroMag_r, G.psfMag_r, G.psfMagErr_r,
+  G.modelMag_u, modelMagErr_u, G.modelMag_g, modelMagErr_g,
+  G.modelMag_r, modelMagErr_r, G.modelMag_i, modelMagErr_i,
+  G.modelMag_z, modelMagErr_z, G.petroR50_r, G.petroR90_r,
+  --- line fluxes for BPT diagram and other derived spec. parameters
+  GSL.nii_6584_flux, GSL.nii_6584_flux_err, GSL.h_alpha_flux,
+  GSL.h_alpha_flux_err, GSL.oiii_5007_flux, GSL.oiii_5007_flux_err,
+  GSL.h_beta_flux, GSL.h_beta_flux_err, GSL.h_delta_flux,
+  GSL.h_delta_flux_err, GSX.d4000, GSX.d4000_err, GSE.bptclass,
+  GSE.lgm_tot_p50, GSE.sfr_tot_p50, G.objID, GSI.specObjID
+INTO mydb.SDSSspecgalsDR8 FROM SpecObj S CROSS APPLY
+  dbo.fGetNearestObjEQ(S.ra, S.dec, 0.06) N, Galaxy G,
+  GalSpecInfo GSI, GalSpecLine GSL, GalSpecIndx GSX, GalSpecExtra GSE
+WHERE N.objID = G.objID
+  AND GSI.specObjID = S.specObjID
+  AND GSL.specObjID = S.specObjID
+  AND GSX.specObjID = S.specObjID
+  AND GSE.specObjID = S.specObjID
+  --- add some quality cuts to get rid of obviously bad measurements
+  AND (G.petroMag_r &gt; 10 AND G.petroMag_r &lt; 18)
+  AND (G.modelMag_u-G.modelMag_r) &gt; 0
+  AND (G.modelMag_u-G.modelMag_r) &lt; 6
+  AND (modelMag_u &gt; 10 AND modelMag_u &lt; 25)
+  AND (modelMag_g &gt; 10 AND modelMag_g &lt; 25)
+  AND (modelMag_r &gt; 10 AND modelMag_r &lt; 25)
+  AND (modelMag_i &gt; 10 AND modelMag_i &lt; 25)
+  AND (modelMag_z &gt; 10 AND modelMag_z &lt; 25)
+  AND S.rChi2 &lt; 2
+  AND (S.zErr &gt; 0 AND S.zErr &lt; 0.01)
+  AND S.z &gt; 0.02
+  --- end of query ---</pre>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_specgals</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_specgals</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>  <span class="c"># number of objects in dataset</span>
+<span class="go">(661598,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">names</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>  <span class="c"># first five column names</span>
+<span class="go">[&#39;ra&#39;, &#39;dec&#39;, &#39;mjd&#39;, &#39;plate&#39;, &#39;fiberID&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>  <span class="c"># first three RA values</span>
+<span class="go">[ 146.71419105  146.74414186  146.62857334]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>  <span class="c">#  first three declination values</span>
+<span class="go">[-1.04127639 -0.6522198  -0.7651468 ]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/modules/generated/astroML.datasets.fetch_sdss_specgals.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

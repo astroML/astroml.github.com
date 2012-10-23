@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SDSS “Great Wall” &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Data set Examples" href="index.html" />
+    <link rel="next" title="SDSS Spectroscopic Galaxy Sample" href="plot_sdss_specgals.html" />
+    <link rel="prev" title="WMAP plotting with HEALPix" href="plot_wmap_raw.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="plot_wmap_raw.html" title="WMAP plotting with HEALPix"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    WMAP plotting wi...
+	    </span>
+	    <span class="hiddenrellink">
+	    WMAP plotting with HEALPix
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="plot_sdss_specgals.html" title="SDSS Spectroscopic Galaxy Sample"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    SDSS Spectroscop...
+	    </span>
+	    <span class="hiddenrellink">
+	    SDSS Spectroscopic Galaxy Sample
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Data set Examples" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Data set Example...
+	</span>
+	<span class="hiddenrellink">
+	Data set Examples
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">SDSS &#8220;Great Wall&#8221;</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sdss-great-wall">
+<span id="example-datasets-plot-great-wall"></span><h1>SDSS &#8220;Great Wall&#8221;<a class="headerlink" href="#sdss-great-wall" title="Permalink to this headline">¶</a></h1>
+<p>Plotting the SDSS &#8220;great wall&#8221;, a filament of galaxies visible by-eye in the
+projected locations of the SDSS spectroscopic galaxy sample.
+This follows a similar procedure to <a class="footnote-reference" href="#id2" id="id1">[1]</a>,</p>
+</div>
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://adsabs.harvard.edu/abs/2008ApJ...674L..13C">http://adsabs.harvard.edu/abs/2008ApJ...674L..13C</a></td></tr>
+</tbody>
+</table>
+<img alt="../../_images/plot_great_wall_1.png" class="align-center" src="../../_images/plot_great_wall_1.png" style="width: 100%;" />
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><pre>Downloading http://www.astro.washington.edu/users/ivezic/DMbook/data/SDSSspecgalsDR8.fit
+[=                                      ]  2.87Mb / 114.85Mb   [==                                     ]  5.74Mb / 114.85Mb   [===                                    ]  8.61Mb / 114.85Mb   [====                                   ]  11.49Mb / 114.85Mb   [=====                                  ]  14.36Mb / 114.85Mb   [======                                 ]  17.23Mb / 114.85Mb   [=======                                ]  20.10Mb / 114.85Mb   [========                               ]  22.97Mb / 114.85Mb   [=========                              ]  25.84Mb / 114.85Mb   [==========                             ]  28.71Mb / 114.85Mb   [===========                            ]  31.58Mb / 114.85Mb   [============                           ]  34.46Mb / 114.85Mb   [=============                          ]  37.33Mb / 114.85Mb   [==============                         ]  40.20Mb / 114.85Mb   [===============                        ]  43.07Mb / 114.85Mb   [================                       ]  45.94Mb / 114.85Mb   [=================                      ]  48.81Mb / 114.85Mb   [==================                     ]  51.68Mb / 114.85Mb   [===================                    ]  54.55Mb / 114.85Mb   [====================                   ]  57.43Mb / 114.85Mb   [=====================                  ]  60.30Mb / 114.85Mb   [======================                 ]  63.17Mb / 114.85Mb   [=======================                ]  66.04Mb / 114.85Mb   [========================               ]  68.91Mb / 114.85Mb   [=========================              ]  71.78Mb / 114.85Mb   [==========================             ]  74.65Mb / 114.85Mb   [===========================            ]  77.52Mb / 114.85Mb   [============================           ]  80.40Mb / 114.85Mb   [=============================          ]  83.27Mb / 114.85Mb   [==============================         ]  86.14Mb / 114.85Mb   [===============================        ]  89.01Mb / 114.85Mb   [================================       ]  91.88Mb / 114.85Mb   [=================================      ]  94.75Mb / 114.85Mb   [==================================     ]  97.62Mb / 114.85Mb   [===================================    ]  100.49Mb / 114.85Mb   [====================================   ]  103.37Mb / 114.85Mb   [=====================================  ]  106.24Mb / 114.85Mb   [====================================== ]  109.11Mb / 114.85Mb   [=======================================]  111.98Mb / 114.85Mb   [========================================]  114.85Mb / 114.85Mb   
+</pre>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c"># License: BSD</span>
+<span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_great_wall</span>
+<span class="kn">from</span> <span class="nn">astroML.density_estimation</span> <span class="kn">import</span> <span class="n">KDE</span><span class="p">,</span> <span class="n">KNeighborsDensity</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># Fetch the great wall data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">fetch_great_wall</span><span class="p">()</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c"># First plot: scatter the points</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">375</span><span class="p">,</span> <span class="o">-</span><span class="mi">175</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;y (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;x (MPC)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" href="../../_downloads/plot_great_wall.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_great_wall.py]</span></tt></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/examples/datasets/plot_great_wall.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

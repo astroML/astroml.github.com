@@ -1,0 +1,7 @@
+astroML.filters.min_component_filter
+====================================
+
+.. currentmodule:: astroML.filters
+
+.. autofunction:: min_component_filter
+

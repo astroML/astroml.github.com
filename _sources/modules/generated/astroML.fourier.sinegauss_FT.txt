@@ -1,0 +1,7 @@
+astroML.fourier.sinegauss_FT
+============================
+
+.. currentmodule:: astroML.fourier
+
+.. autofunction:: sinegauss_FT
+

@@ -1,0 +1,57 @@
+
+
+.. _book_fig_chapter4_fig_benjamini_method:
+
+
+Example of Benjamini & Hochberg Method
+--------------------------------------
+
+This shows a diagram of the Benjamini & Hochberg method for
+selecting the cutoff for best type I/type II error results.
+
+
+
+.. image:: ../images/chapter4/fig_benjamini_method_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_benjamini_method.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_benjamini_method.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_benjamini_method.py] <fig_benjamini_method.py>`
+
+.. raw:: html
+    
+    </div>
+

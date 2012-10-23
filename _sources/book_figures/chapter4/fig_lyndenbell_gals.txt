@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter4_fig_lyndenbell_gals:
+
+
+Lynden-Bell Luminosity function
+-------------------------------
+
+This shows the use of Lynden-Bell's C- method for computing the luminosity
+function and redshift distribution from an observed sample of galaxies.
+
+We work with x=Magnitude, y=redshift.
+
+
+
+.. image:: ../images/chapter4/fig_lyndenbell_gals_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_lyndenbell_gals.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_lyndenbell_gals.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_lyndenbell_gals.py] <fig_lyndenbell_gals.py>`
+
+.. raw:: html
+    
+    </div>
+

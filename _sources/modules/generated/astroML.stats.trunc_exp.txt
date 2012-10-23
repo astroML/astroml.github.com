@@ -1,0 +1,7 @@
+astroML.stats.trunc_exp
+=======================
+
+.. currentmodule:: astroML.stats
+
+.. autofunction:: trunc_exp
+

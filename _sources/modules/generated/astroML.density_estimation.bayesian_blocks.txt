@@ -1,0 +1,7 @@
+astroML.density_estimation.bayesian_blocks
+==========================================
+
+.. currentmodule:: astroML.density_estimation
+
+.. autofunction:: bayesian_blocks
+

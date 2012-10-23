@@ -1,0 +1,57 @@
+
+
+.. _book_fig_chapter5_fig_posterior_cauchy:
+
+
+Posterior for Cauchy Distribution
+---------------------------------
+
+This plot shows the posterior distributions for :math:`\mu` and
+:math:`\gamma` for a cauchy distribution
+
+
+
+.. image:: ../images/chapter5/fig_posterior_cauchy_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_posterior_cauchy.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_posterior_cauchy.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_posterior_cauchy.py] <fig_posterior_cauchy.py>`
+
+.. raw:: html
+    
+    </div>
+

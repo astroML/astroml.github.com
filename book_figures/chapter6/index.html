@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Chapter 6: Searching for Structure in Point Data &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Textbook Figures" href="../index.html" />
+    <link rel="next" title="Great Wall Density" href="fig_great_wall.html" />
+    <link rel="prev" title="Finding a signal in a background" href="../chapter5/fig_signal_background.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="../chapter5/fig_signal_background.html" title="Finding a signal in a background"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    Finding a signal...
+	    </span>
+	    <span class="hiddenrellink">
+	    Finding a signal in a background
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="fig_great_wall.html" title="Great Wall Density"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    Great Wall Densi...
+	    </span>
+	    <span class="hiddenrellink">
+	    Great Wall Density
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Textbook Figures" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Textbook Figures
+	</span>
+	<span class="hiddenrellink">
+	Textbook Figures
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Chapter 6: Searching for Structure in Point Data</a><ul>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <style type="text/css">
+.figure {
+    float: left;
+    margin: 10px;
+    width: auto;
+    height: 200px;
+    width: 180px;
+}
+
+.figure img {
+    display: inline;
+    }
+
+.figure .caption {
+    width: 170px;
+    text-align: center !important;
+}
+</style><div class="section" id="chapter-6-searching-for-structure-in-point-data">
+<span id="book-fig-chapter6"></span><h1>Chapter 6: Searching for Structure in Point Data<a class="headerlink" href="#chapter-6-searching-for-structure-in-point-data" title="Permalink to this headline">¶</a></h1>
+<p>This chapter covers high-dimensional point statistics, including density
+estimation, clustering, and correlation functions.</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_great_wall.html"><img alt="../../_images/fig_great_wall_1_thumb.png" src="../../_images/fig_great_wall_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_great_wall.html#book-fig-chapter6-fig-great-wall"><em>Great Wall Density</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_hist_to_kernel.html"><img alt="../../_images/fig_hist_to_kernel_1_thumb.png" src="../../_images/fig_hist_to_kernel_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_hist_to_kernel.html#book-fig-chapter6-fig-hist-to-kernel"><em>Histogram vs Kernel Density Estimation</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_kernels.html"><img alt="../../_images/fig_kernels_1_thumb.png" src="../../_images/fig_kernels_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_kernels.html#book-fig-chapter6-fig-kernels"><em>Example Kernels</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_great_wall_KDE.html"><img alt="../../_images/fig_great_wall_KDE_1_thumb.png" src="../../_images/fig_great_wall_KDE_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_great_wall_KDE.html#book-fig-chapter6-fig-great-wall-kde"><em>Great Wall KDE</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_density_estimation.html"><img alt="../../_images/fig_density_estimation_1_thumb.png" src="../../_images/fig_density_estimation_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_density_estimation.html#book-fig-chapter6-fig-density-estimation"><em>Comparison of 1D Density Estimators</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_EM_metallicity.html"><img alt="../../_images/fig_EM_metallicity_1_thumb.png" src="../../_images/fig_EM_metallicity_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_EM_metallicity.html#book-fig-chapter6-fig-em-metallicity"><em>EM example: Gaussian Mixture Models</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_GMM_density_estimation.html"><img alt="../../_images/fig_GMM_density_estimation_1_thumb.png" src="../../_images/fig_GMM_density_estimation_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_GMM_density_estimation.html#book-fig-chapter6-fig-gmm-density-estimation"><em>Comparison of 1D Density Estimators</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_GMM_clone.html"><img alt="../../_images/fig_GMM_clone_1_thumb.png" src="../../_images/fig_GMM_clone_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_GMM_clone.html#book-fig-chapter6-fig-gmm-clone"><em>Cloning a Distribution with Gaussian Mixtures</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_great_wall_GMM.html"><img alt="../../_images/fig_great_wall_GMM_1_thumb.png" src="../../_images/fig_great_wall_GMM_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_great_wall_GMM.html#book-fig-chapter6-fig-great-wall-gmm"><em>Mixture Model of SDSS Great Wall</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_XD_example.html"><img alt="../../_images/fig_XD_example_1_thumb.png" src="../../_images/fig_XD_example_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_XD_example.html#book-fig-chapter6-fig-xd-example"><em>Extreme Deconvolution example</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_stellar_XD.html"><img alt="../../_images/fig_stellar_XD_1_thumb.png" src="../../_images/fig_stellar_XD_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_stellar_XD.html#book-fig-chapter6-fig-stellar-xd"><em>Extreme Deconvolution of Stellar Data</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_GMM_nclusters.html"><img alt="../../_images/fig_GMM_nclusters_1_thumb.png" src="../../_images/fig_GMM_nclusters_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_GMM_nclusters.html#book-fig-chapter6-fig-gmm-nclusters"><em>Number of Clusters for Gaussian Mixtures</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_kmeans_metallicity.html"><img alt="../../_images/fig_kmeans_metallicity_1_thumb.png" src="../../_images/fig_kmeans_metallicity_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_kmeans_metallicity.html#book-fig-chapter6-fig-kmeans-metallicity"><em>EM example: K-means</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_meanshift_metallicity.html"><img alt="../../_images/fig_meanshift_metallicity_1_thumb.png" src="../../_images/fig_meanshift_metallicity_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_meanshift_metallicity.html#book-fig-chapter6-fig-meanshift-metallicity"><em>Mean Shift Example</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_great_wall_MST.html"><img alt="../../_images/fig_great_wall_MST_1_thumb.png" src="../../_images/fig_great_wall_MST_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_great_wall_MST.html#book-fig-chapter6-fig-great-wall-mst"><em>Euclidean Minimum Spanning Tree</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_corr_diagram.html"><img alt="../../_images/fig_corr_diagram_1_thumb.png" src="../../_images/fig_corr_diagram_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_corr_diagram.html#book-fig-chapter6-fig-corr-diagram"><em>Diagramatic Description of n-point Correlations</em></a></p>
+</div>
+<div class="figure">
+<a class="reference external image-reference" href="./fig_correlation_function.html"><img alt="../../_images/fig_correlation_function_1_thumb.png" src="../../_images/fig_correlation_function_1_thumb.png" /></a>
+<p class="caption"><a class="reference internal" href="fig_correlation_function.html#book-fig-chapter6-fig-correlation-function"><em>Angular Correlation Function</em></a></p>
+</div>
+<div style="clear: both"></div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter6/index.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+astroML.filters.savitzky_golay
+==============================
+
+.. currentmodule:: astroML.filters
+
+.. autofunction:: savitzky_golay
+

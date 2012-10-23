@@ -1,0 +1,7 @@
+astroML.density_estimation.knuth_bin_width
+==========================================
+
+.. currentmodule:: astroML.density_estimation
+
+.. autofunction:: knuth_bin_width
+

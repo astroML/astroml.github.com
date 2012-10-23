@@ -1,0 +1,69 @@
+
+
+.. _example_datasets_plot_nasa_atlas:
+
+
+NASA Sloan Atlas
+----------------
+
+This shows some visualizations of the data from the NASA SDSS Atlas
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/datasets/plot_nasa_atlas_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/datasets/plot_nasa_atlas_2.png
+    :scale: 50
+
+
+
+.. image:: ../images/datasets/plot_nasa_atlas_3.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_nasa_atlas.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_nasa_atlas.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_nasa_atlas.py] <plot_nasa_atlas.py>`
+
+.. raw:: html
+    
+    </div>
+

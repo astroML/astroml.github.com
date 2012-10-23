@@ -1,0 +1,11 @@
+astroML.classification.GMMBayes
+===============================
+
+.. currentmodule:: astroML.classification
+
+.. autoclass:: GMMBayes
+
+   
+   .. automethod:: __init__
+   
+

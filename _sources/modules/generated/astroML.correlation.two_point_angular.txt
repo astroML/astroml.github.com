@@ -1,0 +1,7 @@
+astroML.correlation.two_point_angular
+=====================================
+
+.. currentmodule:: astroML.correlation
+
+.. autofunction:: two_point_angular
+

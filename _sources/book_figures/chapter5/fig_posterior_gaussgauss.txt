@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter5_fig_posterior_gaussgauss:
+
+
+Gaussian Distribution with Gaussian Errors
+------------------------------------------
+
+This plot shows the marginalized posteriors and bootstrap estimates of
+the mean :math:`\mu` and the
+error :math:`\sigma` when the posterior is assumed to be gaussian, and the
+points have heteroscedatic gaussian errors.
+
+
+
+.. image:: ../images/chapter5/fig_posterior_gaussgauss_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_posterior_gaussgauss.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_posterior_gaussgauss.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_posterior_gaussgauss.py] <fig_posterior_gaussgauss.py>`
+
+.. raw:: html
+    
+    </div>
+

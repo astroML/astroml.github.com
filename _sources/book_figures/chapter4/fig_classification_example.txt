@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter4_fig_classification_example:
+
+
+Example of classification
+--------------------------------
+
+This figure shows a schematic of the boundary choice in a classification
+problem, where sources S are being selected from backgrounds B.  This
+particular choice is one that strives for completeness (no missed sources)
+at the expense of contamination (misclassified background sources).
+
+
+
+.. image:: ../images/chapter4/fig_classification_example_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_classification_example.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_classification_example.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_classification_example.py] <fig_classification_example.py>`
+
+.. raw:: html
+    
+    </div>
+

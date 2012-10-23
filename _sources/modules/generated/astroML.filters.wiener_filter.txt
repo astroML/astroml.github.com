@@ -1,0 +1,7 @@
+astroML.filters.wiener_filter
+=============================
+
+.. currentmodule:: astroML.filters
+
+.. autofunction:: wiener_filter
+

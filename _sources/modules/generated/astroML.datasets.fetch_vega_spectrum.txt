@@ -1,0 +1,7 @@
+astroML.datasets.fetch_vega_spectrum
+====================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_vega_spectrum
+

@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter5_fig_malmquist_bias:
+
+
+Malmquist Bias Example
+----------------------
+This figure demonstrates the Malmquist bias, whereby observational cuts in
+noisy data can lead to sets of observations which are statistically biased.
+The left panel shows the true distribution, and the observed (noisy)
+distribution.  The right panel shows the biased distribution of observed
+values.
+
+
+
+.. image:: ../images/chapter5/fig_malmquist_bias_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_malmquist_bias.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_malmquist_bias.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_malmquist_bias.py] <fig_malmquist_bias.py>`
+
+.. raw:: html
+    
+    </div>
+

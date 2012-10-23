@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>astroML.correlation &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Module code" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for astroML.correlation</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">BallTree</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">check_random_state</span>
+
+
+<span class="k">def</span> <span class="nf">uniform_sphere</span><span class="p">(</span><span class="n">RAlim</span><span class="p">,</span> <span class="n">DEClim</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Draw a uniform sample on a sphere</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    RAlim : tuple</span>
+<span class="sd">        select Right Ascension between RAlim[0] and RAlim[1]</span>
+<span class="sd">        units are degrees</span>
+<span class="sd">    DEClim : tuple</span>
+<span class="sd">        select Declination between DEClim[0] and DEClim[1]</span>
+<span class="sd">    size : int (optional)</span>
+<span class="sd">        the size of the random arrays to return (default = 1)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    RA, DEC : ndarray</span>
+<span class="sd">        the random sample on the sphere within the given limits.</span>
+<span class="sd">        arrays have shape equal to size.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">zlim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">DEClim</span><span class="p">)</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)</span>
+
+    <span class="n">z</span> <span class="o">=</span> <span class="n">zlim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">zlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">zlim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">DEC</span> <span class="o">=</span> <span class="p">(</span><span class="mf">180.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">RA</span> <span class="o">=</span> <span class="n">RAlim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">RAlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">RAlim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">RA</span><span class="p">,</span> <span class="n">DEC</span>
+
+
+<span class="k">def</span> <span class="nf">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert ra &amp; dec to Euclidean points</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ra, dec : ndarrays</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    x, y, z : ndarrays</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sin_ra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ra</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)</span>
+    <span class="n">cos_ra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ra</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)</span>
+
+    <span class="n">sin_dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">dec</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)</span>
+    <span class="n">cos_dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">dec</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">cos_ra</span> <span class="o">*</span> <span class="n">sin_dec</span><span class="p">,</span>
+            <span class="n">sin_ra</span> <span class="o">*</span> <span class="n">sin_dec</span><span class="p">,</span>
+            <span class="n">cos_dec</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">angular_dist_to_euclidean_dist</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;convert angular distances to euclidean distances&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">D</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="two_point"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.two_point.html#astroML.correlation.two_point">[docs]</a><span class="k">def</span> <span class="nf">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;standard&#39;</span><span class="p">,</span>
+              <span class="n">data_R</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Two-point correlation function</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : array_like</span>
+<span class="sd">        input data, shape = [n_samples, n_features]</span>
+<span class="sd">    bins : array_like</span>
+<span class="sd">        bins within which to compute the 2-point correlation.</span>
+<span class="sd">        shape = Nbins + 1</span>
+<span class="sd">    method : string</span>
+<span class="sd">        &quot;standard&quot; or &quot;landy-szalay&quot;.</span>
+<span class="sd">    data_R : array_like (optional)</span>
+<span class="sd">        if specified, use this as the random comparison sample</span>
+<span class="sd">    random_state : integer, np.random.RandomState, or None</span>
+<span class="sd">        specify the random state to use for generating background</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    corr : ndarray</span>
+<span class="sd">        the estimate of the correlation function within each bin</span>
+<span class="sd">        shape = Nbins</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bins</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;data should be 1D or 2D&quot;</span><span class="p">)</span>
+
+    <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">Nbins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="c"># shuffle all but one axis to get background distribution</span>
+    <span class="k">if</span> <span class="n">data_R</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">data_R</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_features</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">data_R</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">data_R</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">data_R</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_features</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;data_R must have same n_features as data&#39;</span><span class="p">)</span>
+
+    <span class="n">factor</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="n">BT_D</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">BT_R</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span>
+
+    <span class="n">counts_DD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">counts_RR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">counts_DD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_D</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+        <span class="n">counts_RR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_R</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data_R</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+
+    <span class="n">DD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_DD</span><span class="p">)</span>
+    <span class="n">RR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_RR</span><span class="p">)</span>
+
+    <span class="c"># check for zero in the denominator</span>
+    <span class="n">RR_zero</span> <span class="o">=</span> <span class="p">(</span><span class="n">RR</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">RR</span><span class="p">[</span><span class="n">RR_zero</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;standard&#39;</span><span class="p">:</span>
+        <span class="n">corr</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">DD</span> <span class="o">/</span> <span class="n">RR</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">:</span>
+        <span class="n">counts_DR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">counts_DR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_R</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                    <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+        <span class="n">DR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_DR</span><span class="p">)</span>
+
+        <span class="n">corr</span> <span class="o">=</span> <span class="p">(</span><span class="n">factor</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">DD</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">DR</span> <span class="o">+</span> <span class="n">RR</span><span class="p">)</span> <span class="o">/</span> <span class="n">RR</span>
+
+    <span class="n">corr</span><span class="p">[</span><span class="n">RR_zero</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="k">return</span> <span class="n">corr</span>
+
+</div>
+<div class="viewcode-block" id="bootstrap_two_point"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.bootstrap_two_point.html#astroML.correlation.bootstrap_two_point">[docs]</a><span class="k">def</span> <span class="nf">bootstrap_two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">Nbootstrap</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                        <span class="n">method</span><span class="o">=</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">return_bootstraps</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                        <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Bootstrapped two-point correlation function</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : array_like</span>
+<span class="sd">        input data, shape = [n_samples, n_features]</span>
+<span class="sd">    bins : array_like</span>
+<span class="sd">        bins within which to compute the 2-point correlation.</span>
+<span class="sd">        shape = Nbins + 1</span>
+<span class="sd">    Nbootstrap : integer</span>
+<span class="sd">        number of bootstrap resamples to perform (default = 10)</span>
+<span class="sd">    method : string</span>
+<span class="sd">        &quot;standard&quot; or &quot;landy-szalay&quot;.</span>
+<span class="sd">    return_bootstraps: bool</span>
+<span class="sd">        if True, return full bootstrapped samples</span>
+<span class="sd">    random_state : integer, np.random.RandomState, or None</span>
+<span class="sd">        specify the random state to use for generating background</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    corr, corr_err : ndarrays</span>
+<span class="sd">        the estimate of the correlation function and the bootstrap</span>
+<span class="sd">        error within each bin. shape = Nbins</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bins</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;data should be 1D or 2D&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">Nbootstrap</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Nbootstrap must be greater than 1&quot;</span><span class="p">)</span>
+
+    <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c"># get the baseline estimate</span>
+    <span class="n">corr</span> <span class="o">=</span> <span class="n">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+
+    <span class="n">bootstraps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nbootstrap</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">corr</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbootstrap</span><span class="p">):</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+        <span class="n">bootstraps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="p">:],</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                                  <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+
+    <span class="c"># use masked std dev in case of NaNs</span>
+    <span class="n">corr_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">bootstraps</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">return_bootstraps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">corr</span><span class="p">,</span> <span class="n">corr_err</span><span class="p">,</span> <span class="n">bootstraps</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">corr</span><span class="p">,</span> <span class="n">corr_err</span>
+
+</div>
+<div class="viewcode-block" id="two_point_angular"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.two_point_angular.html#astroML.correlation.two_point_angular">[docs]</a><span class="k">def</span> <span class="nf">two_point_angular</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Angular two-point correlation function</span>
+
+<span class="sd">    A separate function is needed because angular distances are not</span>
+<span class="sd">    euclidean, and random sampling needs to take into account the</span>
+<span class="sd">    spherical volume element.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ra : array_like</span>
+<span class="sd">        input right ascention, shape = (n_samples,)</span>
+<span class="sd">    dec : array_like</span>
+<span class="sd">        input declination</span>
+<span class="sd">    bins : array_like</span>
+<span class="sd">        bins within which to compute the 2-point correlation.</span>
+<span class="sd">        shape = Nbins + 1</span>
+<span class="sd">    method : string</span>
+<span class="sd">        &quot;standard&quot; or &quot;landy-szalay&quot;.</span>
+<span class="sd">    random_state : integer, np.random.RandomState, or None</span>
+<span class="sd">        specify the random state to use for generating background</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    corr : ndarray</span>
+<span class="sd">        the estimate of the correlation function within each bin</span>
+<span class="sd">        shape = Nbins</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span>
+    <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bins</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">dec</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;ra and dec must be 1-dimensional &#39;</span>
+                         <span class="s">&#39;arrays of the same length&#39;</span><span class="p">)</span>
+
+    <span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span>
+    <span class="n">Nbins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="c"># draw a random sample with N points</span>
+    <span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span> <span class="o">=</span> <span class="n">uniform_sphere</span><span class="p">((</span><span class="nb">min</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ra</span><span class="p">)),</span>
+                                 <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dec</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">dec</span><span class="p">)),</span>
+                                 <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">ra</span><span class="p">))</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">data_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c"># convert spherical bins to cartesian bins</span>
+    <span class="n">bins_transform</span> <span class="o">=</span> <span class="n">angular_dist_to_euclidean_dist</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins_transform</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                     <span class="n">data_R</span><span class="o">=</span><span class="n">data_R</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="bootstrap_two_point_angular"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.bootstrap_two_point_angular.html#astroML.correlation.bootstrap_two_point_angular">[docs]</a><span class="k">def</span> <span class="nf">bootstrap_two_point_angular</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;standard&#39;</span><span class="p">,</span>
+                                <span class="n">Nbootstraps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Angular two-point correlation function</span>
+
+<span class="sd">    A separate function is needed because angular distances are not</span>
+<span class="sd">    euclidean, and random sampling needs to take into account the</span>
+<span class="sd">    spherical volume element.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ra : array_like</span>
+<span class="sd">        input right ascention, shape = (n_samples,)</span>
+<span class="sd">    dec : array_like</span>
+<span class="sd">        input declination</span>
+<span class="sd">    bins : array_like</span>
+<span class="sd">        bins within which to compute the 2-point correlation.</span>
+<span class="sd">        shape = Nbins + 1</span>
+<span class="sd">    method : string</span>
+<span class="sd">        &quot;standard&quot; or &quot;landy-szalay&quot;.</span>
+<span class="sd">    Nbootstraps : int</span>
+<span class="sd">        number of bootstrap resamples</span>
+<span class="sd">    random_state : integer, np.random.RandomState, or None</span>
+<span class="sd">        specify the random state to use for generating background</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    corr : ndarray</span>
+<span class="sd">        the estimate of the correlation function within each bin</span>
+<span class="sd">        shape = Nbins</span>
+<span class="sd">    dcorr : ndarray</span>
+<span class="sd">        error estimate on dcorr (sample standard deviation of</span>
+<span class="sd">        bootstrap resamples)</span>
+<span class="sd">    bootstraps : ndarray</span>
+<span class="sd">        The full sample of bootstraps used to compute corr and dcorr</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span>
+    <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bins</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">dec</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;ra and dec must be 1-dimensional &#39;</span>
+                         <span class="s">&#39;arrays of the same length&#39;</span><span class="p">)</span>
+
+    <span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span>
+    <span class="n">Nbins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c"># convert spherical bins to cartesian bins</span>
+    <span class="n">bins_transform</span> <span class="o">=</span> <span class="n">angular_dist_to_euclidean_dist</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+
+    <span class="n">bootstraps</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbootstraps</span><span class="p">):</span>
+        <span class="c"># draw a random sample with N points</span>
+        <span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span> <span class="o">=</span> <span class="n">uniform_sphere</span><span class="p">((</span><span class="nb">min</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ra</span><span class="p">)),</span>
+                                     <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dec</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">dec</span><span class="p">)),</span>
+                                     <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">ra</span><span class="p">))</span>
+
+        <span class="n">data_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c"># random sample of the data</span>
+            <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">data_b</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data_b</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="n">bootstraps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">two_point</span><span class="p">(</span><span class="n">data_b</span><span class="p">,</span> <span class="n">bins_transform</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                                    <span class="n">data_R</span><span class="o">=</span><span class="n">data_R</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">))</span>
+
+    <span class="n">bootstraps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bootstraps</span><span class="p">)</span>
+    <span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bootstraps</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">corr_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">bootstraps</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">corr</span><span class="p">,</span> <span class="n">corr_err</span><span class="p">,</span> <span class="n">bootstraps</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

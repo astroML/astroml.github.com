@@ -1,0 +1,57 @@
+
+
+.. _book_fig_chapter5_fig_likelihood_gaussian:
+
+
+Log-likelihood for Gaussian Distribution
+----------------------------------------
+
+This plot shows the Likelihood as a function of the mean :math:`\mu` and the
+error :math:`\sigma` when the posterior is assumed to be gaussian.
+
+
+
+.. image:: ../images/chapter5/fig_likelihood_gaussian_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_likelihood_gaussian.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_likelihood_gaussian.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_likelihood_gaussian.py] <fig_likelihood_gaussian.py>`
+
+.. raw:: html
+    
+    </div>
+

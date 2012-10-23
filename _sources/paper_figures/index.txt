@@ -1,0 +1,55 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _paper_fig_root:
+
+Paper Figures
+-------------
+
+In the spirit of `reprodicible research <http://reproducibleresearch.net>`_,
+this page lists the source code for figures from published papers which
+use datasets and routines available in astroML.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+   CIDU2012/index
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

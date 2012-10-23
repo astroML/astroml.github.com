@@ -1,0 +1,7 @@
+astroML.resample.bootstrap
+==========================
+
+.. currentmodule:: astroML.resample
+
+.. autofunction:: bootstrap
+

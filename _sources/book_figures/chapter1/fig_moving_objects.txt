@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter1_fig_moving_objects:
+
+
+SDSS Moving Object Data
+-----------------------
+This example shows how to fetch the moving object (i.e. asteroid) data from
+Stripe 82 and to plot some measures of the orbital dynamics.
+
+
+
+.. image:: ../images/chapter1/fig_moving_objects_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_moving_objects.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_moving_objects.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_moving_objects.py] <fig_moving_objects.py>`
+
+.. raw:: html
+    
+    </div>
+

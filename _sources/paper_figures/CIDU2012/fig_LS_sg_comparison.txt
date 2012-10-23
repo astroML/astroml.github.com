@@ -1,0 +1,54 @@
+
+
+.. _paper_fig_CIDU2012_fig_LS_sg_comparison:
+
+
+Generalized vs Standard Lomb-Scargle
+------------------------------------
+
+
+
+.. image:: ../images/CIDU2012/fig_LS_sg_comparison_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LS_sg_comparison.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LS_sg_comparison.py
+    :lines: 5-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_LS_sg_comparison.py] <fig_LS_sg_comparison.py>`
+
+.. raw:: html
+    
+    </div>
+

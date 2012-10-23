@@ -1,0 +1,7 @@
+astroML.time_series.multiterm_periodogram
+=========================================
+
+.. currentmodule:: astroML.time_series
+
+.. autofunction:: multiterm_periodogram
+

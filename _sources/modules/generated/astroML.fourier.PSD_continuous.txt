@@ -1,0 +1,7 @@
+astroML.fourier.PSD_continuous
+==============================
+
+.. currentmodule:: astroML.fourier
+
+.. autofunction:: PSD_continuous
+

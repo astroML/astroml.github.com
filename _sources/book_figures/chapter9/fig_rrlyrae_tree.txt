@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter9_fig_rrlyrae_tree:
+
+
+Decision Tree for RR-Lyrae Classification
+-----------------------------------------
+This uses a decision tree to photometrically classify RR Lyrae variables,
+and plots a visualization of the first several levels of the tree.
+
+
+
+.. image:: ../images/chapter9/fig_rrlyrae_tree_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rrlyrae_tree.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rrlyrae_tree.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_rrlyrae_tree.py] <fig_rrlyrae_tree.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,94 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _paper_fig_CIDU2012:
+
+CIDU 2012: Introduction to astroML
+----------------------------------
+These figures are from the introduction to the astroML package presented at
+the Conference for Intelligent Data Understanding (CIDU) 2012.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_rbf_ridge_mu_z
+
+   ./fig_XD_example
+
+   ./fig_spec_examples
+
+   ./fig_spec_decompositions
+
+   ./fig_LS_sg_comparison
+
+   ./fig_great_wall_MST
+
+
+
+.. figure:: ./../images/CIDU2012/fig_rbf_ridge_mu_z_1_thumb.png
+    :target: ./fig_rbf_ridge_mu_z.html
+
+    :ref:`paper_fig_CIDU2012_fig_rbf_ridge_mu_z`
+
+.. figure:: ./../images/CIDU2012/fig_XD_example_1_thumb.png
+    :target: ./fig_XD_example.html
+
+    :ref:`paper_fig_CIDU2012_fig_XD_example`
+
+.. figure:: ./../images/CIDU2012/fig_spec_examples_1_thumb.png
+    :target: ./fig_spec_examples.html
+
+    :ref:`paper_fig_CIDU2012_fig_spec_examples`
+
+.. figure:: ./../images/CIDU2012/fig_spec_decompositions_1_thumb.png
+    :target: ./fig_spec_decompositions.html
+
+    :ref:`paper_fig_CIDU2012_fig_spec_decompositions`
+
+.. figure:: ./../images/CIDU2012/fig_LS_sg_comparison_1_thumb.png
+    :target: ./fig_LS_sg_comparison.html
+
+    :ref:`paper_fig_CIDU2012_fig_LS_sg_comparison`
+
+.. figure:: ./../images/CIDU2012/fig_great_wall_MST_1_thumb.png
+    :target: ./fig_great_wall_MST.html
+
+    :ref:`paper_fig_CIDU2012_fig_great_wall_MST`
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

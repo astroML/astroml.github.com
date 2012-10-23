@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>WMAP plotting with HEALPix &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Data set Examples" href="index.html" />
+    <link rel="next" title="SDSS “Great Wall”" href="plot_great_wall.html" />
+    <link rel="prev" title="SDSS Standard Star catalog" href="plot_sdss_S82standards.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="plot_sdss_S82standards.html" title="SDSS Standard Star catalog"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    SDSS Standard St...
+	    </span>
+	    <span class="hiddenrellink">
+	    SDSS Standard Star catalog
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="plot_great_wall.html" title="SDSS “Great Wall”"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    SDSS “Great Wall...
+	    </span>
+	    <span class="hiddenrellink">
+	    SDSS “Great Wall”
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Data set Examples" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Data set Example...
+	</span>
+	<span class="hiddenrellink">
+	Data set Examples
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">WMAP plotting with HEALPix</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="wmap-plotting-with-healpix">
+<span id="example-datasets-plot-wmap-raw"></span><h1>WMAP plotting with HEALPix<a class="headerlink" href="#wmap-plotting-with-healpix" title="Permalink to this headline">¶</a></h1>
+<p>This example uses the <tt class="xref py py-func docutils literal"><span class="pre">astromL.datasets.fetch_wmap_temperatures()</span></tt>
+functionality to download and plot the raw WMAP 7-year data.  The
+visualization requires the <a class="reference external" href="https://github.com/healpy/healpy">healpy</a>
+package to be installed.</p>
+<img alt="../../_images/plot_wmap_raw_1.png" class="align-center" src="../../_images/plot_wmap_raw_1.png" style="width: 100%;" />
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><pre>Downloading http://lambda.gsfc.nasa.gov/data/map/dr4/skymaps/7yr/raw/wmap_band_imap_r9_7yr_W_v4.fits
+[=                                      ]  614.6kb / 24.01Mb   [==                                     ]  1.20Mb / 24.01Mb   [===                                    ]  1.80Mb / 24.01Mb   [====                                   ]  2.40Mb / 24.01Mb   [=====                                  ]  3.00Mb / 24.01Mb   [======                                 ]  3.60Mb / 24.01Mb   [=======                                ]  4.20Mb / 24.01Mb   [========                               ]  4.80Mb / 24.01Mb   [=========                              ]  5.40Mb / 24.01Mb   [==========                             ]  6.00Mb / 24.01Mb   [===========                            ]  6.60Mb / 24.01Mb   [============                           ]  7.20Mb / 24.01Mb   [=============                          ]  7.80Mb / 24.01Mb   [==============                         ]  8.40Mb / 24.01Mb   [===============                        ]  9.00Mb / 24.01Mb   [================                       ]  9.60Mb / 24.01Mb   [=================                      ]  10.20Mb / 24.01Mb   [==================                     ]  10.80Mb / 24.01Mb   [===================                    ]  11.40Mb / 24.01Mb   [====================                   ]  12.00Mb / 24.01Mb   [=====================                  ]  12.60Mb / 24.01Mb   [======================                 ]  13.20Mb / 24.01Mb   [=======================                ]  13.80Mb / 24.01Mb   [========================               ]  14.40Mb / 24.01Mb   [=========================              ]  15.00Mb / 24.01Mb   [==========================             ]  15.61Mb / 24.01Mb   [===========================            ]  16.21Mb / 24.01Mb   [============================           ]  16.81Mb / 24.01Mb   [=============================          ]  17.41Mb / 24.01Mb   [==============================         ]  18.01Mb / 24.01Mb   [===============================        ]  18.61Mb / 24.01Mb   [================================       ]  19.21Mb / 24.01Mb   [=================================      ]  19.81Mb / 24.01Mb   [==================================     ]  20.41Mb / 24.01Mb   [===================================    ]  21.01Mb / 24.01Mb   [====================================   ]  21.61Mb / 24.01Mb   [=====================================  ]  22.21Mb / 24.01Mb   [====================================== ]  22.81Mb / 24.01Mb   [=======================================]  23.41Mb / 24.01Mb   [========================================]  24.01Mb / 24.01Mb   
+</pre>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c"># License: BSD</span>
+<span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c"># warning: due to a bug in healpy, importing it before pylab can cause</span>
+<span class="c">#  a segmentation fault in some circumstances.</span>
+<span class="kn">import</span> <span class="nn">healpy</span> <span class="kn">as</span> <span class="nn">hp</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_wmap_temperatures</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># Fetch the wmap data</span>
+<span class="n">wmap_unmasked</span> <span class="o">=</span> <span class="n">fetch_wmap_temperatures</span><span class="p">(</span><span class="n">masked</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># plot the unmasked map</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">hp</span><span class="o">.</span><span class="n">mollview</span><span class="p">(</span><span class="n">wmap_unmasked</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;Raw WMAP data&#39;</span><span class="p">,</span>
+            <span class="n">fig</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">r&#39;$\Delta$T (mK)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" href="../../_downloads/plot_wmap_raw.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_wmap_raw.py]</span></tt></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/examples/datasets/plot_wmap_raw.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

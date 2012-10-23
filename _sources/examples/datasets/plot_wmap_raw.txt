@@ -1,0 +1,58 @@
+
+
+.. _example_datasets_plot_wmap_raw:
+
+
+WMAP plotting with HEALPix
+--------------------------
+This example uses the :func:`astromL.datasets.fetch_wmap_temperatures`
+functionality to download and plot the raw WMAP 7-year data.  The
+visualization requires the `healpy <https://github.com/healpy/healpy>`_
+package to be installed.
+
+
+
+.. image:: ../images/datasets/plot_wmap_raw_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_wmap_raw.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_wmap_raw.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_wmap_raw.py] <plot_wmap_raw.py>`
+
+.. raw:: html
+    
+    </div>
+

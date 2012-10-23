@@ -1,0 +1,57 @@
+
+
+.. _book_fig_chapter9_fig_photoz_tree:
+
+
+Photometric Redshifts by Decision Trees
+---------------------------------------
+This plot shows a decision tree regression for computing photometric redshifts,
+and uses learning curves as cross validation to choose the optimal tree
+depth.
+
+
+
+.. image:: ../images/chapter9/fig_photoz_tree_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_photoz_tree.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_photoz_tree.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_photoz_tree.py] <fig_photoz_tree.py>`
+
+.. raw:: html
+    
+    </div>
+

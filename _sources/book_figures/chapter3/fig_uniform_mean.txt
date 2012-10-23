@@ -1,0 +1,65 @@
+
+
+.. _book_fig_chapter3_fig_uniform_mean:
+
+
+Convergence of mean for uniformly distributed values
+----------------------------------------------------
+
+This example shows how the mean :math:`\mu` can be computed for a uniform
+distribution in two ways:
+
+- :math:`\bar\mu = \mathrm{mean}(x)`, with an error that scales as
+  :math:`1/\sqrt{N}`.
+- :math:`\bar\mu = \frac{1}{2}[\mathrm{max}(x) + \mathrm{min}(x)]`, with an
+  error that scales as :math:`1/N`.
+
+The shaded regions on the plot show the expected 1, 2, and 3-:math:`\sigma`
+error.  Notice the difference in scale between the y-axes of the two plots.
+
+
+
+.. image:: ../images/chapter3/fig_uniform_mean_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_uniform_mean.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_uniform_mean.py
+    :lines: 16-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_uniform_mean.py] <fig_uniform_mean.py>`
+
+.. raw:: html
+    
+    </div>
+

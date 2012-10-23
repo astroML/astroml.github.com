@@ -1,0 +1,58 @@
+
+
+.. _book_fig_chapter1_fig_moving_objects_multicolor:
+
+
+SDSS Stripe 82 Moving Object Catalog
+------------------------------------
+
+This plot demonstrates how to fetch data from the SDSS Moving object catalog,
+and plot using a multicolor plot similar to that used in figures 3-4 of
+Parker et al 2008.
+
+
+
+.. image:: ../images/chapter1/fig_moving_objects_multicolor_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_moving_objects_multicolor.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_moving_objects_multicolor.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_moving_objects_multicolor.py] <fig_moving_objects_multicolor.py>`
+
+.. raw:: html
+    
+    </div>
+

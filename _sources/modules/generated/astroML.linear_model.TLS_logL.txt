@@ -1,0 +1,7 @@
+astroML.linear_model.TLS_logL
+=============================
+
+.. currentmodule:: astroML.linear_model
+
+.. autofunction:: TLS_logL
+

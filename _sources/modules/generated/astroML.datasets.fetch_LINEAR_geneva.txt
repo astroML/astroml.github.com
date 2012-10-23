@@ -1,0 +1,7 @@
+astroML.datasets.fetch_LINEAR_geneva
+====================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_LINEAR_geneva
+

@@ -1,0 +1,7 @@
+astroML.time_series.lomb_scargle
+================================
+
+.. currentmodule:: astroML.time_series
+
+.. autofunction:: lomb_scargle
+

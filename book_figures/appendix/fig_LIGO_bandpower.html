@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Plot the band power of the LIGO big dog event &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Appendix" href="index.html" />
+    <link rel="next" title="LIGO wavelet transform" href="fig_LIGO_wavelets.html" />
+    <link rel="prev" title="KD Dual-tree Diagram" href="fig_kd_dualtree.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="fig_kd_dualtree.html" title="KD Dual-tree Diagram"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    KD Dual-tree Dia...
+	    </span>
+	    <span class="hiddenrellink">
+	    KD Dual-tree Diagram
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="fig_LIGO_wavelets.html" title="LIGO wavelet transform"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    LIGO wavelet tra...
+	    </span>
+	    <span class="hiddenrellink">
+	    LIGO wavelet transform
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Appendix" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Appendix
+	</span>
+	<span class="hiddenrellink">
+	Appendix
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Plot the band power of the LIGO big dog event</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="plot-the-band-power-of-the-ligo-big-dog-event">
+<span id="book-fig-appendix-fig-ligo-bandpower"></span><h1>Plot the band power of the LIGO big dog event<a class="headerlink" href="#plot-the-band-power-of-the-ligo-big-dog-event" title="Permalink to this headline">¶</a></h1>
+<img alt="../../_images/fig_LIGO_bandpower_1.png" class="align-center" src="../../_images/fig_LIGO_bandpower_1.png" style="width: 100%;" />
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><pre>downloading LIGO bigdog data from http://www.ligo.org/science/GW100916/HLV-strain.txt to /home/vanderplas/astroML_data/LIGO_bigdog.npy
+Downloading http://www.ligo.org/science/GW100916/HLV-strain.txt
+[=                                      ]  288.0kb / 11.25Mb   [==                                     ]  576.0kb / 11.25Mb   [===                                    ]  864.0kb / 11.25Mb   [====                                   ]  1.13Mb / 11.25Mb   [=====                                  ]  1.41Mb / 11.25Mb   [======                                 ]  1.69Mb / 11.25Mb   [=======                                ]  1.97Mb / 11.25Mb   [========                               ]  2.25Mb / 11.25Mb   [=========                              ]  2.53Mb / 11.25Mb   [==========                             ]  2.81Mb / 11.25Mb   [===========                            ]  3.09Mb / 11.25Mb   [============                           ]  3.38Mb / 11.25Mb   [=============                          ]  3.66Mb / 11.25Mb   [==============                         ]  3.94Mb / 11.25Mb   [===============                        ]  4.22Mb / 11.25Mb   [================                       ]  4.50Mb / 11.25Mb   [=================                      ]  4.78Mb / 11.25Mb   [==================                     ]  5.06Mb / 11.25Mb   [===================                    ]  5.34Mb / 11.25Mb   [====================                   ]  5.63Mb / 11.25Mb   [=====================                  ]  5.91Mb / 11.25Mb   [======================                 ]  6.19Mb / 11.25Mb   [=======================                ]  6.47Mb / 11.25Mb   [========================               ]  6.75Mb / 11.25Mb   [=========================              ]  7.03Mb / 11.25Mb   [==========================             ]  7.31Mb / 11.25Mb   [===========================            ]  7.59Mb / 11.25Mb   [============================           ]  7.88Mb / 11.25Mb   [=============================          ]  8.16Mb / 11.25Mb   [==============================         ]  8.44Mb / 11.25Mb   [===============================        ]  8.72Mb / 11.25Mb   [================================       ]  9.00Mb / 11.25Mb   [=================================      ]  9.28Mb / 11.25Mb   [==================================     ]  9.56Mb / 11.25Mb   [===================================    ]  9.84Mb / 11.25Mb   [====================================   ]  10.13Mb / 11.25Mb   [=====================================  ]  10.41Mb / 11.25Mb   [====================================== ]  10.69Mb / 11.25Mb   [=======================================]  10.97Mb / 11.25Mb   [========================================]  11.25Mb / 11.25Mb   [=========================================]  11.25Mb / 11.25Mb   
+</pre>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c"># License: BSD</span>
+<span class="c">#   The figure produced by this code is published in the textbook</span>
+<span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
+<span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_LIGO_bigdog</span>
+<span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">FT_continuous</span>
+
+
+<span class="k">def</span> <span class="nf">multiple_power_spectrum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">step_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">window_size</span>
+    <span class="n">N_steps</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">)</span> <span class="o">/</span> <span class="n">step_size</span>
+
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N_steps</span><span class="p">)[:,</span> <span class="bp">None</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span>
+
+    <span class="n">f</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">FT_continuous</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="n">window_size</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">H</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
+
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">fetch_LIGO_bigdog</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s">&#39;t&#39;</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s">&#39;Hanford&#39;</span><span class="p">]</span>
+
+<span class="n">window_size</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">step_size</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">multiple_power_spectrum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span>
+                               <span class="n">window_size</span><span class="o">=</span><span class="n">window_size</span><span class="p">,</span>
+                               <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">f</span> <span class="o">&lt;</span> <span class="mi">1500</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">P</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="n">window_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span>
+                   <span class="n">t</span><span class="p">[</span><span class="n">window_size</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+                   <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;t (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;f (Hz) derived from </span><span class="si">%.2f</span><span class="s">s window&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">window_size</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;|H(f)|&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" href="../../_downloads/fig_LIGO_bandpower.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_LIGO_bandpower.py]</span></tt></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/appendix/fig_LIGO_bandpower.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

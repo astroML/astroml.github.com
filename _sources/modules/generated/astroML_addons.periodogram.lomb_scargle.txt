@@ -1,0 +1,7 @@
+astroML_addons.periodogram.lomb_scargle
+=======================================
+
+.. currentmodule:: astroML_addons.periodogram
+
+.. autofunction:: lomb_scargle
+

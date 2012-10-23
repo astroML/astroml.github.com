@@ -1,0 +1,11 @@
+astroML.density_estimation.KDE
+==============================
+
+.. currentmodule:: astroML.density_estimation
+
+.. autoclass:: KDE
+
+   
+   .. automethod:: __init__
+   
+

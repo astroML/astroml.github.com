@@ -1,0 +1,7 @@
+astroML.stats.binned_statistic_2d
+=================================
+
+.. currentmodule:: astroML.stats
+
+.. autofunction:: binned_statistic_2d
+

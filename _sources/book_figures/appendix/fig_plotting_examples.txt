@@ -1,0 +1,74 @@
+
+
+.. _book_fig_appendix_fig_plotting_examples:
+
+
+Examples of Plotting with Matplotlib
+------------------------------------
+
+This file generates the example plots from the Appendix
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/appendix/fig_plotting_examples_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/appendix/fig_plotting_examples_2.png
+    :scale: 50
+
+
+
+.. image:: ../images/appendix/fig_plotting_examples_3.png
+    :scale: 50
+
+
+
+.. image:: ../images/appendix/fig_plotting_examples_4.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_plotting_examples.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_plotting_examples.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_plotting_examples.py] <fig_plotting_examples.py>`
+
+.. raw:: html
+    
+    </div>
+

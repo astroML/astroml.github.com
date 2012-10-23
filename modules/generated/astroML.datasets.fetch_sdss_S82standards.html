@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.4.4. astroML.datasets.fetch_sdss_S82standards &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="10. Class reference" href="../classes.html" />
+    <link rel="next" title="10.4.5. astroML.datasets.fetch_dr7_quasar" href="astroML.datasets.fetch_dr7_quasar.html" />
+    <link rel="prev" title="10.4.3. astroML.datasets.fetch_sdss_corrected_spectra" href="astroML.datasets.fetch_sdss_corrected_spectra.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="astroML.datasets.fetch_sdss_corrected_spectra.html" title="10.4.3. astroML.datasets.fetch_sdss_corrected_spectra"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    10.4.3. astroML....
+	    </span>
+	    <span class="hiddenrellink">
+	    10.4.3. astroML.datasets.fetch_sdss_corrected_spectra
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="astroML.datasets.fetch_dr7_quasar.html" title="10.4.5. astroML.datasets.fetch_dr7_quasar"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    10.4.5. astroML....
+	    </span>
+	    <span class="hiddenrellink">
+	    10.4.5. astroML.datasets.fetch_dr7_quasar
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../classes.html" title="10. Class reference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	10. Class refere...
+	</span>
+	<span class="hiddenrellink">
+	10. Class reference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">10.4.4. astroML.datasets.fetch_sdss_S82standards</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="astroml-datasets-fetch-sdss-s82standards">
+<h1>10.4.4. astroML.datasets.fetch_sdss_S82standards<a class="headerlink" href="#astroml-datasets-fetch-sdss-s82standards" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="astroML.datasets.fetch_sdss_S82standards">
+<tt class="descclassname">astroML.datasets.</tt><tt class="descname">fetch_sdss_S82standards</tt><big>(</big><em>data_home=None</em>, <em>download_if_missing=True</em>, <em>crossmatch_2mass=False</em><big>)</big><a class="headerlink" href="#astroML.datasets.fetch_sdss_S82standards" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loader for SDSS stripe82 standard star catalog</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>data_home</strong> : optional, default=None</p>
+<blockquote>
+<div><p>Specify another download and cache folder for the datasets. By default
+all scikit learn data is stored in &#8216;~/astroML_data&#8217; subfolders.</p>
+</div></blockquote>
+<p><strong>download_if_missing</strong> : bool, optional, default=True</p>
+<blockquote>
+<div><p>If False, raise a IOError if the data is not locally available
+instead of trying to download the data from the source site.</p>
+</div></blockquote>
+<p><strong>crossmatch_2mass: bool, optional, default=False</strong> :</p>
+<blockquote>
+<div><p>If True, return the standard star catalog cross-matched with 2mass
+magnitudes</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>data</strong> : ndarray, shape = (313859,)</p>
+<blockquote class="last">
+<div><p>record array containing sdss standard stars (see notes below)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Information on the data can be found at
+<a class="reference external" href="http://www.astro.washington.edu/users/ivezic/sdss/catalogs/stripe82.html">http://www.astro.washington.edu/users/ivezic/sdss/catalogs/stripe82.html</a>
+Data is described in Ivezic et al. 2007 (Astronomical Journal, 134, 973).
+Columns are as follows:</p>
+<blockquote>
+<div><p>RA                Right-ascention of source (degrees)
+DEC               Declination of source (degrees)
+RArms             rms of right-ascention (arcsec)
+DECrms            rms of declination (arcsec)
+Ntot              total number of epochs
+A_r               SFD ISM extinction (mags)</p>
+<dl class="docutils">
+<dt>for each band in (u g r i z):</dt>
+<dd><p class="first">Nobs_&lt;band&gt;    number of observations in this band
+mmed_&lt;band&gt;    median magnitude in this band
+mmu_&lt;band&gt;     mean magnitude in this band
+msig_&lt;band&gt;    standard error on the mean</p>
+<blockquote>
+<div>(1.25 times larger for median)</div></blockquote>
+<p class="last">mrms_&lt;band&gt;    root-mean-square scatter
+mchi2_&lt;band&gt;   chi2 per degree of freedom for mean magnitude</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>For 2-MASS, the following columns are added:</p>
+<blockquote>
+<div>ra2MASS           2-mass right-ascention
+dec2MASS          2-mass declination
+J                 J-band magnitude
+Jerr              J-band error
+H                 H-band magnitude
+Herr              H-band error
+K                 K-band magnitude
+Kerr              K-band error
+theta             difference between SDSS and 2MASS position (arcsec)</div></blockquote>
+<p class="rubric">References</p>
+<p>Ivesic et al. ApJ 134:973 (2007)</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_S82standards</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u_g</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mmed_u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mmed_g&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">u_g</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="go">[-22.23500061   1.34900093   1.43799973   2.08200073 -23.03800011]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/modules/generated/astroML.datasets.fetch_sdss_S82standards.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+
+
+.. _example_datasets_plot_sdss_spectrum:
+
+
+SDSS Spectrum Example
+---------------------
+This example shows how to fetch and plot a spectrum from the SDSS database
+using the plate, MJD, and fiber numbers.  The code below sends a query to
+the SDSS server for the given plate, fiber, and mjd, downloads the spectrum,
+and plots the result.
+
+
+
+.. image:: ../images/datasets/plot_sdss_spectrum_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_sdss_spectrum.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_sdss_spectrum.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_sdss_spectrum.py] <plot_sdss_spectrum.py>`
+
+.. raw:: html
+    
+    </div>
+

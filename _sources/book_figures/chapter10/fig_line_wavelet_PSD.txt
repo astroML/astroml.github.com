@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter10_fig_line_wavelet_PSD:
+
+
+Wavelet transform of a Noisy Spike
+----------------------------------
+Plot the wavelet transform (spectrogram) of a noisy spike.  A similar plot
+can be obtained using the built-in function matplotlib.mlab.specgram.
+
+
+
+.. image:: ../images/chapter10/fig_line_wavelet_PSD_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_line_wavelet_PSD.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_line_wavelet_PSD.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_line_wavelet_PSD.py] <fig_line_wavelet_PSD.py>`
+
+.. raw:: html
+    
+    </div>
+

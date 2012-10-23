@@ -1,0 +1,54 @@
+
+
+.. _book_fig_chapter6_fig_GMM_density_estimation:
+
+
+Comparison of 1D Density Estimators
+-----------------------------------
+
+
+
+.. image:: ../images/chapter6/fig_GMM_density_estimation_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_GMM_density_estimation.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_GMM_density_estimation.py
+    :lines: 5-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_GMM_density_estimation.py] <fig_GMM_density_estimation.py>`
+
+.. raw:: html
+    
+    </div>
+

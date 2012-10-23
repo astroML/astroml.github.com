@@ -1,0 +1,56 @@
+
+
+.. _example_algorithms_plot_crossmatch:
+
+
+Catalog cross-matching
+----------------------
+This plots the cross-matched samples between the SDSS imaging data and
+the SDSS Stripe 82 standard stars.
+
+
+
+.. image:: ../images/algorithms/plot_crossmatch_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_crossmatch.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_crossmatch.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_crossmatch.py] <plot_crossmatch.py>`
+
+.. raw:: html
+    
+    </div>
+

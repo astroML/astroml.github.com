@@ -1,0 +1,57 @@
+
+
+.. _example_datasets_plot_corrected_spectra:
+
+
+Corrected Spectra
+-----------------
+The script examples/datasets/compute_sdss_pca.py uses an iterative PCA
+technique to reconstruct masked regions of SDSS spectra.  Several of the
+resulting spectra are shown below.
+
+
+
+.. image:: ../images/datasets/plot_corrected_spectra_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_corrected_spectra.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_corrected_spectra.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_corrected_spectra.py] <plot_corrected_spectra.py>`
+
+.. raw:: html
+    
+    </div>
+

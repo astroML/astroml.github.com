@@ -1,0 +1,480 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Data Sets &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../index.html" />
+    <link rel="up" title="&lt;no title&gt;" href="index.html" />
+    <link rel="next" title="4. Unsupervised Learning: Density Estimation" href="density_estimation.html" />
+    <link rel="prev" title="2. Installation of astroML" href="installation.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../index.html">
+            <img src="../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+	    <li><a href="index.html">User Guide</a></li>
+            <li><a href="../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="installation.html" title="2. Installation of astroML"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    2. Installation ...
+	    </span>
+	    <span class="hiddenrellink">
+	    2. Installation of astroML
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="density_estimation.html" title="4. Unsupervised Learning: Density Estimation"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    4. Unsupervised ...
+	    </span>
+	    <span class="hiddenrellink">
+	    4. Unsupervised Learning: Density Estimation
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="<no title>" >
+	Up
+	<br>
+	<span class="smallrellink">
+	<no title>
+	</span>
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">3. Data Sets</a><ul>
+<li><a class="reference internal" href="#data-set-cache-location">3.1. Data Set Cache Location</a></li>
+<li><a class="reference internal" href="#sdss-data">3.2. SDSS Data</a><ul>
+<li><a class="reference internal" href="#sdss-spectra">3.2.1. SDSS Spectra</a></li>
+<li><a class="reference internal" href="#sdss-photometry">3.2.2. SDSS Photometry</a></li>
+<li><a class="reference internal" href="#sdss-corrected-spectra">3.2.3. SDSS Corrected Spectra</a></li>
+<li><a class="reference internal" href="#sdss-spectroscopic-sample">3.2.4. SDSS Spectroscopic Sample</a></li>
+<li><a class="reference internal" href="#sdss-dr7-quasar-catalog">3.2.5. SDSS DR7 Quasar Catalog</a></li>
+<li><a class="reference internal" href="#sdss-imaging-sample">3.2.6. SDSS Imaging Sample</a></li>
+<li><a class="reference internal" href="#sdss-segue-stellar-parameters-pipeline">3.2.7. SDSS Segue Stellar Parameters Pipeline</a></li>
+<li><a class="reference internal" href="#stripe-82-time-domain">3.2.8. Stripe 82: Time Domain</a></li>
+<li><a class="reference internal" href="#stripe-82-standard-stars">3.2.9. Stripe 82: Standard Stars</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#combined-surveys">3.3. Combined Surveys</a><ul>
+<li><a class="reference internal" href="#nasa-sloan-atlas">3.3.1. Nasa Sloan Atlas</a></li>
+<li><a class="reference internal" href="#stripe-82-standards-2mass">3.3.2. Stripe 82 Standards + 2MASS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#time-domain-data">3.4. Time Domain Data</a><ul>
+<li><a class="reference internal" href="#rr-lyrae-templates">3.4.1. RR Lyrae Templates</a></li>
+<li><a class="reference internal" href="#linear-light-curves">3.4.2. LINEAR Light Curves</a></li>
+<li><a class="reference internal" href="#ligo-data">3.4.3. LIGO data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wmap-temperature-map">3.5. WMAP temperature map</a></li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="data-sets">
+<span id="datasets-description"></span><h1>3. Data Sets<a class="headerlink" href="#data-sets" title="Permalink to this headline">¶</a></h1>
+<p>One of the major components of astroML is its tools for downloading and
+working with astronomical data sets.  The available routines are available
+in the module <a class="reference internal" href="../modules/classes.html#module-astroML.datasets" title="astroML.datasets"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.datasets</span></tt></a>, and details are available in the
+documentation of the functions therein.  In this section we will summarize
+some of the data sets made available by the code, and show some visualizations
+of this data</p>
+<div class="section" id="data-set-cache-location">
+<span id="datasets-cache"></span><h2>3.1. Data Set Cache Location<a class="headerlink" href="#data-set-cache-location" title="Permalink to this headline">¶</a></h2>
+<p>The total size of the data sets is in the hundreds of megabytes, too large to
+be bundled with the astroML source distribution.  To make working with
+data sets more convenient, astroML contains routines which download the
+data from their locations on the web, and cache the results to disk for
+future use.</p>
+<p>For example, the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_spectrum.html#astroML.datasets.fetch_sdss_spectrum" title="astroML.datasets.fetch_sdss_spectrum"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_spectrum()</span></tt></a> function queries the SDSS
+database using an SQL query, and retrieves the data.  The file is stored
+to disk in a location that can be defined by the user.  The default location
+is <tt class="docutils literal"><span class="pre">~/astroML_data</span></tt>, and this default can be overridden by setting the
+<tt class="docutils literal"><span class="pre">ASTROML_DATA</span></tt> environment variable.  Any subsequent time the same function
+is called, the cached version of the data is used automatically.</p>
+</div>
+<div class="section" id="sdss-data">
+<span id="datasets-sdss"></span><h2>3.2. SDSS Data<a class="headerlink" href="#sdss-data" title="Permalink to this headline">¶</a></h2>
+<p>Much of the data made available by astroML comes from the
+<a class="reference external" href="http://www.sdss.org">Sloan Digital Sky Survey (SDSS)</a>, a decade-plus
+photometric and spectroscopic survey at the Apache Point Observatory in
+New Mexico.  The survey obtained photometry for hundreds of millions of
+stars, quasars, and galaxies, and spectra for several million of these
+objects.  In addition, the second phase of the survey performed repeated
+imaging over a small portion of the sky, called Stripe 82, enabling the
+study of the time-variation of many objects.</p>
+<p>SDSS photometric data are observed through five filters, <cite>u</cite>, <cite>g</cite>, <cite>r</cite>, <cite>i</cite>,
+and <cite>z</cite>.  A visualization of the range of these filters is shown below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_filters.html"><img alt="../_images/plot_sdss_filters_11.png" class="align-center" src="../_images/plot_sdss_filters_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<div class="section" id="sdss-spectra">
+<span id="datasets-sdss-spectra"></span><h3>3.2.1. SDSS Spectra<a class="headerlink" href="#sdss-spectra" title="Permalink to this headline">¶</a></h3>
+<p>The SDSS spectroscopic data is available in a database, indexed by three
+numbers: the plate, date, and fiber number.  The <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_spectrum.html#astroML.datasets.fetch_sdss_spectrum" title="astroML.datasets.fetch_sdss_spectrum"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_spectrum()</span></tt></a>
+takes a plate, mjd, and fiber, and downloads the spectrum to disk.  The
+spectral data can be visualized as follows:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_spectrum.html"><img alt="../_images/plot_sdss_spectrum_11.png" class="align-center" src="../_images/plot_sdss_spectrum_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<p>As with all figures in this documentation, clicking on the image will link
+to a page showing the source code used to download the data and plot the
+result.</p>
+</div>
+<div class="section" id="sdss-photometry">
+<span id="datasets-sdss-photometry"></span><h3>3.2.2. SDSS Photometry<a class="headerlink" href="#sdss-photometry" title="Permalink to this headline">¶</a></h3>
+<p>Similarly to the spectroscopic data, the photometric data can be accessed
+directly using the SQL interface to the Database Archive Server.  astroML
+contains a function which accesses this data directly using a python SQL
+query tool.  The function is called <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_galaxy_colors.html#astroML.datasets.fetch_sdss_galaxy_colors" title="astroML.datasets.fetch_sdss_galaxy_colors"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_galaxy_colors()</span></tt></a> and
+can be used as a template for making custom data sets available with a
+simple Python command.  Some of the results are visualized below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_galaxy_colors.html"><img alt="../_images/plot_sdss_galaxy_colors_11.png" class="align-center" src="../_images/plot_sdss_galaxy_colors_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+</div>
+<div class="section" id="sdss-corrected-spectra">
+<span id="datasets-sdss-corrected-spectra"></span><h3>3.2.3. SDSS Corrected Spectra<a class="headerlink" href="#sdss-corrected-spectra" title="Permalink to this headline">¶</a></h3>
+<p>The SDSS spectra come from galaxies at a range of redshifts, and have sections
+of unreliable or missing data due to sky absorption, cosmic rays, bad detector
+pixels, or other effects.  AstroML provides a set of spectra which have been
+moved to rest frame, corrected for masking using an iterative PCA reconstruction
+technique (see <a class="reference internal" href="../examples/datasets/compute_sdss_pca.html#example-datasets-compute-sdss-pca"><em>Example of downloading and processing SDSS spectra</em></a>), and resampled to
+1000 common wavelength bins.  The spectra can be downloaded using
+<a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_corrected_spectra.html#astroML.datasets.fetch_sdss_corrected_spectra" title="astroML.datasets.fetch_sdss_corrected_spectra"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_corrected_spectra()</span></tt></a>; some examples of these are shown
+below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_corrected_spectra.html"><img alt="../_images/plot_corrected_spectra_11.png" class="align-center" src="../_images/plot_corrected_spectra_11.png" style="width: 640.0px; height: 640.0px;" /></a>
+<p>These data are used in several of the example figures from
+<a class="reference internal" href="../book_figures/chapter7/index.html#book-fig-chapter7"><em>Chapter 7: Dimensionality and its Reduction</em></a>.</p>
+<p>Because these spectra are meant to enable high-dimensional classification and
+visualization routines, it is useful to have some extra classification data
+for these objects.  One set of features available in the data set is the
+line ratio measurements.  These can be visualized as shown below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_line_ratios.html"><img alt="../_images/plot_sdss_line_ratios_12.png" class="align-center" src="../_images/plot_sdss_line_ratios_12.png" style="width: 640.0px; height: 480.0px;" /></a>
+</div>
+<div class="section" id="sdss-spectroscopic-sample">
+<span id="datasets-sdss-spec-gals"></span><h3>3.2.4. SDSS Spectroscopic Sample<a class="headerlink" href="#sdss-spectroscopic-sample" title="Permalink to this headline">¶</a></h3>
+<p>Along with spectra, SDSS catalogued photometric observations of the objects
+in the survey area.  Those objects with both spectra and photometry available
+provide a wealth of information about many classes of objects in the night
+sky.  The photometry from the SDSS spectroscopic galaxy sample is available
+using the routine <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_specgals.html#astroML.datasets.fetch_sdss_specgals" title="astroML.datasets.fetch_sdss_specgals"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_specgals()</span></tt></a>, and some of the attributes
+are shown in the following visualization:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_specgals.html"><img alt="../_images/plot_sdss_specgals_11.png" class="align-center" src="../_images/plot_sdss_specgals_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<p>One well-known feature of the SDSS spectroscopic sample is the &#8220;great wall&#8221;,
+a filament of galaxies located several hundred megaparsecs away.  The
+great wall data is among the spectroscopic sample: to enable easily working
+with it, astroML contains the function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_great_wall.html#astroML.datasets.fetch_great_wall" title="astroML.datasets.fetch_great_wall"><tt class="xref py py-func docutils literal"><span class="pre">fetch_great_wall()</span></tt></a>.  The data
+can be seen below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_great_wall.html"><img alt="../_images/plot_great_wall_11.png" class="align-center" src="../_images/plot_great_wall_11.png" style="width: 640.0px; height: 320.0px;" /></a>
+</div>
+<div class="section" id="sdss-dr7-quasar-catalog">
+<span id="datasets-dr7-quasar"></span><h3>3.2.5. SDSS DR7 Quasar Catalog<a class="headerlink" href="#sdss-dr7-quasar-catalog" title="Permalink to this headline">¶</a></h3>
+<p>The SDSS has obtained the spectra of over 100,000 distant quasars.  The quasar
+catalog is described on the
+<a class="reference external" href="http://www.sdss.org/dr7/products/value_added/qsocat_dr7.html">SDSS website</a>,
+and can be downloaded using the function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_dr7_quasar.html#astroML.datasets.fetch_dr7_quasar" title="astroML.datasets.fetch_dr7_quasar"><tt class="xref py py-func docutils literal"><span class="pre">fetch_dr7_quasar()</span></tt></a>.  Some of
+this quasar data is used in the visualization below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_dr7_quasar.html"><img alt="../_images/plot_dr7_quasar_11.png" class="align-center" src="../_images/plot_dr7_quasar_11.png" style="width: 800.0px; height: 800.0px;" /></a>
+</div>
+<div class="section" id="sdss-imaging-sample">
+<span id="datasets-sdss-imaging"></span><h3>3.2.6. SDSS Imaging Sample<a class="headerlink" href="#sdss-imaging-sample" title="Permalink to this headline">¶</a></h3>
+<p>While the spectroscopically observed objects in SDSS offer a large number of
+measured features for each object, the total number of observed objects of
+each class (star, galaxy, quasar) is under one million.  The full photometric
+sample goes much deeper, and thus contains photometric measurements of
+hundreds of millions of objects.  astroML has a function called
+<a class="reference internal" href="../modules/generated/astroML.datasets.fetch_imaging_sample.html#astroML.datasets.fetch_imaging_sample" title="astroML.datasets.fetch_imaging_sample"><tt class="xref py py-func docutils literal"><span class="pre">fetch_imaging_sample()</span></tt></a> which loads a selection of this data.  Some
+of the returned attributes are visualized below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_imaging.html"><img alt="../_images/plot_sdss_imaging_11.png" class="align-center" src="../_images/plot_sdss_imaging_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+</div>
+<div class="section" id="sdss-segue-stellar-parameters-pipeline">
+<span id="datasets-sdss-sspp"></span><h3>3.2.7. SDSS Segue Stellar Parameters Pipeline<a class="headerlink" href="#sdss-segue-stellar-parameters-pipeline" title="Permalink to this headline">¶</a></h3>
+<p>Several groups have produced various value-added catalogs which contain
+additional observed features for objects in the SDSS database.  One example
+is the Segue Stellar Parameters Pipeline (SSPP), which makes available a
+large number of additional object features derived from SDSS photometry
+and spectra.  This data can be downloaded using the function
+<a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_sspp.html#astroML.datasets.fetch_sdss_sspp" title="astroML.datasets.fetch_sdss_sspp"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_sspp()</span></tt></a>.  Some of the metallicity and temperature data is
+visualized below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_SDSS_SSPP.html"><img alt="../_images/plot_SDSS_SSPP_11.png" class="align-center" src="../_images/plot_SDSS_SSPP_11.png" style="width: 800.0px; height: 400.0px;" /></a>
+<p>The left panel shows the density of point on the temperature / log(g) plot.
+These parameters correlate with the familiar HR diagram based on photometric
+colors.  The right panel shows the average metallicity in each pixel, and the
+contours indicate the density of points.
+Many more attributes are available in the SSPP data set; see the
+<a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_sspp.html#astroML.datasets.fetch_sdss_sspp" title="astroML.datasets.fetch_sdss_sspp"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_sspp()</span></tt></a> documentation for details.</p>
+</div>
+<div class="section" id="stripe-82-time-domain">
+<span id="datasets-stripe82-time"></span><h3>3.2.8. Stripe 82: Time Domain<a class="headerlink" href="#stripe-82-time-domain" title="Permalink to this headline">¶</a></h3>
+<p>During the second phase of the SDSS, the project repeatedly surveyed a small
+swath of sky known as <cite>Stripe 82</cite>.  This yielded an unprecedented set of
+data in the time domain, which yielded insight into phenomena as wide-ranging
+as the orbits of asteroids, the variability of certain classes of stars,
+and the acceleration of the expansion of the universe.</p>
+<p>astroML contains two datasets based on Stripe 82 data: one containing
+observations of RR-Lyrae stars, and one containing observations of moving
+objects (i.e. asteroids) within the solar system.</p>
+<p>The RR-Lyrae data can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_mags.html#astroML.datasets.fetch_rrlyrae_mags" title="astroML.datasets.fetch_rrlyrae_mags"><tt class="xref py py-func docutils literal"><span class="pre">fetch_rrlyrae_mags()</span></tt></a>
+function, and result in the dataset visualized below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_rrlyrae_mags.html"><img alt="../_images/plot_rrlyrae_mags_11.png" class="align-center" src="../_images/plot_rrlyrae_mags_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<p>The moving objects can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_moving_objects.html#astroML.datasets.fetch_moving_objects" title="astroML.datasets.fetch_moving_objects"><tt class="xref py py-func docutils literal"><span class="pre">fetch_moving_objects()</span></tt></a>
+function, giving a dataset containing not only photometric observations,
+but also orbital parameters.  A portion of this information went into the
+following visualization:</p>
+<p class="centered">
+<strong><a class="reference external image-reference" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC1" src="../_images/plot_moving_objects_12.png" style="width: 400.0px; height: 300.0px;" /></a>
+ <a class="reference external image-reference" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC2" src="../_images/plot_moving_objects_22.png" style="width: 400.0px; height: 300.0px;" /></a>
+</strong></p></div>
+<div class="section" id="stripe-82-standard-stars">
+<span id="datasets-s82-standards"></span><h3>3.2.9. Stripe 82: Standard Stars<a class="headerlink" href="#stripe-82-standard-stars" title="Permalink to this headline">¶</a></h3>
+<p>Along with time-domain data, the repeated observations in Stripe 82 enabled
+stacked photometry of sources to minimize the statistical error in their
+measured fluxes.  The Stripe 82 standard stars are a set of stars in this
+region which are below a specified variability criterion.  The multiple
+exposures were combined to yield a highly precise catalog of stars.  This
+data can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_S82standards.html#astroML.datasets.fetch_sdss_S82standards" title="astroML.datasets.fetch_sdss_S82standards"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_S82standards()</span></tt></a> function.
+Some of the data in this catalog is visualized below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_11.png" class="align-center" src="../_images/plot_sdss_S82standards_11.png" style="width: 800.0px; height: 800.0px;" /></a>
+</div>
+</div>
+<div class="section" id="combined-surveys">
+<h2>3.3. Combined Surveys<a class="headerlink" href="#combined-surveys" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nasa-sloan-atlas">
+<span id="datasets-sloan-atlas"></span><h3>3.3.1. Nasa Sloan Atlas<a class="headerlink" href="#nasa-sloan-atlas" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://www.nsatlas.org/">NASA Sloan atlas</a> is a cross-matched catalog of
+observations and parameters for nearby galaxies, compiled from SDSS, GALEX,
+2MASS, annd WISE.  The full dataset is ~500MB; an astroML dataset loader for
+~50MB of this data is available in <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_nasa_atlas.html#astroML.datasets.fetch_nasa_atlas" title="astroML.datasets.fetch_nasa_atlas"><tt class="xref py py-func docutils literal"><span class="pre">fetch_nasa_atlas()</span></tt></a>.  The footprint
+of the available data can be seen below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_nasa_atlas.html"><img alt="../_images/plot_nasa_atlas_12.png" class="align-center" src="../_images/plot_nasa_atlas_12.png" style="width: 640.0px; height: 480.0px;" /></a>
+</div>
+<div class="section" id="stripe-82-standards-2mass">
+<span id="datasets-s82-2mass"></span><h3>3.3.2. Stripe 82 Standards + 2MASS<a class="headerlink" href="#stripe-82-standards-2mass" title="Permalink to this headline">¶</a></h3>
+<p>Above, we introduced the stripe 82 standard star catalog.  There is also
+a version of this catalog which is cross-matched with the 2 Micron All Sky
+Survey (2MASS) data.  This can be obtained using the
+<a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_S82standards.html#astroML.datasets.fetch_sdss_S82standards" title="astroML.datasets.fetch_sdss_S82standards"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_S82standards()</span></tt></a> function, with the keyword
+<tt class="docutils literal"><span class="pre">crossmatch_2mass=True</span></tt>.  Some of the combined data are shown below:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_21.png" class="align-center" src="../_images/plot_sdss_S82standards_21.png" style="width: 800.0px; height: 800.0px;" /></a>
+</div>
+</div>
+<div class="section" id="time-domain-data">
+<h2>3.4. Time Domain Data<a class="headerlink" href="#time-domain-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rr-lyrae-templates">
+<h3>3.4.1. RR Lyrae Templates<a class="headerlink" href="#rr-lyrae-templates" title="Permalink to this headline">¶</a></h3>
+<p>RR Lyrae light curve templates can be useful when analyzing time-series data.
+The function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_templates.html#astroML.datasets.fetch_rrlyrae_templates" title="astroML.datasets.fetch_rrlyrae_templates"><tt class="xref py py-func docutils literal"><span class="pre">fetch_rrlyrae_templates()</span></tt></a> fetches the templates used in
+<a class="footnote-reference" href="#id3" id="id2">[1]</a>.  The following is a figure from the <a class="reference internal" href="introduction.html#textbook"><em>textbook</em></a>
+that reconstructs one of these templates using a Fourier series:</p>
+<a class="reference external image-reference" href="../book_figures/chapter10/fig_rrlyrae_reconstruct.html"><img alt="../_images/fig_rrlyrae_reconstruct_11.png" class="align-center" src="../_images/fig_rrlyrae_reconstruct_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<p>The dashed line is the RR Lyrae template; the grey lines show the reconstruction
+with 1, 3, and 8 Fourier modes.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Sesar et al 2010, ApJ 708:717</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="linear-light-curves">
+<h3>3.4.2. LINEAR Light Curves<a class="headerlink" href="#linear-light-curves" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://www.ll.mit.edu/mission/space/linear/">Lincoln Near Earth Asteroid Research</a>
+(LINEAR) project, in existance since 1998, is designed to discover
+and track near-earth asteroids.  Its archive contains several million images of
+the sky, and its combination of sensitivity and sky coverage has made it a
+valuable resource to study time-domain astronomy, including variable stars.
+astroML has two functions relating to the LINEAR sample:
+<a class="reference internal" href="../modules/generated/astroML.datasets.fetch_LINEAR_sample.html#astroML.datasets.fetch_LINEAR_sample" title="astroML.datasets.fetch_LINEAR_sample"><tt class="xref py py-func docutils literal"><span class="pre">fetch_LINEAR_sample()</span></tt></a> fetches light curves for over 7000 variable stars.
+<a class="reference internal" href="../modules/generated/astroML.datasets.fetch_LINEAR_geneva.html#astroML.datasets.fetch_LINEAR_geneva" title="astroML.datasets.fetch_LINEAR_geneva"><tt class="xref py py-func docutils literal"><span class="pre">fetch_LINEAR_geneva()</span></tt></a> contains well-calibrated periods for a majority
+of these.  Phased light curves for six of the LINEAR objects can be seen in
+the following figure.  Here, the periods were found using a Lomb-Scargle
+periodogram.</p>
+<a class="reference external image-reference" href="../book_figures/chapter10/fig_LINEAR_LS.html"><img alt="../_images/fig_LINEAR_LS_11.png" class="align-center" src="../_images/fig_LINEAR_LS_11.png" style="width: 640.0px; height: 800.0px;" /></a>
+<p>See chapter 10 of the <a class="reference internal" href="introduction.html#textbook"><em>text</em></a>
+for a discussion of the mismatched period seen in the upper left object.</p>
+</div>
+<div class="section" id="ligo-data">
+<h3>3.4.3. LIGO data<a class="headerlink" href="#ligo-data" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://www.ligo.caltech.edu/">Laser Interferometer Gravitaional-Wave Observatory</a> (LIGO) is an effort to use laser interferometry to measure the
+expansion and contraction of space predicted to be the result of gravitational
+waves passing by earth.  It is an example of a regularly sampled time series
+with a very complicated noise frequency structure: this structure must be
+understood to a high degree.  astroML contains two loaders for LIGO-related
+datasets.  <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_LIGO_large.html#astroML.datasets.fetch_LIGO_large" title="astroML.datasets.fetch_LIGO_large"><tt class="xref py py-func docutils literal"><span class="pre">fetch_LIGO_large()</span></tt></a> fetches a large sample of LIGO data,
+useful for characterizing the background noise of the survey.
+<a class="reference internal" href="../modules/generated/astroML.datasets.fetch_LIGO_bigdog.html#astroML.datasets.fetch_LIGO_bigdog" title="astroML.datasets.fetch_LIGO_bigdog"><tt class="xref py py-func docutils literal"><span class="pre">fetch_LIGO_bigdog()</span></tt></a> contains the data associated with the
+<a class="reference external" href="http://www.ligo.org/news/blind-injection.php">Big Dog Event</a>, a
+blind-injection test designed to measure the response of the instrument and
+the survey team to a potential signal.  The figure below shows an example of
+using a Hanning filter to obtain the noise spectrum from the LIGO data:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_LIGO_spectrum.html"><img alt="../_images/plot_LIGO_spectrum_11.png" class="align-center" src="../_images/plot_LIGO_spectrum_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+</div>
+</div>
+<div class="section" id="wmap-temperature-map">
+<span id="datasets-wmap"></span><h2>3.5. WMAP temperature map<a class="headerlink" href="#wmap-temperature-map" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://map.gsfc.nasa.gov/">WMAP</a> project used a satellite to observed
+the details of the fluctuations in the cosmic microwave background, and during
+the last decade has led to unprecedented and ever-improving constraints on
+fundamental constants of the universe.  astroML contains a loader of the
+WMAP data, using the routine <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_wmap_temperatures.html#astroML.datasets.fetch_wmap_temperatures" title="astroML.datasets.fetch_wmap_temperatures"><tt class="xref py py-func docutils literal"><span class="pre">fetch_wmap_temperatures()</span></tt></a>.  Using the
+<a class="reference external" href="https://github.com/healpy/healpy">healpy</a> package, we can visualize the
+raw WMAP data:</p>
+<p class="centered">
+<strong><a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP1" src="../_images/plot_wmap_power_spectra_12.png" style="width: 400.0px; height: 300.0px;" /></a>
+ <a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP2" src="../_images/plot_wmap_power_spectra_21.png" style="width: 400.0px; height: 300.0px;" /></a>
+</strong></p><p>healpy also has some routines for computing fast spherical harmonic transforms.
+A rigorous treatment involves correcting for the mask pattern seen in the
+right image.  Neglecting this correction, a simple power spectral analysis
+can be performed using the tools in healpy:</p>
+<a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="../_images/plot_wmap_power_spectra_31.png" class="align-center" src="../_images/plot_wmap_power_spectra_31.png" style="width: 640.0px; height: 480.0px;" /></a>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../_sources/user_guide/datasets.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

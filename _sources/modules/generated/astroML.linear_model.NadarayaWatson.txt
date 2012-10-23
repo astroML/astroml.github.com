@@ -1,0 +1,11 @@
+astroML.linear_model.NadarayaWatson
+===================================
+
+.. currentmodule:: astroML.linear_model
+
+.. autoclass:: NadarayaWatson
+
+   
+   .. automethod:: __init__
+   
+

@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.7.1. astroML.dimensionality.iterative_pca &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="10. Class reference" href="../classes.html" />
+    <link rel="next" title="10.8.1. astroML.correlation.two_point" href="astroML.correlation.two_point.html" />
+    <link rel="prev" title="10.6.10. astroML.stats.linear" href="astroML.stats.linear.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="astroML.stats.linear.html" title="10.6.10. astroML.stats.linear"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    10.6.10. astroML...
+	    </span>
+	    <span class="hiddenrellink">
+	    10.6.10. astroML.stats.linear
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="astroML.correlation.two_point.html" title="10.8.1. astroML.correlation.two_point"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    10.8.1. astroML....
+	    </span>
+	    <span class="hiddenrellink">
+	    10.8.1. astroML.correlation.two_point
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../classes.html" title="10. Class reference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	10. Class refere...
+	</span>
+	<span class="hiddenrellink">
+	10. Class reference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">10.7.1. astroML.dimensionality.iterative_pca</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="astroml-dimensionality-iterative-pca">
+<h1>10.7.1. astroML.dimensionality.iterative_pca<a class="headerlink" href="#astroml-dimensionality-iterative-pca" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="astroML.dimensionality.iterative_pca">
+<tt class="descclassname">astroML.dimensionality.</tt><tt class="descname">iterative_pca</tt><big>(</big><em>X</em>, <em>M</em>, <em>n_ev=5</em>, <em>n_iter=15</em>, <em>norm=None</em>, <em>full_output=False</em><big>)</big><a class="headerlink" href="#astroML.dimensionality.iterative_pca" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>X: ndarray, shape = (n_samples, n_features)</strong> :</p>
+<blockquote>
+<div><p>input data</p>
+</div></blockquote>
+<p><strong>M: ndarray, bool, shape = (n_samples, n_features)</strong> :</p>
+<blockquote>
+<div><p>mask for input data.  where mask == True, the spectrum is unconstrained</p>
+</div></blockquote>
+<p><strong>n_ev: int</strong> :</p>
+<blockquote>
+<div><p>number of eigenvectors to use in reconstructing masked regions</p>
+</div></blockquote>
+<p><strong>n_iter: int</strong> :</p>
+<blockquote>
+<div><p>number of iterations to find eigenvectors</p>
+</div></blockquote>
+<p><strong>norm: string</strong> :</p>
+<blockquote>
+<div><p>what type of normalization to use on the data. Options are
+- None : no normalization
+- &#8216;L1&#8217; : L1-norm
+- &#8216;L2&#8217; : L2-norm</p>
+</div></blockquote>
+<p><strong>full_output: boolean (optional)</strong> :</p>
+<blockquote>
+<div><p>if False (default) return only the reconstructed data X_recons
+if True, return the full information (see below)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>X_recons: ndarray, shape = (n_samples, n_features)</strong> :</p>
+<blockquote>
+<div><p>data with masked regions reconstructed</p>
+</div></blockquote>
+<p><strong>mu: ndarray, shape = (n_features,)</strong> :</p>
+<blockquote>
+<div><p>mean of data</p>
+</div></blockquote>
+<p><strong>evecs: ndarray, shape = (min(n_samples, n_features), n_features)</strong> :</p>
+<blockquote>
+<div><p>eigenvectors of the reconstructed data</p>
+</div></blockquote>
+<p><strong>evals: ndarray, size = min(n_samples, n_features)</strong> :</p>
+<blockquote>
+<div><p>eigenvalues of the reconstructed data</p>
+</div></blockquote>
+<p><strong>norms: ndarray, size = n_samples</strong> :</p>
+<blockquote>
+<div><p>normalization of each input</p>
+</div></blockquote>
+<p><strong>coeffs: ndarray, size = (n_samples, n_ev)</strong> :</p>
+<blockquote class="last">
+<div><p>coefficients used to reconstruct X</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/modules/generated/astroML.dimensionality.iterative_pca.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,241 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_chapter10:
+
+Chapter 10: Time Series Analysis
+--------------------------------
+This chapter covers the analysis of both periodic and non-periodic time series,
+for both regularly and irregularly spaced data.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_rrlyrae_reconstruct
+
+   ./fig_powerlaw
+
+   ./fig_convolution_diagram
+
+   ./fig_fft_example
+
+   ./fig_FFT_aliasing
+
+   ./fig_FFT_sampling
+
+   ./fig_LIGO_power_spectrum
+
+   ./fig_wavelets
+
+   ./fig_wavelet_PSD
+
+   ./fig_line_wavelet_PSD
+
+   ./fig_wiener_filter
+
+   ./fig_wiener_KDE
+
+   ./fig_mincomp_procedure
+
+   ./fig_mincomp
+
+   ./fig_LS_example
+
+   ./fig_sampling
+
+   ./fig_LS_sg_comparison
+
+   ./fig_LINEAR_LS
+
+   ./fig_LS_double_eclipse
+
+   ./fig_LINEAR_BIC
+
+   ./fig_LINEAR_clustering
+
+   ./fig_arrival_time
+
+   ./fig_matchedfilt_burst
+
+   ./fig_matchedfilt_chirp
+
+   ./fig_matchedfilt_chirp2
+
+   ./fig_chirp2_PSD
+
+   ./fig_autocorrelation
+
+
+
+.. figure:: ./../images/chapter10/fig_rrlyrae_reconstruct_1_thumb.png
+    :target: ./fig_rrlyrae_reconstruct.html
+
+    :ref:`book_fig_chapter10_fig_rrlyrae_reconstruct`
+
+.. figure:: ./../images/chapter10/fig_powerlaw_1_thumb.png
+    :target: ./fig_powerlaw.html
+
+    :ref:`book_fig_chapter10_fig_powerlaw`
+
+.. figure:: ./../images/chapter10/fig_convolution_diagram_1_thumb.png
+    :target: ./fig_convolution_diagram.html
+
+    :ref:`book_fig_chapter10_fig_convolution_diagram`
+
+.. figure:: ./../images/chapter10/fig_fft_example_1_thumb.png
+    :target: ./fig_fft_example.html
+
+    :ref:`book_fig_chapter10_fig_fft_example`
+
+.. figure:: ./../images/chapter10/fig_FFT_aliasing_1_thumb.png
+    :target: ./fig_FFT_aliasing.html
+
+    :ref:`book_fig_chapter10_fig_FFT_aliasing`
+
+.. figure:: ./../images/chapter10/fig_FFT_sampling_1_thumb.png
+    :target: ./fig_FFT_sampling.html
+
+    :ref:`book_fig_chapter10_fig_FFT_sampling`
+
+.. figure:: ./../images/chapter10/fig_LIGO_power_spectrum_1_thumb.png
+    :target: ./fig_LIGO_power_spectrum.html
+
+    :ref:`book_fig_chapter10_fig_LIGO_power_spectrum`
+
+.. figure:: ./../images/chapter10/fig_wavelets_1_thumb.png
+    :target: ./fig_wavelets.html
+
+    :ref:`book_fig_chapter10_fig_wavelets`
+
+.. figure:: ./../images/chapter10/fig_wavelet_PSD_1_thumb.png
+    :target: ./fig_wavelet_PSD.html
+
+    :ref:`book_fig_chapter10_fig_wavelet_PSD`
+
+.. figure:: ./../images/chapter10/fig_line_wavelet_PSD_1_thumb.png
+    :target: ./fig_line_wavelet_PSD.html
+
+    :ref:`book_fig_chapter10_fig_line_wavelet_PSD`
+
+.. figure:: ./../images/chapter10/fig_wiener_filter_1_thumb.png
+    :target: ./fig_wiener_filter.html
+
+    :ref:`book_fig_chapter10_fig_wiener_filter`
+
+.. figure:: ./../images/chapter10/fig_wiener_KDE_1_thumb.png
+    :target: ./fig_wiener_KDE.html
+
+    :ref:`book_fig_chapter10_fig_wiener_KDE`
+
+.. figure:: ./../images/chapter10/fig_mincomp_procedure_1_thumb.png
+    :target: ./fig_mincomp_procedure.html
+
+    :ref:`book_fig_chapter10_fig_mincomp_procedure`
+
+.. figure:: ./../images/chapter10/fig_mincomp_1_thumb.png
+    :target: ./fig_mincomp.html
+
+    :ref:`book_fig_chapter10_fig_mincomp`
+
+.. figure:: ./../images/chapter10/fig_LS_example_1_thumb.png
+    :target: ./fig_LS_example.html
+
+    :ref:`book_fig_chapter10_fig_LS_example`
+
+.. figure:: ./../images/chapter10/fig_sampling_1_thumb.png
+    :target: ./fig_sampling.html
+
+    :ref:`book_fig_chapter10_fig_sampling`
+
+.. figure:: ./../images/chapter10/fig_LS_sg_comparison_1_thumb.png
+    :target: ./fig_LS_sg_comparison.html
+
+    :ref:`book_fig_chapter10_fig_LS_sg_comparison`
+
+.. figure:: ./../images/chapter10/fig_LINEAR_LS_1_thumb.png
+    :target: ./fig_LINEAR_LS.html
+
+    :ref:`book_fig_chapter10_fig_LINEAR_LS`
+
+.. figure:: ./../images/chapter10/fig_LS_double_eclipse_1_thumb.png
+    :target: ./fig_LS_double_eclipse.html
+
+    :ref:`book_fig_chapter10_fig_LS_double_eclipse`
+
+.. figure:: ./../images/chapter10/fig_LINEAR_BIC_1_thumb.png
+    :target: ./fig_LINEAR_BIC.html
+
+    :ref:`book_fig_chapter10_fig_LINEAR_BIC`
+
+.. figure:: ./../images/chapter10/fig_LINEAR_clustering_1_thumb.png
+    :target: ./fig_LINEAR_clustering.html
+
+    :ref:`book_fig_chapter10_fig_LINEAR_clustering`
+
+.. figure:: ./../images/chapter10/fig_arrival_time_1_thumb.png
+    :target: ./fig_arrival_time.html
+
+    :ref:`book_fig_chapter10_fig_arrival_time`
+
+.. figure:: ./../images/chapter10/fig_matchedfilt_burst_1_thumb.png
+    :target: ./fig_matchedfilt_burst.html
+
+    :ref:`book_fig_chapter10_fig_matchedfilt_burst`
+
+.. figure:: ./../images/chapter10/fig_matchedfilt_chirp_1_thumb.png
+    :target: ./fig_matchedfilt_chirp.html
+
+    :ref:`book_fig_chapter10_fig_matchedfilt_chirp`
+
+.. figure:: ./../images/chapter10/fig_matchedfilt_chirp2_1_thumb.png
+    :target: ./fig_matchedfilt_chirp2.html
+
+    :ref:`book_fig_chapter10_fig_matchedfilt_chirp2`
+
+.. figure:: ./../images/chapter10/fig_chirp2_PSD_1_thumb.png
+    :target: ./fig_chirp2_PSD.html
+
+    :ref:`book_fig_chapter10_fig_chirp2_PSD`
+
+.. figure:: ./../images/chapter10/fig_autocorrelation_1_thumb.png
+    :target: ./fig_autocorrelation.html
+
+    :ref:`book_fig_chapter10_fig_autocorrelation`
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

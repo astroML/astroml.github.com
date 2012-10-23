@@ -1,0 +1,63 @@
+
+
+.. _example_learning_plot_neighbors_photoz:
+
+
+K-Neighbors for Photometric Redshifts
+-------------------------------------
+
+Estimate redshifts from the colors of sdss galaxies and quasars.
+This uses colors from a sample of 50,000 objects with SDSS photometry
+and ugriz magnitudes.  The example shows how far one can get with an
+extremely simple machine learning approach to the photometric redshift
+problem.
+
+The function :func:`fetch_sdss_galaxy_colors` used below actually queries
+the SDSS CASjobs server for the colors of the 50,000 galaxies.
+
+
+
+.. image:: ../images/learning/plot_neighbors_photoz_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_neighbors_photoz.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_neighbors_photoz.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_neighbors_photoz.py] <plot_neighbors_photoz.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,7 @@
+astroML.time_series.ACF_EK
+==========================
+
+.. currentmodule:: astroML.time_series
+
+.. autofunction:: ACF_EK
+

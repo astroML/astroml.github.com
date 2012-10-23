@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>astroML.fourier &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Module code" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for astroML.fourier</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c"># use scipy if available: it&#39;s faster</span>
+    <span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span><span class="p">,</span> <span class="n">fftshift</span><span class="p">,</span> <span class="n">ifftshift</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span><span class="p">,</span> <span class="n">fftshift</span><span class="p">,</span> <span class="n">ifftshift</span>
+
+
+<div class="viewcode-block" id="FT_continuous"><a class="viewcode-back" href="../../modules/generated/astroML.fourier.FT_continuous.html#astroML.fourier.FT_continuous">[docs]</a><span class="k">def</span> <span class="nf">FT_continuous</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Approximate a continuous 1D Fourier Transform with sampled data.</span>
+
+<span class="sd">    This function uses the Fast Fourier Transform to approximate</span>
+<span class="sd">    the continuous fourier transform of a sampled function, using</span>
+<span class="sd">    the convention</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">       H(f) = \int h(t) exp(-2 \pi i f t) dt</span>
+
+<span class="sd">    It returns f and H, which approximate H(f).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t : array_like</span>
+<span class="sd">        regularly sampled array of times</span>
+<span class="sd">        t is assumed to be regularly spaced, i.e.</span>
+<span class="sd">        t = t0 + Dt * np.arange(N)</span>
+<span class="sd">    h : array_like</span>
+<span class="sd">        real or complex signal at each time</span>
+<span class="sd">    axis : int</span>
+<span class="sd">        axis along which to perform fourier transform.</span>
+<span class="sd">        This axis must be the same length as t.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f : ndarray</span>
+<span class="sd">        frequencies of result.  Units are the same as 1/t</span>
+<span class="sd">    H : ndarray</span>
+<span class="sd">        Fourier coefficients at each frequency.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">t</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">==</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;number of samples must be even&quot;</span><span class="p">)</span>
+
+    <span class="n">Dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">Dt</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="n">Df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">phase</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">phase</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">Dt</span> <span class="o">*</span> <span class="n">fft</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">phase</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">Dt</span> <span class="o">*</span> <span class="n">fftshift</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">),</span> <span class="n">axes</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+    <span class="n">H</span> <span class="o">*=</span> <span class="n">phase</span>
+    <span class="n">H</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t0</span> <span class="o">*</span> <span class="n">f</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+    <span class="n">H</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">H</span>
+
+</div>
+<div class="viewcode-block" id="IFT_continuous"><a class="viewcode-back" href="../../modules/generated/astroML.fourier.IFT_continuous.html#astroML.fourier.IFT_continuous">[docs]</a><span class="k">def</span> <span class="nf">IFT_continuous</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Approximate a continuous 1D Inverse Fourier Transform with sampled data.</span>
+
+<span class="sd">    This function uses the Fast Fourier Transform to approximate</span>
+<span class="sd">    the continuous fourier transform of a sampled function, using</span>
+<span class="sd">    the convention</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">       H(f) = integral[ h(t) exp(-2 pi i f t) dt]</span>
+
+<span class="sd">       h(t) = integral[ H(f) exp(2 pi i f t) dt]</span>
+
+<span class="sd">    It returns t and h, which approximate h(t).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    f : array_like</span>
+<span class="sd">        regularly sampled array of times</span>
+<span class="sd">        t is assumed to be regularly spaced, i.e.</span>
+<span class="sd">        f = f0 + Df * np.arange(N)</span>
+<span class="sd">    H : array_like</span>
+<span class="sd">        real or complex signal at each time</span>
+<span class="sd">    axis : int</span>
+<span class="sd">        axis along which to perform fourier transform.</span>
+<span class="sd">        This axis must be the same length as t.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f : ndarray</span>
+<span class="sd">        frequencies of result.  Units are the same as 1/t</span>
+<span class="sd">    H : ndarray</span>
+<span class="sd">        Fourier coefficients at each frequency.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">f</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">==</span> <span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;number of samples must be even&quot;</span><span class="p">)</span>
+
+    <span class="n">f0</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Df</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">t0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">/</span> <span class="n">Df</span>
+    <span class="n">Dt</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">Df</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">Dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+
+    <span class="n">t_calc</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">f_calc</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">H_prime</span> <span class="o">=</span> <span class="n">H</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t0</span> <span class="o">*</span> <span class="n">f_calc</span><span class="p">)</span>
+    <span class="n">h_prime</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">H_prime</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">Df</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f0</span> <span class="o">*</span> <span class="p">(</span><span class="n">t_calc</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span> <span class="o">*</span> <span class="n">h_prime</span>
+
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">h</span>
+
+</div>
+<div class="viewcode-block" id="PSD_continuous"><a class="viewcode-back" href="../../modules/generated/astroML.fourier.PSD_continuous.html#astroML.fourier.PSD_continuous">[docs]</a><span class="k">def</span> <span class="nf">PSD_continuous</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Approximate a continuous 1D Power Spectral Density of sampled data.</span>
+
+<span class="sd">    This function uses the Fast Fourier Transform to approximate</span>
+<span class="sd">    the continuous fourier transform of a sampled function, using</span>
+<span class="sd">    the convention</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        H(f) = \int h(t) \exp(-2 \pi i f t) dt</span>
+
+<span class="sd">    It returns f and PSD, which approximate PSD(f) where</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        PSD(f) = |H(f)|^2 + |H(-f)|^2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t : array_like</span>
+<span class="sd">        regularly sampled array of times</span>
+<span class="sd">        t is assumed to be regularly spaced, i.e.</span>
+<span class="sd">        t = t0 + Dt * np.arange(N)</span>
+<span class="sd">    h : array_like</span>
+<span class="sd">        real or complex signal at each time</span>
+<span class="sd">    axis : int</span>
+<span class="sd">        axis along which to perform fourier transform.</span>
+<span class="sd">        This axis must be the same length as t.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f : ndarray</span>
+<span class="sd">        frequencies of result.  Units are the same as 1/t</span>
+<span class="sd">    PSD : ndarray</span>
+<span class="sd">        Fourier coefficients at each frequency.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">t</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">==</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;number of samples must be even&quot;</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axis</span> <span class="o">%</span> <span class="n">h</span><span class="o">.</span><span class="n">ndim</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c"># use FT_continuous</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">Hf</span> <span class="o">=</span> <span class="n">FT_continuous</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+        <span class="n">Hf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rollaxis</span><span class="p">(</span><span class="n">Hf</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="o">-</span><span class="n">f</span><span class="p">[</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">PSD</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">Hf</span><span class="p">[</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">PSD</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">Hf</span><span class="p">[</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:])</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">PSD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rollaxis</span><span class="p">(</span><span class="n">PSD</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c"># A faster way to do it is with fftshift</span>
+        <span class="c"># take advantage of the fact that phases go away</span>
+        <span class="n">Dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">Df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">Dt</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">Df</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">Hf</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="n">Hf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rollaxis</span><span class="p">(</span><span class="n">Hf</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+        <span class="n">PSD</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">Hf</span><span class="p">[:</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">PSD</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">PSD</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">Hf</span><span class="p">[</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">PSD</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+        <span class="n">PSD</span> <span class="o">=</span> <span class="n">Dt</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">rollaxis</span><span class="p">(</span><span class="n">PSD</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">PSD</span>
+
+</div>
+<div class="viewcode-block" id="sinegauss"><a class="viewcode-back" href="../../modules/generated/astroML.fourier.sinegauss.html#astroML.fourier.sinegauss">[docs]</a><span class="k">def</span> <span class="nf">sinegauss</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sine-gaussian wavelet&quot;&quot;&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">f0</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">Q</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f0</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)))</span>
+
+</div>
+<div class="viewcode-block" id="sinegauss_FT"><a class="viewcode-back" href="../../modules/generated/astroML.fourier.sinegauss_FT.html#astroML.fourier.sinegauss_FT">[docs]</a><span class="k">def</span> <span class="nf">sinegauss_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fourier transform of the sine-gaussian wavelet.</span>
+
+<span class="sd">    This uses the convention</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">       H(f) = integral[ h(t) exp(-2pi i f t) dt]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">f0</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">Q</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">t0</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">a</span><span class="p">))</span>
+
+</div>
+<div class="viewcode-block" id="sinegauss_PSD"><a class="viewcode-back" href="../../modules/generated/astroML.fourier.sinegauss_PSD.html#astroML.fourier.sinegauss_PSD">[docs]</a><span class="k">def</span> <span class="nf">sinegauss_PSD</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the PSD of the sine-gaussian function at frequency f</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">       PSD(f) = |H(f)|^2 + |H(-f)|^2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">f0</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">Q</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">Pf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">Pmf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">f</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Pf</span> <span class="o">+</span> <span class="n">Pmf</span>
+
+</div>
+<div class="viewcode-block" id="wavelet_PSD"><a class="viewcode-back" href="../../modules/generated/astroML.fourier.wavelet_PSD.html#astroML.fourier.wavelet_PSD">[docs]</a><span class="k">def</span> <span class="nf">wavelet_PSD</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the wavelet PSD as a function of f0 and t</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t : array_like</span>
+<span class="sd">        array of times, length N</span>
+<span class="sd">    h : array_like</span>
+<span class="sd">        array of observed values, length N</span>
+<span class="sd">    f0 : array_like</span>
+<span class="sd">        array of candidate frequencies, length Nf</span>
+<span class="sd">    Q : float</span>
+<span class="sd">        Q-parameter for wavelet</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    PSD : ndarray</span>
+<span class="sd">        The 2-dimensional PSD, of shape (Nf, N), corresponding with</span>
+<span class="sd">        frequencies f0 and times t.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">f0</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">f0</span><span class="p">))</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;t and h must be one dimensional and the same shape&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">f0</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;f0 must be one dimensional&#39;</span><span class="p">)</span>
+
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">f0</span><span class="p">)</span>
+
+    <span class="n">f</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">FT_continuous</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">sinegauss_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f0</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">],</span> <span class="n">Q</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]))</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">HW</span> <span class="o">=</span> <span class="n">IFT_continuous</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">H</span> <span class="o">*</span> <span class="n">W</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">HW</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

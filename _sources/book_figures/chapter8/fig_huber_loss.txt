@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter8_fig_huber_loss:
+
+
+Huber Loss Function
+-------------------
+This example shows how to perform robust regression using the Huber
+loss function.
+
+Note that sklearn.linear_model.SGDRegressor has a Huber Loss Function
+built-in; here we will not use this, because it cannot account for
+heteroscedastic errors.
+
+
+
+.. image:: ../images/chapter8/fig_huber_loss_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_huber_loss.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_huber_loss.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_huber_loss.py] <fig_huber_loss.py>`
+
+.. raw:: html
+    
+    </div>
+

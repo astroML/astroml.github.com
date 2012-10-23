@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter6_fig_GMM_clone:
+
+
+Cloning a Distribution with Gaussian Mixtures
+---------------------------------------------
+This figure shows how to clone an N-dimensional distribution using
+Gaussian Mixture Models.
+
+
+
+.. image:: ../images/chapter6/fig_GMM_clone_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_GMM_clone.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_GMM_clone.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_GMM_clone.py] <fig_GMM_clone.py>`
+
+.. raw:: html
+    
+    </div>
+

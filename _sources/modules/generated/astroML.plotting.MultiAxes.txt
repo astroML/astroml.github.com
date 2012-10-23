@@ -1,0 +1,11 @@
+astroML.plotting.MultiAxes
+==========================
+
+.. currentmodule:: astroML.plotting
+
+.. autoclass:: MultiAxes
+
+   
+   .. automethod:: __init__
+   
+

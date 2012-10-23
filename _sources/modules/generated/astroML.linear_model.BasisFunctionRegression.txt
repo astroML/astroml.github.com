@@ -1,0 +1,11 @@
+astroML.linear_model.BasisFunctionRegression
+============================================
+
+.. currentmodule:: astroML.linear_model
+
+.. autoclass:: BasisFunctionRegression
+
+   
+   .. automethod:: __init__
+   
+

@@ -1,11 +1,343 @@
-<html>
-<head>
-<title>AstroML: Machine Learning for Astrophysics</title>
-</head>
 
-<h3>AstroML: Machine Learning for Astrophysics</h3>
-<p>
-The astroML code will be released in late October.  For
-now, check out the <a href="sklearn_tutorial">scikit-learn tutorial</a>
-</p>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>astroML: Python Datamining for Astronomy &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="#" />
+    <link rel="next" title="&lt;no title&gt;" href="user_guide/index.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="#">
+            <img src="_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="#">Home</a></li>
+	    <li><a href="user_guide/index.html">User Guide</a></li>
+            <li><a href="book_figures/index.html">Book Figures</a></li>
+            <li><a href="examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+        <h3>Headline</h3>
+
+	<p>October 2012: astroML 0.1 has been released!  Get the source on
+	   <a href="http://github.com/astroML/astroML">Github</a></p>.
+
+        
+
+	
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+	<!--
+        <h3>Funding</h3>
+        <p>Funding provided
+	  by <a href="http://www.astro.washington.edu">
+	    University of Washington</a> and ...</p>
+
+        <p><a href="about.html">Read more ...</a></p>
+	-->
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="astroml-machine-learning-and-data-mining-for-astronomy">
+<h1>AstroML: Machine Learning and Data Mining for Astronomy<a class="headerlink" href="#astroml-machine-learning-and-data-mining-for-astronomy" title="Permalink to this headline">¶</a></h1>
+<p><div style="text-align: center; margin: -7px 0 -10px 0;" id="banner"> <a class="reference external" href="examples/datasets/plot_moving_objects.html"><img alt="banner1" src="_images/plot_moving_objects_21.png" style="height: 150px;" /></a> <a class="reference external" href="examples/datasets/plot_wmap_power_spectra.html"><img alt="banner2" src="_images/plot_wmap_power_spectra_11.png" style="height: 150px;" /></a> <a class="reference external" href="book_figures/chapter3/fig_uniform_mean.html"><img alt="banner3" src="_images/fig_uniform_mean_11.png" style="height: 150px;" /></a> <a class="reference external" href="book_figures/chapter4/fig_lyndenbell_gals.html"><img alt="banner4" src="_images/fig_lyndenbell_gals_11.png" style="height: 150px;" /></a> <a class="reference external" href="examples/datasets/plot_moving_objects.html"><img alt="banner5" src="_images/plot_moving_objects_11.png" style="height: 150px;" /></a> <a class="reference external" href="book_figures/chapter7/fig_spec_LLE.html"><img alt="banner6" src="_images/fig_spec_LLE_11.png" style="height: 150px;" /></a> <a class="reference external" href="examples/datasets/plot_nasa_atlas.html"><img alt="banner7" src="_images/plot_nasa_atlas_11.png" style="height: 150px;" /></a> <a class="reference external" href="examples/datasets/plot_sdss_line_ratios.html"><img alt="banner8" src="_images/plot_sdss_line_ratios_11.png" style="height: 150px;" /></a> <a class="reference external" href="book_figures/chapter10/fig_LINEAR_clustering.html"><img alt="banner9" src="_images/fig_LINEAR_clustering_11.png" style="height: 150px;" /></a> <a class="reference external" href="book_figures/appendix/fig_sdss_filters.html"><img alt="banner10" src="_images/fig_sdss_filters_11.png" style="height: 150px;" /></a> </div>
+
+<SCRIPT>
+// Function to select 4 imgs in random order from a div
+function shuffle(e) {       // pass the divs to the function
+  var replace = $('<div>');
+  var size = 4;
+  var num_choices = e.size();
+
+  while (size >= 1) {
+    var rand = Math.floor(Math.random() * num_choices);
+    var temp = e.get(rand);      // grab a random div from our set
+    replace.append(temp);        // add the selected div to our new set
+    e = e.not(temp); // remove our selected div from the main set
+    size--;
+    num_choices--;
+  }
+  $('#banner').html(replace.html() ); // update our container div
+                                      // with the new, randomized divs
+}
+shuffle ($('#banner a.external'));
+
+</SCRIPT></p>
+<div class="sidebar">
+<p class="first sidebar-title">Download</p>
+<ul class="last simple">
+<li>Source code: <a class="reference external" href="https://github.com/astroML/astroML">github</a></li>
+<li>Source tarball: <a class="reference download internal" href="_downloads/astroML_0.1.tgz"><tt class="xref download docutils literal"><span class="pre">astroML_0.1.tgz</span></tt></a></li>
+</ul>
+</div>
+<p>AstroML is a Python module for machine learning and data mining built on
+<a class="reference external" href="http://numpy.scipy.org">numpy</a>,
+<a class="reference external" href="http://scipy.org">scipy</a>,
+<a class="reference external" href="http://scikit-learn.org">scikit-learn</a>,
+and <a class="reference external" href="http://matplotlib.org">matplotlib</a>,
+and distributed under the 3-clause BSD license.
+It contains a growing library of statistical and machine learning
+routines for analyzing astronomical data in python, loaders for several open
+astronomical datasets, and a large suite of examples of analyzing and
+visualizing astronomical datasets.</p>
+<img alt="_images/text_cover.png" class="align-left" src="_images/text_cover.png" style="width: 100px;" />
+<p>The goal of astroML is to provide a community repository for fast Python
+implementations of common tools and routines used for statistical
+data analysis in astronomy and astrophysics, to provide a uniform and
+easy-to-use interface to freely available astronomical datasets.
+We hope this package will be useful to researchers and students of
+astronomy.  The project was started in 2012 to accompany the book
+<strong>Statistics, Data Mining, and Machine Learning in Astronomy</strong> by
+Zeljko Ivezic, Andrew Connolly, Jacob VanderPlas, and Alex Gray,
+to be published in early 2013.</p>
+<style type="text/css">
+  div.bodywrapper blockquote {
+      margin: 0 ;
+  }
+
+  div.toctree-wrapper ul {
+      margin-top: 0 ;
+      margin-bottom: 0 ;
+      padding-left: 10px ;
+  }
+
+  li.toctree-l1 {
+      padding: 0 0 0.5em 0 ;
+      list-style-type: none;
+      font-size: 150% ;
+      font-weight: bold;
+      }
+
+  li.toctree-l1 ul {
+      padding-left: 40px ;
+  }
+
+  li.toctree-l2 {
+      font-size: 70% ;
+      list-style-type: square;
+      font-weight: normal;
+      }
+
+  li.toctree-l3 {
+      font-size: 85% ;
+      list-style-type: circle;
+      font-weight: normal;
+      }
+
+</style><div class="section" id="user-guide">
+<h2>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/introduction.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/introduction.html#philosophy">1.1. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/introduction.html#textbook">1.2. Textbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/installation.html">2. Installation of astroML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/installation.html#important-links">2.1. Important Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/installation.html#installation">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/installation.html#dependencies">2.3. Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/datasets.html">3. Data Sets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/datasets.html#data-set-cache-location">3.1. Data Set Cache Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/datasets.html#sdss-data">3.2. SDSS Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/datasets.html#combined-surveys">3.3. Combined Surveys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/datasets.html#time-domain-data">3.4. Time Domain Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/datasets.html#wmap-temperature-map">3.5. WMAP temperature map</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/density_estimation.html">4. Unsupervised Learning: Density Estimation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/density_estimation.html#bayesian-blocks-histograms-the-right-way">4.1. Bayesian Blocks: Histograms the Right Way</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/density_estimation.html#extreme-deconvolution">4.2. Extreme Deconvolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/density_estimation.html#kernel-density-estimation">4.3. Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/density_estimation.html#nearest-neighbors-density-estimation">4.4. Nearest Neighbors Density Estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/clustering.html">5. Unsupervised Learning: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/dimensionality.html">6. Unsupervised Learning: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/regression.html">7. Supervised Learning: Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/classification.html">8. Supervised Learning: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/time_series.html">9. Time Series Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/classes.html">10. Class reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.plotting">10.1. Plotting Functions: <tt class="docutils literal"><span class="pre">astroML.plotting</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.density_estimation">10.2. Density Estimation &amp; Histograms: <tt class="docutils literal"><span class="pre">astroML.density_estimation</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.linear_model">10.3. Linear Regression &amp; Fitting: <tt class="docutils literal"><span class="pre">astroML.linear_model</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.datasets">10.4. Loading of Datasets: <tt class="docutils literal"><span class="pre">astroML.datasets</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.time_series">10.5. Time Series Analysis: <tt class="docutils literal"><span class="pre">astroML.time_series</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.stats">10.6. Statistical Functions: <tt class="docutils literal"><span class="pre">astroML.stats</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.dimensionality">10.7. Dimensionality Reduction: <tt class="docutils literal"><span class="pre">astroML.dimensionality</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.correlation">10.8. Correlation Functions: <tt class="docutils literal"><span class="pre">astroML.correlation</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.filters">10.9. Filters: <tt class="docutils literal"><span class="pre">astroML.filters</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.fourier">10.10. Fourier and Wavelet Transforms: <tt class="docutils literal"><span class="pre">astroML.fourier</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.lumfunc">10.11. Luminosity Functions: <tt class="docutils literal"><span class="pre">astroML.lumfunc</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.classification">10.12. Classification: <tt class="docutils literal"><span class="pre">astroML.classification</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#module-astroML.resample">10.13. Resampling: <tt class="docutils literal"><span class="pre">astroML.resample</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/classes.html#addon-functions-astroml-addons">10.14. Addon Functions <tt class="docutils literal"><span class="pre">astroML_addons</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/resources.html">11. Other Resources</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="example-plot-galleries">
+<h2>Example Plot Galleries<a class="headerlink" href="#example-plot-galleries" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">General astroML Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/algorithms/index.html">Data Processing Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/datasets/index.html">Data set Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/learning/index.html">Machine Learning and Data Modeling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="book_figures/index.html">Textbook Figures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter1/index.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter2/index.html">Chapter 2: Fast Computation and Massive Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter3/index.html">Chapter 3: Probability and Statistical Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter4/index.html">Chapter 4: Classical Statistical Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter5/index.html">Chapter 5: Bayesian Statistical Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter6/index.html">Chapter 6: Searching for Structure in Point Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter7/index.html">Chapter 7: Dimensionality and its Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter8/index.html">Chapter 8: Regression and Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter9/index.html">Chapter 9: Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/chapter10/index.html">Chapter 10: Time Series Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="book_figures/appendix/index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="paper_figures/index.html">Paper Figures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="paper_figures/CIDU2012/index.html">CIDU 2012: Introduction to astroML</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="development">
+<h2>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="development/contribution.html">1. Obtaining the Source Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/contribution.html#contribution">2. Contribution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development/contribution.html#general">2.1. General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development/contribution.html#tests">2.2. Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development/contribution.html#documentation-and-examples">2.3. Documentation and Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development/contribution.html#add-on-code">2.4. Add-on code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development/authors.html">3. Authors</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="_sources/index.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
 </html>

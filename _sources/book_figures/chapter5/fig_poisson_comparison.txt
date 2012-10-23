@@ -1,0 +1,57 @@
+
+
+.. _book_fig_chapter5_fig_poisson_comparison:
+
+
+Poisson Statistics with arbitrarily small bins
+----------------------------------------------
+This figure compares the binned and non-binned approach to regression
+in the Poissonian context.  As expected, when the number of bins becomes
+very large, the non-binned and binned cases lead to similar results.
+
+
+
+.. image:: ../images/chapter5/fig_poisson_comparison_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_comparison.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_comparison.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_poisson_comparison.py] <fig_poisson_comparison.py>`
+
+.. raw:: html
+    
+    </div>
+

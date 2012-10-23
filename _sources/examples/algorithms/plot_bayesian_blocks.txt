@@ -1,0 +1,78 @@
+
+
+.. _example_algorithms_plot_bayesian_blocks:
+
+
+Bayesian Blocks for Histograms
+------------------------------
+.. currentmodule:: astroML
+
+Bayesian Blocks is a dynamic histogramming method which optimizes one of
+several possible fitness functions to determine an optimal binning for
+data, where the bins are not necessarily uniform width.  The astroML
+implementation is based on [1]_.  For more discussion of this technique,
+see the blog post at [2]_.
+
+The code below uses a fitness function suitable for event data with possible
+repeats.  More fitness functions are available: see :mod:`density_estimation`
+
+References
+~~~~~~~~~~
+.. [1] Scargle, J `et al.` (2012)
+       http://adsabs.harvard.edu/abs/2012arXiv1207.5578S
+.. [2] http://jakevdp.github.com/blog/2012/09/12/dynamic-programming-in-python/
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/algorithms/plot_bayesian_blocks_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/algorithms/plot_bayesian_blocks_2.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_bayesian_blocks.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_bayesian_blocks.py
+    :lines: 21-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_bayesian_blocks.py] <plot_bayesian_blocks.py>`
+
+.. raw:: html
+    
+    </div>
+

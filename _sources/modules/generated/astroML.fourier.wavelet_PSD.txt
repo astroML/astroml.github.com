@@ -1,0 +1,7 @@
+astroML.fourier.wavelet_PSD
+===========================
+
+.. currentmodule:: astroML.fourier
+
+.. autofunction:: wavelet_PSD
+

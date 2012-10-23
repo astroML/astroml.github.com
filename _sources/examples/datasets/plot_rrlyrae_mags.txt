@@ -1,0 +1,57 @@
+
+
+.. _example_datasets_plot_rrlyrae_mags:
+
+
+RR-Lyrae Magnitudes
+-------------------
+This example downloads and plots the colors of RR Lyrae stars along with those
+of the non-variable stars.  Several of the classification examples in the
+book figures use this dataset.
+
+
+
+.. image:: ../images/datasets/plot_rrlyrae_mags_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_rrlyrae_mags.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: plot_rrlyrae_mags.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: plot_rrlyrae_mags.py] <plot_rrlyrae_mags.py>`
+
+.. raw:: html
+    
+    </div>
+

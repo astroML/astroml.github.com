@@ -1,0 +1,73 @@
+
+
+.. _book_fig_chapter8_fig_cross_val:
+
+
+Cross Validation Examples
+-------------------------
+This figure plots diagrams used in the cross-validation discussion
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter8/fig_cross_val_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter8/fig_cross_val_2.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter8/fig_cross_val_3.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter8/fig_cross_val_4.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_cross_val.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_cross_val.py
+    :lines: 6-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_cross_val.py] <fig_cross_val.py>`
+
+.. raw:: html
+    
+    </div>
+

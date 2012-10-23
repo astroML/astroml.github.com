@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter8_fig_total_least_squares:
+
+
+Total Least Squares Figure
+--------------------------
+This shows an example of fitting a line to data with errors in both variables.
+The implementation follows Hogg et al 2010 (arXiv:1008.4686)
+
+
+
+.. image:: ../images/chapter8/fig_total_least_squares_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_total_least_squares.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_total_least_squares.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_total_least_squares.py] <fig_total_least_squares.py>`
+
+.. raw:: html
+    
+    </div>
+

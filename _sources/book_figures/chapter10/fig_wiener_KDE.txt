@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter10_fig_wiener_KDE:
+
+
+Wiener Filter / KDE Connection
+------------------------------
+This shows the connection between a Wiener filter and
+Kernel Density Estimation.
+
+
+
+.. image:: ../images/chapter10/fig_wiener_KDE_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_wiener_KDE.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_wiener_KDE.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_wiener_KDE.py] <fig_wiener_KDE.py>`
+
+.. raw:: html
+    
+    </div>
+

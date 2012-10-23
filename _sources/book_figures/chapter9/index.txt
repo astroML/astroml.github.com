@@ -1,0 +1,185 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_chapter9:
+
+Chapter 9: Classification
+-------------------------
+This chapter covers supervised classification of data, using a number of
+generative and discriminative classifiers.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_bayes_DB
+
+   ./fig_simple_naivebayes
+
+   ./fig_rrlyrae_naivebayes
+
+   ./fig_rrlyrae_lda
+
+   ./fig_rrlyrae_qda
+
+   ./fig_rrlyrae_GMMbayes
+
+   ./fig_rrlyrae_knn
+
+   ./fig_discriminant_function
+
+   ./fig_rrlyrae_logreg
+
+   ./fig_svm_diagram
+
+   ./fig_rrlyrae_svm
+
+   ./fig_rrlyrae_kernelsvm
+
+   ./fig_rrlyrae_tree
+
+   ./fig_rrlyrae_decisiontree
+
+   ./fig_photoz_tree
+
+   ./fig_photoz_forest
+
+   ./fig_photoz_boosting
+
+   ./fig_ROC_curve
+
+   ./fig_star_quasar_ROC
+
+
+
+.. figure:: ./../images/chapter9/fig_bayes_DB_1_thumb.png
+    :target: ./fig_bayes_DB.html
+
+    :ref:`book_fig_chapter9_fig_bayes_DB`
+
+.. figure:: ./../images/chapter9/fig_simple_naivebayes_1_thumb.png
+    :target: ./fig_simple_naivebayes.html
+
+    :ref:`book_fig_chapter9_fig_simple_naivebayes`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_naivebayes_1_thumb.png
+    :target: ./fig_rrlyrae_naivebayes.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_naivebayes`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_lda_1_thumb.png
+    :target: ./fig_rrlyrae_lda.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_lda`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_qda_1_thumb.png
+    :target: ./fig_rrlyrae_qda.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_qda`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_GMMbayes_1_thumb.png
+    :target: ./fig_rrlyrae_GMMbayes.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_GMMbayes`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_knn_1_thumb.png
+    :target: ./fig_rrlyrae_knn.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_knn`
+
+.. figure:: ./../images/chapter9/fig_discriminant_function_1_thumb.png
+    :target: ./fig_discriminant_function.html
+
+    :ref:`book_fig_chapter9_fig_discriminant_function`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_logreg_1_thumb.png
+    :target: ./fig_rrlyrae_logreg.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_logreg`
+
+.. figure:: ./../images/chapter9/fig_svm_diagram_1_thumb.png
+    :target: ./fig_svm_diagram.html
+
+    :ref:`book_fig_chapter9_fig_svm_diagram`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_svm_1_thumb.png
+    :target: ./fig_rrlyrae_svm.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_svm`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_kernelsvm_1_thumb.png
+    :target: ./fig_rrlyrae_kernelsvm.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_kernelsvm`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_tree_1_thumb.png
+    :target: ./fig_rrlyrae_tree.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_tree`
+
+.. figure:: ./../images/chapter9/fig_rrlyrae_decisiontree_1_thumb.png
+    :target: ./fig_rrlyrae_decisiontree.html
+
+    :ref:`book_fig_chapter9_fig_rrlyrae_decisiontree`
+
+.. figure:: ./../images/chapter9/fig_photoz_tree_1_thumb.png
+    :target: ./fig_photoz_tree.html
+
+    :ref:`book_fig_chapter9_fig_photoz_tree`
+
+.. figure:: ./../images/chapter9/fig_photoz_forest_1_thumb.png
+    :target: ./fig_photoz_forest.html
+
+    :ref:`book_fig_chapter9_fig_photoz_forest`
+
+.. figure:: ./../images/chapter9/fig_photoz_boosting_1_thumb.png
+    :target: ./fig_photoz_boosting.html
+
+    :ref:`book_fig_chapter9_fig_photoz_boosting`
+
+.. figure:: ./../images/chapter9/fig_ROC_curve_1_thumb.png
+    :target: ./fig_ROC_curve.html
+
+    :ref:`book_fig_chapter9_fig_ROC_curve`
+
+.. figure:: ./../images/chapter9/fig_star_quasar_ROC_1_thumb.png
+    :target: ./fig_star_quasar_ROC.html
+
+    :ref:`book_fig_chapter9_fig_star_quasar_ROC`
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

@@ -1,0 +1,55 @@
+
+
+.. _book_fig_chapter10_fig_wavelets:
+
+
+Examples of Wavelets
+--------------------
+This figure shows some examples of wavelets used in the wavelet transforms.
+
+
+
+.. image:: ../images/chapter10/fig_wavelets_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_wavelets.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_wavelets.py
+    :lines: 6-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_wavelets.py] <fig_wavelets.py>`
+
+.. raw:: html
+    
+    </div>
+

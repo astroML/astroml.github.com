@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter10_fig_mincomp_procedure:
+
+
+Minimum component fitting procedure
+-----------------------------------
+As explained in Wall & Jenkins, as well as Wall 1997, A&A 122:371
+The entire algorithm is implemented in astroML.filters.min_component_filter
+
+
+
+.. image:: ../images/chapter10/fig_mincomp_procedure_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_mincomp_procedure.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_mincomp_procedure.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_mincomp_procedure.py] <fig_mincomp_procedure.py>`
+
+.. raw:: html
+    
+    </div>
+

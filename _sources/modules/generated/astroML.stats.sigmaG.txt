@@ -1,0 +1,7 @@
+astroML.stats.sigmaG
+====================
+
+.. currentmodule:: astroML.stats
+
+.. autofunction:: sigmaG
+

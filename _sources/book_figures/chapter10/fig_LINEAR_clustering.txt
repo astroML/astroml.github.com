@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter10_fig_LINEAR_clustering:
+
+
+Clustering of LINEAR data
+-------------------------
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter10/fig_LINEAR_clustering_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter10/fig_LINEAR_clustering_2.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LINEAR_clustering.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LINEAR_clustering.py
+    :lines: 5-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_LINEAR_clustering.py] <fig_LINEAR_clustering.py>`
+
+.. raw:: html
+    
+    </div>
+

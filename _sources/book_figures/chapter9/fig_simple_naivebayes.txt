@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter9_fig_simple_naivebayes:
+
+
+Simple Gaussian Naive Bayes Classification
+------------------------------------------
+This shows a simple Gaussian Naive Bayes decision boundary for some
+simulated data
+
+
+
+.. image:: ../images/chapter9/fig_simple_naivebayes_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_simple_naivebayes.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_simple_naivebayes.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_simple_naivebayes.py] <fig_simple_naivebayes.py>`
+
+.. raw:: html
+    
+    </div>
+

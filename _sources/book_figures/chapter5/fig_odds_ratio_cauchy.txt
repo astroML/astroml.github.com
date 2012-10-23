@@ -1,0 +1,54 @@
+
+
+.. _book_fig_chapter5_fig_odds_ratio_cauchy:
+
+
+Odds Ratio for Cauchy vs Gaussian
+---------------------------------
+
+
+
+.. image:: ../images/chapter5/fig_odds_ratio_cauchy_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_odds_ratio_cauchy.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_odds_ratio_cauchy.py
+    :lines: 5-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_odds_ratio_cauchy.py] <fig_odds_ratio_cauchy.py>`
+
+.. raw:: html
+    
+    </div>
+

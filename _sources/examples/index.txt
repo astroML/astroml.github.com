@@ -1,0 +1,55 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _example_root:
+
+General astroML Examples
+------------------------
+
+This shows several examples of astroML tools
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+   algorithms/index
+   datasets/index
+   learning/index
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

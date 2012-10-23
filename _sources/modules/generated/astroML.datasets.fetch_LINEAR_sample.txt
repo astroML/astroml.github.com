@@ -1,0 +1,7 @@
+astroML.datasets.fetch_LINEAR_sample
+====================================
+
+.. currentmodule:: astroML.datasets
+
+.. autofunction:: fetch_LINEAR_sample
+

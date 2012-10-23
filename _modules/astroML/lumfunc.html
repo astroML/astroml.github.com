@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>astroML.lumfunc &mdash; astroML 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper"
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Module code" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.1</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for astroML.lumfunc</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">_sorted_interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_eval</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;utility function for binned_Cminus&quot;&quot;&quot;</span>
+    <span class="c"># note that x should be sorted</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">x_eval</span><span class="p">)</span>
+    <span class="n">ind</span><span class="p">[</span><span class="n">ind</span> <span class="o">==</span> <span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="n">y_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x_eval</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="c"># find perfect matches</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">==</span> <span class="n">x_eval</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x_eval</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="n">x_eval</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">y_eval</span><span class="p">[</span><span class="n">match</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">ind</span><span class="p">[</span><span class="n">match</span><span class="p">]]</span>
+
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">ind</span><span class="p">[</span><span class="o">~</span><span class="n">match</span><span class="p">]</span>
+
+    <span class="c"># take care of extrapolation</span>
+    <span class="n">ind</span><span class="p">[</span><span class="n">ind</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">x_lo</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">x_up</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+    <span class="n">y_lo</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_up</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+    <span class="c"># take care of places where x_lo = x_up</span>
+
+    <span class="n">y_eval</span><span class="p">[</span><span class="o">~</span><span class="n">match</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_lo</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_eval</span><span class="p">[</span><span class="o">~</span><span class="n">match</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_lo</span><span class="p">)</span>
+                      <span class="o">*</span> <span class="p">(</span><span class="n">y_up</span> <span class="o">-</span> <span class="n">y_lo</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_up</span> <span class="o">-</span> <span class="n">x_lo</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">y_eval</span>
+
+
+<div class="viewcode-block" id="Cminus"><a class="viewcode-back" href="../../modules/generated/astroML.lumfunc.Cminus.html#astroML.lumfunc.Cminus">[docs]</a><span class="k">def</span> <span class="nf">Cminus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lynden-Bell&#39;s C-minus method</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array_like</span>
+<span class="sd">        array of x values</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        array of y values</span>
+<span class="sd">    xmax : array_like</span>
+<span class="sd">        array of maximum x values for each y value</span>
+<span class="sd">    ymax : array_like</span>
+<span class="sd">        array of maximum y values for each x value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Nx, Ny, cuml_x, cuml_y: ndarrays</span>
+<span class="sd">        Nx and cuml_x are in the order of the sorted x array</span>
+<span class="sd">        Ny and cuml_y are in the order of the sorted y array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># make copies of input</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">))</span>
+
+    <span class="n">Nall</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">cuml_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">cuml_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">Nx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">Ny</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="c"># first the y direction.</span>
+    <span class="n">i_sort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i_sort</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i_sort</span><span class="p">]</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="n">xmax</span><span class="p">[</span><span class="n">i_sort</span><span class="p">]</span>
+    <span class="n">ymax</span> <span class="o">=</span> <span class="n">ymax</span><span class="p">[</span><span class="n">i_sort</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nall</span><span class="p">):</span>
+        <span class="n">Ny</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xmax</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">Ny</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">cuml_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">Ny</span><span class="p">)</span>
+    <span class="n">Ny</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c"># renormalize</span>
+    <span class="n">cuml_y</span> <span class="o">*=</span> <span class="n">Nall</span> <span class="o">/</span> <span class="n">cuml_y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c">#now the x direction</span>
+    <span class="n">i_sort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i_sort</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i_sort</span><span class="p">]</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="n">xmax</span><span class="p">[</span><span class="n">i_sort</span><span class="p">]</span>
+    <span class="n">ymax</span> <span class="o">=</span> <span class="n">ymax</span><span class="p">[</span><span class="n">i_sort</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nall</span><span class="p">):</span>
+        <span class="n">Nx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ymax</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">Nx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">cuml_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">Nx</span><span class="p">)</span>
+    <span class="n">Nx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c"># renormalize</span>
+    <span class="n">cuml_x</span> <span class="o">*=</span> <span class="n">Nall</span> <span class="o">/</span> <span class="n">cuml_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">cuml_x</span><span class="p">,</span> <span class="n">cuml_y</span>
+
+</div>
+<div class="viewcode-block" id="binned_Cminus"><a class="viewcode-back" href="../../modules/generated/astroML.lumfunc.binned_Cminus.html#astroML.lumfunc.binned_Cminus">[docs]</a><span class="k">def</span> <span class="nf">binned_Cminus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">ybins</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the binned distributions using the Cminus method</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array_like</span>
+<span class="sd">        array of x values</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        array of y values</span>
+<span class="sd">    xmax : array_like</span>
+<span class="sd">        array of maximum x values for each y value</span>
+<span class="sd">    ymax : array_like</span>
+<span class="sd">        array of maximum y values for each x value</span>
+<span class="sd">    xbins : array_like</span>
+<span class="sd">        array of bin edges for the x function: size=Nbins_x + 1</span>
+<span class="sd">    ybins : array_like</span>
+<span class="sd">        array of bin edges for the y function: size=Nbins_y + 1</span>
+<span class="sd">    normalize : boolean</span>
+<span class="sd">        if true, then returned distributions are normalized.  Default</span>
+<span class="sd">        is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dist_x, dist_y : ndarrays</span>
+<span class="sd">        distributions of size Nbins_x and Nbins_y</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">cuml_x</span><span class="p">,</span> <span class="n">cuml_y</span> <span class="o">=</span> <span class="n">Cminus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+
+    <span class="c"># simple linear interpolation using a binary search</span>
+    <span class="c"># interpolate the cumulative distributions</span>
+    <span class="n">x_sort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">y_sort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">Ix_edges</span> <span class="o">=</span> <span class="n">_sorted_interpolate</span><span class="p">(</span><span class="n">x_sort</span><span class="p">,</span> <span class="n">cuml_x</span><span class="p">,</span> <span class="n">xbins</span><span class="p">)</span>
+    <span class="n">Iy_edges</span> <span class="o">=</span> <span class="n">_sorted_interpolate</span><span class="p">(</span><span class="n">y_sort</span><span class="p">,</span> <span class="n">cuml_y</span><span class="p">,</span> <span class="n">ybins</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">xbins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x_sort</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">Ix_edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cuml_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">xbins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x_sort</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">Ix_edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cuml_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">ybins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">y_sort</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">Iy_edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cuml_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">ybins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">y_sort</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">Iy_edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cuml_y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">x_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">Ix_edges</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">xbins</span><span class="p">)</span>
+    <span class="n">y_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">Iy_edges</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">ybins</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">x_dist</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y_dist</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">x_dist</span><span class="p">,</span> <span class="n">y_dist</span>
+
+</div>
+<div class="viewcode-block" id="bootstrap_Cminus"><a class="viewcode-back" href="../../modules/generated/astroML.lumfunc.bootstrap_Cminus.html#astroML.lumfunc.bootstrap_Cminus">[docs]</a><span class="k">def</span> <span class="nf">bootstrap_Cminus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">ybins</span><span class="p">,</span>
+                     <span class="n">Nbootstraps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the binned distributions using the Cminus method, with</span>
+<span class="sd">    bootstrapped estimates of the errors</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array_like</span>
+<span class="sd">        array of x values</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        array of y values</span>
+<span class="sd">    xmax : array_like</span>
+<span class="sd">        array of maximum x values for each y value</span>
+<span class="sd">    ymax : array_like</span>
+<span class="sd">        array of maximum y values for each x value</span>
+<span class="sd">    xbins : array_like</span>
+<span class="sd">        array of bin edges for the x function: size=Nbins_x + 1</span>
+<span class="sd">    ybins : array_like</span>
+<span class="sd">        array of bin edges for the y function: size=Nbins_y + 1</span>
+<span class="sd">    Nbootstraps : int</span>
+<span class="sd">        number of bootstrap resamplings to perform</span>
+<span class="sd">    normalize : boolean</span>
+<span class="sd">        if true, then returned distributions are normalized.  Default</span>
+<span class="sd">        is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dist_x, err_x, dist_y, err_y : ndarrays</span>
+<span class="sd">        distributions of size Nbins_x and Nbins_y</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">))</span>
+
+    <span class="n">x_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nbootstraps</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">xbins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">y_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nbootstraps</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ybins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbootstraps</span><span class="p">):</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x_dist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y_dist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">binned_Cminus</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
+                                             <span class="n">xmax</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">ymax</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span>
+                                             <span class="n">xbins</span><span class="p">,</span> <span class="n">ybins</span><span class="p">,</span>
+                                             <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">x_dist</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">x_dist</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">y_dist</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">y_dist</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.1<p>
+        &copy; 2012, Jake Vanderplas.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

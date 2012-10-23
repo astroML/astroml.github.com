@@ -1,0 +1,56 @@
+
+
+.. _book_fig_chapter7_fig_PCA_rotation:
+
+
+Scematic Diagram of PCA
+-----------------------
+This figure shows how PCA can be viewed as a rotation of an N-dimensional
+ellipse.
+
+
+
+.. image:: ../images/chapter7/fig_PCA_rotation_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_PCA_rotation.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_PCA_rotation.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_PCA_rotation.py] <fig_PCA_rotation.py>`
+
+.. raw:: html
+    
+    </div>
+
