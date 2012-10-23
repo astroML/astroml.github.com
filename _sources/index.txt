@@ -85,7 +85,7 @@ AstroML: Machine Learning and Data Mining for Astronomy
     
     * Source code: `github <https://github.com/astroML/astroML>`_
 
-    * Source tarball: :download:`astroML_0.1.tgz <static/astroML_0.1.tgz>`
+    * Source tarball: :download:`astroML_0.1.tgz <_static/astroML_0.1.tgz>`
 
 .. sectionauthor:: Jake Vanderplas <vanderplas@astro.washington.edu>
 
@@ -100,7 +100,7 @@ routines for analyzing astronomical data in python, loaders for several open
 astronomical datasets, and a large suite of examples of analyzing and
 visualizing astronomical datasets.
 
-.. image:: static/text_cover.png
+.. image:: _static/text_cover.png
      :width: 100 px
      :align: left
 
