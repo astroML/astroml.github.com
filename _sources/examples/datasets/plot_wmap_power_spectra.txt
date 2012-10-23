@@ -15,12 +15,12 @@ download at the `github site <https://github.com/healpy/healpy>`_
 .. rst-class:: horizontal
 
 
-.. image:: ../images/datasets/plot_wmap_power_spectra_1.png
+.. image:: ../images/datasets/plot_wmap_power_spectra_2.png
     :scale: 50
 
 
 
-.. image:: ../images/datasets/plot_wmap_power_spectra_2.png
+.. image:: ../images/datasets/plot_wmap_power_spectra_1.png
     :scale: 50
 
 
