@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -232,6 +238,8 @@ approximation to this posterior.</p>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">p_b</span><span class="p">,</span> <span class="s">&#39;-b&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">p_g</span><span class="p">,</span> <span class="s">&#39;--r&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$b$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$p(b|x,I)$&#39;</span><span class="p">)</span>

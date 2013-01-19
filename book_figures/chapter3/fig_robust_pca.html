@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -207,6 +213,12 @@ statistics perform in estimating the distribution parameters.</p>
 <span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="kn">import</span> <span class="n">fit_bivariate_normal</span>
 <span class="kn">from</span> <span class="nn">astroML.stats.random</span> <span class="kn">import</span> <span class="n">bivariate_normal</span>
 
+<span class="c"># percent sign needs to be escaped if usetex is activated</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="k">if</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text.usetex&#39;</span><span class="p">):</span>
+    <span class="n">pct</span> <span class="o">=</span> <span class="s">&#39;\%&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">pct</span> <span class="o">=</span> <span class="s">&#39;%&#39;</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
 
@@ -274,16 +286,15 @@ statistics perform in estimating the distribution parameters.</p>
                     <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;dashed&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%i%%</span><span class="s"> outliers&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%i%s</span><span class="s"> outliers&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">pct</span><span class="p">),</span>
             <span class="n">ha</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">14.5</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">14.5</span><span class="p">)</span>
-
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
 
     <span class="c"># This is a bit of a hack:</span>
-    <span class="c"># We&#39;ll draw some lines off the picture to make our legend work</span>
+    <span class="c"># We&#39;ll draw some lines off the picture to make our legend look better</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Input&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Fit&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;--k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Robust Fit&#39;</span><span class="p">)</span>

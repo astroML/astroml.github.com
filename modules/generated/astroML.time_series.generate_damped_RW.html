@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -188,7 +194,7 @@ $(document).ready(function(){
 <tt class="descclassname">astroML.time_series.</tt><tt class="descname">generate_damped_RW</tt><big>(</big><em>t_rest</em>, <em>tau=300.0</em>, <em>z=2.0</em>, <em>xmean=0</em>, <em>SFinf=0.3</em>, <em>random_state=None</em><big>)</big><a class="headerlink" href="#astroML.time_series.generate_damped_RW" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a damped random walk light curve</p>
 <p>This uses a damped random walk model to generate a light curve similar
-to that of a QSO <a class="reference internal" href="#r19">[R19]</a>.</p>
+to that of a QSO <a class="reference internal" href="#r16">[R16]</a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -239,10 +245,10 @@ SFinf = sigma * sqrt(tau / 2)</div></blockquote>
 <blockquote>
 <div>dX(t) = -X(t) * dt + sqrt(2) * SFint * e(t) * sqrt(dt) + Xmean * dt</div></blockquote>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r19" rules="none">
+<table class="docutils citation" frame="void" id="r16" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R19]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Kelly, B., Bechtold, J. &amp; Siemiginowska, A. (2009)
+<tr><td class="label">[R16]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Kelly, B., Bechtold, J. &amp; Siemiginowska, A. (2009)
 Are the Variations in Quasar Optical Flux Driven by Thermal
 Fluctuations? ApJ 698:895 (2009)</td></tr>
 </tbody>

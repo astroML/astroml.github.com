@@ -15,7 +15,7 @@ from matplotlib import pyplot as plt
 from sklearn.svm import SVC
 from sklearn import metrics
 
-from astroML.datasets import fetch_rrlyrae_mags, fetch_sdss_S82standards
+from astroML.datasets import fetch_rrlyrae_mags
 from astroML.decorators import pickle_results
 from astroML.datasets import fetch_rrlyrae_combined
 from astroML.utils import split_samples
@@ -102,8 +102,8 @@ ax.contour(xx, yy, Z, [0.5], linewidths=2., colors='k')
 ax.set_xlim(xlim)
 ax.set_ylim(ylim)
 
-ax.set_xlabel('u-g')
-ax.set_ylabel('g-r')
+ax.set_xlabel('$u-g$')
+ax.set_ylabel('$g-r$')
 
 # plot completeness vs Ncolors
 ax = fig.add_subplot(222)

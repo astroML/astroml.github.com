@@ -150,7 +150,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -192,7 +192,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -238,14 +244,14 @@ imaging over a small portion of the sky, called Stripe 82, enabling the
 study of the time-variation of many objects.</p>
 <p>SDSS photometric data are observed through five filters, <cite>u</cite>, <cite>g</cite>, <cite>r</cite>, <cite>i</cite>,
 and <cite>z</cite>.  A visualization of the range of these filters is shown below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_filters.html"><img alt="../_images/plot_sdss_filters_11.png" class="align-center" src="../_images/plot_sdss_filters_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_filters.html"><img alt="../_images/plot_sdss_filters_11.png" class="align-center" src="../_images/plot_sdss_filters_11.png" /></a>
 <div class="section" id="sdss-spectra">
 <span id="datasets-sdss-spectra"></span><h3>3.2.1. SDSS Spectra<a class="headerlink" href="#sdss-spectra" title="Permalink to this headline">¶</a></h3>
 <p>The SDSS spectroscopic data is available in a database, indexed by three
 numbers: the plate, date, and fiber number.  The <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_spectrum.html#astroML.datasets.fetch_sdss_spectrum" title="astroML.datasets.fetch_sdss_spectrum"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_spectrum()</span></tt></a>
 takes a plate, mjd, and fiber, and downloads the spectrum to disk.  The
 spectral data can be visualized as follows:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_spectrum.html"><img alt="../_images/plot_sdss_spectrum_11.png" class="align-center" src="../_images/plot_sdss_spectrum_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_spectrum.html"><img alt="../_images/plot_sdss_spectrum_11.png" class="align-center" src="../_images/plot_sdss_spectrum_11.png" /></a>
 <p>As with all figures in this documentation, clicking on the image will link
 to a page showing the source code used to download the data and plot the
 result.</p>
@@ -258,7 +264,7 @@ contains a function which accesses this data directly using a python SQL
 query tool.  The function is called <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_galaxy_colors.html#astroML.datasets.fetch_sdss_galaxy_colors" title="astroML.datasets.fetch_sdss_galaxy_colors"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_galaxy_colors()</span></tt></a> and
 can be used as a template for making custom data sets available with a
 simple Python command.  Some of the results are visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_galaxy_colors.html"><img alt="../_images/plot_sdss_galaxy_colors_11.png" class="align-center" src="../_images/plot_sdss_galaxy_colors_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_galaxy_colors.html"><img alt="../_images/plot_sdss_galaxy_colors_11.png" class="align-center" src="../_images/plot_sdss_galaxy_colors_11.png" /></a>
 </div>
 <div class="section" id="sdss-corrected-spectra">
 <span id="datasets-sdss-corrected-spectra"></span><h3>3.2.3. SDSS Corrected Spectra<a class="headerlink" href="#sdss-corrected-spectra" title="Permalink to this headline">¶</a></h3>
@@ -270,14 +276,14 @@ technique (see <a class="reference internal" href="../examples/datasets/compute_
 1000 common wavelength bins.  The spectra can be downloaded using
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_corrected_spectra.html#astroML.datasets.fetch_sdss_corrected_spectra" title="astroML.datasets.fetch_sdss_corrected_spectra"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_corrected_spectra()</span></tt></a>; some examples of these are shown
 below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_corrected_spectra.html"><img alt="../_images/plot_corrected_spectra_11.png" class="align-center" src="../_images/plot_corrected_spectra_11.png" style="width: 640.0px; height: 640.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_corrected_spectra.html"><img alt="../_images/plot_corrected_spectra_11.png" class="align-center" src="../_images/plot_corrected_spectra_11.png" /></a>
 <p>These data are used in several of the example figures from
 <a class="reference internal" href="../book_figures/chapter7/index.html#book-fig-chapter7"><em>Chapter 7: Dimensionality and its Reduction</em></a>.</p>
 <p>Because these spectra are meant to enable high-dimensional classification and
 visualization routines, it is useful to have some extra classification data
 for these objects.  One set of features available in the data set is the
 line ratio measurements.  These can be visualized as shown below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_line_ratios.html"><img alt="../_images/plot_sdss_line_ratios_12.png" class="align-center" src="../_images/plot_sdss_line_ratios_12.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_line_ratios.html"><img alt="../_images/plot_sdss_line_ratios_12.png" class="align-center" src="../_images/plot_sdss_line_ratios_12.png" /></a>
 </div>
 <div class="section" id="sdss-spectroscopic-sample">
 <span id="datasets-sdss-spec-gals"></span><h3>3.2.4. SDSS Spectroscopic Sample<a class="headerlink" href="#sdss-spectroscopic-sample" title="Permalink to this headline">¶</a></h3>
@@ -287,13 +293,13 @@ provide a wealth of information about many classes of objects in the night
 sky.  The photometry from the SDSS spectroscopic galaxy sample is available
 using the routine <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_specgals.html#astroML.datasets.fetch_sdss_specgals" title="astroML.datasets.fetch_sdss_specgals"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_specgals()</span></tt></a>, and some of the attributes
 are shown in the following visualization:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_specgals.html"><img alt="../_images/plot_sdss_specgals_11.png" class="align-center" src="../_images/plot_sdss_specgals_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_specgals.html"><img alt="../_images/plot_sdss_specgals_11.png" class="align-center" src="../_images/plot_sdss_specgals_11.png" /></a>
 <p>One well-known feature of the SDSS spectroscopic sample is the &#8220;great wall&#8221;,
 a filament of galaxies located several hundred megaparsecs away.  The
 great wall data is among the spectroscopic sample: to enable easily working
 with it, astroML contains the function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_great_wall.html#astroML.datasets.fetch_great_wall" title="astroML.datasets.fetch_great_wall"><tt class="xref py py-func docutils literal"><span class="pre">fetch_great_wall()</span></tt></a>.  The data
 can be seen below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_great_wall.html"><img alt="../_images/plot_great_wall_11.png" class="align-center" src="../_images/plot_great_wall_11.png" style="width: 640.0px; height: 320.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_great_wall.html"><img alt="../_images/plot_great_wall_11.png" class="align-center" src="../_images/plot_great_wall_11.png" /></a>
 </div>
 <div class="section" id="sdss-dr7-quasar-catalog">
 <span id="datasets-dr7-quasar"></span><h3>3.2.5. SDSS DR7 Quasar Catalog<a class="headerlink" href="#sdss-dr7-quasar-catalog" title="Permalink to this headline">¶</a></h3>
@@ -302,7 +308,7 @@ catalog is described on the
 <a class="reference external" href="http://www.sdss.org/dr7/products/value_added/qsocat_dr7.html">SDSS website</a>,
 and can be downloaded using the function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_dr7_quasar.html#astroML.datasets.fetch_dr7_quasar" title="astroML.datasets.fetch_dr7_quasar"><tt class="xref py py-func docutils literal"><span class="pre">fetch_dr7_quasar()</span></tt></a>.  Some of
 this quasar data is used in the visualization below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_dr7_quasar.html"><img alt="../_images/plot_dr7_quasar_11.png" class="align-center" src="../_images/plot_dr7_quasar_11.png" style="width: 800.0px; height: 800.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_dr7_quasar.html"><img alt="../_images/plot_dr7_quasar_11.png" class="align-center" src="../_images/plot_dr7_quasar_11.png" /></a>
 </div>
 <div class="section" id="sdss-imaging-sample">
 <span id="datasets-sdss-imaging"></span><h3>3.2.6. SDSS Imaging Sample<a class="headerlink" href="#sdss-imaging-sample" title="Permalink to this headline">¶</a></h3>
@@ -313,7 +319,7 @@ sample goes much deeper, and thus contains photometric measurements of
 hundreds of millions of objects.  astroML has a function called
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_imaging_sample.html#astroML.datasets.fetch_imaging_sample" title="astroML.datasets.fetch_imaging_sample"><tt class="xref py py-func docutils literal"><span class="pre">fetch_imaging_sample()</span></tt></a> which loads a selection of this data.  Some
 of the returned attributes are visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_imaging.html"><img alt="../_images/plot_sdss_imaging_11.png" class="align-center" src="../_images/plot_sdss_imaging_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_imaging.html"><img alt="../_images/plot_sdss_imaging_11.png" class="align-center" src="../_images/plot_sdss_imaging_11.png" /></a>
 </div>
 <div class="section" id="sdss-segue-stellar-parameters-pipeline">
 <span id="datasets-sdss-sspp"></span><h3>3.2.7. SDSS Segue Stellar Parameters Pipeline<a class="headerlink" href="#sdss-segue-stellar-parameters-pipeline" title="Permalink to this headline">¶</a></h3>
@@ -324,7 +330,7 @@ large number of additional object features derived from SDSS photometry
 and spectra.  This data can be downloaded using the function
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_sspp.html#astroML.datasets.fetch_sdss_sspp" title="astroML.datasets.fetch_sdss_sspp"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_sspp()</span></tt></a>.  Some of the metallicity and temperature data is
 visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_SDSS_SSPP.html"><img alt="../_images/plot_SDSS_SSPP_11.png" class="align-center" src="../_images/plot_SDSS_SSPP_11.png" style="width: 800.0px; height: 400.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_SDSS_SSPP.html"><img alt="../_images/plot_SDSS_SSPP_11.png" class="align-center" src="../_images/plot_SDSS_SSPP_11.png" /></a>
 <p>The left panel shows the density of point on the temperature / log(g) plot.
 These parameters correlate with the familiar HR diagram based on photometric
 colors.  The right panel shows the average metallicity in each pixel, and the
@@ -344,14 +350,14 @@ observations of RR-Lyrae stars, and one containing observations of moving
 objects (i.e. asteroids) within the solar system.</p>
 <p>The RR-Lyrae data can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_mags.html#astroML.datasets.fetch_rrlyrae_mags" title="astroML.datasets.fetch_rrlyrae_mags"><tt class="xref py py-func docutils literal"><span class="pre">fetch_rrlyrae_mags()</span></tt></a>
 function, and result in the dataset visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_rrlyrae_mags.html"><img alt="../_images/plot_rrlyrae_mags_11.png" class="align-center" src="../_images/plot_rrlyrae_mags_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_rrlyrae_mags.html"><img alt="../_images/plot_rrlyrae_mags_11.png" class="align-center" src="../_images/plot_rrlyrae_mags_11.png" /></a>
 <p>The moving objects can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_moving_objects.html#astroML.datasets.fetch_moving_objects" title="astroML.datasets.fetch_moving_objects"><tt class="xref py py-func docutils literal"><span class="pre">fetch_moving_objects()</span></tt></a>
 function, giving a dataset containing not only photometric observations,
 but also orbital parameters.  A portion of this information went into the
 following visualization:</p>
 <p class="centered">
-<strong><a class="reference external image-reference" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC1" src="../_images/plot_moving_objects_12.png" style="width: 400.0px; height: 300.0px;" /></a>
- <a class="reference external image-reference" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC2" src="../_images/plot_moving_objects_22.png" style="width: 400.0px; height: 300.0px;" /></a>
+<strong><a class="reference external image-reference" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC1" src="../_images/plot_moving_objects_12.png" /></a>
+ <a class="reference external image-reference" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC2" src="../_images/plot_moving_objects_22.png" /></a>
 </strong></p></div>
 <div class="section" id="stripe-82-standard-stars">
 <span id="datasets-s82-standards"></span><h3>3.2.9. Stripe 82: Standard Stars<a class="headerlink" href="#stripe-82-standard-stars" title="Permalink to this headline">¶</a></h3>
@@ -362,7 +368,7 @@ region which are below a specified variability criterion.  The multiple
 exposures were combined to yield a highly precise catalog of stars.  This
 data can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_S82standards.html#astroML.datasets.fetch_sdss_S82standards" title="astroML.datasets.fetch_sdss_S82standards"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_S82standards()</span></tt></a> function.
 Some of the data in this catalog is visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_11.png" class="align-center" src="../_images/plot_sdss_S82standards_11.png" style="width: 800.0px; height: 800.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_11.png" class="align-center" src="../_images/plot_sdss_S82standards_11.png" /></a>
 </div>
 </div>
 <div class="section" id="combined-surveys">
@@ -374,7 +380,7 @@ observations and parameters for nearby galaxies, compiled from SDSS, GALEX,
 2MASS, annd WISE.  The full dataset is ~500MB; an astroML dataset loader for
 ~50MB of this data is available in <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_nasa_atlas.html#astroML.datasets.fetch_nasa_atlas" title="astroML.datasets.fetch_nasa_atlas"><tt class="xref py py-func docutils literal"><span class="pre">fetch_nasa_atlas()</span></tt></a>.  The footprint
 of the available data can be seen below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_nasa_atlas.html"><img alt="../_images/plot_nasa_atlas_12.png" class="align-center" src="../_images/plot_nasa_atlas_12.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_nasa_atlas.html"><img alt="../_images/plot_nasa_atlas_12.png" class="align-center" src="../_images/plot_nasa_atlas_12.png" /></a>
 </div>
 <div class="section" id="stripe-82-standards-2mass">
 <span id="datasets-s82-2mass"></span><h3>3.3.2. Stripe 82 Standards + 2MASS<a class="headerlink" href="#stripe-82-standards-2mass" title="Permalink to this headline">¶</a></h3>
@@ -383,7 +389,7 @@ a version of this catalog which is cross-matched with the 2 Micron All Sky
 Survey (2MASS) data.  This can be obtained using the
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_S82standards.html#astroML.datasets.fetch_sdss_S82standards" title="astroML.datasets.fetch_sdss_S82standards"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_S82standards()</span></tt></a> function, with the keyword
 <tt class="docutils literal"><span class="pre">crossmatch_2mass=True</span></tt>.  Some of the combined data are shown below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_21.png" class="align-center" src="../_images/plot_sdss_S82standards_21.png" style="width: 800.0px; height: 800.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_21.png" class="align-center" src="../_images/plot_sdss_S82standards_21.png" /></a>
 </div>
 </div>
 <div class="section" id="time-domain-data">
@@ -394,7 +400,7 @@ Survey (2MASS) data.  This can be obtained using the
 The function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_templates.html#astroML.datasets.fetch_rrlyrae_templates" title="astroML.datasets.fetch_rrlyrae_templates"><tt class="xref py py-func docutils literal"><span class="pre">fetch_rrlyrae_templates()</span></tt></a> fetches the templates used in
 <a class="footnote-reference" href="#id3" id="id2">[1]</a>.  The following is a figure from the <a class="reference internal" href="introduction.html#textbook"><em>textbook</em></a>
 that reconstructs one of these templates using a Fourier series:</p>
-<a class="reference external image-reference" href="../book_figures/chapter10/fig_rrlyrae_reconstruct.html"><img alt="../_images/fig_rrlyrae_reconstruct_11.png" class="align-center" src="../_images/fig_rrlyrae_reconstruct_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../book_figures/chapter10/fig_rrlyrae_reconstruct.html"><img alt="../_images/fig_rrlyrae_reconstruct_11.png" class="align-center" src="../_images/fig_rrlyrae_reconstruct_11.png" /></a>
 <p>The dashed line is the RR Lyrae template; the grey lines show the reconstruction
 with 1, 3, and 8 Fourier modes.</p>
 <table class="docutils footnote" frame="void" id="id3" rules="none">
@@ -417,7 +423,7 @@ astroML has two functions relating to the LINEAR sample:
 of these.  Phased light curves for six of the LINEAR objects can be seen in
 the following figure.  Here, the periods were found using a Lomb-Scargle
 periodogram.</p>
-<a class="reference external image-reference" href="../book_figures/chapter10/fig_LINEAR_LS.html"><img alt="../_images/fig_LINEAR_LS_11.png" class="align-center" src="../_images/fig_LINEAR_LS_11.png" style="width: 640.0px; height: 800.0px;" /></a>
+<a class="reference external image-reference" href="../book_figures/chapter10/fig_LINEAR_LS.html"><img alt="../_images/fig_LINEAR_LS_11.png" class="align-center" src="../_images/fig_LINEAR_LS_11.png" /></a>
 <p>See chapter 10 of the <a class="reference internal" href="introduction.html#textbook"><em>text</em></a>
 for a discussion of the mismatched period seen in the upper left object.</p>
 </div>
@@ -435,7 +441,7 @@ useful for characterizing the background noise of the survey.
 blind-injection test designed to measure the response of the instrument and
 the survey team to a potential signal.  The figure below shows an example of
 using a Hanning filter to obtain the noise spectrum from the LIGO data:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_LIGO_spectrum.html"><img alt="../_images/plot_LIGO_spectrum_11.png" class="align-center" src="../_images/plot_LIGO_spectrum_11.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_LIGO_spectrum.html"><img alt="../_images/plot_LIGO_spectrum_11.png" class="align-center" src="../_images/plot_LIGO_spectrum_11.png" /></a>
 </div>
 </div>
 <div class="section" id="wmap-temperature-map">
@@ -448,13 +454,13 @@ WMAP data, using the routine <a class="reference internal" href="../modules/gene
 <a class="reference external" href="https://github.com/healpy/healpy">healpy</a> package, we can visualize the
 raw WMAP data:</p>
 <p class="centered">
-<strong><a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP1" src="../_images/plot_wmap_power_spectra_12.png" style="width: 400.0px; height: 300.0px;" /></a>
- <a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP2" src="../_images/plot_wmap_power_spectra_21.png" style="width: 400.0px; height: 300.0px;" /></a>
+<strong><a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP1" src="../_images/plot_wmap_power_spectra_12.png" /></a>
+ <a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP2" src="../_images/plot_wmap_power_spectra_21.png" /></a>
 </strong></p><p>healpy also has some routines for computing fast spherical harmonic transforms.
 A rigorous treatment involves correcting for the mask pattern seen in the
 right image.  Neglecting this correction, a simple power spectral analysis
 can be performed using the tools in healpy:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="../_images/plot_wmap_power_spectra_31.png" class="align-center" src="../_images/plot_wmap_power_spectra_31.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="../_images/plot_wmap_power_spectra_31.png" class="align-center" src="../_images/plot_wmap_power_spectra_31.png" /></a>
 </div>
 </div>
 

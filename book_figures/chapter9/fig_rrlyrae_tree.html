@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -210,6 +216,13 @@ false negatives: 68 (0.3%)
 <span class="c">#   For more information, see http://astroML.github.com</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c"># % sign needs to be escaped if usetex is True</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="k">if</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text.usetex&#39;</span><span class="p">):</span>
+    <span class="n">pct</span> <span class="o">=</span> <span class="s">r&#39;\%&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">pct</span> <span class="o">=</span> <span class="s">&#39;%&#39;</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_rrlyrae_combined</span>
@@ -291,18 +304,18 @@ false negatives: 68 (0.3%)
             <span class="n">n_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">classes</span><span class="p">[</span><span class="n">data_masks</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">n_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">classes</span><span class="p">[</span><span class="n">data_masks</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
 
-            <span class="n">text</span> <span class="o">=</span> <span class="s">&quot;$</span><span class="si">%i</span><span class="s">\ /\ </span><span class="si">%i</span><span class="s">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n_neg</span><span class="p">,</span> <span class="n">n_pos</span><span class="p">)</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s">&quot;$</span><span class="si">%i</span><span class="s">\,/\,</span><span class="si">%i</span><span class="s">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n_neg</span><span class="p">,</span> <span class="n">n_pos</span><span class="p">)</span>
 
             <span class="c"># assure that we&#39;re doing this correctly</span>
             <span class="k">assert</span> <span class="p">(</span><span class="n">n_neg</span> <span class="o">+</span> <span class="n">n_pos</span> <span class="o">==</span> <span class="n">T_nsamples</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
 
             <span class="c"># check if node is a leaf</span>
             <span class="k">if</span> <span class="n">n_neg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">text</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">r&quot;$\rm(RR\,Lyrae)$&quot;</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">r&quot;${\rm(RR\,Lyrae)}$&quot;</span>
             <span class="k">elif</span> <span class="n">n_pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">text</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">r&quot;$\rm(non-variable)$&quot;</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">r&quot;${\rm non}$-${\rm variable}$&quot;</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">text</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">r&quot;$\rm split\ on$ </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">labels</span><span class="p">[</span><span class="n">T_feature</span><span class="p">[</span><span class="n">ind</span><span class="p">]]</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">r&quot;${\rm split\ on}$ </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">labels</span><span class="p">[</span><span class="n">T_feature</span><span class="p">[</span><span class="n">ind</span><span class="p">]]</span>
 
             <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
                 <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span>
@@ -377,23 +390,26 @@ false negatives: 68 (0.3%)
 <span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
                <span class="n">labels</span><span class="o">=</span><span class="p">([</span><span class="s">&#39;$u-g$&#39;</span><span class="p">,</span> <span class="s">&#39;$g-r$&#39;</span><span class="p">,</span> <span class="s">&#39;$r-i$&#39;</span><span class="p">,</span> <span class="s">&#39;$i-z$&#39;</span><span class="p">]))</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot; Numbers are count of</span><span class="se">\n</span><span class="s">&quot;</span>
-                     <span class="s">&quot; non-variable / RR-Lyrae</span><span class="se">\n</span><span class="s">&quot;</span>
-                     <span class="s">&quot; in each node&quot;</span><span class="p">),</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;Numbers are count of</span><span class="se">\n</span><span class="s">&quot;</span>
+                     <span class="s">&quot;non-variable / RR-Lyrae</span><span class="se">\n</span><span class="s">&quot;</span>
+                     <span class="s">&quot;in each node&quot;</span><span class="p">),</span>
         <span class="n">ha</span><span class="o">=</span><span class="s">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;center&#39;</span><span class="p">,</span>
         <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">&#39;round&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">&#39;w&#39;</span><span class="p">))</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;Training Set Size:</span><span class="se">\n</span><span class="s">&quot;</span>
-                      <span class="s">&quot;  </span><span class="si">%i</span><span class="s"> objects</span><span class="se">\n\n</span><span class="s">&quot;</span>
-                      <span class="s">&quot;Cross-Validation, with</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;Training Set Size:</span><span class="se">\n</span><span class="s">&quot;</span>
+                      <span class="s">&quot;  </span><span class="si">%i</span><span class="s"> objects&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)),</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;Cross-Validation, with</span><span class="se">\n</span><span class="s">&quot;</span>
                       <span class="s">&quot;  </span><span class="si">%i</span><span class="s"> RR-Lyraes (positive)</span><span class="se">\n</span><span class="s">&quot;</span>
                       <span class="s">&quot;  </span><span class="si">%i</span><span class="s"> non-variables (negative)</span><span class="se">\n</span><span class="s">&quot;</span>
-                      <span class="s">&quot;  false positives: </span><span class="si">%i</span><span class="s"> (</span><span class="si">%.1f%%</span><span class="s">)</span><span class="se">\n</span><span class="s">&quot;</span>
-                      <span class="s">&quot;  false negatives: </span><span class="si">%i</span><span class="s"> (</span><span class="si">%.1f%%</span><span class="s">)&quot;</span>
-                      <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="n">tot_pos</span><span class="p">,</span> <span class="n">tot_neg</span><span class="p">,</span>
-                         <span class="n">fp</span><span class="p">,</span> <span class="n">fp</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">),</span>
-                         <span class="n">fn</span><span class="p">,</span> <span class="n">fn</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">tn</span> <span class="o">+</span> <span class="n">fn</span><span class="p">))),</span>
+                      <span class="s">&quot;  false positives: </span><span class="si">%i</span><span class="s"> (</span><span class="si">%.1f%s</span><span class="s">)</span><span class="se">\n</span><span class="s">&quot;</span>
+                      <span class="s">&quot;  false negatives: </span><span class="si">%i</span><span class="s"> (</span><span class="si">%.1f%s</span><span class="s">)&quot;</span>
+                      <span class="o">%</span> <span class="p">(</span><span class="n">tot_pos</span><span class="p">,</span> <span class="n">tot_neg</span><span class="p">,</span>
+                         <span class="n">fp</span><span class="p">,</span> <span class="n">fp</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">),</span> <span class="n">pct</span><span class="p">,</span>
+                         <span class="n">fn</span><span class="p">,</span> <span class="n">fn</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">tn</span> <span class="o">+</span> <span class="n">fn</span><span class="p">),</span> <span class="n">pct</span><span class="p">)),</span>
         <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;bottom&#39;</span><span class="p">)</span>
 
 <span class="c">#--------------------------------------------------</span>

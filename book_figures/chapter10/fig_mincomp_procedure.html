@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -188,10 +194,8 @@ The entire algorithm is implemented in astroML.filters.min_component_filter</p>
 <img alt="../../_images/fig_mincomp_procedure_1.png" class="align-center" src="../../_images/fig_mincomp_procedure_1.png" style="width: 100%;" />
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>Downloading http://das.sdss.org/spectro/1d_26/0659/1d/spSpec-52199-0659-381.fit
-[=                                      ]  4.6kb / 182.8kb   [==                                     ]  9.1kb / 182.8kb   [===                                    ]  13.7kb / 182.8kb   [====                                   ]  18.3kb / 182.8kb   [=====                                  ]  22.9kb / 182.8kb   [======                                 ]  27.4kb / 182.8kb   [=======                                ]  32.0kb / 182.8kb   [========                               ]  36.6kb / 182.8kb   [=========                              ]  41.1kb / 182.8kb   [==========                             ]  45.7kb / 182.8kb   [===========                            ]  50.3kb / 182.8kb   [============                           ]  54.8kb / 182.8kb   [=============                          ]  59.4kb / 182.8kb   [==============                         ]  64.0kb / 182.8kb   [===============                        ]  68.6kb / 182.8kb   [================                       ]  73.1kb / 182.8kb   [=================                      ]  77.7kb / 182.8kb   [==================                     ]  82.3kb / 182.8kb   [===================                    ]  86.8kb / 182.8kb   [====================                   ]  91.4kb / 182.8kb   [=====================                  ]  96.0kb / 182.8kb   [======================                 ]  100.5kb / 182.8kb   [=======================                ]  105.1kb / 182.8kb   [========================               ]  109.7kb / 182.8kb   [=========================              ]  114.3kb / 182.8kb   [==========================             ]  118.8kb / 182.8kb   [===========================            ]  123.4kb / 182.8kb   [============================           ]  128.0kb / 182.8kb   [=============================          ]  132.5kb / 182.8kb   [==============================         ]  137.1kb / 182.8kb   [===============================        ]  141.7kb / 182.8kb   [================================       ]  146.2kb / 182.8kb   [=================================      ]  150.8kb / 182.8kb   [==================================     ]  155.4kb / 182.8kb   [===================================    ]  160.0kb / 182.8kb   [====================================   ]  164.5kb / 182.8kb   [=====================================  ]  169.1kb / 182.8kb   [====================================== ]  173.7kb / 182.8kb   [=======================================]  178.2kb / 182.8kb   [========================================]  182.8kb / 182.8kb   
-caching to /home/vanderplas/astroML_data/SDSSspec/0659/spSpec-52199-0659-381.fit
-</pre>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
+</pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
@@ -275,7 +279,9 @@ caching to /home/vanderplas/astroML_data/SDSSspec/0659/spSpec-52199-0659-381.fit
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec_patched</span> <span class="o">+</span> <span class="n">spec_fit</span><span class="p">,</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$\lambda$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">110</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">r&#39;$\lambda\ {\rm(\AA)}$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;flux&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>

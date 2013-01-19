@@ -12,17 +12,9 @@ tools for this sort of plot.
 
 
 
-.. rst-class:: horizontal
-
-
-.. image:: ../images/chapter1/fig_projections_2.png
-    :scale: 50
-
-
-
 .. image:: ../images/chapter1/fig_projections_1.png
-    :scale: 50
-
+    :width: 100%
+    :align: center
 
 
 .. raw:: html

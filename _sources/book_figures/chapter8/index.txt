@@ -47,9 +47,7 @@ outliers.
 
    ./fig_regression_mu_z
 
-   ./fig_ridge_diagram
-
-   ./fig_lasso_diagram
+   ./fig_lasso_ridge
 
    ./fig_rbf_ridge_mu_z
 
@@ -81,15 +79,10 @@ outliers.
 
     :ref:`book_fig_chapter8_fig_regression_mu_z`
 
-.. figure:: ./../images/chapter8/fig_ridge_diagram_1_thumb.png
-    :target: ./fig_ridge_diagram.html
+.. figure:: ./../images/chapter8/fig_lasso_ridge_1_thumb.png
+    :target: ./fig_lasso_ridge.html
 
-    :ref:`book_fig_chapter8_fig_ridge_diagram`
-
-.. figure:: ./../images/chapter8/fig_lasso_diagram_1_thumb.png
-    :target: ./fig_lasso_diagram.html
-
-    :ref:`book_fig_chapter8_fig_lasso_diagram`
+    :ref:`book_fig_chapter8_fig_lasso_ridge`
 
 .. figure:: ./../images/chapter8/fig_rbf_ridge_mu_z_1_thumb.png
     :target: ./fig_rbf_ridge_mu_z.html

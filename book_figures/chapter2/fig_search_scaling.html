@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -204,7 +210,7 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Compute the execution times as a function of array size</span>
-<span class="n">Nsamples</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">6.2</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">Nsamples</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
 <span class="n">time_linear</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Nsamples</span><span class="p">)</span>
 <span class="n">time_binary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Nsamples</span><span class="p">)</span>
 
@@ -239,14 +245,16 @@ $(document).ready(function(){
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Nsamples</span><span class="p">,</span> <span class="n">time_linear</span><span class="p">,</span> <span class="s">&#39;ok&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">label</span><span class="o">=</span><span class="s">r&#39;linear search $(\mathcal{O}[N])$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Nsamples</span><span class="p">,</span> <span class="n">time_binary</span><span class="p">,</span> <span class="s">&#39;sk&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="s">r&#39;efficient search $(\mathcal{O}[\logN])$&#39;</span><span class="p">)</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">r&#39;efficient search $(\mathcal{O}[\log N])$&#39;</span><span class="p">)</span>
 
 <span class="c"># plot the expected scaling</span>
-<span class="n">scale</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">scaling_N</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">time_linear</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">/</span> <span class="n">Nsamples</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
 <span class="n">scaling_logN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span> <span class="o">*</span> <span class="n">time_binary</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Nsamples</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">scaling_N</span><span class="p">,</span> <span class="s">&#39;--k&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">scaling_logN</span><span class="p">,</span> <span class="s">&#39;--k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">9E5</span><span class="p">,</span> <span class="mf">1E8</span><span class="p">)</span>
 
 <span class="c"># add text and labels</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;Scaling of Search Algorithms&quot;</span><span class="p">)</span>

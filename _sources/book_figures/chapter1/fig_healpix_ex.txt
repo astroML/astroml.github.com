@@ -1,0 +1,64 @@
+
+
+.. _book_fig_chapter1_fig_healpix_ex:
+
+
+Example of HealPix pixellization
+--------------------------------
+This uses HEALpy, the python wrapper for HEALpix, to plot the HEALPix
+pixellization of the sky.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter1/fig_healpix_ex_1.png
+    :scale: 50
+
+
+
+.. image:: ../images/chapter1/fig_healpix_ex_2.png
+    :scale: 50
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_healpix_ex.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_healpix_ex.py
+    :lines: 7-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_healpix_ex.py] <fig_healpix_ex.py>`
+
+.. raw:: html
+    
+    </div>
+

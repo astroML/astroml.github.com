@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -205,6 +211,13 @@ estimators for a bivariate gaussian distribution</p>
 
 <span class="kn">from</span> <span class="nn">astroML.stats.random</span> <span class="kn">import</span> <span class="n">bivariate_normal</span>
 <span class="kn">from</span> <span class="nn">astroML.decorators</span> <span class="kn">import</span> <span class="n">pickle_results</span>
+
+<span class="c"># percent sign must be escaped if usetex=True</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="k">if</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text.usetex&#39;</span><span class="p">):</span>
+    <span class="n">pct</span> <span class="o">=</span> <span class="s">&#39;\%&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">pct</span> <span class="o">=</span> <span class="s">&#39;%&#39;</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Set parameters for the distributions</span>
@@ -262,7 +275,7 @@ estimators for a bivariate gaussian distribution</p>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 
 <span class="n">histargs</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;No Outliers&#39;</span><span class="p">),</span>
-            <span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%i%%</span><span class="s"> Outliers&#39;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)))</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%i%s</span><span class="s"> Outliers&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span> <span class="n">pct</span><span class="p">)))</span>
 
 <span class="n">distributions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Pearson-r&#39;</span><span class="p">,</span> <span class="s">&#39;Spearman-r&#39;</span><span class="p">,</span> <span class="s">r&#39;Kendall-$\tau$&#39;</span><span class="p">]</span>
 <span class="n">xlabels</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;$r_p$&#39;</span><span class="p">,</span> <span class="s">&#39;$r_s$&#39;</span><span class="p">,</span> <span class="s">r&#39;$\tau$&#39;</span><span class="p">]</span>\
@@ -279,9 +292,10 @@ estimators for a bivariate gaussian distribution</p>
     <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">rho_true</span><span class="p">,</span> <span class="n">rho_true</span><span class="p">],</span> <span class="n">ylim</span><span class="p">,</span> <span class="s">&#39;--k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.701</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">tau_true</span><span class="p">,</span> <span class="n">tau_true</span><span class="p">],</span> <span class="n">ylim</span><span class="p">,</span> <span class="s">&#39;--k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.48</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">distributions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">,</span>

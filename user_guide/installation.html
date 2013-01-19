@@ -150,7 +150,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -160,8 +160,12 @@ $(document).ready(function(){
 <li><a class="reference internal" href="#">2. Installation of astroML</a><ul>
 <li><a class="reference internal" href="#important-links">2.1. Important Links</a></li>
 <li><a class="reference internal" href="#installation">2.2. Installation</a><ul>
-<li><a class="reference internal" href="#core">2.2.1. Core</a></li>
-<li><a class="reference internal" href="#addons">2.2.2. Addons</a></li>
+<li><a class="reference internal" href="#python-package-index">2.2.1. Python Package Index</a></li>
+<li><a class="reference internal" href="#from-source">2.2.2. From Source</a><ul>
+<li><a class="reference internal" href="#core">2.2.2.1. Core</a></li>
+<li><a class="reference internal" href="#addons">2.2.2.2. Addons</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#testing">2.2.3. Testing</a></li>
 </ul>
 </li>
@@ -180,7 +184,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -209,15 +219,32 @@ Furthermore, if <tt class="docutils literal"><span class="pre">astroML_addons</s
 <ul class="simple">
 <li>Source-code repository: <a class="reference external" href="http://github.com/astroML/astroML">http://github.com/astroML/astroML</a></li>
 <li>HTML documentation: <a class="reference external" href="http://astroML.github.com">http://astroML.github.com</a></li>
+<li>Python Package Index: <a class="reference external" href="http://pypi.python.org/pypi/astroML/">http://pypi.python.org/pypi/astroML/</a></li>
 </ul>
 </div>
 <div class="section" id="installation">
 <h2>2.2. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>This package uses distutils, which is the default way of installing python
-modules.  The first step is to obtain the source code: we recommend
-downloading it from the
+<div class="section" id="python-package-index">
+<h3>2.2.1. Python Package Index<a class="headerlink" href="#python-package-index" title="Permalink to this headline">¶</a></h3>
+<p>The easiest way to install astroML is to use the Python Package Index <tt class="docutils literal"><span class="pre">pip</span></tt>
+command.  First make sure the <a class="reference internal" href="#astroml-dependencies"><em>dependencies</em></a>
+are fulfilled: lacking some of these may not affect installation, but it
+will affect the ability to execute code and examples.  Next, use the <tt class="docutils literal"><span class="pre">pip</span></tt>
+command to install the packages:</p>
+<div class="highlight-python"><pre>pip install astroML
+pip install astroML_addons</pre>
+</div>
+<p>(For information about <tt class="docutils literal"><span class="pre">pip</span></tt>, see <a class="reference external" href="http://pypi.python.org/pypi/pip">http://pypi.python.org/pypi/pip</a>)
+The first package is python-only, and should install easily on any system.  The
+second package requires a working C compliler.  <tt class="docutils literal"><span class="pre">astroML_addons</span></tt> provides
+optional faster implementations of some routines.</p>
+</div>
+<div class="section" id="from-source">
+<h3>2.2.2. From Source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h3>
+<p>To install the latest version from source, we recommend downloading astroML
+from the
 <a class="reference external" href="http://github.com/astroML/astroML">github repository</a> shown above.
-Additionally, you must make sure the <a class="reference internal" href="#astroml-dependencies"><em>dependencies</em></a>
+You must first make sure the <a class="reference internal" href="#astroml-dependencies"><em>dependencies</em></a>
 are filled: lacking some
 of these dependencies will not affect installation, but will affect the
 ability to execute the code and examples</p>
@@ -240,7 +267,7 @@ install the package in your home directory, use:</p>
 <div class="highlight-python"><pre>python setup.py install --prefix='/some/path'</pre>
 </div>
 <div class="section" id="core">
-<h3>2.2.1. Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
+<h4>2.2.2.1. Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h4>
 <p>The core astroML package is pure python, so the build phase is trivial.  The
 installation script is <tt class="docutils literal"><span class="pre">setup.py</span></tt>, and the code can be installed as follows:</p>
 <div class="highlight-python"><pre>python setup.py build
@@ -248,11 +275,12 @@ python setup.py install</pre>
 </div>
 </div>
 <div class="section" id="addons">
-<h3>2.2.2. Addons<a class="headerlink" href="#addons" title="Permalink to this headline">¶</a></h3>
+<h4>2.2.2.2. Addons<a class="headerlink" href="#addons" title="Permalink to this headline">¶</a></h4>
 <p>The <tt class="docutils literal"><span class="pre">astroML_addons</span></tt> package requires a working C/C++ compiler for
 installation.  It can be installed using:</p>
 <div class="highlight-python"><pre>python setup_addons.py build
 python setup_addons.py install</pre>
+</div>
 </div>
 </div>
 <div class="section" id="testing">
@@ -278,13 +306,15 @@ will list their optional dependencies at the top of the file.</p>
 (astroML does not yet support python 3.x)</li>
 <li><a class="reference external" href="http://numpy.scipy.org/">Numpy</a> &gt;= 1.4</li>
 <li><a class="reference external" href="http://www.scipy.org/">Scipy</a> &gt;= 0.7</li>
+<li><a class="reference external" href="http://scikit-learn.org/">scikit-learn</a> &gt;= 0.10</li>
 <li><a class="reference external" href="http://matplotlib.org/">matplotlib</a> &gt;= 0.99</li>
 <li><a class="reference external" href="http://www.stsci.edu/institute/software_hardware/pyfits">pyfits</a> &gt;= 3.0.
 PyFITS is a python reader for Flexible Image Transport
 System (FITS) files, based on cfitsio.  Several of the dataset loaders
 require pyfits.</li>
 </ul>
-<p>This configuration matches the Ubuntu 10.04 LTS release from April 2010.</p>
+<p>This configuration matches the Ubuntu 10.04 LTS release from April 2010,
+with the addition of scikit-learn.</p>
 <p>To run unit tests, you will also need nose &gt;= 0.10</p>
 </div>
 <div class="section" id="add-on-dependencies">

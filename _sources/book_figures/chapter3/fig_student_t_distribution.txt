@@ -3,7 +3,7 @@
 .. _book_fig_chapter3_fig_student_t_distribution:
 
 
-Example of Student's T distribution
+Example of Student's t distribution
 -----------------------------------
 
 This shows an example of Student's t distribution with various parameters.

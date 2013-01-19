@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -188,11 +194,8 @@ as well as the phased light curve of a single LINEAR object.</p>
 <img alt="../../_images/fig_LINEAR_sample_1.png" class="align-center" src="../../_images/fig_LINEAR_sample_1.png" style="width: 100%;" />
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>Downloading http://www.astro.washington.edu/users/ivezic/linear/allDataFinal/allLINEARfinal_targets.dat
-[=                                      ]  25.0kb / 1001.2kb   [==                                     ]  50.1kb / 1001.2kb   [===                                    ]  75.1kb / 1001.2kb   [====                                   ]  100.1kb / 1001.2kb   [=====                                  ]  125.2kb / 1001.2kb   [======                                 ]  150.2kb / 1001.2kb   [=======                                ]  175.2kb / 1001.2kb   [========                               ]  200.2kb / 1001.2kb   [=========                              ]  225.3kb / 1001.2kb   [==========                             ]  250.3kb / 1001.2kb   [===========                            ]  275.3kb / 1001.2kb   [============                           ]  300.4kb / 1001.2kb   [=============                          ]  325.4kb / 1001.2kb   [==============                         ]  350.4kb / 1001.2kb   [===============                        ]  375.5kb / 1001.2kb   [================                       ]  400.5kb / 1001.2kb   [=================                      ]  425.5kb / 1001.2kb   [==================                     ]  450.5kb / 1001.2kb   [===================                    ]  475.6kb / 1001.2kb   [====================                   ]  500.6kb / 1001.2kb   [=====================                  ]  525.6kb / 1001.2kb   [======================                 ]  550.7kb / 1001.2kb   [=======================                ]  575.7kb / 1001.2kb   [========================               ]  600.7kb / 1001.2kb   [=========================              ]  625.8kb / 1001.2kb   [==========================             ]  650.8kb / 1001.2kb   [===========================            ]  675.8kb / 1001.2kb   [============================           ]  700.8kb / 1001.2kb   [=============================          ]  725.9kb / 1001.2kb   [==============================         ]  750.9kb / 1001.2kb   [===============================        ]  775.9kb / 1001.2kb   [================================       ]  801.0kb / 1001.2kb   [=================================      ]  826.0kb / 1001.2kb   [==================================     ]  851.0kb / 1001.2kb   [===================================    ]  876.1kb / 1001.2kb   [====================================   ]  901.1kb / 1001.2kb   [=====================================  ]  926.1kb / 1001.2kb   [====================================== ]  951.2kb / 1001.2kb   [=======================================]  976.2kb / 1001.2kb   [========================================]  1001.2kb / 1001.2kb   [=========================================]  1001.2kb / 1001.2kb   
-Downloading http://www.astro.washington.edu/users/ivezic/linear/allDataFinal/allLINEARfinal_dat.tar.gz
-[=                                      ]  410.9kb / 16.05Mb   [==                                     ]  821.9kb / 16.05Mb   [===                                    ]  1.20Mb / 16.05Mb   [====                                   ]  1.61Mb / 16.05Mb   [=====                                  ]  2.01Mb / 16.05Mb   [======                                 ]  2.41Mb / 16.05Mb   [=======                                ]  2.81Mb / 16.05Mb   [========                               ]  3.21Mb / 16.05Mb   [=========                              ]  3.61Mb / 16.05Mb   [==========                             ]  4.01Mb / 16.05Mb   [===========                            ]  4.41Mb / 16.05Mb   [============                           ]  4.82Mb / 16.05Mb   [=============                          ]  5.22Mb / 16.05Mb   [==============                         ]  5.62Mb / 16.05Mb   [===============                        ]  6.02Mb / 16.05Mb   [================                       ]  6.42Mb / 16.05Mb   [=================                      ]  6.82Mb / 16.05Mb   [==================                     ]  7.22Mb / 16.05Mb   [===================                    ]  7.62Mb / 16.05Mb   [====================                   ]  8.03Mb / 16.05Mb   [=====================                  ]  8.43Mb / 16.05Mb   [======================                 ]  8.83Mb / 16.05Mb   [=======================                ]  9.23Mb / 16.05Mb   [========================               ]  9.63Mb / 16.05Mb   [=========================              ]  10.03Mb / 16.05Mb   [==========================             ]  10.43Mb / 16.05Mb   [===========================            ]  10.84Mb / 16.05Mb   [============================           ]  11.24Mb / 16.05Mb   [=============================          ]  11.64Mb / 16.05Mb   [==============================         ]  12.04Mb / 16.05Mb   [===============================        ]  12.44Mb / 16.05Mb   [================================       ]  12.84Mb / 16.05Mb   [=================================      ]  13.24Mb / 16.05Mb   [==================================     ]  13.64Mb / 16.05Mb   [===================================    ]  14.05Mb / 16.05Mb   [====================================   ]  14.45Mb / 16.05Mb   [=====================================  ]  14.85Mb / 16.05Mb   [====================================== ]  15.25Mb / 16.05Mb   [=======================================]  15.65Mb / 16.05Mb   [========================================]  16.05Mb / 16.05Mb   [=========================================]  16.05Mb / 16.05Mb   
-</pre>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
+</pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>

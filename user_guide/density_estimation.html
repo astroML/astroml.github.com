@@ -150,7 +150,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -177,7 +177,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -200,7 +206,7 @@ Some examples of density estimation can be found in <a class="reference internal
 done in one dimension.  Though
 seemingly simple, the effective use histograms can be surprisingly subtle.
 Consider the following two panels:</p>
-<a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_11.png" class="align-center" src="../_images/plot_bayesian_blocks_11.png" style="width: 800.0px; height: 320.0px;" /></a>
+<a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_11.png" class="align-center" src="../_images/plot_bayesian_blocks_11.png" /></a>
 <p>Though it doesn&#8217;t look like it, these two histograms show the exact same
 dataset (if you find that hard to believe, see the source code that generated
 the figure by clicking on the image).  The difference between the two is
@@ -235,7 +241,7 @@ the <tt class="docutils literal"><span class="pre">bins</span></tt> argument als
 Using one of these causes the histogram binning to be chosen using the
 rules or procedures outlined above.  The results on our data using Knuth&#8217;s
 rule and Bayesian Blocks are shown below:</p>
-<a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_21.png" class="align-center" src="../_images/plot_bayesian_blocks_21.png" style="width: 800.0px; height: 320.0px;" /></a>
+<a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_21.png" class="align-center" src="../_images/plot_bayesian_blocks_21.png" /></a>
 <p>The Knuth bins on the left do a good job of representing the underlying
 structure of the data.  The Bayesian Blocks on the right capture most of the
 same features, but notice that the lack of density variation in the

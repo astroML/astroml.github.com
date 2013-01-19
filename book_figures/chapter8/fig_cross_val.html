@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -184,17 +190,14 @@ $(document).ready(function(){
   <div class="section" id="cross-validation-examples">
 <span id="book-fig-chapter8-fig-cross-val"></span><h1>Cross Validation Examples<a class="headerlink" href="#cross-validation-examples" title="Permalink to this headline">¶</a></h1>
 <p>This figure plots diagrams used in the cross-validation discussion</p>
-<a class="horizontal reference internal image-reference" href="../../_images/fig_cross_val_3.png"><img alt="../../_images/fig_cross_val_3.png" class="horizontal" src="../../_images/fig_cross_val_3.png" style="width: 400.0px; height: 400.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/fig_cross_val_2.png"><img alt="../../_images/fig_cross_val_2.png" src="../../_images/fig_cross_val_2.png" style="width: 500.0px; height: 200.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/fig_cross_val_1.png"><img alt="../../_images/fig_cross_val_1.png" src="../../_images/fig_cross_val_1.png" style="width: 400.0px; height: 300.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/fig_cross_val_4.png"><img alt="../../_images/fig_cross_val_4.png" src="../../_images/fig_cross_val_4.png" style="width: 400.0px; height: 400.0px;" /></a>
+<a class="horizontal reference internal image-reference" href="../../_images/fig_cross_val_3.png"><img alt="../../_images/fig_cross_val_3.png" class="horizontal" src="../../_images/fig_cross_val_3.png" /></a>
+<a class="reference internal image-reference" href="../../_images/fig_cross_val_2.png"><img alt="../../_images/fig_cross_val_2.png" src="../../_images/fig_cross_val_2.png" /></a>
+<a class="reference internal image-reference" href="../../_images/fig_cross_val_1.png"><img alt="../../_images/fig_cross_val_1.png" src="../../_images/fig_cross_val_1.png" /></a>
+<a class="reference internal image-reference" href="../../_images/fig_cross_val_4.png"><img alt="../../_images/fig_cross_val_4.png" src="../../_images/fig_cross_val_4.png" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>Polyfit may be poorly conditioned
-Polyfit may be poorly conditioned
-Polyfit may be poorly conditioned
-Polyfit may be poorly conditioned
-</pre>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
+</pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
@@ -245,8 +248,8 @@ Polyfit may be poorly conditioned
         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ec</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="s">&#39;-b&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$y$&#39;</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Second figure: plot fit for several orders of polynomial</span>
@@ -267,8 +270,8 @@ Polyfit may be poorly conditioned
     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$y$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$x$&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s">&quot;d = </span><span class="si">%i</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">d</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
             <span class="n">ha</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">,</span>
             <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ec</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>

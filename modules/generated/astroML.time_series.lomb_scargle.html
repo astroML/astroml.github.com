@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -185,7 +191,7 @@ $(document).ready(function(){
 <h1>10.5.1.1. astroML.time_series.lomb_scargle<a class="headerlink" href="#astroml-time-series-lomb-scargle" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.time_series.lomb_scargle">
-<tt class="descclassname">astroML.time_series.</tt><tt class="descname">lomb_scargle</tt><big>(</big><big>)</big><a class="headerlink" href="#astroML.time_series.lomb_scargle" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">astroML.time_series.</tt><tt class="descname">lomb_scargle</tt><big>(</big><em>t</em>, <em>y</em>, <em>dy</em>, <em>omega</em>, <em>generalized=True</em>, <em>subtract_mean=True</em>, <em>significance=None</em><big>)</big><a class="headerlink" href="#astroML.time_series.lomb_scargle" title="Permalink to this definition">¶</a></dt>
 <dd><p>(Generalized) Lomb-Scargle Periodogram with Floating Mean</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -215,7 +221,7 @@ otherwise, use classic lomb-scargle.</p>
 <p><strong>subtract_mean</strong> : bool</p>
 <blockquote>
 <div><p>if True (default) subtract the sample mean from the data before
-computing the periodogram.  Only referenced if generalized is False.</p>
+computing the periodogram.  Only referenced if generalized is False</p>
 </div></blockquote>
 <p><strong>significance</strong> : None or float or ndarray</p>
 <blockquote>
@@ -238,37 +244,37 @@ to the desired significance (using the Scargle 1982 formalism)</p>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>The algorithm is based on reference <a class="reference internal" href="#r21">[R21]</a>.  The result for generalized=False
+<p>The algorithm is based on reference <a class="reference internal" href="#r18">[R18]</a>.  The result for generalized=False
 is given by equation 4 of this work, while the result for generalized=True
 is given by equation 20.</p>
 <p>Note that the normalization used in this reference is different from that
-used in other places in the literature (e.g. <a class="reference internal" href="#r22">[R22]</a>).  For a discussion of
-normalization and false-alarm probability, see <a class="reference internal" href="#r21">[R21]</a>.</p>
-<p>To recover the normalization used in Scargle <a class="reference internal" href="#r23">[R23]</a>, the results should
+used in other places in the literature (e.g. <a class="reference internal" href="#r19">[R19]</a>).  For a discussion of
+normalization and false-alarm probability, see <a class="reference internal" href="#r18">[R18]</a>.</p>
+<p>To recover the normalization used in Scargle <a class="reference internal" href="#r20">[R20]</a>, the results should
 be multiplied by (N - 1) / 2 where N is the number of data points.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r21" rules="none">
+<table class="docutils citation" frame="void" id="r18" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R21]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id5">3</a>)</em> <ol class="last upperalpha simple" start="13">
+<tr><td class="label">[R18]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id5">3</a>)</em> <ol class="last upperalpha simple" start="13">
 <li>Zechmeister and M. Kurster, A&amp;A 496, 577-584 (2009)</li>
 </ol>
 </td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r22" rules="none">
+<table class="docutils citation" frame="void" id="r19" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R22]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> <ol class="last upperalpha simple" start="23">
+<tr><td class="label">[R19]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> <ol class="last upperalpha simple" start="23">
 <li>Press et al, Numerical Recipies in C (2002)</li>
 </ol>
 </td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r23" rules="none">
+<table class="docutils citation" frame="void" id="r20" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R23]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> Scargle, J.D. 1982, ApJ 263:835-853</td></tr>
+<tr><td class="label">[R20]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> Scargle, J.D. 1982, ApJ 263:835-853</td></tr>
 </tbody>
 </table>
 </dd></dl>

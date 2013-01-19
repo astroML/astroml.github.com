@@ -28,7 +28,7 @@
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 8: Regression and Model Fitting" href="index.html" />
     <link rel="next" title="Nonlinear cosmology fit to mu vs z" href="fig_nonlinear_mu_z.html" />
-    <link rel="prev" title="Lasso Regression Diagram" href="fig_lasso_diagram.html" />
+    <link rel="prev" title="Ridge and Lasso: Geometric Interpretation" href="fig_lasso_ridge.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +105,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="fig_lasso_diagram.html" title="Lasso Regression Diagram"
+	<a href="fig_lasso_ridge.html" title="Ridge and Lasso: Geometric Interpretation"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    Lasso Regression...
+	    Ridge and Lasso:...
 	    </span>
 	    <span class="hiddenrellink">
-	    Lasso Regression Diagram
+	    Ridge and Lasso: Geometric Interpretation
 	    </span>
 	    
 	    </a>
@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -187,8 +193,8 @@ $(document).ready(function(){
 <img alt="../../_images/fig_rbf_ridge_mu_z_1.png" class="align-center" src="../../_images/fig_rbf_ridge_mu_z_1.png" style="width: 100%;" />
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>Objective did not converge, you might want to increase the number of iterations
-</pre>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
+</pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
@@ -273,12 +279,12 @@ $(document).ready(function(){
     <span class="c"># plot weights</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">234</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$z$&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">r&#39;$\theta$&#39;</span><span class="p">)</span>
         <span class="n">w</span> <span class="o">*=</span> <span class="mf">1E-12</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">r&#39;$\rm \times 10^{12}$&#39;</span><span class="p">,</span>
-                <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="s">r&#39;$\rm \times 10^{12}$&#39;</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">)</span>

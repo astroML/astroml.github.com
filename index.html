@@ -98,18 +98,25 @@ $(document).ready(function(){
     <!-- <div id="blue_tile"></div> -->
 
         <div class="sphinxsidebar">
-        <h3>Headline</h3>
-
+        <h3>News</h3>
 	<p>October 2012: astroML 0.1 has been released!  Get the source on
-	   <a href="http://github.com/astroML/astroML">Github</a></p>.
-
+	    <a href="http://github.com/astroML/astroML">Github</a></p>
+	<p>Our <a href="#citing-astroml">
+	    Introduction to astroML paper</a> received the CIDU 2012
+	  best paper award.</p>
         
 
 	
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="#citing-astroml">citing astroML</a>.</p>
+
 
         
 	<!--
@@ -158,8 +165,8 @@ shuffle ($('#banner a.external'));
 <div class="sidebar">
 <p class="first sidebar-title">Download</p>
 <ul class="last simple">
-<li>Source code: <a class="reference external" href="https://github.com/astroML/astroML">github</a></li>
-<li>Source tarball: <a class="reference download internal" href="_downloads/astroML_0.1.tgz"><tt class="xref download docutils literal"><span class="pre">astroML_0.1.tgz</span></tt></a></li>
+<li>Released Versions: <a class="reference external" href="http://pypi.python.org/pypi/astroML/">Python Package Index</a></li>
+<li>Bleeding-edge Source: <a class="reference external" href="https://github.com/astroML/astroML">github</a></li>
 </ul>
 </div>
 <p>AstroML is a Python module for machine learning and data mining built on
@@ -315,9 +322,53 @@ to be published in early 2013.</p>
 <li class="toctree-l2"><a class="reference internal" href="development/contribution.html#add-on-code">2.4. Add-on code</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="development/authors.html">3. Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/authors.html">3. Authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development/authors.html#package-author">3.1. Package Author</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development/authors.html#code-contribution">3.2. Code Contribution</a></li>
+</ul>
+</li>
 </ul>
 </div>
+</div>
+<div class="section" id="citing-astroml">
+<span id="id1"></span><h2>Citing astroML<a class="headerlink" href="#citing-astroml" title="Permalink to this headline">¶</a></h2>
+<p>If you make use of any of these datasets, tools, or examples in a scientific
+publication, please consider citing astroML.  You may reference the following
+paper:</p>
+<ul>
+<li><p class="first"><a class="reference external" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?tp=&amp;arnumber=6382200">Introduction to astroML: Machine learning for astrophysics</a>,
+Vanderplas <em>et al</em>, proc. of CIDU, pp. 47-54, 2012.</p>
+<p><strong>Recipient of the best paper award for CIDU 2012</strong></p>
+<p>Bibtex entry:</p>
+<div class="highlight-python"><pre>@INPROCEEDINGS{astroML,
+ author={{Vanderplas}, J.T. and {Connolly}, A.J.
+         and {Ivezi{\'c}}, {\v Z}. and {Gray}, A.},
+ booktitle={Conference on Intelligent Data Understanding (CIDU)},
+ title={Introduction to astroML: Machine learning for astrophysics},
+ month={oct.},
+ pages={47 -54},
+ doi={10.1109/CIDU.2012.6382200},
+ year={2012}
+}</pre>
+</div>
+</li>
+</ul>
+<p>You may also reference the accompanying textbook:</p>
+<ul>
+<li><p class="first">Statistics, Data Mining, and Machine Learning for Astronomy,
+Ivezic <em>et al</em>, 2013</p>
+<p>Bibtex entry:</p>
+<div class="highlight-python"><pre>@BOOK{astroMLText,
+ title={Statistics, Data Mining and Machine Learning in Astronomy},
+ author={{Ivezi{\'c}}, {\v Z}. and {Connolly}, A.J.
+         and {Vanderplas}, J.T. and {Gray}, A.},
+ publisher={Princeton University Press},
+ location={Princeton, NJ},
+ year={2013}
+}</pre>
+</div>
+</li>
+</ul>
 </div>
 </div>
 

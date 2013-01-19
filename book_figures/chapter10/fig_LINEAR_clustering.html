@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -183,13 +189,11 @@ $(document).ready(function(){
             
   <div class="section" id="clustering-of-linear-data">
 <span id="book-fig-chapter10-fig-linear-clustering"></span><h1>Clustering of LINEAR data<a class="headerlink" href="#clustering-of-linear-data" title="Permalink to this headline">¶</a></h1>
-<a class="horizontal reference internal image-reference" href="../../_images/fig_LINEAR_clustering_2.png"><img alt="../../_images/fig_LINEAR_clustering_2.png" class="horizontal" src="../../_images/fig_LINEAR_clustering_2.png" style="width: 400.0px; height: 400.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/fig_LINEAR_clustering_1.png"><img alt="../../_images/fig_LINEAR_clustering_1.png" src="../../_images/fig_LINEAR_clustering_1.png" style="width: 400.0px; height: 400.0px;" /></a>
+<a class="horizontal reference internal image-reference" href="../../_images/fig_LINEAR_clustering_2.png"><img alt="../../_images/fig_LINEAR_clustering_2.png" class="horizontal" src="../../_images/fig_LINEAR_clustering_2.png" /></a>
+<a class="reference internal image-reference" href="../../_images/fig_LINEAR_clustering_1.png"><img alt="../../_images/fig_LINEAR_clustering_1.png" src="../../_images/fig_LINEAR_clustering_1.png" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>Downloading http://www.astro.washington.edu/users/ivezic/DMbook/data/LINEARattributes.dat
-[=                                      ]  14.8kb / 591.2kb   [==                                     ]  29.6kb / 591.2kb   [===                                    ]  44.3kb / 591.2kb   [====                                   ]  59.1kb / 591.2kb   [=====                                  ]  73.9kb / 591.2kb   [======                                 ]  88.7kb / 591.2kb   [=======                                ]  103.5kb / 591.2kb   [========                               ]  118.2kb / 591.2kb   [=========                              ]  133.0kb / 591.2kb   [==========                             ]  147.8kb / 591.2kb   [===========                            ]  162.6kb / 591.2kb   [============                           ]  177.4kb / 591.2kb   [=============                          ]  192.1kb / 591.2kb   [==============                         ]  206.9kb / 591.2kb   [===============                        ]  221.7kb / 591.2kb   [================                       ]  236.5kb / 591.2kb   [=================                      ]  251.3kb / 591.2kb   [==================                     ]  266.0kb / 591.2kb   [===================                    ]  280.8kb / 591.2kb   [====================                   ]  295.6kb / 591.2kb   [=====================                  ]  310.4kb / 591.2kb   [======================                 ]  325.2kb / 591.2kb   [=======================                ]  339.9kb / 591.2kb   [========================               ]  354.7kb / 591.2kb   [=========================              ]  369.5kb / 591.2kb   [==========================             ]  384.3kb / 591.2kb   [===========================            ]  399.1kb / 591.2kb   [============================           ]  413.8kb / 591.2kb   [=============================          ]  428.6kb / 591.2kb   [==============================         ]  443.4kb / 591.2kb   [===============================        ]  458.2kb / 591.2kb   [================================       ]  473.0kb / 591.2kb   [=================================      ]  487.7kb / 591.2kb   [==================================     ]  502.5kb / 591.2kb   [===================================    ]  517.3kb / 591.2kb   [====================================   ]  532.1kb / 591.2kb   [=====================================  ]  546.9kb / 591.2kb   [====================================== ]  561.7kb / 591.2kb   [=======================================]  576.4kb / 591.2kb   [========================================]  591.2kb / 591.2kb   [=========================================]  591.2kb / 591.2kb   
-@pickle_results: using precomputed results from 'LINEAR_clustering.pkl'
+<div class="toggle_container"><div class="highlight-python"><pre>@pickle_results: using precomputed results from 'LINEAR_clustering.pkl'
 \begin{tabular}{|l|lllllll|}
    \hline
    &amp; $u-g$    &amp; $g-i$    &amp; $i-K$    &amp; $J-K$    &amp; $\log(P)$    &amp; amplitude    &amp; skew \\

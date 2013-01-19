@@ -154,7 +154,7 @@ $(document).ready(function(){
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
         
 
 	
@@ -169,7 +169,13 @@ $(document).ready(function(){
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a>.</p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+
 
         
 
@@ -184,15 +190,12 @@ $(document).ready(function(){
   <div class="section" id="nasa-sloan-atlas">
 <span id="example-datasets-plot-nasa-atlas"></span><h1>NASA Sloan Atlas<a class="headerlink" href="#nasa-sloan-atlas" title="Permalink to this headline">¶</a></h1>
 <p>This shows some visualizations of the data from the NASA SDSS Atlas</p>
-<a class="horizontal reference internal image-reference" href="../../_images/plot_nasa_atlas_1.png"><img alt="../../_images/plot_nasa_atlas_1.png" class="horizontal" src="../../_images/plot_nasa_atlas_1.png" style="width: 400.0px; height: 300.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/plot_nasa_atlas_3.png"><img alt="../../_images/plot_nasa_atlas_3.png" src="../../_images/plot_nasa_atlas_3.png" style="width: 400.0px; height: 300.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/plot_nasa_atlas_2.png"><img alt="../../_images/plot_nasa_atlas_2.png" src="../../_images/plot_nasa_atlas_2.png" style="width: 400.0px; height: 300.0px;" /></a>
+<a class="horizontal reference internal image-reference" href="../../_images/plot_nasa_atlas_1.png"><img alt="../../_images/plot_nasa_atlas_1.png" class="horizontal" src="../../_images/plot_nasa_atlas_1.png" /></a>
+<a class="reference internal image-reference" href="../../_images/plot_nasa_atlas_3.png"><img alt="../../_images/plot_nasa_atlas_3.png" src="../../_images/plot_nasa_atlas_3.png" /></a>
+<a class="reference internal image-reference" href="../../_images/plot_nasa_atlas_2.png"><img alt="../../_images/plot_nasa_atlas_2.png" src="../../_images/plot_nasa_atlas_2.png" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>downloading NASA atlas data from http://www.astro.washington.edu/users/ivezic/DMbook/nsa_v0_1_2_reduced.npy to /home/vanderplas/astroML_data
-Downloading http://www.astro.washington.edu/users/ivezic/DMbook/nsa_v0_1_2_reduced.npy
-[=                                      ]  1.18Mb / 47.07Mb   [==                                     ]  2.35Mb / 47.07Mb   [===                                    ]  3.53Mb / 47.07Mb   [====                                   ]  4.71Mb / 47.07Mb   [=====                                  ]  5.88Mb / 47.07Mb   [======                                 ]  7.06Mb / 47.07Mb   [=======                                ]  8.24Mb / 47.07Mb   [========                               ]  9.41Mb / 47.07Mb   [=========                              ]  10.59Mb / 47.07Mb   [==========                             ]  11.77Mb / 47.07Mb   [===========                            ]  12.94Mb / 47.07Mb   [============                           ]  14.12Mb / 47.07Mb   [=============                          ]  15.30Mb / 47.07Mb   [==============                         ]  16.47Mb / 47.07Mb   [===============                        ]  17.65Mb / 47.07Mb   [================                       ]  18.83Mb / 47.07Mb   [=================                      ]  20.00Mb / 47.07Mb   [==================                     ]  21.18Mb / 47.07Mb   [===================                    ]  22.36Mb / 47.07Mb   [====================                   ]  23.53Mb / 47.07Mb   [=====================                  ]  24.71Mb / 47.07Mb   [======================                 ]  25.89Mb / 47.07Mb   [=======================                ]  27.06Mb / 47.07Mb   [========================               ]  28.24Mb / 47.07Mb   [=========================              ]  29.42Mb / 47.07Mb   [==========================             ]  30.59Mb / 47.07Mb   [===========================            ]  31.77Mb / 47.07Mb   [============================           ]  32.95Mb / 47.07Mb   [=============================          ]  34.12Mb / 47.07Mb   [==============================         ]  35.30Mb / 47.07Mb   [===============================        ]  36.48Mb / 47.07Mb   [================================       ]  37.65Mb / 47.07Mb   [=================================      ]  38.83Mb / 47.07Mb   [==================================     ]  40.01Mb / 47.07Mb   [===================================    ]  41.18Mb / 47.07Mb   [====================================   ]  42.36Mb / 47.07Mb   [=====================================  ]  43.54Mb / 47.07Mb   [====================================== ]  44.71Mb / 47.07Mb   [=======================================]  45.89Mb / 47.07Mb   [========================================]  47.07Mb / 47.07Mb   [=========================================]  47.07Mb / 47.07Mb   
-Optimization terminated successfully.
+<div class="toggle_container"><div class="highlight-python"><pre>Optimization terminated successfully.
          Current function value: -30227.574882
          Iterations: 18
          Function evaluations: 50

@@ -66,13 +66,11 @@ datasets available in astroML, and some strategies for data visualization.
 
    ./fig_moving_objects_multicolor
 
-   ./fig_projections
+   ./fig_mercator
 
    ./fig_projections
 
-   ./fig_healpix_pixels
-
-   ./fig_wmap_healpix
+   ./fig_healpix_ex
 
 
 
@@ -136,25 +134,20 @@ datasets available in astroML, and some strategies for data visualization.
 
     :ref:`book_fig_chapter1_fig_moving_objects_multicolor`
 
+.. figure:: ./../images/chapter1/fig_mercator_1_thumb.png
+    :target: ./fig_mercator.html
+
+    :ref:`book_fig_chapter1_fig_mercator`
+
 .. figure:: ./../images/chapter1/fig_projections_1_thumb.png
     :target: ./fig_projections.html
 
     :ref:`book_fig_chapter1_fig_projections`
 
-.. figure:: ./../images/chapter1/fig_projections_1_thumb.png
-    :target: ./fig_projections.html
+.. figure:: ./../images/chapter1/fig_healpix_ex_1_thumb.png
+    :target: ./fig_healpix_ex.html
 
-    :ref:`book_fig_chapter1_fig_projections`
-
-.. figure:: ./../images/chapter1/fig_healpix_pixels_1_thumb.png
-    :target: ./fig_healpix_pixels.html
-
-    :ref:`book_fig_chapter1_fig_healpix_pixels`
-
-.. figure:: ./../images/chapter1/fig_wmap_healpix_1_thumb.png
-    :target: ./fig_wmap_healpix.html
-
-    :ref:`book_fig_chapter1_fig_wmap_healpix`
+    :ref:`book_fig_chapter1_fig_healpix_ex`
 
 
 
