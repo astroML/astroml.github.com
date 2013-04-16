@@ -15,12 +15,12 @@ underlying non-noisy distribution.
 .. rst-class:: horizontal
 
 
-.. image:: ../images/chapter6/fig_stellar_XD_2.png
+.. image:: ../images/chapter6/fig_stellar_XD_1.png
     :scale: 50
 
 
 
-.. image:: ../images/chapter6/fig_stellar_XD_1.png
+.. image:: ../images/chapter6/fig_stellar_XD_2.png
     :scale: 50
 
 

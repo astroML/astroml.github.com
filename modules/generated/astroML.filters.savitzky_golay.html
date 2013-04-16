@@ -170,6 +170,9 @@ $(document).ready(function(){
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
 	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+	
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
 
 
     <h3>Citing</h3>
@@ -193,7 +196,7 @@ $(document).ready(function(){
 <dt id="astroML.filters.savitzky_golay">
 <tt class="descclassname">astroML.filters.</tt><tt class="descname">savitzky_golay</tt><big>(</big><em>y</em>, <em>window_size</em>, <em>order</em>, <em>deriv=0</em>, <em>use_fft=True</em><big>)</big><a class="reference internal" href="../../_modules/astroML/filters.html#savitzky_golay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.filters.savitzky_golay" title="Permalink to this definition">¶</a></dt>
 <dd><p>Smooth (and optionally differentiate) data with a Savitzky-Golay filter</p>
-<p>This implementation is based on <a class="reference internal" href="#r13">[R13]</a>.</p>
+<p>This implementation is based on <a class="reference internal" href="#r16">[R16]</a>.</p>
 <p>The Savitzky-Golay filter removes high frequency noise from data.
 It has the advantage of preserving the original shape and
 features of the signal better than other types of filtering
@@ -241,24 +244,24 @@ approach is to make for each point a least-square fit with a
 polynomial of high order over a odd-sized window centered at
 the point.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r13" rules="none">
+<table class="docutils citation" frame="void" id="r16" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R13]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> <a class="reference external" href="http://www.scipy.org/Cookbook/SavitzkyGolay">http://www.scipy.org/Cookbook/SavitzkyGolay</a></td></tr>
+<tr><td class="label">[R16]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> <a class="reference external" href="http://www.scipy.org/Cookbook/SavitzkyGolay">http://www.scipy.org/Cookbook/SavitzkyGolay</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r14" rules="none">
+<table class="docutils citation" frame="void" id="r17" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[R14]</a></td><td>A. Savitzky, M. J. E. Golay, Smoothing and Differentiation of
+<tr><td class="label"><a class="fn-backref" href="#id3">[R17]</a></td><td>A. Savitzky, M. J. E. Golay, Smoothing and Differentiation of
 Data by Simplified Least Squares Procedures. Analytical
 Chemistry, 1964, 36 (8), pp 1627-1639.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r15" rules="none">
+<table class="docutils citation" frame="void" id="r18" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[R15]</a></td><td>Numerical Recipes 3rd Edition: The Art of Scientific Computing
+<tr><td class="label"><a class="fn-backref" href="#id4">[R18]</a></td><td>Numerical Recipes 3rd Edition: The Art of Scientific Computing
 W.H. Press, S.A. Teukolsky, W.T. Vetterling, B.P. Flannery
 Cambridge University Press ISBN-13: 9780521880688</td></tr>
 </tbody>

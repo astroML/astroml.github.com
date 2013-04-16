@@ -235,6 +235,8 @@ and finishes with some examples of computing statistics in this manner.
 
 
 
+
+
 .. raw:: html
 
     <div style="clear: both"></div>

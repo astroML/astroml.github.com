@@ -170,6 +170,9 @@ $(document).ready(function(){
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
 	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+	
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
 
 
     <h3>Citing</h3>
@@ -244,8 +247,7 @@ contamination [[ 0.76388889  0.53703704  0.44347826  0.41732283]
     <span class="n">classifiers</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
     <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
     <span class="k">for</span> <span class="n">nc</span> <span class="ow">in</span> <span class="n">Ncolors</span><span class="p">:</span>
-        <span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
-                                   <span class="n">warn_on_equidistant</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
         <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">])</span>
 

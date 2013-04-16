@@ -27,8 +27,8 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Data set Examples" href="index.html" />
-    <link rel="next" title="SDSS Standard Star catalog" href="plot_sdss_S82standards.html" />
-    <link rel="prev" title="SDSS Galaxy Colors" href="plot_sdss_galaxy_colors.html" />
+    <link rel="next" title="Corrected Spectra" href="plot_corrected_spectra.html" />
+    <link rel="prev" title="Data set Examples" href="index.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +105,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="plot_sdss_galaxy_colors.html" title="SDSS Galaxy Colors"
+	<a href="index.html" title="Data set Examples"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    SDSS Galaxy Colo...
+	    Data set Example...
 	    </span>
 	    <span class="hiddenrellink">
-	    SDSS Galaxy Colors
+	    Data set Examples
 	    </span>
 	    
 	    </a>
@@ -122,14 +122,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="plot_sdss_S82standards.html" title="SDSS Standard Star catalog"
+	<a href="plot_corrected_spectra.html" title="Corrected Spectra"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    SDSS Standard St...
+	    Corrected Spectr...
 	    </span>
 	    <span class="hiddenrellink">
-	    SDSS Standard Star catalog
+	    Corrected Spectra
 	    </span>
 	    
 	    </a>
@@ -170,6 +170,9 @@ $(document).ready(function(){
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
 	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+	
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
 
 
     <h3>Citing</h3>
@@ -205,6 +208,7 @@ a long time to run (~30 minutes for 4000 spectra).</p>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">urllib2</span> <span class="kn">import</span> <span class="n">HTTPError</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_spectrum</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets.tools</span> <span class="kn">import</span> <span class="n">query_plate_mjd_fiber</span><span class="p">,</span> <span class="n">TARGET_GALAXY</span>
@@ -253,9 +257,10 @@ a long time to run (~30 minutes for 4000 spectra).</p>
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">spec</span> <span class="o">=</span> <span class="n">fetch_sdss_spectrum</span><span class="p">(</span><span class="n">plate</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mjd</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fiber</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="k">except</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">HTTPError</span><span class="p">:</span>
             <span class="n">num_skipped</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">print</span> <span class="s">&quot;</span><span class="si">%i</span><span class="s">, </span><span class="si">%i</span><span class="s">, </span><span class="si">%i</span><span class="s"> not found&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">plate</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mjd</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fiber</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">continue</span>
 
         <span class="n">spec_rebin</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">restframe</span><span class="p">()</span><span class="o">.</span><span class="n">rebin</span><span class="p">(</span><span class="n">new_coeff0</span><span class="p">,</span> <span class="n">new_coeff1</span><span class="p">,</span> <span class="n">Nlam</span><span class="p">)</span>

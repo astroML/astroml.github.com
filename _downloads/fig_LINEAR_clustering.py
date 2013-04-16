@@ -83,9 +83,15 @@ for i in range(2):
     size = np.array([np.linalg.det(C) for C in clf.covars_])
     weights = clf.weights_
     density = counts * 1. / weights / size
+
+    # Clusters with very few points are less interesting:
+    # set their density to zero so they'll go to the end of the list
+    density[counts < 5] = 0
     isort = np.argsort(density)[::-1]
 
-    # find statistics of the top 5 clusters
+    # find statistics of the top 6 clusters
+    Nclusters = 6
+
     means = []
     stdevs = []
     counts = []
@@ -93,7 +99,7 @@ for i in range(2):
     names = data.dtype.names[2:]
     i_logP = names.index('logP')
 
-    for j in range(5):
+    for j in range(Nclusters):
         flag = (c == isort[j])
         counts.append(np.sum(flag))
         means.append([np.mean(data[n][flag]) for n in names])
@@ -106,7 +112,7 @@ for i in range(2):
     # define colors based on median of logP
     j_ordered = np.argsort(means[:, i_logP])[::-1]
     color = np.zeros(c.shape)
-    for j in range(5):
+    for j in range(Nclusters):
         flag = (c == isort[j_ordered[j]])
         color[flag] = j + 1
 
@@ -153,7 +159,7 @@ for i in range(2):
     print r"\\"
     print r"   \hline"
 
-    for j in range(5):
+    for j in range(Nclusters):
         print "   %i " % (j + 1),
         for k in range(len(names)):
             print " & $%.2f \pm %.2f$ " % (means[j, k], stdevs[j, k]),

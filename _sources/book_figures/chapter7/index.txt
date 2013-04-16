@@ -116,6 +116,8 @@ PCA, NMF, and ICA, to nonlinear methods such as LLE and Isomap.
 
 
 
+
+
 .. raw:: html
 
     <div style="clear: both"></div>

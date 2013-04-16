@@ -12,7 +12,7 @@ This figure plots diagrams used in the cross-validation discussion
 .. rst-class:: horizontal
 
 
-.. image:: ../images/chapter8/fig_cross_val_3.png
+.. image:: ../images/chapter8/fig_cross_val_1.png
     :scale: 50
 
 
@@ -22,7 +22,7 @@ This figure plots diagrams used in the cross-validation discussion
 
 
 
-.. image:: ../images/chapter8/fig_cross_val_1.png
+.. image:: ../images/chapter8/fig_cross_val_3.png
     :scale: 50
 
 

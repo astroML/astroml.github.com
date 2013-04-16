@@ -11,12 +11,12 @@ Clustering of LINEAR data
 .. rst-class:: horizontal
 
 
-.. image:: ../images/chapter10/fig_LINEAR_clustering_2.png
+.. image:: ../images/chapter10/fig_LINEAR_clustering_1.png
     :scale: 50
 
 
 
-.. image:: ../images/chapter10/fig_LINEAR_clustering_1.png
+.. image:: ../images/chapter10/fig_LINEAR_clustering_2.png
     :scale: 50
 
 

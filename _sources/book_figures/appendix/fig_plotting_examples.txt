@@ -18,17 +18,17 @@ This file generates the example plots from the Appendix
 
 
 
-.. image:: ../images/appendix/fig_plotting_examples_4.png
-    :scale: 50
-
-
-
 .. image:: ../images/appendix/fig_plotting_examples_2.png
     :scale: 50
 
 
 
 .. image:: ../images/appendix/fig_plotting_examples_3.png
+    :scale: 50
+
+
+
+.. image:: ../images/appendix/fig_plotting_examples_4.png
     :scale: 50
 
 

@@ -43,28 +43,30 @@ see the :ref:`figures <book_fig_root>` from the textbook.
 .. toctree::
    :hidden:
 
-   ./plot_crossmatch
-
    ./plot_bayesian_blocks
+
+   ./plot_crossmatch
 
    ./plot_spectrum_sum_of_norms
 
 
-
-.. figure:: ./../images/algorithms/plot_crossmatch_1_thumb.png
-    :target: ./plot_crossmatch.html
-
-    :ref:`example_algorithms_plot_crossmatch`
 
 .. figure:: ./../images/algorithms/plot_bayesian_blocks_1_thumb.png
     :target: ./plot_bayesian_blocks.html
 
     :ref:`example_algorithms_plot_bayesian_blocks`
 
+.. figure:: ./../images/algorithms/plot_crossmatch_1_thumb.png
+    :target: ./plot_crossmatch.html
+
+    :ref:`example_algorithms_plot_crossmatch`
+
 .. figure:: ./../images/algorithms/plot_spectrum_sum_of_norms_1_thumb.png
     :target: ./plot_spectrum_sum_of_norms.html
 
     :ref:`example_algorithms_plot_spectrum_sum_of_norms`
+
+
 
 
 

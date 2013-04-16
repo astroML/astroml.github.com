@@ -170,6 +170,9 @@ $(document).ready(function(){
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
 	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+	
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
 
 
     <h3>Citing</h3>
@@ -189,8 +192,8 @@ $(document).ready(function(){
             
   <div class="section" id="clustering-of-linear-data">
 <span id="book-fig-chapter10-fig-linear-clustering"></span><h1>Clustering of LINEAR data<a class="headerlink" href="#clustering-of-linear-data" title="Permalink to this headline">¶</a></h1>
-<a class="horizontal reference internal image-reference" href="../../_images/fig_LINEAR_clustering_2.png"><img alt="../../_images/fig_LINEAR_clustering_2.png" class="horizontal" src="../../_images/fig_LINEAR_clustering_2.png" /></a>
-<a class="reference internal image-reference" href="../../_images/fig_LINEAR_clustering_1.png"><img alt="../../_images/fig_LINEAR_clustering_1.png" src="../../_images/fig_LINEAR_clustering_1.png" /></a>
+<a class="horizontal reference internal image-reference" href="../../_images/fig_LINEAR_clustering_1.png"><img alt="../../_images/fig_LINEAR_clustering_1.png" class="horizontal" src="../../_images/fig_LINEAR_clustering_1.png" /></a>
+<a class="reference internal image-reference" href="../../_images/fig_LINEAR_clustering_2.png"><img alt="../../_images/fig_LINEAR_clustering_2.png" src="../../_images/fig_LINEAR_clustering_2.png" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><pre>@pickle_results: using precomputed results from 'LINEAR_clustering.pkl'
@@ -198,22 +201,24 @@ $(document).ready(function(){
    \hline
    &amp; $u-g$    &amp; $g-i$    &amp; $i-K$    &amp; $J-K$    &amp; $\log(P)$    &amp; amplitude    &amp; skew \\
    \hline
-   1   &amp; $1.19 \pm 0.10$   &amp; $0.35 \pm 0.08$   &amp; $1.20 \pm 0.21$   &amp; $0.32 \pm 0.17$   &amp; $-0.24 \pm 0.06$   &amp; $0.67 \pm 0.19$   &amp; $-0.15 \pm 1.17$  \\
-   2   &amp; $1.22 \pm 0.09$   &amp; $0.07 \pm 0.13$   &amp; $0.95 \pm 0.23$   &amp; $0.25 \pm 0.15$   &amp; $-0.49 \pm 0.06$   &amp; $0.45 \pm 0.12$   &amp; $0.32 \pm 1.13$  \\
-   3   &amp; $1.08 \pm 0.20$   &amp; $0.03 \pm 0.12$   &amp; $0.87 \pm 0.38$   &amp; $0.22 \pm 0.18$   &amp; $-1.20 \pm 0.08$   &amp; $0.46 \pm 0.23$   &amp; $0.17 \pm 1.89$  \\
-   4   &amp; $1.23 \pm 0.13$   &amp; $0.01 \pm 0.14$   &amp; $0.94 \pm 0.34$   &amp; $0.31 \pm 0.18$   &amp; $-0.25 \pm 0.06$   &amp; $0.71 \pm 0.18$   &amp; $-0.31 \pm 0.81$  \\
-   5   &amp; $1.53 \pm 0.36$   &amp; $0.82 \pm 0.31$   &amp; $1.58 \pm 0.39$   &amp; $0.52 \pm 0.15$   &amp; $-0.83 \pm 0.07$   &amp; $0.54 \pm 0.29$   &amp; $0.83 \pm 1.02$  \\
+   1   &amp; $1.15 \pm 0.08$   &amp; $0.29 \pm 0.06$   &amp; $1.14 \pm 0.20$   &amp; $0.30 \pm 0.15$   &amp; $-0.24 \pm 0.06$   &amp; $0.67 \pm 0.19$   &amp; $-0.18 \pm 1.07$  \\
+   2   &amp; $1.18 \pm 0.11$   &amp; $-0.00 \pm 0.12$   &amp; $0.94 \pm 0.37$   &amp; $0.24 \pm 0.16$   &amp; $-0.48 \pm 0.05$   &amp; $0.43 \pm 0.10$   &amp; $0.34 \pm 1.06$  \\
+   3   &amp; $1.08 \pm 0.05$   &amp; $-0.03 \pm 0.10$   &amp; $0.78 \pm 0.17$   &amp; $0.19 \pm 0.17$   &amp; $-1.20 \pm 0.08$   &amp; $-3.59 \pm 19.68$   &amp; $0.18 \pm 1.89$  \\
+   4   &amp; $1.25 \pm 0.23$   &amp; $0.58 \pm 0.13$   &amp; $1.35 \pm 0.30$   &amp; $0.42 \pm 0.12$   &amp; $-0.50 \pm 0.06$   &amp; $0.47 \pm 0.13$   &amp; $0.82 \pm 1.04$  \\
+   5   &amp; $1.19 \pm 0.08$   &amp; $-0.02 \pm 0.15$   &amp; $0.88 \pm 0.28$   &amp; $0.29 \pm 0.17$   &amp; $-0.24 \pm 0.06$   &amp; $0.70 \pm 0.19$   &amp; $-0.24 \pm 0.92$  \\
+   6   &amp; $1.79 \pm 0.31$   &amp; $1.04 \pm 0.21$   &amp; $1.77 \pm 0.32$   &amp; $0.61 \pm 0.10$   &amp; $-0.57 \pm 0.05$   &amp; $0.54 \pm 0.15$   &amp; $0.92 \pm 1.02$  \\
 \hline
 \end{tabular}
 \begin{tabular}{|l|lllllll|}
    \hline
    &amp; $u-g$    &amp; $g-i$    &amp; $i-K$    &amp; $J-K$    &amp; $\log(P)$    &amp; amplitude    &amp; skew \\
    \hline
-   1   &amp; $1.22 \pm 0.05$   &amp; $0.06 \pm 0.12$   &amp; $0.94 \pm 0.19$   &amp; $0.24 \pm 0.14$   &amp; $-0.48 \pm 0.06$   &amp; $0.43 \pm 0.07$   &amp; $0.01 \pm 0.28$  \\
-   2   &amp; $1.20 \pm 0.05$   &amp; $0.35 \pm 0.07$   &amp; $1.20 \pm 0.17$   &amp; $0.31 \pm 0.16$   &amp; $-0.24 \pm 0.06$   &amp; $0.70 \pm 0.18$   &amp; $-0.46 \pm 0.35$  \\
-   3   &amp; $1.24 \pm 0.05$   &amp; $0.06 \pm 0.14$   &amp; $0.89 \pm 0.21$   &amp; $0.31 \pm 0.17$   &amp; $-0.24 \pm 0.05$   &amp; $0.70 \pm 0.18$   &amp; $-0.43 \pm 0.38$  \\
-   4   &amp; $1.55 \pm 0.35$   &amp; $0.85 \pm 0.28$   &amp; $1.56 \pm 0.35$   &amp; $0.52 \pm 0.14$   &amp; $-0.83 \pm 0.07$   &amp; $0.51 \pm 0.14$   &amp; $0.63 \pm 0.30$  \\
-   5   &amp; $1.66 \pm 0.40$   &amp; $0.91 \pm 0.30$   &amp; $1.55 \pm 0.33$   &amp; $0.59 \pm 0.28$   &amp; $-0.91 \pm 0.00$   &amp; $1.78 \pm 0.69$   &amp; $0.28 \pm 0.06$  \\
+   1   &amp; $1.19 \pm 0.05$   &amp; $0.00 \pm 0.12$   &amp; $0.88 \pm 0.18$   &amp; $0.23 \pm 0.14$   &amp; $-0.47 \pm 0.06$   &amp; $0.43 \pm 0.07$   &amp; $-0.00 \pm 0.26$  \\
+   2   &amp; $1.16 \pm 0.04$   &amp; $0.30 \pm 0.05$   &amp; $1.15 \pm 0.17$   &amp; $0.29 \pm 0.15$   &amp; $-0.24 \pm 0.05$   &amp; $0.69 \pm 0.17$   &amp; $-0.45 \pm 0.37$  \\
+   3   &amp; $1.20 \pm 0.05$   &amp; $0.01 \pm 0.14$   &amp; $0.84 \pm 0.22$   &amp; $0.30 \pm 0.17$   &amp; $-0.24 \pm 0.05$   &amp; $0.71 \pm 0.18$   &amp; $-0.44 \pm 0.37$  \\
+   4   &amp; $1.50 \pm 0.33$   &amp; $0.78 \pm 0.26$   &amp; $1.49 \pm 0.33$   &amp; $0.50 \pm 0.14$   &amp; $-0.53 \pm 0.07$   &amp; $0.51 \pm 0.13$   &amp; $0.63 \pm 0.28$  \\
+   5   &amp; $1.09 \pm 0.09$   &amp; $0.09 \pm 0.25$   &amp; $1.01 \pm 0.32$   &amp; $0.23 \pm 0.11$   &amp; $-0.35 \pm 0.14$   &amp; $0.40 \pm 0.06$   &amp; $0.86 \pm 0.63$  \\
+   6   &amp; $1.13 \pm 0.08$   &amp; $-0.01 \pm 0.13$   &amp; $0.88 \pm 0.26$   &amp; $0.31 \pm 0.29$   &amp; $-0.84 \pm 0.44$   &amp; $0.48 \pm 0.12$   &amp; $0.12 \pm 0.84$  \\
 \hline
 \end{tabular}
 </pre>
@@ -302,9 +307,15 @@ $(document).ready(function(){
     <span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">clf</span><span class="o">.</span><span class="n">covars_</span><span class="p">])</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">weights_</span>
     <span class="n">density</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">size</span>
+
+    <span class="c"># Clusters with very few points are less interesting:</span>
+    <span class="c"># set their density to zero so they&#39;ll go to the end of the list</span>
+    <span class="n">density</span><span class="p">[</span><span class="n">counts</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">isort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">density</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="c"># find statistics of the top 5 clusters</span>
+    <span class="c"># find statistics of the top 6 clusters</span>
+    <span class="n">Nclusters</span> <span class="o">=</span> <span class="mi">6</span>
+
     <span class="n">means</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">stdevs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
@@ -312,7 +323,7 @@ $(document).ready(function(){
     <span class="n">names</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
     <span class="n">i_logP</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;logP&#39;</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nclusters</span><span class="p">):</span>
         <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">isort</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
         <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
         <span class="n">means</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">flag</span><span class="p">])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">])</span>
@@ -325,7 +336,7 @@ $(document).ready(function(){
     <span class="c"># define colors based on median of logP</span>
     <span class="n">j_ordered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">means</span><span class="p">[:,</span> <span class="n">i_logP</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nclusters</span><span class="p">):</span>
         <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">isort</span><span class="p">[</span><span class="n">j_ordered</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span>
         <span class="n">color</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
 
@@ -372,7 +383,7 @@ $(document).ready(function(){
     <span class="k">print</span> <span class="s">r&quot;</span><span class="se">\\</span><span class="s">&quot;</span>
     <span class="k">print</span> <span class="s">r&quot;   \hline&quot;</span>
 
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nclusters</span><span class="p">):</span>
         <span class="k">print</span> <span class="s">&quot;   </span><span class="si">%i</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
             <span class="k">print</span> <span class="s">&quot; &amp; $</span><span class="si">%.2f</span><span class="s"> \pm </span><span class="si">%.2f</span><span class="s">$ &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">means</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">],</span> <span class="n">stdevs</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]),</span>

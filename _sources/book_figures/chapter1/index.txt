@@ -151,6 +151,8 @@ datasets available in astroML, and some strategies for data visualization.
 
 
 
+
+
 .. raw:: html
 
     <div style="clear: both"></div>

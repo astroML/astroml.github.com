@@ -13,12 +13,12 @@ standard stars, both alone and with the cross-matched 2MASS colors.
 .. rst-class:: horizontal
 
 
-.. image:: ../images/datasets/plot_sdss_S82standards_2.png
+.. image:: ../images/datasets/plot_sdss_S82standards_1.png
     :scale: 50
 
 
 
-.. image:: ../images/datasets/plot_sdss_S82standards_1.png
+.. image:: ../images/datasets/plot_sdss_S82standards_2.png
     :scale: 50
 
 

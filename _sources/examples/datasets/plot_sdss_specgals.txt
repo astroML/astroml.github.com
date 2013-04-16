@@ -13,7 +13,7 @@ sample.
 .. rst-class:: horizontal
 
 
-.. image:: ../images/datasets/plot_sdss_specgals_3.png
+.. image:: ../images/datasets/plot_sdss_specgals_1.png
     :scale: 50
 
 
@@ -23,7 +23,7 @@ sample.
 
 
 
-.. image:: ../images/datasets/plot_sdss_specgals_1.png
+.. image:: ../images/datasets/plot_sdss_specgals_3.png
     :scale: 50
 
 

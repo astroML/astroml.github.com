@@ -115,6 +115,8 @@ This chapter develops the classical or "frequentist" approach to  statistics.
 
 
 
+
+
 .. raw:: html
 
     <div style="clear: both"></div>

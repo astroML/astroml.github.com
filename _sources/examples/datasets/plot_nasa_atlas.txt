@@ -18,12 +18,12 @@ This shows some visualizations of the data from the NASA SDSS Atlas
 
 
 
-.. image:: ../images/datasets/plot_nasa_atlas_3.png
+.. image:: ../images/datasets/plot_nasa_atlas_2.png
     :scale: 50
 
 
 
-.. image:: ../images/datasets/plot_nasa_atlas_2.png
+.. image:: ../images/datasets/plot_nasa_atlas_3.png
     :scale: 50
 
 
