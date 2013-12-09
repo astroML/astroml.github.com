@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter10_fig_wiener_kernel:
+
+
+Wiener Filter / kernel smooting Connection
+------------------------------------------
+Figure 10.11
+
+The left panel shows the inverse Fourier transform of the Wiener filter Phi(f)
+applied in figure 10.10. By the convolution theorem, the Wiener-filtered result
+is equivalent to the convolution of the unfiltered signal with the kernel shown
+above, and thus Wiener filtering and kernel smoothing are directly related.
+The right panel shows the data smoothed by this kernel, which is equivalent
+to the Wiener filter smoothing in figure 10.10.
+
+
+
+.. image:: ../images/chapter10/fig_wiener_kernel_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_wiener_kernel.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_wiener_kernel.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_wiener_kernel.py] <fig_wiener_kernel.py>`
+
+.. raw:: html
+    
+    </div>
+

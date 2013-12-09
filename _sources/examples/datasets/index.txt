@@ -92,91 +92,109 @@ For more examples, see the :ref:`figures <book_fig_root>` from the textbook.
 
 .. figure:: ./../images/datasets/compute_sdss_pca_1_thumb.png
     :target: ./compute_sdss_pca.html
+    :align: center
 
     :ref:`example_datasets_compute_sdss_pca`
 
 .. figure:: ./../images/datasets/plot_corrected_spectra_1_thumb.png
     :target: ./plot_corrected_spectra.html
+    :align: center
 
     :ref:`example_datasets_plot_corrected_spectra`
 
 .. figure:: ./../images/datasets/plot_dr7_quasar_1_thumb.png
     :target: ./plot_dr7_quasar.html
+    :align: center
 
     :ref:`example_datasets_plot_dr7_quasar`
 
 .. figure:: ./../images/datasets/plot_great_wall_1_thumb.png
     :target: ./plot_great_wall.html
+    :align: center
 
     :ref:`example_datasets_plot_great_wall`
 
 .. figure:: ./../images/datasets/plot_LIGO_spectrum_1_thumb.png
     :target: ./plot_LIGO_spectrum.html
+    :align: center
 
     :ref:`example_datasets_plot_LIGO_spectrum`
 
 .. figure:: ./../images/datasets/plot_moving_objects_1_thumb.png
     :target: ./plot_moving_objects.html
+    :align: center
 
     :ref:`example_datasets_plot_moving_objects`
 
 .. figure:: ./../images/datasets/plot_nasa_atlas_1_thumb.png
     :target: ./plot_nasa_atlas.html
+    :align: center
 
     :ref:`example_datasets_plot_nasa_atlas`
 
 .. figure:: ./../images/datasets/plot_rrlyrae_mags_1_thumb.png
     :target: ./plot_rrlyrae_mags.html
+    :align: center
 
     :ref:`example_datasets_plot_rrlyrae_mags`
 
 .. figure:: ./../images/datasets/plot_sdss_filters_1_thumb.png
     :target: ./plot_sdss_filters.html
+    :align: center
 
     :ref:`example_datasets_plot_sdss_filters`
 
 .. figure:: ./../images/datasets/plot_sdss_galaxy_colors_1_thumb.png
     :target: ./plot_sdss_galaxy_colors.html
+    :align: center
 
     :ref:`example_datasets_plot_sdss_galaxy_colors`
 
 .. figure:: ./../images/datasets/plot_sdss_imaging_1_thumb.png
     :target: ./plot_sdss_imaging.html
+    :align: center
 
     :ref:`example_datasets_plot_sdss_imaging`
 
 .. figure:: ./../images/datasets/plot_sdss_line_ratios_1_thumb.png
     :target: ./plot_sdss_line_ratios.html
+    :align: center
 
     :ref:`example_datasets_plot_sdss_line_ratios`
 
 .. figure:: ./../images/datasets/plot_sdss_S82standards_1_thumb.png
     :target: ./plot_sdss_S82standards.html
+    :align: center
 
     :ref:`example_datasets_plot_sdss_S82standards`
 
 .. figure:: ./../images/datasets/plot_sdss_specgals_1_thumb.png
     :target: ./plot_sdss_specgals.html
+    :align: center
 
     :ref:`example_datasets_plot_sdss_specgals`
 
 .. figure:: ./../images/datasets/plot_sdss_spectrum_1_thumb.png
     :target: ./plot_sdss_spectrum.html
+    :align: center
 
     :ref:`example_datasets_plot_sdss_spectrum`
 
 .. figure:: ./../images/datasets/plot_SDSS_SSPP_1_thumb.png
     :target: ./plot_SDSS_SSPP.html
+    :align: center
 
     :ref:`example_datasets_plot_SDSS_SSPP`
 
 .. figure:: ./../images/datasets/plot_wmap_power_spectra_1_thumb.png
     :target: ./plot_wmap_power_spectra.html
+    :align: center
 
     :ref:`example_datasets_plot_wmap_power_spectra`
 
 .. figure:: ./../images/datasets/plot_wmap_raw_1_thumb.png
     :target: ./plot_wmap_raw.html
+    :align: center
 
     :ref:`example_datasets_plot_wmap_raw`
 

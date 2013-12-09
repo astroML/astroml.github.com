@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 1: Introduction" href="index.html" />
     <link rel="next" title="SDSS Spectrum Example" href="fig_sdss_spectrum.html" />
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,27 +194,39 @@ $(document).ready(function(){
             
   <div class="section" id="sdss-imaging">
 <span id="book-fig-chapter1-fig-sdss-imaging"></span><h1>SDSS Imaging<a class="headerlink" href="#sdss-imaging" title="Permalink to this headline">¶</a></h1>
-<p>This example shows how to load the magnitude data from the SDSS imaging
-catalog, and plot colors and magnitudes of the stars and galaxies.</p>
-<img alt="../../_images/fig_SDSS_imaging_1.png" class="align-center" src="../../_images/fig_SDSS_imaging_1.png" style="width: 100%;" />
+<p>Figure 1.1</p>
+<p>The r vs. g-r color-magnitude diagrams and the r-i vs. g-r color-color
+diagrams for galaxies (left column) and stars (right column) from the SDSS
+imaging catalog. Only the first 5000 entries for each subset are shown in
+order to minimize the blending of points (various more sophisticated
+visualization methods are discussed in Section 1.6).</p>
+<a class="reference internal image-reference" href="../../_images/fig_SDSS_imaging_1.png"><img alt="../../_images/fig_SDSS_imaging_1.png" class="align-center" src="../../_images/fig_SDSS_imaging_1.png" style="width: 500.0px; height: 375.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>&lt;type 'numpy.ndarray'&gt;
-(5000,)
-(5000,)
-</pre>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
+</pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_imaging_sample</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">get_stars_and_galaxies</span><span class="p">(</span><span class="n">Nstars</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">Ngals</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
@@ -233,37 +247,35 @@ catalog, and plot colors and magnitudes of the stars and galaxies.</p>
     <span class="c"># for large numbers of points.</span>
     <span class="c"># Scatter should be used only when points need to be different colors</span>
     <span class="c"># and/or sizes</span>
-    <span class="n">plot_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
 
-    <span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">galaxies</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">galaxies</span><span class="o">.</span><span class="n">shape</span>
-    <span class="k">print</span> <span class="n">galaxies</span><span class="p">[</span><span class="s">&#39;gRaw&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 
-    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">galaxies</span><span class="p">[</span><span class="s">&#39;gRaw&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">galaxies</span><span class="p">[</span><span class="s">&#39;rRaw&#39;</span><span class="p">],</span>
              <span class="n">galaxies</span><span class="p">[</span><span class="s">&#39;rRaw&#39;</span><span class="p">],</span>
              <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
-    <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">galaxies</span><span class="p">[</span><span class="s">&#39;gRaw&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">galaxies</span><span class="p">[</span><span class="s">&#39;rRaw&#39;</span><span class="p">],</span>
              <span class="n">galaxies</span><span class="p">[</span><span class="s">&#39;rRaw&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">galaxies</span><span class="p">[</span><span class="s">&#39;iRaw&#39;</span><span class="p">],</span>
              <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
-    <span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stars</span><span class="p">[</span><span class="s">&#39;gRaw&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;rRaw&#39;</span><span class="p">],</span>
              <span class="n">stars</span><span class="p">[</span><span class="s">&#39;rRaw&#39;</span><span class="p">],</span>
              <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
-    <span class="n">ax4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+    <span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
     <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stars</span><span class="p">[</span><span class="s">&#39;gRaw&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;rRaw&#39;</span><span class="p">],</span>
              <span class="n">stars</span><span class="p">[</span><span class="s">&#39;rRaw&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">stars</span><span class="p">[</span><span class="s">&#39;iRaw&#39;</span><span class="p">],</span>
              <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
     <span class="c"># set labels and titles</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;r - i&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;g - r&#39;</span><span class="p">)</span>
-    <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;g - r&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">r&#39;${\rm r}$&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">r&#39;${\rm r - i}$&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">r&#39;${\rm g - r}$&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">r&#39;${\rm g - r}$&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Galaxies&#39;</span><span class="p">)</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Stars&#39;</span><span class="p">)</span>
 

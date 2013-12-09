@@ -5,12 +5,18 @@
 
 SDSS Filters
 ------------
-Download and plot the five SDSS filter bands along with a Vega spectrum.
+Figure C.1
+
+The five SDSS filters, showing the total transmission taking into account
+atmospheric transmission and instrumental effects such as CCD efficiency.
+Shown for reference is the spectrum (:math:`F_\lambda`) of a star
+similar to Vega (alpha-Lyr), which for many years was used as a reference
+flux for magnitude calibration.
 
 
 
 .. image:: ../images/appendix/fig_sdss_filters_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -40,7 +46,7 @@ Download and plot the five SDSS filter bands along with a Vega spectrum.
     <div class="toggle_container">
 
 .. literalinclude:: fig_sdss_filters.py
-    :lines: 6-
+    :lines: 12-
 
 .. raw:: html
 

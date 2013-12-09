@@ -1,17 +1,31 @@
 """
 Search Algorithm Scaling
 ------------------------
+Figure 2.1.
 
-This example times and plots the scaling of sorting algorithms.
+The scaling of two methods to search for an item in an ordered list: a linear
+method which performs a comparison on all N items, and a binary search which
+uses a more sophisticated algorithm. The theoretical scalings are shown by
+dashed lines.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 from time import time
 import numpy as np
 from matplotlib import pyplot as plt
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Compute the execution times as a function of array size
@@ -43,13 +57,15 @@ for i in range(len(Nsamples)):
 
 #------------------------------------------------------------
 # Plot the results
+fig = plt.figure(figsize=(5, 3.75))
+fig.subplots_adjust(bottom=0.15)
 ax = plt.axes(xscale='log', yscale='log')
 ax.grid()
 
 # plot the observed times
-ax.plot(Nsamples, time_linear, 'ok', color='gray', markersize=10,
+ax.plot(Nsamples, time_linear, 'ok', color='gray', markersize=5,
         label=r'linear search $(\mathcal{O}[N])$')
-ax.plot(Nsamples, time_binary, 'sk', color='gray', markersize=10,
+ax.plot(Nsamples, time_binary, 'sk', color='gray', markersize=5,
         label=r'efficient search $(\mathcal{O}[\log N])$')
 
 # plot the expected scaling

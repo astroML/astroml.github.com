@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 5: Bayesian Statistical Inference" href="index.html" />
     <link rel="next" title="Binned Regression: Poisson vs Gaussian" href="fig_poisson_likelihood.html" />
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,11 +194,14 @@ $(document).ready(function(){
             
   <div class="section" id="unbinned-poisson-data">
 <span id="book-fig-chapter5-fig-poisson-continuous"></span><h1>Unbinned Poisson Data<a class="headerlink" href="#unbinned-poisson-data" title="Permalink to this headline">¶</a></h1>
-<p>This figure shows an example of regression with unbinned data.  The data is
-unbinned poisson-distributed data, drawn from a distribution p(x) ~ a*x + b
-between 0 and 10.  The goal is to estimate the single parameter a from the
-unbinned data (b is determined by normalization).</p>
-<img alt="../../_images/fig_poisson_continuous_1.png" class="align-center" src="../../_images/fig_poisson_continuous_1.png" style="width: 100%;" />
+<p>Figure 5.14</p>
+<p>Regression of unbinned data. The distribution of N = 500 data points is shown
+in the left panel; the true pdf is shown by the solid curve. Note that although
+the data are binned in the left panel for visualization purposes, the analysis
+is performed on the unbinned data. The right panel shows the likelihood for the
+slope a (eq. 5.88) for three different sample sizes. The input value is
+indicated by the vertical dotted line.</p>
+<a class="reference internal image-reference" href="../../_images/fig_poisson_continuous_1.png"><img alt="../../_images/fig_poisson_continuous_1.png" class="align-center" src="../../_images/fig_poisson_continuous_1.png" style="width: 500.0px; height: 250.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -205,14 +210,24 @@ unbinned data (b is determined by normalization).</p>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">astroML.stats.random</span> <span class="kn">import</span> <span class="n">linear</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">linprob_logL</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">):</span>
@@ -241,8 +256,8 @@ unbinned data (b is determined by normalization).</p>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.26</span><span class="p">,</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span>
                     <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
 
 <span class="c"># left panel: plot the model and a histogram of the data</span>
@@ -269,7 +284,7 @@ unbinned data (b is determined by normalization).</p>
     <span class="n">logL</span> <span class="o">/=</span> <span class="n">logL</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">logL</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">r&#39;$\rm </span><span class="si">%i</span><span class="s">\ pts$&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
 
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.011</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
 

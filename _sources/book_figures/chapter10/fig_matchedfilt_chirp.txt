@@ -3,13 +3,20 @@
 .. _book_fig_chapter10_fig_matchedfilt_chirp:
 
 
-Matched Filter Burst Search
+Matched Filter Chirp Search
 ---------------------------
+Figure 10.26
+
+A matched filter search for a chirp signal in time series data. A simulated
+data set generated from a model of the form y = b0+Asin[omega t + beta t^2],
+with homoscedastic Gaussian errors with sigma = 2, is shown in the top-right
+panel. The posterior pdf for the four model parameters is determined using
+MCMC and shown in the other panels.
 
 
 
 .. image:: ../images/chapter10/fig_matchedfilt_chirp_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -39,7 +46,7 @@ Matched Filter Burst Search
     <div class="toggle_container">
 
 .. literalinclude:: fig_matchedfilt_chirp.py
-    :lines: 5-
+    :lines: 12-
 
 .. raw:: html
 

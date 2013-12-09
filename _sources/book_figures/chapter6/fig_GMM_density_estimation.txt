@@ -5,11 +5,20 @@
 
 Comparison of 1D Density Estimators
 -----------------------------------
+Figure 6.8
+
+A comparison of different density estimation methods for two simulated
+one-dimensional data sets (same as in figure 6.5). Density estimators are
+Bayesian blocks (Section 5.7.2), KDE (Section 6.1.1), and a Gaussian mixture
+model. In the latter, the optimal number of Gaussian components is chosen using
+the BIC (eq. 5.35). In the top panel, GMM solution has three components but one
+of the components has a very large width and effectively acts as a nearly flat
+background.
 
 
 
 .. image:: ../images/chapter6/fig_GMM_density_estimation_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -39,7 +48,7 @@ Comparison of 1D Density Estimators
     <div class="toggle_container">
 
 .. literalinclude:: fig_GMM_density_estimation.py
-    :lines: 5-
+    :lines: 14-
 
 .. raw:: html
 

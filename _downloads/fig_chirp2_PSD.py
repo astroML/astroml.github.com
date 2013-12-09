@@ -1,17 +1,33 @@
 """
-Chirp PSD
----------
-Compute the time/frequency power spectral density of the chirp signal
+Chirp wavelet PSD
+-----------------
+Figure 10.28
+
+A wavelet PSD of the ten-parameter chirp signal similar to that analyzed in
+figure 10.27. Here, the signal with an amplitude of A = 0.8 is sampled in
+4096 evenly spaced bins, and with Gaussian noise with sigma = 1. The
+two-dimensional wavelet PSD easily recovers the increase of characteristic
+chirp frequency with time.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
 from astroML.fourier import FT_continuous, IFT_continuous, wavelet_PSD
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #------------------------------------------------------------
@@ -37,13 +53,13 @@ wPSD = wavelet_PSD(t, h, f0, Q=1.0)
 
 #------------------------------------------------------------
 # Plot the  results
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 3.75))
 fig.subplots_adjust(hspace=0.05, left=0.1, right=0.95, bottom=0.1, top=0.95)
 
 # Top: plot the data
 ax = fig.add_subplot(211)
-ax.plot(t + 50, h, '-', c='#AAAAAA', lw=1)
-ax.plot(t + 50, h_true, '-k', lw=2)
+ax.plot(t + 50, h, '-', c='#AAAAAA')
+ax.plot(t + 50, h_true, '-k')
 
 ax.text(0.02, 0.95, "Input Signal: chirp",
         ha='left', va='top', transform=ax.transAxes,

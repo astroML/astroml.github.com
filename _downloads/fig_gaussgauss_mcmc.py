@@ -1,16 +1,22 @@
 """
 Gaussian Distribution with Gaussian Errors
 ------------------------------------------
+Figure 5.25
 
-This plot shows the Likelihood as a function of the mean :math:`\mu` and the
-error :math:`\sigma` when the posterior is assumed to be gaussian, and the
-points have heteroscedatic gaussian errors.
+The posterior pdf for mu and sigma for a Gaussian distribution with
+heteroscedastic errors. This is the same data set as used in figure 5.7, but
+here each measurement error is assumed unknown, treated as a model parameter
+with a scale-invariant prior, and marginalized over to obtain the distribution
+of mu and sigma shown by contours. For comparison, the posterior pdf from
+figure 5.7 is shown by shaded contours.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -22,6 +28,14 @@ import pymc
 
 from astroML.plotting.mcmc import convert_to_stdev
 from astroML.plotting import plot_mcmc
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def gaussgauss_logL(xi, ei, mu, sigma):
@@ -78,7 +92,7 @@ model = dict(mu=mu, log_sigma=log_sigma, sigma=sigma,
 
 #------------------------------------------------------------
 # perform the MCMC sampling
-pymc.numpy.random.seed(0)
+np.random.seed(0)
 S = pymc.MCMC(model)
 S.sample(iter=25000, burn=2000)
 
@@ -87,12 +101,13 @@ S.sample(iter=25000, burn=2000)
 trace_mu = S.trace('mu')[:]
 trace_sigma = S.trace('sigma')[:]
 
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 3.75))
 ax, = plot_mcmc([trace_mu, trace_sigma], fig=fig,
                 limits=[(-3.2, 4.2), (0, 5)],
+                bounds=(0.08, 0.12, 0.95, 0.95),
                 labels=(r'$\mu$', r'$\sigma$'),
                 levels=[0.683, 0.955, 0.997],
-                colors='k', linewidths=2)
+                colors='k')
 
 #----------------------------------------------------------------------
 # Compute and plot likelihood with known ei for comparison

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.3.1.4. astroML.linear_model.NadarayaWatson &mdash; astroML 0.1 documentation</title>
+    <title>11.3.1.4. astroML.linear_model.NadarayaWatson &mdash; astroML 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
-    <link rel="up" title="10. Class reference" href="../classes.html" />
-    <link rel="next" title="10.3.2.1. astroML.linear_model.TLS_logL" href="astroML.linear_model.TLS_logL.html" />
-    <link rel="prev" title="10.3.1.3. astroML.linear_model.BasisFunctionRegression" href="astroML.linear_model.BasisFunctionRegression.html" />
+    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="next" title="11.3.2.1. astroML.linear_model.TLS_logL" href="astroML.linear_model.TLS_logL.html" />
+    <link rel="prev" title="11.3.1.3. astroML.linear_model.BasisFunctionRegression" href="astroML.linear_model.BasisFunctionRegression.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="astroML.linear_model.BasisFunctionRegression.html" title="10.3.1.3. astroML.linear_model.BasisFunctionRegression"
+	<a href="astroML.linear_model.BasisFunctionRegression.html" title="11.3.1.3. astroML.linear_model.BasisFunctionRegression"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    10.3.1.3. astroM...
+	    11.3.1.3. astroM...
 	    </span>
 	    <span class="hiddenrellink">
-	    10.3.1.3. astroML.linear_model.BasisFunctionRegression
+	    11.3.1.3. astroML.linear_model.BasisFunctionRegression
 	    </span>
 	    
 	    </a>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="astroML.linear_model.TLS_logL.html" title="10.3.2.1. astroML.linear_model.TLS_logL"
+	<a href="astroML.linear_model.TLS_logL.html" title="11.3.2.1. astroML.linear_model.TLS_logL"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    10.3.2.1. astroM...
+	    11.3.2.1. astroM...
 	    </span>
 	    <span class="hiddenrellink">
-	    10.3.2.1. astroML.linear_model.TLS_logL
+	    11.3.2.1. astroML.linear_model.TLS_logL
 	    </span>
 	    
 	    </a>
@@ -139,14 +140,14 @@ $(document).ready(function(){
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="../classes.html" title="10. Class reference" >
+	<a href="../classes.html" title="11. Class reference" >
 	Up
 	<br>
 	<span class="smallrellink">
-	10. Class refere...
+	11. Class refere...
 	</span>
 	<span class="hiddenrellink">
-	10. Class reference
+	11. Class reference
 	</span>
 	
 	</a>
@@ -161,7 +162,7 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">10.3.1.4. astroML.linear_model.NadarayaWatson</a></li>
+<li><a class="reference internal" href="#">11.3.1.4. astroML.linear_model.NadarayaWatson</a></li>
 </ul>
 
 
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -191,7 +193,7 @@ $(document).ready(function(){
           <div class="body">
             
   <div class="section" id="astroml-linear-model-nadarayawatson">
-<h1>10.3.1.4. astroML.linear_model.NadarayaWatson<a class="headerlink" href="#astroml-linear-model-nadarayawatson" title="Permalink to this headline">¶</a></h1>
+<h1>11.3.1.4. astroML.linear_model.NadarayaWatson<a class="headerlink" href="#astroml-linear-model-nadarayawatson" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="astroML.linear_model.NadarayaWatson">
 <em class="property">class </em><tt class="descclassname">astroML.linear_model.</tt><tt class="descname">NadarayaWatson</tt><big>(</big><em>kernel='gaussian'</em>, <em>h=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#astroML.linear_model.NadarayaWatson" title="Permalink to this definition">¶</a></dt>

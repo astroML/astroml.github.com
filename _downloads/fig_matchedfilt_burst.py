@@ -1,12 +1,21 @@
 """
 Matched Filter Burst Search
 ---------------------------
+Figure 10.25
+
+A matched filter search for a burst signal in time series data. A simulated
+data set generated from a model of the form y(t) = b0 for t < T and
+y = b0 + A exp[-a(t - T)] for t > T , with homoscedastic Gaussian errors with
+sigma = 2, is shown in the top-right panel. The posterior pdf for the four
+model parameters is determined using MCMC and shown in the other panels.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -18,6 +27,14 @@ import pymc
 
 from astroML.plotting.mcmc import plot_mcmc
 from astroML.decorators import pickle_results
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #----------------------------------------------------------------------
@@ -91,14 +108,14 @@ true = [b0_true, A_true, T_true, alpha_true]
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(bottom=0.1, top=0.95,
                     left=0.1, right=0.95,
                     hspace=0.05, wspace=0.05)
 
 # This function plots multiple panels with the traces
 plot_mcmc(traces, labels=labels, limits=limits, true_values=true, fig=fig,
-          bins=30, colors='k', linewidths=2)
+          bins=30, colors='k')
 
 # Plot the model fit
 ax = fig.add_axes([0.5, 0.7, 0.45, 0.25])
@@ -109,6 +126,6 @@ ax.scatter(t, y_obs, s=9, lw=0, c='k')
 ax.plot(t_fit, y_fit, '-k')
 ax.set_xlim(0, 100)
 ax.set_xlabel('$t$')
-ax.set_ylabel('$h_{obs}$')
+ax.set_ylabel(r'$h_{\rm obs}$')
 
 plt.show()

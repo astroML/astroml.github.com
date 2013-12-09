@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 10: Time Series Analysis" href="index.html" />
     <link rel="next" title="Wavelet transform of a Noisy Spike" href="fig_line_wavelet_PSD.html" />
-    <link rel="prev" title="Examples of Wavelets" href="fig_wavelets.html" />
+    <link rel="prev" title="Plot the power spectrum of LIGO data" href="fig_LIGO_power_spectrum.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="fig_wavelets.html" title="Examples of Wavelets"
+	<a href="fig_LIGO_power_spectrum.html" title="Plot the power spectrum of LIGO data"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    Examples of Wave...
+	    Plot the power s...
 	    </span>
 	    <span class="hiddenrellink">
-	    Examples of Wavelets
+	    Plot the power spectrum of LIGO data
 	    </span>
 	    
 	    </a>
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,9 +194,12 @@ $(document).ready(function(){
             
   <div class="section" id="wavelet-transform-of-gaussian-noise">
 <span id="book-fig-chapter10-fig-wavelet-psd"></span><h1>Wavelet transform of Gaussian Noise<a class="headerlink" href="#wavelet-transform-of-gaussian-noise" title="Permalink to this headline">¶</a></h1>
-<p>Plot the wavelet transform (spectrogram) of a Gaussian spike.  A similar plot
-can be obtained using the built-in function matplotlib.mlab.specgram.</p>
-<img alt="../../_images/fig_wavelet_PSD_1.png" class="align-center" src="../../_images/fig_wavelet_PSD_1.png" style="width: 100%;" />
+<p>Figure 10.7</p>
+<p>Localized frequency analysis using the wavelet transform. The upper panel shows
+the input signal, which consists of localized Gaussian noise. The middle panel
+shows an example wavelet. The lower panel shows the power spectral density as a
+function of the frequency f0 and the time t0, for Q = 1.0.</p>
+<a class="reference internal image-reference" href="../../_images/fig_wavelet_PSD_1.png"><img alt="../../_images/fig_wavelet_PSD_1.png" class="align-center" src="../../_images/fig_wavelet_PSD_1.png" style="width: 500.0px; height: 500.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -203,16 +208,26 @@ can be obtained using the built-in function matplotlib.mlab.specgram.</p>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span>\
     <span class="n">FT_continuous</span><span class="p">,</span> <span class="n">IFT_continuous</span><span class="p">,</span> <span class="n">sinegauss</span><span class="p">,</span> <span class="n">sinegauss_FT</span><span class="p">,</span> <span class="n">wavelet_PSD</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Sample the function: localized noise</span>
@@ -236,7 +251,7 @@ can be obtained using the built-in function matplotlib.mlab.specgram.</p>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
 
 <span class="c"># First panel: the signal</span>
@@ -262,14 +277,13 @@ can be obtained using the built-in function matplotlib.mlab.specgram.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span>
         <span class="p">(</span><span class="s">r&quot;$w(t; t_0, f_0, Q) = e^{-[f_0 (t - t_0) / Q]^2}&quot;</span>
          <span class="s">&quot;e^{2 \pi i f_0 (t - t_0)}$&quot;</span><span class="p">),</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
         <span class="n">ha</span><span class="o">=</span><span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$w(t; f_0, t_0, Q)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$w(t; t_0, f_0, Q)$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
 
 <span class="c"># Third panel: the spectrogram</span>

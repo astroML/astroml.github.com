@@ -1,17 +1,32 @@
 """
 SDSS Imaging
 ============
-This example shows how to load the magnitude data from the SDSS imaging
-catalog, and plot colors and magnitudes of the stars and galaxies.
+Figure 1.1
+
+The r vs. g-r color-magnitude diagrams and the r-i vs. g-r color-color
+diagrams for galaxies (left column) and stars (right column) from the SDSS
+imaging catalog. Only the first 5000 entries for each subset are shown in
+order to minimize the blending of points (various more sophisticated
+visualization methods are discussed in Section 1.6).
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from astroML.datasets import fetch_imaging_sample
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def get_stars_and_galaxies(Nstars=5000, Ngals=5000):
@@ -32,37 +47,35 @@ def plot_stars_and_galaxies(stars, galaxies):
     # for large numbers of points.
     # Scatter should be used only when points need to be different colors
     # and/or sizes
-    plot_kwargs = dict(color='k', linestyle='none', marker='.', markersize=1)
+    plot_kwargs = dict(color='k', linestyle='none', marker=',')
 
-    print type(galaxies)
-    print galaxies.shape
-    print galaxies['gRaw'].shape
+    fig = plt.figure(figsize=(5, 3.75))
 
-    ax1 = plt.subplot(221)
+    ax1 = fig.add_subplot(221)
     ax1.plot(galaxies['gRaw'] - galaxies['rRaw'],
              galaxies['rRaw'],
              **plot_kwargs)
 
-    ax2 = plt.subplot(223, sharex=ax1)
+    ax2 = fig.add_subplot(223, sharex=ax1)
     ax2.plot(galaxies['gRaw'] - galaxies['rRaw'],
              galaxies['rRaw'] - galaxies['iRaw'],
              **plot_kwargs)
 
-    ax3 = plt.subplot(222, sharey=ax1)
+    ax3 = fig.add_subplot(222, sharey=ax1)
     ax3.plot(stars['gRaw'] - stars['rRaw'],
              stars['rRaw'],
              **plot_kwargs)
 
-    ax4 = plt.subplot(224, sharex=ax3, sharey=ax2)
+    ax4 = fig.add_subplot(224, sharex=ax3, sharey=ax2)
     ax4.plot(stars['gRaw'] - stars['rRaw'],
              stars['rRaw'] - stars['iRaw'],
              **plot_kwargs)
 
     # set labels and titles
-    ax1.set_ylabel('r')
-    ax2.set_ylabel('r - i')
-    ax2.set_xlabel('g - r')
-    ax4.set_xlabel('g - r')
+    ax1.set_ylabel(r'${\rm r}$')
+    ax2.set_ylabel(r'${\rm r - i}$')
+    ax2.set_xlabel(r'${\rm g - r}$')
+    ax4.set_xlabel(r'${\rm g - r}$')
     ax1.set_title('Galaxies')
     ax3.set_title('Stars')
 

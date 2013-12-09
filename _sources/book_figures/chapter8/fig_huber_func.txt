@@ -3,14 +3,16 @@
 .. _book_fig_chapter8_fig_huber_func:
 
 
-Huber Functional Form
----------------------
-This plots the form of the huber loss function :math:`\Phi(t)`.
+Huber Loss Function
+-------------------
+Figure 8.7
+
+The Huber loss function for various values of c.
 
 
 
 .. image:: ../images/chapter8/fig_huber_func_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -40,7 +42,7 @@ This plots the form of the huber loss function :math:`\Phi(t)`.
     <div class="toggle_container">
 
 .. literalinclude:: fig_huber_func.py
-    :lines: 6-
+    :lines: 8-
 
 .. raw:: html
 

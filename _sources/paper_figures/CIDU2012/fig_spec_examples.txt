@@ -10,7 +10,7 @@ Plot 15 random SDSS spectra from the sample
 
 
 .. image:: ../images/CIDU2012/fig_spec_examples_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

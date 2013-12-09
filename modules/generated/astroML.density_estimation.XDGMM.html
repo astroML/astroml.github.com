@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.2.2.1. astroML.density_estimation.XDGMM &mdash; astroML 0.1 documentation</title>
+    <title>11.2.2.1. astroML.density_estimation.XDGMM &mdash; astroML 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
-    <link rel="up" title="10. Class reference" href="../classes.html" />
-    <link rel="next" title="10.2.2.2. astroML.density_estimation.KDE" href="astroML.density_estimation.KDE.html" />
-    <link rel="prev" title="10.2.1.5. astroML.density_estimation.freedman_bin_width" href="astroML.density_estimation.freedman_bin_width.html" />
+    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="next" title="11.2.2.2. astroML.density_estimation.KDE" href="astroML.density_estimation.KDE.html" />
+    <link rel="prev" title="11.2.1.5. astroML.density_estimation.freedman_bin_width" href="astroML.density_estimation.freedman_bin_width.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="astroML.density_estimation.freedman_bin_width.html" title="10.2.1.5. astroML.density_estimation.freedman_bin_width"
+	<a href="astroML.density_estimation.freedman_bin_width.html" title="11.2.1.5. astroML.density_estimation.freedman_bin_width"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    10.2.1.5. astroM...
+	    11.2.1.5. astroM...
 	    </span>
 	    <span class="hiddenrellink">
-	    10.2.1.5. astroML.density_estimation.freedman_bin_width
+	    11.2.1.5. astroML.density_estimation.freedman_bin_width
 	    </span>
 	    
 	    </a>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="astroML.density_estimation.KDE.html" title="10.2.2.2. astroML.density_estimation.KDE"
+	<a href="astroML.density_estimation.KDE.html" title="11.2.2.2. astroML.density_estimation.KDE"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    10.2.2.2. astroM...
+	    11.2.2.2. astroM...
 	    </span>
 	    <span class="hiddenrellink">
-	    10.2.2.2. astroML.density_estimation.KDE
+	    11.2.2.2. astroML.density_estimation.KDE
 	    </span>
 	    
 	    </a>
@@ -139,14 +140,14 @@ $(document).ready(function(){
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="../classes.html" title="10. Class reference" >
+	<a href="../classes.html" title="11. Class reference" >
 	Up
 	<br>
 	<span class="smallrellink">
-	10. Class refere...
+	11. Class refere...
 	</span>
 	<span class="hiddenrellink">
-	10. Class reference
+	11. Class reference
 	</span>
 	
 	</a>
@@ -161,7 +162,7 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">10.2.2.1. astroML.density_estimation.XDGMM</a></li>
+<li><a class="reference internal" href="#">11.2.2.1. astroML.density_estimation.XDGMM</a></li>
 </ul>
 
 
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -191,7 +193,7 @@ $(document).ready(function(){
           <div class="body">
             
   <div class="section" id="astroml-density-estimation-xdgmm">
-<h1>10.2.2.1. astroML.density_estimation.XDGMM<a class="headerlink" href="#astroml-density-estimation-xdgmm" title="Permalink to this headline">¶</a></h1>
+<h1>11.2.2.1. astroML.density_estimation.XDGMM<a class="headerlink" href="#astroml-density-estimation-xdgmm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="astroML.density_estimation.XDGMM">
 <em class="property">class </em><tt class="descclassname">astroML.density_estimation.</tt><tt class="descname">XDGMM</tt><big>(</big><em>n_components</em>, <em>n_iter=100</em>, <em>tol=1e-05</em>, <em>verbose=False</em><big>)</big><a class="headerlink" href="#astroML.density_estimation.XDGMM" title="Permalink to this definition">¶</a></dt>

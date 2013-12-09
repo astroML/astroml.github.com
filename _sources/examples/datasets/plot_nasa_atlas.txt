@@ -14,17 +14,20 @@ This shows some visualizations of the data from the NASA SDSS Atlas
 
 
 .. image:: ../images/datasets/plot_nasa_atlas_1.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/datasets/plot_nasa_atlas_2.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/datasets/plot_nasa_atlas_3.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 

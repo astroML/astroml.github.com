@@ -1,14 +1,21 @@
 """
 Total Least Squares Figure
 --------------------------
-This shows an example of fitting a line to data with errors in both variables.
-The implementation follows Hogg et al 2010 (arXiv:1008.4686)
+Figure 8.6
+
+A linear fit to data with correlated errors in x and y. In the literature, this
+is often referred to as total least squares or errors-in-variables fitting. The
+left panel shows the lines of best fit; the right panel shows the likelihood
+contours in slope/intercept space. The points are the same set used for the
+examples in Hogg, Bovy & Lang 2010.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from scipy import optimize
 from matplotlib import pyplot as plt
@@ -17,6 +24,14 @@ from matplotlib.patches import Ellipse
 from astroML.linear_model import TLS_logL
 from astroML.plotting.mcmc import convert_to_stdev
 from astroML.datasets import fetch_hogg2010test
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #------------------------------------------------------------
@@ -84,14 +99,14 @@ beta_fit = optimize.fmin(min_func,
 
 #------------------------------------------------------------
 # Plot the data and fits
-fig = plt.figure(figsize=(8, 4))
+fig = plt.figure(figsize=(5, 2.5))
 fig.subplots_adjust(left=0.1, right=0.95, wspace=0.25,
                     bottom=0.15, top=0.9)
 
 #------------------------------------------------------------
 # first let's visualize the data
 ax = fig.add_subplot(121)
-ax.scatter(x, y, c='k')
+ax.scatter(x, y, c='k', s=9)
 plot_ellipses(x, y, sigma_x, sigma_y, rho_xy, ax=ax)
 
 #------------------------------------------------------------
@@ -118,7 +133,7 @@ for i in range(len(m)):
 
 ax.contour(m, b, convert_to_stdev(logL.T),
            levels=(0.683, 0.955, 0.997),
-           colors='k', linewidths=2)
+           colors='k')
 ax.set_xlabel('slope')
 ax.set_ylabel('intercept')
 ax.set_xlim(1.7, 2.8)

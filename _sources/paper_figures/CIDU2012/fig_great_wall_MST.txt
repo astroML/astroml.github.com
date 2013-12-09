@@ -9,7 +9,7 @@ Euclidean Minimum Spanning Tree
 
 
 .. image:: ../images/CIDU2012/fig_great_wall_MST_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

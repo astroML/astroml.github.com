@@ -25,9 +25,10 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 10: Time Series Analysis" href="index.html" />
-    <link rel="next" title="Example of Lomb-Scargle Algorithm" href="fig_LS_example.html" />
+    <link rel="next" title="The effect of Sampling" href="fig_sampling.html" />
     <link rel="prev" title="Minimum component fitting procedure" href="fig_mincomp_procedure.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="fig_LS_example.html" title="Example of Lomb-Scargle Algorithm"
+	<a href="fig_sampling.html" title="The effect of Sampling"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    Example of Lomb-...
+	    The effect of Sa...
 	    </span>
 	    <span class="hiddenrellink">
-	    Example of Lomb-Scargle Algorithm
+	    The effect of Sampling
 	    </span>
 	    
 	    </a>
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,8 +194,14 @@ $(document).ready(function(){
             
   <div class="section" id="example-of-minimum-component-filtering">
 <span id="book-fig-chapter10-fig-mincomp"></span><h1>Example of Minimum Component Filtering<a class="headerlink" href="#example-of-minimum-component-filtering" title="Permalink to this headline">¶</a></h1>
-<p>As explained in Wall &amp; Jenkins, as well as Wall 1997, A&amp;A 122:371</p>
-<img alt="../../_images/fig_mincomp_1.png" class="align-center" src="../../_images/fig_mincomp_1.png" style="width: 100%;" />
+<p>Figure 10.13</p>
+<p>A minimum component filter applied to the spectrum of a white dwarf from SDSS
+data set (mjd= 52199, plate=659, fiber=381). The upper panel shows a portion
+of the input spectrum, along with the continuum computed via the minimum
+component filtering procedure described in Section 10.2.5 (see figure 10.12).
+The lower panel shows the PSD for both the input spectrum and the filtered
+result.</p>
+<a class="reference internal image-reference" href="../../_images/fig_mincomp_1.png"><img alt="../../_images/fig_mincomp_1.png" class="align-center" src="../../_images/fig_mincomp_1.png" style="width: 500.0px; height: 375.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -202,17 +210,27 @@ $(document).ready(function(){
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">PSD_continuous</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_spectrum</span>
 <span class="kn">from</span> <span class="nn">astroML.filters</span> <span class="kn">import</span> <span class="n">min_component_filter</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Fetch the spectrum from SDSS database &amp; pre-process</span>
@@ -252,7 +270,7 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 
 <span class="c"># Top panel: plot noisy and smoothed spectrum</span>
@@ -260,8 +278,8 @@ $(document).ready(function(){
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec_filtered</span><span class="p">,</span> <span class="s">&#39;-k&#39;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s">&quot;SDSS white dwarf</span><span class="se">\n</span><span class="s"> </span><span class="si">%i</span><span class="s">-</span><span class="si">%i</span><span class="s">-</span><span class="si">%i</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mjd</span><span class="p">,</span> <span class="n">plate</span><span class="p">,</span> <span class="n">fiber</span><span class="p">),</span>
-        <span class="n">ha</span><span class="o">=</span><span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.97</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="s">&quot;SDSS white dwarf</span><span class="se">\n</span><span class="s"> </span><span class="si">%i</span><span class="s">-</span><span class="si">%i</span><span class="s">-</span><span class="si">%i</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mjd</span><span class="p">,</span> <span class="n">plate</span><span class="p">,</span> <span class="n">fiber</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">110</span><span class="p">)</span>
 

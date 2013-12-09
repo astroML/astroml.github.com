@@ -1,19 +1,31 @@
 """
 Mercator Projection
 -------------------
+Figure1.13.
 
-Example of plotting coordinates in the Mercator projection. Note that
-the matplotlib basemap toolkit has some much more sophisticated
-tools for this sort of plot.
+The Mercator projection. Shown are the projections of circles of constant
+radius 10 degrees across the sky. Note that the area is not preserved by the
+Mercator projection: the projection increases the size of finite regions on
+the sphere, with a magnitude which increases at high latitudes.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from astroML.plotting import plot_tissot_ellipse
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #------------------------------------------------------------
@@ -38,7 +50,7 @@ def mercator_axes():
 
     return ax
 
-plt.figure()
+plt.figure(figsize=(5, 3.75))
 ax = mercator_axes()
 ax.grid(True)
 plot_tissot_ellipse(circ_long[:, None], circ_lat, radius,

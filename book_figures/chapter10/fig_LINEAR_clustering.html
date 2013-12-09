@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 10: Time Series Analysis" href="index.html" />
-    <link rel="next" title="Arrival Time Analysis" href="fig_arrival_time.html" />
-    <link rel="prev" title="BIC for LINEAR light curve" href="fig_LINEAR_BIC.html" />
+    <link rel="next" title="GMMBayes classification of LINEAR data" href="fig_LINEAR_GMMBayes.html" />
+    <link rel="prev" title="Clustering of LINEAR data" href="" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="fig_LINEAR_BIC.html" title="BIC for LINEAR light curve"
+	<a href="#" title="Clustering of LINEAR data"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    BIC for LINEAR l...
+	    Clustering of LI...
 	    </span>
 	    <span class="hiddenrellink">
-	    BIC for LINEAR light curve
+	    Clustering of LINEAR data
 	    </span>
 	    
 	    </a>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="fig_arrival_time.html" title="Arrival Time Analysis"
+	<a href="fig_LINEAR_GMMBayes.html" title="GMMBayes classification of LINEAR data"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    Arrival Time Ana...
+	    GMMBayes classif...
 	    </span>
 	    <span class="hiddenrellink">
-	    Arrival Time Analysis
+	    GMMBayes classification of LINEAR data
 	    </span>
 	    
 	    </a>
@@ -161,7 +162,11 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">Clustering of LINEAR data</a></li>
+<li><a class="reference internal" href="#">Clustering of LINEAR data</a><ul>
+<li><a class="reference internal" href="#figure-10-20">Figure 10.20</a></li>
+<li><a class="reference internal" href="#figure-10-21">Figure 10.21</a></li>
+</ul>
+</li>
 </ul>
 
 
@@ -173,11 +178,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,23 +198,44 @@ $(document).ready(function(){
             
   <div class="section" id="clustering-of-linear-data">
 <span id="book-fig-chapter10-fig-linear-clustering"></span><h1>Clustering of LINEAR data<a class="headerlink" href="#clustering-of-linear-data" title="Permalink to this headline">¶</a></h1>
-<a class="horizontal reference internal image-reference" href="../../_images/fig_LINEAR_clustering_1.png"><img alt="../../_images/fig_LINEAR_clustering_1.png" class="horizontal" src="../../_images/fig_LINEAR_clustering_1.png" /></a>
-<a class="reference internal image-reference" href="../../_images/fig_LINEAR_clustering_2.png"><img alt="../../_images/fig_LINEAR_clustering_2.png" src="../../_images/fig_LINEAR_clustering_2.png" /></a>
+<div class="section" id="figure-10-20">
+<h2>Figure 10.20<a class="headerlink" href="#figure-10-20" title="Permalink to this headline">¶</a></h2>
+<p>Unsupervised clustering analysis of periodic variable stars from the LINEAR
+data set. The top row shows clusters derived using two attributes (g - i and
+log P) and a mixture of 12 Gaussians. The colorized symbols mark the five most
+significant clusters. The bottom row shows analogous diagrams for clustering
+based on seven attributes (colors u - g, g - i, i - K, and J - K; log P,
+light-curve amplitude, and light-curve skewness), and a mixture of 15
+Gaussians. See figure 10.21 for data projections in the space of other
+attributes for the latter case.</p>
+</div>
+<div class="section" id="figure-10-21">
+<h2>Figure 10.21<a class="headerlink" href="#figure-10-21" title="Permalink to this headline">¶</a></h2>
+<p>Unsupervised clustering analysis of periodic variable stars from the LINEAR
+data set. Clusters are derived using seven attributes (colors u - g, g - i,
+i - K, and J - K; log P , light-curve amplitude, and light-curve skewness),
+and a mixture of 15 Gaussians. The log P vs. g - i diagram and log P vs.
+light-curve amplitude diagram for the same clusters are shown in the lower
+panels of figure 10.20.</p>
+<a class="horizontal reference internal image-reference" href="../../_images/fig_LINEAR_clustering_1.png"><img alt="../../_images/fig_LINEAR_clustering_1.png" class="horizontal align-center" src="../../_images/fig_LINEAR_clustering_1.png" style="width: 500.0px; height: 500.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/fig_LINEAR_clustering_2.png"><img alt="../../_images/fig_LINEAR_clustering_2.png" class="align-center" src="../../_images/fig_LINEAR_clustering_2.png" style="width: 500.0px; height: 500.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><pre>@pickle_results: using precomputed results from 'LINEAR_clustering.pkl'
+number of components: 12
 \begin{tabular}{|l|lllllll|}
    \hline
    &amp; $u-g$    &amp; $g-i$    &amp; $i-K$    &amp; $J-K$    &amp; $\log(P)$    &amp; amplitude    &amp; skew \\
    \hline
    1   &amp; $1.15 \pm 0.08$   &amp; $0.29 \pm 0.06$   &amp; $1.14 \pm 0.20$   &amp; $0.30 \pm 0.15$   &amp; $-0.24 \pm 0.06$   &amp; $0.67 \pm 0.19$   &amp; $-0.18 \pm 1.07$  \\
    2   &amp; $1.18 \pm 0.11$   &amp; $-0.00 \pm 0.12$   &amp; $0.94 \pm 0.37$   &amp; $0.24 \pm 0.16$   &amp; $-0.48 \pm 0.05$   &amp; $0.43 \pm 0.10$   &amp; $0.34 \pm 1.06$  \\
-   3   &amp; $1.08 \pm 0.05$   &amp; $-0.03 \pm 0.10$   &amp; $0.78 \pm 0.17$   &amp; $0.19 \pm 0.17$   &amp; $-1.20 \pm 0.08$   &amp; $-3.59 \pm 19.68$   &amp; $0.18 \pm 1.89$  \\
-   4   &amp; $1.25 \pm 0.23$   &amp; $0.58 \pm 0.13$   &amp; $1.35 \pm 0.30$   &amp; $0.42 \pm 0.12$   &amp; $-0.50 \pm 0.06$   &amp; $0.47 \pm 0.13$   &amp; $0.82 \pm 1.04$  \\
-   5   &amp; $1.19 \pm 0.08$   &amp; $-0.02 \pm 0.15$   &amp; $0.88 \pm 0.28$   &amp; $0.29 \pm 0.17$   &amp; $-0.24 \pm 0.06$   &amp; $0.70 \pm 0.19$   &amp; $-0.24 \pm 0.92$  \\
-   6   &amp; $1.79 \pm 0.31$   &amp; $1.04 \pm 0.21$   &amp; $1.77 \pm 0.32$   &amp; $0.61 \pm 0.10$   &amp; $-0.57 \pm 0.05$   &amp; $0.54 \pm 0.15$   &amp; $0.92 \pm 1.02$  \\
+   3   &amp; $1.25 \pm 0.23$   &amp; $0.58 \pm 0.13$   &amp; $1.35 \pm 0.30$   &amp; $0.42 \pm 0.12$   &amp; $-0.50 \pm 0.06$   &amp; $0.47 \pm 0.13$   &amp; $0.82 \pm 1.04$  \\
+   4   &amp; $1.19 \pm 0.08$   &amp; $-0.02 \pm 0.15$   &amp; $0.88 \pm 0.28$   &amp; $0.29 \pm 0.17$   &amp; $-0.24 \pm 0.06$   &amp; $0.70 \pm 0.19$   &amp; $-0.24 \pm 0.92$  \\
+   5   &amp; $1.79 \pm 0.31$   &amp; $1.04 \pm 0.21$   &amp; $1.77 \pm 0.32$   &amp; $0.61 \pm 0.10$   &amp; $-0.57 \pm 0.05$   &amp; $0.54 \pm 0.15$   &amp; $0.92 \pm 1.02$  \\
+   6   &amp; $1.08 \pm 0.05$   &amp; $-0.03 \pm 0.10$   &amp; $0.78 \pm 0.17$   &amp; $0.19 \pm 0.17$   &amp; $-1.20 \pm 0.08$   &amp; $-3.59 \pm 19.68$   &amp; $0.18 \pm 1.89$  \\
 \hline
 \end{tabular}
+number of components: 15
 \begin{tabular}{|l|lllllll|}
    \hline
    &amp; $u-g$    &amp; $g-i$    &amp; $i-K$    &amp; $J-K$    &amp; $\log(P)$    &amp; amplitude    &amp; skew \\
@@ -226,11 +253,13 @@ $(document).ready(function(){
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
@@ -238,6 +267,14 @@ $(document).ready(function(){
 
 <span class="kn">from</span> <span class="nn">astroML.decorators</span> <span class="kn">import</span> <span class="n">pickle_results</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_LINEAR_geneva</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Get the Geneva periods data</span>
@@ -249,8 +286,6 @@ $(document).ready(function(){
 <span class="n">filetemplate</span> <span class="o">=</span> <span class="s">&#39;gmm_res_</span><span class="si">%i</span><span class="s">_</span><span class="si">%i</span><span class="s">.pkl&#39;</span>
 <span class="n">attributes</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;gi&#39;</span><span class="p">,</span> <span class="s">&#39;logP&#39;</span><span class="p">),</span>
               <span class="p">(</span><span class="s">&#39;ug&#39;</span><span class="p">,</span> <span class="s">&#39;gi&#39;</span><span class="p">,</span> <span class="s">&#39;iK&#39;</span><span class="p">,</span> <span class="s">&#39;JK&#39;</span><span class="p">,</span> <span class="s">&#39;logP&#39;</span><span class="p">,</span> <span class="s">&#39;amp&#39;</span><span class="p">,</span> <span class="s">&#39;skew&#39;</span><span class="p">)]</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;$u-g$&#39;</span><span class="p">,</span> <span class="s">&#39;$g-i$&#39;</span><span class="p">,</span> <span class="s">&#39;$i-K$&#39;</span><span class="p">,</span> <span class="s">&#39;$J-K$&#39;</span><span class="p">,</span>
-          <span class="s">r&#39;$\log(P)$&#39;</span><span class="p">,</span> <span class="s">&#39;amplitude&#39;</span><span class="p">,</span> <span class="s">&#39;skew&#39;</span><span class="p">]</span>
 <span class="n">components</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
@@ -267,7 +302,6 @@ $(document).ready(function(){
     <span class="n">clfs</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">X</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="n">Xarrays</span><span class="p">):</span>
-        <span class="k">print</span> <span class="n">attr</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
         <span class="n">clfs_i</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">components</span><span class="p">:</span>
@@ -287,14 +321,19 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">class_labels</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
     <span class="c"># Grab the best classifier, based on the BIC</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">Xarrays</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">BIC</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">bic</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clfs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
     <span class="n">i_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">BIC</span><span class="p">)</span>
+
+    <span class="k">print</span> <span class="s">&quot;number of components:&quot;</span><span class="p">,</span> <span class="n">components</span><span class="p">[</span><span class="n">i_best</span><span class="p">]</span>
+
     <span class="n">clf</span> <span class="o">=</span> <span class="n">clfs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_best</span><span class="p">]</span>
     <span class="n">n_components</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">n_components</span>
 
@@ -302,25 +341,33 @@ $(document).ready(function(){
     <span class="n">c</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
+    <span class="n">class_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
     <span class="c"># sort the cluster by normalized density of points</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">classes</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">clf</span><span class="o">.</span><span class="n">covars_</span><span class="p">])</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">weights_</span>
-    <span class="n">density</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">size</span>
+    <span class="n">density</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">size</span>
 
     <span class="c"># Clusters with very few points are less interesting:</span>
     <span class="c"># set their density to zero so they&#39;ll go to the end of the list</span>
     <span class="n">density</span><span class="p">[</span><span class="n">counts</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">isort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">density</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="c"># find statistics of the top 6 clusters</span>
+    <span class="c"># find statistics of the top 10 clusters</span>
     <span class="n">Nclusters</span> <span class="o">=</span> <span class="mi">6</span>
 
     <span class="n">means</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">stdevs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="n">names</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s">&#39;LINEARobjectID&#39;</span><span class="p">]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;$u-g$&#39;</span><span class="p">,</span> <span class="s">&#39;$g-i$&#39;</span><span class="p">,</span> <span class="s">&#39;$i-K$&#39;</span><span class="p">,</span> <span class="s">&#39;$J-K$&#39;</span><span class="p">,</span>
+              <span class="s">r&#39;$\log(P)$&#39;</span><span class="p">,</span> <span class="s">&#39;amplitude&#39;</span><span class="p">,</span> <span class="s">&#39;skew&#39;</span><span class="p">,</span>
+              <span class="s">&#39;kurtosis&#39;</span><span class="p">,</span> <span class="s">&#39;median mag&#39;</span><span class="p">,</span> <span class="s">r&#39;$N_{\rm obs}$&#39;</span><span class="p">,</span> <span class="s">&#39;Visual Class&#39;</span><span class="p">]</span>
+    
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+    
     <span class="n">i_logP</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;logP&#39;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nclusters</span><span class="p">):</span>
@@ -334,7 +381,12 @@ $(document).ready(function(){
     <span class="n">stdevs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stdevs</span><span class="p">)</span>
 
     <span class="c"># define colors based on median of logP</span>
-    <span class="n">j_ordered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">means</span><span class="p">[:,</span> <span class="n">i_logP</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">j_ordered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">means</span><span class="p">[:,</span> <span class="n">i_logP</span><span class="p">])</span>
+
+    <span class="c"># tweak colors by hand</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">j_ordered</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">j_ordered</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">j_ordered</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">j_ordered</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
     <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nclusters</span><span class="p">):</span>
         <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">isort</span><span class="p">[</span><span class="n">j_ordered</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span>
@@ -347,17 +399,17 @@ $(document).ready(function(){
     <span class="c"># Plot the resulting clusters</span>
     <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;gi&#39;</span><span class="p">][</span><span class="n">back</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;logP&#39;</span><span class="p">][</span><span class="n">back</span><span class="p">],</span>
-                <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;gi&#39;</span><span class="p">][</span><span class="n">fore</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;logP&#39;</span><span class="p">][</span><span class="n">fore</span><span class="p">],</span>
-                <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">fore</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">fore</span><span class="p">],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span>  <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">r&#39;$\log(P)$&#39;</span><span class="p">)</span>
 
     <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;amp&#39;</span><span class="p">][</span><span class="n">back</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;logP&#39;</span><span class="p">][</span><span class="n">back</span><span class="p">],</span>
-                <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;amp&#39;</span><span class="p">][</span><span class="n">fore</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;logP&#39;</span><span class="p">][</span><span class="n">fore</span><span class="p">],</span>
-                <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">fore</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">fore</span><span class="p">],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="c">#------------------------------</span>
     <span class="c"># set axis limits</span>
@@ -374,18 +426,19 @@ $(document).ready(function(){
         <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">r&#39;$g-i$&#39;</span><span class="p">)</span>
         <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">r&#39;$A$&#39;</span><span class="p">)</span>
 
+
     <span class="c">#------------------------------</span>
     <span class="c"># print table of means and medians directly to LaTeX format</span>
     <span class="k">print</span> <span class="s">r&quot;\begin{tabular}{|l|lllllll|}&quot;</span>
     <span class="k">print</span> <span class="s">r&quot;   \hline&quot;</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
         <span class="k">print</span> <span class="s">&#39;   &amp;&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
     <span class="k">print</span> <span class="s">r&quot;</span><span class="se">\\</span><span class="s">&quot;</span>
     <span class="k">print</span> <span class="s">r&quot;   \hline&quot;</span>
 
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nclusters</span><span class="p">):</span>
         <span class="k">print</span> <span class="s">&quot;   </span><span class="si">%i</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
             <span class="k">print</span> <span class="s">&quot; &amp; $</span><span class="si">%.2f</span><span class="s"> \pm </span><span class="si">%.2f</span><span class="s">$ &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">means</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">],</span> <span class="n">stdevs</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]),</span>
         <span class="k">print</span> <span class="s">r&quot;</span><span class="se">\\</span><span class="s">&quot;</span>
 
@@ -394,7 +447,7 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Second figure</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;skew&#39;</span><span class="p">,</span> <span class="s">&#39;ug&#39;</span><span class="p">,</span> <span class="s">&#39;iK&#39;</span><span class="p">,</span> <span class="s">&#39;JK&#39;</span><span class="p">]</span>
@@ -404,14 +457,50 @@ $(document).ready(function(){
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;gi&#39;</span><span class="p">][</span><span class="n">back</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">back</span><span class="p">],</span>
-               <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+               <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;gi&#39;</span><span class="p">][</span><span class="n">fore</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">fore</span><span class="p">],</span>
-               <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">fore</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+               <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">fore</span><span class="p">],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$g-i$&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylims</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="c">#------------------------------------------------------------</span>
+<span class="c"># Save the results</span>
+<span class="c">#</span>
+<span class="c"># run the script as</span>
+<span class="c">#</span>
+<span class="c">#   &gt;$ python fig_LINEAR_clustering.py --save</span>
+<span class="c">#</span>
+<span class="c"># to output the data file showing the cluster labels of each point</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;--save&#39;</span><span class="p">:</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s">&#39;cluster_labels.dat&#39;</span>
+
+    <span class="k">print</span> <span class="s">&quot;Saving cluster labels to </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">filename</span>
+
+    <span class="kn">from</span> <span class="nn">astroML.datasets.LINEAR_sample</span> <span class="kn">import</span> <span class="n">ARCHIVE_DTYPE</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+                        <span class="n">dtype</span><span class="o">=</span><span class="p">(</span><span class="n">ARCHIVE_DTYPE</span> <span class="o">+</span> <span class="p">[(</span><span class="s">&#39;2D_cluster_ID&#39;</span><span class="p">,</span> <span class="s">&#39;i4&#39;</span><span class="p">),</span>
+                                                <span class="p">(</span><span class="s">&#39;7D_cluster_ID&#39;</span><span class="p">,</span> <span class="s">&#39;i4&#39;</span><span class="p">)]))</span>
+
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
+        <span class="n">new_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;2D_cluster_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">class_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;7D_cluster_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">class_labels</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;</span><span class="si">%.6f</span><span class="s">   </span><span class="si">%.6f</span><span class="s">   </span><span class="si">%.3f</span><span class="s">   </span><span class="si">%.3f</span><span class="s">   </span><span class="si">%.3f</span><span class="s">   </span><span class="si">%.3f</span><span class="s">   </span><span class="si">%.7f</span><span class="s">   </span><span class="si">%.3f</span><span class="s">   </span><span class="si">%.3f</span><span class="s">   &#39;</span>
+           <span class="s">&#39;</span><span class="si">%.3f</span><span class="s">    </span><span class="si">%.2f</span><span class="s">     </span><span class="si">%i</span><span class="s">     </span><span class="si">%i</span><span class="s">      </span><span class="si">%s</span><span class="s">          </span><span class="si">%i</span><span class="s">              </span><span class="si">%i</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+
+
+    <span class="n">F</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">F</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;#    ra           dec       ug      gi      iK      JK     &#39;</span>
+            <span class="s">&#39;logP       Ampl    skew      kurt    magMed    nObs  LCtype  &#39;</span>
+            <span class="s">&#39;LINEARobjectID  2D_cluster_ID   7D_cluster_ID</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">new_data</span><span class="p">:</span>
+        <span class="n">F</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">))</span>
+    <span class="n">F</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -419,6 +508,7 @@ $(document).ready(function(){
 </div>
 <div align="right"><p><a class="reference download internal" href="../../_downloads/fig_LINEAR_clustering.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_LINEAR_clustering.py]</span></tt></a></p>
 </div></div>
+</div>
 
 
           </div>

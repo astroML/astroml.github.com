@@ -10,7 +10,7 @@ Comparison of PCA, ICA, and NMF decompositions of SDSS spectra
 
 
 .. image:: ../images/CIDU2012/fig_spec_decompositions_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

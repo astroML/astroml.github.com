@@ -1,18 +1,33 @@
 """
 Poisson Statistics with arbitrarily small bins
 ----------------------------------------------
-This figure compares the binned and non-binned approach to regression
-in the Poissonian context.  As expected, when the number of bins becomes
-very large, the non-binned and binned cases lead to similar results.
+Figure 5.16
+
+The comparison of the continuous method (figure 5.14) and the binned method
+(figure 5.15) on the same data set. In the limit of a large number of bins,
+most bins register only zero or one count, and the binned Poisson statistic
+gives nearly the same marginalized distribution for a as the continuous
+statistic. For as few as two bins, the constraint on the slope is only
+slightly biased.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from astroML.stats.random import linear
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def logL_continuous(x, a, xmin, xmax):
@@ -74,7 +89,7 @@ for i, n in enumerate(nbins):
 
 #------------------------------------------------------------
 # Plot the results
-ax = plt.axes()
+fig, ax = plt.subplots(figsize=(5, 3.75))
 
 ax.plot(a, L_c, '-k', label='continuous')
 for L, ls, n in zip(L_p, ['-', '--'], nbins):
@@ -83,7 +98,7 @@ for L, ls, n in zip(L_p, ['-', '--'], nbins):
 
 # plot a vertical line: in newer matplotlib, use ax.vlines([a_true])
 ylim = (0, 200)
-plt.plot([a_true, a_true], ylim, ':k', lw=1)
+ax.plot([a_true, a_true], ylim, ':k', lw=1)
 
 ax.set_xlim(-0.001, 0.021)
 ax.set_ylim(ylim)
@@ -91,6 +106,6 @@ ax.set_ylim(ylim)
 ax.set_xlabel('$a$')
 ax.set_ylabel('$p(a)$')
 
-ax.legend(loc=2, prop=dict(size=14))
+ax.legend(loc=2)
 
 plt.show()

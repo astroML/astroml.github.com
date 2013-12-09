@@ -1,16 +1,39 @@
 """
 Example of Lomb-Scargle Algorithm
 ---------------------------------
+Figure 10.15
+
+Example of a Lomb-Scargle periodogram. The data include 30 points drawn from
+the function y(t|P) = 10 + sin(2pi t/P) with P = 0.3. Heteroscedastic Gaussian
+noise is added to the observations, with a width drawn from a uniform
+distribution with 0.5 < sigma < 1.0. Data are shown in the top panel and the
+resulting Lomb-Scargle periodogram is shown in the bottom panel. The arrow
+marks the location of the true period. The dotted lines show the 1% and 5%
+significance levels for the highest peak, determined by 1000 bootstrap 
+resamplings (see Section 10.3.2). The change in BIC compared to a nonvarying
+source (eq. 10.55) is shown on the right y-axis. The maximum power corresponds
+to a delta-BIC = 26.1,indicating the presence of a periodic signal.
+Bootstrapping indicates the period is detected at ~ 5% significance.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from astroML.time_series import\
     lomb_scargle, lomb_scargle_BIC, lomb_scargle_bootstrap
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Generate Data
@@ -37,7 +60,7 @@ sig1, sig5 = np.percentile(D, [99, 95])
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 3.75))
 fig.subplots_adjust(left=0.1, right=0.9, hspace=0.25)
 
 # First panel: the data

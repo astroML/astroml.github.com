@@ -5,11 +5,14 @@
 
 A 2x2 Contingency Table
 -----------------------
+Figure 3.3.
+
+A contingency table showing p(T|D).
 
 
 
 .. image:: ../images/chapter3/fig_contingency_table_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -39,7 +42,7 @@ A 2x2 Contingency Table
     <div class="toggle_container">
 
 .. literalinclude:: fig_contingency_table.py
-    :lines: 5-
+    :lines: 8-
 
 .. raw:: html
 

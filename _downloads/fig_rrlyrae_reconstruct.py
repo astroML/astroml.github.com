@@ -1,17 +1,31 @@
 """
 Fourier Reconstruction of RR-Lyrae Templates
 --------------------------------------------
-This figure demonstrates Fourier decomposition using RR-Lyrae templates
+Figure 10.1
+
+An example of a truncated Fourier representation of an RR Lyrae light curve.
+The thick dashed line shows the true curve; the gray lines show the
+approximation based on 1, 3, and 8 Fourier modes (sinusoids).
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
 from astroML.datasets import fetch_rrlyrae_templates
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Load the RR Lyrae template
@@ -20,7 +34,7 @@ x, y = templates['115r'].T
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(hspace=0)
 
 kvals = [1, 3, 8]
@@ -45,7 +59,7 @@ for (k, subplot) in zip(kvals, subplots):
         label += 's'
 
     ax.text(0.02, 0.1, label, ha='left', va='bottom',
-            fontsize=14, transform=ax.transAxes)
+            transform=ax.transAxes)
 
     if subplot == subplots[-1]:
         ax.set_xlabel('phase')

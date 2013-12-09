@@ -12,7 +12,7 @@ quasar sample.
 
 
 .. image:: ../images/datasets/plot_dr7_quasar_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

@@ -12,7 +12,7 @@ resulting spectra are shown below.
 
 
 .. image:: ../images/datasets/plot_corrected_spectra_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

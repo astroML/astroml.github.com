@@ -1,17 +1,34 @@
 """
 Inline Bayesian Linear Regression
 ---------------------------------
-This figure shows a schematic of how Bayesian ideas can be used for a
-linear regression problem with (asymmetric) errors in the data.
+Figure 8.1
+
+An example showing the online nature of Bayesian regression. The upper panel
+shows the four points used in regression, drawn from the line
+y = theta_1 x + theta_2 with theta_1 = 1 and theta_2 = 0. The lower panel shows
+the posterior pdf in the (theta_1, theta_2) plane as each point is added in
+sequence. For clarity, the implied dark regions for sigma > 3 have been
+removed. The fourth point is an upper-limit measurement of y, and the resulting
+posterior cuts off half the parameter space.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from astroML.plotting.mcmc import convert_to_stdev
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Set up the data and errors
@@ -44,7 +61,7 @@ bmax = b_range[j[0]]
 
 #------------------------------------------------------------
 # Plot the first figure: the points and errorbars
-fig1 = plt.figure()
+fig1 = plt.figure(figsize=(5, 3.75))
 ax1 = fig1.add_subplot(111)
 
 # Draw the true and best-fit lines
@@ -58,18 +75,18 @@ ax1.errorbar(x, y, dy, fmt='ok')
 ax1.errorbar([x4], [y4], [[0.5], [0]], fmt='_k', lolims=True)
 
 for i in range(3):
-    ax1.text(x[i] + 0.05, y[i] - 0.3, "$x_{%i}$" % (i + 1), fontsize=18)
-ax1.text(x4 + 0.05, y4 - 0.5, "$x_4$", fontsize=18)
+    ax1.text(x[i] + 0.05, y[i] - 0.3, "$x_{%i}$" % (i + 1))
+ax1.text(x4 + 0.05, y4 - 0.5, "$x_4$")
 
-ax1.set_xlabel('$x$', fontsize=16)
-ax1.set_ylabel('$y$', fontsize=16)
+ax1.set_xlabel('$x$')
+ax1.set_ylabel('$y$')
 
 ax1.set_xlim(-1.5, 1.5)
 ax1.set_ylim(-2, 2)
 
 #------------------------------------------------------------
 # Plot the second figure: likelihoods for each point
-fig2 = plt.figure(figsize=(8, 8))
+fig2 = plt.figure(figsize=(5, 5))
 fig2.subplots_adjust(hspace=0.05, wspace=0.05)
 
 # plot likelihood contours
@@ -96,14 +113,13 @@ for i in range(1, 4):
 
     ax.contour(a_range, b_range, sigma_together.T,
                levels=(0.683, 0.955, 0.997),
-               colors='k', linewidths=2)
+               colors='k')
 
 # Label and adjust axes
 for i in range(4):
     ax = fig2.axes[i]
 
-    ax.text(1.98, -0.98, "$x_{%i}$" % (i + 1), ha='right', va='bottom',
-            fontsize=16)
+    ax.text(1.98, -0.98, "$x_{%i}$" % (i + 1), ha='right', va='bottom')
 
     ax.plot([0, 2], [0, 0], ':k', lw=1)
     ax.plot([1, 1], [-1, 1], ':k', lw=1)
@@ -116,9 +132,9 @@ for i in range(4):
     if i in (0, 1):
         ax.xaxis.set_major_formatter(plt.NullFormatter())
     if i in (0, 2):
-        ax.set_ylabel(r'$\theta_2$', fontsize=16)
+        ax.set_ylabel(r'$\theta_2$')
     if i in (2, 3):
-        ax.set_xlabel(r'$\theta_1$', fontsize=16)
+        ax.set_xlabel(r'$\theta_1$')
 
 
 plt.show()

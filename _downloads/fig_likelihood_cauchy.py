@@ -1,20 +1,36 @@
 """
 Log-likelihood for Cauchy Distribution
 --------------------------------------
+Figure 5.10
 
-This plot shows the Likelihood as a function of the mean :math:`\mu` and the
-error :math:`\gamma` when the posterior is assumed to be a Cauchy distribution.
+An illustration of the logarithm of posterior probability distribution for
+:math:`\mu` and :math:`\gamma`, :math:`L(\mu,\gamma)` (see eq. 5.75) for
+N = 10 (the sample is generated using the Cauchy distribution with
+:math:`\mu = 0` and :math:`\gamma = 2`). The maximum of L is renormalized
+to 0, and color coded as shown in the legend. The contours enclose the regions
+that contain 0.683, 0.955 and 0.997 of the cumulative (integrated) posterior
+probability.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import cauchy
 from astroML.plotting.mcmc import convert_to_stdev
 from astroML.stats import median_sigmaG
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def cauchy_logL(xi, gamma, mu):
@@ -56,6 +72,7 @@ print "gamma from quartiles:", sigG / 1.483  # Equation 3.54
 
 #------------------------------------------------------------
 # Plot the results
+fig = plt.figure(figsize=(5, 3.75))
 plt.imshow(logL, origin='lower', cmap=plt.cm.binary,
            extent=(mu[0], mu[-1], gamma[0], gamma[-1]),
            aspect='auto')
@@ -64,11 +81,11 @@ plt.clim(-5, 0)
 
 plt.contour(mu, gamma, convert_to_stdev(logL),
             levels=(0.683, 0.955, 0.997),
-            colors='k', linewidths=2)
+            colors='k')
 
-plt.text(0.5, 0.9,
+plt.text(0.5, 0.93,
          r'$L(\mu,\gamma)\ \mathrm{for}\ \bar{x}=0,\ \gamma=2,\ n=10$',
-         fontsize=18, bbox=dict(ec='k', fc='w', alpha=0.9),
+         bbox=dict(ec='k', fc='w', alpha=0.9),
          ha='center', va='center', transform=plt.gca().transAxes)
 
 plt.xlabel(r'$\mu$')

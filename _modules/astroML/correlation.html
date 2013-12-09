@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" />
 <!-- Following code is for Google custom search bar -->
@@ -138,11 +139,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -156,9 +158,23 @@ $(document).ready(function(){
           <div class="body">
             
   <h1>Source code for astroML.correlation</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Tools for computing two-point correlation functions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">BallTree</span>
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">check_random_state</span>
+
+<span class="c"># Check if scikit-learn&#39;s two-point functionality is available.</span>
+<span class="c"># This was added in scikit-learn version 0.14</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KDTree</span>
+    <span class="n">sklearn_has_two_point</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">warnings</span>
+    <span class="n">sklearn_has_two_point</span> <span class="o">=</span> <span class="bp">False</span>
 
 
 <span class="k">def</span> <span class="nf">uniform_sphere</span><span class="p">(</span><span class="n">RAlim</span><span class="p">,</span> <span class="n">DEClim</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -269,17 +285,31 @@ $(document).ready(function(){
 
     <span class="n">factor</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="n">BT_D</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">BT_R</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sklearn_has_two_point</span><span class="p">:</span>
+        <span class="c"># Fast two-point correlation functions added in scikit-learn v. 0.14</span>
+        <span class="n">KDT_D</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">KDT_R</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span>
 
-    <span class="n">counts_DD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">counts_RR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">counts_DD</span> <span class="o">=</span> <span class="n">KDT_D</span><span class="o">.</span><span class="n">two_point_correlation</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
+        <span class="n">counts_RR</span> <span class="o">=</span> <span class="n">KDT_R</span><span class="o">.</span><span class="n">two_point_correlation</span><span class="p">(</span><span class="n">data_R</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">counts_DD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_D</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                                                <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-        <span class="n">counts_RR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_R</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data_R</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                                                <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;Version 0.3 of astroML will require scikit-learn &quot;</span>
+                      <span class="s">&quot;version 0.14 or higher for correlation function &quot;</span>
+                      <span class="s">&quot;calculations. Upgrade to sklearn 0.14+ now for much &quot;</span>
+                      <span class="s">&quot;faster correlation function calculations.&quot;</span><span class="p">)</span>
+
+        <span class="n">BT_D</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">BT_R</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span>
+
+        <span class="n">counts_DD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">counts_RR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">counts_DD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_D</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                    <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+            <span class="n">counts_RR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_R</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data_R</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                    <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
 
     <span class="n">DD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_DD</span><span class="p">)</span>
     <span class="n">RR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_RR</span><span class="p">)</span>
@@ -291,10 +321,13 @@ $(document).ready(function(){
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;standard&#39;</span><span class="p">:</span>
         <span class="n">corr</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">DD</span> <span class="o">/</span> <span class="n">RR</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">:</span>
-        <span class="n">counts_DR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="n">counts_DR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_R</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                                                    <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">sklearn_has_two_point</span><span class="p">:</span>
+            <span class="n">counts_DR</span> <span class="o">=</span> <span class="n">KDT_R</span><span class="o">.</span><span class="n">two_point_correlation</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts_DR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">counts_DR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_R</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                        <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
         <span class="n">DR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_DR</span><span class="p">)</span>
 
         <span class="n">corr</span> <span class="o">=</span> <span class="p">(</span><span class="n">factor</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">DD</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">DR</span> <span class="o">+</span> <span class="n">RR</span><span class="p">)</span> <span class="o">/</span> <span class="n">RR</span>

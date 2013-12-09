@@ -1,14 +1,20 @@
 """
 Correlation estimates
 ---------------------
-This shows the distribution of Pearson-r, Spearman-r, and Kendall-tau
-estimators for a bivariate gaussian distribution
+Figure 3.24.
+
+Bootstrap estimates of the distribution of Pearson's, Spearman's, and Kendall's
+correlation coefficients based on 2000 resamplings of the 1000 points shown
+in figure 3.23. The true values are shown by the dashed lines. It is clear
+that Pearson's correlation coefficient is not robust to contamination.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from scipy import stats
 from matplotlib import pyplot as plt
@@ -22,6 +28,14 @@ if matplotlib.rcParams.get('text.usetex'):
     pct = '\%'
 else:
     pct = '%'
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Set parameters for the distributions
@@ -75,14 +89,14 @@ results = compute_results(N, Nbootstraps)
 
 #------------------------------------------------------------
 # Plot the results in a three-panel plot
-fig = plt.figure(figsize=(8, 8))
-fig.subplots_adjust(bottom=0.07, top=0.95, hspace=0.25)
+fig = plt.figure(figsize=(5, 5))
+fig.subplots_adjust(bottom=0.1, top=0.95, hspace=0.25)
 
 histargs = (dict(alpha=0.5, label='No Outliers'),
             dict(alpha=0.8, label='%i%s Outliers' % (int(f * 100), pct)))
 
 distributions = ['Pearson-r', 'Spearman-r', r'Kendall-$\tau$']
-xlabels = ['$r_p$', '$r_s$', r'$\tau$']\
+xlabels = ['r_p', 'r_s', r'\tau']\
 
 for i in range(3):
     ax = fig.add_subplot(311 + i)
@@ -105,7 +119,7 @@ for i in range(3):
     ax.text(0.98, 0.95, distributions[i], ha='right', va='top',
             transform=ax.transAxes, bbox=dict(fc='w', ec='w'))
 
-    ax.set_xlabel(xlabels[i])
-    ax.set_ylabel('N(%s)' % xlabels[i])
+    ax.set_xlabel('$%s$' % xlabels[i])
+    ax.set_ylabel('$N(%s)$' % xlabels[i])
 
 plt.show()

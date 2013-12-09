@@ -1,20 +1,37 @@
 """
 Luminosity function code on toy data
 ------------------------------------
+Figure 4.9.
 
-This shows an example of computing the distribution from truncated
-data using Lynden-Bell's C- method
+An example of using Lynden-Bell's C- method to estimate a bivariate
+distribution from a truncated sample. The lines in the left panel show the true
+one-dimensional distributions of x and y (truncated Gaussian distributions).
+The two-dimensional distribution is assumed to be separable; see eq. 4.85.
+A realization of the distribution is shown in the right panel, with a
+truncation given by the solid line. The points in the left panel are computed
+from the truncated data set using the C- method, with error bars from 20
+bootstrap resamples.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy import stats
 
 from astroML.lumfunc import bootstrap_Cminus
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Define and sample our distributions
@@ -61,22 +78,22 @@ y_mid = 0.5 * (y_fit[1:] + y_fit[:-1])
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(10, 4))
-fig.subplots_adjust(bottom=0.15, top=0.95,
-                    left=0.07, right=0.95, wspace=0.2)
+fig = plt.figure(figsize=(5, 2))
+fig.subplots_adjust(bottom=0.2, top=0.95,
+                    left=0.1, right=0.92, wspace=0.25)
 
 # First subplot is the true & inferred 1D distributions
 ax = fig.add_subplot(121)
-ax.plot(x_mid, x_pdf.pdf(x_mid), '-k', label='p(x)')
-ax.plot(y_mid, y_pdf.pdf(y_mid), '--k', label='p(y)')
+ax.plot(x_mid, x_pdf.pdf(x_mid), '-k', label='$p(x)$')
+ax.plot(y_mid, y_pdf.pdf(y_mid), '--k', label='$p(y)$')
 ax.legend(loc='lower center')
 
-ax.errorbar(x_mid, x_dist, dx_dist, fmt='ok', ecolor='k', lw=1)
-ax.errorbar(y_mid, y_dist, dy_dist, fmt='^k', ecolor='k', lw=1)
+ax.errorbar(x_mid, x_dist, dx_dist, fmt='ok', ecolor='k', lw=1, ms=4)
+ax.errorbar(y_mid, y_dist, dy_dist, fmt='^k', ecolor='k', lw=1, ms=4)
 
 ax.set_ylim(0, 1.8)
 ax.set_xlim(0, 1)
-ax.set_xlabel('x, y')
+ax.set_xlabel('$x$, $y$')
 ax.set_ylabel('normalized distribution')
 
 # Second subplot is the "observed" 2D distribution
@@ -94,10 +111,10 @@ ax.plot(x_limit, y_limit, '-k')
 
 ax.set_xlim(0, 1.1)
 ax.set_ylim(0, 1.1)
-ax.set_xlabel('x')
-ax.set_ylabel('y')
+ax.set_xlabel('$x$')
+ax.set_ylabel('$y$')
 cb.set_label('counts per pixel')
-ax.text(0.96, 0.96, '%i points' % len(x), ha='right', va='top',
+ax.text(0.93, 0.93, '%i points' % len(x), ha='right', va='top',
         transform=ax.transAxes)
 
 plt.show()

@@ -49,6 +49,7 @@ available in astroML.  For more examples, see the
 
 .. figure:: ./../images/learning/plot_neighbors_photoz_1_thumb.png
     :target: ./plot_neighbors_photoz.html
+    :align: center
 
     :ref:`example_learning_plot_neighbors_photoz`
 

@@ -1,14 +1,21 @@
 """
 Mean Shift Example
 ------------------
-This shows an example of the Mean Shift clustering algorithm on the data
-from the SDSS Segue Stellar Parameters Pipeline
+Figure 6.14
+
+Mean-shift clustering on the metallicity datas et used in figures 6.6 and 6.13.
+The method finds two clusters associated with local maxima of the distribution
+(interior of the circles). Points outside the circles have been determined to
+lie in the background. The mean shift does not attempt to model correlation
+in the clusters: that is, the resulting clusters are axis aligned.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.patches import Ellipse
@@ -18,6 +25,14 @@ from sklearn.cluster import MeanShift, estimate_bandwidth
 from sklearn import preprocessing
 
 from astroML.datasets import fetch_sdss_sspp
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Get the data
@@ -54,7 +69,7 @@ print "number of estimated clusters : %d" % n_clusters
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(6, 6))
+fig = plt.figure(figsize=(5, 5))
 ax = fig.add_subplot(111)
 
 # plot density
@@ -76,7 +91,7 @@ for i in range(n_clusters):
 
     ax.contour(0.5 * (FeH_bins[1:] + FeH_bins[:-1]),
                0.5 * (alphFe_bins[1:] + alphFe_bins[:-1]),
-               H.T, bins, colors='w', linewidths=2)
+               H.T, bins, colors='w')
 
 ax.xaxis.set_major_locator(plt.MultipleLocator(0.3))
 ax.set_xlim(-1.101, 0.101)

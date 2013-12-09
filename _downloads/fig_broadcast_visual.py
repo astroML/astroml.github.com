@@ -1,19 +1,33 @@
 """
 Broadcast Visualization
 -----------------------
-This figure visualizes numpy broadcasting rules for three cases
+Figure A.1
+
+A visualization of NumPy array broadcasting. Note that the extra memory
+indicated by the dotted boxes is never allocated, but it can be convenient
+to think about the operations as if it is.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
+
 #------------------------------------------------------------
 # Draw a figure and axis with no boundary
-fig = plt.figure(figsize=(8, 6), facecolor='w')
+fig = plt.figure(figsize=(5, 3.75), facecolor='w')
 ax = plt.axes([0, 0, 1, 1], xticks=[], yticks=[], frameon=False)
 
 
@@ -72,9 +86,9 @@ def draw_cube(ax, xy, size, depth=0.4,
                 ha='center', va='center', **label_kwargs)
 
 solid = dict(c='black', ls='-', lw=1,
-             label_kwargs=dict(size=14, color='k'))
-dotted = dict(c='black', ls=':', lw=1,
-              label_kwargs=dict(size=14, color='gray'))
+             label_kwargs=dict(color='k'))
+dotted = dict(c='black', ls=':', lw=0.5,
+              label_kwargs=dict(color='gray'))
 depth = 0.3
 
 #------------------------------------------------------------
@@ -91,10 +105,10 @@ draw_cube(ax, (12, 10), 1, depth, [1, 2, 3, 4, 5, 6, 9], '5', **solid)
 draw_cube(ax, (13, 10), 1, depth, [1, 2, 3, 6, 9], '6', **solid)
 draw_cube(ax, (14, 10), 1, depth, [1, 2, 3, 6, 7, 9, 10], '7', **solid)
 
-ax.text(5, 10.5, '+', size=18, ha='center', va='center')
-ax.text(10.5, 10.5, '=', size=18, ha='center', va='center')
-ax.text(1, 11.5, r'${\tt np.arange(3) + 5}$', size=18,
-        ha='left', va='bottom')
+ax.text(5, 10.5, '+', size=12, ha='center', va='center')
+ax.text(10.5, 10.5, '=', size=12, ha='center', va='center')
+ax.text(1, 11.5, r'${\tt np.arange(3) + 5}$',
+        size=12, ha='left', va='bottom')
 
 #------------------------------------------------------------
 # Draw middle operation: matrix plus vector
@@ -138,10 +152,10 @@ draw_cube(ax, (12, 5.5), 1, depth, [2, 3, 4], '1', **solid)
 draw_cube(ax, (13, 5.5), 1, depth, [2, 3], '2', **solid)
 draw_cube(ax, (14, 5.5), 1, depth, [2, 3, 7, 10], '3', **solid)
 
-ax.text(5, 7.0, '+', size=18, ha='center', va='center')
-ax.text(10.5, 7.0, '=', size=18, ha='center', va='center')
+ax.text(5, 7.0, '+', size=12, ha='center', va='center')
+ax.text(10.5, 7.0, '=', size=12, ha='center', va='center')
 ax.text(1, 9.0, r'${\tt np.ones((3,\, 3)) + np.arange(3)}$',
-        size=18, ha='left', va='bottom')
+        size=12, ha='left', va='bottom')
 
 #------------------------------------------------------------
 # Draw bottom operation: vector plus vector, double broadcast
@@ -185,10 +199,10 @@ draw_cube(ax, (12, 1), 1, depth, [2, 3, 4], '2', **solid)
 draw_cube(ax, (13, 1), 1, depth, [2, 3], '3', **solid)
 draw_cube(ax, (14, 1), 1, depth, [2, 3, 7, 10], '4', **solid)
 
-ax.text(5, 2.5, '+', size=18, ha='center', va='center')
-ax.text(10.5, 2.5, '=', size=18, ha='center', va='center')
+ax.text(5, 2.5, '+', size=12, ha='center', va='center')
+ax.text(10.5, 2.5, '=', size=12, ha='center', va='center')
 ax.text(1, 4.5, r'${\tt np.arange(3).reshape((3,\, 1)) + np.arange(3)}$',
-        size=18, ha='left', va='bottom')
+        ha='left', size=12, va='bottom')
 
 ax.set_xlim(0, 16)
 ax.set_ylim(0.5, 12.5)

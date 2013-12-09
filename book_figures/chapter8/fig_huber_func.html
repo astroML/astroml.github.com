@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Huber Functional Form &mdash; astroML 0.1 documentation</title>
+    <title>Huber Loss Function &mdash; astroML 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 8: Regression and Model Fitting" href="index.html" />
     <link rel="next" title="Huber Loss Function" href="fig_huber_loss.html" />
-    <link rel="prev" title="Perform Outlier Rejection with MCMC" href="fig_outlier_rejection.html" />
+    <link rel="prev" title="Total Least Squares Figure" href="fig_total_least_squares.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="fig_outlier_rejection.html" title="Perform Outlier Rejection with MCMC"
+	<a href="fig_total_least_squares.html" title="Total Least Squares Figure"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    Perform Outlier ...
+	    Total Least Squa...
 	    </span>
 	    <span class="hiddenrellink">
-	    Perform Outlier Rejection with MCMC
+	    Total Least Squares Figure
 	    </span>
 	    
 	    </a>
@@ -161,7 +162,7 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">Huber Functional Form</a></li>
+<li><a class="reference internal" href="#">Huber Loss Function</a></li>
 </ul>
 
 
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -190,10 +192,11 @@ $(document).ready(function(){
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="huber-functional-form">
-<span id="book-fig-chapter8-fig-huber-func"></span><h1>Huber Functional Form<a class="headerlink" href="#huber-functional-form" title="Permalink to this headline">¶</a></h1>
-<p>This plots the form of the huber loss function <img class="math" src="../../_images/math/e02af76f8e83486130017c5db0ed220c833a0507.png" alt="\Phi(t)"/>.</p>
-<img alt="../../_images/fig_huber_func_1.png" class="align-center" src="../../_images/fig_huber_func_1.png" style="width: 100%;" />
+  <div class="section" id="huber-loss-function">
+<span id="book-fig-chapter8-fig-huber-func"></span><h1>Huber Loss Function<a class="headerlink" href="#huber-loss-function" title="Permalink to this headline">¶</a></h1>
+<p>Figure 8.7</p>
+<p>The Huber loss function for various values of c.</p>
+<a class="reference internal image-reference" href="../../_images/fig_huber_func_1.png"><img alt="../../_images/fig_huber_func_1.png" class="align-center" src="../../_images/fig_huber_func_1.png" style="width: 500.0px; height: 375.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -202,13 +205,23 @@ $(document).ready(function(){
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 
 <span class="c">#------------------------------------------------------------</span>
@@ -220,7 +233,7 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot for several values of c</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>

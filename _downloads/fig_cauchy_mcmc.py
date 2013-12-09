@@ -1,15 +1,22 @@
 """
 MCMC for the Cauchy distribution
 --------------------------------
+Figure 5.22
 
-This example shows how to use pyMC to sample the likelihood for the
-parameters of a Cauchy distribution
+Markov chain monte carlo (MCMC) estimates of the posterior pdf for parameters
+describing the Cauchy distribution. The data are the same as those used in
+figure 5.10: the dashed curves in the top-right panel show the results of
+direct computation on a regular grid from that diagram. The solid curves are
+the corresponding MCMC estimates using 10,000 sample points. The left and the
+bottom panels show marginalized distributions.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from scipy.stats import cauchy
 from matplotlib import pyplot as plt
@@ -20,6 +27,14 @@ from astroML.plotting.mcmc import convert_to_stdev
 import scipy
 scipy.derivative = scipy.misc.derivative
 import pymc
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def cauchy_logL(xi, sigma, mu):
@@ -93,7 +108,7 @@ hist_gamma, bins_gamma = np.histogram(trace_gamma, bins=gamma_bins,
 
 #----------------------------------------------------------------------
 # plot the results
-fig = plt.figure(figsize=(6, 6))
+fig = plt.figure(figsize=(5, 5))
 
 # first axis: likelihood contours
 ax1 = fig.add_axes((0.4, 0.4, 0.55, 0.55))
@@ -102,13 +117,13 @@ ax1.yaxis.set_major_formatter(plt.NullFormatter())
 
 ax1.contour(mu, gamma, convert_to_stdev(logL),
             levels=(0.683, 0.955, 0.997),
-            colors='b', linewidths=2, linestyles='dashed')
+            colors='b', linestyles='dashed')
 
 ax1.contour(0.5 * (mu_bins[:-1] + mu_bins[1:]),
             0.5 * (gamma_bins[:-1] + gamma_bins[1:]),
             convert_to_stdev(np.log(L_MCMC.T)),
             levels=(0.683, 0.955, 0.997),
-            colors='k', linewidths=2)
+            colors='k')
 
 # second axis: marginalized over mu
 ax2 = fig.add_axes((0.1, 0.4, 0.29, 0.55))

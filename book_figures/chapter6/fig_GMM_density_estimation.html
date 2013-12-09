@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 6: Searching for Structure in Point Data" href="index.html" />
-    <link rel="next" title="Cloning a Distribution with Gaussian Mixtures" href="fig_GMM_clone.html" />
-    <link rel="prev" title="EM example: Gaussian Mixture Models" href="fig_EM_metallicity.html" />
+    <link rel="next" title="Number of Clusters for Gaussian Mixtures" href="fig_GMM_nclusters.html" />
+    <link rel="prev" title="Mixture Model of SDSS Great Wall" href="fig_great_wall_GMM.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="fig_EM_metallicity.html" title="EM example: Gaussian Mixture Models"
+	<a href="fig_great_wall_GMM.html" title="Mixture Model of SDSS Great Wall"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    EM example: Gaus...
+	    Mixture Model of...
 	    </span>
 	    <span class="hiddenrellink">
-	    EM example: Gaussian Mixture Models
+	    Mixture Model of SDSS Great Wall
 	    </span>
 	    
 	    </a>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="fig_GMM_clone.html" title="Cloning a Distribution with Gaussian Mixtures"
+	<a href="fig_GMM_nclusters.html" title="Number of Clusters for Gaussian Mixtures"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    Cloning a Distri...
+	    Number of Cluste...
 	    </span>
 	    <span class="hiddenrellink">
-	    Cloning a Distribution with Gaussian Mixtures
+	    Number of Clusters for Gaussian Mixtures
 	    </span>
 	    
 	    </a>
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,27 +194,60 @@ $(document).ready(function(){
             
   <div class="section" id="comparison-of-1d-density-estimators">
 <span id="book-fig-chapter6-fig-gmm-density-estimation"></span><h1>Comparison of 1D Density Estimators<a class="headerlink" href="#comparison-of-1d-density-estimators" title="Permalink to this headline">¶</a></h1>
-<img alt="../../_images/fig_GMM_density_estimation_1.png" class="align-center" src="../../_images/fig_GMM_density_estimation_1.png" style="width: 100%;" />
+<p>Figure 6.8</p>
+<p>A comparison of different density estimation methods for two simulated
+one-dimensional data sets (same as in figure 6.5). Density estimators are
+Bayesian blocks (Section 5.7.2), KDE (Section 6.1.1), and a Gaussian mixture
+model. In the latter, the optimal number of Gaussian components is chosen using
+the BIC (eq. 5.35). In the top panel, GMM solution has three components but one
+of the components has a very large width and effectively acts as a nearly flat
+background.</p>
+<a class="reference internal image-reference" href="../../_images/fig_GMM_density_estimation_1.png"><img alt="../../_images/fig_GMM_density_estimation_1.png" class="align-center" src="../../_images/fig_GMM_density_estimation_1.png" style="width: 500.0px; height: 500.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
-</pre></div>
+<div class="toggle_container"><div class="highlight-python"><pre>WARNING: DeprecationWarning: Function eval is deprecated; GMM.eval was renamed to GMM.score_samples in 0.14 and will be removed in 0.16. [sklearn.utils]
+WARNING: DeprecationWarning: Function eval is deprecated; GMM.eval was renamed to GMM.score_samples in 0.14 and will be removed in 0.16. [sklearn.utils]
+</pre>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 
-<span class="kn">from</span> <span class="nn">astroML.density_estimation</span> <span class="kn">import</span> <span class="n">KDE</span>
 <span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">hist</span>
 <span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GMM</span>
+
+<span class="c"># Scikit-learn 0.14 added sklearn.neighbors.KernelDensity, which is a very</span>
+<span class="c"># fast kernel density estimator based on a KD Tree.  We&#39;ll use this if</span>
+<span class="c"># available (and raise a warning if it isn&#39;t).</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
+    <span class="n">use_sklearn_KDE</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">warnings</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;KDE will be removed in astroML version 0.3.  Please &quot;</span>
+                  <span class="s">&quot;upgrade to scikit-learn 0.14+ and use &quot;</span>
+                  <span class="s">&quot;sklearn.neighbors.KernelDensity.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">astroML.density_estimation</span> <span class="kn">import</span> <span class="n">KDE</span>
+    <span class="n">use_sklearn_KDE</span> <span class="o">=</span> <span class="bp">False</span>
+
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Generate our data: a mix of several Cauchy distributions</span>
@@ -234,8 +269,8 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="n">N_values</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
 <span class="n">subplots</span> <span class="o">=</span> <span class="p">(</span><span class="mi">211</span><span class="p">,</span> <span class="mi">212</span><span class="p">)</span>
 <span class="n">k_values</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -246,8 +281,13 @@ $(document).ready(function(){
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 
     <span class="c"># Compute density with KDE</span>
-    <span class="n">kde</span> <span class="o">=</span> <span class="n">KDE</span><span class="p">(</span><span class="s">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xN</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">])</span>
-    <span class="n">dens_kde</span> <span class="o">=</span> <span class="n">kde</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">t</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">])</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="k">if</span> <span class="n">use_sklearn_KDE</span><span class="p">:</span>
+        <span class="n">kde</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s">&#39;gaussian&#39;</span><span class="p">)</span>
+        <span class="n">kde</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xN</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">])</span>
+        <span class="n">dens_kde</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">kde</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">t</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">kde</span> <span class="o">=</span> <span class="n">KDE</span><span class="p">(</span><span class="s">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xN</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">])</span>
+        <span class="n">dens_kde</span> <span class="o">=</span> <span class="n">kde</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">t</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">])</span> <span class="o">/</span> <span class="n">N</span>
 
     <span class="c"># Compute density via Gaussian Mixtures</span>
     <span class="c"># we&#39;ll try several numbers of clusters</span>
@@ -268,16 +308,16 @@ $(document).ready(function(){
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logprob</span><span class="p">),</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="s">&quot;Mixture Model</span><span class="se">\n</span><span class="s">(</span><span class="si">%i</span><span class="s"> components)&quot;</span> <span class="o">%</span> <span class="n">n_components</span><span class="p">[</span><span class="n">i_min</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dens_kde</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s">&quot;Kernel Density (h=0.1)&quot;</span><span class="p">)</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&quot;Kernel Density $(h=0.1)$&quot;</span><span class="p">)</span>
 
     <span class="c"># label the plot</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%i</span><span class="s"> points&quot;</span> <span class="o">%</span> <span class="n">N</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">,</span>
             <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;p(x)&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$p(x)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;upper right&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">subplot</span> <span class="o">==</span> <span class="mi">212</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$x$&#39;</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.4001</span><span class="p">)</span>

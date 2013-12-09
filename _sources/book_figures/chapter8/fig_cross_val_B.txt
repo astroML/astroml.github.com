@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter8_fig_cross_val_B:
+
+
+Cross Validation Examples: part 2
+---------------------------------
+Figure 8.13
+
+Three models of increasing complexity applied to our toy dataset (eq. 8.75).
+The d = 2 model, like the linear model in figure 8.12, suffers from high bias,
+and underfits the data. The d = 19 model suffers from high variance, and
+overfits the data. The d = 3 model is a good compromise between these extremes.
+
+
+
+.. image:: ../images/chapter8/fig_cross_val_B_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_cross_val_B.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_cross_val_B.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_cross_val_B.py] <fig_cross_val_B.py>`
+
+.. raw:: html
+    
+    </div>
+

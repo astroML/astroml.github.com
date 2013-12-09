@@ -1,19 +1,36 @@
 """
 Extreme Deconvolution example
 -----------------------------
-This demonstrates extreme deconvolution on a toy dataset.
+Figure 6.11
+
+An example of extreme deconvolution showing a simulated two-dimensional
+distribution of points, where the positions are subject to errors. The top two
+panels show the distributions with small (left) and large (right) errors. The
+bottom panels show the densities derived from the noisy sample (top-right
+panel) using extreme deconvolution; the resulting distribution closely matches
+that shown in the top-left panel.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
 from astroML.decorators import pickle_results
 from astroML.density_estimation import XDGMM
 from astroML.plotting.tools import draw_ellipse
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Sample the dataset
@@ -58,7 +75,7 @@ sample = clf.sample(N)
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 3.75))
 fig.subplots_adjust(left=0.1, right=0.95,
                     bottom=0.1, top=0.95,
                     wspace=0.02, hspace=0.02)

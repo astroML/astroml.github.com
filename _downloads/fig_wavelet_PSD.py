@@ -1,19 +1,34 @@
 """
 Wavelet transform of Gaussian Noise
 -----------------------------------
-Plot the wavelet transform (spectrogram) of a Gaussian spike.  A similar plot
-can be obtained using the built-in function matplotlib.mlab.specgram.
+
+Figure 10.7
+
+Localized frequency analysis using the wavelet transform. The upper panel shows
+the input signal, which consists of localized Gaussian noise. The middle panel
+shows an example wavelet. The lower panel shows the power spectral density as a
+function of the frequency f0 and the time t0, for Q = 1.0.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
 from astroML.fourier import\
     FT_continuous, IFT_continuous, sinegauss, sinegauss_FT, wavelet_PSD
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Sample the function: localized noise
@@ -37,7 +52,7 @@ wPSD = wavelet_PSD(t, h, f0, Q=1.0)
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(hspace=0.05, left=0.12, right=0.95, bottom=0.08, top=0.95)
 
 # First panel: the signal
@@ -63,14 +78,13 @@ ax.text(0.02, 0.95, ("Example Wavelet\n"
 ax.text(0.98, 0.05,
         (r"$w(t; t_0, f_0, Q) = e^{-[f_0 (t - t_0) / Q]^2}"
          "e^{2 \pi i f_0 (t - t_0)}$"),
-        fontsize=14,
         ha='right', va='bottom', transform=ax.transAxes)
 
-ax.legend(loc=1, prop=dict(size=14))
+ax.legend(loc=1)
 
 ax.set_xlim(-4, 4)
 ax.set_ylim(-1.4, 1.4)
-ax.set_ylabel('$w(t; f_0, t_0, Q)$')
+ax.set_ylabel('$w(t; t_0, f_0, Q)$')
 ax.xaxis.set_major_formatter(plt.NullFormatter())
 
 # Third panel: the spectrogram

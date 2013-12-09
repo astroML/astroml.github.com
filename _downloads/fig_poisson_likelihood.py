@@ -1,21 +1,37 @@
 """
 Binned Regression: Poisson vs Gaussian
 --------------------------------------
-This example explores performing binned regression using a likelihood
-approach based on either a Gaussian or Poisson model.  As the average
-number of points in a bin becomes small, the Gaussian approximation
-breaks down.
+Figure 5.15
+
+The left panels show data sets with 50 points, binned in 5 bins (upper panels)
+and 40 bins (lower panels). The curves show the input distribution (solid), the
+Poisson solution (dashed), and the Gaussian solution (dotted). The right panels
+show 1-sigma, 2-sigma, and 3-sigma likelihood contours for eqs. 5.91 (dark
+lines) and 5.90 (light lines). With 5 bins (top row) there are enough counts
+in each bin so that the Gaussian and Poisson predictions are very similar. As
+the number of bins is increased, the counts decrease and the Gaussian
+approximation becomes biased.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy import stats, interpolate
 from astroML.stats.random import linear
 from astroML.plotting.mcmc import convert_to_stdev
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def logL_gaussian(xi, yi, a, b):
@@ -55,7 +71,7 @@ data = lin_dist.rvs(N)
 
 #------------------------------------------------------------
 # Compute and plot the results
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(left=0.1, right=0.95, wspace=0.3,
                     bottom=0.1, top=0.95, hspace=0.2)
 
@@ -84,7 +100,7 @@ for num, nbins in enumerate([5, 40]):
 
     # plot scatter and lines
     ax = fig.add_subplot(2, 2, 1 + 2 * num)
-    plt.scatter(xi, yi, s=25, c='gray', lw=0)
+    plt.scatter(xi, yi, s=9, c='gray', lw=0)
 
     x = np.linspace(xmin - 1, xmax + 1, 1000)
     for (ai, bi, s) in [(a_true, b_true, '-k'),
@@ -117,7 +133,7 @@ for num, nbins in enumerate([5, 40]):
     # trick the legend command
     ax.plot([0], [0], '-k', lw=2, label='Poisson Likelihood')
     ax.plot([0], [0], '-', c='gray', lw=1, label='Gaussian Likelihood')
-    ax.legend(loc=1, prop=dict(size=12))
+    ax.legend(loc=1)
 
     # plot horizontal and vertical lines
     #  in newer matplotlib versions, use ax.vlines() and ax.hlines()

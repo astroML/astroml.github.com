@@ -1,15 +1,22 @@
 """
 Gausian Mixture Bayes Classification of photometry
 --------------------------------------------------
-GMM mixture modesl for bayesian photometric classification of rr-lyrae stars.
-This uses averaged photometry from the rr-lyrae catalog and stripe 82
-standards catalogs.
+Figure 9.6
+
+Gaussian mixture Bayes classifier for RR Lyrae stars (see caption of figure 9.3
+for details). Here the left panel shows the decision boundary for the
+three-component model, and the right panel shows the completeness and
+contamination for both a one-component and three-component mixture model. With
+all four colors and a three-component model, GMM Bayes achieves a completeness
+of 0.686 and a contamination of 0.236.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -18,6 +25,14 @@ from astroML.decorators import pickle_results
 from astroML.datasets import fetch_rrlyrae_combined
 from astroML.utils import split_samples
 from astroML.utils import completeness_contamination
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #----------------------------------------------------------------------
@@ -84,7 +99,7 @@ Z = Z[:, 1].reshape(xx.shape)
 
 #----------------------------------------------------------------------
 # plot the results
-fig = plt.figure(figsize=(8, 4))
+fig = plt.figure(figsize=(5, 2.5))
 fig.subplots_adjust(bottom=0.15, top=0.95, hspace=0.0,
                     left=0.1, right=0.95, wspace=0.2)
 
@@ -99,7 +114,7 @@ im = ax.imshow(Z, origin='lower', aspect='auto',
                extent=xlim + ylim)
 im.set_clim(0, 1.5)
 
-ax.contour(xx, yy, Z, [0.5], linewidths=2., colors='k')
+ax.contour(xx, yy, Z, [0.5], colors='k')
 
 ax.set_xlim(xlim)
 ax.set_ylim(ylim)
@@ -109,8 +124,8 @@ ax.set_ylabel('$g-r$')
 
 # plot completeness vs Ncolors
 ax = fig.add_subplot(222)
-ax.plot(Ncolors, completeness[0], '^--k', c='k', label='N=%i' % Ncomp[0])
-ax.plot(Ncolors, completeness[1], 'o-k', c='k', label='N=%i' % Ncomp[1])
+ax.plot(Ncolors, completeness[0], '^--k', ms=6, label='N=%i' % Ncomp[0])
+ax.plot(Ncolors, completeness[1], 'o-k', ms=6, label='N=%i' % Ncomp[1])
 
 ax.xaxis.set_major_locator(plt.MultipleLocator(1))
 ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))
@@ -123,10 +138,9 @@ ax.grid(True)
 
 # plot contamination vs Ncolors
 ax = fig.add_subplot(224)
-ax.plot(Ncolors, contamination[0], '^--k', c='k', label='N=%i' % Ncomp[0])
-ax.plot(Ncolors, contamination[1], 'o-k', c='k', label='N=%i' % Ncomp[1])
-ax.legend(prop=dict(size=12),
-          loc='lower right',
+ax.plot(Ncolors, contamination[0], '^--k', ms=6, label='N=%i' % Ncomp[0])
+ax.plot(Ncolors, contamination[1], 'o-k', ms=6, label='N=%i' % Ncomp[1])
+ax.legend(loc='lower right',
           bbox_to_anchor=(1.0, 0.78))
 
 ax.xaxis.set_major_locator(plt.MultipleLocator(1))

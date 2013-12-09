@@ -22,7 +22,7 @@ References
 
 
 .. image:: ../images/datasets/plot_sdss_line_ratios_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

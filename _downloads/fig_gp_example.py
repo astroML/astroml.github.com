@@ -1,17 +1,34 @@
 """
 Gaussian Process Example
 ------------------------
-This shows an example of Gaussian Process Regression, as well as some panels
-that help describe what it does.
+Figure 8.10
+
+An example of Gaussian process regression. The upper-left panel shows three
+functions drawn from an unconstrained Gaussian process with squared-exponential
+covari- ance of bandwidth h = 1.0. The upper-right panel adds two constraints,
+and shows the 2-sigma contours of the constrained function space. The
+lower-left panel shows the function space constrained by the points with error
+bars. The lower-right panel shows the function space constrained by 20 noisy
+points drawn from f(x) = cos(x).
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.gaussian_process import GaussianProcess
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #------------------------------------------------------------
@@ -73,7 +90,7 @@ print "best-fit theta =", gp3.theta_[0, 0]
 
 #------------------------------------------------------------
 # Plot the diagrams
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 
 
 # first: plot a selection of unconstrained functions
@@ -85,14 +102,14 @@ ax.set_ylabel('$f(x)$')
 ax = fig.add_subplot(222)
 ax.plot(x, f1, '-', color='gray')
 ax.fill_between(x, f1 - 2 * f1_err, f1 + 2 * f1_err, color='gray', alpha=0.3)
-ax.plot(x1, y1, 'ok')
+ax.plot(x1, y1, '.k', ms=6)
 
 
 # third: plot a constrained function with errors
 ax = fig.add_subplot(223)
 ax.plot(x, f2, '-', color='gray')
 ax.fill_between(x, f2 - 2 * f2_err, f2 + 2 * f2_err, color='gray', alpha=0.3)
-ax.errorbar(x1, y1, dy2, fmt='ok')
+ax.errorbar(x1, y1, dy2, fmt='.k', ms=6)
 
 ax.set_xlabel('$x$')
 ax.set_ylabel('$f(x)$')
@@ -101,7 +118,7 @@ ax.set_ylabel('$f(x)$')
 ax = fig.add_subplot(224)
 ax.plot(x, f3, '-', color='gray')
 ax.fill_between(x, f3 - 2 * f3_err, f3 + 2 * f3_err, color='gray', alpha=0.3)
-ax.errorbar(x3, y3, dy3, fmt='.k')
+ax.errorbar(x3, y3, dy3, fmt='.k', ms=6)
 
 ax.plot(x, np.cos(x), ':k')
 

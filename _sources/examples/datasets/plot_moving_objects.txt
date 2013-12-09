@@ -19,12 +19,14 @@ References
 
 
 .. image:: ../images/datasets/plot_moving_objects_1.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/datasets/plot_moving_objects_2.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 

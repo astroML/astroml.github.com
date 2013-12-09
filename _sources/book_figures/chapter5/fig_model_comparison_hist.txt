@@ -5,13 +5,15 @@
 
 Histogram for Double-gaussian model test
 ----------------------------------------
-This shows the dataset used for the double gaussian model testing
-in the following figure.
+Figure 5.23
+
+A sample of 200 points drawn from a Gaussian mixture model used to illustrate
+model selection with MCMC.
 
 
 
 .. image:: ../images/chapter5/fig_model_comparison_hist_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -41,7 +43,7 @@ in the following figure.
     <div class="toggle_container">
 
 .. literalinclude:: fig_model_comparison_hist.py
-    :lines: 7-
+    :lines: 9-
 
 .. raw:: html
 

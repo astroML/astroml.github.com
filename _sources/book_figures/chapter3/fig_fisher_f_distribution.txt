@@ -5,6 +5,7 @@
 
 Example of Fisher's F distribution
 ------------------------------------
+Figure 3.16.
 
 This shows an example of Fisher's F distribution with various parameters.
 We'll generate the distribution using::
@@ -30,7 +31,7 @@ for more details.
 
 
 .. image:: ../images/chapter3/fig_fisher_f_distribution_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -60,7 +61,7 @@ for more details.
     <div class="toggle_container">
 
 .. literalinclude:: fig_fisher_f_distribution.py
-    :lines: 26-
+    :lines: 27-
 
 .. raw:: html
 

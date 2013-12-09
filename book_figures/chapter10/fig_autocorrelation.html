@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 10: Time Series Analysis" href="index.html" />
     <link rel="next" title="Appendix" href="../appendix/index.html" />
-    <link rel="prev" title="Chirp PSD" href="fig_chirp2_PSD.html" />
+    <link rel="prev" title="Generating Power-law Light Curves" href="fig_powerlaw.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="fig_chirp2_PSD.html" title="Chirp PSD"
+	<a href="fig_powerlaw.html" title="Generating Power-law Light Curves"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    Chirp PSD
+	    Generating Power...
 	    </span>
 	    <span class="hiddenrellink">
-	    Chirp PSD
+	    Generating Power-law Light Curves
 	    </span>
 	    
 	    </a>
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,8 +194,14 @@ $(document).ready(function(){
             
   <div class="section" id="autocorrelation-function">
 <span id="book-fig-chapter10-fig-autocorrelation"></span><h1>Autocorrelation Function<a class="headerlink" href="#autocorrelation-function" title="Permalink to this headline">¶</a></h1>
-<p>Compute and plot the auto-correlation function for simulated Quasar data</p>
-<img alt="../../_images/fig_autocorrelation_1.png" class="align-center" src="../../_images/fig_autocorrelation_1.png" style="width: 100%;" />
+<p>Figure 10.30</p>
+<p>Example of the autocorrelation function for a stochastic process. The top panel
+shows a simulated light curve generated using a damped random walk model
+(Section 10.5.4). The bottom panel shows the corresponding autocorrelation
+function computed using Edelson and Krolik&#8217;s DCF method and the Scargle method.
+The solid line shows the input autocorrelation function used to generate the
+light curve.</p>
+<a class="reference internal image-reference" href="../../_images/fig_autocorrelation_1.png"><img alt="../../_images/fig_autocorrelation_1.png" class="align-center" src="../../_images/fig_autocorrelation_1.png" style="width: 500.0px; height: 500.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -202,16 +210,26 @@ $(document).ready(function(){
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.time_series</span> <span class="kn">import</span> <span class="n">lomb_scargle</span><span class="p">,</span> <span class="n">generate_damped_RW</span>
 <span class="kn">from</span> <span class="nn">astroML.time_series</span> <span class="kn">import</span> <span class="n">ACF_scargle</span><span class="p">,</span> <span class="n">ACF_EK</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Generate time-series data:</span>
@@ -253,7 +271,7 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c"># plot the input data</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
@@ -268,7 +286,7 @@ $(document).ready(function(){
 <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">t_EK</span><span class="p">,</span> <span class="n">C_EK</span><span class="p">,</span> <span class="n">C_EK_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">&#39;.k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="s">&#39;Edelson-Krolik&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_S</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_S</span><span class="p">)</span> <span class="o">/</span> <span class="n">tau_obs</span><span class="p">),</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;True&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_S</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">t_S</span><span class="p">,</span> <span class="s">&#39;:&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">)</span>
 

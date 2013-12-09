@@ -14,12 +14,14 @@ standard stars, both alone and with the cross-matched 2MASS colors.
 
 
 .. image:: ../images/datasets/plot_sdss_S82standards_1.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/datasets/plot_sdss_S82standards_2.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 

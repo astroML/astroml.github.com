@@ -1,14 +1,26 @@
 """
 Perform Outlier Rejection with MCMC
 -----------------------------------
-This follows the formalism in Hogg et al 2010,
-"Data Analysis Recipies: Fitting a model to data"
+Figure 8.9
+
+Bayesian outlier detection for the same data as shown in figure 8.8. The
+top-left panel shows the data, with the fits from each model. The top-right
+panel shows the 1-sigma and 2-sigma contours for the slope and intercept with
+no outlier correction: the resulting fit (shown by the dotted line) is clearly
+highly affected by the presence of outliers. The bottom-left panel shows the
+marginalized 1-sigma and 2-sigma contours for a mixture model (eq. 8.67). The
+bottom-right panel shows the marginalized 1-sigma and 2-sigma contours for a
+model in which points are identified individually as "good" or "bad"
+(eq. 8.68). The points which are identified by this method as bad with a
+probability greater than 68% are circled in the first panel.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from astroML.datasets import fetch_hogg2010test
@@ -20,8 +32,15 @@ import scipy.misc
 scipy.derivative = scipy.misc.derivative
 import pymc
 
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
+
 np.random.seed(0)
-pymc.numpy.random.seed(0)
 
 #------------------------------------------------------------
 # Get data: this includes outliers
@@ -143,7 +162,8 @@ def model_M2(xi=xi, beta=beta_M2):
     slope, intercept = beta
     return slope * xi + intercept
 
-# qui is bernoulli distributed
+# qi is bernoulli distributed
+# Note: this syntax requires pymc version 2.2
 qi = pymc.Bernoulli('qi', p=1 - Pb, value=np.ones(len(xi)))
 
 
@@ -176,7 +196,7 @@ M2 = dict(y_outlier=y_outlier, beta_M2=beta_M2, model_M2=model_M2,
 
 #------------------------------------------------------------
 # plot the data
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(left=0.1, right=0.95, wspace=0.25,
                     bottom=0.1, top=0.95, hspace=0.2)
 
@@ -243,7 +263,7 @@ for i, M in enumerate(models):
     ax.xaxis.set_major_locator(plt.MultipleLocator(40))
     ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))
 
-    ax.text(0.98, 0.98, labels[i], ha='right', va='top', fontsize=14,
+    ax.text(0.98, 0.98, labels[i], ha='right', va='top',
             bbox=dict(fc='w', ec='none', alpha=0.5),
             transform=ax.transAxes)
     ax.set_xlim(bins[i][0][0], bins[i][0][-1])

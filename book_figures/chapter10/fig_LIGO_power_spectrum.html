@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plot the power spectrum of the LIGO big dog event &mdash; astroML 0.1 documentation</title>
+    <title>Plot the power spectrum of LIGO data &mdash; astroML 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 10: Time Series Analysis" href="index.html" />
-    <link rel="next" title="Examples of Wavelets" href="fig_wavelets.html" />
-    <link rel="prev" title="The effect of Sampling" href="fig_FFT_sampling.html" />
+    <link rel="next" title="Wavelet transform of Gaussian Noise" href="fig_wavelet_PSD.html" />
+    <link rel="prev" title="Fast Fourier Transform Example" href="fig_fft_example.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="fig_FFT_sampling.html" title="The effect of Sampling"
+	<a href="fig_fft_example.html" title="Fast Fourier Transform Example"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    The effect of Sa...
+	    Fast Fourier Tra...
 	    </span>
 	    <span class="hiddenrellink">
-	    The effect of Sampling
+	    Fast Fourier Transform Example
 	    </span>
 	    
 	    </a>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="fig_wavelets.html" title="Examples of Wavelets"
+	<a href="fig_wavelet_PSD.html" title="Wavelet transform of Gaussian Noise"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    Examples of Wave...
+	    Wavelet transfor...
 	    </span>
 	    <span class="hiddenrellink">
-	    Examples of Wavelets
+	    Wavelet transform of Gaussian Noise
 	    </span>
 	    
 	    </a>
@@ -161,7 +162,7 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">Plot the power spectrum of the LIGO big dog event</a></li>
+<li><a class="reference internal" href="#">Plot the power spectrum of LIGO data</a></li>
 </ul>
 
 
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -190,11 +192,18 @@ $(document).ready(function(){
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="plot-the-power-spectrum-of-the-ligo-big-dog-event">
-<span id="book-fig-chapter10-fig-ligo-power-spectrum"></span><h1>Plot the power spectrum of the LIGO big dog event<a class="headerlink" href="#plot-the-power-spectrum-of-the-ligo-big-dog-event" title="Permalink to this headline">¶</a></h1>
-<p>This compares the power spectrum computed using the raw FFT, and using
-Welch&#8217;s method (i.e. overlapping window functions that reduce noise).</p>
-<img alt="../../_images/fig_LIGO_power_spectrum_1.png" class="align-center" src="../../_images/fig_LIGO_power_spectrum_1.png" style="width: 100%;" />
+  <div class="section" id="plot-the-power-spectrum-of-ligo-data">
+<span id="book-fig-chapter10-fig-ligo-power-spectrum"></span><h1>Plot the power spectrum of LIGO data<a class="headerlink" href="#plot-the-power-spectrum-of-ligo-data" title="Permalink to this headline">¶</a></h1>
+<p>Figure 10.6</p>
+<p>LIGO data and its noise power spectrum. The upper panel shows a 2-second-long
+stretch of data (~8000 points; essentially noise without signal) from LIGO
+Hanford. The middle and bottom panels show the power spectral density computed
+for 2048 seconds of data, sampled at 4096 Hz (~8 million data values). The gray
+line shows the PSD computed using a naive FFT approach; the dark line uses
+Welch&#8217;s method of overlapping windows to smooth noise; the middle panel uses a
+1-second-wide top-hat window and the bottom panel the so-called Hanning
+(cosine) window with the same width.</p>
+<a class="reference internal image-reference" href="../../_images/fig_LIGO_power_spectrum_1.png"><img alt="../../_images/fig_LIGO_power_spectrum_1.png" class="align-center" src="../../_images/fig_LIGO_power_spectrum_1.png" style="width: 500.0px; height: 500.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -203,17 +212,27 @@ Welch&#8217;s method (i.e. overlapping window functions that reduce noise).</p>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">fftpack</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">mlab</span>
 
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_LIGO_large</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Fetch the LIGO hanford data</span>
@@ -268,7 +287,7 @@ Welch&#8217;s method (i.e. overlapping window functions that reduce noise).</p>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the data</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="c"># top panel: time series</span>

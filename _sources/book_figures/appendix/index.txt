@@ -46,6 +46,12 @@ Python code to the practical use of Fourier transforms.
 
    ./fig_plotting_examples
 
+   ./fig_plotting_examples
+
+   ./fig_plotting_examples
+
+   ./fig_plotting_examples
+
    ./fig_sdss_filters
 
    ./fig_fft_text_example
@@ -54,21 +60,43 @@ Python code to the practical use of Fourier transforms.
 
 .. figure:: ./../images/appendix/fig_broadcast_visual_1_thumb.png
     :target: ./fig_broadcast_visual.html
+    :align: center
 
     :ref:`book_fig_appendix_fig_broadcast_visual`
 
 .. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
     :target: ./fig_plotting_examples.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_plotting_examples`
+
+.. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
+    :target: ./fig_plotting_examples.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_plotting_examples`
+
+.. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
+    :target: ./fig_plotting_examples.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_plotting_examples`
+
+.. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
+    :target: ./fig_plotting_examples.html
+    :align: center
 
     :ref:`book_fig_appendix_fig_plotting_examples`
 
 .. figure:: ./../images/appendix/fig_sdss_filters_1_thumb.png
     :target: ./fig_sdss_filters.html
+    :align: center
 
     :ref:`book_fig_appendix_fig_sdss_filters`
 
 .. figure:: ./../images/appendix/fig_fft_text_example_1_thumb.png
     :target: ./fig_fft_text_example.html
+    :align: center
 
     :ref:`book_fig_appendix_fig_fft_text_example`
 

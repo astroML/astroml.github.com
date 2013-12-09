@@ -5,6 +5,7 @@
 
 Quad Tree Example
 -----------------
+Figure 2.3.
 
 This example creates a simple quad-tree partition of a two-dimensional
 parameter space, and plots a visualization of the result.
@@ -12,7 +13,7 @@ parameter space, and plots a visualization of the result.
 
 
 .. image:: ../images/chapter2/fig_quadtree_example_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -42,7 +43,7 @@ parameter space, and plots a visualization of the result.
     <div class="toggle_container">
 
 .. literalinclude:: fig_quadtree_example.py
-    :lines: 8-
+    :lines: 9-
 
 .. raw:: html
 

@@ -5,8 +5,9 @@
 
 Examples of Plotting with Matplotlib
 ------------------------------------
+Figures A.2, A.3, A.4, A.5
 
-This file generates the example plots from the Appendix
+These scripts generate the output of the plotting examples in the appendix.
 
 
 
@@ -14,22 +15,26 @@ This file generates the example plots from the Appendix
 
 
 .. image:: ../images/appendix/fig_plotting_examples_1.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/appendix/fig_plotting_examples_2.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/appendix/fig_plotting_examples_3.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/appendix/fig_plotting_examples_4.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
@@ -59,7 +64,7 @@ This file generates the example plots from the Appendix
     <div class="toggle_container">
 
 .. literalinclude:: fig_plotting_examples.py
-    :lines: 7-
+    :lines: 8-
 
 .. raw:: html
 

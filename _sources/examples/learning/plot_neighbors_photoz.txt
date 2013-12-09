@@ -18,7 +18,7 @@ the SDSS CASjobs server for the colors of the 50,000 galaxies.
 
 
 .. image:: ../images/learning/plot_neighbors_photoz_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

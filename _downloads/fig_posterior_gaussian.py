@@ -1,19 +1,45 @@
 """
 Posterior for Gaussian Distribution
-----------------------------------------
+-----------------------------------
+Figure 5.5
 
-This plot shows the posterior distributions for :math:`\mu` and
-:math:`\sigma` for a gaussian distribution
+The solid line in the top-left panel shows the posterior probability density
+function :math:`p(\mu|\{x_i\},I)` described by eq. 5.60, for N = 10, x = 1 and
+V = 4 (integral over :math:`\sigma` for the two-dimensional distribution shown
+in figure 5.4). The dotted line shows an equivalent result when the prior for
+:math:`\sigma` is uniform instead of proportional to :math:`\sigma - 1`.
+The dashed line shows the Gaussian distribution with parameters given by
+eqs. 3.31 and 3.34. For comparison, the circles illustrate the distribution
+of the bootstrap estimates for the mean given by eq. 3.31. The solid line in
+the top-right panel shows the posterior probability density function
+:math:`p(\sigma|\{xi\},I)` described by eq. 5.62 (integral over :math:`\mu`
+for the two-dimensional distribution shown in figure 5.4). The dotted line
+shows an equivalent result when the prior for :math:`\sigma` is uniform.
+The dashed line shows a Gaussian distribution with parameters given by
+eqs. 3.32 and 3.35. The circles illustrate the distribution of the bootstrap
+estimates for :math:`\sigma` given by eq. 3.32. The bottom two panels show
+the corresponding cumulative distributions for solid and dashed lines,
+and for bootstrap estimates, from the top panel.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from astroML.stats import mean_sigma
 from astroML.resample import bootstrap
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #------------------------------------------------------------
@@ -99,7 +125,7 @@ sig_hist = sig_hist / sig_dbin / sig_hist.sum()
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(wspace=0.35, right=0.95,
                     hspace=0.2, top=0.95)
 

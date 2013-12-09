@@ -1,19 +1,33 @@
 """
 Unbinned Poisson Data
 ---------------------
-This figure shows an example of regression with unbinned data.  The data is
-unbinned poisson-distributed data, drawn from a distribution p(x) ~ a*x + b
-between 0 and 10.  The goal is to estimate the single parameter a from the
-unbinned data (b is determined by normalization).
+Figure 5.14
+
+Regression of unbinned data. The distribution of N = 500 data points is shown
+in the left panel; the true pdf is shown by the solid curve. Note that although
+the data are binned in the left panel for visualization purposes, the analysis
+is performed on the unbinned data. The right panel shows the likelihood for the
+slope a (eq. 5.88) for three different sample sizes. The input value is
+indicated by the vertical dotted line.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from astroML.stats.random import linear
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def linprob_logL(x, a, xmin, xmax):
@@ -42,8 +56,8 @@ px = lin_dist.pdf(x)
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(8, 4))
-fig.subplots_adjust(left=0.11, right=0.95, wspace=0.26,
+fig = plt.figure(figsize=(5, 2.5))
+fig.subplots_adjust(left=0.12, right=0.95, wspace=0.28,
                     bottom=0.15, top=0.9)
 
 # left panel: plot the model and a histogram of the data
@@ -70,7 +84,7 @@ for n, s in zip(Npts, styles):
     logL /= logL.sum() * (a[1] - a[0])
 
     ax2.plot(a, logL, s, label=r'$\rm %i\ pts$' % n)
-ax2.legend(loc=2, prop=dict(size=14))
+ax2.legend(loc=2, prop=dict(size=8))
 
 ax2.set_xlim(-0.011, 0.02)
 

@@ -13,7 +13,7 @@ scatter-plot the results
 
 
 .. image:: ../images/datasets/plot_sdss_galaxy_colors_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

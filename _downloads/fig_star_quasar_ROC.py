@@ -1,14 +1,21 @@
 """
 Star/Quasar Classification ROC Curves
 -------------------------------------
-This script uses several methods to photometrically classify stars
-and quasars, and plot the ROC curve for these objects.
+Figure 9.18
+
+The left panel shows data used in color-based photometric classification of
+stars and quasars. Stars are indicated by gray points, while quasars are
+indicated by black points. The right panel shows ROC curves for quasar
+identification based on u - g , g - r , r - i , and i - z colors. Labels
+are the same as those in Figure 9.17.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -23,7 +30,14 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from astroML.classification import GMMBayes
 
-from astroML.decorators import pickle_results
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Fetch data and split into training and test samples
@@ -62,7 +76,6 @@ y[:Nqso] = 1
 
 #------------------------------------------------------------
 # Compute fits for all the classifiers
-@pickle_results('star_quasar_ROC.pkl')
 def compute_results(*args):
     names = []
     probs = []
@@ -95,12 +108,13 @@ names, probs = compute_results((GaussianNB, {}),
 
 #------------------------------------------------------------
 # Plot results
-fig = plt.figure(figsize=(8, 4))
+fig = plt.figure(figsize=(5, 2.5))
 fig.subplots_adjust(left=0.1, right=0.95, bottom=0.15, top=0.9, wspace=0.25)
 
 # First axis shows the data
 ax1 = fig.add_subplot(121)
-im = ax1.scatter(X_test[:, 0], X_test[:, 1], c=y_test, s=4, lw=0,
+im = ax1.scatter(X_test[:, 0], X_test[:, 1], c=y_test, s=4,
+                 linewidths=0, edgecolors='none',
                  cmap=plt.cm.binary)
 im.set_clim(-0.5, 1)
 ax1.set_xlim(-0.5, 3.0)
@@ -126,7 +140,7 @@ for name, y_prob in zip(names, probs):
 
     ax2.plot(fpr, tpr, label=labels[name])
 
-ax2.legend(loc=4, prop=dict(size=12))
+ax2.legend(loc=4)
 ax2.set_xlabel('false positive rate')
 ax2.set_ylabel('true positive rate')
 ax2.set_xlim(0, 0.15)

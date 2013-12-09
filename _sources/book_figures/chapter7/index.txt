@@ -48,71 +48,73 @@ PCA, NMF, and ICA, to nonlinear methods such as LLE and Isomap.
 
    ./fig_svd_visual
 
+   ./fig_spec_decompositions
+
    ./fig_eigenvalues
 
    ./fig_spec_reconstruction
 
    ./fig_PCA_reconstruction
 
-   ./fig_spec_decompositions
-
    ./fig_S_manifold_PCA
 
-   ./fig_PCA_components
-
-   ./fig_spec_LLE
+   ./fig_PCA_LLE
 
 
 
 .. figure:: ./../images/chapter7/fig_spec_examples_1_thumb.png
     :target: ./fig_spec_examples.html
+    :align: center
 
     :ref:`book_fig_chapter7_fig_spec_examples`
 
 .. figure:: ./../images/chapter7/fig_PCA_rotation_1_thumb.png
     :target: ./fig_PCA_rotation.html
+    :align: center
 
     :ref:`book_fig_chapter7_fig_PCA_rotation`
 
 .. figure:: ./../images/chapter7/fig_svd_visual_1_thumb.png
     :target: ./fig_svd_visual.html
+    :align: center
 
     :ref:`book_fig_chapter7_fig_svd_visual`
 
+.. figure:: ./../images/chapter7/fig_spec_decompositions_1_thumb.png
+    :target: ./fig_spec_decompositions.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_spec_decompositions`
+
 .. figure:: ./../images/chapter7/fig_eigenvalues_1_thumb.png
     :target: ./fig_eigenvalues.html
+    :align: center
 
     :ref:`book_fig_chapter7_fig_eigenvalues`
 
 .. figure:: ./../images/chapter7/fig_spec_reconstruction_1_thumb.png
     :target: ./fig_spec_reconstruction.html
+    :align: center
 
     :ref:`book_fig_chapter7_fig_spec_reconstruction`
 
 .. figure:: ./../images/chapter7/fig_PCA_reconstruction_1_thumb.png
     :target: ./fig_PCA_reconstruction.html
+    :align: center
 
     :ref:`book_fig_chapter7_fig_PCA_reconstruction`
 
-.. figure:: ./../images/chapter7/fig_spec_decompositions_1_thumb.png
-    :target: ./fig_spec_decompositions.html
-
-    :ref:`book_fig_chapter7_fig_spec_decompositions`
-
 .. figure:: ./../images/chapter7/fig_S_manifold_PCA_1_thumb.png
     :target: ./fig_S_manifold_PCA.html
+    :align: center
 
     :ref:`book_fig_chapter7_fig_S_manifold_PCA`
 
-.. figure:: ./../images/chapter7/fig_PCA_components_1_thumb.png
-    :target: ./fig_PCA_components.html
+.. figure:: ./../images/chapter7/fig_PCA_LLE_1_thumb.png
+    :target: ./fig_PCA_LLE.html
+    :align: center
 
-    :ref:`book_fig_chapter7_fig_PCA_components`
-
-.. figure:: ./../images/chapter7/fig_spec_LLE_1_thumb.png
-    :target: ./fig_spec_LLE.html
-
-    :ref:`book_fig_chapter7_fig_spec_LLE`
+    :ref:`book_fig_chapter7_fig_PCA_LLE`
 
 
 

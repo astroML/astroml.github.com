@@ -1,18 +1,31 @@
 """
 SDSS Stripe 82 Hess Diagram
 ---------------------------
-This example shows how to create a hess diagram of the SDSS Stripe 82 data,
-using the 2D histogram function in numpy.
+Figure 1.10.
+
+A Hess diagram of the r-i vs. g-r colors for the entire set of SDSS Stripe 82
+standard stars. The pixels are colored with a logarithmic scaling;
+cf. figures 1.6 and 1.9.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
 from astroML.datasets import fetch_sdss_S82standards
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Fetch the stripe 82 data
@@ -33,15 +46,15 @@ cmap = plt.cm.binary
 cmap.set_bad('w', 1.)
 
 # Use the image display function imshow() to plot the result
-ax = plt.axes()
+fig, ax = plt.subplots(figsize=(5, 3.75))
 H[H == 0] = 1  # prevent warnings in log10
 ax.imshow(np.log10(H).T, origin='lower',
           extent=[xbins[0], xbins[-1], ybins[0], ybins[-1]],
           cmap=cmap, interpolation='nearest',
           aspect='auto')
 
-ax.set_xlabel('g - r')
-ax.set_ylabel('r - i')
+ax.set_xlabel(r'${\rm g - r}$')
+ax.set_ylabel(r'${\rm r - i}$')
 
 ax.set_xlim(-0.6, 2.5)
 ax.set_ylim(-0.6, 2.5)

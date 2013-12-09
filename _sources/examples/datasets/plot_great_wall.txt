@@ -16,7 +16,7 @@ References
 
 
 .. image:: ../images/datasets/plot_great_wall_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

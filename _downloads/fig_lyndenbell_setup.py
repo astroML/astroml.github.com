@@ -1,21 +1,36 @@
 """
 Lynden-Bell C- setup
 --------------------
-This diagram shows a schematic of the Lynden-Bell C- method.
+Figure 4.8.
+
+Illustration for the definition of a truncated data set, and for the comparable
+or associated subset used by the Lynden-Bell C- method. The sample is limited
+by x < xmax and y < ymax(x) (light-shaded area). Associated sets Ji and Jk are
+shown by the dark-shaded area.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.patches import Rectangle
 
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
+
 #------------------------------------------------------------
 # Draw the schematic
-fig = plt.figure(figsize=(8, 4))
-fig.subplots_adjust(left=0.05, right=0.95, wspace=0.1)
+fig = plt.figure(figsize=(5, 2.5))
+fig.subplots_adjust(left=0.06, right=0.95, wspace=0.12)
 ax1 = fig.add_subplot(121, xticks=[], yticks=[])
 ax2 = fig.add_subplot(122, xticks=[], yticks=[])
 
@@ -32,10 +47,10 @@ for ax in (ax1, ax2):
 
     ax.plot([-0.1, 1], [1, 1], '--k', lw=1)
 
-    ax.text(0.7, 0.35, '$y_{max}(x)$', rotation=-30)
+    ax.text(0.7, 0.35, r'$y_{\rm max}(x)$', rotation=-30)
 
     ax.plot([1, 1], [0, 1], '--k', lw=1)
-    ax.text(1.01, 0.5, '$x_{max}$', ha='left', va='center', rotation=90)
+    ax.text(1.01, 0.5, r'$x_{\rm max}$', ha='left', va='center', rotation=90)
 
 # draw and label J_i in the first axes
 xi = 0.4
@@ -57,7 +72,7 @@ ax2.text(0.5 * max_func(yi), 0.5 * yi, '$J_k$', ha='center', va='center')
 for ax in (ax1, ax2):
     ax.set_xlim(0, 1.1)
     ax.set_ylim(0, 1.1)
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
+    ax.set_xlabel('$x$')
+    ax.set_ylabel('$y$')
 
 plt.show()

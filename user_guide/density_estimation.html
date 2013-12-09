@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../index.html" />
     <link rel="up" title="&lt;no title&gt;" href="index.html" />
     <link rel="next" title="5. Unsupervised Learning: Clustering" href="clustering.html" />
@@ -181,11 +182,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -209,7 +211,7 @@ Some examples of density estimation can be found in <a class="reference internal
 done in one dimension.  Though
 seemingly simple, the effective use histograms can be surprisingly subtle.
 Consider the following two panels:</p>
-<a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_11.png" class="align-center" src="../_images/plot_bayesian_blocks_11.png" /></a>
+<a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_11.png" class="align-center" src="../_images/plot_bayesian_blocks_11.png" style="width: 800.0px; height: 320.0px;" /></a>
 <p>Though it doesn&#8217;t look like it, these two histograms show the exact same
 dataset (if you find that hard to believe, see the source code that generated
 the figure by clicking on the image).  The difference between the two is
@@ -244,7 +246,7 @@ the <tt class="docutils literal"><span class="pre">bins</span></tt> argument als
 Using one of these causes the histogram binning to be chosen using the
 rules or procedures outlined above.  The results on our data using Knuth&#8217;s
 rule and Bayesian Blocks are shown below:</p>
-<a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_21.png" class="align-center" src="../_images/plot_bayesian_blocks_21.png" /></a>
+<a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_21.png" class="align-center" src="../_images/plot_bayesian_blocks_21.png" style="width: 800.0px; height: 320.0px;" /></a>
 <p>The Knuth bins on the left do a good job of representing the underlying
 structure of the data.  The Bayesian Blocks on the right capture most of the
 same features, but notice that the lack of density variation in the
@@ -306,11 +308,13 @@ for some examples of this approach.</p>
 <h2>4.3. Kernel Density Estimation<a class="headerlink" href="#kernel-density-estimation" title="Permalink to this headline">¶</a></h2>
 <p>Kernel Density estimation is a non-parametric density estimation technique
 which can be very powerful.  It is implemented in astroML using the object
-<a class="reference internal" href="../modules/generated/astroML.density_estimation.KDE.html#astroML.density_estimation.KDE" title="astroML.density_estimation.KDE"><tt class="xref py py-class docutils literal"><span class="pre">astroML.density_estimation.KDE</span></tt></a>.
+<a class="reference internal" href="../modules/generated/astroML.density_estimation.KDE.html#astroML.density_estimation.KDE" title="astroML.density_estimation.KDE"><tt class="xref py py-class docutils literal"><span class="pre">astroML.density_estimation.KDE</span></tt></a>, though this estimator is deprecated
+in favor of <tt class="xref py py-class docutils literal"><span class="pre">sklearn.neighbors.KernelDensity</span></tt>, which was added in
+Scikit-learn version 0.14.
 See <a class="reference internal" href="../book_figures/chapter6/fig_great_wall.html#book-fig-chapter6-fig-great-wall"><em>Great Wall Density</em></a> ,
 <a class="reference internal" href="../book_figures/chapter6/fig_great_wall_KDE.html#book-fig-chapter6-fig-great-wall-kde"><em>Great Wall KDE</em></a> or
-<a class="reference internal" href="../book_figures/chapter6/fig_density_estimation.html#book-fig-chapter6-fig-density-estimation"><em>Comparison of 1D Density Estimators</em></a> for examples of how it
-is used.</p>
+<a class="reference internal" href="../book_figures/chapter6/fig_density_estimation.html#book-fig-chapter6-fig-density-estimation"><em>Comparison of 1D Density Estimators</em></a> for examples of how kernel
+density estimation is used.</p>
 </div>
 <div class="section" id="nearest-neighbors-density-estimation">
 <h2>4.4. Nearest Neighbors Density Estimation<a class="headerlink" href="#nearest-neighbors-density-estimation" title="Permalink to this headline">¶</a></h2>

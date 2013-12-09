@@ -10,7 +10,7 @@ This demonstrates extreme deconvolution on a toy dataset.
 
 
 .. image:: ../images/CIDU2012/fig_XD_example_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

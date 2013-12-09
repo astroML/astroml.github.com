@@ -1,22 +1,37 @@
 """
 Gaussianity Tests
 -----------------
+Figure 4.7.
 
-This example uses scipy.stats tools to create a few distributions, and
-compare them to gaussian using the following statistical measures:
+The results of the Anderson-Darling test, the Kolmogorov-Smirnov test, and the
+Shapiro-Wilk test when applied to a sample of 10,000 values drawn from a normal
+distribution (upper panel) and from a combination of two Gaussian distributions
+(lower panel).
+
+The functions are available in the ``scipy`` package:
 
 - The Anderson-Darling test (``scipy.stats.anderson``)
 - The Kolmogorov-Smirnov test (``scipy.stats.kstest``)
 - The Shapiro-Wilk test (``scipy.stats.shapiro``)
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from scipy import stats
 from matplotlib import pyplot as plt
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 from astroML.stats import mean_sigma, median_sigmaG
 
@@ -37,9 +52,9 @@ xlims = [(-4, 4), (-4, 10)]
 
 #------------------------------------------------------------
 # Compute the statistics and plot the results
-fig = plt.figure(figsize=(6, 8))
-fig.subplots_adjust(left=0.15, right=0.95,
-                    bottom=0.1, top=0.95,
+fig = plt.figure(figsize=(5, 7))
+fig.subplots_adjust(left=0.13, right=0.95,
+                    bottom=0.06, top=0.95,
                     hspace=0.1)
 
 for i in range(2):
@@ -85,8 +100,8 @@ for i in range(2):
         ax.set_ylim(0, 0.55)
     else:
         ax.set_ylim(0, 0.35)
-        ax.set_xlabel('x')
+        ax.set_xlabel('$x$')
 
-    ax.set_ylabel('p(x)')
+    ax.set_ylabel('$p(x)$')
 
 plt.show()

@@ -1,16 +1,29 @@
 """
 SVM Diagram
 -----------
-This shows a diagram of how support vector machines perform classification
+Figure 9.9
+
+Illustration of SVM. The region between the dashed lines is the margin, and
+the points which the dashed lines touch are called the support vectors.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn import svm
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Create the data
@@ -50,10 +63,10 @@ db2 = X[i2, 1] - (m * X[i2, 0] + b)
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 3.75))
 ax = fig.add_subplot(111, aspect='equal')
 
-ax.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap=plt.cm.binary)
+ax.scatter(X[:, 0], X[:, 1], c=y, s=30, cmap=plt.cm.binary)
 ax.plot(xx, yy, '-k')
 ax.plot(xx, yy + db1, '--k')
 ax.plot(xx, yy + db2, '--k')

@@ -65,51 +65,61 @@ This chapter develops the classical or "frequentist" approach to  statistics.
 
 .. figure:: ./../images/chapter4/fig_chi2_eval_1_thumb.png
     :target: ./fig_chi2_eval.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_chi2_eval`
 
 .. figure:: ./../images/chapter4/fig_GMM_1D_1_thumb.png
     :target: ./fig_GMM_1D.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_GMM_1D`
 
 .. figure:: ./../images/chapter4/fig_bootstrap_gaussian_1_thumb.png
     :target: ./fig_bootstrap_gaussian.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_bootstrap_gaussian`
 
 .. figure:: ./../images/chapter4/fig_jackknife_gaussian_1_thumb.png
     :target: ./fig_jackknife_gaussian.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_jackknife_gaussian`
 
 .. figure:: ./../images/chapter4/fig_classification_example_1_thumb.png
     :target: ./fig_classification_example.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_classification_example`
 
 .. figure:: ./../images/chapter4/fig_benjamini_method_1_thumb.png
     :target: ./fig_benjamini_method.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_benjamini_method`
 
 .. figure:: ./../images/chapter4/fig_anderson_darling_1_thumb.png
     :target: ./fig_anderson_darling.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_anderson_darling`
 
 .. figure:: ./../images/chapter4/fig_lyndenbell_setup_1_thumb.png
     :target: ./fig_lyndenbell_setup.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_lyndenbell_setup`
 
 .. figure:: ./../images/chapter4/fig_lyndenbell_toy_1_thumb.png
     :target: ./fig_lyndenbell_toy.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_lyndenbell_toy`
 
 .. figure:: ./../images/chapter4/fig_lyndenbell_gals_1_thumb.png
     :target: ./fig_lyndenbell_gals.html
+    :align: center
 
     :ref:`book_fig_chapter4_fig_lyndenbell_gals`
 

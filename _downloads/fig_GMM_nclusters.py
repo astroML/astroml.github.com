@@ -1,20 +1,37 @@
 """
 Number of Clusters for Gaussian Mixtures
 ----------------------------------------
-This figure shows the BIC-optimized number of clusters for
-a Gaussian mixture model with several sizes of data.
+Figure 6.9
+
+The BIC-optimized number of components in a Gaussian mixture model as a
+function of the sample size. All three samples (with 100, 1000, and 10,000
+points) are drawn from the same distribution: two narrow foreground Gaussians
+and two wide background Gaussians. The top-right panel shows the BIC as a
+function of the number of components in the mixture. The remaining panels show
+the distribution of points in the sample and the 1, 2, and 3 standard deviation
+contours of the best-fit mixture model.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import norm
 from sklearn.mixture import GMM
 from astroML.utils import convert_2D_cov
 from astroML.plotting.tools import draw_ellipse
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Set up the dataset
@@ -38,11 +55,11 @@ gmm_input.weights_ /= gmm_input.weights_.sum()
 
 #------------------------------------------------------------
 # Compute and plot the results
-fig = plt.figure(figsize=(8, 8))
-fig.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9,
+fig = plt.figure(figsize=(5, 5))
+fig.subplots_adjust(left=0.11, right=0.9, bottom=0.11, top=0.9,
                     hspace=0, wspace=0)
 ax_list = [fig.add_subplot(s) for s in [221, 223, 224]]
-ax_list.append(fig.add_axes([0.6, 0.6, 0.3, 0.3]))
+ax_list.append(fig.add_axes([0.62, 0.62, 0.28, 0.28]))
 
 linestyles = ['-', '--', ':']
 
@@ -69,7 +86,7 @@ for Npts, ax, ls in zip([100, 1000, 10000], ax_list, linestyles):
     log_dens = clf.score(Xgrid).reshape((70, 70))
 
     # scatter the points
-    ax.plot(X[:, 0], X[:, 1], '.', c='gray', ms=1, zorder=1)
+    ax.plot(X[:, 0], X[:, 1], ',k', alpha=0.3, zorder=1)
 
     # plot the components
     for i in range(clf.n_components):
@@ -97,10 +114,10 @@ for i in (0, 1):
 for j in (1, 2):
     ax_list[j].set_xlabel('$x$')
 
-ax_list[-1].legend(loc=1, prop=dict(size=11))
+ax_list[-1].legend(loc=1)
 
 ax_list[-1].set_xlabel('n. clusters')
 ax_list[-1].set_ylabel('$BIC / N$')
-ax_list[-1].set_ylim(16, 18)
+ax_list[-1].set_ylim(16, 18.5)
 
 plt.show()

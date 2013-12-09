@@ -1,14 +1,28 @@
 """
 Minimum component fitting procedure
 -----------------------------------
-As explained in Wall & Jenkins, as well as Wall 1997, A&A 122:371
-The entire algorithm is implemented in astroML.filters.min_component_filter
+Figure 10.12
+
+The intermediate steps of the minimum component filter procedure applied to the
+spectrum of a white dwarf from the SDSS data set (mjd= 52199, plate=659,
+fiber=381). The top panel shows the input spectrum; the masked sections of the
+input spectrum are shown by thin lines (i.e., step 1 of the process in Section
+10.2.5). The bottom panel shows the PSD of the masked spectrum, after the
+linear fit has been subtracted (gray line). A simple low-pass filter (dashed
+line) is applied, and the resulting filtered spectrum (dark line) is used to
+construct the result shown in figure 10.13.
+
+Minimum component filtering is explained in Wall & Jenkins, as well as
+Wall 1997, A&A 122:371.  The minimum component algorithm is implemented
+in astroML.filters.min_component_filter
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -16,6 +30,14 @@ from scipy import fftpack
 
 from astroML.fourier import PSD_continuous
 from astroML.datasets import fetch_sdss_spectrum
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Fetch the spectrum from SDSS database & pre-process
@@ -76,12 +98,12 @@ spec_filt += spec_fit
 
 #----------------------------------------------------------------------
 # plot results
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 3.75))
 fig.subplots_adjust(hspace=0.25)
 
 ax = fig.add_subplot(211)
-ax.plot(lam, spec, '-', c='gray', lw=1)
-ax.plot(lam, spec_patched + spec_fit, '-k', lw=1)
+ax.plot(lam, spec, '-', c='gray')
+ax.plot(lam, spec_patched + spec_fit, '-k')
 
 ax.set_ylim(25, 110)
 

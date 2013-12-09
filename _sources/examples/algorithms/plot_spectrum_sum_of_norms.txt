@@ -14,17 +14,20 @@ Fitting a spectrum with a linear sum of gaussians.
 
 
 .. image:: ../images/algorithms/plot_spectrum_sum_of_norms_1.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/algorithms/plot_spectrum_sum_of_norms_2.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/algorithms/plot_spectrum_sum_of_norms_3.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 

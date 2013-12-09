@@ -1,16 +1,30 @@
 """
 Sort Algorithm Scaling
 ----------------------
-This example times and plots the scaling of sort algorithms
+Figure 2.2.
+
+The scaling of the quicksort algorithm. Plotted for comparison are
+lines showing O(N) and O(N log N) scaling. The quicksort algorithm falls along
+the O(N log N) line, as expected.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 from time import time
 import numpy as np
 from matplotlib import pyplot as plt
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Compute the execution times as a function of array size
@@ -39,12 +53,14 @@ for i in range(len(N_list)):
 
 #------------------------------------------------------------
 # Plot the results
+fig = plt.figure(figsize=(5, 3.75))
+fig.subplots_adjust(bottom=0.15)
 ax = plt.axes(xscale='log', yscale='log')
 ax.grid()
 
 # plot the observed times
-ax.plot(N_list, time_list, 'sk', color='gray', ms=10, label='list sort')
-ax.plot(N_npy, time_npy, 'ok', color='gray', ms=10, label='numpy sort')
+ax.plot(N_list, time_list, 'sk', color='gray', ms=5, label='list sort')
+ax.plot(N_npy, time_npy, 'ok', color='gray', ms=5, label='NumPy sort')
 
 # plot the expected scalings
 scale = np.linspace(N_npy[0] / 2, N_npy[-1] * 2, 100)

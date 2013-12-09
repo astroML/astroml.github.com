@@ -5,14 +5,16 @@
 
 Logistic Regression of photometry
 ---------------------------------
-Logistic Regression for photometric classification of rr-lyrae stars.
-This uses averaged photometry from the rr-lyrae catalog and stripe 82
-standards catalogs.
+Figure 9.8
+
+Logistic regression for RR Lyrae stars (see caption of figure 9.3 for details).
+With all four colors, logistic regression achieves a completeness of 0.993 and
+a contamination of 0.838.
 
 
 
 .. image:: ../images/chapter9/fig_rrlyrae_logreg_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -42,7 +44,7 @@ standards catalogs.
     <div class="toggle_container">
 
 .. literalinclude:: fig_rrlyrae_logreg.py
-    :lines: 8-
+    :lines: 10-
 
 .. raw:: html
 

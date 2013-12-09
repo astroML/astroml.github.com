@@ -1,12 +1,21 @@
 """
-Matched Filter Burst Search
+Matched Filter Chirp Search
 ---------------------------
+Figure 10.26
+
+A matched filter search for a chirp signal in time series data. A simulated
+data set generated from a model of the form y = b0+Asin[omega t + beta t^2],
+with homoscedastic Gaussian errors with sigma = 2, is shown in the top-right
+panel. The posterior pdf for the four model parameters is determined using
+MCMC and shown in the other panels.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -18,6 +27,14 @@ import pymc
 
 from astroML.plotting.mcmc import plot_mcmc
 from astroML.decorators import pickle_results
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #----------------------------------------------------------------------
@@ -98,10 +115,7 @@ true = [b0_true, A_true, omega_true, beta_true]
 
 #----------------------------------------------------------------------
 # Find the Maximum a posteriori values
-fig = plt.figure(figsize=(8, 8))
-fig.subplots_adjust(bottom=0.1, top=0.95,
-                    left=0.12, right=0.95,
-                    hspace=0.05, wspace=0.05)
+fig = plt.figure(figsize=(5, 5))
 
 ax = plt.axes([0.5, 0.7, 0.45, 0.25])
 t_fit = np.linspace(0, 100, 1001)
@@ -110,9 +124,9 @@ plt.scatter(t, y_obs, s=9, lw=0, c='k')
 plt.plot(t_fit, y_fit, '-k')
 plt.xlim(0, 100)
 plt.xlabel('$t$')
-plt.ylabel('$h_{obs}$')
+plt.ylabel(r'$h_{\rm obs}$')
 
 # This function plots multiple panels with the traces
 plot_mcmc(traces, labels=labels, limits=limits, true_values=true, fig=fig,
-          bins=30, colors='k', linewidths=2)
+          bins=30, bounds=[0.12, 0.08, 0.95, 0.91], colors='k')
 plt.show()

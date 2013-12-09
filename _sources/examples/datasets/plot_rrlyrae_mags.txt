@@ -12,7 +12,7 @@ book figures use this dataset.
 
 
 .. image:: ../images/datasets/plot_rrlyrae_mags_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

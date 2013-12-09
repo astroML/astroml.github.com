@@ -13,7 +13,7 @@ and plots the result.
 
 
 .. image:: ../images/datasets/plot_sdss_spectrum_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

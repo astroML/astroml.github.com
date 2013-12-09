@@ -1,23 +1,34 @@
 """
 Huber Loss Function
 -------------------
-This example shows how to perform robust regression using the Huber
-loss function.
+Figure 8.8
 
-Note that sklearn.linear_model.SGDRegressor has a Huber Loss Function
-built-in; here we will not use this, because it cannot account for
-heteroscedastic errors.
+An example of fitting a simple linear model to data which includes outliers
+(data is from table 1 of Hogg et al 2010). A comparison of linear regression
+using the squared-loss function (equivalent to ordinary least-squares
+regression) and the Huber loss function, with c = 1 (i.e., beyond 1 standard
+deviation, the loss becomes linear).
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
 from scipy import optimize
 from astroML.datasets import fetch_hogg2010test
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Get data: this includes outliers
@@ -54,15 +65,15 @@ print beta_huber
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(6, 6))
+fig = plt.figure(figsize=(5, 5))
 ax = fig.add_subplot(111)
 
 x_fit = np.linspace(0, 350, 10)
 ax.plot(x_fit, beta_squared[0] * x_fit + beta_squared[1], '--k',
         label="squared loss:\n $y=%.2fx + %.1f$" % tuple(beta_squared))
 ax.plot(x_fit, beta_huber[0] * x_fit + beta_huber[1], '-k',
-        label="huber loss:\n $y=%.2fx + %.1f$" % tuple(beta_huber))
-ax.legend(loc=4, prop=dict(size=14))
+        label="Huber loss:\n $y=%.2fx + %.1f$" % tuple(beta_huber))
+ax.legend(loc=4)
 
 ax.errorbar(x, y, dy, fmt='.k', lw=1, ecolor='gray')
 

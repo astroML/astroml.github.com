@@ -55,26 +55,31 @@ This chapter discusses computational strategies for large datasets.
 
 .. figure:: ./../images/chapter2/fig_search_scaling_1_thumb.png
     :target: ./fig_search_scaling.html
+    :align: center
 
     :ref:`book_fig_chapter2_fig_search_scaling`
 
 .. figure:: ./../images/chapter2/fig_sort_scaling_1_thumb.png
     :target: ./fig_sort_scaling.html
+    :align: center
 
     :ref:`book_fig_chapter2_fig_sort_scaling`
 
 .. figure:: ./../images/chapter2/fig_quadtree_example_1_thumb.png
     :target: ./fig_quadtree_example.html
+    :align: center
 
     :ref:`book_fig_chapter2_fig_quadtree_example`
 
 .. figure:: ./../images/chapter2/fig_kdtree_example_1_thumb.png
     :target: ./fig_kdtree_example.html
+    :align: center
 
     :ref:`book_fig_chapter2_fig_kdtree_example`
 
 .. figure:: ./../images/chapter2/fig_balltree_example_1_thumb.png
     :target: ./fig_balltree_example.html
+    :align: center
 
     :ref:`book_fig_chapter2_fig_balltree_example`
 

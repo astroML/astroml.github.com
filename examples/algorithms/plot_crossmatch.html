@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Data Processing Algorithms" href="index.html" />
     <link rel="next" title="Linear Sum of Gaussians" href="plot_spectrum_sum_of_norms.html" />
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -194,11 +196,11 @@ $(document).ready(function(){
 <span id="example-algorithms-plot-crossmatch"></span><h1>Catalog cross-matching<a class="headerlink" href="#catalog-cross-matching" title="Permalink to this headline">¶</a></h1>
 <p>This plots the cross-matched samples between the SDSS imaging data and
 the SDSS Stripe 82 standard stars.</p>
-<img alt="../../_images/plot_crossmatch_1.png" class="align-center" src="../../_images/plot_crossmatch_1.png" style="width: 100%;" />
+<a class="reference internal image-reference" href="../../_images/plot_crossmatch_1.png"><img alt="../../_images/plot_crossmatch_1.png" class="align-center" src="../../_images/plot_crossmatch_1.png" style="width: 800.0px; height: 600.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><pre>Optimization terminated successfully.
-         Current function value: -82328.648708
+         Current function value: -82329.624551
          Iterations: 19
          Function evaluations: 52
 </pre>
@@ -217,7 +219,7 @@ the SDSS Stripe 82 standard stars.</p>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_imaging_sample</span><span class="p">,</span> <span class="n">fetch_sdss_S82standards</span>
-<span class="kn">from</span> <span class="nn">astroML.crossmatch</span> <span class="kn">import</span> <span class="n">crossmatch</span>
+<span class="kn">from</span> <span class="nn">astroML.crossmatch</span> <span class="kn">import</span> <span class="n">crossmatch_angular</span>
 <span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">hist</span>
 
 <span class="c"># get imaging data</span>
@@ -234,7 +236,7 @@ the SDSS Stripe 82 standard stars.</p>
 
 <span class="c"># crossmatch catalogs</span>
 <span class="n">max_radius</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mi">3600</span>  <span class="c"># 1 arcsec</span>
-<span class="n">dist</span><span class="p">,</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">crossmatch</span><span class="p">(</span><span class="n">imX</span><span class="p">,</span> <span class="n">stX</span><span class="p">,</span> <span class="n">max_radius</span><span class="p">)</span>
+<span class="n">dist</span><span class="p">,</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">crossmatch_angular</span><span class="p">(</span><span class="n">imX</span><span class="p">,</span> <span class="n">stX</span><span class="p">,</span> <span class="n">max_radius</span><span class="p">)</span>
 <span class="n">match</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
 
 <span class="n">dist_match</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">match</span><span class="p">]</span>

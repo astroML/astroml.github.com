@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Coin Odds Ratio &mdash; astroML 0.1 documentation</title>
+    <title>Coin Toss Odds Ratio &mdash; astroML 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 5: Bayesian Statistical Inference" href="index.html" />
     <link rel="next" title="Malmquist Bias Example" href="fig_malmquist_bias.html" />
@@ -161,7 +162,7 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">Coin Odds Ratio</a></li>
+<li><a class="reference internal" href="#">Coin Toss Odds Ratio</a></li>
 </ul>
 
 
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -190,17 +192,17 @@ $(document).ready(function(){
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="coin-odds-ratio">
-<span id="book-fig-chapter5-fig-odds-ratio-coin"></span><h1>Coin Odds Ratio<a class="headerlink" href="#coin-odds-ratio" title="Permalink to this headline">¶</a></h1>
-<p>This figure shows the odds ratio for a coin flip.  The curves show the
-odds ratio between model <img class="math" src="../../_images/math/3c6a4a0680d4e0668219585d856c7f109cd09f77.png" alt="M_1"/>, in which the probability of landing
-heads is known to be <img class="math" src="../../_images/math/f8a88042bd8c384568b5016e0629586515528dd5.png" alt="b^*"/>, and model <img class="math" src="../../_images/math/c879631d01bcc51ec112e4a32a039f624d40c91c.png" alt="M_2"/>, where the probability
-of landing heads is unknown.</p>
-<p>Here we plot the odds ratio between the models, <img class="math" src="../../_images/math/af073b91585e726122cb46876e2f49bc3d488bac.png" alt="O_{21}"/>, as a function
-of <img class="math" src="../../_images/math/8c325612684d41304b9751c175df7bcc0f61f64f.png" alt="k"/> heads observed <img class="math" src="../../_images/math/174fadd07fd54c9afe288e96558c92e0c1da733a.png" alt="n"/> coin tosses.  Comparing the panels, it
-is clear that, as expected, observing more tosses gives better constraints
-on models via the odds ratio.</p>
-<img alt="../../_images/fig_odds_ratio_coin_1.png" class="align-center" src="../../_images/fig_odds_ratio_coin_1.png" style="width: 100%;" />
+  <div class="section" id="coin-toss-odds-ratio">
+<span id="book-fig-chapter5-fig-odds-ratio-coin"></span><h1>Coin Toss Odds Ratio<a class="headerlink" href="#coin-toss-odds-ratio" title="Permalink to this headline">¶</a></h1>
+<p>Figure 5.1</p>
+<p>Odds ratio for two models, <img class="math" src="../../_images/math/af073b91585e726122cb46876e2f49bc3d488bac.png" alt="O_{21}"/>, describing coin tosses (eq. 5.26).
+Out of N tosses (left: N = 10; right: N = 20), k tosses are heads. Model 2 is
+a one-parameter model with the heads probability determined from data
+(<img class="math" src="../../_images/math/f97a375918086a3bb7a6a31736f28d59f821a772.png" alt="b^0 = k/N"/>), and model 1 claims an a priori known heads probability
+equal to <img class="math" src="../../_images/math/8e70b6e5280f588e7c5c47744b18af3f2f44d5d4.png" alt="b_*"/>.The results are shown for two values of <img class="math" src="../../_images/math/8e70b6e5280f588e7c5c47744b18af3f2f44d5d4.png" alt="b_*"/>,
+as indicated in the legend. Note that the odds ratio is minimized and below 1
+(model 1 wins) when <img class="math" src="../../_images/math/d47c98e598a9f3b9840595867e7ec80803fe11bf.png" alt="k = b_* N"/>.</p>
+<a class="reference internal image-reference" href="../../_images/fig_odds_ratio_coin_1.png"><img alt="../../_images/fig_odds_ratio_coin_1.png" class="align-center" src="../../_images/fig_odds_ratio_coin_1.png" style="width: 500.0px; height: 250.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -209,14 +211,24 @@ on models via the odds ratio.</p>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 
 <span class="nd">@np.vectorize</span>
@@ -234,13 +246,13 @@ on models via the odds ratio.</p>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.12</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.13</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
 
 <span class="n">subplots</span> <span class="o">=</span> <span class="p">[</span><span class="mi">121</span><span class="p">,</span> <span class="mi">122</span><span class="p">]</span>
 <span class="n">n_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
 
-<span class="n">linestyles</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;-g&#39;</span><span class="p">,</span> <span class="s">&#39;--b&#39;</span><span class="p">]</span>
+<span class="n">linestyles</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="s">&#39;--b&#39;</span><span class="p">]</span>
 <span class="n">bstar_array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">subplot</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">subplots</span><span class="p">,</span> <span class="n">n_array</span><span class="p">):</span>

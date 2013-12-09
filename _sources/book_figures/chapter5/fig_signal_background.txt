@@ -5,11 +5,18 @@
 
 Finding a signal in a background
 --------------------------------
+Figure 5.26
+
+Fitting a model of a signal in an unknown background. The histogram in the
+top-right panel visualizes a sample drawn from a Gaussian signal plus a
+uniform background model given by eq. 5.83 and shown by the line. The remaining
+panels show projections of the three-dimensional posterior pdf, based on a
+20,000 point MCMC chain.
 
 
 
 .. image:: ../images/chapter5/fig_signal_background_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -39,7 +46,7 @@ Finding a signal in a background
     <div class="toggle_container">
 
 .. literalinclude:: fig_signal_background.py
-    :lines: 5-
+    :lines: 12-
 
 .. raw:: html
 

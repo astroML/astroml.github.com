@@ -14,7 +14,7 @@ shown in the left plot.
 
 
 .. image:: ../images/datasets/plot_SDSS_SSPP_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

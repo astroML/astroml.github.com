@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 6: Searching for Structure in Point Data" href="index.html" />
     <link rel="next" title="Euclidean Minimum Spanning Tree" href="fig_great_wall_MST.html" />
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,9 +194,13 @@ $(document).ready(function(){
             
   <div class="section" id="mean-shift-example">
 <span id="book-fig-chapter6-fig-meanshift-metallicity"></span><h1>Mean Shift Example<a class="headerlink" href="#mean-shift-example" title="Permalink to this headline">¶</a></h1>
-<p>This shows an example of the Mean Shift clustering algorithm on the data
-from the SDSS Segue Stellar Parameters Pipeline</p>
-<img alt="../../_images/fig_meanshift_metallicity_1.png" class="align-center" src="../../_images/fig_meanshift_metallicity_1.png" style="width: 100%;" />
+<p>Figure 6.14</p>
+<p>Mean-shift clustering on the metallicity datas et used in figures 6.6 and 6.13.
+The method finds two clusters associated with local maxima of the distribution
+(interior of the circles). Points outside the circles have been determined to
+lie in the background. The mean shift does not attempt to model correlation
+in the clusters: that is, the resulting clusters are axis aligned.</p>
+<a class="reference internal image-reference" href="../../_images/fig_meanshift_metallicity_1.png"><img alt="../../_images/fig_meanshift_metallicity_1.png" class="align-center" src="../../_images/fig_meanshift_metallicity_1.png" style="width: 500.0px; height: 500.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><pre>[-1  0  1]
@@ -205,11 +211,13 @@ number of estimated clusters : 2
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span>
@@ -219,6 +227,14 @@ number of estimated clusters : 2
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
 
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_sspp</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Get the data</span>
@@ -255,7 +271,7 @@ number of estimated clusters : 2
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
 <span class="c"># plot density</span>
@@ -277,7 +293,7 @@ number of estimated clusters : 2
 
     <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">FeH_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">FeH_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
                <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">alphFe_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">alphFe_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
-               <span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+               <span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.101</span><span class="p">,</span> <span class="mf">0.101</span><span class="p">)</span>

@@ -9,7 +9,7 @@ Generalized vs Standard Lomb-Scargle
 
 
 .. image:: ../images/CIDU2012/fig_LS_sg_comparison_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

@@ -1,17 +1,28 @@
 """
 KD Tree Example
 ---------------
+Figure 2.4.
 
 This example creates a simple KD-tree partition of a two-dimensional
 parameter space, and plots a visualization of the result.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 # We'll create a KDTree class which will recursively subdivide the
@@ -90,14 +101,14 @@ KDT = KDTree(X, [-1.1, -0.1], [1.1, 1.1])
 
 #------------------------------------------------------------
 # Plot four different levels of the KD tree
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(wspace=0.1, hspace=0.15,
                     left=0.1, right=0.9,
                     bottom=0.05, top=0.9)
 
 for level in range(1, 5):
     ax = fig.add_subplot(2, 2, level, xticks=[], yticks=[])
-    ax.scatter(X[:, 0], X[:, 1])
+    ax.scatter(X[:, 0], X[:, 1], s=9)
     KDT.draw_rectangle(ax, depth=level - 1)
 
     ax.set_xlim(-1.2, 1.2)
@@ -105,5 +116,5 @@ for level in range(1, 5):
     ax.set_title('level %i' % level)
 
 # suptitle() adds a title to the entire figure
-fig.suptitle('KD Tree Example', fontsize=18)
+fig.suptitle('$k$d-tree Example')
 plt.show()

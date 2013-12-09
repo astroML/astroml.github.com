@@ -5,6 +5,7 @@
 
 Example of a Cauchy distribution
 --------------------------------
+Figure 3.11.
 
 This shows an example of a Cauchy distribution with various parameters.
 We'll generate the distribution using::
@@ -30,7 +31,7 @@ for more details.
 
 
 .. image:: ../images/chapter3/fig_cauchy_distribution_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -60,7 +61,7 @@ for more details.
     <div class="toggle_container">
 
 .. literalinclude:: fig_cauchy_distribution.py
-    :lines: 26-
+    :lines: 27-
 
 .. raw:: html
 

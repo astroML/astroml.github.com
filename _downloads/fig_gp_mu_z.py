@@ -1,13 +1,19 @@
 """
 Cosmology Regression Example
 ----------------------------
-This example uses Gaussian Process Regression to fit cosmological distance data
+Figure 8.11
+
+A Gaussian process regression analysis of the simulated supernova sample used
+in figure 8.2. This uses a squared-exponential covariance model, with bandwidth
+learned through cross-validation.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -15,6 +21,14 @@ from sklearn.gaussian_process import GaussianProcess
 
 from astroML.cosmology import Cosmology
 from astroML.datasets import generate_mu_z
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Generate data
@@ -44,7 +58,7 @@ print gp.theta_
 # Plot the gaussian process
 #  gaussian process allows computation of the error at each point
 #  so we will show this as a shaded region
-fig = plt.figure(figsize=(6, 6))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.95)
 ax = fig.add_subplot(111)
 

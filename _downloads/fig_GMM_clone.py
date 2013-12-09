@@ -1,18 +1,32 @@
 """
 Cloning a Distribution with Gaussian Mixtures
 ---------------------------------------------
-This figure shows how to clone an N-dimensional distribution using
-Gaussian Mixture Models.
+Figure 6.10
+
+Cloning a two-dimensional distribution. The left panel shows 1000 observed
+points. The center panel shows a ten-component Gaussian mixture model fit to
+the data (two components dominate over other eight). The third panel shows
+5000 points drawn from the model in the second panel.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
 from sklearn.mixture import GMM
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Create our data: two overlapping gaussian clumps,
@@ -38,8 +52,8 @@ dens = np.exp(gmm.score(Xgrid)).reshape((50, 50))
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(8, 3))
-fig.subplots_adjust(left=0.08, right=0.95, wspace=0.05,
+fig = plt.figure(figsize=(5, 2))
+fig.subplots_adjust(left=0.1, right=0.95, wspace=0.05,
                     bottom=0.12, top=0.9)
 
 # first plot the input
@@ -59,7 +73,7 @@ ax.yaxis.set_major_formatter(plt.NullFormatter())
 
 # next plot the cloned distribution
 ax = fig.add_subplot(133, aspect='equal')
-ax.plot(X_new[:, 0], X_new[:, 1], '.k', ms=2)
+ax.plot(X_new[:, 0], X_new[:, 1], '.k', alpha=0.3, ms=2)
 
 ax.set_title("Cloned Distribution")
 ax.yaxis.set_major_formatter(plt.NullFormatter())

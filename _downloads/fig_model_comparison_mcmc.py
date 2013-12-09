@@ -1,16 +1,20 @@
 """
 MCMC Model Comparison
 ---------------------
-This example uses Bayesian MCMC to select between two models for a dataset.
-The dataset is a mixture of two gaussian distributions, and two MCMC models
-are fit: one with a single gaussian, one with two gaussians of different
-widths.
+Figure 5.24
+
+The top-right panel shows the posterior pdf for mu and sigma for a single
+Gaussian fit to the data shown in figure 5.23. The remaining panels show the
+projections of the five-dimensional pdf for a Gaussian mixture model with
+two components. Contours are based on a 10,000 point MCMC chain.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -19,12 +23,18 @@ from scipy.stats import norm
 from sklearn.neighbors import BallTree
 from astroML.density_estimation import GaussianMixture1D
 from astroML.plotting import plot_mcmc
-from astroML.decorators import pickle_results
-
 # hack to fix an import issue in older versions of pymc
 import scipy
 scipy.derivative = scipy.misc.derivative
 import pymc
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def get_logp(S, model):
@@ -166,8 +176,6 @@ model2 = dict(M2_mu1=M2_mu1, M2_mu2=M2_mu2,
 
 #------------------------------------------------------------
 # Set up MCMC sampling
-#   We'll save the results, because the calculation takes a while
-@pickle_results('model_comparison_traces.pkl')
 def compute_MCMC_models(Niter=10000, burn=1000, rseed=0):
     pymc.numpy.random.seed(rseed)
 
@@ -199,7 +207,7 @@ BF2, dBF2 = estimate_bayes_factor(trace2, logp2, r=0.05)
 
 #------------------------------------------------------------
 # Plot the results
-fig = plt.figure(figsize=(10, 10))
+fig = plt.figure(figsize=(5, 5))
 
 labels = [r'$\mu_1$',
           r'$\mu_2$',
@@ -231,15 +239,16 @@ if np.median(trace2[0]) > np.median(trace2[1]):
 # Plot the simple 2-component model
 ax, = plot_mcmc(trace1, fig=fig, bounds=[0.6, 0.6, 0.95, 0.95],
                 limits=[(0.3, 0.8), (0.75, 1.15)],
-                labels=[r'$\mu$', r'$\sigma$'], colors='k', linewidths=2)
+                labels=[r'$\mu$', r'$\sigma$'], colors='k')
 
-ax.text(0.03, 0.97, "Single Gaussian fit", va='top', ha='left',
-        transform=ax.transAxes, fontsize=14)
+ax.text(0.05, 0.95, "Single Gaussian fit", va='top', ha='left',
+        transform=ax.transAxes)
 
 # Plot the 5-component model
 ax_list = plot_mcmc(trace2, limits=limits, labels=labels,
                     true_values=true_values, fig=fig,
-                    colors='k', linewidths=2)
+                    bounds=(0.12, 0.12, 0.95, 0.95),
+                    colors='k')
 for ax in ax_list:
     for axis in [ax.xaxis, ax.yaxis]:
         axis.set_major_locator(plt.MaxNLocator(4))

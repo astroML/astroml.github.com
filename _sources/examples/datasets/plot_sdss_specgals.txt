@@ -14,17 +14,20 @@ sample.
 
 
 .. image:: ../images/datasets/plot_sdss_specgals_1.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/datasets/plot_sdss_specgals_2.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 
 .. image:: ../images/datasets/plot_sdss_specgals_3.png
-    :scale: 50
+    :align: center
+    :scale: 100
 
 
 

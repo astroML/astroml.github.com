@@ -1,18 +1,36 @@
-"""
+r"""
 Example of Benjamini & Hochberg Method
 --------------------------------------
+Figure 4.6.
 
-This shows a diagram of the Benjamini & Hochberg method for
-selecting the cutoff for best type I/type II error results.
+Illustration of the Benjamini and Hochberg method for 106 points drawn from
+the distribution shown in figure 4.5. The solid line shows the cumulative
+distribution of observed p values, normalized by the sample size. The dashed
+lines show the cutoff for various limits on contamination rate
+:math:`\varepsilon` computed using eq. 4.44 (the accepted measurements are
+those with p smaller than that corresponding to the intersection of solid and
+dashed curves). The dotted line shows how the distribution would look in the
+absence of sources. The value of the cumulative distribution at p = 0.5 is
+0.55, and yields a correction factor :math:`\lambda = 1.11` (see eq. 4.46).
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from scipy.stats import norm
 from matplotlib import pyplot as plt
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Set up the background and foreground distributions
@@ -34,7 +52,7 @@ p_sorted = np.sort(p)
 
 #------------------------------------------------------------
 # plot the results
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 3.75))
 fig.subplots_adjust(bottom=0.15)
 ax = plt.axes(xscale='log', yscale='log')
 
@@ -51,8 +69,7 @@ for (i, epsilon) in enumerate([0.1, 0.01, 0.001, 0.0001]):
 
     ax.text(x[1], y[1],
             r'$\epsilon = %.1g$' % epsilon,
-            ha='center', va='bottom',
-            fontsize=16, rotation=70)
+            ha='center', va='bottom', rotation=70)
 
 ax.xaxis.set_major_locator(plt.LogLocator(base=100))
 

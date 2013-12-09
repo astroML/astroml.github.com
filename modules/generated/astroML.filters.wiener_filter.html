@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.9.2. astroML.filters.wiener_filter &mdash; astroML 0.1 documentation</title>
+    <title>11.9.2. astroML.filters.wiener_filter &mdash; astroML 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
-    <link rel="up" title="10. Class reference" href="../classes.html" />
-    <link rel="next" title="10.9.3. astroML.filters.min_component_filter" href="astroML.filters.min_component_filter.html" />
-    <link rel="prev" title="10.9.1. astroML.filters.savitzky_golay" href="astroML.filters.savitzky_golay.html" />
+    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="next" title="11.9.3. astroML.filters.min_component_filter" href="astroML.filters.min_component_filter.html" />
+    <link rel="prev" title="11.9.1. astroML.filters.savitzky_golay" href="astroML.filters.savitzky_golay.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="astroML.filters.savitzky_golay.html" title="10.9.1. astroML.filters.savitzky_golay"
+	<a href="astroML.filters.savitzky_golay.html" title="11.9.1. astroML.filters.savitzky_golay"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    10.9.1. astroML....
+	    11.9.1. astroML....
 	    </span>
 	    <span class="hiddenrellink">
-	    10.9.1. astroML.filters.savitzky_golay
+	    11.9.1. astroML.filters.savitzky_golay
 	    </span>
 	    
 	    </a>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="astroML.filters.min_component_filter.html" title="10.9.3. astroML.filters.min_component_filter"
+	<a href="astroML.filters.min_component_filter.html" title="11.9.3. astroML.filters.min_component_filter"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    10.9.3. astroML....
+	    11.9.3. astroML....
 	    </span>
 	    <span class="hiddenrellink">
-	    10.9.3. astroML.filters.min_component_filter
+	    11.9.3. astroML.filters.min_component_filter
 	    </span>
 	    
 	    </a>
@@ -139,14 +140,14 @@ $(document).ready(function(){
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="../classes.html" title="10. Class reference" >
+	<a href="../classes.html" title="11. Class reference" >
 	Up
 	<br>
 	<span class="smallrellink">
-	10. Class refere...
+	11. Class refere...
 	</span>
 	<span class="hiddenrellink">
-	10. Class reference
+	11. Class reference
 	</span>
 	
 	</a>
@@ -161,7 +162,7 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">10.9.2. astroML.filters.wiener_filter</a></li>
+<li><a class="reference internal" href="#">11.9.2. astroML.filters.wiener_filter</a></li>
 </ul>
 
 
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -191,10 +193,10 @@ $(document).ready(function(){
           <div class="body">
             
   <div class="section" id="astroml-filters-wiener-filter">
-<h1>10.9.2. astroML.filters.wiener_filter<a class="headerlink" href="#astroml-filters-wiener-filter" title="Permalink to this headline">¶</a></h1>
+<h1>11.9.2. astroML.filters.wiener_filter<a class="headerlink" href="#astroml-filters-wiener-filter" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.filters.wiener_filter">
-<tt class="descclassname">astroML.filters.</tt><tt class="descname">wiener_filter</tt><big>(</big><em>t</em>, <em>h</em>, <em>signal='gaussian'</em>, <em>noise='flat'</em>, <em>return_PSDs=False</em><big>)</big><a class="reference internal" href="../../_modules/astroML/filters.html#wiener_filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.filters.wiener_filter" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">astroML.filters.</tt><tt class="descname">wiener_filter</tt><big>(</big><em>t</em>, <em>h</em>, <em>signal='gaussian'</em>, <em>noise='flat'</em>, <em>return_PSDs=False</em>, <em>signal_params=None</em>, <em>noise_params=None</em><big>)</big><a class="reference internal" href="../../_modules/astroML/filters.html#wiener_filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.filters.wiener_filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a Wiener-filtered time-series</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -219,6 +221,18 @@ $(document).ready(function(){
 <p><strong>return_PSDs</strong> : bool (optional)</p>
 <blockquote>
 <div><p>if True, then return (PSD, P_S, P_N)</p>
+</div></blockquote>
+<p><strong>signal_guess</strong> : tuple (optional)</p>
+<blockquote>
+<div><p>A starting guess at the parameters for the signal.  If not specified,
+a suitable guess will be estimated from the data itself. (see Notes
+below)</p>
+</div></blockquote>
+<p><strong>noise_guess</strong> : tuple (optional)</p>
+<blockquote>
+<div><p>A starting guess at the parameters for the noise.  If not specified,
+a suitable guess will be estimated from the data itself. (see Notes
+below)</p>
 </div></blockquote>
 </td>
 </tr>
@@ -248,6 +262,11 @@ $(document).ready(function(){
 </div>
 <p>This entire operation is equivalent to a kernel smoothing by a
 kernel whose Fourier transform is Phi.</p>
+<p>the arguments <tt class="docutils literal"><span class="pre">signal_guess</span></tt> and <tt class="docutils literal"><span class="pre">noise_guess</span></tt> specify the initial
+guess for the characteristics of signal and noise used in the minimization.
+They are generally expected to be tuples, and the meaning varies depending
+on the form of signal and noise used.  For <tt class="docutils literal"><span class="pre">gaussian</span></tt>, the params are
+(amplitude, width).  For <tt class="docutils literal"><span class="pre">flat</span></tt>, the params are (amplitude,).</p>
 </dd></dl>
 
 </div>

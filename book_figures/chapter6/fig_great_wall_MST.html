@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 6: Searching for Structure in Point Data" href="index.html" />
     <link rel="next" title="Diagramatic Description of n-point Correlations" href="fig_corr_diagram.html" />
@@ -161,7 +162,10 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">Euclidean Minimum Spanning Tree</a></li>
+<li><a class="reference internal" href="#">Euclidean Minimum Spanning Tree</a><ul>
+<li><a class="reference internal" href="#additional-information">Additional information</a></li>
+</ul>
+</li>
 </ul>
 
 
@@ -173,11 +177,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,32 +197,64 @@ $(document).ready(function(){
             
   <div class="section" id="euclidean-minimum-spanning-tree">
 <span id="book-fig-chapter6-fig-great-wall-mst"></span><h1>Euclidean Minimum Spanning Tree<a class="headerlink" href="#euclidean-minimum-spanning-tree" title="Permalink to this headline">¶</a></h1>
-<img alt="../../_images/fig_great_wall_MST_1.png" class="align-center" src="../../_images/fig_great_wall_MST_1.png" style="width: 100%;" />
+<p>Figure 6.15</p>
+<p>An approximate Euclidean minimum spanning tree over the two-dimensional
+projection of the SDSS Great Wall. The upper panel shows the input points, and
+the middle panel shows the dendrogram connecting them. The lower panel shows
+clustering based on this dendrogram, created by removing the largest 10% of the
+graph edges, and keeping the remaining connected clusters with 30 or more
+members.</p>
+<div class="section" id="additional-information">
+<h2>Additional information<a class="headerlink" href="#additional-information" title="Permalink to this headline">¶</a></h2>
+<p>This figure is based on the data presented in Figure 1 of Cowan &amp; Ivezic
+(2008). A similar figure appears in the book
+&#8220;Statistics, Data Mining, and Machine Learning in Astronomy&#8221;, by
+Ivezic, Connolly, Vanderplas, and Gray (2013).</p>
+<p>The three panels of this figure show a hierarchical clustering of a subset
+of galaxies from the Sloan Digital Sky Survey (SDSS).  This region is known
+as the &#8220;SDSS Great Wall&#8221;, and contains an extended cluster of several thousand
+galaxies approximately 300Mpc (about 1 billion light years) from earth.  The
+top panel shows the positions of over 8,000 galaxies projected to a 2D plane
+with Earth at the point (0, 0).  The middle panel shows a dendrogram
+representation of a Euclidean Minimum Spanning Tree (MST) over the galaxy
+locations.  By eliminating edges of a MST which are greater than a given
+length, we can measure the amount of clustering at that scale: this is one
+version of a class of models known as Hierarchical Clustering.  The bottom
+panel shows the results of this clustering approach for an edge cutoff of
+3.5Mpc, along with a Gaussian Mixture Model fit to the distribution within
+each cluster.</p>
+<a class="reference internal image-reference" href="../../_images/fig_great_wall_MST_1.png"><img alt="../../_images/fig_great_wall_MST_1.png" class="align-center" src="../../_images/fig_great_wall_MST_1.png" style="width: 500.0px; height: 600.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
-</pre></div>
+<div class="toggle_container"><div class="highlight-python"><pre> scale: 3.5495 Mpc
+</pre>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">kneighbors_graph</span>
 <span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GMM</span>
 
 <span class="kn">from</span> <span class="nn">astroML.clustering</span> <span class="kn">import</span> <span class="n">HierarchicalClustering</span><span class="p">,</span> <span class="n">get_graph_segments</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_great_wall</span>
-<span class="kn">from</span> <span class="nn">astroML.cosmology</span> <span class="kn">import</span> <span class="n">Cosmology</span>
 
-<span class="kn">from</span> <span class="nn">scipy.sparse.csgraph</span> <span class="kn">import</span> <span class="n">minimum_spanning_tree</span><span class="p">,</span> <span class="n">connected_components</span>
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># get data</span>
@@ -230,11 +267,13 @@ $(document).ready(function(){
 <span class="c"># Compute the MST clustering model</span>
 <span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">edge_cutoff</span> <span class="o">=</span> <span class="mf">0.9</span>
-<span class="n">cluster_cutoff</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">cluster_cutoff</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">HierarchicalClustering</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                               <span class="n">edge_cutoff</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-                               <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+                               <span class="n">edge_cutoff</span><span class="o">=</span><span class="n">edge_cutoff</span><span class="p">,</span>
+                               <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">cluster_cutoff</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot; scale: </span><span class="si">%2g</span><span class="s"> Mpc&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">full_tree_</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                                        <span class="mi">100</span> <span class="o">*</span> <span class="n">edge_cutoff</span><span class="p">)</span>
 
 <span class="n">n_components</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">n_components_</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">labels_</span>
@@ -256,16 +295,18 @@ $(document).ready(function(){
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_components</span><span class="p">):</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
-    <span class="n">gmm</span> <span class="o">=</span> <span class="n">GMM</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
+    <span class="n">Npts</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">Nclusters</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">Npts</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">gmm</span> <span class="o">=</span> <span class="n">GMM</span><span class="p">(</span><span class="n">Nclusters</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
     <span class="n">dens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gmm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">Xgrid</span><span class="p">))</span>
-    <span class="n">dens</span> <span class="o">/=</span> <span class="n">dens</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-    <span class="n">density</span> <span class="o">+=</span> <span class="n">dens</span>
+    <span class="n">density</span> <span class="o">+=</span> <span class="n">dens</span> <span class="o">/</span> <span class="n">dens</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
 <span class="n">density</span> <span class="o">=</span> <span class="n">density</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Ny</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>
 
 <span class="c">#----------------------------------------------------------------------</span>
 <span class="c"># Plot the results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;equal&#39;</span><span class="p">)</span>
@@ -273,28 +314,24 @@ $(document).ready(function(){
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;(Mpc)&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_y</span><span class="p">,</span> <span class="n">T_x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_y</span><span class="p">,</span> <span class="n">T_x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;(Mpc)&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_trunc_y</span><span class="p">,</span> <span class="n">T_trunc_x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="c">#ax.scatter(X[clusters, 1], X[clusters, 0], c=labels[clusters], lw=0)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">density</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_trunc_y</span><span class="p">,</span> <span class="n">T_trunc_x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">density</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">hot_r</span><span class="p">,</span>
           <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">])</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;(Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;(Mpc)&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -302,6 +339,7 @@ $(document).ready(function(){
 </div>
 <div align="right"><p><a class="reference download internal" href="../../_downloads/fig_great_wall_MST.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_great_wall_MST.py]</span></tt></a></p>
 </div></div>
+</div>
 
 
           </div>

@@ -5,11 +5,20 @@
 
 Photometric Redshifts by Random Forests
 ---------------------------------------
+Figure 9.16
+
+Photometric redshift estimation using gradient-boosted decision trees, with 100
+boosting steps. As with random forests (figure 9.15), boosting allows for
+improved results over the single tree case (figure 9.14). Note, however, that
+the computational cost of boosted decision trees is such that it is
+computationally prohibitive to use very deep trees. By stringing together a
+large number of very naive estimators, boosted trees improve on the
+underfitting of each individual estimator.
 
 
 
 .. image:: ../images/chapter9/fig_photoz_boosting_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -39,7 +48,7 @@ Photometric Redshifts by Random Forests
     <div class="toggle_container">
 
 .. literalinclude:: fig_photoz_boosting.py
-    :lines: 5-
+    :lines: 14-
 
 .. raw:: html
 

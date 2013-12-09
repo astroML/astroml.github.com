@@ -1,20 +1,35 @@
-"""
+r"""
 Kurtosis and Skew
 -----------------
+Figure 3.6.
 
-This figure visualizes the kurtosis and skew of several distributions
+An example of distributions with different skewness
+:math:`\Sigma` (top panel) and kurtosis K (bottom panel). The modified
+Gaussian in the upper panel is a normal distribution multiplied by a
+Gram-Charlier series (see eq. 4.70), with a0 = 2, a1 = 1, and a2 = 0.5.
+The log-normal has :math:`\sigma = 1.2`.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from scipy import stats
 from matplotlib import pyplot as plt
 
-fig = plt.figure(figsize=(8, 10))
-fig.subplots_adjust(right=0.95, hspace=0.05)
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
+
+fig = plt.figure(figsize=(5, 6.25))
+fig.subplots_adjust(right=0.95, hspace=0.05, bottom=0.07, top=0.95)
 
 # First show distributions with different skeq
 ax = fig.add_subplot(211)
@@ -31,7 +46,7 @@ l3, = ax.plot(x[499:], stats.lognorm(1.2).pdf(x[499:]), '-.k',
 
 ax.set_xlim(-5, 5)
 ax.set_ylim(0, 0.7001)
-ax.set_ylabel('$p(x)$', fontsize=16)
+ax.set_ylabel('$p(x)$')
 ax.xaxis.set_major_formatter(plt.NullFormatter())
 
 # trick to show multiple legends
@@ -54,8 +69,8 @@ l4, = ax.plot(x, stats.uniform(-2, 4).pdf(x), ':k',
 
 ax.set_xlim(-5, 5)
 ax.set_ylim(0, 0.55)
-ax.set_xlabel('$x$', fontsize=16)
-ax.set_ylabel('$p(x)$', fontsize=16)
+ax.set_xlabel('$x$')
+ax.set_ylabel('$p(x)$')
 
 # trick to show multiple legends
 leg1 = ax.legend((l1, l2), (l1.get_label(), l2.get_label()), loc=2)

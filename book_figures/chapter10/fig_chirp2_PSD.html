@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Chirp PSD &mdash; astroML 0.1 documentation</title>
+    <title>Chirp wavelet PSD &mdash; astroML 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 10: Time Series Analysis" href="index.html" />
-    <link rel="next" title="Autocorrelation Function" href="fig_autocorrelation.html" />
-    <link rel="prev" title="Matched Filter Burst Search" href="fig_matchedfilt_chirp2.html" />
+    <link rel="next" title="Generating Power-law Light Curves" href="fig_powerlaw.html" />
+    <link rel="prev" title="Matched Filter Chirp Search" href="fig_matchedfilt_chirp2.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="fig_matchedfilt_chirp2.html" title="Matched Filter Burst Search"
+	<a href="fig_matchedfilt_chirp2.html" title="Matched Filter Chirp Search"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    Matched Filter B...
+	    Matched Filter C...
 	    </span>
 	    <span class="hiddenrellink">
-	    Matched Filter Burst Search
+	    Matched Filter Chirp Search
 	    </span>
 	    
 	    </a>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="fig_autocorrelation.html" title="Autocorrelation Function"
+	<a href="fig_powerlaw.html" title="Generating Power-law Light Curves"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    Autocorrelation ...
+	    Generating Power...
 	    </span>
 	    <span class="hiddenrellink">
-	    Autocorrelation Function
+	    Generating Power-law Light Curves
 	    </span>
 	    
 	    </a>
@@ -161,7 +162,7 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">Chirp PSD</a></li>
+<li><a class="reference internal" href="#">Chirp wavelet PSD</a></li>
 </ul>
 
 
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -190,10 +192,15 @@ $(document).ready(function(){
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="chirp-psd">
-<span id="book-fig-chapter10-fig-chirp2-psd"></span><h1>Chirp PSD<a class="headerlink" href="#chirp-psd" title="Permalink to this headline">¶</a></h1>
-<p>Compute the time/frequency power spectral density of the chirp signal</p>
-<img alt="../../_images/fig_chirp2_PSD_1.png" class="align-center" src="../../_images/fig_chirp2_PSD_1.png" style="width: 100%;" />
+  <div class="section" id="chirp-wavelet-psd">
+<span id="book-fig-chapter10-fig-chirp2-psd"></span><h1>Chirp wavelet PSD<a class="headerlink" href="#chirp-wavelet-psd" title="Permalink to this headline">¶</a></h1>
+<p>Figure 10.28</p>
+<p>A wavelet PSD of the ten-parameter chirp signal similar to that analyzed in
+figure 10.27. Here, the signal with an amplitude of A = 0.8 is sampled in
+4096 evenly spaced bins, and with Gaussian noise with sigma = 1. The
+two-dimensional wavelet PSD easily recovers the increase of characteristic
+chirp frequency with time.</p>
+<a class="reference internal image-reference" href="../../_images/fig_chirp2_PSD_1.png"><img alt="../../_images/fig_chirp2_PSD_1.png" class="align-center" src="../../_images/fig_chirp2_PSD_1.png" style="width: 500.0px; height: 375.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -202,15 +209,25 @@ $(document).ready(function(){
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">FT_continuous</span><span class="p">,</span> <span class="n">IFT_continuous</span><span class="p">,</span> <span class="n">wavelet_PSD</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 
 <span class="c">#------------------------------------------------------------</span>
@@ -236,13 +253,13 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># Plot the  results</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
 
 <span class="c"># Top: plot the data</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">50</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;#AAAAAA&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">50</span><span class="p">,</span> <span class="n">h_true</span><span class="p">,</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">50</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">&#39;#AAAAAA&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">50</span><span class="p">,</span> <span class="n">h_true</span><span class="p">,</span> <span class="s">&#39;-k&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s">&quot;Input Signal: chirp&quot;</span><span class="p">,</span>
         <span class="n">ha</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>

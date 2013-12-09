@@ -25,6 +25,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 3: Probability and Statistical Distributions" href="index.html" />
     <link rel="next" title="A 2x2 Contingency Table" href="fig_contingency_table.html" />
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -192,8 +194,13 @@ $(document).ready(function(){
             
   <div class="section" id="joint-and-conditional-probabilities">
 <span id="book-fig-chapter3-fig-conditional-probability"></span><h1>Joint and Conditional Probabilities<a class="headerlink" href="#joint-and-conditional-probabilities" title="Permalink to this headline">¶</a></h1>
-<p>Visualization of the relationship between joint and conditional probabilities.</p>
-<img alt="../../_images/fig_conditional_probability_1.png" class="align-center" src="../../_images/fig_conditional_probability_1.png" style="width: 100%;" />
+<p>Figure 3.2.</p>
+<p>An example of a two-dimensional probability distribution. The color-coded
+panel shows p(x, y). The two panels to the left and below show marginal
+distributions in x and y (see eq. 3.8). The three panels to the right show
+the conditional probability distributions p(x|y) (see eq. 3.7) for three
+different values of y (as marked in the left panel).</p>
+<a class="reference internal image-reference" href="../../_images/fig_conditional_probability_1.png"><img alt="../../_images/fig_conditional_probability_1.png" class="align-center" src="../../_images/fig_conditional_probability_1.png" style="width: 500.0px; height: 250.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
@@ -202,14 +209,24 @@ $(document).ready(function(){
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas</span>
 <span class="c"># License: BSD</span>
 <span class="c">#   The figure produced by this code is published in the textbook</span>
 <span class="c">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
 <span class="c">#   For more information, see http://astroML.github.com</span>
+<span class="c">#   To report a bug or issue, use the following forum:</span>
+<span class="c">#    https://groups.google.com/forum/#!forum/astroml-general</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">NullFormatter</span><span class="p">,</span> <span class="n">NullLocator</span><span class="p">,</span> <span class="n">MultipleLocator</span>
+
+<span class="c">#----------------------------------------------------------------------</span>
+<span class="c"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c"># you can set usetex to False.</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">banana_distribution</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This generates random points in a banana shape&quot;&quot;&quot;</span>
@@ -238,16 +255,16 @@ $(document).ready(function(){
 
 <span class="c">#------------------------------------------------------------</span>
 <span class="c"># plot the result</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
 
 <span class="c"># define axes</span>
-<span class="n">ax_Pxy</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
-<span class="n">ax_Px</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
-<span class="n">ax_Py</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
-<span class="n">ax_cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.48</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
-<span class="n">ax_Px_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.63</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">)),</span>
-           <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.63</span><span class="p">,</span> <span class="mf">0.37</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">)),</span>
-           <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.63</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">))]</span>
+<span class="n">ax_Pxy</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">))</span>
+<span class="n">ax_Px</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax_Py</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">))</span>
+<span class="n">ax_cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.48</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">))</span>
+<span class="n">ax_Px_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">)),</span>
+           <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">)),</span>
+           <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">))]</span>
 
 <span class="c"># set axis label formatters</span>
 <span class="n">ax_Px_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
@@ -266,14 +283,14 @@ $(document).ready(function(){
            <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">)</span>
 
 <span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cax</span><span class="o">=</span><span class="n">ax_cb</span><span class="p">)</span>
-<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;$P(x, y)$&#39;</span><span class="p">)</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;$p(x, y)$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="s">r&#39;$\times 10^{-3}$&#39;</span><span class="p">,</span>
          <span class="n">transform</span><span class="o">=</span><span class="n">ax_cb</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
 
-<span class="c"># draw P(x) distribution</span>
+<span class="c"># draw p(x) distribution</span>
 <span class="n">ax_Px</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xbins</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">H</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s">&#39;steps&#39;</span><span class="p">)</span>
 
-<span class="c"># draw P(y) distribution</span>
+<span class="c"># draw p(y) distribution</span>
 <span class="n">ax_Py</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">ybins</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s">&#39;steps&#39;</span><span class="p">)</span>
 
 <span class="c"># define axis limits</span>
@@ -286,9 +303,11 @@ $(document).ready(function(){
 <span class="n">ax_Pxy</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$x$&#39;</span><span class="p">)</span>
 <span class="n">ax_Pxy</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$y$&#39;</span><span class="p">)</span>
 <span class="n">ax_Px</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$x$&#39;</span><span class="p">)</span>
-<span class="n">ax_Px</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$P(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$p(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s">&#39;right&#39;</span><span class="p">)</span>
 <span class="n">ax_Py</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$y$&#39;</span><span class="p">)</span>
-<span class="n">ax_Py</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$P(y)$&#39;</span><span class="p">)</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$p(y)$&#39;</span><span class="p">)</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s">&#39;top&#39;</span><span class="p">)</span>
 
 
 <span class="c"># draw marginal probabilities</span>
@@ -303,7 +322,7 @@ $(document).ready(function(){
     <span class="n">Px_y</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">/</span> <span class="n">H</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">ax_Px_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xbins</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">Px_y</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s">&#39;steps&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">ax_Px_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
-    <span class="n">ax_Px_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$P(x | y=</span><span class="si">%.1f</span><span class="s">)$&#39;</span> <span class="o">%</span> <span class="n">ybins</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+    <span class="n">ax_Px_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;$p(x | </span><span class="si">%.1f</span><span class="s">)$&#39;</span> <span class="o">%</span> <span class="n">ybins</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
 <span class="n">ax_Pxy</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
 
 <span class="n">ax_Px_y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;$x$&#39;</span><span class="p">)</span>

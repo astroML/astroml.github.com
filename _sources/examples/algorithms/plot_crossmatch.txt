@@ -11,7 +11,7 @@ the SDSS Stripe 82 standard stars.
 
 
 .. image:: ../images/algorithms/plot_crossmatch_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

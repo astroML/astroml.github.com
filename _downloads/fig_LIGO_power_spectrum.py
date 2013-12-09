@@ -1,20 +1,38 @@
 """
-Plot the power spectrum of the LIGO big dog event
--------------------------------------------------
-This compares the power spectrum computed using the raw FFT, and using
-Welch's method (i.e. overlapping window functions that reduce noise).
+Plot the power spectrum of LIGO data
+------------------------------------
+Figure 10.6
+
+LIGO data and its noise power spectrum. The upper panel shows a 2-second-long
+stretch of data (~8000 points; essentially noise without signal) from LIGO
+Hanford. The middle and bottom panels show the power spectral density computed
+for 2048 seconds of data, sampled at 4096 Hz (~8 million data values). The gray
+line shows the PSD computed using a naive FFT approach; the dark line uses
+Welch's method of overlapping windows to smooth noise; the middle panel uses a
+1-second-wide top-hat window and the bottom panel the so-called Hanning
+(cosine) window with the same width.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy import fftpack
 from matplotlib import mlab
 
 from astroML.datasets import fetch_LIGO_large
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Fetch the LIGO hanford data
@@ -69,7 +87,7 @@ PSDW2 = PSDW2[cutoff]
 
 #------------------------------------------------------------
 # Plot the data
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(bottom=0.1, top=0.9, hspace=0.3)
 
 # top panel: time series

@@ -58,31 +58,37 @@ the Conference for Intelligent Data Understanding (CIDU) 2012.
 
 .. figure:: ./../images/CIDU2012/fig_rbf_ridge_mu_z_1_thumb.png
     :target: ./fig_rbf_ridge_mu_z.html
+    :align: center
 
     :ref:`paper_fig_CIDU2012_fig_rbf_ridge_mu_z`
 
 .. figure:: ./../images/CIDU2012/fig_XD_example_1_thumb.png
     :target: ./fig_XD_example.html
+    :align: center
 
     :ref:`paper_fig_CIDU2012_fig_XD_example`
 
 .. figure:: ./../images/CIDU2012/fig_spec_examples_1_thumb.png
     :target: ./fig_spec_examples.html
+    :align: center
 
     :ref:`paper_fig_CIDU2012_fig_spec_examples`
 
 .. figure:: ./../images/CIDU2012/fig_spec_decompositions_1_thumb.png
     :target: ./fig_spec_decompositions.html
+    :align: center
 
     :ref:`paper_fig_CIDU2012_fig_spec_decompositions`
 
 .. figure:: ./../images/CIDU2012/fig_LS_sg_comparison_1_thumb.png
     :target: ./fig_LS_sg_comparison.html
+    :align: center
 
     :ref:`paper_fig_CIDU2012_fig_LS_sg_comparison`
 
 .. figure:: ./../images/CIDU2012/fig_great_wall_MST_1_thumb.png
     :target: ./fig_great_wall_MST.html
+    :align: center
 
     :ref:`paper_fig_CIDU2012_fig_great_wall_MST`
 

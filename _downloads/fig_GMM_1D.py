@@ -1,16 +1,36 @@
 """
 1D Gaussian Mixture Example
 ---------------------------
-This example shows a 1D version of Gaussian Mixture Models
+Figure 4.2.
+
+Example of a one-dimensional Gaussian mixture model with three components.
+The left panel shows a histogram of the data, along with the best-fit model
+for a mixture with three components. The center panel shows the model selection
+criteria AIC (see Section 4.3) and BIC (see Section 5.4) as a function of the
+number of components. Both are minimized for a three-component model. The
+right panel shows the probability that a given point is drawn from each class
+as a function of its position. For a given x value, the vertical extent of
+each region is proportional to that probability. Note that extreme values
+are most likely to belong to class 1.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 from matplotlib import pyplot as plt
 import numpy as np
 from sklearn.mixture import GMM
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Set up the dataset.
@@ -52,9 +72,9 @@ BIC = [m.bic(X) for m in models]
 #   2) AIC and BIC vs number of components
 #   3) probability that a point came from each component
 
-fig = plt.figure(figsize=(10, 3.3))
-fig.subplots_adjust(left=0.1, right=0.97,
-                    bottom=0.17, top=0.9, wspace=0.35)
+fig = plt.figure(figsize=(5, 1.7))
+fig.subplots_adjust(left=0.12, right=0.97,
+                    bottom=0.21, top=0.9, wspace=0.5)
 
 
 # plot 1: data + best-fit mixture
@@ -71,8 +91,8 @@ ax.plot(x, pdf, '-k')
 ax.plot(x, pdf_individual, '--k')
 ax.text(0.04, 0.96, "Best-fit Mixture",
         ha='left', va='top', transform=ax.transAxes)
-ax.set_xlabel('x')
-ax.set_ylabel('p(x)')
+ax.set_xlabel('$x$')
+ax.set_ylabel('$p(x)$')
 
 
 # plot 2: AIC and BIC
@@ -81,7 +101,7 @@ ax.plot(N, AIC, '-k', label='AIC')
 ax.plot(N, BIC, '--k', label='BIC')
 ax.set_xlabel('n. components')
 ax.set_ylabel('information criterion')
-ax.legend(loc=2, prop=dict(size=12))
+ax.legend(loc=2)
 
 
 # plot 3: posterior probabilities for each component
@@ -96,7 +116,7 @@ ax.fill_between(x, p[0], p[1], color='gray', alpha=0.5)
 ax.fill_between(x, p[1], 1, color='gray', alpha=0.7)
 ax.set_xlim(-6, 6)
 ax.set_ylim(0, 1)
-ax.set_xlabel('x')
+ax.set_xlabel('$x$')
 ax.set_ylabel(r'$p({\rm class}|x)$')
 
 ax.text(-5, 0.3, 'class 1', rotation='vertical')

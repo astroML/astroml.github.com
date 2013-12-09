@@ -76,76 +76,91 @@ datasets available in astroML, and some strategies for data visualization.
 
 .. figure:: ./../images/chapter1/fig_SDSS_imaging_1_thumb.png
     :target: ./fig_SDSS_imaging.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_SDSS_imaging`
 
 .. figure:: ./../images/chapter1/fig_sdss_spectrum_1_thumb.png
     :target: ./fig_sdss_spectrum.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_sdss_spectrum`
 
 .. figure:: ./../images/chapter1/fig_SDSS_specgals_1_thumb.png
     :target: ./fig_SDSS_specgals.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_SDSS_specgals`
 
 .. figure:: ./../images/chapter1/fig_dr7_quasar_1_thumb.png
     :target: ./fig_dr7_quasar.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_dr7_quasar`
 
 .. figure:: ./../images/chapter1/fig_SDSS_sspp_1_thumb.png
     :target: ./fig_SDSS_sspp.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_SDSS_sspp`
 
 .. figure:: ./../images/chapter1/fig_sdss_S82standards_1_thumb.png
     :target: ./fig_sdss_S82standards.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_sdss_S82standards`
 
 .. figure:: ./../images/chapter1/fig_LINEAR_sample_1_thumb.png
     :target: ./fig_LINEAR_sample.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_LINEAR_sample`
 
 .. figure:: ./../images/chapter1/fig_moving_objects_1_thumb.png
     :target: ./fig_moving_objects.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_moving_objects`
 
 .. figure:: ./../images/chapter1/fig_S82_scatter_contour_1_thumb.png
     :target: ./fig_S82_scatter_contour.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_S82_scatter_contour`
 
 .. figure:: ./../images/chapter1/fig_S82_hess_1_thumb.png
     :target: ./fig_S82_hess.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_S82_hess`
 
 .. figure:: ./../images/chapter1/fig_SSPP_metallicity_1_thumb.png
     :target: ./fig_SSPP_metallicity.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_SSPP_metallicity`
 
 .. figure:: ./../images/chapter1/fig_moving_objects_multicolor_1_thumb.png
     :target: ./fig_moving_objects_multicolor.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_moving_objects_multicolor`
 
 .. figure:: ./../images/chapter1/fig_mercator_1_thumb.png
     :target: ./fig_mercator.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_mercator`
 
 .. figure:: ./../images/chapter1/fig_projections_1_thumb.png
     :target: ./fig_projections.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_projections`
 
 .. figure:: ./../images/chapter1/fig_healpix_ex_1_thumb.png
     :target: ./fig_healpix_ex.html
+    :align: center
 
     :ref:`book_fig_chapter1_fig_healpix_ex`
 

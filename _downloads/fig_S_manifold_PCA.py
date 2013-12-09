@@ -1,20 +1,36 @@
 """
 Comparison of PCA and Manifold Learning
 ---------------------------------------
-This script generates a nonlinear S-shaped dataset
-and compares the projections of PCA, LLE, and IsoMap.
+Figure 7.8
+
+A comparison of PCA and manifold learning. The top-left panel shows an example
+S-shaped data set (a two-dimensional manifold in a three-dimensional space).
+PCA identifies three principal components within the data. Projection onto the
+first two PCA components results in a mixing of the colors along the manifold.
+Manifold learning (LLE and IsoMap) preserves the local structure when
+projecting the data, preventing the mixing of the colors.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib
 from matplotlib import ticker
 
 from sklearn import manifold, datasets, decomposition
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # generate the S-curve dataset
@@ -44,7 +60,7 @@ Y_iso = iso.fit_transform(X)
 
 #------------------------------------------------------------
 # plot the 3D dataset
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(left=0.05, right=0.95,
                     bottom=0.05, top=0.9)
 try:
@@ -53,7 +69,7 @@ try:
     ax1 = fig.add_subplot(221, projection='3d',
                           xticks=[], yticks=[], zticks=[])
     ax1.scatter(X[:, 0], X[:, 1], X[:, 2], c=color,
-                cmap=plt.cm.jet, s=9, lw=1)
+                cmap=plt.cm.jet, s=9, lw=0)
     ax1.view_init(11, -73)
 
 except:
@@ -92,7 +108,7 @@ except:
 #------------------------------------------------------------
 # Plot the projections
 subplots = [222, 223, 224]
-titles = ['PCA projection', 'LLE projection', 'Isomap projection']
+titles = ['PCA projection', 'LLE projection', 'IsoMap projection']
 Yvals = [Y_pca, Y_lle, Y_iso]
 
 for (Y, title, subplot) in zip(Yvals, titles, subplots):

@@ -13,7 +13,7 @@ package to be installed.
 
 
 .. image:: ../images/datasets/plot_wmap_raw_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

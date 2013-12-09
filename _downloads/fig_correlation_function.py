@@ -1,20 +1,36 @@
 """
-Angular Correlation Function
-----------------------------
-Compute the angular correlation functions for the spectroscopic galaxies
-in the Sloan Digital Sky Survey.
+Angular Two-point Correlation Function
+--------------------------------------
+Figure 6.17
+
+The two-point correlation function of SDSS spectroscopic galaxies in the range
+0.08 < z < 0.12, with m < 17.7. This is the same sample for which the
+luminosity function is computed in figure 4.10. Errors are estimated using ten
+bootstrap samples. Dotted lines are added to guide the eye and correspond to a
+power law proportional to :math:`\theta^{-0.8}`. Note that the red galaxies
+(left panel) are clustered more strongly than the blue galaxies (right panel).
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
 from astroML.decorators import pickle_results
 from astroML.datasets import fetch_sdss_specgals
 from astroML.correlation import bootstrap_two_point_angular
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Get data and do some quality cuts
@@ -78,9 +94,9 @@ bootstraps = [r_bootstraps, b_bootstraps]
 labels = ['$u-r > 2.22$\n$N=%i$' % len(data_red),
           '$u-r < 2.22$\n$N=%i$' % len(data_blue)]
 
-fig = plt.figure(figsize=(8, 4))
-fig.subplots_adjust(bottom=0.15, top=0.9,
-                    left=0.1, right=0.95)
+fig = plt.figure(figsize=(5, 2.5))
+fig.subplots_adjust(bottom=0.2, top=0.9,
+                    left=0.13, right=0.95)
 
 for i in range(2):
     ax = fig.add_subplot(121 + i, xscale='log', yscale='log')
@@ -92,8 +108,7 @@ for i in range(2):
     ax.plot(t, 10 * (t / 0.01) ** -0.8, ':k', linewidth=1)
 
     ax.text(0.95, 0.95, labels[i],
-            ha='right', va='top', transform=ax.transAxes,
-            fontsize=16)
+            ha='right', va='top', transform=ax.transAxes)
     ax.set_xlabel(r'$\theta\ (deg)$')
     if i == 0:
         ax.set_ylabel(r'$\hat{w}(\theta)$')

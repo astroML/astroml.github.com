@@ -97,126 +97,151 @@ probability distribution functions.
 
 .. figure:: ./../images/chapter3/fig_prob_sum_1_thumb.png
     :target: ./fig_prob_sum.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_prob_sum`
 
 .. figure:: ./../images/chapter3/fig_conditional_probability_1_thumb.png
     :target: ./fig_conditional_probability.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_conditional_probability`
 
 .. figure:: ./../images/chapter3/fig_contingency_table_1_thumb.png
     :target: ./fig_contingency_table.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_contingency_table`
 
 .. figure:: ./../images/chapter3/fig_transform_distribution_1_thumb.png
     :target: ./fig_transform_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_transform_distribution`
 
 .. figure:: ./../images/chapter3/fig_flux_errors_1_thumb.png
     :target: ./fig_flux_errors.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_flux_errors`
 
 .. figure:: ./../images/chapter3/fig_kurtosis_skew_1_thumb.png
     :target: ./fig_kurtosis_skew.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_kurtosis_skew`
 
 .. figure:: ./../images/chapter3/fig_uniform_distribution_1_thumb.png
     :target: ./fig_uniform_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_uniform_distribution`
 
 .. figure:: ./../images/chapter3/fig_gaussian_distribution_1_thumb.png
     :target: ./fig_gaussian_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_gaussian_distribution`
 
 .. figure:: ./../images/chapter3/fig_binomial_distribution_1_thumb.png
     :target: ./fig_binomial_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_binomial_distribution`
 
 .. figure:: ./../images/chapter3/fig_poisson_distribution_1_thumb.png
     :target: ./fig_poisson_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_poisson_distribution`
 
 .. figure:: ./../images/chapter3/fig_cauchy_distribution_1_thumb.png
     :target: ./fig_cauchy_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_cauchy_distribution`
 
 .. figure:: ./../images/chapter3/fig_cauchy_median_mean_1_thumb.png
     :target: ./fig_cauchy_median_mean.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_cauchy_median_mean`
 
 .. figure:: ./../images/chapter3/fig_laplace_distribution_1_thumb.png
     :target: ./fig_laplace_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_laplace_distribution`
 
 .. figure:: ./../images/chapter3/fig_chi2_distribution_1_thumb.png
     :target: ./fig_chi2_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_chi2_distribution`
 
 .. figure:: ./../images/chapter3/fig_student_t_distribution_1_thumb.png
     :target: ./fig_student_t_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_student_t_distribution`
 
 .. figure:: ./../images/chapter3/fig_fisher_f_distribution_1_thumb.png
     :target: ./fig_fisher_f_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_fisher_f_distribution`
 
 .. figure:: ./../images/chapter3/fig_beta_distribution_1_thumb.png
     :target: ./fig_beta_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_beta_distribution`
 
 .. figure:: ./../images/chapter3/fig_gamma_distribution_1_thumb.png
     :target: ./fig_gamma_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_gamma_distribution`
 
 .. figure:: ./../images/chapter3/fig_weibull_distribution_1_thumb.png
     :target: ./fig_weibull_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_weibull_distribution`
 
 .. figure:: ./../images/chapter3/fig_central_limit_1_thumb.png
     :target: ./fig_central_limit.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_central_limit`
 
 .. figure:: ./../images/chapter3/fig_uniform_mean_1_thumb.png
     :target: ./fig_uniform_mean.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_uniform_mean`
 
 .. figure:: ./../images/chapter3/fig_bivariate_gaussian_1_thumb.png
     :target: ./fig_bivariate_gaussian.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_bivariate_gaussian`
 
 .. figure:: ./../images/chapter3/fig_robust_pca_1_thumb.png
     :target: ./fig_robust_pca.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_robust_pca`
 
 .. figure:: ./../images/chapter3/fig_correlations_1_thumb.png
     :target: ./fig_correlations.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_correlations`
 
 .. figure:: ./../images/chapter3/fig_clone_distribution_1_thumb.png
     :target: ./fig_clone_distribution.html
+    :align: center
 
     :ref:`book_fig_chapter3_fig_clone_distribution`
 

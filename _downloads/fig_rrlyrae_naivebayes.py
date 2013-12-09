@@ -1,15 +1,26 @@
 """
 Gaussian Naive Bayes Classification of photometry
 -------------------------------------------------
-Gaussian Naive Bayes photometric classification of rr-lyrae stars.
-This uses averaged photometry from the rr-lyrae catalog and stripe
-82 standards catalogs.
+Figure 9.3
+
+Gaussian naive Bayes classification method used to separate variable RR Lyrae
+stars from nonvariable main sequence stars. In the left panel, the light gray
+points show non- variable sources, while the dark points show variable sources.
+The classification boundary is shown by the black line, and the classification
+probability is shown by the shaded background. In the right panel, we show the
+completeness and contamination as a function of the number of features used in
+the fit. For the single feature, u - g is used. For two features, u - g and
+g = r areused. For three features, u - g, g - r, and r- i are used. It is
+evident that the g - r color is the best discriminator. With all four colors,
+naive Bayes attains a completeness of 0.876 and a contamination of 0.790.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -17,6 +28,14 @@ from sklearn.naive_bayes import GaussianNB
 from astroML.datasets import fetch_rrlyrae_combined
 from astroML.utils import split_samples
 from astroML.utils import completeness_contamination
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #----------------------------------------------------------------------
 # get data and split into training & testing sets
@@ -67,7 +86,7 @@ Z = Z[:, 1].reshape(xx.shape)
 
 #----------------------------------------------------------------------
 # plot the results
-fig = plt.figure(figsize=(8, 4))
+fig = plt.figure(figsize=(5, 2.5))
 fig.subplots_adjust(bottom=0.15, top=0.95, hspace=0.0,
                     left=0.1, right=0.95, wspace=0.2)
 
@@ -81,7 +100,7 @@ im = ax.imshow(Z, origin='lower', aspect='auto',
                cmap=plt.cm.binary, zorder=1,
                extent=xlim + ylim)
 im.set_clim(0, 1.5)
-ax.contour(xx, yy, Z, [0.5], linewidths=2., colors='k')
+ax.contour(xx, yy, Z, [0.5], colors='k')
 
 ax.set_xlim(xlim)
 ax.set_ylim(ylim)
@@ -91,7 +110,7 @@ ax.set_ylabel('$g-r$')
 
 # Plot completeness vs Ncolors
 ax = plt.subplot(222)
-ax.plot(Ncolors, completeness, 'o-k')
+ax.plot(Ncolors, completeness, 'o-k', ms=6)
 
 ax.xaxis.set_major_locator(plt.MultipleLocator(1))
 ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))
@@ -104,7 +123,7 @@ ax.grid(True)
 
 # Plot contamination vs Ncolors
 ax = plt.subplot(224)
-ax.plot(Ncolors, contamination, 'o-k')
+ax.plot(Ncolors, contamination, 'o-k', ms=6)
 
 ax.xaxis.set_major_locator(plt.MultipleLocator(1))
 ax.yaxis.set_major_locator(plt.MultipleLocator(0.2))

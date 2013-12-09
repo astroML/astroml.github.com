@@ -56,8 +56,6 @@ generative and discriminative classifiers.
 
    ./fig_rrlyrae_knn
 
-   ./fig_discriminant_function
-
    ./fig_rrlyrae_logreg
 
    ./fig_svm_diagram
@@ -66,7 +64,7 @@ generative and discriminative classifiers.
 
    ./fig_rrlyrae_kernelsvm
 
-   ./fig_rrlyrae_tree
+   ./fig_rrlyrae_treevis
 
    ./fig_rrlyrae_decisiontree
 
@@ -84,96 +82,109 @@ generative and discriminative classifiers.
 
 .. figure:: ./../images/chapter9/fig_bayes_DB_1_thumb.png
     :target: ./fig_bayes_DB.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_bayes_DB`
 
 .. figure:: ./../images/chapter9/fig_simple_naivebayes_1_thumb.png
     :target: ./fig_simple_naivebayes.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_simple_naivebayes`
 
 .. figure:: ./../images/chapter9/fig_rrlyrae_naivebayes_1_thumb.png
     :target: ./fig_rrlyrae_naivebayes.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_naivebayes`
 
 .. figure:: ./../images/chapter9/fig_rrlyrae_lda_1_thumb.png
     :target: ./fig_rrlyrae_lda.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_lda`
 
 .. figure:: ./../images/chapter9/fig_rrlyrae_qda_1_thumb.png
     :target: ./fig_rrlyrae_qda.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_qda`
 
 .. figure:: ./../images/chapter9/fig_rrlyrae_GMMbayes_1_thumb.png
     :target: ./fig_rrlyrae_GMMbayes.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_GMMbayes`
 
 .. figure:: ./../images/chapter9/fig_rrlyrae_knn_1_thumb.png
     :target: ./fig_rrlyrae_knn.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_knn`
 
-.. figure:: ./../images/chapter9/fig_discriminant_function_1_thumb.png
-    :target: ./fig_discriminant_function.html
-
-    :ref:`book_fig_chapter9_fig_discriminant_function`
-
 .. figure:: ./../images/chapter9/fig_rrlyrae_logreg_1_thumb.png
     :target: ./fig_rrlyrae_logreg.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_logreg`
 
 .. figure:: ./../images/chapter9/fig_svm_diagram_1_thumb.png
     :target: ./fig_svm_diagram.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_svm_diagram`
 
 .. figure:: ./../images/chapter9/fig_rrlyrae_svm_1_thumb.png
     :target: ./fig_rrlyrae_svm.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_svm`
 
 .. figure:: ./../images/chapter9/fig_rrlyrae_kernelsvm_1_thumb.png
     :target: ./fig_rrlyrae_kernelsvm.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_kernelsvm`
 
-.. figure:: ./../images/chapter9/fig_rrlyrae_tree_1_thumb.png
-    :target: ./fig_rrlyrae_tree.html
+.. figure:: ./../images/chapter9/fig_rrlyrae_treevis_1_thumb.png
+    :target: ./fig_rrlyrae_treevis.html
+    :align: center
 
-    :ref:`book_fig_chapter9_fig_rrlyrae_tree`
+    :ref:`book_fig_chapter9_fig_rrlyrae_treevis`
 
 .. figure:: ./../images/chapter9/fig_rrlyrae_decisiontree_1_thumb.png
     :target: ./fig_rrlyrae_decisiontree.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_rrlyrae_decisiontree`
 
 .. figure:: ./../images/chapter9/fig_photoz_tree_1_thumb.png
     :target: ./fig_photoz_tree.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_photoz_tree`
 
 .. figure:: ./../images/chapter9/fig_photoz_forest_1_thumb.png
     :target: ./fig_photoz_forest.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_photoz_forest`
 
 .. figure:: ./../images/chapter9/fig_photoz_boosting_1_thumb.png
     :target: ./fig_photoz_boosting.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_photoz_boosting`
 
 .. figure:: ./../images/chapter9/fig_ROC_curve_1_thumb.png
     :target: ./fig_ROC_curve.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_ROC_curve`
 
 .. figure:: ./../images/chapter9/fig_star_quasar_ROC_1_thumb.png
     :target: ./fig_star_quasar_ROC.html
+    :align: center
 
     :ref:`book_fig_chapter9_fig_star_quasar_ROC`
 

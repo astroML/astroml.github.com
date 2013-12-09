@@ -5,12 +5,16 @@
 
 Fourier Reconstruction of RR-Lyrae Templates
 --------------------------------------------
-This figure demonstrates Fourier decomposition using RR-Lyrae templates
+Figure 10.1
+
+An example of a truncated Fourier representation of an RR Lyrae light curve.
+The thick dashed line shows the true curve; the gray lines show the
+approximation based on 1, 3, and 8 Fourier modes (sinusoids).
 
 
 
 .. image:: ../images/chapter10/fig_rrlyrae_reconstruct_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -40,7 +44,7 @@ This figure demonstrates Fourier decomposition using RR-Lyrae templates
     <div class="toggle_container">
 
 .. literalinclude:: fig_rrlyrae_reconstruct.py
-    :lines: 6-
+    :lines: 10-
 
 .. raw:: html
 

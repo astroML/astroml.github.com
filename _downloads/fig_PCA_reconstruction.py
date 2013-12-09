@@ -1,20 +1,35 @@
 """
 SDSS Reconstruction from Eigenspectra
 -------------------------------------
-This example shows the input galaxy spectra, which have missing masked
-regions, and the reconstruction & interpolation using PCA
+Figure 7.7
+
+The principal component vectors defined for the SDSS spectra can be used to
+interpolate across or reconstruct missing data. Examples of three masked
+spectral regions are shown comparing the reconstruction of the input spectrum
+(black line) using the mean and the first ten eigenspectra (blue line) The gray
+bands represent the masked region of the spectrum.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import ticker
 
 from astroML.datasets import fetch_sdss_corrected_spectra
 from astroML.datasets import sdss_corrected_spectra
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 #------------------------------------------------------------
 # Get spectra and eigenvectors used to reconstruct them
@@ -34,8 +49,8 @@ lam = lam[i_plot]
 specnums = [20, 8, 9]
 subplots = [311, 312, 313]
 
-fig = plt.figure(figsize=(8, 10))
-fig.subplots_adjust(hspace=0)
+fig = plt.figure(figsize=(5, 6.25))
+fig.subplots_adjust(left=0.09, bottom=0.08, hspace=0, right=0.92, top=0.95)
 
 for subplot, i in zip(subplots, specnums):
     ax = fig.add_subplot(subplot)
@@ -50,17 +65,17 @@ for subplot, i in zip(subplots, specnums):
     spec_i[mask_i] = np.nan
 
     # plot the raw masked spectrum
-    ax.plot(lam, spec_i[i_plot], '-', color='k', lw=2,
-            label='True spectrum')
+    ax.plot(lam, spec_i[i_plot], '-', color='k',
+            label='True spectrum', lw=1.5)
 
     # plot two levels of reconstruction
     for nev in [10]:
         if nev == 0:
             label = 'mean'
         else:
-            label = 'nev=%i' % nev
+            label = 'reconstruction\n(nev=%i)' % nev
         spec_i_recons = norms[i] * (mu + np.dot(coeffs[:nev], evecs[:nev]))
-        ax.plot(lam, spec_i_recons[i_plot], label=label)
+        ax.plot(lam, spec_i_recons[i_plot], label=label, color='grey')
 
     # plot shaded background in masked region
     ylim = ax.get_ylim()
@@ -74,7 +89,7 @@ for subplot, i in zip(subplots, specnums):
     ax.yaxis.set_major_formatter(ticker.NullFormatter())
 
     if subplot == 311:
-        ax.legend(loc=1, prop=dict(size=14))
+        ax.legend(loc=1)
 
     ax.set_xlabel('$\lambda\ (\AA)$')
     ax.set_ylabel('normalized flux')

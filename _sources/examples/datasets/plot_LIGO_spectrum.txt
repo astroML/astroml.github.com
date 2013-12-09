@@ -16,7 +16,7 @@ of the detector.  The particular data used here is the injected
 
 
 .. image:: ../images/datasets/plot_LIGO_spectrum_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

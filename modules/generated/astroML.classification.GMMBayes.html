@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.12.1. astroML.classification.GMMBayes &mdash; astroML 0.1 documentation</title>
+    <title>11.12.1. astroML.classification.GMMBayes &mdash; astroML 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,10 +25,11 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
-    <link rel="up" title="10. Class reference" href="../classes.html" />
-    <link rel="next" title="10.13.1. astroML.resample.bootstrap" href="astroML.resample.bootstrap.html" />
-    <link rel="prev" title="10.11.3. astroML.lumfunc.bootstrap_Cminus" href="astroML.lumfunc.bootstrap_Cminus.html" />
+    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="next" title="11.13.1. astroML.resample.bootstrap" href="astroML.resample.bootstrap.html" />
+    <link rel="prev" title="11.11.3. astroML.lumfunc.bootstrap_Cminus" href="astroML.lumfunc.bootstrap_Cminus.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -105,14 +106,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="astroML.lumfunc.bootstrap_Cminus.html" title="10.11.3. astroML.lumfunc.bootstrap_Cminus"
+	<a href="astroML.lumfunc.bootstrap_Cminus.html" title="11.11.3. astroML.lumfunc.bootstrap_Cminus"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    10.11.3. astroML...
+	    11.11.3. astroML...
 	    </span>
 	    <span class="hiddenrellink">
-	    10.11.3. astroML.lumfunc.bootstrap_Cminus
+	    11.11.3. astroML.lumfunc.bootstrap_Cminus
 	    </span>
 	    
 	    </a>
@@ -122,14 +123,14 @@ $(document).ready(function(){
 	    </div>
 	
 	<div class="rellink">
-	<a href="astroML.resample.bootstrap.html" title="10.13.1. astroML.resample.bootstrap"
+	<a href="astroML.resample.bootstrap.html" title="11.13.1. astroML.resample.bootstrap"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    10.13.1. astroML...
+	    11.13.1. astroML...
 	    </span>
 	    <span class="hiddenrellink">
-	    10.13.1. astroML.resample.bootstrap
+	    11.13.1. astroML.resample.bootstrap
 	    </span>
 	    
 	    </a>
@@ -139,14 +140,14 @@ $(document).ready(function(){
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="../classes.html" title="10. Class reference" >
+	<a href="../classes.html" title="11. Class reference" >
 	Up
 	<br>
 	<span class="smallrellink">
-	10. Class refere...
+	11. Class refere...
 	</span>
 	<span class="hiddenrellink">
-	10. Class reference
+	11. Class reference
 	</span>
 	
 	</a>
@@ -161,7 +162,7 @@ $(document).ready(function(){
 
         <h3>This page</h3>
          <ul>
-<li><a class="reference internal" href="#">10.12.1. astroML.classification.GMMBayes</a></li>
+<li><a class="reference internal" href="#">11.12.1. astroML.classification.GMMBayes</a></li>
 </ul>
 
 
@@ -173,11 +174,12 @@ $(document).ready(function(){
 	
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
 
 
     <h3>Citing</h3>
     <p>If you use the software, please consider
-    <a href="../../index.htmlciting-astroml">citing astroML</a>.</p>
+    <a href="../../index.html#citing-astroml">citing astroML</a>.</p>
 
 
         
@@ -191,7 +193,7 @@ $(document).ready(function(){
           <div class="body">
             
   <div class="section" id="astroml-classification-gmmbayes">
-<h1>10.12.1. astroML.classification.GMMBayes<a class="headerlink" href="#astroml-classification-gmmbayes" title="Permalink to this headline">¶</a></h1>
+<h1>11.12.1. astroML.classification.GMMBayes<a class="headerlink" href="#astroml-classification-gmmbayes" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="astroML.classification.GMMBayes">
 <em class="property">class </em><tt class="descclassname">astroML.classification.</tt><tt class="descname">GMMBayes</tt><big>(</big><em>n_components=1</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#astroML.classification.GMMBayes" title="Permalink to this definition">¶</a></dt>
@@ -225,7 +227,7 @@ must match the number of class labels</p>
 <td></td>
 </tr>
 <tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">get_params</span></tt>([deep])</td>
-<td>Get parameters for the estimator</td>
+<td>Get parameters for this estimator.</td>
 </tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">predict</span></tt>(X)</td>
 <td>Perform classification on an array of test vectors X.</td>
@@ -240,7 +242,7 @@ must match the number of class labels</p>
 <td>Returns the mean accuracy on the given test data and labels.</td>
 </tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">set_params</span></tt>(**params)</td>
-<td>Set the parameters of the estimator.</td>
+<td>Set the parameters of this estimator.</td>
 </tr>
 </tbody>
 </table>

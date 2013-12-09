@@ -11,7 +11,7 @@ catalog, and plot colors and magnitudes of the stars and galaxies.
 
 
 .. image:: ../images/datasets/plot_sdss_imaging_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 

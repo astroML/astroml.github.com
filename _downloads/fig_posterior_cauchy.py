@@ -1,20 +1,35 @@
 """
 Posterior for Cauchy Distribution
 ---------------------------------
+Figure 5.11
 
-This plot shows the posterior distributions for :math:`\mu` and
-:math:`\gamma` for a cauchy distribution
+The solid lines show the posterior pdf :math:`p(\mu|{x_i},I)` (top-left panel)
+and the posterior pdf :math:`p(\gamma|{x_i},I)` (top-right panel) for the
+two-dimensional pdf from figure 5.10. The dashed lines show the distribution
+of approximate estimates of :math:`\mu` and :math:`\gamma` based on the median
+and interquartile range. The bottom panels show the corresponding cumulative
+distributions.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import cauchy
 from astroML.stats import median_sigmaG
-from astroML.resample import bootstrap, jackknife
+from astroML.resample import bootstrap
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 def cauchy_logL(x, gamma, mu):
@@ -70,7 +85,7 @@ mu_bootstrap, gamma_bootstrap = bootstrap(xi, 20000, estimate_mu_gamma,
 
 #------------------------------------------------------------
 # Plot results
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(5, 5))
 fig.subplots_adjust(wspace=0.35, right=0.95,
                     hspace=0.2, top=0.95)
 
@@ -88,7 +103,7 @@ ax2.plot(mu, pmu.cumsum() * dmu, '-k')
 ax2.hist(mu_bootstrap, mu_bins, normed=True, cumulative=True,
          histtype='step', color='b', linestyle='dashed')
 ax2.set_xlabel(r'$\mu$')
-ax2.set_ylabel(r'$p(<\mu|x,I)$')
+ax2.set_ylabel(r'$P(<\mu|x,I)$')
 ax2.set_xlim(-3, 3)
 
 # third axes: gamma posterior
@@ -106,7 +121,7 @@ ax4.plot(gamma, pgamma.cumsum() * dgamma, '-k')
 ax4.hist(gamma_bootstrap, gamma_bins, normed=True, cumulative=True,
          histtype='step', color='b', linestyle='dashed')
 ax4.set_xlabel(r'$\gamma$')
-ax4.set_ylabel(r'$p(<\gamma|x,I)$')
+ax4.set_ylabel(r'$P(<\gamma|x,I)$')
 ax4.set_ylim(-0.05, 1.1)
 ax4.set_xlim(0, 4)
 

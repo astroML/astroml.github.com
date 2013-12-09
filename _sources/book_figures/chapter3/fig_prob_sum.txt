@@ -5,12 +5,14 @@
 
 Sum of Probabilities
 --------------------
-Diagram of a sum of probabilities
+Figure 3.1.
+
+A representation of the sum of probabilities shown in eq.3.1.
 
 
 
 .. image:: ../images/chapter3/fig_prob_sum_1.png
-    :width: 100%
+    :scale: 100
     :align: center
 
 
@@ -40,7 +42,7 @@ Diagram of a sum of probabilities
     <div class="toggle_container">
 
 .. literalinclude:: fig_prob_sum.py
-    :lines: 6-
+    :lines: 8-
 
 .. raw:: html
 

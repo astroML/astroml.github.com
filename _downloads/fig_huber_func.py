@@ -1,15 +1,27 @@
 """
-Huber Functional Form
----------------------
-This plots the form of the huber loss function :math:`\Phi(t)`.
+Huber Loss Function
+-------------------
+Figure 8.7
+
+The Huber loss function for various values of c.
 """
-# Author: Jake VanderPlas <vanderplas@astro.washington.edu>
+# Author: Jake VanderPlas
 # License: BSD
 #   The figure produced by this code is published in the textbook
 #   "Statistics, Data Mining, and Machine Learning in Astronomy" (2013)
 #   For more information, see http://astroML.github.com
+#   To report a bug or issue, use the following forum:
+#    https://groups.google.com/forum/#!forum/astroml-general
 import numpy as np
 from matplotlib import pyplot as plt
+
+#----------------------------------------------------------------------
+# This function adjusts matplotlib settings for a uniform feel in the textbook.
+# Note that with usetex=True, fonts are rendered with LaTeX.  This may
+# result in an error if LaTeX is not installed on your system.  In that case,
+# you can set usetex to False.
+from astroML.plotting import setup_text_plots
+setup_text_plots(fontsize=8, usetex=True)
 
 
 #------------------------------------------------------------
@@ -21,7 +33,7 @@ def Phi(t, c):
 
 #------------------------------------------------------------
 # Plot for several values of c
-fig = plt.figure()
+fig = plt.figure(figsize=(5, 3.75))
 ax = fig.add_subplot(111)
 
 x = np.linspace(-10, 10, 100)
