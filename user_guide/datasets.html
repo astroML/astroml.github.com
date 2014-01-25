@@ -7,12 +7,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+
     <title>3. Data Sets &mdash; astroML 0.1 documentation</title>
-    
+
     <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
+
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -45,7 +45,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+
 	$(".toggle_container").hide();
 
 	$(".toggle_trigger").click(function(){
@@ -75,7 +75,7 @@ $(document).ready(function(){
 
   </head>
   <body>
-    <div class="header-wrapper"
+    <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../index.html">
             <img src="../_static/Logo.gif" alt="Logo"/>
@@ -102,37 +102,37 @@ $(document).ready(function(){
 
         <div class="sphinxsidebar">
 	<div class="rel">
-	
+
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
 	<a href="installation.html" title="2. Installation of astroML"
 	    accesskey="P">Previous
-	    <br>
+	    <br/>
 	    <span class="smallrellink">
 	    2. Installation ...
 	    </span>
 	    <span class="hiddenrellink">
 	    2. Installation of astroML
 	    </span>
-	    
+
 	    </a>
 	</div>
 	    <div class="spacer">
 	    &nbsp;
 	    </div>
-	
+
 	<div class="rellink">
 	<a href="density_estimation.html" title="4. Unsupervised Learning: Density Estimation"
 	    accesskey="N">Next
-	    <br>
+	    <br/>
 	    <span class="smallrellink">
 	    4. Unsupervised ...
 	    </span>
 	    <span class="hiddenrellink">
 	    4. Unsupervised Learning: Density Estimation
 	    </span>
-	    
+
 	    </a>
 	</div>
 	<!-- Ad a link to the 'up' page -->
@@ -140,21 +140,22 @@ $(document).ready(function(){
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="index.html" title="<no title>" >
+	<a href="index.html" title="&lt;no title&gt;" >
 	Up
-	<br>
+	<br/>
 	<span class="smallrellink">
-	<no title>
+	&lt;no title&gt;
 	</span>
 	</a>
 	</div>
     </div>
     <p style="text-align: center">This documentation is
     for astroML <strong>version 0.1</strong>
-    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
-        
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
 
-	
+
+
 
         <h3>This page</h3>
          <ul>
@@ -189,12 +190,12 @@ $(document).ready(function(){
 </ul>
 
 
-        
+
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
 	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
-	
+
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
 	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
@@ -207,16 +208,16 @@ $(document).ready(function(){
     <a href="/index.html#citing-astroml">citing astroML</a>.</p>
 
 
-        
+
 
         </div>
 
       <div class="content">
-            
+
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body">
-            
+
   <div class="section" id="data-sets">
 <span id="datasets-description"></span><h1>3. Data Sets<a class="headerlink" href="#data-sets" title="Permalink to this headline">¶</a></h1>
 <p>One of the major components of astroML is its tools for downloading and
@@ -232,8 +233,8 @@ be bundled with the astroML source distribution.  To make working with
 data sets more convenient, astroML contains routines which download the
 data from their locations on the web, and cache the results to disk for
 future use.</p>
-<p>For example, the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_spectrum.html#astroML.datasets.fetch_sdss_spectrum" title="astroML.datasets.fetch_sdss_spectrum"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_spectrum()</span></tt></a> function queries the SDSS
-database using an SQL query, and retrieves the data.  The file is stored
+<p>For example, the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_spectrum.html#astroML.datasets.fetch_sdss_spectrum" title="astroML.datasets.fetch_sdss_spectrum"><tt class="xref py py-func docutils literal"><span class="pre">fetch_sdss_spectrum()</span></tt></a> function
+retrieves a data file from the SDSS data server.  The file is stored
 to disk in a location that can be defined by the user.  The default location
 is <tt class="docutils literal"><span class="pre">~/astroML_data</span></tt>, and this default can be overridden by setting the
 <tt class="docutils literal"><span class="pre">ASTROML_DATA</span></tt> environment variable.  Any subsequent time the same function
@@ -481,13 +482,13 @@ can be performed using the tools in healpy:</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.1<p>
+        to astroML version 0.1<br/>
         &copy; 2012, Jake Vanderplas.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
     <a href="../_sources/user_guide/datasets.txt"
 	    rel="nofollow">Show this page source</a>
-    </span>
+    </span></p>
     </div>
   </body>
 </html>
