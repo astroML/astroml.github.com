@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Perform Outlier Rejection with MCMC &mdash; astroML 0.1 documentation</title>
+    <title>Perform Outlier Rejection with MCMC &mdash; astroML 0.2 documentation</title>
     
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.1',
+        VERSION:     '0.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.1 documentation" href="../../index.html" />
+    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
     <link rel="up" title="Chapter 8: Regression and Model Fitting" href="index.html" />
     <link rel="next" title="Gaussian Process Example" href="fig_gp_example.html" />
     <link rel="prev" title="Huber Loss Function" href="fig_huber_loss.html" />
@@ -45,7 +45,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+
 	$(".toggle_container").hide();
 
 	$(".toggle_trigger").click(function(){
@@ -75,7 +75,7 @@ $(document).ready(function(){
 
   </head>
   <body>
-    <div class="header-wrapper"
+    <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
             <img src="../../_static/Logo.gif" alt="Logo"/>
@@ -108,7 +108,7 @@ $(document).ready(function(){
 	<div class="rellink">
 	<a href="fig_huber_loss.html" title="Huber Loss Function"
 	    accesskey="P">Previous
-	    <br>
+	    <br/>
 	    <span class="smallrellink">
 	    Huber Loss Funct...
 	    </span>
@@ -125,7 +125,7 @@ $(document).ready(function(){
 	<div class="rellink">
 	<a href="fig_gp_example.html" title="Gaussian Process Example"
 	    accesskey="N">Next
-	    <br>
+	    <br/>
 	    <span class="smallrellink">
 	    Gaussian Process...
 	    </span>
@@ -142,7 +142,7 @@ $(document).ready(function(){
 	<div class="rellink">
 	<a href="index.html" title="Chapter 8: Regression and Model Fitting" >
 	Up
-	<br>
+	<br/>
 	<span class="smallrellink">
 	Chapter 8: Regre...
 	</span>
@@ -154,8 +154,9 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.1</strong>
-    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> -->
+    for astroML <strong>version 0.2</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
         
 
 	
@@ -171,7 +172,7 @@ $(document).ready(function(){
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
 	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
-	
+
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
 	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
@@ -210,97 +211,103 @@ probability greater than 68% are circled in the first panel.</p>
 <a class="reference internal image-reference" href="../../_images/fig_outlier_rejection_1.png"><img alt="../../_images/fig_outlier_rejection_1.png" class="align-center" src="../../_images/fig_outlier_rejection_1.png" style="width: 500.0px; height: 500.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>[--------         22%                  ] 5511 of 25000 complete in 0.5 sec
-[--------------   39%                  ] 9751 of 25000 complete in 1.0 sec
-[-----------------56%-                 ] 14175 of 25000 complete in 1.5 sec
-[-----------------74%--------          ] 18606 of 25000 complete in 2.0 sec
-[-----------------92%--------------    ] 23006 of 25000 complete in 2.5 sec
-[-----------------100%-----------------] 25000 of 25000 complete in 2.7 sec
-[-                 2%                  ] 731 of 25000 complete in 0.5 sec
-[--                5%                  ] 1439 of 25000 complete in 1.0 sec
-[---               8%                  ] 2151 of 25000 complete in 1.5 sec
-[----             11%                  ] 2861 of 25000 complete in 2.0 sec
-[-----            14%                  ] 3568 of 25000 complete in 2.5 sec
-[------           17%                  ] 4276 of 25000 complete in 3.0 sec
-[-------          19%                  ] 4977 of 25000 complete in 3.5 sec
-[--------         22%                  ] 5627 of 25000 complete in 4.0 sec
-[---------        25%                  ] 6277 of 25000 complete in 4.5 sec
-[----------       27%                  ] 6926 of 25000 complete in 5.0 sec
-[-----------      30%                  ] 7563 of 25000 complete in 5.5 sec
-[------------     32%                  ] 8208 of 25000 complete in 6.0 sec
-[-------------    35%                  ] 8856 of 25000 complete in 6.5 sec
-[--------------   37%                  ] 9498 of 25000 complete in 7.0 sec
-[---------------  40%                  ] 10140 of 25000 complete in 7.5 sec
-[---------------- 43%                  ] 10785 of 25000 complete in 8.0 sec
-[-----------------45%                  ] 11435 of 25000 complete in 8.5 sec
-[-----------------48%                  ] 12085 of 25000 complete in 9.0 sec
-[-----------------50%                  ] 12717 of 25000 complete in 9.5 sec
-[-----------------53%                  ] 13370 of 25000 complete in 10.0 sec
-[-----------------56%-                 ] 14020 of 25000 complete in 10.5 sec
-[-----------------58%--                ] 14674 of 25000 complete in 11.0 sec
-[-----------------61%---               ] 15322 of 25000 complete in 11.5 sec
-[-----------------63%----              ] 15974 of 25000 complete in 12.0 sec
-[-----------------66%-----             ] 16623 of 25000 complete in 12.5 sec
-[-----------------69%------            ] 17272 of 25000 complete in 13.0 sec
-[-----------------71%-------           ] 17927 of 25000 complete in 13.5 sec
-[-----------------74%--------          ] 18578 of 25000 complete in 14.0 sec
-[-----------------76%---------         ] 19232 of 25000 complete in 14.5 sec
-[-----------------79%----------        ] 19878 of 25000 complete in 15.0 sec
-[-----------------82%-----------       ] 20533 of 25000 complete in 15.5 sec
-[-----------------84%------------      ] 21181 of 25000 complete in 16.0 sec
-[-----------------87%-------------     ] 21827 of 25000 complete in 16.5 sec
-[-----------------89%--------------    ] 22475 of 25000 complete in 17.0 sec
-[-----------------92%---------------   ] 23129 of 25000 complete in 17.5 sec
-[-----------------95%----------------  ] 23782 of 25000 complete in 18.0 sec
-[-----------------97%----------------- ] 24434 of 25000 complete in 18.5 sec
-[-----------------100%-----------------] 25000 of 25000 complete in 18.9 sec
-[                  2%                  ] 573 of 25000 complete in 0.5 sec
-[-                 4%                  ] 1161 of 25000 complete in 1.0 sec
-[--                6%                  ] 1744 of 25000 complete in 1.5 sec
-[---               9%                  ] 2322 of 25000 complete in 2.0 sec
-[----             11%                  ] 2900 of 25000 complete in 2.5 sec
-[-----            13%                  ] 3476 of 25000 complete in 3.0 sec
-[------           16%                  ] 4052 of 25000 complete in 3.5 sec
-[-------          18%                  ] 4623 of 25000 complete in 4.0 sec
-[-------          20%                  ] 5187 of 25000 complete in 4.5 sec
-[--------         22%                  ] 5723 of 25000 complete in 5.0 sec
-[---------        25%                  ] 6267 of 25000 complete in 5.5 sec
-[----------       27%                  ] 6810 of 25000 complete in 6.0 sec
-[-----------      29%                  ] 7349 of 25000 complete in 6.5 sec
-[-----------      31%                  ] 7881 of 25000 complete in 7.0 sec
-[------------     33%                  ] 8416 of 25000 complete in 7.5 sec
-[-------------    35%                  ] 8952 of 25000 complete in 8.0 sec
-[--------------   37%                  ] 9485 of 25000 complete in 8.5 sec
-[---------------  40%                  ] 10022 of 25000 complete in 9.0 sec
-[---------------- 42%                  ] 10560 of 25000 complete in 9.5 sec
-[---------------- 44%                  ] 11106 of 25000 complete in 10.0 sec
-[-----------------46%                  ] 11646 of 25000 complete in 10.5 sec
-[-----------------48%                  ] 12180 of 25000 complete in 11.0 sec
-[-----------------50%                  ] 12720 of 25000 complete in 11.5 sec
-[-----------------53%                  ] 13252 of 25000 complete in 12.0 sec
-[-----------------55%                  ] 13784 of 25000 complete in 12.5 sec
-[-----------------57%-                 ] 14320 of 25000 complete in 13.0 sec
-[-----------------59%--                ] 14862 of 25000 complete in 13.5 sec
-[-----------------61%---               ] 15404 of 25000 complete in 14.0 sec
-[-----------------63%----              ] 15942 of 25000 complete in 14.5 sec
-[-----------------65%-----             ] 16484 of 25000 complete in 15.0 sec
-[-----------------68%-----             ] 17024 of 25000 complete in 15.5 sec
-[-----------------70%------            ] 17551 of 25000 complete in 16.0 sec
-[-----------------72%-------           ] 18085 of 25000 complete in 16.5 sec
-[-----------------74%--------          ] 18621 of 25000 complete in 17.0 sec
-[-----------------76%---------         ] 19161 of 25000 complete in 17.5 sec
-[-----------------78%---------         ] 19695 of 25000 complete in 18.0 sec
-[-----------------80%----------        ] 20232 of 25000 complete in 18.5 sec
-[-----------------83%-----------       ] 20765 of 25000 complete in 19.0 sec
-[-----------------84%------------      ] 21155 of 25000 complete in 19.5 sec
-[-----------------85%------------      ] 21457 of 25000 complete in 20.0 sec
-[-----------------87%-------------     ] 21975 of 25000 complete in 20.5 sec
-[-----------------90%--------------    ] 22508 of 25000 complete in 21.0 sec
-[-----------------92%---------------   ] 23041 of 25000 complete in 21.5 sec
-[-----------------94%---------------   ] 23580 of 25000 complete in 22.0 sec
-[-----------------96%----------------  ] 24119 of 25000 complete in 22.5 sec
-[-----------------98%----------------- ] 24653 of 25000 complete in 23.0 sec
-[-----------------100%-----------------] 25000 of 25000 complete in 23.4 sec
+<div class="toggle_container"><div class="highlight-python"><pre>[--------         21%                  ] 5291 of 25000 complete in 0.5 sec
+[--------------   37%                  ] 9363 of 25000 complete in 1.0 sec
+[-----------------54%                  ] 13636 of 25000 complete in 1.5 sec
+[-----------------71%-------           ] 17823 of 25000 complete in 2.0 sec
+[-----------------88%-------------     ] 22063 of 25000 complete in 2.5 sec
+[-----------------100%-----------------] 25000 of 25000 complete in 2.9 sec
+[-                 2%                  ] 697 of 25000 complete in 0.5 sec
+[--                5%                  ] 1366 of 25000 complete in 1.0 sec
+[---               8%                  ] 2030 of 25000 complete in 1.5 sec
+[----             10%                  ] 2682 of 25000 complete in 2.0 sec
+[-----            13%                  ] 3350 of 25000 complete in 2.5 sec
+[------           16%                  ] 4013 of 25000 complete in 3.0 sec
+[-------          18%                  ] 4669 of 25000 complete in 3.5 sec
+[--------         21%                  ] 5300 of 25000 complete in 4.0 sec
+[--------         23%                  ] 5907 of 25000 complete in 4.5 sec
+[---------        26%                  ] 6511 of 25000 complete in 5.0 sec
+[----------       28%                  ] 7130 of 25000 complete in 5.5 sec
+[-----------      30%                  ] 7740 of 25000 complete in 6.0 sec
+[------------     33%                  ] 8365 of 25000 complete in 6.5 sec
+[-------------    35%                  ] 8972 of 25000 complete in 7.0 sec
+[--------------   38%                  ] 9581 of 25000 complete in 7.5 sec
+[---------------  40%                  ] 10206 of 25000 complete in 8.0 sec
+[---------------- 43%                  ] 10814 of 25000 complete in 8.5 sec
+[-----------------45%                  ] 11428 of 25000 complete in 9.0 sec
+[-----------------48%                  ] 12056 of 25000 complete in 9.5 sec
+[-----------------50%                  ] 12679 of 25000 complete in 10.0 sec
+[-----------------53%                  ] 13310 of 25000 complete in 10.5 sec
+[-----------------55%-                 ] 13930 of 25000 complete in 11.0 sec
+[-----------------58%--                ] 14564 of 25000 complete in 11.5 sec
+[-----------------60%---               ] 15182 of 25000 complete in 12.0 sec
+[-----------------63%----              ] 15806 of 25000 complete in 12.5 sec
+[-----------------65%----              ] 16429 of 25000 complete in 13.0 sec
+[-----------------68%-----             ] 17062 of 25000 complete in 13.5 sec
+[-----------------70%------            ] 17686 of 25000 complete in 14.0 sec
+[-----------------73%-------           ] 18289 of 25000 complete in 14.5 sec
+[-----------------75%--------          ] 18905 of 25000 complete in 15.0 sec
+[-----------------78%---------         ] 19511 of 25000 complete in 15.5 sec
+[-----------------80%----------        ] 20136 of 25000 complete in 16.0 sec
+[-----------------82%-----------       ] 20745 of 25000 complete in 16.5 sec
+[-----------------85%------------      ] 21343 of 25000 complete in 17.0 sec
+[-----------------87%-------------     ] 21949 of 25000 complete in 17.5 sec
+[-----------------90%--------------    ] 22559 of 25000 complete in 18.0 sec
+[-----------------92%---------------   ] 23169 of 25000 complete in 18.5 sec
+[-----------------95%----------------  ] 23766 of 25000 complete in 19.0 sec
+[-----------------97%----------------- ] 24379 of 25000 complete in 19.5 sec
+[-----------------99%----------------- ] 24993 of 25000 complete in 20.0 sec
+[-----------------100%-----------------] 25000 of 25000 complete in 20.0 sec
+[                  2%                  ] 558 of 25000 complete in 0.5 sec
+[-                 4%                  ] 1099 of 25000 complete in 1.0 sec
+[--                6%                  ] 1641 of 25000 complete in 1.5 sec
+[---               8%                  ] 2165 of 25000 complete in 2.0 sec
+[----             10%                  ] 2702 of 25000 complete in 2.5 sec
+[----             12%                  ] 3230 of 25000 complete in 3.0 sec
+[-----            14%                  ] 3740 of 25000 complete in 3.5 sec
+[------           17%                  ] 4266 of 25000 complete in 4.0 sec
+[-------          19%                  ] 4789 of 25000 complete in 4.5 sec
+[--------         21%                  ] 5278 of 25000 complete in 5.0 sec
+[--------         23%                  ] 5756 of 25000 complete in 5.5 sec
+[---------        25%                  ] 6259 of 25000 complete in 6.0 sec
+[----------       27%                  ] 6766 of 25000 complete in 6.5 sec
+[-----------      28%                  ] 7242 of 25000 complete in 7.0 sec
+[-----------      30%                  ] 7747 of 25000 complete in 7.5 sec
+[------------     33%                  ] 8253 of 25000 complete in 8.0 sec
+[-------------    35%                  ] 8758 of 25000 complete in 8.5 sec
+[--------------   37%                  ] 9258 of 25000 complete in 9.0 sec
+[--------------   39%                  ] 9757 of 25000 complete in 9.5 sec
+[---------------  41%                  ] 10258 of 25000 complete in 10.0 sec
+[---------------- 43%                  ] 10765 of 25000 complete in 10.5 sec
+[-----------------45%                  ] 11264 of 25000 complete in 11.0 sec
+[-----------------47%                  ] 11768 of 25000 complete in 11.5 sec
+[-----------------49%                  ] 12260 of 25000 complete in 12.0 sec
+[-----------------51%                  ] 12761 of 25000 complete in 12.5 sec
+[-----------------53%                  ] 13262 of 25000 complete in 13.0 sec
+[-----------------55%                  ] 13773 of 25000 complete in 13.5 sec
+[-----------------57%-                 ] 14275 of 25000 complete in 14.0 sec
+[-----------------59%--                ] 14757 of 25000 complete in 14.5 sec
+[-----------------60%---               ] 15244 of 25000 complete in 15.0 sec
+[-----------------62%---               ] 15748 of 25000 complete in 15.5 sec
+[-----------------64%----              ] 16240 of 25000 complete in 16.0 sec
+[-----------------66%-----             ] 16743 of 25000 complete in 16.5 sec
+[-----------------68%------            ] 17235 of 25000 complete in 17.0 sec
+[-----------------70%------            ] 17729 of 25000 complete in 17.5 sec
+[-----------------72%-------           ] 18214 of 25000 complete in 18.0 sec
+[-----------------74%--------          ] 18710 of 25000 complete in 18.5 sec
+[-----------------76%---------         ] 19197 of 25000 complete in 19.0 sec
+[-----------------78%---------         ] 19695 of 25000 complete in 19.5 sec
+[-----------------80%----------        ] 20189 of 25000 complete in 20.0 sec
+[-----------------82%-----------       ] 20685 of 25000 complete in 20.5 sec
+[-----------------84%------------      ] 21174 of 25000 complete in 21.0 sec
+[-----------------86%------------      ] 21665 of 25000 complete in 21.5 sec
+[-----------------88%-------------     ] 22144 of 25000 complete in 22.0 sec
+[-----------------90%--------------    ] 22642 of 25000 complete in 22.5 sec
+[-----------------92%---------------   ] 23145 of 25000 complete in 23.0 sec
+[-----------------94%---------------   ] 23653 of 25000 complete in 23.5 sec
+[-----------------96%----------------  ] 24159 of 25000 complete in 24.0 sec
+[-----------------98%----------------- ] 24657 of 25000 complete in 24.5 sec
+[-----------------100%-----------------] 25000 of 25000 complete in 24.9 sec
 </pre>
 </div>
 </div>
@@ -581,13 +588,13 @@ probability greater than 68% are circled in the first panel.</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.1<p>
+        to astroML version 0.2<br/>
         &copy; 2012, Jake Vanderplas.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
     <a href="../../_sources/book_figures/chapter8/fig_outlier_rejection.txt"
 	    rel="nofollow">Show this page source</a>
-    </span>
+    </span></p>
     </div>
   </body>
 </html>

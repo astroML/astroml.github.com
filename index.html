@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>astroML: Python Datamining for Astronomy &mdash; astroML 0.1 documentation</title>
+    <title>astroML: Python Datamining for Astronomy &mdash; astroML 0.2 documentation</title>
     
     <link rel="stylesheet" href="_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '0.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.1 documentation" href="#" />
+    <link rel="top" title="astroML 0.2 documentation" href="#" />
     <link rel="next" title="&lt;no title&gt;" href="user_guide/index.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
@@ -43,7 +43,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+
 	$(".toggle_container").hide();
 
 	$(".toggle_trigger").click(function(){
@@ -73,7 +73,7 @@ $(document).ready(function(){
 
   </head>
   <body>
-    <div class="header-wrapper"
+    <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="#">
             <img src="_static/Logo.gif" alt="Logo"/>
@@ -100,6 +100,8 @@ $(document).ready(function(){
 
         <div class="sphinxsidebar">
         <h3>News</h3>
+	<p>January 2014: the textbook accompanying astroML is now available!
+	  View it on <a href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/">Amazon</a>.</p>
 	<p>November 2013: astroML 0.2 has been released!  Get the source on
 	    <a href="http://github.com/astroML/astroML">Github</a></p>
 	<!-- hard-coded link here because pathto() adds an extra # -->
@@ -113,7 +115,7 @@ $(document).ready(function(){
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
 	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
-	
+
 	<h3>Videos</h3>
 	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
 	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
@@ -181,24 +183,40 @@ shuffle ($('#banner a.external'));
 <a class="reference external" href="http://numpy.scipy.org">numpy</a>,
 <a class="reference external" href="http://scipy.org">scipy</a>,
 <a class="reference external" href="http://scikit-learn.org">scikit-learn</a>,
-and <a class="reference external" href="http://matplotlib.org">matplotlib</a>,
+<a class="reference external" href="http://matplotlib.org">matplotlib</a>,
+and <a class="reference external" href="http://astropy.org">astropy</a>,
 and distributed under the 3-clause BSD license.
 It contains a growing library of statistical and machine learning
-routines for analyzing astronomical data in python, loaders for several open
+routines for analyzing astronomical data in Python, loaders for several open
 astronomical datasets, and a large suite of examples of analyzing and
 visualizing astronomical datasets.</p>
-<a class="reference external image-reference" href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/"><img alt="_images/text_cover.png" class="align-right" src="_images/text_cover.png" style="width: 90px;" /></a>
 <p>The goal of astroML is to provide a community repository for fast Python
 implementations of common tools and routines used for statistical
 data analysis in astronomy and astrophysics, to provide a uniform and
 easy-to-use interface to freely available astronomical datasets.
 We hope this package will be useful to researchers and students of
-astronomy. The astroML project was started in 2012 to accompany the book
+astronomy.  If you have an example you&#8217;d like to share, we are happy to
+accept a contribution via a GitHub
+<a class="reference external" href="https://help.github.com/articles/using-pull-requests">Pull Request</a>:
+the code repository can be found at
+<a class="reference external" href="http://github.com/astroML/astroML">http://github.com/astroML/astroML</a>.</p>
+<div class="section" id="textbook">
+<h2>Textbook<a class="headerlink" href="#textbook" title="Permalink to this headline">¶</a></h2>
+<a class="reference external image-reference" href="http://press.princeton.edu/titles/10159.html"><img alt="_images/text_cover.png" class="align-right" src="_images/text_cover.png" style="width: 90px;" /></a>
+<p>The astroML project was started in 2012 to accompany the book
 <strong>Statistics, Data Mining, and Machine Learning in Astronomy</strong> by
 Zeljko Ivezic, Andrew Connolly, Jacob VanderPlas, and Alex Gray,
-published by Princeton University Press. The table of contents is available
-here: <a class="reference download internal" href="_downloads/DMbookTOC1.pdf"><tt class="xref download docutils literal"><span class="pre">here(pdf)</span></tt></a>, or you can view the
-book on <a class="reference external" href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/">Amazon</a>.</p>
+published by
+<a class="reference external" href="http://press.princeton.edu/titles/10159.html">Princeton University Press</a>.
+The table of contents is available
+<a class="reference download internal" href="_downloads/DMbookTOC1.pdf"><tt class="xref download docutils literal"><span class="pre">here(pdf)</span></tt></a>,
+or you can preview or purchase the book on
+<a class="reference external" href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/">Amazon</a>.</p>
+<p>Did you find a mistake or typo in the book? We maintain an up-to-date
+<a class="reference external" href="https://github.com/astroml/text_errata">listing of errata</a>
+in the text which you can view on GitHub. If you find a mistake
+which is not yet noted on that page, please let us know via email or GitHub
+pull request!</p>
 <style type="text/css">
   div.bodywrapper blockquote {
       margin: 0 ;
@@ -233,7 +251,8 @@ book on <a class="reference external" href="http://www.amazon.com/Statistics-Min
       font-weight: normal;
       }
 
-</style><div class="section" id="user-guide">
+</style></div>
+<div class="section" id="user-guide">
 <h2>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -384,13 +403,13 @@ Ivezic <em>et al</em>, 2014</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.1<p>
+        to astroML version 0.2<br/>
         &copy; 2012, Jake Vanderplas.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
     <a href="_sources/index.txt"
 	    rel="nofollow">Show this page source</a>
-    </span>
+    </span></p>
     </div>
   </body>
 </html>

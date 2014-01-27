@@ -19,10 +19,6 @@ References
 
 
 
-.. image:: ../images/chapter10/fig_powerlaw_1.png
-    :scale: 100
-    :align: center
-
 
 .. raw:: html
     
