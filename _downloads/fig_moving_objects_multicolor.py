@@ -1,6 +1,6 @@
 """
-SDSS Stripe 82 Moving Object Catalog
-------------------------------------
+SDSS Moving Object Catalog
+--------------------------
 Figure 1.12.
 
 A multicolor scatter plot of the properties of asteroids from the SDSS Moving

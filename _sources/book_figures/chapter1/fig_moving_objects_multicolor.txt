@@ -3,8 +3,8 @@
 .. _book_fig_chapter1_fig_moving_objects_multicolor:
 
 
-SDSS Stripe 82 Moving Object Catalog
-------------------------------------
+SDSS Moving Object Catalog
+--------------------------
 Figure 1.12.
 
 A multicolor scatter plot of the properties of asteroids from the SDSS Moving
@@ -23,7 +23,7 @@ figures 3-4 of Parker et al 2008.
 
 
 .. raw:: html
-    
+
     <div class="toggle_trigger"><a href="#">
 
 **Code output:**
@@ -58,6 +58,5 @@ figures 3-4 of Parker et al 2008.
 :download:`[download source: fig_moving_objects_multicolor.py] <fig_moving_objects_multicolor.py>`
 
 .. raw:: html
-    
-    </div>
 
+    </div>
