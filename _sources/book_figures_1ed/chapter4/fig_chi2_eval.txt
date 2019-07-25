@@ -1,0 +1,68 @@
+
+
+.. _book_fig_chapter4_fig_chi2_eval:
+
+
+Evaluating a model fit with chi-square
+--------------------------------------
+Figure 4.1.
+
+The use of the :math:`\chi^2` statistic for evaluating the goodness of fit.
+The data here are a series of observations of the luminosity of a star, with
+known error bars. Our model assumes that the brightness of the star does not
+vary; that is, all the scatter in the data is due to measurement error.
+:math:`\chi^2_{\rm dof} \approx 1` indicates that the model fits the data
+well (upper-left panel). :math:`\chi^2_{\rm dof}` much smaller than 1
+(upper-right panel) is an indication that the errors are overestimated.
+:math:`\chi^2_{\rm dof}` much larger than 1 is an indication either that the
+errors are underestimated (lower-left panel) or that the model is not a good
+description of the data (lower-right panel). In this last case, it is clear
+from the data that the star's luminosity is varying with time: this situation
+is be treated more fully in chapter 10.
+
+
+
+.. image:: ../images/chapter4/fig_chi2_eval_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_chi2_eval.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_chi2_eval.py
+    :lines: 19-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_chi2_eval.py] <fig_chi2_eval.py>`
+
+.. raw:: html
+    
+    </div>
+

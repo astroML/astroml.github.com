@@ -1,0 +1,126 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_chapter7:
+
+Chapter 7: Dimensionality and its Reduction
+-------------------------------------------
+This chapter covers dimensionality reduction, from linear methods such as
+PCA, NMF, and ICA, to nonlinear methods such as LLE and Isomap.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_spec_examples
+
+   ./fig_PCA_rotation
+
+   ./fig_svd_visual
+
+   ./fig_spec_decompositions
+
+   ./fig_eigenvalues
+
+   ./fig_spec_reconstruction
+
+   ./fig_PCA_reconstruction
+
+   ./fig_S_manifold_PCA
+
+   ./fig_PCA_LLE
+
+
+
+.. figure:: ./../images/chapter7/fig_spec_examples_1_thumb.png
+    :target: ./fig_spec_examples.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_spec_examples`
+
+.. figure:: ./../images/chapter7/fig_PCA_rotation_1_thumb.png
+    :target: ./fig_PCA_rotation.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_PCA_rotation`
+
+.. figure:: ./../images/chapter7/fig_svd_visual_1_thumb.png
+    :target: ./fig_svd_visual.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_svd_visual`
+
+.. figure:: ./../images/chapter7/fig_spec_decompositions_1_thumb.png
+    :target: ./fig_spec_decompositions.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_spec_decompositions`
+
+.. figure:: ./../images/chapter7/fig_eigenvalues_1_thumb.png
+    :target: ./fig_eigenvalues.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_eigenvalues`
+
+.. figure:: ./../images/chapter7/fig_spec_reconstruction_1_thumb.png
+    :target: ./fig_spec_reconstruction.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_spec_reconstruction`
+
+.. figure:: ./../images/chapter7/fig_PCA_reconstruction_1_thumb.png
+    :target: ./fig_PCA_reconstruction.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_PCA_reconstruction`
+
+.. figure:: ./../images/chapter7/fig_S_manifold_PCA_1_thumb.png
+    :target: ./fig_S_manifold_PCA.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_S_manifold_PCA`
+
+.. figure:: ./../images/chapter7/fig_PCA_LLE_1_thumb.png
+    :target: ./fig_PCA_LLE.html
+    :align: center
+
+    :ref:`book_fig_chapter7_fig_PCA_LLE`
+
+
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

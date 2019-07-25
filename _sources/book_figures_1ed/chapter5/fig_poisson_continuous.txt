@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter5_fig_poisson_continuous:
+
+
+Unbinned Poisson Data
+---------------------
+Figure 5.14
+
+Regression of unbinned data. The distribution of N = 500 data points is shown
+in the left panel; the true pdf is shown by the solid curve. Note that although
+the data are binned in the left panel for visualization purposes, the analysis
+is performed on the unbinned data. The right panel shows the likelihood for the
+slope a (eq. 5.88) for three different sample sizes. The input value is
+indicated by the vertical dotted line.
+
+
+
+.. image:: ../images/chapter5/fig_poisson_continuous_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_continuous.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_continuous.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_poisson_continuous.py] <fig_poisson_continuous.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter5_fig_poisson_comparison:
+
+
+Poisson Statistics with arbitrarily small bins
+----------------------------------------------
+Figure 5.16
+
+The comparison of the continuous method (figure 5.14) and the binned method
+(figure 5.15) on the same data set. In the limit of a large number of bins,
+most bins register only zero or one count, and the binned Poisson statistic
+gives nearly the same marginalized distribution for a as the continuous
+statistic. For as few as two bins, the constraint on the slope is only
+slightly biased.
+
+
+
+.. image:: ../images/chapter5/fig_poisson_comparison_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_comparison.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_comparison.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_poisson_comparison.py] <fig_poisson_comparison.py>`
+
+.. raw:: html
+    
+    </div>
+

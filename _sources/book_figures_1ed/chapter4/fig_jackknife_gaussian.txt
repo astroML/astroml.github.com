@@ -1,0 +1,65 @@
+
+
+.. _book_fig_chapter4_fig_jackknife_gaussian:
+
+
+Jackknife Calculations of Error on Mean
+---------------------------------------
+Figure 4.4.
+
+The jackknife uncertainty estimates for the width of a Gaussian distribution.
+This example uses the same data as figure 4.3. The upper panel shows a
+histogram of the widths determined using the sample standard deviation, and
+using the interquartile range. The lower panel shows the corrected jackknife
+estimates (eqs. 4.33 and 4.35) for the two methods. The gray lines show the
+theoretical results, given by eq. 3.35 for :math:`\sigma` and eq. 3.37 for
+:math:`\sigma_G`. The result for :math:`\sigma` matches the theoretical
+result almost exactly, but note the failure of the jackknife to correctly
+estimate :math:`\sigma_G` (see the text for a discussion of this result).
+
+
+
+.. image:: ../images/chapter4/fig_jackknife_gaussian_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_jackknife_gaussian.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_jackknife_gaussian.py
+    :lines: 16-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_jackknife_gaussian.py] <fig_jackknife_gaussian.py>`
+
+.. raw:: html
+    
+    </div>
+

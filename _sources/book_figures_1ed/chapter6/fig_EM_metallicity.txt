@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter6_fig_EM_metallicity:
+
+
+EM example: Gaussian Mixture Models
+-----------------------------------
+Figure 6.6
+
+A two-dimensional mixture of Gaussians for the stellar metallicity data. The
+left panel shows the number density of stars as a function of two measures of
+their chemical composition: metallicity ([Fe/H]) and alpha-element abundance
+([alpha/Fe]). The right panel shows the density estimated using mixtures of
+Gaussians together with the positions and covariances (2-sigma levels) of
+those Gaussians. The center panel compares the information criteria AIC
+and BIC (see Sections 4.3.2 and 5.4.3).
+
+
+
+.. image:: ../images/chapter6/fig_EM_metallicity_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_EM_metallicity.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_EM_metallicity.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_EM_metallicity.py] <fig_EM_metallicity.py>`
+
+.. raw:: html
+    
+    </div>
+

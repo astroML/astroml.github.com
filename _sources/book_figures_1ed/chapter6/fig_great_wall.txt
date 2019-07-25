@@ -1,0 +1,64 @@
+
+
+.. _book_fig_chapter6_fig_great_wall:
+
+
+Great Wall Density
+------------------
+Figure 6.4
+
+Density estimation for galaxies within the SDSS "Great Wall." The upper-left
+panel shows points that are galaxies, projected by their spatial locations
+onto the equatorial plane (declination ~ 0 degrees). The remaining panels
+show estimates of the density of these points using kernel density estimation
+(with a Gaussian kernel with width 5Mpc), a K-nearest-neighbor estimator
+(eq. 6.15) optimized for a small-scale structure (with K = 5), and a
+K-nearest-neighbor estimator optimized for a large-scale structure
+(with K = 40).
+
+
+
+.. image:: ../images/chapter6/fig_great_wall_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_great_wall.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_great_wall.py
+    :lines: 15-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_great_wall.py] <fig_great_wall.py>`
+
+.. raw:: html
+    
+    </div>
+

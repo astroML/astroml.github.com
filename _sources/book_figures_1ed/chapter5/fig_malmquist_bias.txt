@@ -1,0 +1,66 @@
+
+
+.. _book_fig_chapter5_fig_malmquist_bias:
+
+
+Malmquist Bias Example
+----------------------
+Figure 5.2
+
+An illustration of the bias in a subsample selected using measurements with
+finite errors, when the population distribution is a steep function. The
+sample is drawn from the distribution :math:`p(x) \propto 10^{0.6x}`, shown
+by the solid line in the left panel, and convolved with heteroscedastic errors
+with widths in the range :math:`0.5 < \sigma < 1.5`. When a subsample is
+selected using "measured" values, as illustrated in the left panel, the
+distribution of differences between the "observed" and true values is biased,
+as shown by the histogram in the right panel. The distribution is biased
+because more objects with larger true x are scattered into the subsample
+from the right side, than from the left side where the true x are smaller.
+
+
+
+.. image:: ../images/chapter5/fig_malmquist_bias_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_malmquist_bias.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_malmquist_bias.py
+    :lines: 17-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_malmquist_bias.py] <fig_malmquist_bias.py>`
+
+.. raw:: html
+    
+    </div>
+

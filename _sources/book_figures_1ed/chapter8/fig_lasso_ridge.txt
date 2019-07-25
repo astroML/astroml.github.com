@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter8_fig_lasso_ridge:
+
+
+Ridge and Lasso: Geometric Interpretation
+-----------------------------------------
+Figure 8.3
+
+A geometric interpretation of regularization. The right panel shows L1
+regularization (LASSO regression) and the left panel L2 regularization
+(ridge regularization). The ellipses indicate the posterior distribution for
+no prior or regularization. The solid lines show the constraints due to
+regularization (limiting theta^2 for ridge regression and abs(theta) for LASSO
+regression). The corners of the L1 regularization create more opportunities
+for the solution to have zeros for some of the weights.
+
+
+
+.. image:: ../images/chapter8/fig_lasso_ridge_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_lasso_ridge.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_lasso_ridge.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_lasso_ridge.py] <fig_lasso_ridge.py>`
+
+.. raw:: html
+    
+    </div>
+

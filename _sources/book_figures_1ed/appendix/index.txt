@@ -1,0 +1,110 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_appendix:
+
+Appendix
+--------
+There are several appendices, covering topics from the efficient use of
+Python code to the practical use of Fourier transforms.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_broadcast_visual
+
+   ./fig_plotting_examples
+
+   ./fig_plotting_examples
+
+   ./fig_plotting_examples
+
+   ./fig_plotting_examples
+
+   ./fig_sdss_filters
+
+   ./fig_fft_text_example
+
+
+
+.. figure:: ./../images/appendix/fig_broadcast_visual_1_thumb.png
+    :target: ./fig_broadcast_visual.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_broadcast_visual`
+
+.. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
+    :target: ./fig_plotting_examples.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_plotting_examples`
+
+.. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
+    :target: ./fig_plotting_examples.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_plotting_examples`
+
+.. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
+    :target: ./fig_plotting_examples.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_plotting_examples`
+
+.. figure:: ./../images/appendix/fig_plotting_examples_1_thumb.png
+    :target: ./fig_plotting_examples.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_plotting_examples`
+
+.. figure:: ./../images/appendix/fig_sdss_filters_1_thumb.png
+    :target: ./fig_sdss_filters.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_sdss_filters`
+
+.. figure:: ./../images/appendix/fig_fft_text_example_1_thumb.png
+    :target: ./fig_fft_text_example.html
+    :align: center
+
+    :ref:`book_fig_appendix_fig_fft_text_example`
+
+
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

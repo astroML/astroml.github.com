@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter8_fig_nonlinear_mu_z:
+
+
+Nonlinear cosmology fit to mu vs z
+----------------------------------
+Figure 8.5
+
+Cosmology fit to the standard cosmological integral. Errors in mu are a factor
+of ten smaller than for the sample used in figure 8.2. Contours are 1-sigma,
+2-sigma, and 3-sigma for the posterior (uniform prior in :math:`\Omega_M` and
+:math:`\Omega_\Lambda`). The dashed line shows flat cosmology. The dotted lines
+show the input values.
+
+
+
+.. image:: ../images/chapter8/fig_nonlinear_mu_z_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_nonlinear_mu_z.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_nonlinear_mu_z.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_nonlinear_mu_z.py] <fig_nonlinear_mu_z.py>`
+
+.. raw:: html
+    
+    </div>
+

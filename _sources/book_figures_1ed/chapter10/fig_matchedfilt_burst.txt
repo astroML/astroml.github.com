@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter10_fig_matchedfilt_burst:
+
+
+Matched Filter Burst Search
+---------------------------
+Figure 10.25
+
+A matched filter search for a burst signal in time series data. A simulated
+data set generated from a model of the form y(t) = b0 for t < T and
+y = b0 + A exp[-a(t - T)] for t > T , with homoscedastic Gaussian errors with
+sigma = 2, is shown in the top-right panel. The posterior pdf for the four
+model parameters is determined using MCMC and shown in the other panels.
+
+
+
+.. image:: ../images/chapter10/fig_matchedfilt_burst_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_matchedfilt_burst.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_matchedfilt_burst.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_matchedfilt_burst.py] <fig_matchedfilt_burst.py>`
+
+.. raw:: html
+    
+    </div>
+

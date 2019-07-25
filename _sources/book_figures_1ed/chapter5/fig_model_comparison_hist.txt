@@ -1,0 +1,58 @@
+
+
+.. _book_fig_chapter5_fig_model_comparison_hist:
+
+
+Histogram for Double-gaussian model test
+----------------------------------------
+Figure 5.23
+
+A sample of 200 points drawn from a Gaussian mixture model used to illustrate
+model selection with MCMC.
+
+
+
+.. image:: ../images/chapter5/fig_model_comparison_hist_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_model_comparison_hist.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_model_comparison_hist.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_model_comparison_hist.py] <fig_model_comparison_hist.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,64 @@
+
+
+.. _book_fig_chapter5_fig_poisson_likelihood:
+
+
+Binned Regression: Poisson vs Gaussian
+--------------------------------------
+Figure 5.15
+
+The left panels show data sets with 50 points, binned in 5 bins (upper panels)
+and 40 bins (lower panels). The curves show the input distribution (solid), the
+Poisson solution (dashed), and the Gaussian solution (dotted). The right panels
+show 1-sigma, 2-sigma, and 3-sigma likelihood contours for eqs. 5.91 (dark
+lines) and 5.90 (light lines). With 5 bins (top row) there are enough counts
+in each bin so that the Gaussian and Poisson predictions are very similar. As
+the number of bins is increased, the counts decrease and the Gaussian
+approximation becomes biased.
+
+
+
+.. image:: ../images/chapter5/fig_poisson_likelihood_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_likelihood.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_poisson_likelihood.py
+    :lines: 15-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_poisson_likelihood.py] <fig_poisson_likelihood.py>`
+
+.. raw:: html
+    
+    </div>
+

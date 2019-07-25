@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter3_fig_conditional_probability:
+
+
+Joint and Conditional Probabilities
+-----------------------------------
+Figure 3.2.
+
+An example of a two-dimensional probability distribution. The color-coded
+panel shows p(x, y). The two panels to the left and below show marginal
+distributions in x and y (see eq. 3.8). The three panels to the right show
+the conditional probability distributions p(x|y) (see eq. 3.7) for three
+different values of y (as marked in the left panel).
+
+
+
+.. image:: ../images/chapter3/fig_conditional_probability_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_conditional_probability.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_conditional_probability.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_conditional_probability.py] <fig_conditional_probability.py>`
+
+.. raw:: html
+    
+    </div>
+

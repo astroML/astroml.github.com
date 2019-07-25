@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter8_fig_cross_val_A:
+
+
+Cross Validation Examples: Part 1
+---------------------------------
+Figure 8.12
+
+Our toy data set described by eq. 8.75. Shown is the line of best fit, which
+quite clearly underfits the data. In other words, a linear model in this case
+has high bias.
+
+
+
+.. image:: ../images/chapter8/fig_cross_val_A_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_cross_val_A.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_cross_val_A.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_cross_val_A.py] <fig_cross_val_A.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter1_fig_SDSS_imaging:
+
+
+SDSS Imaging
+============
+Figure 1.1
+
+The r vs. g-r color-magnitude diagrams and the r-i vs. g-r color-color
+diagrams for galaxies (left column) and stars (right column) from the SDSS
+imaging catalog. Only the first 5000 entries for each subset are shown in
+order to minimize the blending of points (various more sophisticated
+visualization methods are discussed in Section 1.6).
+
+
+
+.. image:: ../images/chapter1/fig_SDSS_imaging_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_SDSS_imaging.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_SDSS_imaging.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_SDSS_imaging.py] <fig_SDSS_imaging.py>`
+
+.. raw:: html
+    
+    </div>
+

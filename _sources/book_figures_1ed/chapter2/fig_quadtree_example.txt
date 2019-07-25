@@ -1,0 +1,58 @@
+
+
+.. _book_fig_chapter2_fig_quadtree_example:
+
+
+Quad Tree Example
+-----------------
+Figure 2.3.
+
+This example creates a simple quad-tree partition of a two-dimensional
+parameter space, and plots a visualization of the result.
+
+
+
+.. image:: ../images/chapter2/fig_quadtree_example_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_quadtree_example.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_quadtree_example.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_quadtree_example.py] <fig_quadtree_example.py>`
+
+.. raw:: html
+    
+    </div>
+

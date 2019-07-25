@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter8_fig_gp_mu_z:
+
+
+Cosmology Regression Example
+----------------------------
+Figure 8.11
+
+A Gaussian process regression analysis of the simulated supernova sample used
+in figure 8.2. This uses a squared-exponential covariance model, with bandwidth
+learned through cross-validation.
+
+
+
+.. image:: ../images/chapter8/fig_gp_mu_z_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_gp_mu_z.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_gp_mu_z.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_gp_mu_z.py] <fig_gp_mu_z.py>`
+
+.. raw:: html
+    
+    </div>
+

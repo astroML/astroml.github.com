@@ -1,0 +1,65 @@
+
+
+.. _book_fig_chapter8_fig_rbf_ridge_mu_z:
+
+
+Regularized Regression Example
+------------------------------
+Figure 8.4
+
+Regularized regression for the same sample as Fig. 8.2. Here we use Gaussian
+basis function regression with a Gaussian of width sigma = 0.2 centered at 100
+regular intervals between 0 < z < 2. The lower panels show the best-fit weights
+as a function of basis function position. The left column shows the results
+with no regularization: the basis function weights w are on the order of 108,
+and overfitting is evident. The middle column shows ridge regression (L2
+regularization) with alpha = 0.005, and the right column shows LASSO regression
+(L1 regularization) with alpha = 0.005. All three methods are fit without the
+bias term (intercept).
+
+
+
+.. image:: ../images/chapter8/fig_rbf_ridge_mu_z_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rbf_ridge_mu_z.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rbf_ridge_mu_z.py
+    :lines: 16-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_rbf_ridge_mu_z.py] <fig_rbf_ridge_mu_z.py>`
+
+.. raw:: html
+    
+    </div>
+

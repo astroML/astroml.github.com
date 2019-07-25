@@ -1,0 +1,75 @@
+
+
+.. _book_fig_chapter6_fig_stellar_XD:
+
+
+Extreme Deconvolution of Stellar Data
+-------------------------------------
+Figure 6.12
+
+Extreme deconvolution applied to stellar data from SDSS Stripe 82. The top
+panels compare the color distributions for a high signal-to-noise sample of
+standard stars (left) with lower signal-to-noise, single epoch, data (right).
+The middle panels show the results of applying extreme deconvolution to the
+single epoch data. The bottom panel compares the distributions of a color
+measured perpendicularly to the locus (the so-called w color is defined
+following Ivezic et al 2004). The distribution of colors from the extreme
+deconvolution of the noisy data recovers the tight distribution of the high
+signal-to-noise data.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter6/fig_stellar_XD_1.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/chapter6/fig_stellar_XD_2.png
+    :align: center
+    :scale: 100
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_stellar_XD.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_stellar_XD.py
+    :lines: 16-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_stellar_XD.py] <fig_stellar_XD.py>`
+
+.. raw:: html
+    
+    </div>
+

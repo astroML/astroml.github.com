@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter5_fig_likelihood_cauchy:
+
+
+Log-likelihood for Cauchy Distribution
+--------------------------------------
+Figure 5.10
+
+An illustration of the logarithm of posterior probability distribution for
+:math:`\mu` and :math:`\gamma`, :math:`L(\mu,\gamma)` (see eq. 5.75) for
+N = 10 (the sample is generated using the Cauchy distribution with
+:math:`\mu = 0` and :math:`\gamma = 2`). The maximum of L is renormalized
+to 0, and color coded as shown in the legend. The contours enclose the regions
+that contain 0.683, 0.955 and 0.997 of the cumulative (integrated) posterior
+probability.
+
+
+
+.. image:: ../images/chapter5/fig_likelihood_cauchy_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_likelihood_cauchy.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_likelihood_cauchy.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_likelihood_cauchy.py] <fig_likelihood_cauchy.py>`
+
+.. raw:: html
+    
+    </div>
+

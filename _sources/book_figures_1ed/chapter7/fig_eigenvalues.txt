@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter7_fig_eigenvalues:
+
+
+SDSS Eigenvalues
+----------------
+Figure 7.5
+
+The eigenvalues for the PCA decomposition of the SDSS spectra described in
+Section 7.3.2. The top panel shows the decrease in eigenvalue as a function
+of the number of eigenvectors, with a break in the distribution at ten
+eigenvectors. The lower panel shows the cumulative sum of eigenvalues
+normalized to unity. 94% of the variance in the SDSS spectra can be captured
+using the first ten eigenvectors.
+
+
+
+.. image:: ../images/chapter7/fig_eigenvalues_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_eigenvalues.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_eigenvalues.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_eigenvalues.py] <fig_eigenvalues.py>`
+
+.. raw:: html
+    
+    </div>
+

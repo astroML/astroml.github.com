@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter1_fig_moving_objects_multicolor:
+
+
+SDSS Stripe 82 Moving Object Catalog
+------------------------------------
+Figure 1.12.
+
+A multicolor scatter plot of the properties of asteroids from the SDSS Moving
+Object Catalog (cf. figure 1.8). The left panel shows observational markers
+of the chemical properties of the asteroids: two colors a* and i-z. The
+right panel shows the orbital parameters: semimajor axis a vs. the sine of
+the inclination. The color of points in the right panel reflects their
+position in the left panel.  This plot is similar to that used in
+figures 3-4 of Parker et al 2008.
+
+
+
+.. image:: ../images/chapter1/fig_moving_objects_multicolor_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_moving_objects_multicolor.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_moving_objects_multicolor.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_moving_objects_multicolor.py] <fig_moving_objects_multicolor.py>`
+
+.. raw:: html
+    
+    </div>
+

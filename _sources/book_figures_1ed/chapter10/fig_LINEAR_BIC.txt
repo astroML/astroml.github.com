@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter10_fig_LINEAR_BIC:
+
+
+BIC for LINEAR light curve
+--------------------------
+Figure 10.19
+
+BIC as a function of the number of frequency components for the light curve
+shown in figure 10.18. BIC for the two prominent frequency peaks is shown. The
+inset panel details the area near the maximum. For both frequencies, the BIC
+peaks at between 10 and 15 terms; note that a high value of BIC is achieved
+already with 6 components. Comparing the two, the longer period model (bottom
+panel) is much more significant.
+
+
+
+.. image:: ../images/chapter10/fig_LINEAR_BIC_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LINEAR_BIC.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LINEAR_BIC.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_LINEAR_BIC.py] <fig_LINEAR_BIC.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter4_fig_classification_example:
+
+
+Example of classification
+-------------------------
+Figure 4.5.
+
+An example of a simple classification problem between two Gaussian
+distributions. Given a value of x, we need to assign that measurement to one
+of the two distributions (background vs. source). The cut at xc = 120 leads
+to very few Type II errors (i.e., false negatives: points from the distribution
+hS with x < xc being classified as background), but this comes at the cost of
+a significant number of Type I errors (i.e., false positives: points from the
+distribution :math:`h_B` with x > xc being classified as sources).
+
+
+
+.. image:: ../images/chapter4/fig_classification_example_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_classification_example.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_classification_example.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_classification_example.py] <fig_classification_example.py>`
+
+.. raw:: html
+    
+    </div>
+

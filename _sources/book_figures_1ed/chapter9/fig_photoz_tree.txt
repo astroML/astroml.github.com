@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter9_fig_photoz_tree:
+
+
+Photometric Redshifts by Decision Trees
+---------------------------------------
+Figure 9.14
+
+Photometric redshift estimation using decision-tree regression. The data is
+described in Section 1.5.5. The training set consists of u, g , r, i, z
+magnitudes of 60,000 galaxies from the SDSS spectroscopic sample.
+Cross-validation is performed on an additional 6000 galaxies. The left panel
+shows training error and cross-validation error as a function of the maximum
+depth of the tree. For a number of nodes N > 13, overfitting is evident.
+
+
+
+.. image:: ../images/chapter9/fig_photoz_tree_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_photoz_tree.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_photoz_tree.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_photoz_tree.py] <fig_photoz_tree.py>`
+
+.. raw:: html
+    
+    </div>
+

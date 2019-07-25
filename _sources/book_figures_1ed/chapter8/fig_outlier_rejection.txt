@@ -1,0 +1,66 @@
+
+
+.. _book_fig_chapter8_fig_outlier_rejection:
+
+
+Perform Outlier Rejection with MCMC
+-----------------------------------
+Figure 8.9
+
+Bayesian outlier detection for the same data as shown in figure 8.8. The
+top-left panel shows the data, with the fits from each model. The top-right
+panel shows the 1-sigma and 2-sigma contours for the slope and intercept with
+no outlier correction: the resulting fit (shown by the dotted line) is clearly
+highly affected by the presence of outliers. The bottom-left panel shows the
+marginalized 1-sigma and 2-sigma contours for a mixture model (eq. 8.67). The
+bottom-right panel shows the marginalized 1-sigma and 2-sigma contours for a
+model in which points are identified individually as "good" or "bad"
+(eq. 8.68). The points which are identified by this method as bad with a
+probability greater than 68% are circled in the first panel.
+
+
+
+.. image:: ../images/chapter8/fig_outlier_rejection_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_outlier_rejection.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_outlier_rejection.py
+    :lines: 17-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_outlier_rejection.py] <fig_outlier_rejection.py>`
+
+.. raw:: html
+    
+    </div>
+

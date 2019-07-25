@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter7_fig_spec_examples:
+
+
+SDSS spectra Examples
+---------------------
+Figure 7.1
+
+A sample of 15 galaxy spectra selected from the SDSS spectroscopic data set
+(see Section 1.5.5). These spectra span a range of galaxy types, from
+star-forming to passive galaxies. Each spectrum has been shifted to its rest
+frame and covers the wavelength interval 3000-8000 Angstroms. The specific
+fluxes, :math:`F_\lambda(\lambda)`, on the ordinate axes have an arbitrary
+scaling.
+
+
+
+.. image:: ../images/chapter7/fig_spec_examples_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_spec_examples.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_spec_examples.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_spec_examples.py] <fig_spec_examples.py>`
+
+.. raw:: html
+    
+    </div>
+

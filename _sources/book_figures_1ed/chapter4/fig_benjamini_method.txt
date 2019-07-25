@@ -1,0 +1,65 @@
+
+
+.. _book_fig_chapter4_fig_benjamini_method:
+
+
+Example of Benjamini & Hochberg Method
+--------------------------------------
+Figure 4.6.
+
+Illustration of the Benjamini and Hochberg method for 106 points drawn from
+the distribution shown in figure 4.5. The solid line shows the cumulative
+distribution of observed p values, normalized by the sample size. The dashed
+lines show the cutoff for various limits on contamination rate
+:math:`\varepsilon` computed using eq. 4.44 (the accepted measurements are
+those with p smaller than that corresponding to the intersection of solid and
+dashed curves). The dotted line shows how the distribution would look in the
+absence of sources. The value of the cumulative distribution at p = 0.5 is
+0.55, and yields a correction factor :math:`\lambda = 1.11` (see eq. 4.46).
+
+
+
+.. image:: ../images/chapter4/fig_benjamini_method_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_benjamini_method.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_benjamini_method.py
+    :lines: 16-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_benjamini_method.py] <fig_benjamini_method.py>`
+
+.. raw:: html
+    
+    </div>
+

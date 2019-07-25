@@ -1,0 +1,54 @@
+
+
+.. _book_fig_appendix_fig_LIGO_bandpower:
+
+
+Plot the band power of the LIGO big dog event
+---------------------------------------------
+
+
+
+.. image:: ../images/appendix/fig_LIGO_bandpower_1.png
+    :width: 100%
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LIGO_bandpower.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LIGO_bandpower.py
+    :lines: 5-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_LIGO_bandpower.py] <fig_LIGO_bandpower.py>`
+
+.. raw:: html
+    
+    </div>
+

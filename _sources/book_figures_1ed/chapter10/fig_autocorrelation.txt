@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter10_fig_autocorrelation:
+
+
+Autocorrelation Function
+------------------------
+Figure 10.30
+
+Example of the autocorrelation function for a stochastic process. The top panel
+shows a simulated light curve generated using a damped random walk model
+(Section 10.5.4). The bottom panel shows the corresponding autocorrelation
+function computed using Edelson and Krolik's DCF method and the Scargle method.
+The solid line shows the input autocorrelation function used to generate the
+light curve.
+
+
+
+.. image:: ../images/chapter10/fig_autocorrelation_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_autocorrelation.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_autocorrelation.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_autocorrelation.py] <fig_autocorrelation.py>`
+
+.. raw:: html
+    
+    </div>
+

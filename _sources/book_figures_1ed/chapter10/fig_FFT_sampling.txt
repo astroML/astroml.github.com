@@ -1,0 +1,66 @@
+
+
+.. _book_fig_chapter10_fig_FFT_sampling:
+
+
+The effect of Sampling
+----------------------
+Figure 10.4
+
+An illustration of the impact of a sampling window function of resulting PSD.
+The top-left panel shows a simulated data set with 40 points drawn from the
+function y(t|P) = sin(t) (i.e., f = 1/(2pi) ~ 0.16). The sampling is random,
+and illustrated by the vertical lines in the bottom-left panel. The PSD of
+sampling times, or spectral window, is shown in the bottom-right panel. The
+PSD computed for the data set from the top-left panel is shown in the top-right
+panel; it is equal to a convolution of the single peak (shaded in gray) with
+the window PSD shown in the bottom-right panel (e.g., the peak at f ~ 0.42 in
+the top-right panel can be traced to a peak at f ~ 0.26 in the bottom-right
+panel).
+
+
+
+.. image:: ../images/chapter10/fig_FFT_sampling_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_FFT_sampling.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_FFT_sampling.py
+    :lines: 17-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_FFT_sampling.py] <fig_FFT_sampling.py>`
+
+.. raw:: html
+    
+    </div>
+

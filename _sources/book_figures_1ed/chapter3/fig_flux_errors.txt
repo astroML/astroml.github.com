@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter3_fig_flux_errors:
+
+
+Flux Errors
+-----------
+Figure 3.5.
+
+An example of Gaussian flux errors becoming non-Gaussian magnitude errors.
+The dotted line shows the location of the mean flux; note that this is not
+coincident with the peak of the magnitude distribution.
+
+
+
+.. image:: ../images/chapter3/fig_flux_errors_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_flux_errors.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_flux_errors.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_flux_errors.py] <fig_flux_errors.py>`
+
+.. raw:: html
+    
+    </div>
+

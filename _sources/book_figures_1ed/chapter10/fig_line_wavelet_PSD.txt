@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter10_fig_line_wavelet_PSD:
+
+
+Wavelet transform of a Noisy Spike
+----------------------------------
+Figure 10.8
+
+Localized frequency analysis using the wavelet transform. The upper panel shows
+the input signal, which consists of a Gaussian spike in the presence of white
+(Gaussian) noise (see figure 10.10). The middle panel shows an example wavelet.
+The lower panel shows the power spectral density as a function of the frequency
+f0 and the time t0, for Q = 0.3.
+
+
+
+.. image:: ../images/chapter10/fig_line_wavelet_PSD_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_line_wavelet_PSD.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_line_wavelet_PSD.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_line_wavelet_PSD.py] <fig_line_wavelet_PSD.py>`
+
+.. raw:: html
+    
+    </div>
+

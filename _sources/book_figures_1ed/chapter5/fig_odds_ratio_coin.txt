@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter5_fig_odds_ratio_coin:
+
+
+Coin Toss Odds Ratio
+--------------------
+Figure 5.1
+
+Odds ratio for two models, :math:`O_{21}`, describing coin tosses (eq. 5.26).
+Out of N tosses (left: N = 10; right: N = 20), k tosses are heads. Model 2 is
+a one-parameter model with the heads probability determined from data
+(:math:`b^0 = k/N`), and model 1 claims an a priori known heads probability
+equal to :math:`b_*`.The results are shown for two values of :math:`b_*`,
+as indicated in the legend. Note that the odds ratio is minimized and below 1
+(model 1 wins) when :math:`k = b_* N`.
+
+
+
+.. image:: ../images/chapter5/fig_odds_ratio_coin_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_odds_ratio_coin.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_odds_ratio_coin.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_odds_ratio_coin.py] <fig_odds_ratio_coin.py>`
+
+.. raw:: html
+    
+    </div>
+

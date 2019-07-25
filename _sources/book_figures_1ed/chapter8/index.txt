@@ -1,0 +1,175 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_chapter8:
+
+Chapter 8: Regression and Model Fitting
+---------------------------------------
+This chapter covers linear and nonlinear regression and model fitting,
+including strategies which are robust to data error and the presence of
+outliers.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_linreg_inline
+
+   ./fig_regression_mu_z
+
+   ./fig_lasso_ridge
+
+   ./fig_rbf_ridge_mu_z
+
+   ./fig_nonlinear_mu_z
+
+   ./fig_total_least_squares
+
+   ./fig_huber_func
+
+   ./fig_huber_loss
+
+   ./fig_outlier_rejection
+
+   ./fig_gp_example
+
+   ./fig_gp_mu_z
+
+   ./fig_cross_val_A
+
+   ./fig_cross_val_B
+
+   ./fig_cross_val_C
+
+   ./fig_cross_val_D
+
+
+
+.. figure:: ./../images/chapter8/fig_linreg_inline_1_thumb.png
+    :target: ./fig_linreg_inline.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_linreg_inline`
+
+.. figure:: ./../images/chapter8/fig_regression_mu_z_1_thumb.png
+    :target: ./fig_regression_mu_z.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_regression_mu_z`
+
+.. figure:: ./../images/chapter8/fig_lasso_ridge_1_thumb.png
+    :target: ./fig_lasso_ridge.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_lasso_ridge`
+
+.. figure:: ./../images/chapter8/fig_rbf_ridge_mu_z_1_thumb.png
+    :target: ./fig_rbf_ridge_mu_z.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_rbf_ridge_mu_z`
+
+.. figure:: ./../images/chapter8/fig_nonlinear_mu_z_1_thumb.png
+    :target: ./fig_nonlinear_mu_z.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_nonlinear_mu_z`
+
+.. figure:: ./../images/chapter8/fig_total_least_squares_1_thumb.png
+    :target: ./fig_total_least_squares.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_total_least_squares`
+
+.. figure:: ./../images/chapter8/fig_huber_func_1_thumb.png
+    :target: ./fig_huber_func.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_huber_func`
+
+.. figure:: ./../images/chapter8/fig_huber_loss_1_thumb.png
+    :target: ./fig_huber_loss.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_huber_loss`
+
+.. figure:: ./../images/chapter8/fig_outlier_rejection_1_thumb.png
+    :target: ./fig_outlier_rejection.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_outlier_rejection`
+
+.. figure:: ./../images/chapter8/fig_gp_example_1_thumb.png
+    :target: ./fig_gp_example.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_gp_example`
+
+.. figure:: ./../images/chapter8/fig_gp_mu_z_1_thumb.png
+    :target: ./fig_gp_mu_z.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_gp_mu_z`
+
+.. figure:: ./../images/chapter8/fig_cross_val_A_1_thumb.png
+    :target: ./fig_cross_val_A.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_cross_val_A`
+
+.. figure:: ./../images/chapter8/fig_cross_val_B_1_thumb.png
+    :target: ./fig_cross_val_B.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_cross_val_B`
+
+.. figure:: ./../images/chapter8/fig_cross_val_C_1_thumb.png
+    :target: ./fig_cross_val_C.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_cross_val_C`
+
+.. figure:: ./../images/chapter8/fig_cross_val_D_1_thumb.png
+    :target: ./fig_cross_val_D.html
+    :align: center
+
+    :ref:`book_fig_chapter8_fig_cross_val_D`
+
+
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

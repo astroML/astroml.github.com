@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter1_fig_projections:
+
+
+Spherical Projections
+---------------------
+Figure 1.14.
+
+Four common full-sky projections. The shaded ellipses represent the distortion
+across the sky: each is projected from a circle of radius 10 degrees on the
+sphere. The extent to which these are distorted and/or magnified shows the
+distortion inherent to the mapping.
+
+
+
+.. image:: ../images/chapter1/fig_projections_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_projections.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_projections.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_projections.py] <fig_projections.py>`
+
+.. raw:: html
+    
+    </div>
+

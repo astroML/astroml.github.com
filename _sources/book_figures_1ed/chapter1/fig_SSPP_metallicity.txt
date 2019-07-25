@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter1_fig_SSPP_metallicity:
+
+
+Stellar Parameters Hess Diagram
+-------------------------------
+Figure 1.11.
+
+A Hess diagram of the number per pixel (left) and [Fe/H] metallicity (center,
+right) of SEGUE Stellar Parameters Pipeline stars. In the center and right
+panels, contours representing the number density are overplotted for
+comparison. These two panels show identical data, but compare a grayscale
+and multicolor plotting scheme. This is an example of a situation in which
+multiple colors are very helpful in distinguishing close metallicity levels.
+This is the same data as shown in figure 1.5.
+
+
+
+.. image:: ../images/chapter1/fig_SSPP_metallicity_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_SSPP_metallicity.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_SSPP_metallicity.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_SSPP_metallicity.py] <fig_SSPP_metallicity.py>`
+
+.. raw:: html
+    
+    </div>
+

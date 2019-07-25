@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter1_fig_mercator:
+
+
+Mercator Projection
+-------------------
+Figure1.13.
+
+The Mercator projection. Shown are the projections of circles of constant
+radius 10 degrees across the sky. Note that the area is not preserved by the
+Mercator projection: the projection increases the size of finite regions on
+the sphere, with a magnitude which increases at high latitudes.
+
+
+
+.. image:: ../images/chapter1/fig_mercator_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_mercator.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_mercator.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_mercator.py] <fig_mercator.py>`
+
+.. raw:: html
+    
+    </div>
+

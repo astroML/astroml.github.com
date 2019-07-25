@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter7_fig_PCA_rotation:
+
+
+Scematic Diagram of PCA
+-----------------------
+Figure 7.2
+
+A distribution of points drawn from a bivariate Gaussian and centered on the
+origin of x and y. PCA defines a rotation such that the new axes (x' and y')
+are aligned along the directions of maximal variance (the principal components)
+with zero covariance. This is equivalent to minimizing the square of the
+perpendicular distances between the points and the principal components.
+
+
+
+.. image:: ../images/chapter7/fig_PCA_rotation_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_PCA_rotation.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_PCA_rotation.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_PCA_rotation.py] <fig_PCA_rotation.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter1_fig_LINEAR_sample:
+
+
+Phased LINEAR Light Curve
+-------------------------
+Figure1.7.
+
+An example of the type of data available in the LINEAR dataset.  The scatter
+plots show the g-r and r-i colors, and the variability period determined using
+a Lomb-Scargle periodogram (for details see chapter 10). The upper-right panel
+shows a phased light curve for one of the over 7000 objects.
+
+
+
+.. image:: ../images/chapter1/fig_LINEAR_sample_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LINEAR_sample.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LINEAR_sample.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_LINEAR_sample.py] <fig_LINEAR_sample.py>`
+
+.. raw:: html
+    
+    </div>
+

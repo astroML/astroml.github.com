@@ -1,0 +1,75 @@
+
+
+.. _book_fig_chapter10_fig_FFT_aliasing:
+
+
+The effect of Sampling
+----------------------
+Figure 10.3
+
+A visualization of aliasing in the Fourier transform. In each set of four
+panels, the top-left panel shows a signal and a regular sampling function, the
+top-right panel shows the Fourier transform of the signal and sampling
+function, the bottom-left panel shows the sampled data, and the bottom-right
+panel shows the convolution of the Fourier-space representations (cf. figure
+10.2). In the top four panels, the data is well sampled, and there is little
+to no aliasing. In the bottom panels, the data is not well sampled (the spacing
+between two data points is larger) which leads to aliasing, as seen in the
+overlap of the convolved Fourier transforms (figure adapted from Greg05).
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter10/fig_FFT_aliasing_1.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/chapter10/fig_FFT_aliasing_2.png
+    :align: center
+    :scale: 100
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_FFT_aliasing.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_FFT_aliasing.py
+    :lines: 16-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_FFT_aliasing.py] <fig_FFT_aliasing.py>`
+
+.. raw:: html
+    
+    </div>
+

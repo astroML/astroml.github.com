@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter9_fig_rrlyrae_GMMbayes:
+
+
+Gausian Mixture Bayes Classification of photometry
+--------------------------------------------------
+Figure 9.6
+
+Gaussian mixture Bayes classifier for RR Lyrae stars (see caption of figure 9.3
+for details). Here the left panel shows the decision boundary for the
+three-component model, and the right panel shows the completeness and
+contamination for both a one-component and three-component mixture model. With
+all four colors and a three-component model, GMM Bayes achieves a completeness
+of 0.686 and a contamination of 0.236.
+
+
+
+.. image:: ../images/chapter9/fig_rrlyrae_GMMbayes_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rrlyrae_GMMbayes.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rrlyrae_GMMbayes.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_rrlyrae_GMMbayes.py] <fig_rrlyrae_GMMbayes.py>`
+
+.. raw:: html
+    
+    </div>
+

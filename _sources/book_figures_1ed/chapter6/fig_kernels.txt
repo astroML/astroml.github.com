@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter6_fig_kernels:
+
+
+Example Kernels
+---------------
+Figure 6.2
+
+A comparison of the three kernels used for density estimation in figure 6.3:
+the Gaussian kernel (eq. 6.2), the top-hat kernel (eq. 6.3), and the
+exponential kernel (eq. 6.4).
+
+
+
+.. image:: ../images/chapter6/fig_kernels_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_kernels.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_kernels.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_kernels.py] <fig_kernels.py>`
+
+.. raw:: html
+    
+    </div>
+

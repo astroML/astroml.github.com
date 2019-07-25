@@ -1,0 +1,76 @@
+
+
+.. _book_fig_chapter3_fig_student_t_distribution:
+
+
+Example of Student's t distribution
+-----------------------------------
+Figure 3.15.
+
+This shows an example of Student's t distribution with various parameters.
+We'll generate the distribution using::
+
+    dist = scipy.stats.student_t(...)
+
+Where ... should be filled in with the desired distribution parameters
+Once we have defined the distribution parameters in this way, these
+distribution objects have many useful methods; for example:
+
+* ``dist.pmf(x)`` computes the Probability Mass Function at values ``x``
+  in the case of discrete distributions
+
+* ``dist.pdf(x)`` computes the Probability Density Function at values ``x``
+  in the case of continuous distributions
+
+* ``dist.rvs(N)`` computes ``N`` random variables distributed according
+  to the given distribution
+
+Many further options exist; refer to the documentation of ``scipy.stats``
+for more details.
+
+
+
+.. image:: ../images/chapter3/fig_student_t_distribution_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_student_t_distribution.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_student_t_distribution.py
+    :lines: 27-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_student_t_distribution.py] <fig_student_t_distribution.py>`
+
+.. raw:: html
+    
+    </div>
+

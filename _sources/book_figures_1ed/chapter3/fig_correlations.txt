@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter3_fig_correlations:
+
+
+Correlation estimates
+---------------------
+Figure 3.24.
+
+Bootstrap estimates of the distribution of Pearson's, Spearman's, and Kendall's
+correlation coefficients based on 2000 resamplings of the 1000 points shown
+in figure 3.23. The true values are shown by the dashed lines. It is clear
+that Pearson's correlation coefficient is not robust to contamination.
+
+
+
+.. image:: ../images/chapter3/fig_correlations_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_correlations.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_correlations.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_correlations.py] <fig_correlations.py>`
+
+.. raw:: html
+    
+    </div>
+

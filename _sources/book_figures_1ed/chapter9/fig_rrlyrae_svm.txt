@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter9_fig_rrlyrae_svm:
+
+
+SVM Classification of photometry
+--------------------------------
+Figure 9.10
+
+SVM applied to the RR Lyrae data (see caption of figure 9.3 for details). With
+all four colors, SVM achieves a completeness of 1.0 and a contamination of
+0.854.
+
+
+
+.. image:: ../images/chapter9/fig_rrlyrae_svm_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rrlyrae_svm.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rrlyrae_svm.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_rrlyrae_svm.py] <fig_rrlyrae_svm.py>`
+
+.. raw:: html
+    
+    </div>
+

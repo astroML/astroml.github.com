@@ -1,0 +1,73 @@
+
+
+.. _book_fig_chapter7_fig_PCA_LLE:
+
+
+PCA Projection of SDSS Spectra
+------------------------------
+Figure 7.9
+
+A comparison of the classification of quiescent galaxies and sources with
+strong line emission using LLE and PCA. The top panel shows the segregation of
+galaxy types as a function of the first three PCA components. The lower panel
+shows the segregation using the first three LLE dimensions. The preservation of
+locality in LLE enables nonlinear features within a spectrum (e.g., variation
+in the width of an emission line) to be captured with fewer components. This
+results in better segregation of spectral types with fewer dimensions.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter7/fig_PCA_LLE_1.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/chapter7/fig_PCA_LLE_2.png
+    :align: center
+    :scale: 100
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_PCA_LLE.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_PCA_LLE.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_PCA_LLE.py] <fig_PCA_LLE.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,67 @@
+
+
+.. _book_fig_chapter3_fig_robust_pca:
+
+
+Bivariate Gaussian: Robust Parameter Estimation
+-----------------------------------------------
+Figure 3.23.
+
+An example of computing the components of a bivariate Gaussian using a sample
+with 1000 data values (points), with two levels of contamination. The core of
+the distribution is a bivariate Gaussian with
+:math:`(\mu_x, \mu_y, \sigma_1, \sigma_2, \alpha) = (10, 10, 2, 1, 45^\odot)`
+The "contaminating" subsample contributes 5% (left) and 15% (right) of points
+centered on the same :math:`(\mu_x, \mu_y)`,
+and with :math:`\sigma_1 = \sigma_2 = 5`.
+Ellipses show the 1- and 3-sigma contours. The solid lines correspond to the
+input distribution. The thin dotted lines show the nonrobust estimate, and the
+dashed lines show the robust estimate of the best-fit distribution parameters
+(see Section 3.5.3 for details).
+
+
+
+.. image:: ../images/chapter3/fig_robust_pca_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_robust_pca.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_robust_pca.py
+    :lines: 18-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_robust_pca.py] <fig_robust_pca.py>`
+
+.. raw:: html
+    
+    </div>
+

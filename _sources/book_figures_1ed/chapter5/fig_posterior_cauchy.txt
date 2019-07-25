@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter5_fig_posterior_cauchy:
+
+
+Posterior for Cauchy Distribution
+---------------------------------
+Figure 5.11
+
+The solid lines show the posterior pdf :math:`p(\mu|{x_i},I)` (top-left panel)
+and the posterior pdf :math:`p(\gamma|{x_i},I)` (top-right panel) for the
+two-dimensional pdf from figure 5.10. The dashed lines show the distribution
+of approximate estimates of :math:`\mu` and :math:`\gamma` based on the median
+and interquartile range. The bottom panels show the corresponding cumulative
+distributions.
+
+
+
+.. image:: ../images/chapter5/fig_posterior_cauchy_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_posterior_cauchy.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_posterior_cauchy.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_posterior_cauchy.py] <fig_posterior_cauchy.py>`
+
+.. raw:: html
+    
+    </div>
+

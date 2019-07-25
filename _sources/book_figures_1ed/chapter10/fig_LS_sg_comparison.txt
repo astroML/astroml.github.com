@@ -1,0 +1,100 @@
+
+
+.. _book_fig_chapter10_fig_LS_sg_comparison:
+
+
+Generalized vs Standard Lomb-Scargle
+------------------------------------
+Figure 10.16
+
+A comparison of the standard and generalized Lomb-Scargle periodograms for a
+signal y(t) = 10 + sin(2pi t/P) with P = 0.3, corresponding to omega_0 ~ 21.
+This example is, in some sense, a worst-case scenario for the standard
+Lomb-Scargle algorithm because there are no sampled points during the times
+when ytrue < 10, which leads to a gross overestimation of the mean. The bottom
+panel shows the Lomb-Scargle and generalized Lomb-Scargle periodograms for
+these data; the generalized method recovers the expected peak as the highest
+peak, while the standard method incorrectly chooses the peak at omega ~ 17.6
+(because it is higher than the true peak at omega_0 ~ 21). The dotted lines
+show the 1% and 5% significance levels for the highest peak in the generalized
+periodogram, determined by 1000 bootstrap resamplings (see Section 10.3.2).
+
+Note: This Plot Contains an Error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+After the book was in press, a reader pointed out that this plot contains a
+typo.  Instead of passing the noisy data to the Lomb-Scargle routine, we
+had passed the underlying, non-noisy data.  This caused an over-estimate
+of the Lomb-Scargle power.
+
+Because of this, we add two extra plots to this script: the first reproduces
+the current plot without the typo.  In it, we see that for the noisy data,
+the period is not detected for just ~30 points within ten periods.
+
+In the second additional plot, we increase the baseline and the number of
+points by a factor of ten.  With this configuration, the peak is detected,
+and the qualitative aspects of the above discussion hold true.
+
+We regret the error!
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter10/fig_LS_sg_comparison_1.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/chapter10/fig_LS_sg_comparison_2.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/chapter10/fig_LS_sg_comparison_3.png
+    :align: center
+    :scale: 100
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LS_sg_comparison.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_LS_sg_comparison.py
+    :lines: 35-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_LS_sg_comparison.py] <fig_LS_sg_comparison.py>`
+
+.. raw:: html
+    
+    </div>
+

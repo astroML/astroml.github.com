@@ -1,0 +1,58 @@
+
+
+.. _book_fig_chapter1_fig_S82_scatter_contour:
+
+
+SDSS Stripe 82 Standard Stars
+-----------------------------
+Figure 1.9.
+
+Scatter plot with contours over dense regions.This is a color-color diagram
+of the entire set of SDSS Stripe 82 standard stars; cf. figure 1.6.
+
+
+
+.. image:: ../images/chapter1/fig_S82_scatter_contour_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_S82_scatter_contour.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_S82_scatter_contour.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_S82_scatter_contour.py] <fig_S82_scatter_contour.py>`
+
+.. raw:: html
+    
+    </div>
+

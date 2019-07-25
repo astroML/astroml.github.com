@@ -1,0 +1,57 @@
+
+
+.. _book_fig_chapter3_fig_contingency_table:
+
+
+A 2x2 Contingency Table
+-----------------------
+Figure 3.3.
+
+A contingency table showing p(T|D).
+
+
+
+.. image:: ../images/chapter3/fig_contingency_table_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_contingency_table.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_contingency_table.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_contingency_table.py] <fig_contingency_table.py>`
+
+.. raw:: html
+    
+    </div>
+

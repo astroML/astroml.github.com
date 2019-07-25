@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter9_fig_star_quasar_ROC:
+
+
+Star/Quasar Classification ROC Curves
+-------------------------------------
+Figure 9.18
+
+The left panel shows data used in color-based photometric classification of
+stars and quasars. Stars are indicated by gray points, while quasars are
+indicated by black points. The right panel shows ROC curves for quasar
+identification based on u - g , g - r , r - i , and i - z colors. Labels
+are the same as those in Figure 9.17.
+
+
+
+.. image:: ../images/chapter9/fig_star_quasar_ROC_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_star_quasar_ROC.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_star_quasar_ROC.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_star_quasar_ROC.py] <fig_star_quasar_ROC.py>`
+
+.. raw:: html
+    
+    </div>
+

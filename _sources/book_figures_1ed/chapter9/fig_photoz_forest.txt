@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter9_fig_photoz_forest:
+
+
+Photometric Redshifts by Random Forests
+---------------------------------------
+Figure 9.15
+
+Photometric redshift estimation using random forest regression, with ten random
+trees. Comparison to figure 9.14 shows that random forests correct for the
+overfitting evident in very deep decision trees. Here the optimal depth is 20
+or above, and a much better cross-validation error is achieved.
+
+
+
+.. image:: ../images/chapter9/fig_photoz_forest_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_photoz_forest.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_photoz_forest.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_photoz_forest.py] <fig_photoz_forest.py>`
+
+.. raw:: html
+    
+    </div>
+

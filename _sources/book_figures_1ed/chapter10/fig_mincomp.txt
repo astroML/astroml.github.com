@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter10_fig_mincomp:
+
+
+Example of Minimum Component Filtering
+--------------------------------------
+Figure 10.13
+
+A minimum component filter applied to the spectrum of a white dwarf from SDSS
+data set (mjd= 52199, plate=659, fiber=381). The upper panel shows a portion
+of the input spectrum, along with the continuum computed via the minimum
+component filtering procedure described in Section 10.2.5 (see figure 10.12).
+The lower panel shows the PSD for both the input spectrum and the filtered
+result.
+
+
+
+.. image:: ../images/chapter10/fig_mincomp_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_mincomp.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_mincomp.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_mincomp.py] <fig_mincomp.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter10_fig_powerlaw:
+
+
+Generating Power-law Light Curves
+---------------------------------
+Figure 10.29
+
+Examples of stochastic time series generated from power-law PSDs
+(left: 1/ f; right: 1/f^2) using the method from [1]. The top panels show the
+generated data, while the bottom panels show the corresponding PSD (dashed
+lines: input PSD; solid lines: determined from time series shown in the top
+panels).
+
+References
+~~~~~~~~~~
+.. [1] Timmer, J. & Koenig, M. On Generating Power Law Noise. A&A 300:707
+
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_powerlaw.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_powerlaw.py
+    :lines: 16-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_powerlaw.py] <fig_powerlaw.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter5_fig_bayes_blocks:
+
+
+Distribution Representation Comparison
+--------------------------------------
+Figure 5.21
+
+Comparison of Knuth's histogram and a Bayesian blocks histogram. The adaptive
+bin widths of the Bayesian blocks histogram yield a better representation of
+the underlying data, especially with fewer points.
+
+
+
+.. image:: ../images/chapter5/fig_bayes_blocks_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_bayes_blocks.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_bayes_blocks.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_bayes_blocks.py] <fig_bayes_blocks.py>`
+
+.. raw:: html
+    
+    </div>
+

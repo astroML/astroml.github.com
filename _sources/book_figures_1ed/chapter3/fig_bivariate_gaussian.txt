@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter3_fig_bivariate_gaussian:
+
+
+Bivariate Gaussian
+------------------
+Figure 3.22.
+
+An example of data generated from a bivariate Gaussian distribution. The
+shaded pixels are a Hess diagram showing the density of points at each
+position.
+
+
+
+.. image:: ../images/chapter3/fig_bivariate_gaussian_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_bivariate_gaussian.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_bivariate_gaussian.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_bivariate_gaussian.py] <fig_bivariate_gaussian.py>`
+
+.. raw:: html
+    
+    </div>
+

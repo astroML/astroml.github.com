@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter8_fig_gp_example:
+
+
+Gaussian Process Example
+------------------------
+Figure 8.10
+
+An example of Gaussian process regression. The upper-left panel shows three
+functions drawn from an unconstrained Gaussian process with squared-exponential
+covari- ance of bandwidth h = 1.0. The upper-right panel adds two constraints,
+and shows the 2-sigma contours of the constrained function space. The
+lower-left panel shows the function space constrained by the points with error
+bars. The lower-right panel shows the function space constrained by 20 noisy
+points drawn from f(x) = cos(x).
+
+
+
+.. image:: ../images/chapter8/fig_gp_example_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_gp_example.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_gp_example.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_gp_example.py] <fig_gp_example.py>`
+
+.. raw:: html
+    
+    </div>
+

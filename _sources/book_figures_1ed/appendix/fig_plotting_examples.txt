@@ -1,0 +1,79 @@
+
+
+.. _book_fig_appendix_fig_plotting_examples:
+
+
+Examples of Plotting with Matplotlib
+------------------------------------
+Figures A.2, A.3, A.4, A.5
+
+These scripts generate the output of the plotting examples in the appendix.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/appendix/fig_plotting_examples_1.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/appendix/fig_plotting_examples_2.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/appendix/fig_plotting_examples_3.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/appendix/fig_plotting_examples_4.png
+    :align: center
+    :scale: 100
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_plotting_examples.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_plotting_examples.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_plotting_examples.py] <fig_plotting_examples.py>`
+
+.. raw:: html
+    
+    </div>
+

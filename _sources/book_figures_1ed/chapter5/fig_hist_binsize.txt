@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter5_fig_hist_binsize:
+
+
+Selection of Histogram bin size
+-------------------------------
+Figure 5.20
+
+The results of Scott's rule, the Freedman-Diaconis rule, and Knuth's rule for
+selecting the optimal bin width for a histogram. These histograms are based
+on 5000 points drawn from the shown pdfs. On the left is a simple normal
+distribution. On the right is a Laplacian distribution at the center, with
+two small Gaussian peaks added in the wings.
+
+
+
+.. image:: ../images/chapter5/fig_hist_binsize_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_hist_binsize.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_hist_binsize.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_hist_binsize.py] <fig_hist_binsize.py>`
+
+.. raw:: html
+    
+    </div>
+

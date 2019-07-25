@@ -1,0 +1,60 @@
+
+
+.. _book_fig_chapter1_fig_sdss_spectrum:
+
+
+SDSS Spectrum Example
+---------------------
+Figure 1.2.
+
+An example of an SDSS spectrum (the specific flux plotted as a function of
+wavelength) loaded from the SDSS SQL server in real time using Python tools
+provided here (this spectrum is uniquely described by SDSS parameters
+plate=1615, fiber=513, and mjd=53166).
+
+
+
+.. image:: ../images/chapter1/fig_sdss_spectrum_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_sdss_spectrum.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_sdss_spectrum.py
+    :lines: 11-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_sdss_spectrum.py] <fig_sdss_spectrum.py>`
+
+.. raw:: html
+    
+    </div>
+

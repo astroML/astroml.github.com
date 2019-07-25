@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter6_fig_meanshift_metallicity:
+
+
+Mean Shift Example
+------------------
+Figure 6.14
+
+Mean-shift clustering on the metallicity datas et used in figures 6.6 and 6.13.
+The method finds two clusters associated with local maxima of the distribution
+(interior of the circles). Points outside the circles have been determined to
+lie in the background. The mean shift does not attempt to model correlation
+in the clusters: that is, the resulting clusters are axis aligned.
+
+
+
+.. image:: ../images/chapter6/fig_meanshift_metallicity_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_meanshift_metallicity.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_meanshift_metallicity.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_meanshift_metallicity.py] <fig_meanshift_metallicity.py>`
+
+.. raw:: html
+    
+    </div>
+

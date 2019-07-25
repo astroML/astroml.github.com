@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter10_fig_arrival_time:
+
+
+Arrival Time Analysis
+---------------------
+Figure 10.24
+
+Modeling time-dependent flux based on arrival time data. The top-right panel
+shows the rate r(t) = r0[1 + a sin(omega t + phi)], along with the locations
+of the 104 detected photons. The remaining panels show the model contours
+calculated via MCMC; dotted lines indicate the input parameters. The likelihood
+used is from eq. 10.83. Note the strong covariance between phi and omega in
+the bottom-right panel.
+
+
+
+.. image:: ../images/chapter10/fig_arrival_time_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_arrival_time.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_arrival_time.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_arrival_time.py] <fig_arrival_time.py>`
+
+.. raw:: html
+    
+    </div>
+

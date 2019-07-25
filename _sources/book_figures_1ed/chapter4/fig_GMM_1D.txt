@@ -1,0 +1,65 @@
+
+
+.. _book_fig_chapter4_fig_GMM_1D:
+
+
+1D Gaussian Mixture Example
+---------------------------
+Figure 4.2.
+
+Example of a one-dimensional Gaussian mixture model with three components.
+The left panel shows a histogram of the data, along with the best-fit model
+for a mixture with three components. The center panel shows the model selection
+criteria AIC (see Section 4.3) and BIC (see Section 5.4) as a function of the
+number of components. Both are minimized for a three-component model. The
+right panel shows the probability that a given point is drawn from each class
+as a function of its position. For a given x value, the vertical extent of
+each region is proportional to that probability. Note that extreme values
+are most likely to belong to class 1.
+
+
+
+.. image:: ../images/chapter4/fig_GMM_1D_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_GMM_1D.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_GMM_1D.py
+    :lines: 16-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_GMM_1D.py] <fig_GMM_1D.py>`
+
+.. raw:: html
+    
+    </div>
+

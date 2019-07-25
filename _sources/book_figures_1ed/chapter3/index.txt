@@ -1,0 +1,255 @@
+
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+.. _book_fig_chapter3:
+
+Chapter 3: Probability and Statistical Distributions
+----------------------------------------------------
+This chapter discusses basic foundational principles, including probability
+and basic descriptive statistics. It also introduces several important
+probability distribution functions.
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+
+
+
+.. toctree::
+   :hidden:
+
+   ./fig_prob_sum
+
+   ./fig_conditional_probability
+
+   ./fig_contingency_table
+
+   ./fig_transform_distribution
+
+   ./fig_flux_errors
+
+   ./fig_kurtosis_skew
+
+   ./fig_uniform_distribution
+
+   ./fig_gaussian_distribution
+
+   ./fig_binomial_distribution
+
+   ./fig_poisson_distribution
+
+   ./fig_cauchy_distribution
+
+   ./fig_cauchy_median_mean
+
+   ./fig_laplace_distribution
+
+   ./fig_chi2_distribution
+
+   ./fig_student_t_distribution
+
+   ./fig_fisher_f_distribution
+
+   ./fig_beta_distribution
+
+   ./fig_gamma_distribution
+
+   ./fig_weibull_distribution
+
+   ./fig_central_limit
+
+   ./fig_uniform_mean
+
+   ./fig_bivariate_gaussian
+
+   ./fig_robust_pca
+
+   ./fig_correlations
+
+   ./fig_clone_distribution
+
+
+
+.. figure:: ./../images/chapter3/fig_prob_sum_1_thumb.png
+    :target: ./fig_prob_sum.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_prob_sum`
+
+.. figure:: ./../images/chapter3/fig_conditional_probability_1_thumb.png
+    :target: ./fig_conditional_probability.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_conditional_probability`
+
+.. figure:: ./../images/chapter3/fig_contingency_table_1_thumb.png
+    :target: ./fig_contingency_table.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_contingency_table`
+
+.. figure:: ./../images/chapter3/fig_transform_distribution_1_thumb.png
+    :target: ./fig_transform_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_transform_distribution`
+
+.. figure:: ./../images/chapter3/fig_flux_errors_1_thumb.png
+    :target: ./fig_flux_errors.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_flux_errors`
+
+.. figure:: ./../images/chapter3/fig_kurtosis_skew_1_thumb.png
+    :target: ./fig_kurtosis_skew.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_kurtosis_skew`
+
+.. figure:: ./../images/chapter3/fig_uniform_distribution_1_thumb.png
+    :target: ./fig_uniform_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_uniform_distribution`
+
+.. figure:: ./../images/chapter3/fig_gaussian_distribution_1_thumb.png
+    :target: ./fig_gaussian_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_gaussian_distribution`
+
+.. figure:: ./../images/chapter3/fig_binomial_distribution_1_thumb.png
+    :target: ./fig_binomial_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_binomial_distribution`
+
+.. figure:: ./../images/chapter3/fig_poisson_distribution_1_thumb.png
+    :target: ./fig_poisson_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_poisson_distribution`
+
+.. figure:: ./../images/chapter3/fig_cauchy_distribution_1_thumb.png
+    :target: ./fig_cauchy_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_cauchy_distribution`
+
+.. figure:: ./../images/chapter3/fig_cauchy_median_mean_1_thumb.png
+    :target: ./fig_cauchy_median_mean.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_cauchy_median_mean`
+
+.. figure:: ./../images/chapter3/fig_laplace_distribution_1_thumb.png
+    :target: ./fig_laplace_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_laplace_distribution`
+
+.. figure:: ./../images/chapter3/fig_chi2_distribution_1_thumb.png
+    :target: ./fig_chi2_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_chi2_distribution`
+
+.. figure:: ./../images/chapter3/fig_student_t_distribution_1_thumb.png
+    :target: ./fig_student_t_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_student_t_distribution`
+
+.. figure:: ./../images/chapter3/fig_fisher_f_distribution_1_thumb.png
+    :target: ./fig_fisher_f_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_fisher_f_distribution`
+
+.. figure:: ./../images/chapter3/fig_beta_distribution_1_thumb.png
+    :target: ./fig_beta_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_beta_distribution`
+
+.. figure:: ./../images/chapter3/fig_gamma_distribution_1_thumb.png
+    :target: ./fig_gamma_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_gamma_distribution`
+
+.. figure:: ./../images/chapter3/fig_weibull_distribution_1_thumb.png
+    :target: ./fig_weibull_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_weibull_distribution`
+
+.. figure:: ./../images/chapter3/fig_central_limit_1_thumb.png
+    :target: ./fig_central_limit.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_central_limit`
+
+.. figure:: ./../images/chapter3/fig_uniform_mean_1_thumb.png
+    :target: ./fig_uniform_mean.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_uniform_mean`
+
+.. figure:: ./../images/chapter3/fig_bivariate_gaussian_1_thumb.png
+    :target: ./fig_bivariate_gaussian.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_bivariate_gaussian`
+
+.. figure:: ./../images/chapter3/fig_robust_pca_1_thumb.png
+    :target: ./fig_robust_pca.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_robust_pca`
+
+.. figure:: ./../images/chapter3/fig_correlations_1_thumb.png
+    :target: ./fig_correlations.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_correlations`
+
+.. figure:: ./../images/chapter3/fig_clone_distribution_1_thumb.png
+    :target: ./fig_clone_distribution.html
+    :align: center
+
+    :ref:`book_fig_chapter3_fig_clone_distribution`
+
+
+
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+

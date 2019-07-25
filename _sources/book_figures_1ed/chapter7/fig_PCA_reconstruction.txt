@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter7_fig_PCA_reconstruction:
+
+
+SDSS Reconstruction from Eigenspectra
+-------------------------------------
+Figure 7.7
+
+The principal component vectors defined for the SDSS spectra can be used to
+interpolate across or reconstruct missing data. Examples of three masked
+spectral regions are shown comparing the reconstruction of the input spectrum
+(black line) using the mean and the first ten eigenspectra (blue line) The gray
+bands represent the masked region of the spectrum.
+
+
+
+.. image:: ../images/chapter7/fig_PCA_reconstruction_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_PCA_reconstruction.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_PCA_reconstruction.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_PCA_reconstruction.py] <fig_PCA_reconstruction.py>`
+
+.. raw:: html
+    
+    </div>
+

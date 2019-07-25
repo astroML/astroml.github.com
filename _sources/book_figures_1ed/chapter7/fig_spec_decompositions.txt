@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter7_fig_spec_decompositions:
+
+
+SDSS spectra Decompositions
+---------------------------
+Figure 7.4
+
+A comparison of the decomposition of SDSS spectra using PCA (left panel -
+see Section 7.3.1), ICA (middle panel - see Section 7.6) and NMF (right panel
+- see Section 7.4). The rank of the component increases from top to bottom. For
+the ICA and PCA the first component is the mean spectrum (NMF does not require
+mean subtraction). All of these techniques isolate a common set of spectral
+features (identifying features associated with the continuum and line
+emission). The ordering of the spectral components is technique dependent.
+
+
+
+.. image:: ../images/chapter7/fig_spec_decompositions_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_spec_decompositions.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_spec_decompositions.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_spec_decompositions.py] <fig_spec_decompositions.py>`
+
+.. raw:: html
+    
+    </div>
+

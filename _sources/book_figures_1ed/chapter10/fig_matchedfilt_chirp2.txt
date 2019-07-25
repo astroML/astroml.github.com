@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter10_fig_matchedfilt_chirp2:
+
+
+Matched Filter Chirp Search
+---------------------------
+Figure 10.27
+
+A ten-parameter chirp model (see eq. 10.87) fit to a time series. Seven of the
+parameters can be considered nuisance parameters, and we marginalize over
+them in the likelihood contours shown here.
+
+
+
+.. image:: ../images/chapter10/fig_matchedfilt_chirp2_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_matchedfilt_chirp2.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_matchedfilt_chirp2.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_matchedfilt_chirp2.py] <fig_matchedfilt_chirp2.py>`
+
+.. raw:: html
+    
+    </div>
+

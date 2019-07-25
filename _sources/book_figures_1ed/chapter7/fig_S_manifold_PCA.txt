@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter7_fig_S_manifold_PCA:
+
+
+Comparison of PCA and Manifold Learning
+---------------------------------------
+Figure 7.8
+
+A comparison of PCA and manifold learning. The top-left panel shows an example
+S-shaped data set (a two-dimensional manifold in a three-dimensional space).
+PCA identifies three principal components within the data. Projection onto the
+first two PCA components results in a mixing of the colors along the manifold.
+Manifold learning (LLE and IsoMap) preserves the local structure when
+projecting the data, preventing the mixing of the colors.
+
+
+
+.. image:: ../images/chapter7/fig_S_manifold_PCA_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_S_manifold_PCA.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_S_manifold_PCA.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_S_manifold_PCA.py] <fig_S_manifold_PCA.py>`
+
+.. raw:: html
+    
+    </div>
+

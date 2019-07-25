@@ -1,0 +1,59 @@
+
+
+.. _book_fig_chapter9_fig_rrlyrae_decisiontree:
+
+
+Decision Tree Classification of photometry
+------------------------------------------
+Figure 9.13
+
+Decision tree applied to the RR Lyrae data (see caption of figure 9.3 for
+details). This example uses tree depths of 7 and 12. With all four colors,this
+decision tree achieves a completeness of 0.569 and a contamination of 0.386.
+
+
+
+.. image:: ../images/chapter9/fig_rrlyrae_decisiontree_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rrlyrae_decisiontree.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_rrlyrae_decisiontree.py
+    :lines: 10-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_rrlyrae_decisiontree.py] <fig_rrlyrae_decisiontree.py>`
+
+.. raw:: html
+    
+    </div>
+

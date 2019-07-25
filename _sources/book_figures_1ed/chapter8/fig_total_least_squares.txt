@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter8_fig_total_least_squares:
+
+
+Total Least Squares Figure
+--------------------------
+Figure 8.6
+
+A linear fit to data with correlated errors in x and y. In the literature, this
+is often referred to as total least squares or errors-in-variables fitting. The
+left panel shows the lines of best fit; the right panel shows the likelihood
+contours in slope/intercept space. The points are the same set used for the
+examples in Hogg, Bovy & Lang 2010.
+
+
+
+.. image:: ../images/chapter8/fig_total_least_squares_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_total_least_squares.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_total_least_squares.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_total_least_squares.py] <fig_total_least_squares.py>`
+
+.. raw:: html
+    
+    </div>
+

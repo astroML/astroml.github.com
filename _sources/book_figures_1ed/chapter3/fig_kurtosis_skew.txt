@@ -1,0 +1,61 @@
+
+
+.. _book_fig_chapter3_fig_kurtosis_skew:
+
+
+Kurtosis and Skew
+-----------------
+Figure 3.6.
+
+An example of distributions with different skewness
+:math:`\Sigma` (top panel) and kurtosis K (bottom panel). The modified
+Gaussian in the upper panel is a normal distribution multiplied by a
+Gram-Charlier series (see eq. 4.70), with a0 = 2, a1 = 1, and a2 = 0.5.
+The log-normal has :math:`\sigma = 1.2`.
+
+
+
+.. image:: ../images/chapter3/fig_kurtosis_skew_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_kurtosis_skew.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_kurtosis_skew.py
+    :lines: 12-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_kurtosis_skew.py] <fig_kurtosis_skew.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,73 @@
+
+
+.. _book_fig_chapter8_fig_linreg_inline:
+
+
+Inline Bayesian Linear Regression
+---------------------------------
+Figure 8.1
+
+An example showing the online nature of Bayesian regression. The upper panel
+shows the four points used in regression, drawn from the line
+y = theta_1 x + theta_2 with theta_1 = 1 and theta_2 = 0. The lower panel shows
+the posterior pdf in the (theta_1, theta_2) plane as each point is added in
+sequence. For clarity, the implied dark regions for sigma > 3 have been
+removed. The fourth point is an upper-limit measurement of y, and the resulting
+posterior cuts off half the parameter space.
+
+
+
+.. rst-class:: horizontal
+
+
+.. image:: ../images/chapter8/fig_linreg_inline_1.png
+    :align: center
+    :scale: 100
+
+
+
+.. image:: ../images/chapter8/fig_linreg_inline_2.png
+    :align: center
+    :scale: 100
+
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_linreg_inline.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_linreg_inline.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_linreg_inline.py] <fig_linreg_inline.py>`
+
+.. raw:: html
+    
+    </div>
+

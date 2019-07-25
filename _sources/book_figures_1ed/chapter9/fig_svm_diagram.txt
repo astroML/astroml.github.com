@@ -1,0 +1,58 @@
+
+
+.. _book_fig_chapter9_fig_svm_diagram:
+
+
+SVM Diagram
+-----------
+Figure 9.9
+
+Illustration of SVM. The region between the dashed lines is the margin, and
+the points which the dashed lines touch are called the support vectors.
+
+
+
+.. image:: ../images/chapter9/fig_svm_diagram_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_svm_diagram.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_svm_diagram.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_svm_diagram.py] <fig_svm_diagram.py>`
+
+.. raw:: html
+    
+    </div>
+

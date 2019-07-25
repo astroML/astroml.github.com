@@ -1,0 +1,62 @@
+
+
+.. _book_fig_chapter5_fig_gaussgauss_mcmc:
+
+
+Gaussian Distribution with Gaussian Errors
+------------------------------------------
+Figure 5.25
+
+The posterior pdf for mu and sigma for a Gaussian distribution with
+heteroscedastic errors. This is the same data set as used in figure 5.7, but
+here each measurement error is assumed unknown, treated as a model parameter
+with a scale-invariant prior, and marginalized over to obtain the distribution
+of mu and sigma shown by contours. For comparison, the posterior pdf from
+figure 5.7 is shown by shaded contours.
+
+
+
+.. image:: ../images/chapter5/fig_gaussgauss_mcmc_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_gaussgauss_mcmc.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_gaussgauss_mcmc.py
+    :lines: 13-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_gaussgauss_mcmc.py] <fig_gaussgauss_mcmc.py>`
+
+.. raw:: html
+    
+    </div>
+

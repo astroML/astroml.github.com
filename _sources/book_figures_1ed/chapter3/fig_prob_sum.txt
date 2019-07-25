@@ -1,0 +1,57 @@
+
+
+.. _book_fig_chapter3_fig_prob_sum:
+
+
+Sum of Probabilities
+--------------------
+Figure 3.1.
+
+A representation of the sum of probabilities shown in eq.3.1.
+
+
+
+.. image:: ../images/chapter3/fig_prob_sum_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_prob_sum.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_prob_sum.py
+    :lines: 8-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_prob_sum.py] <fig_prob_sum.py>`
+
+.. raw:: html
+    
+    </div>
+

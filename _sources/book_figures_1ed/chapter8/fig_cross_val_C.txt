@@ -1,0 +1,63 @@
+
+
+.. _book_fig_chapter8_fig_cross_val_C:
+
+
+Cross Validation Examples
+-------------------------
+Figure 8.14
+
+The top panel shows the root-mean-square (rms) training error and validation
+error for our toy model (eq. 8.75) as a function of the polynomial degree d.
+The horizontal dotted line indicates the level of intrinsic scatter in the
+data. Models with polyno- mial degree from 3 to 5 minimize the validation rms
+error. The bottom panel shows the Bayesian information criterion (BIC) for the
+training and cross-validation subsamples. According to the BIC, a degree-3
+polynomial gives the best fit to this data set.
+
+
+
+.. image:: ../images/chapter8/fig_cross_val_C_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_cross_val_C.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_cross_val_C.py
+    :lines: 14-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_cross_val_C.py] <fig_cross_val_C.py>`
+
+.. raw:: html
+    
+    </div>
+

@@ -1,0 +1,58 @@
+
+
+.. _book_fig_appendix_fig_fft_text_example:
+
+
+Example of a Fourier Transform
+------------------------------
+Figure E.1
+
+An example of approximating the continuous Fourier transform of a function
+using the fast Fourier transform.
+
+
+
+.. image:: ../images/appendix/fig_fft_text_example_1.png
+    :scale: 100
+    :align: center
+
+
+.. raw:: html
+    
+    <div class="toggle_trigger"><a href="#">
+
+**Code output:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_fft_text_example.txt
+
+.. raw:: html
+
+    </div>
+    <div class="toggle_trigger" id="start_open"><a href="#">
+
+**Python source code:**
+
+.. raw:: html
+
+    </a></div>
+    <div class="toggle_container">
+
+.. literalinclude:: fig_fft_text_example.py
+    :lines: 9-
+
+.. raw:: html
+
+    </div>
+    <div align="right">
+
+:download:`[download source: fig_fft_text_example.py] <fig_fft_text_example.py>`
+
+.. raw:: html
+    
+    </div>
+
