@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>2. Installation of astroML &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>2. Installation of astroML &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Data Sets" href="datasets.html" />
     <link rel="prev" title="1. Introduction" href="introduction.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../index.html">
@@ -118,23 +105,6 @@ $(document).ready(function(){
 	    
 	    </a>
 	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="datasets.html" title="3. Data Sets"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    3. Data Sets
-	    </span>
-	    <span class="hiddenrellink">
-	    3. Data Sets
-	    </span>
-	    
-	    </a>
-	</div>
 	<!-- Ad a link to the 'up' page -->
 	<div class="spacer">
 	&nbsp;
@@ -150,7 +120,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -163,18 +133,14 @@ $(document).ready(function(){
 <li><a class="reference internal" href="#important-links">2.1. Important Links</a></li>
 <li><a class="reference internal" href="#installation">2.2. Installation</a><ul>
 <li><a class="reference internal" href="#python-package-index">2.2.1. Python Package Index</a></li>
-<li><a class="reference internal" href="#from-source">2.2.2. From Source</a><ul>
-<li><a class="reference internal" href="#core">2.2.2.1. Core</a></li>
-<li><a class="reference internal" href="#addons">2.2.2.2. Addons</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#testing">2.2.3. Testing</a></li>
+<li><a class="reference internal" href="#conda">2.2.2. Conda</a></li>
+<li><a class="reference internal" href="#from-source">2.2.3. From Source</a></li>
+<li><a class="reference internal" href="#testing">2.2.4. Testing</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#dependencies">2.3. Dependencies</a><ul>
 <li><a class="reference internal" href="#core-dependencies">2.3.1. Core Dependencies</a></li>
-<li><a class="reference internal" href="#add-on-dependencies">2.3.2. Add-on Dependencies</a></li>
-<li><a class="reference internal" href="#optional-dependencies">2.3.3. Optional Dependencies</a></li>
+<li><a class="reference internal" href="#optional-dependencies">2.3.2. Optional Dependencies</a></li>
 </ul>
 </li>
 </ul>
@@ -208,137 +174,107 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="installation-of-astroml">
 <span id="astroml-installation"></span><h1>2. Installation of astroML<a class="headerlink" href="#installation-of-astroml" title="Permalink to this headline">¶</a></h1>
-<p>The astroML project is split into two components.  The core <tt class="docutils literal"><span class="pre">astroML</span></tt>
+<p>The astroML project is split into two components.  The core <code class="docutils literal notranslate"><span class="pre">astroML</span></code>
 library is
 written in python only, and is designed to be very easy to install for
-any users, even those who don&#8217;t have a working C or fortran compiler.
-A companion library, <tt class="docutils literal"><span class="pre">astroML_addons</span></tt>, can be optionally installed for
-increased performance on certain algorithms.  Every algorithm
-in <tt class="docutils literal"><span class="pre">astroML_addons</span></tt> exists in the core <tt class="docutils literal"><span class="pre">astroML</span></tt> implementation, but the
-<tt class="docutils literal"><span class="pre">astroML_addons</span></tt> library contains faster and more efficient implementations.
-Furthermore, if <tt class="docutils literal"><span class="pre">astroML_addons</span></tt> is installed on your system, the core
-<tt class="docutils literal"><span class="pre">astroML</span></tt> library will import and use the faster routines by default.</p>
+any users, even those who don’t have a working C or fortran compiler.</p>
 <div class="section" id="important-links">
 <h2>2.1. Important Links<a class="headerlink" href="#important-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Source-code repository: <a class="reference external" href="http://github.com/astroML/astroML">http://github.com/astroML/astroML</a></li>
-<li>HTML documentation: <a class="reference external" href="http://astroML.github.com">http://astroML.github.com</a></li>
-<li>Python Package Index: <a class="reference external" href="http://pypi.python.org/pypi/astroML/">http://pypi.python.org/pypi/astroML/</a></li>
+<li><p>Source-code repository: <a class="reference external" href="http://github.com/astroML/astroML">http://github.com/astroML/astroML</a></p></li>
+<li><p>Source-code for book figures: <a class="reference external" href="http://github.com/astroML/astroML-figures/">http://github.com/astroML/astroML-figures/</a></p></li>
+<li><p>HTML documentation: <a class="reference external" href="http://astroML.github.com">http://astroML.github.com</a></p></li>
+<li><p>Python Package Index: <a class="reference external" href="http://pypi.python.org/pypi/astroML/">http://pypi.python.org/pypi/astroML/</a></p></li>
 </ul>
 </div>
 <div class="section" id="installation">
 <h2>2.2. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="python-package-index">
 <h3>2.2.1. Python Package Index<a class="headerlink" href="#python-package-index" title="Permalink to this headline">¶</a></h3>
-<p>The easiest way to install astroML is to use the Python Package Index <tt class="docutils literal"><span class="pre">pip</span></tt>
-command.  First make sure the <a class="reference internal" href="#astroml-dependencies"><em>dependencies</em></a>
+<p>The easiest way to install astroML is to use the Python Package Index <code class="docutils literal notranslate"><span class="pre">pip</span></code>
+command.  First make sure the <a class="reference internal" href="#astroml-dependencies"><span class="std std-ref">dependencies</span></a>
 are fulfilled: lacking some of these may not affect installation, but it
-will affect the ability to execute code and examples.  Next, use the <tt class="docutils literal"><span class="pre">pip</span></tt>
+will affect the ability to execute code and examples.  Next, use the <code class="docutils literal notranslate"><span class="pre">pip</span></code>
 command to install the packages:</p>
-<div class="highlight-python"><pre>pip install astroML
-pip install astroML_addons</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">astroML</span>
+</pre></div>
 </div>
-<p>(For information about <tt class="docutils literal"><span class="pre">pip</span></tt>, see <a class="reference external" href="http://pypi.python.org/pypi/pip">http://pypi.python.org/pypi/pip</a>)
-The first package is python-only, and should install easily on any system.  The
-second package requires a working C compliler.  <tt class="docutils literal"><span class="pre">astroML_addons</span></tt> provides
-optional faster implementations of some routines.</p>
+<p>(For information about <code class="docutils literal notranslate"><span class="pre">pip</span></code>, see <a class="reference external" href="http://pypi.python.org/pypi/pip">http://pypi.python.org/pypi/pip</a>)
+The first package is python-only, and should install easily on any system.</p>
+</div>
+<div class="section" id="conda">
+<h3>2.2.2. Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h3>
+<p>AstroML is also available as a conda package via the conda-forge or astropy
+channels.
+To install with conda, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">astropy</span> <span class="n">astroML</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="from-source">
-<h3>2.2.2. From Source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.3. From Source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h3>
 <p>To install the latest version from source, we recommend downloading astroML
 from the
 <a class="reference external" href="http://github.com/astroML/astroML">github repository</a> shown above.
-You must first make sure the <a class="reference internal" href="#astroml-dependencies"><em>dependencies</em></a>
+You must first make sure the <a class="reference internal" href="#astroml-dependencies"><span class="std std-ref">dependencies</span></a>
 are filled: lacking some
 of these dependencies will not affect installation, but will affect the
 ability to execute the code and examples</p>
-<p>Both the astroML and astroML_addons packages are installed using python&#8217;s
+<p>The astroML package is installed using python’s
 distutils.  The generic commands for installation are as follows:</p>
-<div class="highlight-python"><pre>python setup.py build
-python setup.py install</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">build</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
 </div>
-<p>The first line builds the source (i.e. for astroML_addons, this compiles the
-C code used in the package).  The second line
-installs the package so that you can use it from Python.  The default
-install location is in your <tt class="docutils literal"><span class="pre">site_packages</span></tt> or <tt class="docutils literal"><span class="pre">dist_packages</span></tt> directory
-in your default python path.</p>
+<p>The default install location is in your <code class="docutils literal notranslate"><span class="pre">site_packages</span></code> or
+<code class="docutils literal notranslate"><span class="pre">dist_packages</span></code> directory in your default python path.</p>
 <p>If you are on a machine without write access to the default installation
 location, the location can be specified when installing.  For example,
 you can specify an arbitrary directory for installation using:</p>
-<div class="highlight-python"><pre>python setup.py install --prefix='/some/path'</pre>
-</div>
-<div class="section" id="core">
-<h4>2.2.2.1. Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h4>
-<p>The core astroML package is pure python, so the build phase is trivial.  The
-installation script is <tt class="docutils literal"><span class="pre">setup.py</span></tt>, and the code can be installed as follows:</p>
-<div class="highlight-python"><pre>python setup.py build
-python setup.py install</pre>
-</div>
-</div>
-<div class="section" id="addons">
-<h4>2.2.2.2. Addons<a class="headerlink" href="#addons" title="Permalink to this headline">¶</a></h4>
-<p>The <tt class="docutils literal"><span class="pre">astroML_addons</span></tt> package requires a working C/C++ compiler for
-installation.  It can be installed using:</p>
-<div class="highlight-python"><pre>python setup_addons.py build
-python setup_addons.py install</pre>
-</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;/some/path&#39;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="testing">
-<h3>2.2.3. Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
-<p>After installation, unit tests can be run using the
-<a class="reference external" href="https://nose.readthedocs.org/en/latest/">nose</a> testing framework, either
-by typing <tt class="docutils literal"><span class="pre">nosetests</span> <span class="pre">astroML</span></tt>, or by typing <tt class="docutils literal"><span class="pre">make</span> <span class="pre">test</span></tt> in the source
-directory.  The latter will also run doc tests on the user guide.</p>
+<h3>2.2.4. Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p>After installation, unit tests can be run using the <a class="reference external" href="https://pytest.org">pytest</a> testing framework, by typing <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">astroML</span></code></p>
 </div>
 </div>
 <div class="section" id="dependencies">
 <span id="astroml-dependencies"></span><h2>2.3. Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>There are three levels of dependencies in astroML.  <em>Core</em> dependencies are
-required for the core <tt class="docutils literal"><span class="pre">astroML</span></tt> package.  <em>Add-on</em> dependencies are required
-for the performance <tt class="docutils literal"><span class="pre">astroML_addons</span></tt>.  <em>Optional</em> dependencies are required
-to run some (but not all) of the example scripts.  Individual example scripts
-will list their optional dependencies at the top of the file.</p>
+<p>There are two levels of dependencies in astroML.  <em>Core</em> dependencies are
+required for the core <code class="docutils literal notranslate"><span class="pre">astroML</span></code> package.  <em>Optional</em> dependencies are
+required to run some (but not all) of the example scripts.  Individual
+example scripts will list their optional dependencies at the top of the
+file.</p>
 <div class="section" id="core-dependencies">
 <h3>2.3.1. Core Dependencies<a class="headerlink" href="#core-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>The core <tt class="docutils literal"><span class="pre">astroML</span></tt> package requires the following:</p>
+<p>The core <code class="docutils literal notranslate"><span class="pre">astroML</span></code> package requires the following:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://python.org">Python</a> version 2.6.x - 2.7.x
-(astroML does not yet support python 3.x)</li>
-<li><a class="reference external" href="http://numpy.scipy.org/">Numpy</a> &gt;= 1.4</li>
-<li><a class="reference external" href="http://www.scipy.org/">Scipy</a> &gt;= 0.7</li>
-<li><a class="reference external" href="http://scikit-learn.org/">scikit-learn</a> &gt;= 0.10</li>
-<li><a class="reference external" href="http://matplotlib.org/">matplotlib</a> &gt;= 0.99</li>
-<li><a class="reference external" href="http://www.astropy.org/">astropy</a> &gt;= 0.2.5
-AstroPy is required to read Flexible Image Transport
-System (FITS) files, which are used by several datasets.</li>
+<li><p><a class="reference external" href="http://python.org">Python</a> version 3.5+</p></li>
+<li><p><a class="reference external" href="http://numpy.scipy.org/">Numpy</a> &gt;= 1.4</p></li>
+<li><p><a class="reference external" href="http://www.scipy.org/">Scipy</a> &gt;= 0.14</p></li>
+<li><p><a class="reference external" href="http://scikit-learn.org/">scikit-learn</a> &gt;= 0.18</p></li>
+<li><p><a class="reference external" href="http://matplotlib.org/">matplotlib</a> &gt;= 0.99</p></li>
+<li><p><a class="reference external" href="http://www.astropy.org/">astropy</a> &gt;= 1.1</p></li>
 </ul>
-<p>This configuration matches the Ubuntu 10.04 LTS release from April 2010,
-with the addition of scikit-learn.</p>
-<p>To run unit tests, you will also need nose &gt;= 0.10</p>
-</div>
-<div class="section" id="add-on-dependencies">
-<h3>2.3.2. Add-on Dependencies<a class="headerlink" href="#add-on-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>The fast code in <tt class="docutils literal"><span class="pre">astroML_performance</span></tt> requires a working C/C++ compiler.</p>
+<p>To run unit tests, you will also need pytest.</p>
 </div>
 <div class="section" id="optional-dependencies">
-<h3>2.3.3. Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.2. Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this headline">¶</a></h3>
 <p>Several of the example scripts require specialized or upgraded packages.  These
 requirements are listed at the top of the example scripts.</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.scipy.org">scipy version 0.11</a> added a sparse graph submodule.
-The minimum spanning tree example requires scipy &gt;= 0.11</li>
-<li><a class="reference external" href="http://pymc-devs.github.com/pymc/">pyMC</a>
+<li><p><a href="#id1"><span class="problematic" id="id2">`pyMC3 https://docs.pymc.io/`_</span></a>
 provides a nice interface for Markov-Chain Monte Carlo.  Several examples
-use pyMC for exploration of high-dimensional spaces.  The examples
-were written with pymc version 2.2</li>
-<li><a class="reference external" href="https://github.com/healpy/healpy">healpy</a> provides an interface to
+use pyMC3 for exploration of high-dimensional spaces.</p></li>
+<li><p><a class="reference external" href="https://github.com/healpy/healpy">healpy</a> provides an interface to
 the HEALPix pixelization scheme, as well as fast spherical harmonic
-transforms.</li>
+transforms.</p></li>
 </ul>
 </div>
 </div>
@@ -354,11 +290,11 @@ transforms.</li>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../_sources/user_guide/installation.txt"
+    <a href="../_sources/user_guide/installation.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>
