@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.datasets.moving_objects &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.datasets.moving_objects</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">gzip</span> <span class="k">import</span> <span class="n">GzipFile</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.tools</span> <span class="k">import</span> <span class="n">download_with_progress_bar</span>
+<span class="kn">from</span> <span class="nn">..py3k_compat</span> <span class="k">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">get_data_home</span>
+
+<span class="n">DATA_URL</span> <span class="o">=</span> <span class="s1">&#39;http://www.astro.washington.edu/users/ivezic/sdssmoc/ADR3.dat.gz&#39;</span>
+
+<span class="n">ARCHIVE_FILE</span> <span class="o">=</span> <span class="s1">&#39;moving_objects.npy&#39;</span>
+
+<span class="n">ADR4_dtype</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;moID&#39;</span><span class="p">,</span> <span class="s1">&#39;a6&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;sdss_run&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;sdss_col&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;sdss_field&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;sdss_obj&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;rowc&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;colc&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mjd&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;ra&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;dec&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;phi&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;vmu&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;vmu_err&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;vnu&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;vnu_err&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;vlambda&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;vbeta&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_u&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;err_u&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_g&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;err_g&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_r&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;err_r&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_i&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;err_i&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_z&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;err_z&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_a&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;err_a&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_V&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_B&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;ast_flag&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;ast_num&#39;</span><span class="p">,</span> <span class="s1">&#39;i8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;ast_designation&#39;</span><span class="p">,</span> <span class="s1">&#39;a17&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;ast_det_count&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;ast_det_total&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;ast_flags&#39;</span><span class="p">,</span> <span class="s1">&#39;i8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;ra_comp&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;dec_comp&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;mag_comp&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;r_helio&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;r_geo&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;phase&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;cat_id&#39;</span><span class="p">,</span> <span class="s1">&#39;a15&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Arc&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;asc_node&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;arg_peri&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;PEcat_id&#39;</span><span class="p">,</span> <span class="s1">&#39;a17&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;aprime&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;eprime&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;sin_iprime&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">)]</span>
+
+
+<div class="viewcode-block" id="fetch_moving_objects"><a class="viewcode-back" href="../../../modules/generated/astroML.datasets.fetch_moving_objects.html#astroML.datasets.fetch_moving_objects">[docs]</a><span class="k">def</span> <span class="nf">fetch_moving_objects</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">Parker2008_cuts</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loader for SDSS moving objects datasets</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : optional, default=None</span>
+<span class="sd">        Specify another download and cache folder for the datasets. By default</span>
+<span class="sd">        all scikit learn data is stored in &#39;~/astroML_data&#39; subfolders.</span>
+
+<span class="sd">    download_if_missing : optional, default=True</span>
+<span class="sd">        If False, raise a IOError if the data is not locally available</span>
+<span class="sd">        instead of trying to download the data from the source site.</span>
+
+<span class="sd">    Parker2008_cuts : bool (optional)</span>
+<span class="sd">        If true, apply cuts on magnitudes and orbital parameters used in</span>
+<span class="sd">        Parker et al. 2008</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : recarray, shape = (??,)</span>
+<span class="sd">        record array containing 60 values for each item</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    See http://www.astro.washington.edu/users/ivezic/sdssmoc/sdssmoc3.html</span>
+<span class="sd">    Columns 0, 35, 45, and 56 are left out of the fetch: they are string</span>
+<span class="sd">    parameters.  Only columns with known orbital parameters are saved.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from astroML.datasets import fetch_moving_objects</span>
+<span class="sd">    &gt;&gt;&gt; data = fetch_moving_objects()  # doctest: +IGNORE_OUTPUT</span>
+<span class="sd">    &gt;&gt;&gt; print(len(data))  # number of objects</span>
+<span class="sd">    43424</span>
+<span class="sd">    &gt;&gt;&gt; u_g = data[&#39;mag_u&#39;] - data[&#39;mag_g&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; print(u_g[:5])  # first five u-g colors of the dataset</span>
+<span class="sd">    [1.4899998 1.7800007 1.6500015 2.0100002 1.8199997]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data_home</span> <span class="o">=</span> <span class="n">get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+
+    <span class="n">archive_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_home</span><span class="p">,</span> <span class="n">ARCHIVE_FILE</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archive_file</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">download_if_missing</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;data not present on disk. &#39;</span>
+                          <span class="s1">&#39;set download_if_missing=True to download&#39;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;downloading moving object catalog from </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">&quot;</span>
+              <span class="o">%</span> <span class="p">(</span><span class="n">DATA_URL</span><span class="p">,</span> <span class="n">data_home</span><span class="p">))</span>
+
+        <span class="n">zipped_buf</span> <span class="o">=</span> <span class="n">download_with_progress_bar</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">,</span> <span class="n">return_buffer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">gzf</span> <span class="o">=</span> <span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">zipped_buf</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;uncompressing file...&quot;</span><span class="p">)</span>
+        <span class="n">extracted_buf</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">gzf</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">extracted_buf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ADR4_dtype</span><span class="p">)</span>
+
+        <span class="c1"># Select unique sources with known orbital elements</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ast_flag&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ast_det_count&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span>
+
+        <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">archive_file</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">archive_file</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">Parker2008_cuts</span><span class="p">:</span>
+        <span class="n">i_z</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_i&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_z&#39;</span><span class="p">]</span>
+
+        <span class="n">flag</span> <span class="o">=</span> <span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;aprime&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.01</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;aprime&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_a&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_a&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">i_z</span> <span class="o">&lt;=</span> <span class="mf">0.6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i_z</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">))</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">data</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

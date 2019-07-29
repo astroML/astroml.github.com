@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.datasets.generated &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.datasets.generated</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="k">import</span> <span class="n">FlatLambdaCDM</span>
+
+<span class="kn">from</span> <span class="nn">..density_estimation</span> <span class="k">import</span> <span class="n">FunctionDistribution</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="n">check_random_state</span>
+
+
+<span class="k">def</span> <span class="nf">redshift_distribution</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">z0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">z</span> <span class="o">/</span> <span class="n">z0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">z</span> <span class="o">/</span> <span class="n">z0</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="generate_mu_z"><a class="viewcode-back" href="../../../modules/generated/astroML.datasets.generate_mu_z.html#astroML.datasets.generate_mu_z">[docs]</a><span class="k">def</span> <span class="nf">generate_mu_z</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z0</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">dmu_0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">dmu_1</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cosmo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a dataset of distance modulus vs redshift.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    size : int or tuple</span>
+<span class="sd">        size of generated data</span>
+
+<span class="sd">    z0 : float</span>
+<span class="sd">        parameter in redshift distribution:</span>
+<span class="sd">        p(z) ~ (z / z0)^2 exp[-1.5 (z / z0)]</span>
+
+<span class="sd">    dmu_0, dmu_1 : float</span>
+<span class="sd">        specify the error in mu, dmu = dmu_0 + dmu_1 * mu</span>
+
+<span class="sd">    random_state : None, int, or np.random.RandomState instance</span>
+<span class="sd">        random seed or random number generator</span>
+
+<span class="sd">    cosmo : astropy.cosmology instance specifying cosmology</span>
+<span class="sd">        to use when generating the sample.  If not provided,</span>
+<span class="sd">        a Flat Lambda CDM model with H0=71, Om0=0.27, Tcmb=0 is used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    z, mu, dmu : ndarrays</span>
+<span class="sd">        arrays of shape ``size``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">cosmo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cosmo</span> <span class="o">=</span> <span class="n">FlatLambdaCDM</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mi">71</span><span class="p">,</span> <span class="n">Om0</span><span class="o">=</span><span class="mf">0.27</span><span class="p">,</span> <span class="n">Tcmb0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">zdist</span> <span class="o">=</span> <span class="n">FunctionDistribution</span><span class="p">(</span><span class="n">redshift_distribution</span><span class="p">,</span> <span class="n">func_args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">z0</span><span class="o">=</span><span class="n">z0</span><span class="p">),</span>
+                                 <span class="n">xmin</span><span class="o">=</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">z0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">10</span> <span class="o">*</span> <span class="n">z0</span><span class="p">,</span>
+                                 <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="n">z_sample</span> <span class="o">=</span> <span class="n">zdist</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">mu_sample</span> <span class="o">=</span> <span class="n">cosmo</span><span class="o">.</span><span class="n">distmod</span><span class="p">(</span><span class="n">z_sample</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="n">dmu</span> <span class="o">=</span> <span class="n">dmu_0</span> <span class="o">+</span> <span class="n">dmu_1</span> <span class="o">*</span> <span class="n">mu_sample</span>
+    <span class="n">mu_sample</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu_sample</span><span class="p">,</span> <span class="n">dmu</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">z_sample</span><span class="p">,</span> <span class="n">mu_sample</span><span class="p">,</span> <span class="n">dmu</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

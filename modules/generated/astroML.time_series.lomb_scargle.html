@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11.5.1.1. astroML.time_series.lomb_scargle &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11.5.1.1. astroML.time_series.lomb_scargle &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11.5.1.2. astroML.time_series.lomb_scargle_bootstrap" href="astroML.time_series.lomb_scargle_bootstrap.html" />
     <link rel="prev" title="11.4.24. astroML.datasets.generate_mu_z" href="astroML.datasets.generate_mu_z.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    11.4.24. astroML...
+	    11.4.24. astr...
 	    </span>
 	    <span class="hiddenrellink">
 	    11.4.24. astroML.datasets.generate_mu_z
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="astroML.time_series.lomb_scargle_bootstrap.html" title="11.5.1.2. astroML.time_series.lomb_scargle_bootstrap"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.5.1.2. astroM...
-	    </span>
-	    <span class="hiddenrellink">
-	    11.5.1.2. astroML.time_series.lomb_scargle_bootstrap
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	11. Class refere...
+	11. Class reference
 	</span>
 	<span class="hiddenrellink">
 	11. Class reference
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,98 +164,75 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="astroml-time-series-lomb-scargle">
 <h1>11.5.1.1. astroML.time_series.lomb_scargle<a class="headerlink" href="#astroml-time-series-lomb-scargle" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.time_series.lomb_scargle">
-<tt class="descclassname">astroML.time_series.</tt><tt class="descname">lomb_scargle</tt><big>(</big><big>)</big><a class="headerlink" href="#astroML.time_series.lomb_scargle" title="Permalink to this definition">¶</a></dt>
-<dd><p>(Generalized) Lomb-Scargle Periodogram with Floating Mean</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>t</strong> : array_like</p>
-<blockquote>
-<div><p>sequence of times</p>
-</div></blockquote>
-<p><strong>y</strong> : array_like</p>
-<blockquote>
-<div><p>sequence of observations</p>
-</div></blockquote>
-<p><strong>dy</strong> : array_like</p>
-<blockquote>
-<div><p>sequence of observational errors</p>
-</div></blockquote>
-<p><strong>omega</strong> : array_like</p>
-<blockquote>
-<div><p>frequencies at which to evaluate p(omega)</p>
-</div></blockquote>
-<p><strong>generalized</strong> : bool</p>
-<blockquote>
-<div><p>if True (default) use generalized lomb-scargle method
+<code class="sig-prename descclassname">astroML.time_series.</code><code class="sig-name descname">lomb_scargle</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">y</em>, <em class="sig-param">dy</em>, <em class="sig-param">omega</em>, <em class="sig-param">generalized=True</em>, <em class="sig-param">subtract_mean=True</em>, <em class="sig-param">significance=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/time_series/periodogram.html#lomb_scargle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.time_series.lomb_scargle" title="Permalink to this definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4: </span>The lomb_scargle function is deprecated and may be removed in a future version.
+    Use astropy.stats.LombScargle instead.</p>
+</div>
+<p>(Generalized) Lomb-Scargle Periodogram with Floating Mean</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>t</strong><span class="classifier">array_like</span></dt><dd><p>sequence of times</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array_like</span></dt><dd><p>sequence of observations</p>
+</dd>
+<dt><strong>dy</strong><span class="classifier">array_like</span></dt><dd><p>sequence of observational errors</p>
+</dd>
+<dt><strong>omega</strong><span class="classifier">array_like</span></dt><dd><p>frequencies at which to evaluate p(omega)</p>
+</dd>
+<dt><strong>generalized</strong><span class="classifier">bool</span></dt><dd><p>if True (default) use generalized lomb-scargle method
 otherwise, use classic lomb-scargle.</p>
-</div></blockquote>
-<p><strong>subtract_mean</strong> : bool</p>
-<blockquote>
-<div><p>if True (default) subtract the sample mean from the data before
-computing the periodogram.  Only referenced if generalized is False.</p>
-</div></blockquote>
-<p><strong>significance</strong> : None or float or ndarray</p>
-<blockquote>
-<div><p>if specified, then this is a list of significances to compute
+</dd>
+<dt><strong>subtract_mean</strong><span class="classifier">bool</span></dt><dd><p>if True (default) subtract the sample mean from the data before
+computing the periodogram.  Only referenced if generalized is False</p>
+</dd>
+<dt><strong>significance</strong><span class="classifier">None or float or ndarray</span></dt><dd><p>if specified, then this is a list of significances to compute
 for the results.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>p</strong> : array_like</p>
-<blockquote>
-<div><p>Lomb-Scargle power associated with each frequency omega</p>
-</div></blockquote>
-<p><strong>z</strong> : array_like</p>
-<blockquote class="last">
-<div><p>if significance is specified, this gives the levels corresponding
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>p</strong><span class="classifier">array_like</span></dt><dd><p>Lomb-Scargle power associated with each frequency omega</p>
+</dd>
+<dt><strong>z</strong><span class="classifier">array_like</span></dt><dd><p>if significance is specified, this gives the levels corresponding
 to the desired significance (using the Scargle 1982 formalism)</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
-<p>The algorithm is based on reference <a class="reference internal" href="#r21">[R21]</a>.  The result for generalized=False
+<p>The algorithm is based on reference <a class="reference internal" href="#r5c10e741e853-1" id="id1">[1]</a>.  The result for generalized=False
 is given by equation 4 of this work, while the result for generalized=True
 is given by equation 20.</p>
 <p>Note that the normalization used in this reference is different from that
-used in other places in the literature (e.g. <a class="reference internal" href="#r22">[R22]</a>).  For a discussion of
-normalization and false-alarm probability, see <a class="reference internal" href="#r21">[R21]</a>.</p>
-<p>To recover the normalization used in Scargle <a class="reference internal" href="#r23">[R23]</a>, the results should
+used in other places in the literature (e.g. <a class="reference internal" href="#r5c10e741e853-2" id="id2">[2]</a>).  For a discussion of
+normalization and false-alarm probability, see <a class="reference internal" href="#r5c10e741e853-1" id="id3">[1]</a>.</p>
+<p>To recover the normalization used in Scargle <a class="reference internal" href="#r5c10e741e853-3" id="id4">[3]</a>, the results should
 be multiplied by (N - 1) / 2 where N is the number of data points.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r21" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R21]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id5">3</a>)</em> <ol class="last upperalpha simple" start="13">
-<li>Zechmeister and M. Kurster, A&amp;A 496, 577-584 (2009)</li>
+<dl class="citation">
+<dt class="label" id="r5c10e741e853-1"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id5">3</a>)</span></dt>
+<dd><ol class="upperalpha simple" start="13">
+<li><p>Zechmeister and M. Kurster, A&amp;A 496, 577-584 (2009)</p></li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="r22" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R22]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> <ol class="last upperalpha simple" start="23">
-<li>Press et al, Numerical Recipies in C (2002)</li>
+</dd>
+<dt class="label" id="r5c10e741e853-2"><span class="brackets">2</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id6">2</a>)</span></dt>
+<dd><ol class="upperalpha simple" start="23">
+<li><p>Press et al, Numerical Recipes in C (2002)</p></li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="r23" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R23]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> Scargle, J.D. 1982, ApJ 263:835-853</td></tr>
-</tbody>
-</table>
+</dd>
+<dt class="label" id="r5c10e741e853-3"><span class="brackets">3</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id7">2</a>)</span></dt>
+<dd><p>Scargle, J.D. 1982, ApJ 263:835-853</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -299,11 +247,11 @@ be multiplied by (N - 1) / 2 where N is the number of data points.</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.time_series.lomb_scargle.txt"
+    <a href="../../_sources/modules/generated/astroML.time_series.lomb_scargle.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

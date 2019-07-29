@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.density_estimation.bayesian_blocks &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.density_estimation.bayesian_blocks</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Bayesian Block implementation</span>
+<span class="sd">=============================</span>
+
+<span class="sd">Dynamic programming algorithm for finding the optimal adaptive-width histogram.</span>
+
+<span class="sd">Based on Scargle et al 2012 [1]_</span>
+
+<span class="sd">References</span>
+<span class="sd">----------</span>
+<span class="sd">.. [1] http://adsabs.harvard.edu/abs/2012arXiv1207.5578S</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># TODO: implement other fitness functions from appendix B of Scargle 2012</span>
+
+<span class="kn">from</span> <span class="nn">astroML.utils</span> <span class="k">import</span> <span class="n">deprecated</span>
+<span class="kn">from</span> <span class="nn">astroML.utils.exceptions</span> <span class="k">import</span> <span class="n">AstroMLDeprecationWarning</span>
+
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;astropy.stats.FitnessFunc&#39;</span><span class="p">,</span>
+            <span class="n">warning_type</span><span class="o">=</span><span class="n">AstroMLDeprecationWarning</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">FitnessFunc</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for fitness functions</span>
+
+<span class="sd">    Each fitness function class has the following:</span>
+<span class="sd">    - fitness(...) : compute fitness function.</span>
+<span class="sd">       Arguments accepted by fitness must be among [T_k, N_k, a_k, b_k, c_k]</span>
+<span class="sd">    - prior(N, Ntot) : compute prior on N given a total number of points Ntot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+
+    <span class="k">def</span> <span class="nf">validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that input is valid&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">prior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0_prior</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_prior</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">p0_prior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">):</span>
+        <span class="c1"># eq. 21 from Scargle 2012</span>
+        <span class="k">return</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">73.53</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">**</span> <span class="o">-</span><span class="mf">0.478</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">gamma_prior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Basic prior, parametrized by gamma (eq. 3 in Scargle 2012)&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">)</span>
+                    <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">**</span> <span class="p">(</span><span class="n">Ntot</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                    <span class="o">+</span> <span class="n">N</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">))</span>
+
+    <span class="c1"># the fitness_args property will return the list of arguments accepted by</span>
+    <span class="c1"># the method fitness().  This allows more efficient computation below.</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Python 2</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">func_code</span><span class="o">.</span><span class="n">co_varnames</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="vm">__code__</span><span class="o">.</span><span class="n">co_varnames</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;astropy.stats.Events&#39;</span><span class="p">,</span>
+            <span class="n">warning_type</span><span class="o">=</span><span class="n">AstroMLDeprecationWarning</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Events</span><span class="p">(</span><span class="n">FitnessFunc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fitness for binned or unbinned events</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    p0 : float</span>
+<span class="sd">        False alarm probability, used to compute the prior on N</span>
+<span class="sd">        (see eq. 21 of Scargle 2012).  Default prior is for p0 = 0.</span>
+<span class="sd">    gamma : float or None</span>
+<span class="sd">        If specified, then use this gamma to compute the general prior form,</span>
+<span class="sd">        p ~ gamma^N.  If gamma is specified, p0 is ignored.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N_k</span><span class="p">,</span> <span class="n">T_k</span><span class="p">):</span>
+        <span class="c1"># eq. 19 from Scargle 2012</span>
+        <span class="k">return</span> <span class="n">N_k</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">N_k</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">T_k</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">prior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_prior</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># eq. 21 from Scargle 2012</span>
+            <span class="k">return</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">73.53</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">**</span> <span class="o">-</span><span class="mf">0.478</span><span class="p">))</span>
+
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;astropy.stats.RegularEvents&#39;</span><span class="p">,</span>
+            <span class="n">warning_type</span><span class="o">=</span><span class="n">AstroMLDeprecationWarning</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">RegularEvents</span><span class="p">(</span><span class="n">FitnessFunc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fitness for regular events</span>
+
+<span class="sd">    This is for data which has a fundamental &quot;tick&quot; length, so that all</span>
+<span class="sd">    measured values are multiples of this tick length.  In each tick, there</span>
+<span class="sd">    are either zero or one counts.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dt : float</span>
+<span class="sd">        tick rate for data</span>
+<span class="sd">    gamma : float</span>
+<span class="sd">        specifies the prior on the number of bins: p ~ gamma^N</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+
+    <span class="k">def</span> <span class="nf">validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+        <span class="n">unique_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">list</span><span class="p">(</span><span class="n">unique_x</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Regular events must have only 0 and 1 in x&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T_k</span><span class="p">,</span> <span class="n">N_k</span><span class="p">):</span>
+        <span class="c1"># Eq. 75 of Scargle 2012</span>
+        <span class="n">M_k</span> <span class="o">=</span> <span class="n">T_k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
+        <span class="n">N_over_M</span> <span class="o">=</span> <span class="n">N_k</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">M_k</span>
+
+        <span class="n">eps</span> <span class="o">=</span> <span class="mf">1E-8</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">N_over_M</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">eps</span><span class="p">):</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;regular events: N/M &gt; 1.  &#39;</span>
+                          <span class="s1">&#39;Is the time step correct?&#39;</span><span class="p">)</span>
+
+        <span class="n">one_m_NM</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">N_over_M</span>
+        <span class="n">N_over_M</span><span class="p">[</span><span class="n">N_over_M</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">one_m_NM</span><span class="p">[</span><span class="n">one_m_NM</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">N_k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">N_over_M</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">M_k</span> <span class="o">-</span> <span class="n">N_k</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">one_m_NM</span><span class="p">)</span>
+
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;astropy.stats.PointMeasures&#39;</span><span class="p">,</span>
+            <span class="n">warning_type</span><span class="o">=</span><span class="n">AstroMLDeprecationWarning</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">PointMeasures</span><span class="p">(</span><span class="n">FitnessFunc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fitness for point measures</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    gamma : float</span>
+<span class="sd">        specifies the prior on the number of bins: p ~ gamma^N</span>
+<span class="sd">        if gamma is not specified, then a prior based on simulations</span>
+<span class="sd">        will be used (see sec 3.3 of Scargle 2012)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+
+    <span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_k</span><span class="p">,</span> <span class="n">b_k</span><span class="p">):</span>
+        <span class="c1"># eq. 41 from Scargle 2012</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">b_k</span> <span class="o">*</span> <span class="n">b_k</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">a_k</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">prior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_prior</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">p0_prior</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># eq. at end of sec 3.3 in Scargle 2012</span>
+            <span class="k">return</span> <span class="mf">1.32</span> <span class="o">+</span> <span class="mf">0.577</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="bayesian_blocks"><a class="viewcode-back" href="../../../modules/generated/astroML.density_estimation.bayesian_blocks.html#astroML.density_estimation.bayesian_blocks">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;astropy.stats.bayesian_blocks&#39;</span><span class="p">,</span>
+            <span class="n">warning_type</span><span class="o">=</span><span class="n">AstroMLDeprecationWarning</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">bayesian_blocks</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">fitness</span><span class="o">=</span><span class="s1">&#39;events&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Bayesian Blocks Implementation</span>
+
+<span class="sd">    This is a flexible implementation of the Bayesian Blocks algorithm</span>
+<span class="sd">    described in Scargle 2012 [1]_</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t : array_like</span>
+<span class="sd">        data times (one dimensional, length N)</span>
+<span class="sd">    x : array_like (optional)</span>
+<span class="sd">        data values</span>
+<span class="sd">    sigma : array_like or float (optional)</span>
+<span class="sd">        data errors</span>
+<span class="sd">    fitness : str or object</span>
+<span class="sd">        the fitness function to use.</span>
+<span class="sd">        If a string, the following options are supported:</span>
+
+<span class="sd">        - &#39;events&#39; : binned or unbinned event data</span>
+<span class="sd">            extra arguments are `p0`, which gives the false alarm probability</span>
+<span class="sd">            to compute the prior, or `gamma` which gives the slope of the</span>
+<span class="sd">            prior on the number of bins.</span>
+<span class="sd">        - &#39;regular_events&#39; : non-overlapping events measured at multiples</span>
+<span class="sd">            of a fundamental tick rate, `dt`, which must be specified as an</span>
+<span class="sd">            additional argument.  The prior can be specified through `gamma`,</span>
+<span class="sd">            which gives the slope of the prior on the number of bins.</span>
+<span class="sd">        - &#39;measures&#39; : fitness for a measured sequence with Gaussian errors</span>
+<span class="sd">            The prior can be specified using `gamma`, which gives the slope</span>
+<span class="sd">            of the prior on the number of bins.  If `gamma` is not specified,</span>
+<span class="sd">            then a simulation-derived prior will be used.</span>
+
+<span class="sd">        Alternatively, the fitness can be a user-specified object of</span>
+<span class="sd">        type derived from the FitnessFunc class.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    edges : ndarray</span>
+<span class="sd">        array containing the (N+1) bin edges</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Event data:</span>
+
+<span class="sd">    &gt;&gt;&gt; t = np.random.normal(size=100)</span>
+<span class="sd">    &gt;&gt;&gt; bins = bayesian_blocks(t, fitness=&#39;events&#39;, p0=0.01)</span>
+
+<span class="sd">    Event data with repeats:</span>
+
+<span class="sd">    &gt;&gt;&gt; t = np.random.normal(size=100)</span>
+<span class="sd">    &gt;&gt;&gt; t[80:] = t[:20]</span>
+<span class="sd">    &gt;&gt;&gt; bins = bayesian_blocks(t, fitness=&#39;events&#39;, p0=0.01)</span>
+
+<span class="sd">    Regular event data:</span>
+
+<span class="sd">    &gt;&gt;&gt; dt = 0.01</span>
+<span class="sd">    &gt;&gt;&gt; t = dt * np.arange(1000)</span>
+<span class="sd">    &gt;&gt;&gt; x = np.zeros(len(t))</span>
+<span class="sd">    &gt;&gt;&gt; x[np.random.randint(0, len(t), int(len(t) / 10))] = 1</span>
+<span class="sd">    &gt;&gt;&gt; bins = bayesian_blocks(t, x, fitness=&#39;regular_events&#39;, dt=dt, gamma=0.9)</span>
+
+<span class="sd">    Measured point data with errors:</span>
+
+<span class="sd">    &gt;&gt;&gt; t = 100 * np.random.random(100)</span>
+<span class="sd">    &gt;&gt;&gt; x = np.exp(-0.5 * (t - 50) ** 2)</span>
+<span class="sd">    &gt;&gt;&gt; sigma = 0.1</span>
+<span class="sd">    &gt;&gt;&gt; x_obs = np.random.normal(x, sigma)</span>
+<span class="sd">    &gt;&gt;&gt; bins = bayesian_blocks(t, x=x_obs, fitness=&#39;measures&#39;)</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Scargle, J `et al.` (2012)</span>
+<span class="sd">           http://adsabs.harvard.edu/abs/2012arXiv1207.5578S</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    astroML.plotting.hist : histogram plotting function which can make use</span>
+<span class="sd">                            of bayesian blocks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># validate array input</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+
+    <span class="c1"># verify the fitness function</span>
+    <span class="k">if</span> <span class="n">fitness</span> <span class="o">==</span> <span class="s1">&#39;events&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;x must be integer counts for fitness=&#39;events&#39;&quot;</span><span class="p">)</span>
+        <span class="n">fitfunc</span> <span class="o">=</span> <span class="n">Events</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fitness</span> <span class="o">==</span> <span class="s1">&#39;regular_events&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;x must be 0 or 1 for fitness=&#39;regular_events&#39;&quot;</span><span class="p">)</span>
+        <span class="n">fitfunc</span> <span class="o">=</span> <span class="n">RegularEvents</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fitness</span> <span class="o">==</span> <span class="s1">&#39;measures&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;x must be specified for fitness=&#39;measures&#39;&quot;</span><span class="p">)</span>
+        <span class="n">fitfunc</span> <span class="o">=</span> <span class="n">PointMeasures</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="nb">hasattr</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="s1">&#39;fitness&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="nb">hasattr</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="s1">&#39;prior&#39;</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;fitness not understood&quot;</span><span class="p">)</span>
+        <span class="n">fitfunc</span> <span class="o">=</span> <span class="n">fitness</span>
+
+    <span class="c1"># find unique values of t</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">t</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">unq_t</span><span class="p">,</span> <span class="n">unq_ind</span><span class="p">,</span> <span class="n">unq_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                        <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># if x is not specified, x will be counts at each time</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;If sigma is specified, x must be specified&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unq_t</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">unq_inv</span><span class="p">)</span>
+
+        <span class="n">t</span> <span class="o">=</span> <span class="n">unq_t</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># if x is specified, then we need to sort t and x together</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Size of t and x does not match&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unq_t</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Repeated values in t not supported when &quot;</span>
+                             <span class="s2">&quot;x is specified&quot;</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">unq_t</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">unq_ind</span><span class="p">]</span>
+
+    <span class="c1"># verify the given sigma value</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sigma</span><span class="o">.</span><span class="n">shape</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[(),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="p">(</span><span class="n">N</span><span class="p">,)]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;sigma does not match the shape of x&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># validate the input</span>
+    <span class="n">fitfunc</span><span class="o">.</span><span class="n">validate_input</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+
+    <span class="c1"># compute values needed for computation, below</span>
+    <span class="k">if</span> <span class="s1">&#39;a_k&#39;</span> <span class="ow">in</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+        <span class="n">ak_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">sigma</span>
+    <span class="k">if</span> <span class="s1">&#39;b_k&#39;</span> <span class="ow">in</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+        <span class="n">bk_raw</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">sigma</span>
+    <span class="k">if</span> <span class="s1">&#39;c_k&#39;</span> <span class="ow">in</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+        <span class="n">ck_raw</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">sigma</span>
+
+    <span class="c1"># create length-(N + 1) array of cell edges</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">t</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">t</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                            <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]])</span>
+    <span class="n">block_length</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">edges</span>
+
+    <span class="c1"># arrays to store the best configuration</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1">#-----------------------------------------------------------------</span>
+    <span class="c1"># Start with first data cell; add one cell at each iteration</span>
+    <span class="c1">#-----------------------------------------------------------------</span>
+    <span class="k">for</span> <span class="n">R</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="c1"># Compute fit_vec : fitness of putative last block (end at R)</span>
+        <span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># T_k: width/duration of each block</span>
+        <span class="k">if</span> <span class="s1">&#39;T_k&#39;</span> <span class="ow">in</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;T_k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">block_length</span><span class="p">[:</span><span class="n">R</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">block_length</span><span class="p">[</span><span class="n">R</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># N_k: number of elements in each block</span>
+        <span class="k">if</span> <span class="s1">&#39;N_k&#39;</span> <span class="ow">in</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;N_k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="n">R</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># a_k: eq. 31</span>
+        <span class="k">if</span> <span class="s1">&#39;a_k&#39;</span> <span class="ow">in</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;a_k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">ak_raw</span><span class="p">[:</span><span class="n">R</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># b_k: eq. 32</span>
+        <span class="k">if</span> <span class="s1">&#39;b_k&#39;</span> <span class="ow">in</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;b_k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">bk_raw</span><span class="p">[:</span><span class="n">R</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># c_k: eq. 33</span>
+        <span class="k">if</span> <span class="s1">&#39;c_k&#39;</span> <span class="ow">in</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;c_k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">ck_raw</span><span class="p">[:</span><span class="n">R</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># evaluate fitness function</span>
+        <span class="n">fit_vec</span> <span class="o">=</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">fitness</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+        <span class="n">A_R</span> <span class="o">=</span> <span class="n">fit_vec</span> <span class="o">-</span> <span class="n">fitfunc</span><span class="o">.</span><span class="n">prior</span><span class="p">(</span><span class="n">R</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+        <span class="n">A_R</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="n">best</span><span class="p">[:</span><span class="n">R</span><span class="p">]</span>
+
+        <span class="n">i_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">A_R</span><span class="p">)</span>
+        <span class="n">last</span><span class="p">[</span><span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_max</span>
+        <span class="n">best</span><span class="p">[</span><span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="n">A_R</span><span class="p">[</span><span class="n">i_max</span><span class="p">]</span>
+
+    <span class="c1">#-----------------------------------------------------------------</span>
+    <span class="c1"># Now find changepoints by iteratively peeling off the last block</span>
+    <span class="c1">#-----------------------------------------------------------------</span>
+    <span class="n">change_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">i_cp</span> <span class="o">=</span> <span class="n">N</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">N</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">i_cp</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">change_points</span><span class="p">[</span><span class="n">i_cp</span><span class="p">]</span> <span class="o">=</span> <span class="n">ind</span>
+        <span class="k">if</span> <span class="n">ind</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">last</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">change_points</span> <span class="o">=</span> <span class="n">change_points</span><span class="p">[</span><span class="n">i_cp</span><span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">edges</span><span class="p">[</span><span class="n">change_points</span><span class="p">]</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

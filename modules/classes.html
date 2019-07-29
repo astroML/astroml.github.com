@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11. Class reference &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11. Class reference &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="../user_guide/index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="11.1.1.1. astroML.plotting.hist" href="generated/astroML.plotting.hist.html" />
     <link rel="prev" title="10. Time Series Analysis" href="../user_guide/time_series.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../index.html">Home</a></li>
 	    <li><a href="../user_guide/index.html">User Guide</a></li>
             <li><a href="../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    10. Time Series ...
+	    10. Time Seri...
 	    </span>
 	    <span class="hiddenrellink">
 	    10. Time Series Analysis
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="generated/astroML.plotting.hist.html" title="11.1.1.1. astroML.plotting.hist"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.1.1.1. astroM...
-	    </span>
-	    <span class="hiddenrellink">
-	    11.1.1.1. astroML.plotting.hist
 	    </span>
 	    
 	    </a>
@@ -150,7 +121,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -160,73 +131,40 @@ $(document).ready(function(){
         <h3>This page</h3>
          <ul>
 <li><a class="reference internal" href="#">11. Class reference</a><ul>
-<li><a class="reference internal" href="#module-astroML.plotting">11.1. Plotting Functions: <tt class="docutils literal"><span class="pre">astroML.plotting</span></tt></a><ul>
-<li><a class="reference internal" href="#functions">11.1.1. Functions</a><ul>
+<li><a class="reference internal" href="#module-astroML.plotting">11.1. Plotting Functions: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.plotting</span></code></a><ul>
+<li><a class="reference internal" href="#functions">11.1.1. Functions</a></li>
+<li><a class="reference internal" href="#classes">11.1.2. Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#classes">11.1.2. Classes</a><ul>
+<li><a class="reference internal" href="#module-astroML.density_estimation">11.2. Density Estimation &amp; Histograms: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.density_estimation</span></code></a><ul>
+<li><a class="reference internal" href="#histogram-tools">11.2.1. Histogram Tools</a></li>
+<li><a class="reference internal" href="#density-estimation">11.2.2. Density Estimation</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-astroML.linear_model">11.3. Linear Regression &amp; Fitting: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.linear_model</span></code></a><ul>
+<li><a class="reference internal" href="#linear-regression">11.3.1. Linear Regression</a></li>
+<li><a class="reference internal" href="#id1">11.3.2. Functions</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-astroML.density_estimation">11.2. Density Estimation &amp; Histograms: <tt class="docutils literal"><span class="pre">astroML.density_estimation</span></tt></a><ul>
-<li><a class="reference internal" href="#histogram-tools">11.2.1. Histogram Tools</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#density-estimation">11.2.2. Density Estimation</a><ul>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.linear_model">11.3. Linear Regression &amp; Fitting: <tt class="docutils literal"><span class="pre">astroML.linear_model</span></tt></a><ul>
-<li><a class="reference internal" href="#linear-regression">11.3.1. Linear Regression</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#id2">11.3.2. Functions</a><ul>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.datasets">11.4. Loading of Datasets: <tt class="docutils literal"><span class="pre">astroML.datasets</span></tt></a><ul>
+<li><a class="reference internal" href="#module-astroML.datasets">11.4. Loading of Datasets: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.datasets</span></code></a><ul>
 <li><a class="reference internal" href="#astronomy-datasets">11.4.1. Astronomy Datasets</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-astroML.time_series">11.5. Time Series Analysis: <tt class="docutils literal"><span class="pre">astroML.time_series</span></tt></a><ul>
+<li><a class="reference internal" href="#module-astroML.time_series">11.5. Time Series Analysis: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.time_series</span></code></a><ul>
 <li><a class="reference internal" href="#periodic-time-series">11.5.1. Periodic Time Series</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#aperiodic-time-series">11.5.2. Aperiodic Time Series</a><ul>
+<li><a class="reference internal" href="#aperiodic-time-series">11.5.2. Aperiodic Time Series</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.stats">11.6. Statistical Functions: <tt class="docutils literal"><span class="pre">astroML.stats</span></tt></a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.dimensionality">11.7. Dimensionality Reduction: <tt class="docutils literal"><span class="pre">astroML.dimensionality</span></tt></a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.correlation">11.8. Correlation Functions: <tt class="docutils literal"><span class="pre">astroML.correlation</span></tt></a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.filters">11.9. Filters: <tt class="docutils literal"><span class="pre">astroML.filters</span></tt></a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.fourier">11.10. Fourier and Wavelet Transforms: <tt class="docutils literal"><span class="pre">astroML.fourier</span></tt></a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.lumfunc">11.11. Luminosity Functions: <tt class="docutils literal"><span class="pre">astroML.lumfunc</span></tt></a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.classification">11.12. Classification: <tt class="docutils literal"><span class="pre">astroML.classification</span></tt></a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-astroML.resample">11.13. Resampling: <tt class="docutils literal"><span class="pre">astroML.resample</span></tt></a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#addon-functions-astroml-addons">11.14. Addon Functions <tt class="docutils literal"><span class="pre">astroML_addons</span></tt></a><ul>
-</ul>
-</li>
+<li><a class="reference internal" href="#module-astroML.stats">11.6. Statistical Functions: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.stats</span></code></a></li>
+<li><a class="reference internal" href="#module-astroML.dimensionality">11.7. Dimensionality Reduction: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.dimensionality</span></code></a></li>
+<li><a class="reference internal" href="#module-astroML.correlation">11.8. Correlation Functions: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.correlation</span></code></a></li>
+<li><a class="reference internal" href="#module-astroML.filters">11.9. Filters: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.filters</span></code></a></li>
+<li><a class="reference internal" href="#module-astroML.fourier">11.10. Fourier and Wavelet Transforms: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.fourier</span></code></a></li>
+<li><a class="reference internal" href="#module-astroML.lumfunc">11.11. Luminosity Functions: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.lumfunc</span></code></a></li>
+<li><a class="reference internal" href="#module-astroML.classification">11.12. Classification: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.classification</span></code></a></li>
+<li><a class="reference internal" href="#module-astroML.resample">11.13. Resampling: <code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.resample</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -258,491 +196,494 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="class-reference">
 <h1>11. Class reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h1>
-<p>This is a list of modules, classes, and functions available in <tt class="docutils literal"><span class="pre">astroML</span></tt>.
-For more details, please refer to the <a class="reference internal" href="../user_guide/index.html#user-guide"><em>user guide</em></a> or
-the <a class="reference internal" href="../user_guide/introduction.html#textbook"><em>text book</em></a>.  Examples of the use of <tt class="docutils literal"><span class="pre">astroML</span></tt>
-can also be found in the <a class="reference internal" href="../examples/index.html#example-root"><em>code examples</em></a>, the
-<a class="reference internal" href="../book_figures/index.html#book-fig-root"><em>text book figures</em></a> and the
-<a class="reference internal" href="../paper_figures/index.html#paper-fig-root"><em>paper figures</em></a>.</p>
+<p>This is a list of modules, classes, and functions available in <code class="docutils literal notranslate"><span class="pre">astroML</span></code>.
+For more details, please refer to the <a class="reference internal" href="../user_guide/index.html#user-guide"><span class="std std-ref">user guide</span></a> or
+the <a class="reference internal" href="../user_guide/introduction.html#textbook"><span class="std std-ref">text book</span></a>.  Examples of the use of <code class="docutils literal notranslate"><span class="pre">astroML</span></code>
+can also be found in the <a class="reference internal" href="../examples/index.html#example-root"><span class="std std-ref">code examples</span></a>, the
+<a class="reference internal" href="../book_figures/index.html#book-fig-root"><span class="std std-ref">text book figures</span></a> and the
+<a class="reference internal" href="../paper_figures/index.html#paper-fig-root"><span class="std std-ref">paper figures</span></a>.</p>
 <span class="target" id="module-astroML"></span><div class="section" id="module-astroML.plotting">
-<span id="plotting-functions-astroml-plotting"></span><h2>11.1. Plotting Functions: <a class="reference internal" href="#module-astroML.plotting" title="astroML.plotting"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.plotting</span></tt></a><a class="headerlink" href="#module-astroML.plotting" title="Permalink to this headline">¶</a></h2>
+<span id="plotting-functions-astroml-plotting"></span><h2>11.1. Plotting Functions: <a class="reference internal" href="#module-astroML.plotting" title="astroML.plotting"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.plotting</span></code></a><a class="headerlink" href="#module-astroML.plotting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="functions">
 <h3>11.1.1. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.plotting.hist.html#astroML.plotting.hist" title="astroML.plotting.hist"><tt class="xref py py-obj docutils literal"><span class="pre">plotting.hist</span></tt></a>(x[,&nbsp;bins,&nbsp;range])</td>
-<td>Enhanced histogram</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.plotting.hist.html#astroML.plotting.hist" title="astroML.plotting.hist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.hist</span></code></a>(x[, bins, range])</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.plotting.scatter_contour.html#astroML.plotting.scatter_contour" title="astroML.plotting.scatter_contour"><tt class="xref py py-obj docutils literal"><span class="pre">plotting.scatter_contour</span></tt></a>(x,&nbsp;y[,&nbsp;levels,&nbsp;...])</td>
-<td>Scatter plot with contour over dense regions</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.plotting.scatter_contour.html#astroML.plotting.scatter_contour" title="astroML.plotting.scatter_contour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.scatter_contour</span></code></a>(x, y[, levels, …])</p></td>
+<td><p>Scatter plot with contour over dense regions</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="classes">
 <h3>11.1.2. Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.plotting.MultiAxes.html#astroML.plotting.MultiAxes" title="astroML.plotting.MultiAxes"><tt class="xref py py-obj docutils literal"><span class="pre">plotting.MultiAxes</span></tt></a>(ndim[,&nbsp;inner_labels,&nbsp;...])</td>
-<td>Visualize Multiple-dimensional data</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.plotting.MultiAxes.html#astroML.plotting.MultiAxes" title="astroML.plotting.MultiAxes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.MultiAxes</span></code></a>(ndim[, inner_labels, …])</p></td>
+<td><p>Visualize Multiple-dimensional data</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="section" id="module-astroML.density_estimation">
-<span id="density-estimation-histograms-astroml-density-estimation"></span><h2>11.2. Density Estimation &amp; Histograms: <a class="reference internal" href="#module-astroML.density_estimation" title="astroML.density_estimation"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.density_estimation</span></tt></a><a class="headerlink" href="#module-astroML.density_estimation" title="Permalink to this headline">¶</a></h2>
+<span id="density-estimation-histograms-astroml-density-estimation"></span><h2>11.2. Density Estimation &amp; Histograms: <a class="reference internal" href="#module-astroML.density_estimation" title="astroML.density_estimation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.density_estimation</span></code></a><a class="headerlink" href="#module-astroML.density_estimation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="histogram-tools">
 <h3>11.2.1. Histogram Tools<a class="headerlink" href="#histogram-tools" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.density_estimation.histogram.html#astroML.density_estimation.histogram" title="astroML.density_estimation.histogram"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.histogram</span></tt></a>(a[,&nbsp;bins,&nbsp;range])</td>
-<td>Enhanced histogram</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.density_estimation.histogram.html#astroML.density_estimation.histogram" title="astroML.density_estimation.histogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.histogram</span></code></a>(a[, bins, range])</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.density_estimation.bayesian_blocks.html#astroML.density_estimation.bayesian_blocks" title="astroML.density_estimation.bayesian_blocks"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.bayesian_blocks</span></tt></a>(t[,&nbsp;x,&nbsp;...])</td>
-<td>Bayesian Blocks Implementation</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.density_estimation.bayesian_blocks.html#astroML.density_estimation.bayesian_blocks" title="astroML.density_estimation.bayesian_blocks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.bayesian_blocks</span></code></a>(t[, x, …])</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.density_estimation.knuth_bin_width.html#astroML.density_estimation.knuth_bin_width" title="astroML.density_estimation.knuth_bin_width"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.knuth_bin_width</span></tt></a>(data[,&nbsp;...])</td>
-<td>Return the optimal histogram bin width using Knuth&#8217;s rule [R2]</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.density_estimation.knuth_bin_width.html#astroML.density_estimation.knuth_bin_width" title="astroML.density_estimation.knuth_bin_width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.knuth_bin_width</span></code></a>(data[, …])</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.density_estimation.scotts_bin_width.html#astroML.density_estimation.scotts_bin_width" title="astroML.density_estimation.scotts_bin_width"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.scotts_bin_width</span></tt></a>(data[,&nbsp;...])</td>
-<td>Return the optimal histogram bin width using Scott&#8217;s rule:</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.density_estimation.scotts_bin_width.html#astroML.density_estimation.scotts_bin_width" title="astroML.density_estimation.scotts_bin_width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.scotts_bin_width</span></code></a>(data[, …])</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.density_estimation.freedman_bin_width.html#astroML.density_estimation.freedman_bin_width" title="astroML.density_estimation.freedman_bin_width"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.freedman_bin_width</span></tt></a>(data)</td>
-<td>Return the optimal histogram bin width using the Freedman-Diaconis rule</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.density_estimation.freedman_bin_width.html#astroML.density_estimation.freedman_bin_width" title="astroML.density_estimation.freedman_bin_width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.freedman_bin_width</span></code></a>(data)</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="density-estimation">
 <h3>11.2.2. Density Estimation<a class="headerlink" href="#density-estimation" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.density_estimation.XDGMM.html#astroML.density_estimation.XDGMM" title="astroML.density_estimation.XDGMM"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.XDGMM</span></tt></a>(n_components[,&nbsp;...])</td>
-<td>Extreme Deconvolution</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.density_estimation.XDGMM.html#astroML.density_estimation.XDGMM" title="astroML.density_estimation.XDGMM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.XDGMM</span></code></a>(n_components[, …])</p></td>
+<td><p>Extreme Deconvolution</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.density_estimation.KDE.html#astroML.density_estimation.KDE" title="astroML.density_estimation.KDE"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.KDE</span></tt></a>([metric,&nbsp;h])</td>
-<td>Kernel Density Estimate</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.density_estimation.KNeighborsDensity.html#astroML.density_estimation.KNeighborsDensity" title="astroML.density_estimation.KNeighborsDensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.KNeighborsDensity</span></code></a>([…])</p></td>
+<td><p>K-neighbors density estimation</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.density_estimation.KNeighborsDensity.html#astroML.density_estimation.KNeighborsDensity" title="astroML.density_estimation.KNeighborsDensity"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.KNeighborsDensity</span></tt></a>([...])</td>
-<td>K-neighbors density estimation</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.density_estimation.EmpiricalDistribution.html#astroML.density_estimation.EmpiricalDistribution" title="astroML.density_estimation.EmpiricalDistribution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.EmpiricalDistribution</span></code></a>(data)</p></td>
+<td><p>Empirically learn a distribution from one-dimensional data</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.density_estimation.EmpiricalDistribution.html#astroML.density_estimation.EmpiricalDistribution" title="astroML.density_estimation.EmpiricalDistribution"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.EmpiricalDistribution</span></tt></a>(data)</td>
-<td>Empirically learn a distribution from one-dimensional data</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.density_estimation.FunctionDistribution.html#astroML.density_estimation.FunctionDistribution" title="astroML.density_estimation.FunctionDistribution"><tt class="xref py py-obj docutils literal"><span class="pre">density_estimation.FunctionDistribution</span></tt></a>(...)</td>
-<td>Generate random variables distributed according to an arbitrary function</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.density_estimation.FunctionDistribution.html#astroML.density_estimation.FunctionDistribution" title="astroML.density_estimation.FunctionDistribution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_estimation.FunctionDistribution</span></code></a>(…)</p></td>
+<td><p>Generate random variables distributed according to an arbitrary function</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="section" id="module-astroML.linear_model">
-<span id="linear-regression-fitting-astroml-linear-model"></span><h2>11.3. Linear Regression &amp; Fitting: <a class="reference internal" href="#module-astroML.linear_model" title="astroML.linear_model"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.linear_model</span></tt></a><a class="headerlink" href="#module-astroML.linear_model" title="Permalink to this headline">¶</a></h2>
+<span id="linear-regression-fitting-astroml-linear-model"></span><h2>11.3. Linear Regression &amp; Fitting: <a class="reference internal" href="#module-astroML.linear_model" title="astroML.linear_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.linear_model</span></code></a><a class="headerlink" href="#module-astroML.linear_model" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="linear-regression">
 <h3>11.3.1. Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.linear_model.LinearRegression.html#astroML.linear_model.LinearRegression" title="astroML.linear_model.LinearRegression"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.LinearRegression</span></tt></a>([fit_intercept])</td>
-<td>Simple Linear Regression with errors in y</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.linear_model.LinearRegression.html#astroML.linear_model.LinearRegression" title="astroML.linear_model.LinearRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_model.LinearRegression</span></code></a>([…])</p></td>
+<td><p>Simple Linear Regression with errors in y</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.linear_model.PolynomialRegression.html#astroML.linear_model.PolynomialRegression" title="astroML.linear_model.PolynomialRegression"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.PolynomialRegression</span></tt></a>([degree,&nbsp;...])</td>
-<td>Polynomial Regression with errors in y</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.linear_model.PolynomialRegression.html#astroML.linear_model.PolynomialRegression" title="astroML.linear_model.PolynomialRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_model.PolynomialRegression</span></code></a>([degree, …])</p></td>
+<td><p>Polynomial Regression with errors in y</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.linear_model.BasisFunctionRegression.html#astroML.linear_model.BasisFunctionRegression" title="astroML.linear_model.BasisFunctionRegression"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.BasisFunctionRegression</span></tt></a>([...])</td>
-<td>Basis Function with errors in y</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.linear_model.BasisFunctionRegression.html#astroML.linear_model.BasisFunctionRegression" title="astroML.linear_model.BasisFunctionRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_model.BasisFunctionRegression</span></code></a>([…])</p></td>
+<td><p>Basis Function with errors in y</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.linear_model.NadarayaWatson.html#astroML.linear_model.NadarayaWatson" title="astroML.linear_model.NadarayaWatson"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.NadarayaWatson</span></tt></a>([kernel,&nbsp;h])</td>
-<td>Nadaraya-Watson Kernel Regression</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.linear_model.NadarayaWatson.html#astroML.linear_model.NadarayaWatson" title="astroML.linear_model.NadarayaWatson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_model.NadarayaWatson</span></code></a>([kernel, h])</p></td>
+<td><p>Nadaraya-Watson Kernel Regression</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="id2">
-<h3>11.3.2. Functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
+<div class="section" id="id1">
+<h3>11.3.2. Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.linear_model.TLS_logL.html#astroML.linear_model.TLS_logL" title="astroML.linear_model.TLS_logL"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.TLS_logL</span></tt></a>(v,&nbsp;X,&nbsp;dX)</td>
-<td>Compute the total least squares log-likelihood</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.linear_model.TLS_logL.html#astroML.linear_model.TLS_logL" title="astroML.linear_model.TLS_logL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_model.TLS_logL</span></code></a>(v, X, dX)</p></td>
+<td><p>Compute the total least squares log-likelihood</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="section" id="module-astroML.datasets">
-<span id="loading-of-datasets-astroml-datasets"></span><h2>11.4. Loading of Datasets: <a class="reference internal" href="#module-astroML.datasets" title="astroML.datasets"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.datasets</span></tt></a><a class="headerlink" href="#module-astroML.datasets" title="Permalink to this headline">¶</a></h2>
+<span id="loading-of-datasets-astroml-datasets"></span><h2>11.4. Loading of Datasets: <a class="reference internal" href="#module-astroML.datasets" title="astroML.datasets"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.datasets</span></code></a><a class="headerlink" href="#module-astroML.datasets" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="astronomy-datasets">
 <h3>11.4.1. Astronomy Datasets<a class="headerlink" href="#astronomy-datasets" title="Permalink to this headline">¶</a></h3>
 </div>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_spectrum.html#astroML.datasets.fetch_sdss_spectrum" title="astroML.datasets.fetch_sdss_spectrum"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_sdss_spectrum</span></tt></a>(plate,&nbsp;mjd,&nbsp;fiber)</td>
-<td>Fetch an SDSS spectrum from the Data Archive Server</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_spectrum.html#astroML.datasets.fetch_sdss_spectrum" title="astroML.datasets.fetch_sdss_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_sdss_spectrum</span></code></a>(plate, mjd, fiber)</p></td>
+<td><p>Fetch an SDSS spectrum from the Data Archive Server</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_corrected_spectra.html#astroML.datasets.fetch_sdss_corrected_spectra" title="astroML.datasets.fetch_sdss_corrected_spectra"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_sdss_corrected_spectra</span></tt></a>([...])</td>
-<td>Loader for Iterative PCA pre-processed galaxy spectra</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_corrected_spectra.html#astroML.datasets.fetch_sdss_corrected_spectra" title="astroML.datasets.fetch_sdss_corrected_spectra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_sdss_corrected_spectra</span></code></a>([…])</p></td>
+<td><p>Loader for Iterative PCA pre-processed galaxy spectra</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_S82standards.html#astroML.datasets.fetch_sdss_S82standards" title="astroML.datasets.fetch_sdss_S82standards"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_sdss_S82standards</span></tt></a>([...])</td>
-<td>Loader for SDSS stripe82 standard star catalog</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_S82standards.html#astroML.datasets.fetch_sdss_S82standards" title="astroML.datasets.fetch_sdss_S82standards"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_sdss_S82standards</span></code></a>([…])</p></td>
+<td><p>Loader for SDSS stripe82 standard star catalog</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_dr7_quasar.html#astroML.datasets.fetch_dr7_quasar" title="astroML.datasets.fetch_dr7_quasar"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_dr7_quasar</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for SDSS DR7 quasar catalog</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_dr7_quasar.html#astroML.datasets.fetch_dr7_quasar" title="astroML.datasets.fetch_dr7_quasar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_dr7_quasar</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for SDSS DR7 quasar catalog</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_moving_objects.html#astroML.datasets.fetch_moving_objects" title="astroML.datasets.fetch_moving_objects"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_moving_objects</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for SDSS moving objects datasets</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_moving_objects.html#astroML.datasets.fetch_moving_objects" title="astroML.datasets.fetch_moving_objects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_moving_objects</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for SDSS moving objects datasets</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_galaxy_colors.html#astroML.datasets.fetch_sdss_galaxy_colors" title="astroML.datasets.fetch_sdss_galaxy_colors"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_sdss_galaxy_colors</span></tt></a>([...])</td>
-<td>Loader for SDSS galaxy colors.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_galaxy_colors.html#astroML.datasets.fetch_sdss_galaxy_colors" title="astroML.datasets.fetch_sdss_galaxy_colors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_sdss_galaxy_colors</span></code></a>([…])</p></td>
+<td><p>Loader for SDSS galaxy colors.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_nasa_atlas.html#astroML.datasets.fetch_nasa_atlas" title="astroML.datasets.fetch_nasa_atlas"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_nasa_atlas</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for NASA galaxy atlas data</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_nasa_atlas.html#astroML.datasets.fetch_nasa_atlas" title="astroML.datasets.fetch_nasa_atlas"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_nasa_atlas</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for NASA galaxy atlas data</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_sspp.html#astroML.datasets.fetch_sdss_sspp" title="astroML.datasets.fetch_sdss_sspp"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_sdss_sspp</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for SDSS SEGUE Stellar Parameter Pipeline data</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_sspp.html#astroML.datasets.fetch_sdss_sspp" title="astroML.datasets.fetch_sdss_sspp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_sdss_sspp</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for SDSS SEGUE Stellar Parameter Pipeline data</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_specgals.html#astroML.datasets.fetch_sdss_specgals" title="astroML.datasets.fetch_sdss_specgals"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_sdss_specgals</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for SDSS Galaxies with spectral information</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_specgals.html#astroML.datasets.fetch_sdss_specgals" title="astroML.datasets.fetch_sdss_specgals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_sdss_specgals</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for SDSS Galaxies with spectral information</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_great_wall.html#astroML.datasets.fetch_great_wall" title="astroML.datasets.fetch_great_wall"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_great_wall</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Get the 2D SDSS &#8220;Great Wall&#8221; distribution, following Cowan et al 2008</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_great_wall.html#astroML.datasets.fetch_great_wall" title="astroML.datasets.fetch_great_wall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_great_wall</span></code></a>([data_home, …])</p></td>
+<td><p>Get the 2D SDSS “Great Wall” distribution, following Cowan et al 2008</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_imaging_sample.html#astroML.datasets.fetch_imaging_sample" title="astroML.datasets.fetch_imaging_sample"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_imaging_sample</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for SDSS Imaging sample data</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_imaging_sample.html#astroML.datasets.fetch_imaging_sample" title="astroML.datasets.fetch_imaging_sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_imaging_sample</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for SDSS Imaging sample data</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_wmap_temperatures.html#astroML.datasets.fetch_wmap_temperatures" title="astroML.datasets.fetch_wmap_temperatures"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_wmap_temperatures</span></tt></a>([masked,&nbsp;...])</td>
-<td>Loader for WMAP temperature map data</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_wmap_temperatures.html#astroML.datasets.fetch_wmap_temperatures" title="astroML.datasets.fetch_wmap_temperatures"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_wmap_temperatures</span></code></a>([masked, …])</p></td>
+<td><p>Loader for WMAP temperature map data</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_rrlyrae_mags.html#astroML.datasets.fetch_rrlyrae_mags" title="astroML.datasets.fetch_rrlyrae_mags"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_rrlyrae_mags</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for RR-Lyrae data</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_rrlyrae_mags.html#astroML.datasets.fetch_rrlyrae_mags" title="astroML.datasets.fetch_rrlyrae_mags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_rrlyrae_mags</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for RR-Lyrae data</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_rrlyrae_combined.html#astroML.datasets.fetch_rrlyrae_combined" title="astroML.datasets.fetch_rrlyrae_combined"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_rrlyrae_combined</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for RR-Lyrae combined data</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_rrlyrae_combined.html#astroML.datasets.fetch_rrlyrae_combined" title="astroML.datasets.fetch_rrlyrae_combined"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_rrlyrae_combined</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for RR-Lyrae combined data</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_LINEAR_sample.html#astroML.datasets.fetch_LINEAR_sample" title="astroML.datasets.fetch_LINEAR_sample"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_LINEAR_sample</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for LINEAR data sample</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_LINEAR_sample.html#astroML.datasets.fetch_LINEAR_sample" title="astroML.datasets.fetch_LINEAR_sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_LINEAR_sample</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for LINEAR data sample</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_LINEAR_geneva.html#astroML.datasets.fetch_LINEAR_geneva" title="astroML.datasets.fetch_LINEAR_geneva"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_LINEAR_geneva</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for LINEAR geneva data.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_LINEAR_geneva.html#astroML.datasets.fetch_LINEAR_geneva" title="astroML.datasets.fetch_LINEAR_geneva"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_LINEAR_geneva</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for LINEAR geneva data.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_LIGO_bigdog.html#astroML.datasets.fetch_LIGO_bigdog" title="astroML.datasets.fetch_LIGO_bigdog"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_LIGO_bigdog</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for LIGO bigdog event</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_LIGO_bigdog.html#astroML.datasets.fetch_LIGO_bigdog" title="astroML.datasets.fetch_LIGO_bigdog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_LIGO_bigdog</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for LIGO bigdog event</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_LIGO_large.html#astroML.datasets.fetch_LIGO_large" title="astroML.datasets.fetch_LIGO_large"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_LIGO_large</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for LIGO large dataset</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_LIGO_large.html#astroML.datasets.fetch_LIGO_large" title="astroML.datasets.fetch_LIGO_large"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_LIGO_large</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for LIGO large dataset</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_hogg2010test.html#astroML.datasets.fetch_hogg2010test" title="astroML.datasets.fetch_hogg2010test"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_hogg2010test</span></tt></a>([structured])</td>
-<td>Fetch the Hogg et al 2010 test data</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_hogg2010test.html#astroML.datasets.fetch_hogg2010test" title="astroML.datasets.fetch_hogg2010test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_hogg2010test</span></code></a>([structured])</p></td>
+<td><p>Fetch the Hogg et al 2010 test data</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_rrlyrae_templates.html#astroML.datasets.fetch_rrlyrae_templates" title="astroML.datasets.fetch_rrlyrae_templates"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_rrlyrae_templates</span></tt></a>([...])</td>
-<td>Loader for RR-Lyrae template data</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_rrlyrae_templates.html#astroML.datasets.fetch_rrlyrae_templates" title="astroML.datasets.fetch_rrlyrae_templates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_rrlyrae_templates</span></code></a>([…])</p></td>
+<td><p>Loader for RR-Lyrae template data</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_filter.html#astroML.datasets.fetch_sdss_filter" title="astroML.datasets.fetch_sdss_filter"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_sdss_filter</span></tt></a>(fname[,&nbsp;...])</td>
-<td>Loader for SDSS Filter profiles</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_sdss_filter.html#astroML.datasets.fetch_sdss_filter" title="astroML.datasets.fetch_sdss_filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_sdss_filter</span></code></a>(fname[, …])</p></td>
+<td><p>Loader for SDSS Filter profiles</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.datasets.fetch_vega_spectrum.html#astroML.datasets.fetch_vega_spectrum" title="astroML.datasets.fetch_vega_spectrum"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_vega_spectrum</span></tt></a>([data_home,&nbsp;...])</td>
-<td>Loader for Vega reference spectrum</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.datasets.fetch_vega_spectrum.html#astroML.datasets.fetch_vega_spectrum" title="astroML.datasets.fetch_vega_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.fetch_vega_spectrum</span></code></a>([data_home, …])</p></td>
+<td><p>Loader for Vega reference spectrum</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.datasets.generate_mu_z.html#astroML.datasets.generate_mu_z" title="astroML.datasets.generate_mu_z"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.generate_mu_z</span></tt></a>([size,&nbsp;z0,&nbsp;dmu_0,&nbsp;...])</td>
-<td>Generate a dataset of distance modulus vs redshift.</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.datasets.generate_mu_z.html#astroML.datasets.generate_mu_z" title="astroML.datasets.generate_mu_z"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.generate_mu_z</span></code></a>([size, z0, dmu_0, …])</p></td>
+<td><p>Generate a dataset of distance modulus vs redshift.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-astroML.time_series">
-<span id="time-series-analysis-astroml-time-series"></span><h2>11.5. Time Series Analysis: <a class="reference internal" href="#module-astroML.time_series" title="astroML.time_series"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.time_series</span></tt></a><a class="headerlink" href="#module-astroML.time_series" title="Permalink to this headline">¶</a></h2>
+<span id="time-series-analysis-astroml-time-series"></span><h2>11.5. Time Series Analysis: <a class="reference internal" href="#module-astroML.time_series" title="astroML.time_series"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.time_series</span></code></a><a class="headerlink" href="#module-astroML.time_series" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="periodic-time-series">
 <h3>11.5.1. Periodic Time Series<a class="headerlink" href="#periodic-time-series" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.time_series.lomb_scargle.html#astroML.time_series.lomb_scargle" title="astroML.time_series.lomb_scargle"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.lomb_scargle</span></tt></a></td>
-<td>(Generalized) Lomb-Scargle Periodogram with Floating Mean</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.time_series.lomb_scargle.html#astroML.time_series.lomb_scargle" title="astroML.time_series.lomb_scargle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.lomb_scargle</span></code></a>(t, y, dy, omega[, …])</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.time_series.lomb_scargle_bootstrap.html#astroML.time_series.lomb_scargle_bootstrap" title="astroML.time_series.lomb_scargle_bootstrap"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.lomb_scargle_bootstrap</span></tt></a>(t,&nbsp;y,&nbsp;dy,&nbsp;...)</td>
-<td>Use a bootstrap analysis to compute Lomb-Scargle significance</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.time_series.lomb_scargle_bootstrap.html#astroML.time_series.lomb_scargle_bootstrap" title="astroML.time_series.lomb_scargle_bootstrap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.lomb_scargle_bootstrap</span></code></a>(t, y, dy, …)</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.time_series.multiterm_periodogram.html#astroML.time_series.multiterm_periodogram" title="astroML.time_series.multiterm_periodogram"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.multiterm_periodogram</span></tt></a>(t,&nbsp;y,&nbsp;dy,&nbsp;...)</td>
-<td>Perform a multiterm periodogram at each omega</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.time_series.multiterm_periodogram.html#astroML.time_series.multiterm_periodogram" title="astroML.time_series.multiterm_periodogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.multiterm_periodogram</span></code></a>(t, y, dy, …)</p></td>
+<td><p><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.</span></p>
+</div>
+</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.time_series.search_frequencies.html#astroML.time_series.search_frequencies" title="astroML.time_series.search_frequencies"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.search_frequencies</span></tt></a>(t,&nbsp;y,&nbsp;dy[,&nbsp;...])</td>
-<td>Utility Routine to find the best frequencies</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.time_series.search_frequencies.html#astroML.time_series.search_frequencies" title="astroML.time_series.search_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.search_frequencies</span></code></a>(t, y, dy[, …])</p></td>
+<td><p>Utility Routine to find the best frequencies</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.time_series.MultiTermFit.html#astroML.time_series.MultiTermFit" title="astroML.time_series.MultiTermFit"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.MultiTermFit</span></tt></a>(omega,&nbsp;n_terms)</td>
-<td>Multi-term Fourier fit to a light curve</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.time_series.MultiTermFit.html#astroML.time_series.MultiTermFit" title="astroML.time_series.MultiTermFit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.MultiTermFit</span></code></a>(omega, n_terms)</p></td>
+<td><p>Multi-term Fourier fit to a light curve</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="aperiodic-time-series">
 <h3>11.5.2. Aperiodic Time Series<a class="headerlink" href="#aperiodic-time-series" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.time_series.ACF_scargle.html#astroML.time_series.ACF_scargle" title="astroML.time_series.ACF_scargle"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.ACF_scargle</span></tt></a>(t,&nbsp;y,&nbsp;dy[,&nbsp;n_omega,&nbsp;...])</td>
-<td>Compute the Auto-correlation function via Scargle&#8217;s method</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.time_series.ACF_scargle.html#astroML.time_series.ACF_scargle" title="astroML.time_series.ACF_scargle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.ACF_scargle</span></code></a>(t, y, dy[, n_omega, …])</p></td>
+<td><p>Compute the Auto-correlation function via Scargle’s method</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.time_series.ACF_EK.html#astroML.time_series.ACF_EK" title="astroML.time_series.ACF_EK"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.ACF_EK</span></tt></a>(t,&nbsp;y,&nbsp;dy[,&nbsp;bins])</td>
-<td>Auto-correlation function via the Edelson-Krolik method</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.time_series.ACF_EK.html#astroML.time_series.ACF_EK" title="astroML.time_series.ACF_EK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.ACF_EK</span></code></a>(t, y, dy[, bins])</p></td>
+<td><p>Auto-correlation function via the Edelson-Krolik method</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.time_series.generate_power_law.html#astroML.time_series.generate_power_law" title="astroML.time_series.generate_power_law"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.generate_power_law</span></tt></a>(N,&nbsp;dt,&nbsp;beta)</td>
-<td>Generate a power-law light curve</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.time_series.generate_power_law.html#astroML.time_series.generate_power_law" title="astroML.time_series.generate_power_law"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.generate_power_law</span></code></a>(N, dt, beta)</p></td>
+<td><p>Generate a power-law light curve</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.time_series.generate_damped_RW.html#astroML.time_series.generate_damped_RW" title="astroML.time_series.generate_damped_RW"><tt class="xref py py-obj docutils literal"><span class="pre">time_series.generate_damped_RW</span></tt></a>(t_rest[,&nbsp;...])</td>
-<td>Generate a damped random walk light curve</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.time_series.generate_damped_RW.html#astroML.time_series.generate_damped_RW" title="astroML.time_series.generate_damped_RW"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series.generate_damped_RW</span></code></a>(t_rest[, …])</p></td>
+<td><p>Generate a damped random walk light curve</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="section" id="module-astroML.stats">
-<span id="statistical-functions-astroml-stats"></span><h2>11.6. Statistical Functions: <a class="reference internal" href="#module-astroML.stats" title="astroML.stats"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.stats</span></tt></a><a class="headerlink" href="#module-astroML.stats" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
+<span id="statistical-functions-astroml-stats"></span><h2>11.6. Statistical Functions: <a class="reference internal" href="#module-astroML.stats" title="astroML.stats"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.stats</span></code></a><a class="headerlink" href="#module-astroML.stats" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.stats.binned_statistic.html#astroML.stats.binned_statistic" title="astroML.stats.binned_statistic"><tt class="xref py py-obj docutils literal"><span class="pre">stats.binned_statistic</span></tt></a>(x,&nbsp;values[,&nbsp;...])</td>
-<td>Compute a binned statistic for a set of data.</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.stats.binned_statistic.html#astroML.stats.binned_statistic" title="astroML.stats.binned_statistic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.binned_statistic</span></code></a>(x, values[, …])</p></td>
+<td><p>Compute a binned statistic for a set of data.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.stats.binned_statistic_2d.html#astroML.stats.binned_statistic_2d" title="astroML.stats.binned_statistic_2d"><tt class="xref py py-obj docutils literal"><span class="pre">stats.binned_statistic_2d</span></tt></a>(x,&nbsp;y,&nbsp;values[,&nbsp;...])</td>
-<td>Compute a bidimensional binned statistic for a set of data.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.stats.binned_statistic_2d.html#astroML.stats.binned_statistic_2d" title="astroML.stats.binned_statistic_2d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.binned_statistic_2d</span></code></a>(x, y, values[, …])</p></td>
+<td><p>Compute a bidimensional binned statistic for a set of data.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.stats.binned_statistic_dd.html#astroML.stats.binned_statistic_dd" title="astroML.stats.binned_statistic_dd"><tt class="xref py py-obj docutils literal"><span class="pre">stats.binned_statistic_dd</span></tt></a>(sample,&nbsp;values[,&nbsp;...])</td>
-<td>Compute a multidimensional binned statistic for a set of data.</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.stats.binned_statistic_dd.html#astroML.stats.binned_statistic_dd" title="astroML.stats.binned_statistic_dd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.binned_statistic_dd</span></code></a>(sample, values[, …])</p></td>
+<td><p>Compute a multidimensional binned statistic for a set of data.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.stats.sigmaG.html#astroML.stats.sigmaG" title="astroML.stats.sigmaG"><tt class="xref py py-obj docutils literal"><span class="pre">stats.sigmaG</span></tt></a>(a[,&nbsp;axis,&nbsp;overwrite_input,&nbsp;...])</td>
-<td>Compute the rank-based estimate of the standard deviation</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.stats.sigmaG.html#astroML.stats.sigmaG" title="astroML.stats.sigmaG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.sigmaG</span></code></a>(a[, axis, overwrite_input, …])</p></td>
+<td><p>Compute the rank-based estimate of the standard deviation</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.stats.median_sigmaG.html#astroML.stats.median_sigmaG" title="astroML.stats.median_sigmaG"><tt class="xref py py-obj docutils literal"><span class="pre">stats.median_sigmaG</span></tt></a>(a[,&nbsp;axis,&nbsp;...])</td>
-<td>Compute median and rank-based estimate of the standard deviation</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.stats.median_sigmaG.html#astroML.stats.median_sigmaG" title="astroML.stats.median_sigmaG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.median_sigmaG</span></code></a>(a[, axis, …])</p></td>
+<td><p>Compute median and rank-based estimate of the standard deviation</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.stats.mean_sigma.html#astroML.stats.mean_sigma" title="astroML.stats.mean_sigma"><tt class="xref py py-obj docutils literal"><span class="pre">stats.mean_sigma</span></tt></a>(a[,&nbsp;axis,&nbsp;dtype,&nbsp;ddof,&nbsp;...])</td>
-<td>Compute mean and standard deviation for an array</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.stats.mean_sigma.html#astroML.stats.mean_sigma" title="astroML.stats.mean_sigma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.mean_sigma</span></code></a>(a[, axis, dtype, ddof, …])</p></td>
+<td><p>Compute mean and standard deviation for an array</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.stats.fit_bivariate_normal.html#astroML.stats.fit_bivariate_normal" title="astroML.stats.fit_bivariate_normal"><tt class="xref py py-obj docutils literal"><span class="pre">stats.fit_bivariate_normal</span></tt></a>(x,&nbsp;y[,&nbsp;robust])</td>
-<td>Fit bivariate normal parameters to a 2D distribution of points</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.stats.fit_bivariate_normal.html#astroML.stats.fit_bivariate_normal" title="astroML.stats.fit_bivariate_normal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.fit_bivariate_normal</span></code></a>(x, y[, robust])</p></td>
+<td><p>Fit bivariate normal parameters to a 2D distribution of points</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.stats.bivariate_normal.html#astroML.stats.bivariate_normal" title="astroML.stats.bivariate_normal"><tt class="xref py py-obj docutils literal"><span class="pre">stats.bivariate_normal</span></tt></a>([mu,&nbsp;sigma_1,&nbsp;...])</td>
-<td>Sample points from a 2D normal distribution</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.stats.bivariate_normal.html#astroML.stats.bivariate_normal" title="astroML.stats.bivariate_normal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.bivariate_normal</span></code></a>([mu, sigma_1, …])</p></td>
+<td><p>Sample points from a 2D normal distribution</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.stats.trunc_exp.html#astroML.stats.trunc_exp" title="astroML.stats.trunc_exp"><tt class="xref py py-obj docutils literal"><span class="pre">stats.trunc_exp</span></tt></a></td>
-<td>A truncated positive exponential continuous random variable.</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.stats.trunc_exp.html#astroML.stats.trunc_exp" title="astroML.stats.trunc_exp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.trunc_exp</span></code></a></p></td>
+<td><p>A truncated positive exponential continuous random variable.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.stats.linear.html#astroML.stats.linear" title="astroML.stats.linear"><tt class="xref py py-obj docutils literal"><span class="pre">stats.linear</span></tt></a></td>
-<td>A truncated positive exponential continuous random variable.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.stats.linear.html#astroML.stats.linear" title="astroML.stats.linear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats.linear</span></code></a></p></td>
+<td><p>A truncated positive exponential continuous random variable.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-astroML.dimensionality">
-<span id="dimensionality-reduction-astroml-dimensionality"></span><h2>11.7. Dimensionality Reduction: <a class="reference internal" href="#module-astroML.dimensionality" title="astroML.dimensionality"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.dimensionality</span></tt></a><a class="headerlink" href="#module-astroML.dimensionality" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
+<span id="dimensionality-reduction-astroml-dimensionality"></span><h2>11.7. Dimensionality Reduction: <a class="reference internal" href="#module-astroML.dimensionality" title="astroML.dimensionality"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.dimensionality</span></code></a><a class="headerlink" href="#module-astroML.dimensionality" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.dimensionality.iterative_pca.html#astroML.dimensionality.iterative_pca" title="astroML.dimensionality.iterative_pca"><tt class="xref py py-obj docutils literal"><span class="pre">dimensionality.iterative_pca</span></tt></a>(X,&nbsp;M[,&nbsp;n_ev,&nbsp;...])</td>
-<td><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
-</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.dimensionality.iterative_pca.html#astroML.dimensionality.iterative_pca" title="astroML.dimensionality.iterative_pca"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dimensionality.iterative_pca</span></code></a>(X, M[, n_ev, …])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-astroML.correlation">
-<span id="correlation-functions-astroml-correlation"></span><h2>11.8. Correlation Functions: <a class="reference internal" href="#module-astroML.correlation" title="astroML.correlation"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.correlation</span></tt></a><a class="headerlink" href="#module-astroML.correlation" title="Permalink to this headline">¶</a></h2>
+<span id="correlation-functions-astroml-correlation"></span><h2>11.8. Correlation Functions: <a class="reference internal" href="#module-astroML.correlation" title="astroML.correlation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.correlation</span></code></a><a class="headerlink" href="#module-astroML.correlation" title="Permalink to this headline">¶</a></h2>
 <p>Tools for computing two-point correlation functions.</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.correlation.two_point.html#astroML.correlation.two_point" title="astroML.correlation.two_point"><tt class="xref py py-obj docutils literal"><span class="pre">correlation.two_point</span></tt></a>(data,&nbsp;bins[,&nbsp;method,&nbsp;...])</td>
-<td>Two-point correlation function</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.correlation.two_point.html#astroML.correlation.two_point" title="astroML.correlation.two_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation.two_point</span></code></a>(data, bins[, method, …])</p></td>
+<td><p>Two-point correlation function</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.correlation.two_point_angular.html#astroML.correlation.two_point_angular" title="astroML.correlation.two_point_angular"><tt class="xref py py-obj docutils literal"><span class="pre">correlation.two_point_angular</span></tt></a>(ra,&nbsp;dec,&nbsp;bins)</td>
-<td>Angular two-point correlation function</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.correlation.two_point_angular.html#astroML.correlation.two_point_angular" title="astroML.correlation.two_point_angular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation.two_point_angular</span></code></a>(ra, dec, bins)</p></td>
+<td><p>Angular two-point correlation function</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.correlation.bootstrap_two_point.html#astroML.correlation.bootstrap_two_point" title="astroML.correlation.bootstrap_two_point"><tt class="xref py py-obj docutils literal"><span class="pre">correlation.bootstrap_two_point</span></tt></a>(data,&nbsp;bins)</td>
-<td>Bootstrapped two-point correlation function</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.correlation.bootstrap_two_point.html#astroML.correlation.bootstrap_two_point" title="astroML.correlation.bootstrap_two_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation.bootstrap_two_point</span></code></a>(data, bins)</p></td>
+<td><p>Bootstrapped two-point correlation function</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.correlation.bootstrap_two_point_angular.html#astroML.correlation.bootstrap_two_point_angular" title="astroML.correlation.bootstrap_two_point_angular"><tt class="xref py py-obj docutils literal"><span class="pre">correlation.bootstrap_two_point_angular</span></tt></a>(ra,&nbsp;...)</td>
-<td>Angular two-point correlation function</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.correlation.bootstrap_two_point_angular.html#astroML.correlation.bootstrap_two_point_angular" title="astroML.correlation.bootstrap_two_point_angular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation.bootstrap_two_point_angular</span></code></a>(ra, …)</p></td>
+<td><p>Angular two-point correlation function</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-astroML.filters">
-<span id="filters-astroml-filters"></span><h2>11.9. Filters: <a class="reference internal" href="#module-astroML.filters" title="astroML.filters"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.filters</span></tt></a><a class="headerlink" href="#module-astroML.filters" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
+<span id="filters-astroml-filters"></span><h2>11.9. Filters: <a class="reference internal" href="#module-astroML.filters" title="astroML.filters"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.filters</span></code></a><a class="headerlink" href="#module-astroML.filters" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.filters.savitzky_golay.html#astroML.filters.savitzky_golay" title="astroML.filters.savitzky_golay"><tt class="xref py py-obj docutils literal"><span class="pre">filters.savitzky_golay</span></tt></a>(y,&nbsp;window_size,&nbsp;order)</td>
-<td>Smooth (and optionally differentiate) data with a Savitzky-Golay filter</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.filters.savitzky_golay.html#astroML.filters.savitzky_golay" title="astroML.filters.savitzky_golay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filters.savitzky_golay</span></code></a>(y, window_size, order)</p></td>
+<td><p>Smooth (and optionally differentiate) data with a Savitzky-Golay filter</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.filters.wiener_filter.html#astroML.filters.wiener_filter" title="astroML.filters.wiener_filter"><tt class="xref py py-obj docutils literal"><span class="pre">filters.wiener_filter</span></tt></a>(t,&nbsp;h[,&nbsp;signal,&nbsp;noise,&nbsp;...])</td>
-<td>Compute a Wiener-filtered time-series</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.filters.wiener_filter.html#astroML.filters.wiener_filter" title="astroML.filters.wiener_filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filters.wiener_filter</span></code></a>(t, h[, signal, noise, …])</p></td>
+<td><p>Compute a Wiener-filtered time-series</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.filters.min_component_filter.html#astroML.filters.min_component_filter" title="astroML.filters.min_component_filter"><tt class="xref py py-obj docutils literal"><span class="pre">filters.min_component_filter</span></tt></a>(x,&nbsp;y,&nbsp;feature_mask)</td>
-<td>Minimum component filtering</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.filters.min_component_filter.html#astroML.filters.min_component_filter" title="astroML.filters.min_component_filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filters.min_component_filter</span></code></a>(x, y, feature_mask)</p></td>
+<td><p>Minimum component filtering</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-astroML.fourier">
-<span id="fourier-and-wavelet-transforms-astroml-fourier"></span><h2>11.10. Fourier and Wavelet Transforms: <a class="reference internal" href="#module-astroML.fourier" title="astroML.fourier"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.fourier</span></tt></a><a class="headerlink" href="#module-astroML.fourier" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
+<span id="fourier-and-wavelet-transforms-astroml-fourier"></span><h2>11.10. Fourier and Wavelet Transforms: <a class="reference internal" href="#module-astroML.fourier" title="astroML.fourier"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.fourier</span></code></a><a class="headerlink" href="#module-astroML.fourier" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.fourier.FT_continuous.html#astroML.fourier.FT_continuous" title="astroML.fourier.FT_continuous"><tt class="xref py py-obj docutils literal"><span class="pre">fourier.FT_continuous</span></tt></a>(t,&nbsp;h[,&nbsp;axis,&nbsp;method])</td>
-<td>Approximate a continuous 1D Fourier Transform with sampled data.</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.fourier.FT_continuous.html#astroML.fourier.FT_continuous" title="astroML.fourier.FT_continuous"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier.FT_continuous</span></code></a>(t, h[, axis, method])</p></td>
+<td><p>Approximate a continuous 1D Fourier Transform with sampled data.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.fourier.IFT_continuous.html#astroML.fourier.IFT_continuous" title="astroML.fourier.IFT_continuous"><tt class="xref py py-obj docutils literal"><span class="pre">fourier.IFT_continuous</span></tt></a>(f,&nbsp;H[,&nbsp;axis,&nbsp;method])</td>
-<td>Approximate a continuous 1D Inverse Fourier Transform with sampled data.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.fourier.IFT_continuous.html#astroML.fourier.IFT_continuous" title="astroML.fourier.IFT_continuous"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier.IFT_continuous</span></code></a>(f, H[, axis, method])</p></td>
+<td><p>Approximate a continuous 1D Inverse Fourier Transform with sampled data.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.fourier.PSD_continuous.html#astroML.fourier.PSD_continuous" title="astroML.fourier.PSD_continuous"><tt class="xref py py-obj docutils literal"><span class="pre">fourier.PSD_continuous</span></tt></a>(t,&nbsp;h[,&nbsp;axis,&nbsp;method])</td>
-<td>Approximate a continuous 1D Power Spectral Density of sampled data.</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.fourier.PSD_continuous.html#astroML.fourier.PSD_continuous" title="astroML.fourier.PSD_continuous"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier.PSD_continuous</span></code></a>(t, h[, axis, method])</p></td>
+<td><p>Approximate a continuous 1D Power Spectral Density of sampled data.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.fourier.wavelet_PSD.html#astroML.fourier.wavelet_PSD" title="astroML.fourier.wavelet_PSD"><tt class="xref py py-obj docutils literal"><span class="pre">fourier.wavelet_PSD</span></tt></a>(t,&nbsp;h,&nbsp;f0[,&nbsp;Q])</td>
-<td>Compute the wavelet PSD as a function of f0 and t</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.fourier.wavelet_PSD.html#astroML.fourier.wavelet_PSD" title="astroML.fourier.wavelet_PSD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier.wavelet_PSD</span></code></a>(t, h, f0[, Q])</p></td>
+<td><p>Compute the wavelet PSD as a function of f0 and t</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.fourier.sinegauss.html#astroML.fourier.sinegauss" title="astroML.fourier.sinegauss"><tt class="xref py py-obj docutils literal"><span class="pre">fourier.sinegauss</span></tt></a>(t,&nbsp;t0,&nbsp;f0,&nbsp;Q)</td>
-<td>Sine-gaussian wavelet</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.fourier.sinegauss.html#astroML.fourier.sinegauss" title="astroML.fourier.sinegauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier.sinegauss</span></code></a>(t, t0, f0, Q)</p></td>
+<td><p>Sine-gaussian wavelet</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.fourier.sinegauss_FT.html#astroML.fourier.sinegauss_FT" title="astroML.fourier.sinegauss_FT"><tt class="xref py py-obj docutils literal"><span class="pre">fourier.sinegauss_FT</span></tt></a>(f,&nbsp;t0,&nbsp;f0,&nbsp;Q)</td>
-<td>Fourier transform of the sine-gaussian wavelet.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.fourier.sinegauss_FT.html#astroML.fourier.sinegauss_FT" title="astroML.fourier.sinegauss_FT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier.sinegauss_FT</span></code></a>(f, t0, f0, Q)</p></td>
+<td><p>Fourier transform of the sine-gaussian wavelet.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.fourier.sinegauss_PSD.html#astroML.fourier.sinegauss_PSD" title="astroML.fourier.sinegauss_PSD"><tt class="xref py py-obj docutils literal"><span class="pre">fourier.sinegauss_PSD</span></tt></a>(f,&nbsp;t0,&nbsp;f0,&nbsp;Q)</td>
-<td>Compute the PSD of the sine-gaussian function at frequency f</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.fourier.sinegauss_PSD.html#astroML.fourier.sinegauss_PSD" title="astroML.fourier.sinegauss_PSD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fourier.sinegauss_PSD</span></code></a>(f, t0, f0, Q)</p></td>
+<td><p>Compute the PSD of the sine-gaussian function at frequency f</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-astroML.lumfunc">
-<span id="luminosity-functions-astroml-lumfunc"></span><h2>11.11. Luminosity Functions: <a class="reference internal" href="#module-astroML.lumfunc" title="astroML.lumfunc"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.lumfunc</span></tt></a><a class="headerlink" href="#module-astroML.lumfunc" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
+<span id="luminosity-functions-astroml-lumfunc"></span><h2>11.11. Luminosity Functions: <a class="reference internal" href="#module-astroML.lumfunc" title="astroML.lumfunc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.lumfunc</span></code></a><a class="headerlink" href="#module-astroML.lumfunc" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.lumfunc.Cminus.html#astroML.lumfunc.Cminus" title="astroML.lumfunc.Cminus"><tt class="xref py py-obj docutils literal"><span class="pre">lumfunc.Cminus</span></tt></a>(x,&nbsp;y,&nbsp;xmax,&nbsp;ymax)</td>
-<td>Lynden-Bell&#8217;s C-minus method</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.lumfunc.Cminus.html#astroML.lumfunc.Cminus" title="astroML.lumfunc.Cminus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lumfunc.Cminus</span></code></a>(x, y, xmax, ymax)</p></td>
+<td><p>Lynden-Bell’s C-minus method</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.lumfunc.binned_Cminus.html#astroML.lumfunc.binned_Cminus" title="astroML.lumfunc.binned_Cminus"><tt class="xref py py-obj docutils literal"><span class="pre">lumfunc.binned_Cminus</span></tt></a>(x,&nbsp;y,&nbsp;xmax,&nbsp;ymax,&nbsp;...)</td>
-<td>Compute the binned distributions using the Cminus method</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.lumfunc.binned_Cminus.html#astroML.lumfunc.binned_Cminus" title="astroML.lumfunc.binned_Cminus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lumfunc.binned_Cminus</span></code></a>(x, y, xmax, ymax, …)</p></td>
+<td><p>Compute the binned distributions using the Cminus method</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.lumfunc.bootstrap_Cminus.html#astroML.lumfunc.bootstrap_Cminus" title="astroML.lumfunc.bootstrap_Cminus"><tt class="xref py py-obj docutils literal"><span class="pre">lumfunc.bootstrap_Cminus</span></tt></a>(x,&nbsp;y,&nbsp;xmax,&nbsp;ymax,&nbsp;...)</td>
-<td>Compute the binned distributions using the Cminus method, with</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.lumfunc.bootstrap_Cminus.html#astroML.lumfunc.bootstrap_Cminus" title="astroML.lumfunc.bootstrap_Cminus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lumfunc.bootstrap_Cminus</span></code></a>(x, y, xmax, ymax, …)</p></td>
+<td><p>Compute the binned distributions using the Cminus method, with bootstrapped estimates of the errors</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-astroML.classification">
-<span id="classification-astroml-classification"></span><h2>11.12. Classification: <a class="reference internal" href="#module-astroML.classification" title="astroML.classification"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.classification</span></tt></a><a class="headerlink" href="#module-astroML.classification" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
+<span id="classification-astroml-classification"></span><h2>11.12. Classification: <a class="reference internal" href="#module-astroML.classification" title="astroML.classification"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.classification</span></code></a><a class="headerlink" href="#module-astroML.classification" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.classification.GMMBayes.html#astroML.classification.GMMBayes" title="astroML.classification.GMMBayes"><tt class="xref py py-obj docutils literal"><span class="pre">classification.GMMBayes</span></tt></a>([n_components])</td>
-<td>GMM Bayes Classifier</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.classification.GMMBayes.html#astroML.classification.GMMBayes" title="astroML.classification.GMMBayes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classification.GMMBayes</span></code></a>([n_components])</p></td>
+<td><p>GaussianMixture Bayes Classifier</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-astroML.resample">
-<span id="resampling-astroml-resample"></span><h2>11.13. Resampling: <a class="reference internal" href="#module-astroML.resample" title="astroML.resample"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.resample</span></tt></a><a class="headerlink" href="#module-astroML.resample" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="longtable docutils">
+<span id="resampling-astroml-resample"></span><h2>11.13. Resampling: <a class="reference internal" href="#module-astroML.resample" title="astroML.resample"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.resample</span></code></a><a class="headerlink" href="#module-astroML.resample" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML.resample.bootstrap.html#astroML.resample.bootstrap" title="astroML.resample.bootstrap"><tt class="xref py py-obj docutils literal"><span class="pre">resample.bootstrap</span></tt></a>(data,&nbsp;n_bootstraps,&nbsp;...)</td>
-<td>Compute bootstraped statistics of a dataset.</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/astroML.resample.bootstrap.html#astroML.resample.bootstrap" title="astroML.resample.bootstrap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resample.bootstrap</span></code></a>(data, n_bootstraps, …)</p></td>
+<td><p>Compute bootstraped statistics of a dataset.</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/astroML.resample.jackknife.html#astroML.resample.jackknife" title="astroML.resample.jackknife"><tt class="xref py py-obj docutils literal"><span class="pre">resample.jackknife</span></tt></a>(data,&nbsp;user_statistic[,&nbsp;...])</td>
-<td>Compute first-order jackknife statistics of the data.</td>
-</tr>
-</tbody>
-</table>
-<p>..automodule:: astroML_addons</p>
-</div>
-<div class="section" id="addon-functions-astroml-addons">
-<h2>11.14. Addon Functions <tt class="xref py py-mod docutils literal"><span class="pre">astroML_addons</span></tt><a class="headerlink" href="#addon-functions-astroml-addons" title="Permalink to this headline">¶</a></h2>
-<p>These functions should not be called directly: when they are installed, they
-are used automatically by <a class="reference internal" href="#module-astroML" title="astroML"><tt class="xref py py-mod docutils literal"><span class="pre">astroML</span></tt></a>.</p>
-<span class="target" id="module-astroML_addons.periodogram"></span><table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/astroML_addons.periodogram.lomb_scargle.html#astroML_addons.periodogram.lomb_scargle" title="astroML_addons.periodogram.lomb_scargle"><tt class="xref py py-obj docutils literal"><span class="pre">periodogram.lomb_scargle</span></tt></a></td>
-<td>(Generalized) Lomb-Scargle Periodogram with Floating Mean</td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/astroML.resample.jackknife.html#astroML.resample.jackknife" title="astroML.resample.jackknife"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resample.jackknife</span></code></a>(data, user_statistic[, …])</p></td>
+<td><p>Compute first-order jackknife statistics of the data.</p></td>
 </tr>
 </tbody>
 </table>
@@ -759,11 +700,11 @@ are used automatically by <a class="reference internal" href="#module-astroML" t
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../_sources/modules/classes.txt"
+    <a href="../_sources/modules/classes.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

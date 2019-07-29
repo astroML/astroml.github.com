@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.datasets.sdss_galaxy_colors &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.datasets.sdss_galaxy_colors</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">get_data_home</span>
+<span class="kn">from</span> <span class="nn">.tools</span> <span class="k">import</span> <span class="n">sql_query</span>
+
+<span class="n">NOBJECTS</span> <span class="o">=</span> <span class="mi">50000</span>
+
+<span class="n">GAL_COLORS_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;specClass&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;redshift&#39;</span><span class="p">,</span> <span class="s1">&#39;redshift_err&#39;</span><span class="p">]</span>
+
+<span class="n">ARCHIVE_FILE</span> <span class="o">=</span> <span class="s1">&#39;sdss_galaxy_colors.npy&#39;</span>
+
+
+<div class="viewcode-block" id="fetch_sdss_galaxy_colors"><a class="viewcode-back" href="../../../modules/generated/astroML.datasets.fetch_sdss_galaxy_colors.html#astroML.datasets.fetch_sdss_galaxy_colors">[docs]</a><span class="k">def</span> <span class="nf">fetch_sdss_galaxy_colors</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loader for SDSS galaxy colors.</span>
+
+<span class="sd">    This function directly queries the sdss SQL database at</span>
+<span class="sd">    http://cas.sdss.org/</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : optional, default=None</span>
+<span class="sd">        Specify another download and cache folder for the datasets. By default</span>
+<span class="sd">        all scikit learn data is stored in &#39;~/astroML_data&#39; subfolders.</span>
+
+<span class="sd">    download_if_missing : optional, default=True</span>
+<span class="sd">        If False, raise a IOError if the data is not locally available</span>
+<span class="sd">        instead of trying to download the data from the source site.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : recarray, shape = (10000,)</span>
+<span class="sd">        record array containing magnitudes and redshift for each galaxy</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data_home</span> <span class="o">=</span> <span class="n">get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+
+    <span class="n">archive_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_home</span><span class="p">,</span> <span class="n">ARCHIVE_FILE</span><span class="p">)</span>
+
+    <span class="n">query_text</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s2">&quot;SELECT TOP </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">NOBJECTS</span><span class="p">,</span>
+                             <span class="s2">&quot;  p.u, p.g, p.r, p.i, p.z, s.class, s.z, s.zerr&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;FROM PhotoObj AS p&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;  JOIN SpecObj AS s ON s.bestobjid = p.objid&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;WHERE &quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;  p.u BETWEEN 0 AND 19.6&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;  AND p.g BETWEEN 0 AND 20&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;  AND s.class &lt;&gt; &#39;UNKNOWN&#39;&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;  AND s.class &lt;&gt; &#39;STAR&#39;&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;  AND s.class &lt;&gt; &#39;SKY&#39;&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;  AND s.class &lt;&gt; &#39;STAR_LATE&#39;&quot;</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archive_file</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">download_if_missing</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;data not present on disk. &#39;</span>
+                          <span class="s1">&#39;set download_if_missing=True to download&#39;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;querying for </span><span class="si">%i</span><span class="s2"> objects&quot;</span> <span class="o">%</span> <span class="n">NOBJECTS</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">query_text</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">sql_query</span><span class="p">(</span><span class="n">query_text</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;finished.&quot;</span><span class="p">)</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;delimiter&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;skip_header&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                  <span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="n">GAL_COLORS_NAMES</span><span class="p">,</span> <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;encoding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ascii&#39;</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">archive_file</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">archive_file</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

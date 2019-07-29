@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11.4.10. astroML.datasets.fetch_sdss_specgals &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11.4.10. astroML.datasets.fetch_sdss_specgals &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11.4.11. astroML.datasets.fetch_great_wall" href="astroML.datasets.fetch_great_wall.html" />
     <link rel="prev" title="11.4.9. astroML.datasets.fetch_sdss_sspp" href="astroML.datasets.fetch_sdss_sspp.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    11.4.9. astroML....
+	    11.4.9. astro...
 	    </span>
 	    <span class="hiddenrellink">
 	    11.4.9. astroML.datasets.fetch_sdss_sspp
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="astroML.datasets.fetch_great_wall.html" title="11.4.11. astroML.datasets.fetch_great_wall"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.4.11. astroML...
-	    </span>
-	    <span class="hiddenrellink">
-	    11.4.11. astroML.datasets.fetch_great_wall
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	11. Class refere...
+	11. Class reference
 	</span>
 	<span class="hiddenrellink">
 	11. Class reference
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,87 +164,82 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="astroml-datasets-fetch-sdss-specgals">
 <h1>11.4.10. astroML.datasets.fetch_sdss_specgals<a class="headerlink" href="#astroml-datasets-fetch-sdss-specgals" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.datasets.fetch_sdss_specgals">
-<tt class="descclassname">astroML.datasets.</tt><tt class="descname">fetch_sdss_specgals</tt><big>(</big><em>data_home=None</em>, <em>download_if_missing=True</em><big>)</big><a class="headerlink" href="#astroML.datasets.fetch_sdss_specgals" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">astroML.datasets.</code><code class="sig-name descname">fetch_sdss_specgals</code><span class="sig-paren">(</span><em class="sig-param">data_home=None</em>, <em class="sig-param">download_if_missing=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/datasets/sdss_specgals.html#fetch_sdss_specgals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.datasets.fetch_sdss_specgals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loader for SDSS Galaxies with spectral information</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>data_home</strong> : optional, default=None</p>
-<blockquote>
-<div><p>Specify another download and cache folder for the datasets. By default
-all scikit learn data is stored in &#8216;~/astroML_data&#8217; subfolders.</p>
-</div></blockquote>
-<p><strong>download_if_missing</strong> : optional, default=True</p>
-<blockquote>
-<div><p>If False, raise a IOError if the data is not locally available
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_home</strong><span class="classifier">optional, default=None</span></dt><dd><p>Specify another download and cache folder for the datasets. By default
+all scikit learn data is stored in ‘~/astroML_data’ subfolders.</p>
+</dd>
+<dt><strong>download_if_missing</strong><span class="classifier">optional, default=True</span></dt><dd><p>If False, raise a IOError if the data is not locally available
 instead of trying to download the data from the source site.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>data</strong> : recarray, shape = (327260,)</p>
-<blockquote class="last">
-<div><p>record array containing pipeline parameters</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">recarray, shape = (327260,)</span></dt><dd><p>record array containing pipeline parameters</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>These were compiled from the SDSS database using the following SQL query:</p>
-<div class="highlight-python"><pre>SELECT
-  G.ra, G.dec, S.mjd, S.plate, S.fiberID, --- basic identifiers
-  --- basic spectral data
-  S.z, S.zErr, S.rChi2, S.velDisp, S.velDispErr,
-  --- some useful imaging parameters
-  G.extinction_r, G.petroMag_r, G.psfMag_r, G.psfMagErr_r,
-  G.modelMag_u, modelMagErr_u, G.modelMag_g, modelMagErr_g,
-  G.modelMag_r, modelMagErr_r, G.modelMag_i, modelMagErr_i,
-  G.modelMag_z, modelMagErr_z, G.petroR50_r, G.petroR90_r,
-  --- line fluxes for BPT diagram and other derived spec. parameters
-  GSL.nii_6584_flux, GSL.nii_6584_flux_err, GSL.h_alpha_flux,
-  GSL.h_alpha_flux_err, GSL.oiii_5007_flux, GSL.oiii_5007_flux_err,
-  GSL.h_beta_flux, GSL.h_beta_flux_err, GSL.h_delta_flux,
-  GSL.h_delta_flux_err, GSX.d4000, GSX.d4000_err, GSE.bptclass,
-  GSE.lgm_tot_p50, GSE.sfr_tot_p50, G.objID, GSI.specObjID
-INTO mydb.SDSSspecgalsDR8 FROM SpecObj S CROSS APPLY
-  dbo.fGetNearestObjEQ(S.ra, S.dec, 0.06) N, Galaxy G,
-  GalSpecInfo GSI, GalSpecLine GSL, GalSpecIndx GSX, GalSpecExtra GSE
-WHERE N.objID = G.objID
-  AND GSI.specObjID = S.specObjID
-  AND GSL.specObjID = S.specObjID
-  AND GSX.specObjID = S.specObjID
-  AND GSE.specObjID = S.specObjID
-  --- add some quality cuts to get rid of obviously bad measurements
-  AND (G.petroMag_r &gt; 10 AND G.petroMag_r &lt; 18)
-  AND (G.modelMag_u-G.modelMag_r) &gt; 0
-  AND (G.modelMag_u-G.modelMag_r) &lt; 6
-  AND (modelMag_u &gt; 10 AND modelMag_u &lt; 25)
-  AND (modelMag_g &gt; 10 AND modelMag_g &lt; 25)
-  AND (modelMag_r &gt; 10 AND modelMag_r &lt; 25)
-  AND (modelMag_i &gt; 10 AND modelMag_i &lt; 25)
-  AND (modelMag_z &gt; 10 AND modelMag_z &lt; 25)
-  AND S.rChi2 &lt; 2
-  AND (S.zErr &gt; 0 AND S.zErr &lt; 0.01)
-  AND S.z &gt; 0.02
-  --- end of query ---</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span>
+  <span class="n">G</span><span class="o">.</span><span class="n">ra</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">dec</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">mjd</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">plate</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">fiberID</span><span class="p">,</span> <span class="o">---</span> <span class="n">basic</span> <span class="n">identifiers</span>
+  <span class="o">---</span> <span class="n">basic</span> <span class="n">spectral</span> <span class="n">data</span>
+  <span class="n">S</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">zErr</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">rChi2</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">velDisp</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">velDispErr</span><span class="p">,</span>
+  <span class="o">---</span> <span class="n">some</span> <span class="n">useful</span> <span class="n">imaging</span> <span class="n">parameters</span>
+  <span class="n">G</span><span class="o">.</span><span class="n">extinction_r</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">petroMag_r</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">psfMag_r</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">psfMagErr_r</span><span class="p">,</span>
+  <span class="n">G</span><span class="o">.</span><span class="n">modelMag_u</span><span class="p">,</span> <span class="n">modelMagErr_u</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">modelMag_g</span><span class="p">,</span> <span class="n">modelMagErr_g</span><span class="p">,</span>
+  <span class="n">G</span><span class="o">.</span><span class="n">modelMag_r</span><span class="p">,</span> <span class="n">modelMagErr_r</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">modelMag_i</span><span class="p">,</span> <span class="n">modelMagErr_i</span><span class="p">,</span>
+  <span class="n">G</span><span class="o">.</span><span class="n">modelMag_z</span><span class="p">,</span> <span class="n">modelMagErr_z</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">petroR50_r</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">petroR90_r</span><span class="p">,</span>
+  <span class="o">---</span> <span class="n">line</span> <span class="n">fluxes</span> <span class="k">for</span> <span class="n">BPT</span> <span class="n">diagram</span> <span class="ow">and</span> <span class="n">other</span> <span class="n">derived</span> <span class="n">spec</span><span class="o">.</span> <span class="n">parameters</span>
+  <span class="n">GSL</span><span class="o">.</span><span class="n">nii_6584_flux</span><span class="p">,</span> <span class="n">GSL</span><span class="o">.</span><span class="n">nii_6584_flux_err</span><span class="p">,</span> <span class="n">GSL</span><span class="o">.</span><span class="n">h_alpha_flux</span><span class="p">,</span>
+  <span class="n">GSL</span><span class="o">.</span><span class="n">h_alpha_flux_err</span><span class="p">,</span> <span class="n">GSL</span><span class="o">.</span><span class="n">oiii_5007_flux</span><span class="p">,</span> <span class="n">GSL</span><span class="o">.</span><span class="n">oiii_5007_flux_err</span><span class="p">,</span>
+  <span class="n">GSL</span><span class="o">.</span><span class="n">h_beta_flux</span><span class="p">,</span> <span class="n">GSL</span><span class="o">.</span><span class="n">h_beta_flux_err</span><span class="p">,</span> <span class="n">GSL</span><span class="o">.</span><span class="n">h_delta_flux</span><span class="p">,</span>
+  <span class="n">GSL</span><span class="o">.</span><span class="n">h_delta_flux_err</span><span class="p">,</span> <span class="n">GSX</span><span class="o">.</span><span class="n">d4000</span><span class="p">,</span> <span class="n">GSX</span><span class="o">.</span><span class="n">d4000_err</span><span class="p">,</span> <span class="n">GSE</span><span class="o">.</span><span class="n">bptclass</span><span class="p">,</span>
+  <span class="n">GSE</span><span class="o">.</span><span class="n">lgm_tot_p50</span><span class="p">,</span> <span class="n">GSE</span><span class="o">.</span><span class="n">sfr_tot_p50</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">objID</span><span class="p">,</span> <span class="n">GSI</span><span class="o">.</span><span class="n">specObjID</span>
+<span class="n">INTO</span> <span class="n">mydb</span><span class="o">.</span><span class="n">SDSSspecgalsDR8</span> <span class="n">FROM</span> <span class="n">SpecObj</span> <span class="n">S</span> <span class="n">CROSS</span> <span class="n">APPLY</span>
+  <span class="n">dbo</span><span class="o">.</span><span class="n">fGetNearestObjEQ</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">ra</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">dec</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">)</span> <span class="n">N</span><span class="p">,</span> <span class="n">Galaxy</span> <span class="n">G</span><span class="p">,</span>
+  <span class="n">GalSpecInfo</span> <span class="n">GSI</span><span class="p">,</span> <span class="n">GalSpecLine</span> <span class="n">GSL</span><span class="p">,</span> <span class="n">GalSpecIndx</span> <span class="n">GSX</span><span class="p">,</span> <span class="n">GalSpecExtra</span> <span class="n">GSE</span>
+<span class="n">WHERE</span> <span class="n">N</span><span class="o">.</span><span class="n">objID</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">objID</span>
+  <span class="n">AND</span> <span class="n">GSI</span><span class="o">.</span><span class="n">specObjID</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">specObjID</span>
+  <span class="n">AND</span> <span class="n">GSL</span><span class="o">.</span><span class="n">specObjID</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">specObjID</span>
+  <span class="n">AND</span> <span class="n">GSX</span><span class="o">.</span><span class="n">specObjID</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">specObjID</span>
+  <span class="n">AND</span> <span class="n">GSE</span><span class="o">.</span><span class="n">specObjID</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">specObjID</span>
+  <span class="o">---</span> <span class="n">add</span> <span class="n">some</span> <span class="n">quality</span> <span class="n">cuts</span> <span class="n">to</span> <span class="n">get</span> <span class="n">rid</span> <span class="n">of</span> <span class="n">obviously</span> <span class="n">bad</span> <span class="n">measurements</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">petroMag_r</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">G</span><span class="o">.</span><span class="n">petroMag_r</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">)</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">modelMag_u</span><span class="o">-</span><span class="n">G</span><span class="o">.</span><span class="n">modelMag_r</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">modelMag_u</span><span class="o">-</span><span class="n">G</span><span class="o">.</span><span class="n">modelMag_r</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">6</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">modelMag_u</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">modelMag_u</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">)</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">modelMag_g</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">modelMag_g</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">)</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">modelMag_r</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">modelMag_r</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">)</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">modelMag_i</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">modelMag_i</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">)</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">modelMag_z</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">modelMag_z</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">)</span>
+  <span class="n">AND</span> <span class="n">S</span><span class="o">.</span><span class="n">rChi2</span> <span class="o">&lt;</span> <span class="mi">2</span>
+  <span class="n">AND</span> <span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">zErr</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">AND</span> <span class="n">S</span><span class="o">.</span><span class="n">zErr</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">)</span>
+  <span class="n">AND</span> <span class="n">S</span><span class="o">.</span><span class="n">z</span> <span class="o">&gt;</span> <span class="mf">0.02</span>
+  <span class="o">---</span> <span class="n">end</span> <span class="n">of</span> <span class="n">query</span> <span class="o">---</span>
+</pre></div>
 </div>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_specgals</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_specgals</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>  <span class="c"># number of objects in dataset</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_sdss_specgals</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_specgals</span><span class="p">()</span>  <span class="c1"># doctest: +IGNORE_OUTPUT</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>  <span class="c1"># number of objects in dataset</span>
 <span class="go">(661598,)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">names</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>  <span class="c"># first five column names</span>
-<span class="go">[&#39;ra&#39;, &#39;dec&#39;, &#39;mjd&#39;, &#39;plate&#39;, &#39;fiberID&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>  <span class="c"># first three RA values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># first five column names</span>
+<span class="go">(&#39;ra&#39;, &#39;dec&#39;, &#39;mjd&#39;, &#39;plate&#39;, &#39;fiberID&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># first three RA values</span>
 <span class="go">[ 146.71419105  146.74414186  146.62857334]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>  <span class="c">#  first three declination values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">])</span>  <span class="c1">#  first three declination values</span>
 <span class="go">[-1.04127639 -0.6522198  -0.7651468 ]</span>
 </pre></div>
 </div>
@@ -291,11 +257,11 @@ WHERE N.objID = G.objID
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.datasets.fetch_sdss_specgals.txt"
+    <a href="../../_sources/modules/generated/astroML.datasets.fetch_sdss_specgals.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

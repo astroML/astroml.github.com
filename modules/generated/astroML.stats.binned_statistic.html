@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11.6.1. astroML.stats.binned_statistic &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11.6.1. astroML.stats.binned_statistic &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11.6.2. astroML.stats.binned_statistic_2d" href="astroML.stats.binned_statistic_2d.html" />
     <link rel="prev" title="11.5.2.4. astroML.time_series.generate_damped_RW" href="astroML.time_series.generate_damped_RW.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    11.5.2.4. astroM...
+	    11.5.2.4. ast...
 	    </span>
 	    <span class="hiddenrellink">
 	    11.5.2.4. astroML.time_series.generate_damped_RW
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="astroML.stats.binned_statistic_2d.html" title="11.6.2. astroML.stats.binned_statistic_2d"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.6.2. astroML....
-	    </span>
-	    <span class="hiddenrellink">
-	    11.6.2. astroML.stats.binned_statistic_2d
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	11. Class refere...
+	11. Class reference
 	</span>
 	<span class="hiddenrellink">
 	11. Class reference
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,95 +164,82 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="astroml-stats-binned-statistic">
 <h1>11.6.1. astroML.stats.binned_statistic<a class="headerlink" href="#astroml-stats-binned-statistic" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.stats.binned_statistic">
-<tt class="descclassname">astroML.stats.</tt><tt class="descname">binned_statistic</tt><big>(</big><em>x</em>, <em>values</em>, <em>statistic='mean'</em>, <em>bins=10</em>, <em>range=None</em><big>)</big><a class="headerlink" href="#astroML.stats.binned_statistic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">astroML.stats.</code><code class="sig-name descname">binned_statistic</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">values</em>, <em class="sig-param">statistic='mean'</em>, <em class="sig-param">bins=10</em>, <em class="sig-param">range=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/stats/_binned_statistic.html#binned_statistic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.stats.binned_statistic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a binned statistic for a set of data.</p>
 <p>This is a generalization of a histogram function.  A histogram divides
 the space into bins, and returns the count of the number of points in
 each bin.  This function allows the computation of the sum, mean, median,
 or other statistic of the values within each bin.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x</strong> : array_like</p>
-<blockquote>
-<div><p>A sequence of values to be binned.</p>
-</div></blockquote>
-<p><strong>values</strong> : array_like</p>
-<blockquote>
-<div><p>The values on which the statistic will be computed.  This must be
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>x</strong><span class="classifier">array_like</span></dt><dd><p>A sequence of values to be binned.</p>
+</dd>
+<dt><strong>values</strong><span class="classifier">array_like</span></dt><dd><p>The values on which the statistic will be computed.  This must be
 the same shape as x.</p>
-</div></blockquote>
-<p><strong>statistic</strong> : string or callable, optional</p>
-<blockquote>
-<div><p>The statistic to compute (default is &#8216;mean&#8217;).
+</dd>
+<dt><strong>statistic</strong><span class="classifier">string or callable, optional</span></dt><dd><p>The statistic to compute (default is ‘mean’).
 The following statistics are available:</p>
 <blockquote>
 <div><ul class="simple">
-<li>&#8216;mean&#8217; : compute the mean of values for points within each bin.
-Empty bins will be represented by NaN.</li>
-<li>&#8216;median&#8217; : compute the median of values for points within each
-bin. Empty bins will be represented by NaN.</li>
-<li>&#8216;count&#8217; : compute the count of points within each bin.  This is
+<li><p>‘mean’ : compute the mean of values for points within each bin.
+Empty bins will be represented by NaN.</p></li>
+<li><p>‘median’ : compute the median of values for points within each
+bin. Empty bins will be represented by NaN.</p></li>
+<li><p>‘count’ : compute the count of points within each bin.  This is
 identical to an unweighted histogram.  <cite>values</cite> array is not
-referenced.</li>
-<li>&#8216;sum&#8217; : compute the sum of values for points within each bin.
-This is identical to a weighted histogram.</li>
-<li>function : a user-defined function which takes a 1D array of
+referenced.</p></li>
+<li><p>‘sum’ : compute the sum of values for points within each bin.
+This is identical to a weighted histogram.</p></li>
+<li><p>function : a user-defined function which takes a 1D array of
 values, and outputs a single numerical statistic. This function
 will be called on the values in each bin.  Empty bins will be
-represented by function([]), or NaN if this returns an error.</li>
+represented by function([]), or NaN if this returns an error.</p></li>
 </ul>
 </div></blockquote>
-</div></blockquote>
-<p><strong>bins</strong> : int or sequence of scalars, optional</p>
-<blockquote>
-<div><p>If <cite>bins</cite> is an int, it defines the number of equal-width
+</dd>
+<dt><strong>bins</strong><span class="classifier">int or sequence of scalars, optional</span></dt><dd><p>If <cite>bins</cite> is an int, it defines the number of equal-width
 bins in the given range (10, by default). If <cite>bins</cite> is a sequence,
 it defines the bin edges, including the rightmost edge, allowing
 for non-uniform bin widths.</p>
-</div></blockquote>
-<p><strong>range</strong> : (float, float), optional</p>
-<blockquote>
-<div><p>The lower and upper range of the bins.  If not provided, range
-is simply <tt class="docutils literal"><span class="pre">(x.min(),</span> <span class="pre">x.max())</span></tt>.  Values outside the range are
+</dd>
+<dt><strong>range</strong><span class="classifier">(float, float), optional</span></dt><dd><p>The lower and upper range of the bins.  If not provided, range
+is simply <code class="docutils literal notranslate"><span class="pre">(x.min(),</span> <span class="pre">x.max())</span></code>.  Values outside the range are
 ignored.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>statistic</strong> : array</p>
-<blockquote>
-<div><p>The values of the selected statistic in each bin.</p>
-</div></blockquote>
-<p><strong>bin_edges</strong> : array of dtype float</p>
-<blockquote class="last">
-<div><p>Return the bin edges <tt class="docutils literal"><span class="pre">(length(statistic)+1)</span></tt>.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>statistic</strong><span class="classifier">array</span></dt><dd><p>The values of the selected statistic in each bin.</p>
+</dd>
+<dt><strong>bin_edges</strong><span class="classifier">array of dtype float</span></dt><dd><p>Return the bin edges <code class="docutils literal notranslate"><span class="pre">(length(statistic)+1)</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">np.histogram</span></code>, <a class="reference internal" href="astroML.stats.binned_statistic_2d.html#astroML.stats.binned_statistic_2d" title="astroML.stats.binned_statistic_2d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binned_statistic_2d</span></code></a>, <a class="reference internal" href="astroML.stats.binned_statistic_dd.html#astroML.stats.binned_statistic_dd" title="astroML.stats.binned_statistic_dd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binned_statistic_dd</span></code></a></p>
+</div>
 <p class="rubric">Notes</p>
 <p>All but the last (righthand-most) bin is half-open.  In other words, if
 <cite>bins</cite> is:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>then the first bin is <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2)</span></tt> (including 1, but excluding 2) and the
-second <tt class="docutils literal"><span class="pre">[2,</span> <span class="pre">3)</span></tt>.  The last bin, however, is <tt class="docutils literal"><span class="pre">[3,</span> <span class="pre">4]</span></tt>, which <em>includes</em>
+<p>then the first bin is <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2)</span></code> (including 1, but excluding 2) and the
+second <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">3)</span></code>.  The last bin, however, is <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">4]</span></code>, which <em>includes</em>
 4.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">binned_statistic</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s">&#39;count&#39;</span><span class="p">)</span>
-<span class="go">(array([0, 2, 1]), array([0, 1, 2, 3]))</span>
-<span class="go">See Also</span>
-<span class="go">--------</span>
-<span class="go">np.histogram, binned_statistic_2d, binned_statistic_dd</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">binned_statistic</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">statistic</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="go">(array([0., 2., 1.]), array([0., 1., 2., 3.]))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -298,11 +256,11 @@ second <tt class="docutils literal"><span class="pre">[2,</span> <span class="pr
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.stats.binned_statistic.txt"
+    <a href="../../_sources/modules/generated/astroML.stats.binned_statistic.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.datasets.sdss_specgals &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.datasets.sdss_specgals</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="k">import</span> <span class="n">FlatLambdaCDM</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">get_data_home</span>
+<span class="kn">from</span> <span class="nn">.tools</span> <span class="k">import</span> <span class="n">download_with_progress_bar</span>
+
+<span class="n">DATA_URL</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;http://www.astro.washington.edu/users/ivezic/&quot;</span>
+            <span class="s2">&quot;DMbook/data/SDSSspecgalsDR8.fit&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="fetch_sdss_specgals"><a class="viewcode-back" href="../../../modules/generated/astroML.datasets.fetch_sdss_specgals.html#astroML.datasets.fetch_sdss_specgals">[docs]</a><span class="k">def</span> <span class="nf">fetch_sdss_specgals</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loader for SDSS Galaxies with spectral information</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : optional, default=None</span>
+<span class="sd">        Specify another download and cache folder for the datasets. By default</span>
+<span class="sd">        all scikit learn data is stored in &#39;~/astroML_data&#39; subfolders.</span>
+
+<span class="sd">    download_if_missing : optional, default=True</span>
+<span class="sd">        If False, raise a IOError if the data is not locally available</span>
+<span class="sd">        instead of trying to download the data from the source site.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : recarray, shape = (327260,)</span>
+<span class="sd">        record array containing pipeline parameters</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    These were compiled from the SDSS database using the following SQL query::</span>
+
+<span class="sd">        SELECT</span>
+<span class="sd">          G.ra, G.dec, S.mjd, S.plate, S.fiberID, --- basic identifiers</span>
+<span class="sd">          --- basic spectral data</span>
+<span class="sd">          S.z, S.zErr, S.rChi2, S.velDisp, S.velDispErr,</span>
+<span class="sd">          --- some useful imaging parameters</span>
+<span class="sd">          G.extinction_r, G.petroMag_r, G.psfMag_r, G.psfMagErr_r,</span>
+<span class="sd">          G.modelMag_u, modelMagErr_u, G.modelMag_g, modelMagErr_g,</span>
+<span class="sd">          G.modelMag_r, modelMagErr_r, G.modelMag_i, modelMagErr_i,</span>
+<span class="sd">          G.modelMag_z, modelMagErr_z, G.petroR50_r, G.petroR90_r,</span>
+<span class="sd">          --- line fluxes for BPT diagram and other derived spec. parameters</span>
+<span class="sd">          GSL.nii_6584_flux, GSL.nii_6584_flux_err, GSL.h_alpha_flux,</span>
+<span class="sd">          GSL.h_alpha_flux_err, GSL.oiii_5007_flux, GSL.oiii_5007_flux_err,</span>
+<span class="sd">          GSL.h_beta_flux, GSL.h_beta_flux_err, GSL.h_delta_flux,</span>
+<span class="sd">          GSL.h_delta_flux_err, GSX.d4000, GSX.d4000_err, GSE.bptclass,</span>
+<span class="sd">          GSE.lgm_tot_p50, GSE.sfr_tot_p50, G.objID, GSI.specObjID</span>
+<span class="sd">        INTO mydb.SDSSspecgalsDR8 FROM SpecObj S CROSS APPLY</span>
+<span class="sd">          dbo.fGetNearestObjEQ(S.ra, S.dec, 0.06) N, Galaxy G,</span>
+<span class="sd">          GalSpecInfo GSI, GalSpecLine GSL, GalSpecIndx GSX, GalSpecExtra GSE</span>
+<span class="sd">        WHERE N.objID = G.objID</span>
+<span class="sd">          AND GSI.specObjID = S.specObjID</span>
+<span class="sd">          AND GSL.specObjID = S.specObjID</span>
+<span class="sd">          AND GSX.specObjID = S.specObjID</span>
+<span class="sd">          AND GSE.specObjID = S.specObjID</span>
+<span class="sd">          --- add some quality cuts to get rid of obviously bad measurements</span>
+<span class="sd">          AND (G.petroMag_r &gt; 10 AND G.petroMag_r &lt; 18)</span>
+<span class="sd">          AND (G.modelMag_u-G.modelMag_r) &gt; 0</span>
+<span class="sd">          AND (G.modelMag_u-G.modelMag_r) &lt; 6</span>
+<span class="sd">          AND (modelMag_u &gt; 10 AND modelMag_u &lt; 25)</span>
+<span class="sd">          AND (modelMag_g &gt; 10 AND modelMag_g &lt; 25)</span>
+<span class="sd">          AND (modelMag_r &gt; 10 AND modelMag_r &lt; 25)</span>
+<span class="sd">          AND (modelMag_i &gt; 10 AND modelMag_i &lt; 25)</span>
+<span class="sd">          AND (modelMag_z &gt; 10 AND modelMag_z &lt; 25)</span>
+<span class="sd">          AND S.rChi2 &lt; 2</span>
+<span class="sd">          AND (S.zErr &gt; 0 AND S.zErr &lt; 0.01)</span>
+<span class="sd">          AND S.z &gt; 0.02</span>
+<span class="sd">          --- end of query ---</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from astroML.datasets import fetch_sdss_specgals</span>
+<span class="sd">    &gt;&gt;&gt; data = fetch_sdss_specgals()  # doctest: +IGNORE_OUTPUT</span>
+<span class="sd">    &gt;&gt;&gt; data.shape  # number of objects in dataset</span>
+<span class="sd">    (661598,)</span>
+<span class="sd">    &gt;&gt;&gt; data.dtype.names[:5]  # first five column names</span>
+<span class="sd">    (&#39;ra&#39;, &#39;dec&#39;, &#39;mjd&#39;, &#39;plate&#39;, &#39;fiberID&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(data[&#39;ra&#39;][:3])  # first three RA values</span>
+<span class="sd">    [ 146.71419105  146.74414186  146.62857334]</span>
+<span class="sd">    &gt;&gt;&gt; print(data[&#39;dec&#39;][:3])  #  first three declination values</span>
+<span class="sd">    [-1.04127639 -0.6522198  -0.7651468 ]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># fits is an optional dependency: don&#39;t import globally</span>
+    <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="k">import</span> <span class="n">fits</span>
+
+    <span class="n">data_home</span> <span class="o">=</span> <span class="n">get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+
+    <span class="n">archive_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_home</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archive_file</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">download_if_missing</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;data not present on disk. &#39;</span>
+                          <span class="s1">&#39;set download_if_missing=True to download&#39;</span><span class="p">)</span>
+
+        <span class="n">fitsdata</span> <span class="o">=</span> <span class="n">download_with_progress_bar</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">)</span>
+        <span class="nb">open</span><span class="p">(</span><span class="n">archive_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fitsdata</span><span class="p">)</span>
+
+    <span class="n">hdulist</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">archive_file</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fetch_great_wall"><a class="viewcode-back" href="../../../modules/generated/astroML.datasets.fetch_great_wall.html#astroML.datasets.fetch_great_wall">[docs]</a><span class="k">def</span> <span class="nf">fetch_great_wall</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">375</span><span class="p">,</span> <span class="o">-</span><span class="mi">175</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">cosmo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the 2D SDSS &quot;Great Wall&quot; distribution, following Cowan et al 2008</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : optional, default=None</span>
+<span class="sd">        Specify another download and cache folder for the datasets. By default</span>
+<span class="sd">        all scikit learn data is stored in &#39;~/astroML_data&#39; subfolders.</span>
+
+<span class="sd">    download_if_missing : optional, default=True</span>
+<span class="sd">        If False, raise a IOError if the data is not locally available</span>
+<span class="sd">        instead of trying to download the data from the source site.</span>
+
+<span class="sd">    xlim, ylim : tuples or None</span>
+<span class="sd">        the limits in Mpc of the data: default values are the same as that</span>
+<span class="sd">        used for the plots in Cowan 2008.  If set to None, no cuts will</span>
+<span class="sd">        be performed.</span>
+
+<span class="sd">    cosmo : `astropy.cosmology` instance specifying cosmology</span>
+<span class="sd">        to use when generating the sample.  If not provided,</span>
+<span class="sd">        a Flat Lambda CDM model with H0=73.2, Om0=0.27, Tcmb0=0 is used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : ndarray, shape = (Ngals, 2)</span>
+<span class="sd">        grid of projected (x, y) locations of galaxies in Mpc</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># local imports so we don&#39;t need dependencies for loading module</span>
+    <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="k">import</span> <span class="n">interp1d</span>
+
+    <span class="c1"># We need some cosmological information to compute the r-band</span>
+    <span class="c1">#  absolute magnitudes.</span>
+    <span class="k">if</span> <span class="n">cosmo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cosmo</span> <span class="o">=</span> <span class="n">FlatLambdaCDM</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mf">73.2</span><span class="p">,</span> <span class="n">Om0</span><span class="o">=</span><span class="mf">0.27</span><span class="p">,</span> <span class="n">Tcmb0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_specgals</span><span class="p">(</span><span class="n">data_home</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="p">)</span>
+
+    <span class="c1"># cut to the part of the sky with the &quot;great wall&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">7</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">)]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">280</span><span class="p">)]</span>
+
+    <span class="c1"># do a redshift cut, following Cowan et al 2008</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">z</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mf">0.12</span><span class="p">)]</span>
+
+    <span class="c1"># first sample the distance modulus on a grid</span>
+    <span class="n">zgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]),</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">mugrid</span> <span class="o">=</span> <span class="n">cosmo</span><span class="o">.</span><span class="n">distmod</span><span class="p">(</span><span class="n">zgrid</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">zgrid</span><span class="p">,</span> <span class="n">mugrid</span><span class="p">)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">])</span>
+
+    <span class="c1"># do an absolute magnitude cut at -20</span>
+    <span class="n">Mr</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;petroMag_r&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;extinction_r&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">Mr</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">21</span><span class="p">]</span>
+
+    <span class="c1"># compute distances in the equatorial plane</span>
+    <span class="c1"># first sample comoving distance</span>
+    <span class="n">Dcgrid</span> <span class="o">=</span> <span class="n">cosmo</span><span class="o">.</span><span class="n">comoving_distance</span><span class="p">(</span><span class="n">zgrid</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">zgrid</span><span class="p">,</span> <span class="n">Dcgrid</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">])</span>
+
+    <span class="n">locs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">dist</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">),</span>
+                      <span class="n">dist</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># cut on x and y limits if specified</span>
+    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">locs</span> <span class="o">=</span> <span class="n">locs</span><span class="p">[(</span><span class="n">locs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">locs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">locs</span> <span class="o">=</span> <span class="n">locs</span><span class="p">[(</span><span class="n">locs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">locs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+
+    <span class="k">return</span> <span class="n">locs</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

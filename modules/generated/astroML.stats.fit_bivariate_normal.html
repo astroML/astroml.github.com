@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11.6.7. astroML.stats.fit_bivariate_normal &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11.6.7. astroML.stats.fit_bivariate_normal &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11.6.8. astroML.stats.bivariate_normal" href="astroML.stats.bivariate_normal.html" />
     <link rel="prev" title="11.6.6. astroML.stats.mean_sigma" href="astroML.stats.mean_sigma.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    11.6.6. astroML....
+	    11.6.6. astro...
 	    </span>
 	    <span class="hiddenrellink">
 	    11.6.6. astroML.stats.mean_sigma
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="astroML.stats.bivariate_normal.html" title="11.6.8. astroML.stats.bivariate_normal"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.6.8. astroML....
-	    </span>
-	    <span class="hiddenrellink">
-	    11.6.8. astroML.stats.bivariate_normal
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	11. Class refere...
+	11. Class reference
 	</span>
 	<span class="hiddenrellink">
 	11. Class reference
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,45 +164,35 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="astroml-stats-fit-bivariate-normal">
 <h1>11.6.7. astroML.stats.fit_bivariate_normal<a class="headerlink" href="#astroml-stats-fit-bivariate-normal" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.stats.fit_bivariate_normal">
-<tt class="descclassname">astroML.stats.</tt><tt class="descname">fit_bivariate_normal</tt><big>(</big><em>x</em>, <em>y</em>, <em>robust=False</em><big>)</big><a class="headerlink" href="#astroML.stats.fit_bivariate_normal" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">astroML.stats.</code><code class="sig-name descname">fit_bivariate_normal</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">robust=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/stats/_point_statistics.html#fit_bivariate_normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.stats.fit_bivariate_normal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit bivariate normal parameters to a 2D distribution of points</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x, y</strong> : array_like</p>
-<blockquote>
-<div><p>The x, y coordinates of the points</p>
-</div></blockquote>
-<p><strong>robust</strong> : boolean (optional, default=False)</p>
-<blockquote>
-<div><p>If True, then use rank-based statistics which are robust to outliers
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x, y</strong><span class="classifier">array_like</span></dt><dd><p>The x, y coordinates of the points</p>
+</dd>
+<dt><strong>robust</strong><span class="classifier">boolean (optional, default=False)</span></dt><dd><p>If True, then use rank-based statistics which are robust to outliers
 Otherwise, use mean/std statistics which are not robust</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>mu</strong> : tuple</p>
-<blockquote>
-<div><p>(x, y) location of the best-fit bivariate normal</p>
-</div></blockquote>
-<p><strong>sigma_1, sigma_2</strong> : float</p>
-<blockquote>
-<div><p>The best-fit gaussian widths in the uncorrelated frame</p>
-</div></blockquote>
-<p><strong>alpha</strong> : float</p>
-<blockquote class="last">
-<div><p>The rotation angle in radians of the uncorrelated frame</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>mu</strong><span class="classifier">tuple</span></dt><dd><p>(x, y) location of the best-fit bivariate normal</p>
+</dd>
+<dt><strong>sigma_1, sigma_2</strong><span class="classifier">float</span></dt><dd><p>The best-fit gaussian widths in the uncorrelated frame</p>
+</dd>
+<dt><strong>alpha</strong><span class="classifier">float</span></dt><dd><p>The rotation angle in radians of the uncorrelated frame</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -246,11 +207,11 @@ Otherwise, use mean/std statistics which are not robust</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.stats.fit_bivariate_normal.txt"
+    <a href="../../_sources/modules/generated/astroML.stats.fit_bivariate_normal.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

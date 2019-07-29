@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>astroML.correlation &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>astroML.correlation &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -71,8 +59,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -83,6 +70,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -122,7 +110,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -158,26 +146,26 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for astroML.correlation</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Tools for computing two-point correlation functions.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">BallTree</span>
-<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">check_random_state</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">BallTree</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="k">import</span> <span class="n">check_random_state</span>
 
-<span class="c"># Check if scikit-learn&#39;s two-point functionality is available.</span>
-<span class="c"># This was added in scikit-learn version 0.14</span>
+<span class="c1"># Check if scikit-learn&#39;s two-point functionality is available.</span>
+<span class="c1"># This was added in scikit-learn version 0.14</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KDTree</span>
-    <span class="n">sklearn_has_two_point</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">KDTree</span>
+    <span class="n">sklearn_has_two_point</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">warnings</span>
-    <span class="n">sklearn_has_two_point</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">sklearn_has_two_point</span> <span class="o">=</span> <span class="kc">False</span>
 
 
 <span class="k">def</span> <span class="nf">uniform_sphere</span><span class="p">(</span><span class="n">RAlim</span><span class="p">,</span> <span class="n">DEClim</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -234,8 +222,8 @@ $(document).ready(function(){
     <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">D</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="two_point"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.two_point.html#astroML.correlation.two_point">[docs]</a><span class="k">def</span> <span class="nf">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;standard&#39;</span><span class="p">,</span>
-              <span class="n">data_R</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="two_point"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.two_point.html#astroML.correlation.two_point">[docs]</a><span class="k">def</span> <span class="nf">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span>
+              <span class="n">data_R</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Two-point correlation function</span>
 
 <span class="sd">    Parameters</span>
@@ -262,34 +250,34 @@ $(document).ready(function(){
     <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="s1">&#39;landy-szalay&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">bins</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;data should be 1D or 2D&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;data should be 1D or 2D&quot;</span><span class="p">)</span>
 
     <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">Nbins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="c"># shuffle all but one axis to get background distribution</span>
-    <span class="k">if</span> <span class="n">data_R</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="c1"># shuffle all but one axis to get background distribution</span>
+    <span class="k">if</span> <span class="n">data_R</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">data_R</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_features</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">data_R</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">data_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">data_R</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">data_R</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_features</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;data_R must have same n_features as data&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;data_R must have same n_features as data&#39;</span><span class="p">)</span>
 
     <span class="n">factor</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">sklearn_has_two_point</span><span class="p">:</span>
-        <span class="c"># Fast two-point correlation functions added in scikit-learn v. 0.14</span>
+        <span class="c1"># Fast two-point correlation functions added in scikit-learn v. 0.14</span>
         <span class="n">KDT_D</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">KDT_R</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span>
 
@@ -297,10 +285,10 @@ $(document).ready(function(){
         <span class="n">counts_RR</span> <span class="o">=</span> <span class="n">KDT_R</span><span class="o">.</span><span class="n">two_point_correlation</span><span class="p">(</span><span class="n">data_R</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;Version 0.3 of astroML will require scikit-learn &quot;</span>
-                      <span class="s">&quot;version 0.14 or higher for correlation function &quot;</span>
-                      <span class="s">&quot;calculations. Upgrade to sklearn 0.14+ now for much &quot;</span>
-                      <span class="s">&quot;faster correlation function calculations.&quot;</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Version 0.3 of astroML will require scikit-learn &quot;</span>
+                      <span class="s2">&quot;version 0.14 or higher for correlation function &quot;</span>
+                      <span class="s2">&quot;calculations. Upgrade to sklearn 0.14+ now for much &quot;</span>
+                      <span class="s2">&quot;faster correlation function calculations.&quot;</span><span class="p">)</span>
 
         <span class="n">BT_D</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">BT_R</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">data_R</span><span class="p">)</span>
@@ -310,39 +298,39 @@ $(document).ready(function(){
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">counts_DD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_D</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                                                    <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+                                                    <span class="n">count_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
             <span class="n">counts_RR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_R</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data_R</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                                                    <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+                                                    <span class="n">count_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
     <span class="n">DD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_DD</span><span class="p">)</span>
     <span class="n">RR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_RR</span><span class="p">)</span>
 
-    <span class="c"># check for zero in the denominator</span>
+    <span class="c1"># check for zero in the denominator</span>
     <span class="n">RR_zero</span> <span class="o">=</span> <span class="p">(</span><span class="n">RR</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">RR</span><span class="p">[</span><span class="n">RR_zero</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;standard&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;standard&#39;</span><span class="p">:</span>
         <span class="n">corr</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">DD</span> <span class="o">/</span> <span class="n">RR</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;landy-szalay&#39;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">sklearn_has_two_point</span><span class="p">:</span>
             <span class="n">counts_DR</span> <span class="o">=</span> <span class="n">KDT_R</span><span class="o">.</span><span class="n">two_point_correlation</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">counts_DR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="n">counts_DR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">BT_R</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                                                        <span class="n">count_only</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+                                                        <span class="n">count_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
         <span class="n">DR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">counts_DR</span><span class="p">)</span>
 
         <span class="n">corr</span> <span class="o">=</span> <span class="p">(</span><span class="n">factor</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">DD</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">DR</span> <span class="o">+</span> <span class="n">RR</span><span class="p">)</span> <span class="o">/</span> <span class="n">RR</span>
 
     <span class="n">corr</span><span class="p">[</span><span class="n">RR_zero</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-    <span class="k">return</span> <span class="n">corr</span>
+    <span class="k">return</span> <span class="n">corr</span></div>
 
-</div>
+
 <div class="viewcode-block" id="bootstrap_two_point"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.bootstrap_two_point.html#astroML.correlation.bootstrap_two_point">[docs]</a><span class="k">def</span> <span class="nf">bootstrap_two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">Nbootstrap</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                        <span class="n">method</span><span class="o">=</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">return_bootstraps</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                        <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+                        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">return_bootstraps</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Bootstrapped two-point correlation function</span>
 
 <span class="sd">    Parameters</span>
@@ -371,23 +359,23 @@ $(document).ready(function(){
     <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="s1">&#39;landy-szalay&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">bins</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;data should be 1D or 2D&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;data should be 1D or 2D&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">Nbootstrap</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Nbootstrap must be greater than 1&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Nbootstrap must be greater than 1&quot;</span><span class="p">)</span>
 
     <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
 
-    <span class="c"># get the baseline estimate</span>
+    <span class="c1"># get the baseline estimate</span>
     <span class="n">corr</span> <span class="o">=</span> <span class="n">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 
     <span class="n">bootstraps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nbootstrap</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">corr</span><span class="p">)))</span>
@@ -397,16 +385,16 @@ $(document).ready(function(){
         <span class="n">bootstraps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="p">:],</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
                                   <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 
-    <span class="c"># use masked std dev in case of NaNs</span>
+    <span class="c1"># use masked std dev in case of NaNs</span>
     <span class="n">corr_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">bootstraps</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">return_bootstraps</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">corr</span><span class="p">,</span> <span class="n">corr_err</span><span class="p">,</span> <span class="n">bootstraps</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">corr</span><span class="p">,</span> <span class="n">corr_err</span>
+        <span class="k">return</span> <span class="n">corr</span><span class="p">,</span> <span class="n">corr_err</span></div>
 
-</div>
-<div class="viewcode-block" id="two_point_angular"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.two_point_angular.html#astroML.correlation.two_point_angular">[docs]</a><span class="k">def</span> <span class="nf">two_point_angular</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="two_point_angular"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.two_point_angular.html#astroML.correlation.two_point_angular">[docs]</a><span class="k">def</span> <span class="nf">two_point_angular</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Angular two-point correlation function</span>
 
 <span class="sd">    A separate function is needed because angular distances are not</span>
@@ -437,36 +425,36 @@ $(document).ready(function(){
     <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="s1">&#39;landy-szalay&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">bins</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">dec</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;ra and dec must be 1-dimensional &#39;</span>
-                         <span class="s">&#39;arrays of the same length&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;ra and dec must be 1-dimensional &#39;</span>
+                         <span class="s1">&#39;arrays of the same length&#39;</span><span class="p">)</span>
 
     <span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span>
     <span class="n">Nbins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="c"># draw a random sample with N points</span>
+    <span class="c1"># draw a random sample with N points</span>
     <span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span> <span class="o">=</span> <span class="n">uniform_sphere</span><span class="p">((</span><span class="nb">min</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ra</span><span class="p">)),</span>
                                  <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dec</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">dec</span><span class="p">)),</span>
                                  <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">ra</span><span class="p">))</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-    <span class="n">data_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">data_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 
-    <span class="c"># convert spherical bins to cartesian bins</span>
+    <span class="c1"># convert spherical bins to cartesian bins</span>
     <span class="n">bins_transform</span> <span class="o">=</span> <span class="n">angular_dist_to_euclidean_dist</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">two_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins_transform</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
-                     <span class="n">data_R</span><span class="o">=</span><span class="n">data_R</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+                     <span class="n">data_R</span><span class="o">=</span><span class="n">data_R</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span></div>
 
-</div>
-<div class="viewcode-block" id="bootstrap_two_point_angular"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.bootstrap_two_point_angular.html#astroML.correlation.bootstrap_two_point_angular">[docs]</a><span class="k">def</span> <span class="nf">bootstrap_two_point_angular</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;standard&#39;</span><span class="p">,</span>
-                                <span class="n">Nbootstraps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="bootstrap_two_point_angular"><a class="viewcode-back" href="../../modules/generated/astroML.correlation.bootstrap_two_point_angular.html#astroML.correlation.bootstrap_two_point_angular">[docs]</a><span class="k">def</span> <span class="nf">bootstrap_two_point_angular</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span>
+                                <span class="n">Nbootstraps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Angular two-point correlation function</span>
 
 <span class="sd">    A separate function is needed because angular distances are not</span>
@@ -504,35 +492,35 @@ $(document).ready(function(){
     <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;standard&#39;</span><span class="p">,</span> <span class="s">&#39;landy-szalay&#39;</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="s1">&#39;landy-szalay&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;method must be &#39;standard&#39; or &#39;landy-szalay&#39;&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">bins</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bins must be a 1D array&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">dec</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;ra and dec must be 1-dimensional &#39;</span>
-                         <span class="s">&#39;arrays of the same length&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;ra and dec must be 1-dimensional &#39;</span>
+                         <span class="s1">&#39;arrays of the same length&#39;</span><span class="p">)</span>
 
     <span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span>
     <span class="n">Nbins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 
-    <span class="c"># convert spherical bins to cartesian bins</span>
+    <span class="c1"># convert spherical bins to cartesian bins</span>
     <span class="n">bins_transform</span> <span class="o">=</span> <span class="n">angular_dist_to_euclidean_dist</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
 
     <span class="n">bootstraps</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbootstraps</span><span class="p">):</span>
-        <span class="c"># draw a random sample with N points</span>
+        <span class="c1"># draw a random sample with N points</span>
         <span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span> <span class="o">=</span> <span class="n">uniform_sphere</span><span class="p">((</span><span class="nb">min</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ra</span><span class="p">)),</span>
                                      <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dec</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">dec</span><span class="p">)),</span>
                                      <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">ra</span><span class="p">))</span>
 
-        <span class="n">data_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">data_R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ra_dec_to_xyz</span><span class="p">(</span><span class="n">ra_R</span><span class="p">,</span> <span class="n">dec_R</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 
         <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c"># random sample of the data</span>
+            <span class="c1"># random sample of the data</span>
             <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">data_b</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
@@ -557,9 +545,9 @@ $(document).ready(function(){
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     </div>
   </body>
 </html>

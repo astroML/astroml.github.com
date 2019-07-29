@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11.3.2.1. astroML.linear_model.TLS_logL &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11.3.2.1. astroML.linear_model.TLS_logL &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11.4.2. astroML.datasets.fetch_sdss_spectrum" href="astroML.datasets.fetch_sdss_spectrum.html" />
     <link rel="prev" title="11.3.1.4. astroML.linear_model.NadarayaWatson" href="astroML.linear_model.NadarayaWatson.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    11.3.1.4. astroM...
+	    11.3.1.4. ast...
 	    </span>
 	    <span class="hiddenrellink">
 	    11.3.1.4. astroML.linear_model.NadarayaWatson
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="astroML.datasets.fetch_sdss_spectrum.html" title="11.4.2. astroML.datasets.fetch_sdss_spectrum"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.4.2. astroML....
-	    </span>
-	    <span class="hiddenrellink">
-	    11.4.2. astroML.datasets.fetch_sdss_spectrum
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	11. Class refere...
+	11. Class reference
 	</span>
 	<span class="hiddenrellink">
 	11. Class reference
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,46 +164,38 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="astroml-linear-model-tls-logl">
 <h1>11.3.2.1. astroML.linear_model.TLS_logL<a class="headerlink" href="#astroml-linear-model-tls-logl" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.linear_model.TLS_logL">
-<tt class="descclassname">astroML.linear_model.</tt><tt class="descname">TLS_logL</tt><big>(</big><em>v</em>, <em>X</em>, <em>dX</em><big>)</big><a class="headerlink" href="#astroML.linear_model.TLS_logL" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">astroML.linear_model.</code><code class="sig-name descname">TLS_logL</code><span class="sig-paren">(</span><em class="sig-param">v</em>, <em class="sig-param">X</em>, <em class="sig-param">dX</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/linear_model/TLS.html#TLS_logL"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.linear_model.TLS_logL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the total least squares log-likelihood</p>
 <p>This uses Hogg et al eq. 29-32</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>v</strong> : ndarray</p>
-<blockquote>
-<div><p>The normal vector to the linear best fit.  shape=(D,).
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>v</strong><span class="classifier">ndarray</span></dt><dd><p>The normal vector to the linear best fit.  shape=(D,).
 Note that the magnitude <a href="#id1"><span class="problematic" id="id2">|v|</span></a> is a stand-in for the intercept.</p>
-</div></blockquote>
-<p><strong>X</strong> : ndarray</p>
-<blockquote>
-<div><p>The input data.  shape = [N, D]</p>
-</div></blockquote>
-<p><strong>dX</strong> : ndarray</p>
-<blockquote>
-<div><p>The covariance of the errors for each point.
+</dd>
+<dt><strong>X</strong><span class="classifier">ndarray</span></dt><dd><p>The input data.  shape = [N, D]</p>
+</dd>
+<dt><strong>dX</strong><span class="classifier">ndarray</span></dt><dd><p>The covariance of the errors for each point.
 For diagonal errors, the shape = (N, D) and the entries are
-dX[i] = [sigma_x1, sigma_x2 ... sigma_xD]
+dX[i] = [sigma_x1, sigma_x2 … sigma_xD]
 For full covariance, the shape = (N, D, D) and the entries are
 dX[i] = Cov(X[i], X[i]), the full error covariance.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>logL</strong> : float</p>
-<blockquote class="last">
-<div><p>The log-likelihood of the model v given the data.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>logL</strong><span class="classifier">float</span></dt><dd><p>The log-likelihood of the model v given the data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>This implementation follows Hogg 2010, arXiv 1008.4686</p>
 </dd></dl>
@@ -249,11 +212,11 @@ dX[i] = Cov(X[i], X[i]), the full error covariance.</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.linear_model.TLS_logL.txt"
+    <a href="../../_sources/modules/generated/astroML.linear_model.TLS_logL.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

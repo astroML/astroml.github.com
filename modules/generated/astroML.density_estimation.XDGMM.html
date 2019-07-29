@@ -1,34 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11.2.2.1. astroML.density_estimation.XDGMM &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11.2.2.1. astroML.density_estimation.XDGMM &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="11. Class reference" href="../classes.html" />
-    <link rel="next" title="11.2.2.2. astroML.density_estimation.KDE" href="astroML.density_estimation.KDE.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="11.2.1.5. astroML.density_estimation.freedman_bin_width" href="astroML.density_estimation.freedman_bin_width.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
@@ -73,8 +60,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +71,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -105,36 +92,6 @@ $(document).ready(function(){
 	
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
-	<div class="rellink">
-	<a href="astroML.density_estimation.freedman_bin_width.html" title="11.2.1.5. astroML.density_estimation.freedman_bin_width"
-	    accesskey="P">Previous
-	    <br/>
-	    <span class="smallrellink">
-	    11.2.1.5. astroM...
-	    </span>
-	    <span class="hiddenrellink">
-	    11.2.1.5. astroML.density_estimation.freedman_bin_width
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="astroML.density_estimation.KDE.html" title="11.2.2.2. astroML.density_estimation.KDE"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.2.2.2. astroM...
-	    </span>
-	    <span class="hiddenrellink">
-	    11.2.2.2. astroML.density_estimation.KDE
-	    </span>
-	    
-	    </a>
-	</div>
 	<!-- Ad a link to the 'up' page -->
 	<div class="spacer">
 	&nbsp;
@@ -144,7 +101,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	11. Class refere...
+	11. Class reference
 	</span>
 	<span class="hiddenrellink">
 	11. Class reference
@@ -154,7 +111,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,62 +150,63 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="astroml-density-estimation-xdgmm">
 <h1>11.2.2.1. astroML.density_estimation.XDGMM<a class="headerlink" href="#astroml-density-estimation-xdgmm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="astroML.density_estimation.XDGMM">
-<em class="property">class </em><tt class="descclassname">astroML.density_estimation.</tt><tt class="descname">XDGMM</tt><big>(</big><em>n_components</em>, <em>n_iter=100</em>, <em>tol=1e-05</em>, <em>verbose=False</em><big>)</big><a class="headerlink" href="#astroML.density_estimation.XDGMM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">astroML.density_estimation.</code><code class="sig-name descname">XDGMM</code><span class="sig-paren">(</span><em class="sig-param">n_components</em>, <em class="sig-param">max_iter=100</em>, <em class="sig-param">tol=1e-05</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/density_estimation/xdeconv.html#XDGMM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.density_estimation.XDGMM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extreme Deconvolution</p>
 <p>Fit an extreme deconvolution (XD) model to the data</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>n_components: integer</strong> :</p>
-<blockquote>
-<div><p>number of gaussian components to fit to the data</p>
-</div></blockquote>
-<p><strong>n_iter: integer (optional)</strong> :</p>
-<blockquote>
-<div><p>number of EM iterations to perform (default=100)</p>
-</div></blockquote>
-<p><strong>tol: float (optional)</strong> :</p>
-<blockquote class="last">
-<div><p>stopping criterion for EM iterations (default=1E-5)</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n_components: integer</strong></dt><dd><p>number of gaussian components to fit to the data</p>
+</dd>
+<dt><strong>max_iter: integer (optional)</strong></dt><dd><p>number of EM iterations to perform (default=100)</p>
+</dd>
+<dt><strong>tol: float (optional)</strong></dt><dd><p>stopping criterion for EM iterations (default=1E-5)</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>This implementation follows Bovy et al. arXiv 0905.2979</p>
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fit</span></tt>(X,&nbsp;Xerr[,&nbsp;R])</td>
-<td>Fit the XD model to data</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code>(X, Xerr[, R])</p></td>
+<td><p>Fit the XD model to data</p></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">logL</span></tt>(X,&nbsp;Xerr)</td>
-<td>Compute the log-likelihood of data given the model</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logL</span></code>(X, Xerr)</p></td>
+<td><p>Compute the log-likelihood of data given the model</p></td>
 </tr>
-<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">logprob_a</span></tt>(X,&nbsp;Xerr)</td>
-<td>Evaluate the probability for a set of points</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logprob_a</span></code>(X, Xerr)</p></td>
+<td><p>Evaluate the probability for a set of points</p></td>
 </tr>
-<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">sample</span></tt>([size])</td>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>sample</strong></p></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="astroML.density_estimation.XDGMM.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_components</em>, <em>n_iter=100</em>, <em>tol=1e-05</em>, <em>verbose=False</em><big>)</big><a class="headerlink" href="#astroML.density_estimation.XDGMM.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">n_components</em>, <em class="sig-param">max_iter=100</em>, <em class="sig-param">tol=1e-05</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/density_estimation/xdeconv.html#XDGMM.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.density_estimation.XDGMM.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -264,11 +222,11 @@ $(document).ready(function(){
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.density_estimation.XDGMM.txt"
+    <a href="../../_sources/modules/generated/astroML.density_estimation.XDGMM.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.stats._binned_statistic &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.stats._binned_statistic</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="binned_statistic"><a class="viewcode-back" href="../../../modules/generated/astroML.stats.binned_statistic.html#astroML.stats.binned_statistic">[docs]</a><span class="k">def</span> <span class="nf">binned_statistic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">statistic</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+                     <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute a binned statistic for a set of data.</span>
+
+<span class="sd">    This is a generalization of a histogram function.  A histogram divides</span>
+<span class="sd">    the space into bins, and returns the count of the number of points in</span>
+<span class="sd">    each bin.  This function allows the computation of the sum, mean, median,</span>
+<span class="sd">    or other statistic of the values within each bin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array_like</span>
+<span class="sd">        A sequence of values to be binned.</span>
+<span class="sd">    values : array_like</span>
+<span class="sd">        The values on which the statistic will be computed.  This must be</span>
+<span class="sd">        the same shape as x.</span>
+<span class="sd">    statistic : string or callable, optional</span>
+<span class="sd">        The statistic to compute (default is &#39;mean&#39;).</span>
+<span class="sd">        The following statistics are available:</span>
+
+<span class="sd">          * &#39;mean&#39; : compute the mean of values for points within each bin.</span>
+<span class="sd">            Empty bins will be represented by NaN.</span>
+<span class="sd">          * &#39;median&#39; : compute the median of values for points within each</span>
+<span class="sd">            bin. Empty bins will be represented by NaN.</span>
+<span class="sd">          * &#39;count&#39; : compute the count of points within each bin.  This is</span>
+<span class="sd">            identical to an unweighted histogram.  `values` array is not</span>
+<span class="sd">            referenced.</span>
+<span class="sd">          * &#39;sum&#39; : compute the sum of values for points within each bin.</span>
+<span class="sd">            This is identical to a weighted histogram.</span>
+<span class="sd">          * function : a user-defined function which takes a 1D array of</span>
+<span class="sd">            values, and outputs a single numerical statistic. This function</span>
+<span class="sd">            will be called on the values in each bin.  Empty bins will be</span>
+<span class="sd">            represented by function([]), or NaN if this returns an error.</span>
+
+<span class="sd">    bins : int or sequence of scalars, optional</span>
+<span class="sd">        If `bins` is an int, it defines the number of equal-width</span>
+<span class="sd">        bins in the given range (10, by default). If `bins` is a sequence,</span>
+<span class="sd">        it defines the bin edges, including the rightmost edge, allowing</span>
+<span class="sd">        for non-uniform bin widths.</span>
+<span class="sd">    range : (float, float), optional</span>
+<span class="sd">        The lower and upper range of the bins.  If not provided, range</span>
+<span class="sd">        is simply ``(x.min(), x.max())``.  Values outside the range are</span>
+<span class="sd">        ignored.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    statistic : array</span>
+<span class="sd">        The values of the selected statistic in each bin.</span>
+<span class="sd">    bin_edges : array of dtype float</span>
+<span class="sd">        Return the bin edges ``(length(statistic)+1)``.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    All but the last (righthand-most) bin is half-open.  In other words, if</span>
+<span class="sd">    `bins` is::</span>
+
+<span class="sd">      [1, 2, 3, 4]</span>
+
+<span class="sd">    then the first bin is ``[1, 2)`` (including 1, but excluding 2) and the</span>
+<span class="sd">    second ``[2, 3)``.  The last bin, however, is ``[3, 4]``, which *includes*</span>
+<span class="sd">    4.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; binned_statistic([1, 2, 1], [2, 5, 3], bins=[0, 1, 2, 3], statistic=&#39;count&#39;)</span>
+<span class="sd">    (array([0., 2., 1.]), array([0., 1., 2., 3.]))</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    np.histogram, binned_statistic_2d, binned_statistic_dd</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">N</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="nb">float</span><span class="p">)]</span>
+
+    <span class="n">medians</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">binned_statistic_dd</span><span class="p">([</span><span class="n">x</span><span class="p">],</span> <span class="n">values</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span>
+                                         <span class="n">bins</span><span class="p">,</span> <span class="nb">range</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">medians</span><span class="p">,</span> <span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="binned_statistic_2d"><a class="viewcode-back" href="../../../modules/generated/astroML.stats.binned_statistic_2d.html#astroML.stats.binned_statistic_2d">[docs]</a><span class="k">def</span> <span class="nf">binned_statistic_2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">statistic</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+                        <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute a bidimensional binned statistic for a set of data.</span>
+
+<span class="sd">    This is a generalization of a histogram2d function.  A histogram divides</span>
+<span class="sd">    the space into bins, and returns the count of the number of points in</span>
+<span class="sd">    each bin.  This function allows the computation of the sum, mean, median,</span>
+<span class="sd">    or other statistic of the values within each bin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array_like</span>
+<span class="sd">        A sequence of values to be binned along the first dimension.</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        A sequence of values to be binned along the second dimension.</span>
+<span class="sd">    values : array_like</span>
+<span class="sd">        The values on which the statistic will be computed.  This must be</span>
+<span class="sd">        the same shape as x.</span>
+<span class="sd">    statistic : string or callable, optional</span>
+<span class="sd">        The statistic to compute (default is &#39;mean&#39;).</span>
+<span class="sd">        The following statistics are available:</span>
+
+<span class="sd">          * &#39;mean&#39; : compute the mean of values for points within each bin.</span>
+<span class="sd">            Empty bins will be represented by NaN.</span>
+<span class="sd">          * &#39;median&#39; : compute the median of values for points within each</span>
+<span class="sd">            bin. Empty bins will be represented by NaN.</span>
+<span class="sd">          * &#39;count&#39; : compute the count of points within each bin.  This is</span>
+<span class="sd">            identical to an unweighted histogram.  `values` array is not</span>
+<span class="sd">            referenced.</span>
+<span class="sd">          * &#39;sum&#39; : compute the sum of values for points within each bin.</span>
+<span class="sd">            This is identical to a weighted histogram.</span>
+<span class="sd">          * function : a user-defined function which takes a 1D array of</span>
+<span class="sd">            values, and outputs a single numerical statistic. This function</span>
+<span class="sd">            will be called on the values in each bin.  Empty bins will be</span>
+<span class="sd">            represented by function([]), or NaN if this returns an error.</span>
+
+<span class="sd">    bins : int or [int, int] or array-like or [array, array], optional</span>
+<span class="sd">        The bin specification:</span>
+
+<span class="sd">          * the number of bins for the two dimensions (nx=ny=bins),</span>
+<span class="sd">          * the number of bins in each dimension (nx, ny = bins),</span>
+<span class="sd">          * the bin edges for the two dimensions (x_edges=y_edges=bins),</span>
+<span class="sd">          * the bin edges in each dimension (x_edges, y_edges = bins).</span>
+
+<span class="sd">    range : array_like, shape(2,2), optional</span>
+<span class="sd">        The leftmost and rightmost edges of the bins along each dimension</span>
+<span class="sd">        (if not specified explicitly in the `bins` parameters):</span>
+<span class="sd">        [[xmin, xmax], [ymin, ymax]]. All values outside of this range will be</span>
+<span class="sd">        considered outliers and not tallied in the histogram.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    statistic : ndarray, shape(nx, ny)</span>
+<span class="sd">        The values of the selected statistic in each two-dimensional bin</span>
+<span class="sd">    xedges : ndarray, shape(nx + 1,)</span>
+<span class="sd">      The bin edges along the first dimension.</span>
+<span class="sd">    yedges : ndarray, shape(ny + 1,)</span>
+<span class="sd">      The bin edges along the second dimension.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    np.histogram2d, binned_statistic, binned_statistic_dd</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># This code is based on np.histogram2d</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">N</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">N</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">xedges</span> <span class="o">=</span> <span class="n">yedges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="n">xedges</span><span class="p">,</span> <span class="n">yedges</span><span class="p">]</span>
+
+    <span class="n">medians</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">binned_statistic_dd</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">values</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span>
+                                         <span class="n">bins</span><span class="p">,</span> <span class="nb">range</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">medians</span><span class="p">,</span> <span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="binned_statistic_dd"><a class="viewcode-back" href="../../../modules/generated/astroML.stats.binned_statistic_dd.html#astroML.stats.binned_statistic_dd">[docs]</a><span class="k">def</span> <span class="nf">binned_statistic_dd</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">statistic</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+                        <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute a multidimensional binned statistic for a set of data.</span>
+
+<span class="sd">    This is a generalization of a histogramdd function.  A histogram divides</span>
+<span class="sd">    the space into bins, and returns the count of the number of points in</span>
+<span class="sd">    each bin.  This function allows the computation of the sum, mean, median,</span>
+<span class="sd">    or other statistic of the values within each bin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sample : array_like</span>
+<span class="sd">        Data to histogram passed as a sequence of D arrays of length N, or</span>
+<span class="sd">        as an (N,D) array.</span>
+<span class="sd">    values : array_like</span>
+<span class="sd">        The values on which the statistic will be computed.  This must be</span>
+<span class="sd">        the same shape as x.</span>
+<span class="sd">    statistic : string or callable, optional</span>
+<span class="sd">        The statistic to compute (default is &#39;mean&#39;).</span>
+<span class="sd">        The following statistics are available:</span>
+
+<span class="sd">          * &#39;mean&#39; : compute the mean of values for points within each bin.</span>
+<span class="sd">            Empty bins will be represented by NaN.</span>
+<span class="sd">          * &#39;median&#39; : compute the median of values for points within each</span>
+<span class="sd">            bin. Empty bins will be represented by NaN.</span>
+<span class="sd">          * &#39;count&#39; : compute the count of points within each bin.  This is</span>
+<span class="sd">            identical to an unweighted histogram.  `values` array is not</span>
+<span class="sd">            referenced.</span>
+<span class="sd">          * &#39;sum&#39; : compute the sum of values for points within each bin.</span>
+<span class="sd">            This is identical to a weighted histogram.</span>
+<span class="sd">          * function : a user-defined function which takes a 1D array of</span>
+<span class="sd">            values, and outputs a single numerical statistic. This function</span>
+<span class="sd">            will be called on the values in each bin.  Empty bins will be</span>
+<span class="sd">            represented by function([]), or NaN if this returns an error.</span>
+
+<span class="sd">    bins : sequence or int, optional</span>
+<span class="sd">        The bin specification:</span>
+
+<span class="sd">          * A sequence of arrays describing the bin edges along each dimension.</span>
+<span class="sd">          * The number of bins for each dimension (nx, ny, ... =bins)</span>
+<span class="sd">          * The number of bins for all dimensions (nx=ny=...=bins).</span>
+
+<span class="sd">    range : sequence, optional</span>
+<span class="sd">        A sequence of lower and upper bin edges to be used if the edges are</span>
+<span class="sd">        not given explicitely in `bins`. Defaults to the minimum and maximum</span>
+<span class="sd">        values along each dimension.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    statistic : ndarray, shape(nx1, nx2, nx3,...)</span>
+<span class="sd">        The values of the selected statistic in each two-dimensional bin</span>
+<span class="sd">    edges : list of ndarrays</span>
+<span class="sd">        A list of D arrays describing the (nxi + 1) bin edges for each</span>
+<span class="sd">        dimension</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    np.histogramdd, binned_statistic, binned_statistic_2d</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">statistic</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">statistic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unrecognized statistic &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">statistic</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">callable</span><span class="p">(</span><span class="n">statistic</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;statistic not understood&quot;</span><span class="p">)</span>
+
+    <span class="c1"># This code is based on np.histogramdd</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Sample is an ND-array.</span>
+        <span class="n">N</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+        <span class="c1"># Sample is a sequence of 1D arrays.</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">N</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">nbin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+    <span class="n">dedges</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">M</span> <span class="o">!=</span> <span class="n">D</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;The dimension of bins must be equal &#39;</span>
+                                 <span class="s1">&#39;to the dimension of the sample x.&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="p">[</span><span class="n">bins</span><span class="p">]</span>
+
+    <span class="c1"># Select range for each dimension</span>
+    <span class="c1"># Used only if number of bins is given.</span>
+    <span class="k">if</span> <span class="nb">range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">smin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="nb">float</span><span class="p">))</span>
+        <span class="n">smax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="nb">float</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">smin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+        <span class="n">smax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+            <span class="n">smin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">smax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># Make sure the bins have a finite width.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">smin</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">smin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">smax</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">smin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">smin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="o">.</span><span class="mi">5</span>
+            <span class="n">smax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">smax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="o">.</span><span class="mi">5</span>
+
+    <span class="c1"># Create edge arrays</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="n">nbin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span>  <span class="c1"># +2 for outlier bins</span>
+            <span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">smin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">smax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nbin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">float</span><span class="p">)</span>
+            <span class="n">nbin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># +1 for outlier bins</span>
+        <span class="n">dedges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="n">nbin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">nbin</span><span class="p">)</span>
+
+    <span class="c1"># Compute the bin number each sample falls into.</span>
+    <span class="n">Ncount</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+        <span class="n">Ncount</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># Using digitize, values that fall on an edge are put in the right bin.</span>
+    <span class="c1"># For the rightmost bin, we want values equal to the right</span>
+    <span class="c1"># edge to be counted in the last bin, and not as an outlier.</span>
+    <span class="n">outliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+        <span class="c1"># Rounding precision</span>
+        <span class="n">decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">dedges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span> <span class="o">+</span> <span class="mi">6</span>
+        <span class="c1"># Find which points are on the rightmost edge.</span>
+        <span class="n">on_edge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">decimal</span><span class="p">)</span>
+                           <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">decimal</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Shift these points one bin to the left.</span>
+        <span class="n">Ncount</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">on_edge</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="c1"># Compute the sample indices in the flattened statistic matrix.</span>
+    <span class="n">ni</span> <span class="o">=</span> <span class="n">nbin</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">xy</span> <span class="o">+=</span> <span class="n">Ncount</span><span class="p">[</span><span class="n">ni</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">*</span> <span class="n">nbin</span><span class="p">[</span><span class="n">ni</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+    <span class="n">xy</span> <span class="o">+=</span> <span class="n">Ncount</span><span class="p">[</span><span class="n">ni</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">nbin</span><span class="o">.</span><span class="n">prod</span><span class="p">(),</span> <span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">statistic</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">flatcount</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">flatsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flatcount</span><span class="p">))</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">flatsum</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">/=</span> <span class="n">flatcount</span>
+    <span class="k">elif</span> <span class="n">statistic</span> <span class="o">==</span> <span class="s1">&#39;count&#39;</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">flatcount</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flatcount</span><span class="p">))</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">flatcount</span>
+    <span class="k">elif</span> <span class="n">statistic</span> <span class="o">==</span> <span class="s1">&#39;sum&#39;</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">flatsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flatsum</span><span class="p">))</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">flatsum</span>
+    <span class="k">elif</span> <span class="n">statistic</span> <span class="o">==</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">xy</span><span class="p">):</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">xy</span> <span class="o">==</span> <span class="n">i</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">callable</span><span class="p">(</span><span class="n">statistic</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">null</span> <span class="o">=</span> <span class="n">statistic</span><span class="p">([])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">null</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">xy</span><span class="p">):</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">statistic</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">xy</span> <span class="o">==</span> <span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># Shape into a proper matrix</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">nbin</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nbin</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">ni</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+        <span class="n">ni</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ni</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ni</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">ni</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># Remove outliers (indices 0 and -1 for each dimension).</span>
+    <span class="n">core</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">core</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">nbin</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Internal Shape Error&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">edges</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

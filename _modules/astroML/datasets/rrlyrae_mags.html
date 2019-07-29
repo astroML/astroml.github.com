@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.datasets.rrlyrae_mags &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.datasets.rrlyrae_mags</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">get_data_home</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">fetch_sdss_S82standards</span>
+<span class="kn">from</span> <span class="nn">.tools</span> <span class="k">import</span> <span class="n">download_with_progress_bar</span>
+
+<span class="n">DATA_URL</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;http://www.astro.washington.edu/users/&quot;</span>
+            <span class="s2">&quot;ivezic/DMbook/data/RRLyrae.fit&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="fetch_rrlyrae_mags"><a class="viewcode-back" href="../../../modules/generated/astroML.datasets.fetch_rrlyrae_mags.html#astroML.datasets.fetch_rrlyrae_mags">[docs]</a><span class="k">def</span> <span class="nf">fetch_rrlyrae_mags</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loader for RR-Lyrae data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : optional, default=None</span>
+<span class="sd">        Specify another download and cache folder for the datasets. By default</span>
+<span class="sd">        all scikit learn data is stored in &#39;~/astroML_data&#39; subfolders.</span>
+
+<span class="sd">    download_if_missing : optional, default=True</span>
+<span class="sd">        If False, raise a IOError if the data is not locally available</span>
+<span class="sd">        instead of trying to download the data from the source site.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : recarray, shape = (483,)</span>
+<span class="sd">        record array containing imaging data</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from astroML.datasets import fetch_rrlyrae_mags</span>
+<span class="sd">    &gt;&gt;&gt; data = fetch_rrlyrae_mags()  # doctest: +IGNORE_OUTPUT</span>
+<span class="sd">    &gt;&gt;&gt; data.shape  # number of objects in dataset</span>
+<span class="sd">    (483,)</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This data is from table 1 of Sesar et al 2010 ApJ 708:717</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># fits is an optional dependency: don&#39;t import globally</span>
+    <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="k">import</span> <span class="n">fits</span>
+
+    <span class="n">data_home</span> <span class="o">=</span> <span class="n">get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+
+    <span class="n">archive_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_home</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archive_file</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">download_if_missing</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;data not present on disk. &#39;</span>
+                          <span class="s1">&#39;set download_if_missing=True to download&#39;</span><span class="p">)</span>
+
+        <span class="n">fitsdata</span> <span class="o">=</span> <span class="n">download_with_progress_bar</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">)</span>
+        <span class="nb">open</span><span class="p">(</span><span class="n">archive_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fitsdata</span><span class="p">)</span>
+
+    <span class="n">hdulist</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">archive_file</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fetch_rrlyrae_combined"><a class="viewcode-back" href="../../../modules/generated/astroML.datasets.fetch_rrlyrae_combined.html#astroML.datasets.fetch_rrlyrae_combined">[docs]</a><span class="k">def</span> <span class="nf">fetch_rrlyrae_combined</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loader for RR-Lyrae combined data</span>
+
+<span class="sd">    This returns the combined RR-Lyrae colors and SDSS standards colors.</span>
+<span class="sd">    The RR-Lyrae sample is confirmed through time-domain observations;</span>
+<span class="sd">    this result in a nice dataset for testing classification routines.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : optional, default=None</span>
+<span class="sd">        Specify another download and cache folder for the datasets. By default</span>
+<span class="sd">        all scikit learn data is stored in &#39;~/astroML_data&#39; subfolders.</span>
+
+<span class="sd">    download_if_missing : optional, default=True</span>
+<span class="sd">        If False, raise a IOError if the data is not locally available</span>
+<span class="sd">        instead of trying to download the data from the source site.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    X : ndarray</span>
+<span class="sd">        a shape (n_samples, 4) array.  Columns are u-g, g-r, r-i, i-z</span>
+
+<span class="sd">    y : ndarray</span>
+<span class="sd">        a shape (n_samples,) array of labels.  1 indicates an RR Lyrae,</span>
+<span class="sd">        0 indicates a background star.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># ----------------------------------------------------------------------</span>
+    <span class="c1"># Load data</span>
+    <span class="n">kwds</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="n">data_home</span><span class="p">,</span>
+                <span class="n">download_if_missing</span><span class="o">=</span><span class="n">download_if_missing</span><span class="p">)</span>
+    <span class="n">rrlyrae</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_mags</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+    <span class="n">standards</span> <span class="o">=</span> <span class="n">fetch_sdss_S82standards</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+    <span class="c1"># ------------------------------------------------------------</span>
+    <span class="c1"># perform color cuts on standard stars</span>
+    <span class="c1"># these come from eqns 1-4 of Sesar et al 2010, ApJ 708:717</span>
+
+    <span class="n">u_g</span> <span class="o">=</span> <span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_g&#39;</span><span class="p">]</span>
+    <span class="n">g_r</span> <span class="o">=</span> <span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_g&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_r&#39;</span><span class="p">]</span>
+    <span class="n">r_i</span> <span class="o">=</span> <span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_r&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_i&#39;</span><span class="p">]</span>
+    <span class="n">i_z</span> <span class="o">=</span> <span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_i&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_z&#39;</span><span class="p">]</span>
+
+    <span class="n">standards</span> <span class="o">=</span> <span class="n">standards</span><span class="p">[(</span><span class="n">u_g</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">u_g</span> <span class="o">&lt;</span> <span class="mf">1.35</span><span class="p">)</span> <span class="o">&amp;</span>
+                          <span class="p">(</span><span class="n">g_r</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">g_r</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="p">)</span> <span class="o">&amp;</span>
+                          <span class="p">(</span><span class="n">r_i</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">r_i</span> <span class="o">&lt;</span> <span class="mf">0.22</span><span class="p">)</span> <span class="o">&amp;</span>
+                          <span class="p">(</span><span class="n">i_z</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.21</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i_z</span> <span class="o">&lt;</span> <span class="mf">0.25</span><span class="p">)]</span>
+
+    <span class="c1"># ----------------------------------------------------------------------</span>
+    <span class="c1"># get magnitudes and colors; split into train and test sets</span>
+
+    <span class="n">mags_rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">rrlyrae</span><span class="p">[</span><span class="n">f</span> <span class="o">+</span> <span class="s1">&#39;mag&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="s1">&#39;ugriz&#39;</span><span class="p">])</span>
+    <span class="n">colors_rr</span> <span class="o">=</span> <span class="n">mags_rr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mags_rr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="n">mags_st</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">standards</span><span class="p">[</span><span class="s1">&#39;mmu_&#39;</span> <span class="o">+</span> <span class="n">f</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="s1">&#39;ugriz&#39;</span><span class="p">])</span>
+    <span class="n">colors_st</span> <span class="o">=</span> <span class="n">mags_st</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mags_st</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="c1"># stack the two sets of colors together</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">colors_st</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">colors_rr</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">colors_rr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

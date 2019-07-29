@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.datasets.imaging_sample &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.datasets.imaging_sample</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">get_data_home</span>
+<span class="kn">from</span> <span class="nn">.tools</span> <span class="k">import</span> <span class="n">download_with_progress_bar</span>
+
+<span class="n">DATA_URL</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;http://www.astro.washington.edu/users/&quot;</span>
+            <span class="s2">&quot;ivezic/DMbook/data/imagingSample_20sqdeg.fit&quot;</span><span class="p">)</span>
+<span class="n">DATA_URL</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;http://www.astro.washington.edu/users/&quot;</span>
+            <span class="s2">&quot;ivezic/DMbook/data/sgSDSSimagingSample.fit&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="fetch_imaging_sample"><a class="viewcode-back" href="../../../modules/generated/astroML.datasets.fetch_imaging_sample.html#astroML.datasets.fetch_imaging_sample">[docs]</a><span class="k">def</span> <span class="nf">fetch_imaging_sample</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loader for SDSS Imaging sample data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : optional, default=None</span>
+<span class="sd">        Specify another download and cache folder for the datasets. By default</span>
+<span class="sd">        all scikit learn data is stored in &#39;~/astroML_data&#39; subfolders.</span>
+
+<span class="sd">    download_if_missing : optional, default=True</span>
+<span class="sd">        If False, raise a IOError if the data is not locally available</span>
+<span class="sd">        instead of trying to download the data from the source site.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : recarray, shape = (330753,)</span>
+<span class="sd">        record array containing imaging data</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from astroML.datasets import fetch_imaging_sample</span>
+<span class="sd">    &gt;&gt;&gt; data = fetch_imaging_sample()  # doctest: +IGNORE_OUTPUT</span>
+<span class="sd">    &gt;&gt;&gt; data.shape  # number of objects in dataset</span>
+<span class="sd">    (330753,)</span>
+<span class="sd">    &gt;&gt;&gt; print(data.dtype.names[:5])  # names of the first five columns</span>
+<span class="sd">    (&#39;ra&#39;, &#39;dec&#39;, &#39;run&#39;, &#39;rExtSFD&#39;, &#39;uRaw&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(data[&#39;ra&#39;][:2])</span>
+<span class="sd">    [0.358174 0.358382]</span>
+<span class="sd">    &gt;&gt;&gt; print(data[&#39;dec&#39;][:2])</span>
+<span class="sd">    [-0.508718 -0.551157]</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This data was selected from the SDSS database using the following SQL</span>
+<span class="sd">    query::</span>
+
+<span class="sd">        SELECT</span>
+<span class="sd">          round(p.ra,6) as ra, round(p.dec,6) as dec,</span>
+<span class="sd">          p.run,                              --- comments are preceded by ---</span>
+<span class="sd">          round(p.extinction_r,3) as rExtSFD, --- r band extinction from SFD</span>
+<span class="sd">          round(p.modelMag_u,3) as uRaw,      --- ISM-uncorrected model mags</span>
+<span class="sd">          round(p.modelMag_g,3) as gRaw,      --- rounding up model magnitudes</span>
+<span class="sd">          round(p.modelMag_r,3) as rRaw,</span>
+<span class="sd">          round(p.modelMag_i,3) as iRaw,</span>
+<span class="sd">          round(p.modelMag_z,3) as zRaw,</span>
+<span class="sd">          round(p.modelMagErr_u,3) as uErr,   --- errors are important!</span>
+<span class="sd">          round(p.modelMagErr_g,3) as gErr,</span>
+<span class="sd">          round(p.modelMagErr_r,3) as rErr,</span>
+<span class="sd">          round(p.modelMagErr_i,3) as iErr,</span>
+<span class="sd">          round(p.modelMagErr_z,3) as zErr,</span>
+<span class="sd">          round(p.psfMag_u,3) as psfRaw,      --- psf magnitudes</span>
+<span class="sd">          round(p.psfMag_g,3) as psfRaw,</span>
+<span class="sd">          round(p.psfMag_r,3) as psfRaw,</span>
+<span class="sd">          round(p.psfMag_i,3) as psfRaw,</span>
+<span class="sd">          round(p.psfMag_z,3) as psfRaw,</span>
+<span class="sd">          round(p.psfMagErr_u,3) as psfuErr,</span>
+<span class="sd">          round(p.psfMagErr_g,3) as psfgErr,</span>
+<span class="sd">          round(p.psfMagErr_r,3) as psfrErr,</span>
+<span class="sd">          round(p.psfMagErr_i,3) as psfiErr,</span>
+<span class="sd">          round(p.psfMagErr_z,3) as psfzErr,</span>
+<span class="sd">          p.type,                   --- tells if a source is resolved or not</span>
+<span class="sd">          (case when (p.flags &amp; &#39;16&#39;) = 0 then 1 else 0 end) as ISOLATED</span>
+<span class="sd">        INTO mydb.SDSSimagingSample</span>
+<span class="sd">        FROM PhotoTag p</span>
+<span class="sd">        WHERE</span>
+<span class="sd">            --- 10x2 sq.deg.</span>
+<span class="sd">          p.ra &gt; 0.0 and p.ra &lt; 10.0 and p.dec &gt; -1 and p.dec &lt; 1</span>
+<span class="sd">            --- resolved and unresolved sources</span>
+<span class="sd">          and (p.type = 3 OR p.type = 6) and</span>
+<span class="sd">            --- &#39;4295229440&#39; is magic code for no</span>
+<span class="sd">            --- DEBLENDED_AS_MOVING or SATURATED objects</span>
+<span class="sd">          (p.flags &amp; &#39;4295229440&#39;) = 0 and</span>
+<span class="sd">            --- PRIMARY objects only, which implies</span>
+<span class="sd">            --- !BRIGHT &amp;&amp; (!BLENDED || NODEBLEND || nchild == 0)]</span>
+<span class="sd">          p.mode = 1 and</span>
+<span class="sd">            --- adopted faint limit (same as about SDSS limit)</span>
+<span class="sd">          p.modelMag_r &lt; 22.5</span>
+<span class="sd">        --- the end of query</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># fits is an optional dependency: don&#39;t import globally</span>
+    <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="k">import</span> <span class="n">fits</span>
+
+    <span class="n">data_home</span> <span class="o">=</span> <span class="n">get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+
+    <span class="n">archive_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_home</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archive_file</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">download_if_missing</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;data not present on disk. &#39;</span>
+                          <span class="s1">&#39;set download_if_missing=True to download&#39;</span><span class="p">)</span>
+
+        <span class="n">fitsdata</span> <span class="o">=</span> <span class="n">download_with_progress_bar</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">)</span>
+        <span class="nb">open</span><span class="p">(</span><span class="n">archive_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fitsdata</span><span class="p">)</span>
+
+    <span class="n">hdulist</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">archive_file</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

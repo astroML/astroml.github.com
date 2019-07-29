@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11.5.1.4. astroML.time_series.search_frequencies &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11.5.1.4. astroML.time_series.search_frequencies &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11.5.1.5. astroML.time_series.MultiTermFit" href="astroML.time_series.MultiTermFit.html" />
     <link rel="prev" title="11.5.1.3. astroML.time_series.multiterm_periodogram" href="astroML.time_series.multiterm_periodogram.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    11.5.1.3. astroM...
+	    11.5.1.3. ast...
 	    </span>
 	    <span class="hiddenrellink">
 	    11.5.1.3. astroML.time_series.multiterm_periodogram
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="astroML.time_series.MultiTermFit.html" title="11.5.1.5. astroML.time_series.MultiTermFit"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.5.1.5. astroM...
-	    </span>
-	    <span class="hiddenrellink">
-	    11.5.1.5. astroML.time_series.MultiTermFit
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	11. Class refere...
+	11. Class reference
 	</span>
 	<span class="hiddenrellink">
 	11. Class reference
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,46 +164,65 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="astroml-time-series-search-frequencies">
 <h1>11.5.1.4. astroML.time_series.search_frequencies<a class="headerlink" href="#astroml-time-series-search-frequencies" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.time_series.search_frequencies">
-<tt class="descclassname">astroML.time_series.</tt><tt class="descname">search_frequencies</tt><big>(</big><em>t, y, dy, LS_func=&lt;built-in function lomb_scargle&gt;, LS_kwargs=None, initial_guess=25, limit_fractions=[0.04, 0.3, 0.9, 0.99], n_eval=10000, n_retry=5, n_save=50</em><big>)</big><a class="headerlink" href="#astroML.time_series.search_frequencies" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">astroML.time_series.</code><code class="sig-name descname">search_frequencies</code><span class="sig-paren">(</span><em class="sig-param">t, y, dy, LS_func=&lt;function lomb_scargle&gt;, LS_kwargs=None, initial_guess=25, limit_fractions=[0.04, 0.3, 0.9, 0.99], n_eval=10000, n_retry=5, n_save=50</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/time_series/periodogram.html#search_frequencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.time_series.search_frequencies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility Routine to find the best frequencies</p>
 <p>To find the best frequency with a Lomb-Scargle periodogram requires
 searching a large range of frequencies at a very fine resolution.
 This is an iterative routine that searches progressively finer
 grids to narrow-in on the best result.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>t: array_like</strong> :</p>
-<blockquote>
-<div><p>observed times</p>
-</div></blockquote>
-<p><strong>y: array_like</strong> :</p>
-<blockquote>
-<div><p>observed fluxes or magnitudes</p>
-</div></blockquote>
-<p><strong>dy: array_like</strong> :</p>
-<blockquote>
-<div><p>observed errors on y</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>omega_top, power_top: ndarrays</strong> :</p>
-<blockquote class="last">
-<div><p>The saved values of omega and power.  These will have size
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>t: array_like</strong></dt><dd><p>observed times</p>
+</dd>
+<dt><strong>y: array_like</strong></dt><dd><p>observed fluxes or magnitudes</p>
+</dd>
+<dt><strong>dy: array_like</strong></dt><dd><p>observed errors on y</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>omega_top, power_top: ndarrays</strong></dt><dd><p>The saved values of omega and power.  These will have size
 1 + n_save * (1 + n_retry * len(limit_fractions))
 as long as n_save &gt; n_retry</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Other Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>LS_func</strong><span class="classifier">function</span></dt><dd><p>Function used to perform Lomb-Scargle periodogram.  The call signature
+should be LS_func(t, y, dy, omega, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs)
+(Default is astroML.periodogram.lomb_scargle)</p>
+</dd>
+<dt><strong>LS_kwargs</strong><span class="classifier">dict</span></dt><dd><p>dictionary of keyword arguments to pass to LS_func in addition to
+(t, y, dy, omega)</p>
+</dd>
+<dt><strong>initial_guess</strong><span class="classifier">float</span></dt><dd><p>the initial guess of the best period</p>
+</dd>
+<dt><strong>limit_fractions</strong><span class="classifier">array_like</span></dt><dd><p>the list of fractions to use when zooming in on peak possibilities.
+On the i^th iteration, with f_i = limit_fractions[i], the range
+probed around each candidate will be
+(candidate * f_i, candidate / f_i).</p>
+</dd>
+<dt><strong>n_eval</strong><span class="classifier">integer or list</span></dt><dd><p>The number of point to evaluate in the range on each iteration.
+If n_eval is a list, it should have the same length as limit_fractions.</p>
+</dd>
+<dt><strong>n_retry</strong><span class="classifier">integer or list</span></dt><dd><p>Number of top points to search on each iteration. If n_retry is a list,
+it should have the same length as limit_fractions.</p>
+</dd>
+<dt><strong>n_save</strong><span class="classifier">integer or list</span></dt><dd><p>Number of evaluations to save on each iteration.
+If n_save is a list, it should have the same length as limit_fractions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -247,11 +237,11 @@ as long as n_save &gt; n_retry</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.time_series.search_frequencies.txt"
+    <a href="../../_sources/modules/generated/astroML.time_series.search_frequencies.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

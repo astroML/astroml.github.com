@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>11.1.1.2. astroML.plotting.scatter_contour &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>11.1.1.2. astroML.plotting.scatter_contour &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="11. Class reference" href="../classes.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11.1.2.1. astroML.plotting.MultiAxes" href="astroML.plotting.MultiAxes.html" />
     <link rel="prev" title="11.1.1.1. astroML.plotting.hist" href="astroML.plotting.hist.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    11.1.1.1. astroM...
+	    11.1.1.1. ast...
 	    </span>
 	    <span class="hiddenrellink">
 	    11.1.1.1. astroML.plotting.hist
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="astroML.plotting.MultiAxes.html" title="11.1.2.1. astroML.plotting.MultiAxes"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    11.1.2.1. astroM...
-	    </span>
-	    <span class="hiddenrellink">
-	    11.1.2.1. astroML.plotting.MultiAxes
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	11. Class refere...
+	11. Class reference
 	</span>
 	<span class="hiddenrellink">
 	11. Class reference
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,58 +164,50 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="astroml-plotting-scatter-contour">
 <h1>11.1.1.2. astroML.plotting.scatter_contour<a class="headerlink" href="#astroml-plotting-scatter-contour" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="astroML.plotting.scatter_contour">
-<tt class="descclassname">astroML.plotting.</tt><tt class="descname">scatter_contour</tt><big>(</big><em>x</em>, <em>y</em>, <em>levels=10</em>, <em>threshold=100</em>, <em>log_counts=False</em>, <em>histogram2d_args={}</em>, <em>plot_args={}</em>, <em>contour_args={}</em>, <em>ax=None</em><big>)</big><a class="headerlink" href="#astroML.plotting.scatter_contour" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">astroML.plotting.</code><code class="sig-name descname">scatter_contour</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">levels=10</em>, <em class="sig-param">threshold=100</em>, <em class="sig-param">log_counts=False</em>, <em class="sig-param">histogram2d_args=None</em>, <em class="sig-param">plot_args=None</em>, <em class="sig-param">contour_args=None</em>, <em class="sig-param">filled_contour=True</em>, <em class="sig-param">ax=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/plotting/scatter_contour.html#scatter_contour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.plotting.scatter_contour" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scatter plot with contour over dense regions</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x, y</strong> : arrays</p>
-<blockquote>
-<div><p>x and y data for the contour plot</p>
-</div></blockquote>
-<p><strong>levels</strong> : integer or array (optional, default=10)</p>
-<blockquote>
-<div><p>number of contour levels, or array of contour levels</p>
-</div></blockquote>
-<p><strong>threshold</strong> : float (default=100)</p>
-<blockquote>
-<div><p>number of points per 2D bin at which to begin drawing contours</p>
-</div></blockquote>
-<p><strong>log_counts :boolean (optional)</strong> :</p>
-<blockquote>
-<div><p>if True, contour levels are the base-10 logarithm of bin counts.</p>
-</div></blockquote>
-<p><strong>histogram2d_args</strong> : dict</p>
-<blockquote>
-<div><p>keyword arguments passed to numpy.histogram2d
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x, y</strong><span class="classifier">arrays</span></dt><dd><p>x and y data for the contour plot</p>
+</dd>
+<dt><strong>levels</strong><span class="classifier">integer or array (optional, default=10)</span></dt><dd><p>number of contour levels, or array of contour levels</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float (default=100)</span></dt><dd><p>number of points per 2D bin at which to begin drawing contours</p>
+</dd>
+<dt><strong>log_counts :boolean (optional)</strong></dt><dd><p>if True, contour levels are the base-10 logarithm of bin counts.</p>
+</dd>
+<dt><strong>histogram2d_args</strong><span class="classifier">dict</span></dt><dd><p>keyword arguments passed to numpy.histogram2d
 see doc string of numpy.histogram2d for more information</p>
-</div></blockquote>
-<p><strong>plot_args</strong> : dict</p>
-<blockquote>
-<div><p>keyword arguments passed to pylab.scatter
-see doc string of pylab.scatter for more information</p>
-</div></blockquote>
-<p><strong>contourf_args</strong> : dict</p>
-<blockquote>
-<div><p>keyword arguments passed to pylab.contourf
+</dd>
+<dt><strong>plot_args</strong><span class="classifier">dict</span></dt><dd><p>keyword arguments passed to plt.plot.  By default it will use
+dict(marker=’.’, linestyle=’none’).
+see doc string of pylab.plot for more information</p>
+</dd>
+<dt><strong>contour_args</strong><span class="classifier">dict</span></dt><dd><p>keyword arguments passed to plt.contourf or plt.contour
 see doc string of pylab.contourf for more information</p>
-</div></blockquote>
-<p><strong>ax</strong> : pylab.Axes instance</p>
-<blockquote class="last">
-<div><p>the axes on which to plot.  If not specified, the current
+</dd>
+<dt><strong>filled_contour</strong><span class="classifier">bool</span></dt><dd><p>If True (default) use filled contours. Otherwise, use contour outlines.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">pylab.Axes instance</span></dt><dd><p>the axes on which to plot.  If not specified, the current
 axes will be used</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>points, contours :</strong></dt><dd><p>points is the return value of ax.plot()
+contours is the return value of ax.contour or ax.contourf</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -259,11 +222,11 @@ axes will be used</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.plotting.scatter_contour.txt"
+    <a href="../../_sources/modules/generated/astroML.plotting.scatter_contour.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

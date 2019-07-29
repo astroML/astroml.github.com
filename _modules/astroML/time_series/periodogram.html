@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML.time_series.periodogram &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../../index.html">
+            <img src="../../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../../index.html">Home</a></li>
+	    <li><a href="../../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../../index.html" title="Module code" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Module code
+	</span>
+	<span class="hiddenrellink">
+	Module code
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for astroML.time_series.periodogram</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="n">check_random_state</span>
+
+<span class="kn">from</span> <span class="nn">astropy.stats</span> <span class="k">import</span> <span class="n">LombScargle</span>
+
+<span class="kn">from</span> <span class="nn">..utils.decorators</span> <span class="k">import</span> <span class="n">deprecated</span>
+<span class="kn">from</span> <span class="nn">..utils.exceptions</span> <span class="k">import</span> <span class="n">AstroMLDeprecationWarning</span>
+
+
+<div class="viewcode-block" id="lomb_scargle"><a class="viewcode-back" href="../../../modules/generated/astroML.time_series.lomb_scargle.html#astroML.time_series.lomb_scargle">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;astropy.stats.LombScargle&#39;</span><span class="p">,</span>
+            <span class="n">warning_type</span><span class="o">=</span><span class="n">AstroMLDeprecationWarning</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">lomb_scargle</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">generalized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">subtract_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">significance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (Generalized) Lomb-Scargle Periodogram with Floating Mean</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t : array_like</span>
+<span class="sd">        sequence of times</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        sequence of observations</span>
+<span class="sd">    dy : array_like</span>
+<span class="sd">        sequence of observational errors</span>
+<span class="sd">    omega : array_like</span>
+<span class="sd">        frequencies at which to evaluate p(omega)</span>
+<span class="sd">    generalized : bool</span>
+<span class="sd">        if True (default) use generalized lomb-scargle method</span>
+<span class="sd">        otherwise, use classic lomb-scargle.</span>
+<span class="sd">    subtract_mean : bool</span>
+<span class="sd">        if True (default) subtract the sample mean from the data before</span>
+<span class="sd">        computing the periodogram.  Only referenced if generalized is False</span>
+<span class="sd">    significance : None or float or ndarray</span>
+<span class="sd">        if specified, then this is a list of significances to compute</span>
+<span class="sd">        for the results.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    p : array_like</span>
+<span class="sd">        Lomb-Scargle power associated with each frequency omega</span>
+<span class="sd">    z : array_like</span>
+<span class="sd">        if significance is specified, this gives the levels corresponding</span>
+<span class="sd">        to the desired significance (using the Scargle 1982 formalism)</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The algorithm is based on reference [1]_.  The result for generalized=False</span>
+<span class="sd">    is given by equation 4 of this work, while the result for generalized=True</span>
+<span class="sd">    is given by equation 20.</span>
+
+<span class="sd">    Note that the normalization used in this reference is different from that</span>
+<span class="sd">    used in other places in the literature (e.g. [2]_).  For a discussion of</span>
+<span class="sd">    normalization and false-alarm probability, see [1]_.</span>
+
+<span class="sd">    To recover the normalization used in Scargle [3]_, the results should</span>
+<span class="sd">    be multiplied by (N - 1) / 2 where N is the number of data points.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] M. Zechmeister and M. Kurster, A&amp;A 496, 577-584 (2009)</span>
+<span class="sd">    .. [2] W. Press et al, Numerical Recipes in C (2002)</span>
+<span class="sd">    .. [3] Scargle, J.D. 1982, ApJ 263:835-853</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># delegate to astropy&#39;s Lomb-Scargle</span>
+    <span class="n">ls</span> <span class="o">=</span> <span class="n">LombScargle</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">fit_mean</span><span class="o">=</span><span class="n">generalized</span><span class="p">,</span> <span class="n">center_data</span><span class="o">=</span><span class="n">subtract_mean</span><span class="p">)</span>
+    <span class="n">frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">p_omega</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;cython&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">significance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">N</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span>
+             <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">significance</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">M</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">p_omega</span><span class="p">,</span> <span class="n">z</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">p_omega</span></div>
+
+
+<div class="viewcode-block" id="lomb_scargle_bootstrap"><a class="viewcode-back" href="../../../modules/generated/astroML.time_series.lomb_scargle_bootstrap.html#astroML.time_series.lomb_scargle_bootstrap">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;astropy.stats.LombScargle.false_alarm_probability&#39;</span><span class="p">,</span>
+            <span class="n">warning_type</span><span class="o">=</span><span class="n">AstroMLDeprecationWarning</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">lomb_scargle_bootstrap</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span>
+                           <span class="n">generalized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">subtract_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">N_bootstraps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Use a bootstrap analysis to compute Lomb-Scargle significance</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    The first set of parameters are passed to the lomb_scargle algorithm</span>
+
+<span class="sd">    t : array_like</span>
+<span class="sd">        sequence of times</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        sequence of observations</span>
+<span class="sd">    dy : array_like</span>
+<span class="sd">        sequence of observational errors</span>
+<span class="sd">    omega : array_like</span>
+<span class="sd">        frequencies at which to evaluate p(omega)</span>
+<span class="sd">    generalized : bool</span>
+<span class="sd">        if True (default) use generalized lomb-scargle method</span>
+<span class="sd">        otherwise, use classic lomb-scargle.</span>
+<span class="sd">    subtract_mean : bool</span>
+<span class="sd">        if True (default) subtract the sample mean from the data before</span>
+<span class="sd">        computing the periodogram.  Only referenced if generalized is False</span>
+
+<span class="sd">    Remaining parameters control the bootstrap</span>
+
+<span class="sd">    N_bootstraps : int</span>
+<span class="sd">        number of bootstraps</span>
+<span class="sd">    random_state : None, int, or RandomState object</span>
+<span class="sd">        random seed, or random number generator</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    D : ndarray</span>
+<span class="sd">        distribution of the height of the highest peak</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N_bootstraps</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_bootstraps</span><span class="p">):</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">lomb_scargle</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">dy</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">omega</span><span class="p">,</span>
+                         <span class="n">generalized</span><span class="o">=</span><span class="n">generalized</span><span class="p">,</span> <span class="n">subtract_mean</span><span class="o">=</span><span class="n">subtract_mean</span><span class="p">)</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">D</span></div>
+
+
+<span class="k">def</span> <span class="nf">lomb_scargle_AIC</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">n_harmonics</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the AIC for a Lomb-Scargle Periodogram</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P : array_like</span>
+<span class="sd">        lomb-scargle power</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        observations</span>
+<span class="sd">    dy : array_like</span>
+<span class="sd">        errors</span>
+<span class="sd">    n_harmonics : int (optional)</span>
+<span class="sd">        the number of harmonics used in the Lomb-Scargle fit. Default is 1</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    AIC : ndarray</span>
+<span class="sd">        AIC value corresponding to values in P</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">))</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">dy</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(((</span><span class="n">y_obs</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">dy</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_harmonics</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+
+
+<span class="k">def</span> <span class="nf">lomb_scargle_BIC</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">n_harmonics</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the BIC for a Lomb-Scargle Periodogram</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    P : array_like</span>
+<span class="sd">        lomb-scargle power</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        observations</span>
+<span class="sd">    dy : array_like</span>
+<span class="sd">        errors</span>
+<span class="sd">    n_harmonics : int (optional)</span>
+<span class="sd">        the number of harmonics used in the Lomb-Scargle fit. Default is 1</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    BIC : ndarray</span>
+<span class="sd">        BIC value corresponding to values in P</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">P</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">))</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">dy</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(((</span><span class="n">y</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">dy</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_harmonics</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="multiterm_periodogram"><a class="viewcode-back" href="../../../modules/generated/astroML.time_series.multiterm_periodogram.html#astroML.time_series.multiterm_periodogram">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;astropy.stats.LombScargle&#39;</span><span class="p">,</span>
+            <span class="n">warning_type</span><span class="o">=</span><span class="n">AstroMLDeprecationWarning</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">multiterm_periodogram</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">n_terms</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Perform a multiterm periodogram at each omega</span>
+
+<span class="sd">    This calculates the chi2 for the best-fit least-squares solution</span>
+<span class="sd">    for each frequency omega.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t : array_like</span>
+<span class="sd">        sequence of times</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        sequence of observations</span>
+<span class="sd">    dy : array_like</span>
+<span class="sd">        sequence of observational errors</span>
+<span class="sd">    omega : float or array_like</span>
+<span class="sd">        frequencies at which to evaluate p(omega)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    power : ndarray</span>
+<span class="sd">        P = 1. - chi2 / chi2_0</span>
+<span class="sd">        where chi2_0 is the chi-square for a simple mean fit to the data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: deprecate this</span>
+    <span class="n">ls</span> <span class="o">=</span> <span class="n">LombScargle</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">nterms</span><span class="o">=</span><span class="n">n_terms</span><span class="p">)</span>
+    <span class="n">frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ls</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="search_frequencies"><a class="viewcode-back" href="../../../modules/generated/astroML.time_series.search_frequencies.html#astroML.time_series.search_frequencies">[docs]</a><span class="k">def</span> <span class="nf">search_frequencies</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span>
+                       <span class="n">LS_func</span><span class="o">=</span><span class="n">lomb_scargle</span><span class="p">,</span>
+                       <span class="n">LS_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">initial_guess</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+                       <span class="n">limit_fractions</span><span class="o">=</span><span class="p">[</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">],</span>
+                       <span class="n">n_eval</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+                       <span class="n">n_retry</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                       <span class="n">n_save</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Utility Routine to find the best frequencies</span>
+
+<span class="sd">    To find the best frequency with a Lomb-Scargle periodogram requires</span>
+<span class="sd">    searching a large range of frequencies at a very fine resolution.</span>
+<span class="sd">    This is an iterative routine that searches progressively finer</span>
+<span class="sd">    grids to narrow-in on the best result.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t: array_like</span>
+<span class="sd">        observed times</span>
+<span class="sd">    y: array_like</span>
+<span class="sd">        observed fluxes or magnitudes</span>
+<span class="sd">    dy: array_like</span>
+<span class="sd">        observed errors on y</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    LS_func : function</span>
+<span class="sd">        Function used to perform Lomb-Scargle periodogram.  The call signature</span>
+<span class="sd">        should be LS_func(t, y, dy, omega, **kwargs)</span>
+<span class="sd">        (Default is astroML.periodogram.lomb_scargle)</span>
+<span class="sd">    LS_kwargs : dict</span>
+<span class="sd">        dictionary of keyword arguments to pass to LS_func in addition to</span>
+<span class="sd">        (t, y, dy, omega)</span>
+<span class="sd">    initial_guess : float</span>
+<span class="sd">        the initial guess of the best period</span>
+<span class="sd">    limit_fractions : array_like</span>
+<span class="sd">        the list of fractions to use when zooming in on peak possibilities.</span>
+<span class="sd">        On the i^th iteration, with f_i = limit_fractions[i], the range</span>
+<span class="sd">        probed around each candidate will be</span>
+<span class="sd">        (candidate * f_i, candidate / f_i).</span>
+<span class="sd">    n_eval : integer or list</span>
+<span class="sd">        The number of point to evaluate in the range on each iteration.</span>
+<span class="sd">        If n_eval is a list, it should have the same length as limit_fractions.</span>
+<span class="sd">    n_retry : integer or list</span>
+<span class="sd">        Number of top points to search on each iteration. If n_retry is a list,</span>
+<span class="sd">        it should have the same length as limit_fractions.</span>
+<span class="sd">    n_save : integer or list</span>
+<span class="sd">        Number of evaluations to save on each iteration.</span>
+<span class="sd">        If n_save is a list, it should have the same length as limit_fractions.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    omega_top, power_top: ndarrays</span>
+<span class="sd">        The saved values of omega and power.  These will have size</span>
+<span class="sd">        1 + n_save * (1 + n_retry * len(limit_fractions))</span>
+<span class="sd">        as long as n_save &gt; n_retry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">LS_kwargs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LS_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="n">omega_best</span> <span class="o">=</span> <span class="p">[</span><span class="n">initial_guess</span><span class="p">]</span>
+    <span class="n">power_best</span> <span class="o">=</span> <span class="n">LS_func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">omega_best</span><span class="p">,</span> <span class="o">**</span><span class="n">LS_kwargs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">Ne</span><span class="p">,</span> <span class="n">Nr</span><span class="p">,</span> <span class="n">Ns</span><span class="p">,</span> <span class="n">frac</span><span class="p">)</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">n_eval</span><span class="p">,</span> <span class="n">n_retry</span><span class="p">,</span>
+                                           <span class="n">n_save</span><span class="p">,</span> <span class="n">limit_fractions</span><span class="p">):</span>
+        <span class="c1"># make sure we explore differing regions</span>
+        <span class="n">log_ob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">omega_best</span><span class="p">)</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">frac</span><span class="p">)</span>
+        <span class="n">log_ob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="o">-</span><span class="n">log_ob</span> <span class="o">/</span> <span class="n">width</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">log_ob</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nr</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">omega_try</span> <span class="o">=</span> <span class="n">omega_best</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">non_duplicates</span> <span class="o">=</span> <span class="p">(</span><span class="n">log_ob</span> <span class="o">!=</span> <span class="n">log_ob</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">log_ob</span> <span class="o">=</span> <span class="n">log_ob</span><span class="p">[</span><span class="n">non_duplicates</span><span class="p">]</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">non_duplicates</span><span class="p">]</span>
+
+            <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">omega_try</span> <span class="o">*</span> <span class="n">frac</span><span class="p">,</span> <span class="n">omega_try</span> <span class="o">/</span> <span class="n">frac</span><span class="p">,</span> <span class="n">Ne</span><span class="p">)</span>
+            <span class="n">power</span> <span class="o">=</span> <span class="n">LS_func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="o">**</span><span class="n">LS_kwargs</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">power</span><span class="p">)[</span><span class="o">-</span><span class="n">Ns</span><span class="p">:]</span>
+            <span class="n">power_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">power_best</span><span class="p">,</span> <span class="n">power</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="n">omega_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">omega_best</span><span class="p">,</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">power_best</span><span class="p">)</span>
+        <span class="n">power_best</span> <span class="o">=</span> <span class="n">power_best</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">omega_best</span> <span class="o">=</span> <span class="n">omega_best</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">omega_best</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">omega_best</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">power_best</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="MultiTermFit"><a class="viewcode-back" href="../../../modules/generated/astroML.time_series.MultiTermFit.html#astroML.time_series.MultiTermFit">[docs]</a><span class="k">class</span> <span class="nc">MultiTermFit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Multi-term Fourier fit to a light curve</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    omega : float</span>
+<span class="sd">        angular frequency of the fundamental mode</span>
+<span class="sd">    n_terms : int</span>
+<span class="sd">        the number of Fourier modes to use in the fit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MultiTermFit.__init__"><a class="viewcode-back" href="../../../modules/generated/astroML.time_series.MultiTermFit.html#astroML.time_series.MultiTermFit.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">n_terms</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">=</span> <span class="n">omega</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">=</span> <span class="n">n_terms</span></div>
+
+    <span class="k">def</span> <span class="nf">_make_X</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_terms</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">t</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+                       <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]),</span>
+                       <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])])</span>
+        <span class="k">return</span> <span class="n">X</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit multiple Fourier terms to the data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        t: array_like</span>
+<span class="sd">            observed times</span>
+<span class="sd">        y: array_like</span>
+<span class="sd">            observed fluxes or magnitudes</span>
+<span class="sd">        dy: array_like</span>
+<span class="sd">            observed errors on y</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self :</span>
+<span class="sd">            The MultiTermFit object is  returned</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span>
+
+        <span class="n">X_scaled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_X</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">dy</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="n">y_scaled</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="n">dy</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_</span> <span class="o">=</span> <span class="n">t</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_scaled</span><span class="p">),</span>
+                                  <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">y_scaled</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Nphase</span><span class="p">,</span> <span class="n">return_phased_times</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">adjust_offset</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the phased fit, and optionally return phased times</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Nphase : int</span>
+<span class="sd">            Number of terms to use in the phased fit</span>
+<span class="sd">        return_phased_times : bool</span>
+<span class="sd">            If True, then return a phased version of the input times</span>
+<span class="sd">        adjust_offset : bool</span>
+<span class="sd">            If true, then shift results so that the minimum value is at phase 0</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        phase, y_fit : ndarrays</span>
+<span class="sd">            The phase and y value of the best-fit light curve</span>
+<span class="sd">        phased_times : ndarray</span>
+<span class="sd">            The phased version of the training times.  Returned if</span>
+<span class="sd">            return_phased_times is set to  True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">phase_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Nphase</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">X_fit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_X</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">phase_fit</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="p">)</span>
+        <span class="n">y_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_fit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">)</span>
+        <span class="n">i_offset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">y_fit</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">adjust_offset</span><span class="p">:</span>
+            <span class="n">y_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_fit</span><span class="p">[</span><span class="n">i_offset</span><span class="p">:],</span> <span class="n">y_fit</span><span class="p">[:</span><span class="n">i_offset</span><span class="p">]])</span>
+
+        <span class="k">if</span> <span class="n">return_phased_times</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">adjust_offset</span><span class="p">:</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="n">phase_fit</span><span class="p">[</span><span class="n">i_offset</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">phased_times</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t_</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span>
+
+            <span class="k">return</span> <span class="n">phase_fit</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="n">phased_times</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">phase_fit</span><span class="p">,</span> <span class="n">y_fit</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>
