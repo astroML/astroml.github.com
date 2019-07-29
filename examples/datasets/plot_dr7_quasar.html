@@ -1,35 +1,23 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>SDSS Data Release 7 Quasar catalog &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>SDSS Data Release 7 Quasar catalog &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="Data set Examples" href="index.html" />
-    <link rel="next" title="SDSS “Great Wall”" href="plot_great_wall.html" />
-    <link rel="prev" title="Corrected Spectra" href="plot_corrected_spectra.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Example of downloading and processing SDSS spectra" href="compute_sdss_pca.html" />
+    <link rel="prev" title="WMAP plotting with HEALPix" href="plot_wmap_raw.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../index.html">Examples Plots</a></li>
        </ul>
 
@@ -106,31 +94,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="plot_corrected_spectra.html" title="Corrected Spectra"
+	<a href="plot_wmap_raw.html" title="WMAP plotting with HEALPix"
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    Corrected Spectr...
+	    WMAP plotting...
 	    </span>
 	    <span class="hiddenrellink">
-	    Corrected Spectra
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="plot_great_wall.html" title="SDSS “Great Wall”"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    SDSS “Great Wall...
-	    </span>
-	    <span class="hiddenrellink">
-	    SDSS “Great Wall”
+	    WMAP plotting with HEALPix
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	Data set Example...
+	Data set Examples
 	</span>
 	<span class="hiddenrellink">
 	Data set Examples
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,7 +164,7 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="sdss-data-release-7-quasar-catalog">
 <span id="example-datasets-plot-dr7-quasar"></span><h1>SDSS Data Release 7 Quasar catalog<a class="headerlink" href="#sdss-data-release-7-quasar-catalog" title="Permalink to this headline">¶</a></h1>
@@ -202,32 +173,32 @@ quasar sample.</p>
 <a class="reference internal image-reference" href="../../_images/plot_dr7_quasar_1.png"><img alt="../../_images/plot_dr7_quasar_1.png" class="align-center" src="../../_images/plot_dr7_quasar_1.png" style="width: 1000.0px; height: 1000.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
-<span class="c"># License: BSD</span>
-<span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c1"># License: BSD</span>
+<span class="c1">#   The figure is an example from astroML: see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">MultiAxes</span>
-<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_dr7_quasar</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="k">import</span> <span class="n">MultiAxes</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_dr7_quasar</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_dr7_quasar</span><span class="p">()</span>
 
 <span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="mi">5</span><span class="p">))</span>
 
-<span class="n">colors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_g&#39;</span><span class="p">]</span>
-<span class="n">colors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_g&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_r&#39;</span><span class="p">]</span>
-<span class="n">colors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_r&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_i&#39;</span><span class="p">]</span>
-<span class="n">colors</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_i&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_z&#39;</span><span class="p">]</span>
-<span class="n">colors</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_z&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;mag_J&#39;</span><span class="p">]</span>
+<span class="n">colors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_g&#39;</span><span class="p">]</span>
+<span class="n">colors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_g&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_r&#39;</span><span class="p">]</span>
+<span class="n">colors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_r&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_i&#39;</span><span class="p">]</span>
+<span class="n">colors</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_i&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_z&#39;</span><span class="p">]</span>
+<span class="n">colors</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_z&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mag_J&#39;</span><span class="p">]</span>
 
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;u-g&#39;</span><span class="p">,</span> <span class="s">&#39;g-r&#39;</span><span class="p">,</span> <span class="s">&#39;r-i&#39;</span><span class="p">,</span> <span class="s">&#39;i-z&#39;</span><span class="p">,</span> <span class="s">&#39;z-J&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;u-g&#39;</span><span class="p">,</span> <span class="s1">&#39;g-r&#39;</span><span class="p">,</span> <span class="s1">&#39;r-i&#39;</span><span class="p">,</span> <span class="s1">&#39;i-z&#39;</span><span class="p">,</span> <span class="s1">&#39;z-J&#39;</span><span class="p">]</span>
 
 <span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
         <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
@@ -240,13 +211,13 @@ quasar sample.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_locators</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">&#39;SDSS DR7 Quasar Colors&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;SDSS DR7 Quasar Colors&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div align="right"><p><a class="reference download internal" href="../../_downloads/plot_dr7_quasar.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_dr7_quasar.py]</span></tt></a></p>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/2eab5ff74e093fd69438453aa16979f6/plot_dr7_quasar.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_dr7_quasar.py]</span></code></a></p>
 </div></div>
 
 
@@ -259,11 +230,11 @@ quasar sample.</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/examples/datasets/plot_dr7_quasar.txt"
+    <a href="../../_sources/examples/datasets/plot_dr7_quasar.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Decision Tree for RR Lyrae Classification &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Decision Tree Classification of photometry" href="fig_rrlyrae_decisiontree.html" />
+    <link rel="prev" title="Kernel SVM Classification of photometry" href="fig_rrlyrae_kernelsvm.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="fig_rrlyrae_kernelsvm.html" title="Kernel SVM Classification of photometry"
+	    accesskey="P">Previous
+	    <br/>
+	    <span class="smallrellink">
+	    Kernel SVM Cl...
+	    </span>
+	    <span class="hiddenrellink">
+	    Kernel SVM Classification of photometry
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Chapter 9: Classification" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Chapter 9: Cl...
+	</span>
+	<span class="hiddenrellink">
+	Chapter 9: Classification
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Decision Tree for RR Lyrae Classification</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="decision-tree-for-rr-lyrae-classification">
+<span id="book-fig-chapter9-fig-rrlyrae-treevis"></span><h1>Decision Tree for RR Lyrae Classification<a class="headerlink" href="#decision-tree-for-rr-lyrae-classification" title="Permalink to this headline">¶</a></h1>
+<p>Figure 9.12</p>
+<p>The decision tree for RR Lyrae classification. The numbers in each node are the
+statistics of the training sample of ~70,000 objects. The cross-validation
+statistics are shown in the bottom-left corner of the figure. See also
+figure 9.13.</p>
+<a class="reference internal image-reference" href="../../_images/fig_rrlyrae_treevis_1.png"><img alt="../../_images/fig_rrlyrae_treevis_1.png" class="align-center" src="../../_images/fig_rrlyrae_treevis_1.png" style="width: 500.0px; height: 700.0px;" /></a>
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">----------------------------------------------------------------</span>
+<span class="n">partial</span> <span class="n">training</span> <span class="nb">set</span><span class="p">:</span> <span class="p">(</span><span class="mi">69509</span> <span class="n">non</span><span class="o">-</span><span class="n">variable</span><span class="p">,</span> <span class="mi">346</span> <span class="n">RR</span> <span class="n">Lyrae</span><span class="p">)</span>
+<span class="n">positive</span> <span class="o">=</span> <span class="n">RR</span> <span class="n">Lyrae</span><span class="p">,</span> <span class="n">negative</span> <span class="o">=</span> <span class="n">non</span><span class="o">-</span><span class="n">variable</span>
+<span class="n">false</span> <span class="n">positives</span><span class="p">:</span> <span class="mi">52</span> <span class="p">(</span><span class="mf">41.9</span><span class="o">%</span><span class="p">)</span>
+<span class="n">false</span> <span class="n">negatives</span><span class="p">:</span> <span class="mi">65</span> <span class="p">(</span><span class="mf">0.3</span><span class="o">%</span><span class="p">)</span>
+<span class="o">----------------------------------------------------------------</span>
+<span class="n">full</span> <span class="n">training</span> <span class="nb">set</span><span class="p">:</span> <span class="p">(</span><span class="mi">69509</span> <span class="n">non</span><span class="o">-</span><span class="n">variables</span><span class="p">,</span> <span class="mi">346</span> <span class="n">RR</span> <span class="n">Lyraes</span><span class="p">)</span>
+<span class="n">positive</span> <span class="o">=</span> <span class="n">RR</span> <span class="n">Lyrae</span><span class="p">,</span> <span class="n">negative</span> <span class="o">=</span> <span class="n">non</span><span class="o">-</span><span class="n">variables</span>
+<span class="n">false</span> <span class="n">positives</span><span class="p">:</span> <span class="mi">52</span> <span class="p">(</span><span class="mf">41.9</span><span class="o">%</span><span class="p">)</span>
+<span class="n">false</span> <span class="n">negatives</span><span class="p">:</span> <span class="mi">65</span> <span class="p">(</span><span class="mf">0.3</span><span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Jake VanderPlas</span>
+<span class="c1"># License: BSD</span>
+<span class="c1">#   The figure produced by this code is published in the textbook</span>
+<span class="c1">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
+<span class="c1">#   For more information, see http://astroML.github.com</span>
+<span class="c1">#   To report a bug or issue, use the following forum:</span>
+<span class="c1">#    https://groups.google.com/forum/#!forum/astroml-general</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_rrlyrae_combined</span>
+<span class="kn">from</span> <span class="nn">astroML.utils</span> <span class="k">import</span> <span class="n">split_samples</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c1"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c1"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c1"># you can set usetex to False.</span>
+<span class="k">if</span> <span class="s2">&quot;setup_text_plots&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="k">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># % sign needs to be escaped if usetex is True</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="k">if</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">):</span>
+    <span class="n">pct</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\%&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">pct</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">get_x_position</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">n_levels</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_levels</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">xmin</span> <span class="o">+</span> <span class="n">level</span> <span class="o">*</span> <span class="n">dx</span>
+
+
+<span class="k">def</span> <span class="nf">get_y_position</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">level</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">ymin</span> <span class="o">+</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">dy</span>
+
+
+<span class="k">def</span> <span class="nf">draw_connections</span><span class="p">(</span><span class="n">x_positions</span><span class="p">,</span> <span class="n">y_positions</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span>
+                     <span class="n">ax</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-k&#39;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">y_positions</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_positions</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">linestyle</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">children</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">children</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">[</span><span class="n">x_positions</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">y_positions</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="n">linestyle</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">visualize_tree</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                   <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># to visualize the tree, we essentially need to re-build it: it doesn&#39;t</span>
+    <span class="c1"># store the list of points at each node.</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+    <span class="c1"># get tree aspects</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># new versions of sklearn</span>
+        <span class="n">T_children</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="c1"># old versions of sklearn</span>
+        <span class="n">T_children</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">T</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children_left</span><span class="p">,</span>
+                                <span class="n">T</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children_right</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># version &lt; 0.14</span>
+        <span class="n">T_nsamples</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">n_samples</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="c1"># version 0.14+</span>
+        <span class="n">T_nsamples</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">n_node_samples</span>
+
+    <span class="n">T_feature</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">feature</span>
+    <span class="n">T_threshold</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">threshold</span>
+
+    <span class="n">x_positions</span> <span class="o">=</span> <span class="n">get_x_position</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">levels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">levels</span><span class="p">)</span>
+    <span class="n">node_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">new_data_masks</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">levels</span><span class="p">):</span>
+        <span class="n">y_positions</span> <span class="o">=</span> <span class="n">get_y_position</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">))</span>
+
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">node_list</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># plot the positions of the nodes</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">)[</span><span class="n">mask</span><span class="p">],</span>
+                <span class="n">y_positions</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>
+
+        <span class="n">data_masks</span> <span class="o">=</span> <span class="n">new_data_masks</span>
+        <span class="n">new_data_masks</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># list node info</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">node_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">new_data_masks</span> <span class="o">+=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="k">continue</span>
+            <span class="n">ind</span> <span class="o">=</span> <span class="n">node_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+            <span class="c1"># get masks of children</span>
+            <span class="n">split_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="n">T_feature</span><span class="p">[</span><span class="n">ind</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">T_threshold</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
+            <span class="n">new_data_masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">data_masks</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">split_mask</span><span class="p">))</span>
+            <span class="n">new_data_masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">data_masks</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="o">~</span><span class="n">split_mask</span><span class="p">))</span>
+
+            <span class="n">n_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">classes</span><span class="p">[</span><span class="n">data_masks</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">n_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">classes</span><span class="p">[</span><span class="n">data_masks</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">%i</span><span class="s2">\,/\,</span><span class="si">%i</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n_neg</span><span class="p">,</span> <span class="n">n_pos</span><span class="p">)</span>
+
+            <span class="c1"># assure that we&#39;re doing this correctly</span>
+            <span class="k">assert</span> <span class="p">(</span><span class="n">n_neg</span> <span class="o">+</span> <span class="n">n_pos</span> <span class="o">==</span> <span class="n">T_nsamples</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
+
+            <span class="c1"># check if node is a leaf</span>
+            <span class="k">if</span> <span class="n">n_neg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;${\rm(RR\,Lyrae)}$&quot;</span>
+            <span class="k">elif</span> <span class="n">n_pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;${\rm non}$-${\rm variable}$&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;${\rm split\ on}$ </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">labels</span><span class="p">[</span><span class="n">T_feature</span><span class="p">[</span><span class="n">ind</span><span class="p">]]</span>
+
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">8</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">7</span>
+
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x_positions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y_positions</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">text</span><span class="p">,</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                    <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span>
+                    <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">))</span>
+
+        <span class="c1"># draw lines connecting nodes to parents</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">draw_connections</span><span class="p">(</span><span class="n">x_positions</span><span class="p">,</span> <span class="n">y_positions</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+        <span class="c1"># get next set of nodes</span>
+        <span class="n">node_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">T_children</span><span class="p">[</span><span class="n">node_list</span><span class="p">]))</span>
+
+    <span class="c1"># draw dotted line for last level</span>
+    <span class="n">y_positions</span> <span class="o">=</span> <span class="n">get_y_position</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">levels</span><span class="p">))</span>
+    <span class="n">draw_connections</span><span class="p">(</span><span class="n">x_positions</span><span class="p">,</span> <span class="n">y_positions</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;:k&#39;</span><span class="p">)</span>
+
+    <span class="c1"># set suitable axes limits</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span> <span class="o">-</span> <span class="n">dx</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">dy</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">+</span> <span class="n">dy</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># get data and split into training &amp; testing sets</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_combined</span><span class="p">()</span>
+<span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">),</span> <span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">split_samples</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
+                                                     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">N_tot</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">N_st</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">N_rr</span> <span class="o">=</span> <span class="n">N_tot</span> <span class="o">-</span> <span class="n">N_st</span>
+<span class="n">N_train</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">N_test</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+<span class="n">N_plot</span> <span class="o">=</span> <span class="mi">5000</span> <span class="o">+</span> <span class="n">N_rr</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_out</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">eq</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1">#--------------------------------------------------</span>
+<span class="c1"># compute statistics of cross-validation</span>
+<span class="n">tot_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">tot_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">tn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">tp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;partial training set: (</span><span class="si">%i</span><span class="s2"> non-variable, </span><span class="si">%i</span><span class="s2"> RR Lyrae)&quot;</span>
+      <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;positive = RR Lyrae, negative = non-variable&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;false positives: </span><span class="si">%i</span><span class="s2"> (</span><span class="si">%.1f%%</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">fp</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tp</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;false negatives: </span><span class="si">%i</span><span class="s2"> (</span><span class="si">%.1f%%</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">fn</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)))</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+               <span class="n">labels</span><span class="o">=</span><span class="p">([</span><span class="s1">&#39;$u-g$&#39;</span><span class="p">,</span> <span class="s1">&#39;$g-r$&#39;</span><span class="p">,</span> <span class="s1">&#39;$r-i$&#39;</span><span class="p">,</span> <span class="s1">&#39;$i-z$&#39;</span><span class="p">]))</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Numbers are count of</span><span class="se">\n</span><span class="s2">&quot;</span>
+                     <span class="s2">&quot;non-variable / RR Lyrae</span><span class="se">\n</span><span class="s2">&quot;</span>
+                     <span class="s2">&quot;in each node&quot;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Training Set Size:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                      <span class="s2">&quot;  </span><span class="si">%i</span><span class="s2"> objects&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Cross-Validation, with</span><span class="se">\n</span><span class="s2">&quot;</span>
+                      <span class="s2">&quot;  </span><span class="si">%i</span><span class="s2"> RR Lyraes (positive)</span><span class="se">\n</span><span class="s2">&quot;</span>
+                      <span class="s2">&quot;  </span><span class="si">%i</span><span class="s2"> non-variables (negative)</span><span class="se">\n</span><span class="s2">&quot;</span>
+                      <span class="s2">&quot;  false positives: </span><span class="si">%i</span><span class="s2"> (</span><span class="si">%.1f%s</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span>
+                      <span class="s2">&quot;  false negatives: </span><span class="si">%i</span><span class="s2"> (</span><span class="si">%.1f%s</span><span class="s2">)&quot;</span>
+                      <span class="o">%</span> <span class="p">(</span><span class="n">tot_pos</span><span class="p">,</span> <span class="n">tot_neg</span><span class="p">,</span>
+                         <span class="n">fp</span><span class="p">,</span> <span class="n">fp</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">),</span> <span class="n">pct</span><span class="p">,</span>
+                         <span class="n">fn</span><span class="p">,</span> <span class="n">fn</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">tn</span> <span class="o">+</span> <span class="n">fn</span><span class="p">),</span> <span class="n">pct</span><span class="p">)),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="c1">#--------------------------------------------------</span>
+<span class="c1"># compute statistics for a larger training set</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_out</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">tot_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">tot_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">tn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">tp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_out</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;full training set: (</span><span class="si">%i</span><span class="s2"> non-variables, </span><span class="si">%i</span><span class="s2"> RR Lyraes)&quot;</span>
+      <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;positive = RR Lyrae, negative = non-variables&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;false positives: </span><span class="si">%i</span><span class="s2"> (</span><span class="si">%.1f%%</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">fp</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tp</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;false negatives: </span><span class="si">%i</span><span class="s2"> (</span><span class="si">%.1f%%</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">fn</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/d85aebf9939b64347d19c7d1e153c67d/fig_rrlyrae_treevis.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_rrlyrae_treevis.py]</span></code></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter9/fig_rrlyrae_treevis.rst.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

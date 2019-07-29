@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>GMMBayes classification of LINEAR data &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SVM classification of LINEAR data" href="fig_LINEAR_SVM.html" />
+    <link rel="prev" title="Clustering of LINEAR data" href="fig_LINEAR_clustering.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="fig_LINEAR_clustering.html" title="Clustering of LINEAR data"
+	    accesskey="P">Previous
+	    <br/>
+	    <span class="smallrellink">
+	    Clustering of...
+	    </span>
+	    <span class="hiddenrellink">
+	    Clustering of LINEAR data
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Chapter 10: Time Series Analysis" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Chapter 10: T...
+	</span>
+	<span class="hiddenrellink">
+	Chapter 10: Time Series Analysis
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">GMMBayes classification of LINEAR data</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="gmmbayes-classification-of-linear-data">
+<span id="book-fig-chapter10-fig-linear-gmmbayes"></span><h1>GMMBayes classification of LINEAR data<a class="headerlink" href="#gmmbayes-classification-of-linear-data" title="Permalink to this headline">¶</a></h1>
+<p>Figure 10.22</p>
+<p>Supervised classification of periodic variable stars from the LINEAR data set
+using a Gaussian mixture model Bayes classifier. The training sample includes
+five input classes. The top row shows clusters derived using two attributes
+(g - i and log P) and the bottom row shows analogous diagrams for
+classification based on seven attributes (colors u - g, g - i, i - K, and
+J - K; log P, light-curve amplitude, and light-curve skewness).
+See table 10.2 for the classification performance.</p>
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">________________________________________________________________________________</span>
+<span class="n">fig_LINEAR_GMMBayes</span><span class="o">.</span><span class="n">py</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">compiling</span><span class="p">:</span>
+<span class="n">________________________________________________________________________________</span>
+</pre></div>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Jake VanderPlas</span>
+<span class="c1"># License: BSD</span>
+<span class="c1">#   The figure produced by this code is published in the textbook</span>
+<span class="c1">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
+<span class="c1">#   For more information, see http://astroML.github.com</span>
+<span class="c1">#   To report a bug or issue, use the following forum:</span>
+<span class="c1">#    https://groups.google.com/forum/#!forum/astroml-general</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.classification</span> <span class="k">import</span> <span class="n">GMMBayes</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_LINEAR_geneva</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c1"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c1"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c1"># you can set usetex to False.</span>
+<span class="k">if</span> <span class="s2">&quot;setup_text_plots&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="k">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_LINEAR_geneva</span><span class="p">()</span>
+
+<span class="n">attributes</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;gi&#39;</span><span class="p">,</span> <span class="s1">&#39;logP&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;gi&#39;</span><span class="p">,</span> <span class="s1">&#39;logP&#39;</span><span class="p">,</span> <span class="s1">&#39;ug&#39;</span><span class="p">,</span> <span class="s1">&#39;iK&#39;</span><span class="p">,</span> <span class="s1">&#39;JK&#39;</span><span class="p">,</span> <span class="s1">&#39;amp&#39;</span><span class="p">,</span> <span class="s1">&#39;skew&#39;</span><span class="p">)]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$u-g$&#39;</span><span class="p">,</span> <span class="s1">&#39;$g-i$&#39;</span><span class="p">,</span> <span class="s1">&#39;$i-K$&#39;</span><span class="p">,</span> <span class="s1">&#39;$J-K$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$\log(P)$&#39;</span><span class="p">,</span> <span class="s1">&#39;amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;skew&#39;</span><span class="p">]</span>
+<span class="bp">cls</span> <span class="o">=</span> <span class="s1">&#39;LCtype&#39;</span>
+<span class="n">Ntrain</span> <span class="o">=</span> <span class="mi">3000</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Create attribute arrays</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+    <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">LCtype</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">cls</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># there is no #3.  For a better color scheme in plots,</span>
+    <span class="c1"># we&#39;ll set 6-&gt;3</span>
+    <span class="n">LCtype</span><span class="p">[</span><span class="n">LCtype</span> <span class="o">==</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LCtype</span><span class="p">)</span>
+
+
+<span class="c1">#@pickle_results(&#39;LINEAR_GMMBayes.pkl&#39;)</span>
+<span class="k">def</span> <span class="nf">compute_SVM_results</span><span class="p">(</span><span class="n">i_train</span><span class="p">,</span> <span class="n">i_test</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">classifiers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Xtests</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ytests</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Xtrains</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ytrains</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attributes</span><span class="p">)):</span>
+        <span class="n">Xtrain</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_train</span><span class="p">]</span>
+        <span class="n">Xtest</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_test</span><span class="p">]</span>
+        <span class="n">ytrain</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_train</span><span class="p">]</span>
+        <span class="n">ytest</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_test</span><span class="p">]</span>
+
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">GMMBayes</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1E-5</span><span class="p">,</span> <span class="n">covariance_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span>
+                       <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)</span>
+
+        <span class="n">classifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+        <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">classifiers</span><span class="p">,</span> <span class="n">predictions</span>
+
+
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="n">i_train</span><span class="p">,</span> <span class="n">i_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+<span class="n">clfs</span><span class="p">,</span> <span class="n">ypred</span> <span class="o">=</span> <span class="n">compute_SVM_results</span><span class="p">(</span><span class="n">i_train</span><span class="p">,</span> <span class="n">i_test</span><span class="p">)</span>
+
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">class_labels</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">Xtest</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_test</span><span class="p">]</span>
+    <span class="n">ytest</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_test</span><span class="p">]</span>
+    <span class="n">amp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;amp&#39;</span><span class="p">][</span><span class="n">i_test</span><span class="p">]</span>
+
+    <span class="c1"># Plot the resulting classifications</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Xtest</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Xtest</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">ypred</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\log(P)$&#39;</span><span class="p">)</span>
+
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">amp</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">ypred</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1">#------------------------------</span>
+    <span class="c1"># set axis limits</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$g-i$&#39;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$A$&#39;</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Second figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;skew&#39;</span><span class="p">,</span> <span class="s1">&#39;ug&#39;</span><span class="p">,</span> <span class="s1">&#39;iK&#39;</span><span class="p">,</span> <span class="s1">&#39;JK&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;skew&#39;</span><span class="p">,</span> <span class="s1">&#39;$u-g$&#39;</span><span class="p">,</span> <span class="s1">&#39;$i-K$&#39;</span><span class="p">,</span> <span class="s1">&#39;$J-K$&#39;</span><span class="p">]</span>
+<span class="n">ylims</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gi&#39;</span><span class="p">][</span><span class="n">i_test</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">i_test</span><span class="p">],</span>
+               <span class="n">c</span><span class="o">=</span><span class="n">ypred</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$g-i$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylims</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Save the results</span>
+<span class="c1">#</span>
+<span class="c1"># run the script as</span>
+<span class="c1">#</span>
+<span class="c1">#   &gt;$ python fig_LINEAR_clustering.py --save</span>
+<span class="c1">#</span>
+<span class="c1"># to output the data file showing the cluster labels of each point</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;--save&#39;</span><span class="p">:</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;cluster_labels_gmm.dat&#39;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving cluster labels to&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="kn">from</span> <span class="nn">astroML.datasets.LINEAR_sample</span> <span class="k">import</span> <span class="n">ARCHIVE_DTYPE</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+                        <span class="n">dtype</span><span class="o">=</span><span class="p">(</span><span class="n">ARCHIVE_DTYPE</span> <span class="o">+</span> <span class="p">[(</span><span class="s1">&#39;2D_cluster_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span>
+                                                <span class="p">(</span><span class="s1">&#39;7D_cluster_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">)]))</span>
+
+    <span class="c1"># switch the labels back 3-&gt;6</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">ypred</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ypred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
+
+    <span class="c1"># need to put labels back in order</span>
+    <span class="n">class_labels</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">999</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">class_labels</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_test</span><span class="p">]</span> <span class="o">=</span> <span class="n">ypred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
+        <span class="n">new_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;2D_cluster_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">class_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;7D_cluster_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">class_labels</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%.6f</span><span class="s1">   </span><span class="si">%.6f</span><span class="s1">   </span><span class="si">%.3f</span><span class="s1">   </span><span class="si">%.3f</span><span class="s1">   </span><span class="si">%.3f</span><span class="s1">   </span><span class="si">%.3f</span><span class="s1">   </span><span class="si">%.7f</span><span class="s1">   </span><span class="si">%.3f</span><span class="s1">   </span><span class="si">%.3f</span><span class="s1">   &#39;</span>
+           <span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">    </span><span class="si">%.2f</span><span class="s1">     </span><span class="si">%i</span><span class="s1">     </span><span class="si">%i</span><span class="s1">      </span><span class="si">%s</span><span class="s1">          </span><span class="si">%i</span><span class="s1">              </span><span class="si">%i</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+    <span class="n">F</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">F</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#    ra           dec       ug      gi      iK      JK     &#39;</span>
+            <span class="s1">&#39;logP       Ampl    skew      kurt    magMed    nObs  LCtype  &#39;</span>
+            <span class="s1">&#39;LINEARobjectID  2D_cluster_ID   7D_cluster_ID</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">new_data</span><span class="p">:</span>
+        <span class="n">F</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">))</span>
+    <span class="n">F</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/86407a91338be51fda9231d8039f27f1/fig_LINEAR_GMMBayes.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_LINEAR_GMMBayes.py]</span></code></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter10/fig_LINEAR_GMMBayes.rst.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

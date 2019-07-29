@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter 1: Introduction &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SDSS Imaging" href="fig_SDSS_imaging.html" />
+    <link rel="prev" title="Textbook Figures" href="../index.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="../index.html" title="Textbook Figures"
+	    accesskey="P">Previous
+	    <br/>
+	    <span class="smallrellink">
+	    Textbook Figures
+	    </span>
+	    <span class="hiddenrellink">
+	    Textbook Figures
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Textbook Figures" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Textbook Figures
+	</span>
+	<span class="hiddenrellink">
+	Textbook Figures
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Chapter 1: Introduction</a><ul>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <style type="text/css">
+.figure {
+    float: left;
+    margin: 10px;
+    width: auto;
+    height: 200px;
+    width: 180px;
+}
+
+.figure img {
+    display: inline;
+    }
+
+.figure .caption {
+    width: 170px;
+    text-align: center !important;
+}
+</style><div class="section" id="chapter-1-introduction">
+<span id="book-fig-chapter1"></span><h1>Chapter 1: Introduction<a class="headerlink" href="#chapter-1-introduction" title="Permalink to this headline">¶</a></h1>
+<p>This chapter consists of introductory figures, including several of the
+datasets available in astroML, and some strategies for data visualization.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="figure align-center" id="id1">
+<a class="reference external image-reference" href="./fig_SDSS_imaging.html"><img alt="../../_images/fig_SDSS_imaging_1_thumb.png" src="../../_images/fig_SDSS_imaging_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_SDSS_imaging.html#book-fig-chapter1-fig-sdss-imaging"><span class="std std-ref">SDSS Imaging</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference external image-reference" href="./fig_sdss_spectrum.html"><img alt="../../_images/fig_sdss_spectrum_1_thumb.png" src="../../_images/fig_sdss_spectrum_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_sdss_spectrum.html#book-fig-chapter1-fig-sdss-spectrum"><span class="std std-ref">SDSS Spectrum Example</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference external image-reference" href="./fig_SDSS_specgals.html"><img alt="../../_images/fig_SDSS_specgals_1_thumb.png" src="../../_images/fig_SDSS_specgals_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_SDSS_specgals.html#book-fig-chapter1-fig-sdss-specgals"><span class="std std-ref">SDSS Spectroscopic Galaxy Sample</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference external image-reference" href="./fig_dr7_quasar.html"><img alt="../../_images/fig_dr7_quasar_1_thumb.png" src="../../_images/fig_dr7_quasar_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_dr7_quasar.html#book-fig-chapter1-fig-dr7-quasar"><span class="std std-ref">SDSS DR7 Quasars</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id5">
+<a class="reference external image-reference" href="./fig_SDSS_sspp.html"><img alt="../../_images/fig_SDSS_sspp_1_thumb.png" src="../../_images/fig_SDSS_sspp_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_SDSS_sspp.html#book-fig-chapter1-fig-sdss-sspp"><span class="std std-ref">SDSS Segue Stellar Parameter Pipeline Data</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference external image-reference" href="./fig_sdss_S82standards.html"><img alt="../../_images/fig_sdss_S82standards_1_thumb.png" src="../../_images/fig_sdss_S82standards_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_sdss_S82standards.html#book-fig-chapter1-fig-sdss-s82standards"><span class="std std-ref">SDSS Stripe 82 Standard Stars</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id7">
+<a class="reference external image-reference" href="./fig_LINEAR_sample.html"><img alt="../../_images/fig_LINEAR_sample_1_thumb.png" src="../../_images/fig_LINEAR_sample_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LINEAR_sample.html#book-fig-chapter1-fig-linear-sample"><span class="std std-ref">Phased LINEAR Light Curve</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id8">
+<a class="reference external image-reference" href="./fig_moving_objects.html"><img alt="../../_images/fig_moving_objects_1_thumb.png" src="../../_images/fig_moving_objects_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_moving_objects.html#book-fig-chapter1-fig-moving-objects"><span class="std std-ref">SDSS Moving Object Data</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id9">
+<a class="reference external image-reference" href="./fig_S82_scatter_contour.html"><img alt="../../_images/fig_S82_scatter_contour_1_thumb.png" src="../../_images/fig_S82_scatter_contour_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_S82_scatter_contour.html#book-fig-chapter1-fig-s82-scatter-contour"><span class="std std-ref">SDSS Stripe 82 Standard Stars</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id10">
+<a class="reference external image-reference" href="./fig_S82_hess.html"><img alt="../../_images/fig_S82_hess_1_thumb.png" src="../../_images/fig_S82_hess_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_S82_hess.html#book-fig-chapter1-fig-s82-hess"><span class="std std-ref">SDSS Stripe 82 Hess Diagram</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id11">
+<a class="reference external image-reference" href="./fig_SSPP_metallicity.html"><img alt="../../_images/fig_SSPP_metallicity_1_thumb.png" src="../../_images/fig_SSPP_metallicity_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_SSPP_metallicity.html#book-fig-chapter1-fig-sspp-metallicity"><span class="std std-ref">Stellar Parameters Hess Diagram</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id12">
+<a class="reference external image-reference" href="./fig_moving_objects_multicolor.html"><img alt="../../_images/fig_moving_objects_multicolor_1_thumb.png" src="../../_images/fig_moving_objects_multicolor_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_moving_objects_multicolor.html#book-fig-chapter1-fig-moving-objects-multicolor"><span class="std std-ref">SDSS Stripe 82 Moving Object Catalog</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id13">
+<a class="reference external image-reference" href="./fig_mercator.html"><img alt="../../_images/fig_mercator_1_thumb.png" src="../../_images/fig_mercator_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_mercator.html#book-fig-chapter1-fig-mercator"><span class="std std-ref">Mercator Projection</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id14">
+<a class="reference external image-reference" href="./fig_projections.html"><img alt="../../_images/fig_projections_1_thumb.png" src="../../_images/fig_projections_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_projections.html#book-fig-chapter1-fig-projections"><span class="std std-ref">Spherical Projections</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id15">
+<a class="reference external image-reference" href="./fig_healpix_ex.html"><img alt="../../_images/fig_healpix_ex_1_thumb.png" src="../../_images/fig_healpix_ex_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_healpix_ex.html#book-fig-chapter1-fig-healpix-ex"><span class="std std-ref">Example of HealPix pixellization</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+<div style="clear: both"></div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter1/index.rst.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

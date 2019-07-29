@@ -1,35 +1,23 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>SDSS Filters &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>SDSS Filters &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="Data set Examples" href="index.html" />
-    <link rel="next" title="SDSS Galaxy Colors" href="plot_sdss_galaxy_colors.html" />
-    <link rel="prev" title="RR-Lyrae Magnitudes" href="plot_rrlyrae_mags.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SDSS Moving Object Catalog" href="plot_moving_objects.html" />
+    <link rel="prev" title="SDSS Imaging" href="plot_sdss_imaging.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../index.html">Examples Plots</a></li>
        </ul>
 
@@ -106,31 +94,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="plot_rrlyrae_mags.html" title="RR-Lyrae Magnitudes"
+	<a href="plot_sdss_imaging.html" title="SDSS Imaging"
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    RR-Lyrae Magnitu...
+	    SDSS Imaging
 	    </span>
 	    <span class="hiddenrellink">
-	    RR-Lyrae Magnitudes
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="plot_sdss_galaxy_colors.html" title="SDSS Galaxy Colors"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    SDSS Galaxy Colo...
-	    </span>
-	    <span class="hiddenrellink">
-	    SDSS Galaxy Colors
+	    SDSS Imaging
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	Data set Example...
+	Data set Examples
 	</span>
 	<span class="hiddenrellink">
 	Data set Examples
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,60 +164,60 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="sdss-filters">
 <span id="example-datasets-plot-sdss-filters"></span><h1>SDSS Filters<a class="headerlink" href="#sdss-filters" title="Permalink to this headline">¶</a></h1>
 <p>Download and plot the five SDSS filter bands along with a Vega spectrum.
 This data is available on the SDSS website (filters) and on the STSci
 website (Vega).</p>
-<a class="reference internal image-reference" href="../../_images/plot_sdss_filters_1.png"><img alt="../../_images/plot_sdss_filters_1.png" class="align-center" src="../../_images/plot_sdss_filters_1.png" style="width: 800.0px; height: 600.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/plot_sdss_filters_1.png"><img alt="../../_images/plot_sdss_filters_1.png" class="align-center" src="../../_images/plot_sdss_filters_1.png" style="width: 640.0px; height: 480.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
-<span class="c"># License: BSD</span>
-<span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_filter</span><span class="p">,</span> <span class="n">fetch_vega_spectrum</span>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c1"># License: BSD</span>
+<span class="c1">#   The figure is an example from astroML: see http://astroML.github.com</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_sdss_filter</span><span class="p">,</span> <span class="n">fetch_vega_spectrum</span>
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># Set up figure and axes</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Set up figure and axes</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
-<span class="c">#----------------------------------------------------------------------</span>
-<span class="c"># Fetch and plot the Vega spectrum</span>
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># Fetch and plot the Vega spectrum</span>
 <span class="n">spec</span> <span class="o">=</span> <span class="n">fetch_vega_spectrum</span><span class="p">()</span>
 <span class="n">lam</span> <span class="o">=</span> <span class="n">spec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">spectrum</span> <span class="o">=</span> <span class="n">spec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">2.1</span> <span class="o">/</span> <span class="n">spec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="s">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spectrum</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># Fetch and plot the five filters</span>
-<span class="n">text_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">&#39;center&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Fetch and plot the five filters</span>
+<span class="n">text_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">loc</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="s">&#39;ugriz&#39;</span><span class="p">,</span> <span class="s">&#39;bgrmk&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">3500</span><span class="p">,</span> <span class="mi">4600</span><span class="p">,</span> <span class="mi">6100</span><span class="p">,</span> <span class="mi">7500</span><span class="p">,</span> <span class="mi">8800</span><span class="p">]):</span>
+<span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">loc</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="s1">&#39;ugriz&#39;</span><span class="p">,</span> <span class="s1">&#39;bgrmk&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">3500</span><span class="p">,</span> <span class="mi">4600</span><span class="p">,</span> <span class="mi">6100</span><span class="p">,</span> <span class="mi">7500</span><span class="p">,</span> <span class="mi">8800</span><span class="p">]):</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_filter</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ec</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="o">**</span><span class="n">text_kwargs</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">11000</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;SDSS Filters and Reference Spectrum&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;Wavelength (Angstroms)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;normalized flux / filter transmission&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SDSS Filters and Reference Spectrum&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wavelength (Angstroms)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;normalized flux / filter transmission&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div align="right"><p><a class="reference download internal" href="../../_downloads/plot_sdss_filters.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_sdss_filters.py]</span></tt></a></p>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/d34f4ccb5881aed26fe09b0cc243a241/plot_sdss_filters.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_sdss_filters.py]</span></code></a></p>
 </div></div>
 
 
@@ -259,11 +230,11 @@ website (Vega).</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/examples/datasets/plot_sdss_filters.txt"
+    <a href="../../_sources/examples/datasets/plot_sdss_filters.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

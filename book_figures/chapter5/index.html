@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter 5: Bayesian Statistical Inference &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Hierarchical Bayes modeling for Gaussian distribution with Gaussian drrors" href="fig_hierarchical_bayes_RV.html" />
+    <link rel="prev" title="Lynden-Bell Luminosity function" href="../chapter4/fig_lyndenbell_gals.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="../chapter4/fig_lyndenbell_gals.html" title="Lynden-Bell Luminosity function"
+	    accesskey="P">Previous
+	    <br/>
+	    <span class="smallrellink">
+	    Lynden-Bell L...
+	    </span>
+	    <span class="hiddenrellink">
+	    Lynden-Bell Luminosity function
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Textbook Figures" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Textbook Figures
+	</span>
+	<span class="hiddenrellink">
+	Textbook Figures
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Chapter 5: Bayesian Statistical Inference</a><ul>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <style type="text/css">
+.figure {
+    float: left;
+    margin: 10px;
+    width: auto;
+    height: 200px;
+    width: 180px;
+}
+
+.figure img {
+    display: inline;
+    }
+
+.figure .caption {
+    width: 170px;
+    text-align: center !important;
+}
+</style><div class="section" id="chapter-5-bayesian-statistical-inference">
+<span id="book-fig-chapter5"></span><h1>Chapter 5: Bayesian Statistical Inference<a class="headerlink" href="#chapter-5-bayesian-statistical-inference" title="Permalink to this headline">¶</a></h1>
+<p>This chapter develops the fundamentals of Bayesian statistical inference,
+and finishes with some examples of computing statistics in this manner.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="figure align-center" id="id1">
+<a class="reference external image-reference" href="./fig_hierarchical_bayes_RV.html"><img alt="../../_images/fig_hierarchical_bayes_RV_1_thumb.png" src="../../_images/fig_hierarchical_bayes_RV_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_hierarchical_bayes_RV.html#book-fig-chapter5-fig-hierarchical-bayes-rv"><span class="std std-ref">Hierarchical Bayes modeling for Gaussian distribution with Gaussian drrors</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference external image-reference" href="./fig_hierarchical_bayes_sources.html"><img alt="../../_images/fig_hierarchical_bayes_sources_1_thumb.png" src="../../_images/fig_hierarchical_bayes_sources_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_hierarchical_bayes_sources.html#book-fig-chapter5-fig-hierarchical-bayes-sources"><span class="std std-ref">An illustration of Hierarchical Bayes modeling for a Gaussian burst with background</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference external image-reference" href="./fig_ABCexample.html"><img alt="../../_images/fig_ABCexample_1_thumb.png" src="../../_images/fig_ABCexample_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_ABCexample.html#book-fig-chapter5-fig-abcexample"><span class="std std-ref">Approximate Bayesian Computation for Gaussian location parameter</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference external image-reference" href="./fig_odds_ratio_coin.html"><img alt="../../_images/fig_odds_ratio_coin_1_thumb.png" src="../../_images/fig_odds_ratio_coin_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_odds_ratio_coin.html#book-fig-chapter5-fig-odds-ratio-coin"><span class="std std-ref">Coin Toss Odds Ratio</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id5">
+<a class="reference external image-reference" href="./fig_malmquist_bias.html"><img alt="../../_images/fig_malmquist_bias_1_thumb.png" src="../../_images/fig_malmquist_bias_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_malmquist_bias.html#book-fig-chapter5-fig-malmquist-bias"><span class="std std-ref">Malmquist Bias Example</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference external image-reference" href="./fig_lutz_kelker.html"><img alt="../../_images/fig_lutz_kelker_1_thumb.png" src="../../_images/fig_lutz_kelker_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_lutz_kelker.html#book-fig-chapter5-fig-lutz-kelker"><span class="std std-ref">Eddington-Malmquist &amp; Lutz-Kelker Biases</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id7">
+<a class="reference external image-reference" href="./fig_likelihood_gaussian.html"><img alt="../../_images/fig_likelihood_gaussian_1_thumb.png" src="../../_images/fig_likelihood_gaussian_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_likelihood_gaussian.html#book-fig-chapter5-fig-likelihood-gaussian"><span class="std std-ref">Log-likelihood for Gaussian Distribution</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id8">
+<a class="reference external image-reference" href="./fig_posterior_gaussian.html"><img alt="../../_images/fig_posterior_gaussian_1_thumb.png" src="../../_images/fig_posterior_gaussian_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_posterior_gaussian.html#book-fig-chapter5-fig-posterior-gaussian"><span class="std std-ref">Posterior for Gaussian Distribution</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id9">
+<a class="reference external image-reference" href="./fig_distribution_gaussgauss.html"><img alt="../../_images/fig_distribution_gaussgauss_1_thumb.png" src="../../_images/fig_distribution_gaussgauss_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_distribution_gaussgauss.html#book-fig-chapter5-fig-distribution-gaussgauss"><span class="std std-ref">Gaussian/Gaussian distribution</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id10">
+<a class="reference external image-reference" href="./fig_likelihood_gaussgauss.html"><img alt="../../_images/fig_likelihood_gaussgauss_1_thumb.png" src="../../_images/fig_likelihood_gaussgauss_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_likelihood_gaussgauss.html#book-fig-chapter5-fig-likelihood-gaussgauss"><span class="std std-ref">Gaussian Distribution with Gaussian Errors</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id11">
+<a class="reference external image-reference" href="./fig_posterior_gaussgauss.html"><img alt="../../_images/fig_posterior_gaussgauss_1_thumb.png" src="../../_images/fig_posterior_gaussgauss_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_posterior_gaussgauss.html#book-fig-chapter5-fig-posterior-gaussgauss"><span class="std std-ref">Gaussian Distribution with Gaussian Errors</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id12">
+<a class="reference external image-reference" href="./fig_posterior_binomial.html"><img alt="../../_images/fig_posterior_binomial_1_thumb.png" src="../../_images/fig_posterior_binomial_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_posterior_binomial.html#book-fig-chapter5-fig-posterior-binomial"><span class="std std-ref">Binomial Posterior</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id13">
+<a class="reference external image-reference" href="./fig_likelihood_cauchy.html"><img alt="../../_images/fig_likelihood_cauchy_1_thumb.png" src="../../_images/fig_likelihood_cauchy_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_likelihood_cauchy.html#book-fig-chapter5-fig-likelihood-cauchy"><span class="std std-ref">Log-likelihood for Cauchy Distribution</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id14">
+<a class="reference external image-reference" href="./fig_posterior_cauchy.html"><img alt="../../_images/fig_posterior_cauchy_1_thumb.png" src="../../_images/fig_posterior_cauchy_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_posterior_cauchy.html#book-fig-chapter5-fig-posterior-cauchy"><span class="std std-ref">Posterior for Cauchy Distribution</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id15">
+<a class="reference external image-reference" href="./fig_likelihood_uniform.html"><img alt="../../_images/fig_likelihood_uniform_1_thumb.png" src="../../_images/fig_likelihood_uniform_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_likelihood_uniform.html#book-fig-chapter5-fig-likelihood-uniform"><span class="std std-ref">Log-likelihood for Uniform Distribution</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id16">
+<a class="reference external image-reference" href="./fig_likelihood_gausslin.html"><img alt="../../_images/fig_likelihood_gausslin_1_thumb.png" src="../../_images/fig_likelihood_gausslin_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_likelihood_gausslin.html#book-fig-chapter5-fig-likelihood-gausslin"><span class="std std-ref">Log-likelihood for Gaussian plus linear background</span></a></span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id17">
+<a class="reference external image-reference" href="./fig_poisson_continuous.html"><img alt="../../_images/fig_poisson_continuous_1_thumb.png" src="../../_images/fig_poisson_continuous_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_poisson_continuous.html#book-fig-chapter5-fig-poisson-continuous"><span class="std std-ref">Unbinned Poisson Data</span></a></span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id18">
+<a class="reference external image-reference" href="./fig_poisson_likelihood.html"><img alt="../../_images/fig_poisson_likelihood_1_thumb.png" src="../../_images/fig_poisson_likelihood_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_poisson_likelihood.html#book-fig-chapter5-fig-poisson-likelihood"><span class="std std-ref">Binned Regression: Poisson vs Gaussian</span></a></span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id19">
+<a class="reference external image-reference" href="./fig_poisson_comparison.html"><img alt="../../_images/fig_poisson_comparison_1_thumb.png" src="../../_images/fig_poisson_comparison_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_poisson_comparison.html#book-fig-chapter5-fig-poisson-comparison"><span class="std std-ref">Poisson Statistics with arbitrarily small bins</span></a></span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id20">
+<a class="reference external image-reference" href="./fig_outlier_likelihood.html"><img alt="../../_images/fig_outlier_likelihood_1_thumb.png" src="../../_images/fig_outlier_likelihood_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_outlier_likelihood.html#book-fig-chapter5-fig-outlier-likelihood"><span class="std std-ref">Plot the posterior of mu vs g1 with outliers</span></a></span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id21">
+<a class="reference external image-reference" href="./fig_outlier_marginalized.html"><img alt="../../_images/fig_outlier_marginalized_1_thumb.png" src="../../_images/fig_outlier_marginalized_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_outlier_marginalized.html#book-fig-chapter5-fig-outlier-marginalized"><span class="std std-ref">Plot the Outlier Probability</span></a></span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id22">
+<a class="reference external image-reference" href="./fig_odds_ratio_cauchy.html"><img alt="../../_images/fig_odds_ratio_cauchy_1_thumb.png" src="../../_images/fig_odds_ratio_cauchy_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_odds_ratio_cauchy.html#book-fig-chapter5-fig-odds-ratio-cauchy"><span class="std std-ref">Odds Ratio for Cauchy vs Gaussian</span></a></span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id23">
+<a class="reference external image-reference" href="./fig_hist_binsize.html"><img alt="../../_images/fig_hist_binsize_1_thumb.png" src="../../_images/fig_hist_binsize_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_hist_binsize.html#book-fig-chapter5-fig-hist-binsize"><span class="std std-ref">Selection of Histogram bin size</span></a></span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id24">
+<a class="reference external image-reference" href="./fig_bayes_blocks.html"><img alt="../../_images/fig_bayes_blocks_1_thumb.png" src="../../_images/fig_bayes_blocks_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_bayes_blocks.html#book-fig-chapter5-fig-bayes-blocks"><span class="std std-ref">Distribution Representation Comparison</span></a></span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id25">
+<a class="reference external image-reference" href="./fig_cauchy_mcmc.html"><img alt="../../_images/fig_cauchy_mcmc_1_thumb.png" src="../../_images/fig_cauchy_mcmc_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_cauchy_mcmc.html#book-fig-chapter5-fig-cauchy-mcmc"><span class="std std-ref">MCMC for the Cauchy distribution</span></a></span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id26">
+<a class="reference external image-reference" href="./fig_model_comparison_hist.html"><img alt="../../_images/fig_model_comparison_hist_1_thumb.png" src="../../_images/fig_model_comparison_hist_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_model_comparison_hist.html#book-fig-chapter5-fig-model-comparison-hist"><span class="std std-ref">Histogram for Double-gaussian model test</span></a></span><a class="headerlink" href="#id26" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id27">
+<a class="reference external image-reference" href="./fig_model_comparison_mcmc.html"><img alt="../../_images/fig_model_comparison_mcmc_1_thumb.png" src="../../_images/fig_model_comparison_mcmc_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_model_comparison_mcmc.html#book-fig-chapter5-fig-model-comparison-mcmc"><span class="std std-ref">MCMC Model Comparison</span></a></span><a class="headerlink" href="#id27" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id28">
+<a class="reference external image-reference" href="./fig_gaussgauss_mcmc.html"><img alt="../../_images/fig_gaussgauss_mcmc_1_thumb.png" src="../../_images/fig_gaussgauss_mcmc_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_gaussgauss_mcmc.html#book-fig-chapter5-fig-gaussgauss-mcmc"><span class="std std-ref">Gaussian Distribution with Gaussian Errors</span></a></span><a class="headerlink" href="#id28" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id29">
+<a class="reference external image-reference" href="./fig_signal_background.html"><img alt="../../_images/fig_signal_background_1_thumb.png" src="../../_images/fig_signal_background_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_signal_background.html#book-fig-chapter5-fig-signal-background"><span class="std std-ref">Finding a signal in a background</span></a></span><a class="headerlink" href="#id29" title="Permalink to this image">¶</a></p>
+</div>
+<div style="clear: both"></div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter5/index.rst.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

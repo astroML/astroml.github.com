@@ -1,34 +1,22 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Stellar Parameters Hess Diagram &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>Stellar Parameters Hess Diagram &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="Data set Examples" href="index.html" />
-    <link rel="next" title="WMAP power spectrum analysis with HealPy" href="plot_wmap_power_spectra.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="WMAP plotting with HEALPix" href="plot_wmap_raw.html" />
     <link rel="prev" title="SDSS Spectrum Example" href="plot_sdss_spectrum.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    SDSS Spectrum Ex...
+	    SDSS Spectrum Example
 	    </span>
 	    <span class="hiddenrellink">
 	    SDSS Spectrum Example
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="plot_wmap_power_spectra.html" title="WMAP power spectrum analysis with HealPy"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    WMAP power spect...
-	    </span>
-	    <span class="hiddenrellink">
-	    WMAP power spectrum analysis with HealPy
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	Data set Example...
+	Data set Examples
 	</span>
 	<span class="hiddenrellink">
 	Data set Examples
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,7 +164,7 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="stellar-parameters-hess-diagram">
 <span id="example-datasets-plot-sdss-sspp"></span><h1>Stellar Parameters Hess Diagram<a class="headerlink" href="#stellar-parameters-hess-diagram" title="Permalink to this headline">¶</a></h1>
@@ -205,96 +176,94 @@ shown in the left plot.</p>
 <a class="reference internal image-reference" href="../../_images/plot_SDSS_SSPP_1.png"><img alt="../../_images/plot_SDSS_SSPP_1.png" class="align-center" src="../../_images/plot_SDSS_SSPP_1.png" style="width: 800.0px; height: 400.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>WARNING: RuntimeWarning: invalid value encountered in divide [astroML.stats._binned_statistic]
-WARNING: RuntimeWarning: divide by zero encountered in log10 [unknown]
-WARNING: RuntimeWarning: divide by zero encountered in log10 [unknown]
-</pre>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
-<span class="c"># License: BSD</span>
-<span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c1"># License: BSD</span>
+<span class="c1">#   The figure is an example from astroML: see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># Get SDSS SSPP data</span>
-<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_sspp</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Get SDSS SSPP data</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_sdss_sspp</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_sspp</span><span class="p">()</span>
 
-<span class="c"># do some reasonable magnitude cuts</span>
-<span class="n">rpsf</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;rpsf&#39;</span><span class="p">]</span>
+<span class="c1"># do some reasonable magnitude cuts</span>
+<span class="n">rpsf</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rpsf&#39;</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">rpsf</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rpsf</span> <span class="o">&lt;</span> <span class="mi">19</span><span class="p">)]</span>
 
-<span class="c"># get the desired data</span>
-<span class="n">logg</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;logg&#39;</span><span class="p">]</span>
-<span class="n">Teff</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;Teff&#39;</span><span class="p">]</span>
-<span class="n">FeH</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;FeH&#39;</span><span class="p">]</span>
+<span class="c1"># get the desired data</span>
+<span class="n">logg</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;logg&#39;</span><span class="p">]</span>
+<span class="n">Teff</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Teff&#39;</span><span class="p">]</span>
+<span class="n">FeH</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;FeH&#39;</span><span class="p">]</span>
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># Plot the results using the binned_statistic function</span>
-<span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="kn">import</span> <span class="n">binned_statistic_2d</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot the results using the binned_statistic function</span>
+<span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="k">import</span> <span class="n">binned_statistic_2d</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">xedges</span><span class="p">,</span> <span class="n">yedges</span> <span class="o">=</span> <span class="n">binned_statistic_2d</span><span class="p">(</span><span class="n">Teff</span><span class="p">,</span> <span class="n">logg</span><span class="p">,</span> <span class="n">FeH</span><span class="p">,</span>
-                                        <span class="s">&#39;count&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+                                        <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">FeH_mean</span><span class="p">,</span> <span class="n">xedges</span><span class="p">,</span> <span class="n">yedges</span> <span class="o">=</span> <span class="n">binned_statistic_2d</span><span class="p">(</span><span class="n">Teff</span><span class="p">,</span> <span class="n">logg</span><span class="p">,</span> <span class="n">FeH</span><span class="p">,</span>
-                                               <span class="s">&#39;mean&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+                                               <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="c"># Define custom colormaps: Set pixels with no sources to white</span>
+<span class="c1"># Define custom colormaps: Set pixels with no sources to white</span>
 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span>
-<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 
 <span class="n">cmap_multicolor</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span>
-<span class="n">cmap_multicolor</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="n">cmap_multicolor</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 
-<span class="c"># Create figure and subplots</span>
+<span class="c1"># Create figure and subplots</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
                     <span class="n">bottom</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
 
-<span class="c">#--------------------</span>
-<span class="c"># First axes:</span>
+<span class="c1">#--------------------</span>
+<span class="c1"># First axes:</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">N</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s">&#39;lower&#39;</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">N</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
            <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
-           <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+           <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">xedges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">yedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$\mathrm{T_{eff}}$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\mathrm{log(g)}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mathrm{T_</span><span class="si">{eff}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mathrm{log(g)}$&#39;</span><span class="p">)</span>
 
 <span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-                  <span class="n">format</span><span class="o">=</span><span class="s">r&#39;$10^{</span><span class="si">%i</span><span class="s">}$&#39;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">)</span>
-<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">r&#39;$\mathrm{number\ in\ pixel}$&#39;</span><span class="p">)</span>
+                  <span class="nb">format</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$10^{</span><span class="si">%i</span><span class="s1">}$&#39;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mathrm{number\ in\ pixel}$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-<span class="c">#--------------------</span>
-<span class="c"># Third axes:</span>
+<span class="c1">#--------------------</span>
+<span class="c1"># Third axes:</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">FeH_mean</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s">&#39;lower&#39;</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">FeH_mean</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
            <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
-           <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_multicolor</span><span class="p">)</span>
+           <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_multicolor</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">xedges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">yedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&#39;$\mathrm{T_{eff}}$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&#39;$\mathrm{log(g)}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mathrm{T_</span><span class="si">{eff}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mathrm{log(g)}$&#39;</span><span class="p">)</span>
 
 <span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
-                  <span class="n">format</span><span class="o">=</span><span class="s">r&#39;$</span><span class="si">%.1f</span><span class="s">$&#39;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">)</span>
-<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">r&#39;$\mathrm{mean\ [Fe/H]\ in\ pixel}$&#39;</span><span class="p">)</span>
+                  <span class="nb">format</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$</span><span class="si">%.1f</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mathrm{mean\ [Fe/H]\ in\ pixel}$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 
-<span class="c"># Draw density contours over the colors</span>
+<span class="c1"># Draw density contours over the colors</span>
 <span class="n">levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">N</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="mi">7</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">N</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">levels</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">N</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">levels</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yedges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div align="right"><p><a class="reference download internal" href="../../_downloads/plot_SDSS_SSPP.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_SDSS_SSPP.py]</span></tt></a></p>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/622f5e3b87c11ac3e1ce092f4babfc30/plot_SDSS_SSPP.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_SDSS_SSPP.py]</span></code></a></p>
 </div></div>
 
 
@@ -307,11 +276,11 @@ WARNING: RuntimeWarning: divide by zero encountered in log10 [unknown]
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/examples/datasets/plot_SDSS_SSPP.txt"
+    <a href="../../_sources/examples/datasets/plot_SDSS_SSPP.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

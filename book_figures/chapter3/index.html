@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter 3: Probability and Statistical Distributions &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sum of Probabilities" href="fig_prob_sum.html" />
+    <link rel="prev" title="Ball Tree Example" href="../chapter2/fig_balltree_example.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="../chapter2/fig_balltree_example.html" title="Ball Tree Example"
+	    accesskey="P">Previous
+	    <br/>
+	    <span class="smallrellink">
+	    Ball Tree Example
+	    </span>
+	    <span class="hiddenrellink">
+	    Ball Tree Example
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Textbook Figures" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Textbook Figures
+	</span>
+	<span class="hiddenrellink">
+	Textbook Figures
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Chapter 3: Probability and Statistical Distributions</a><ul>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <style type="text/css">
+.figure {
+    float: left;
+    margin: 10px;
+    width: auto;
+    height: 200px;
+    width: 180px;
+}
+
+.figure img {
+    display: inline;
+    }
+
+.figure .caption {
+    width: 170px;
+    text-align: center !important;
+}
+</style><div class="section" id="chapter-3-probability-and-statistical-distributions">
+<span id="book-fig-chapter3"></span><h1>Chapter 3: Probability and Statistical Distributions<a class="headerlink" href="#chapter-3-probability-and-statistical-distributions" title="Permalink to this headline">¶</a></h1>
+<p>This chapter discusses basic foundational principles, including probability
+and basic descriptive statistics. It also introduces several important
+probability distribution functions.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="figure align-center" id="id1">
+<a class="reference external image-reference" href="./fig_prob_sum.html"><img alt="../../_images/fig_prob_sum_1_thumb.png" src="../../_images/fig_prob_sum_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_prob_sum.html#book-fig-chapter3-fig-prob-sum"><span class="std std-ref">Sum of Probabilities</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference external image-reference" href="./fig_conditional_probability.html"><img alt="../../_images/fig_conditional_probability_1_thumb.png" src="../../_images/fig_conditional_probability_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_conditional_probability.html#book-fig-chapter3-fig-conditional-probability"><span class="std std-ref">fig_conditional_probability.py</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference external image-reference" href="./fig_contingency_table.html"><img alt="../../_images/fig_contingency_table_1_thumb.png" src="../../_images/fig_contingency_table_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_contingency_table.html#book-fig-chapter3-fig-contingency-table"><span class="std std-ref">A 2x2 Contingency Table</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference external image-reference" href="./fig_transform_distribution.html"><img alt="../../_images/fig_transform_distribution_1_thumb.png" src="../../_images/fig_transform_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_transform_distribution.html#book-fig-chapter3-fig-transform-distribution"><span class="std std-ref">Transformation of Distribution</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id5">
+<a class="reference external image-reference" href="./fig_flux_errors.html"><img alt="../../_images/fig_flux_errors_1_thumb.png" src="../../_images/fig_flux_errors_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_flux_errors.html#book-fig-chapter3-fig-flux-errors"><span class="std std-ref">Flux Errors</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference external image-reference" href="./fig_kurtosis_skew.html"><img alt="../../_images/fig_kurtosis_skew_1_thumb.png" src="../../_images/fig_kurtosis_skew_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_kurtosis_skew.html#book-fig-chapter3-fig-kurtosis-skew"><span class="std std-ref">Kurtosis and Skew</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id7">
+<a class="reference external image-reference" href="./fig_uniform_distribution.html"><img alt="../../_images/fig_uniform_distribution_1_thumb.png" src="../../_images/fig_uniform_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_uniform_distribution.html#book-fig-chapter3-fig-uniform-distribution"><span class="std std-ref">Example of a uniform distribution</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id8">
+<a class="reference external image-reference" href="./fig_gaussian_distribution.html"><img alt="../../_images/fig_gaussian_distribution_1_thumb.png" src="../../_images/fig_gaussian_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_gaussian_distribution.html#book-fig-chapter3-fig-gaussian-distribution"><span class="std std-ref">Example of a Gaussian distribution</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id9">
+<a class="reference external image-reference" href="./fig_binomial_distribution.html"><img alt="../../_images/fig_binomial_distribution_1_thumb.png" src="../../_images/fig_binomial_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_binomial_distribution.html#book-fig-chapter3-fig-binomial-distribution"><span class="std std-ref">Example of a Binomial distribution</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id10">
+<a class="reference external image-reference" href="./fig_poisson_distribution.html"><img alt="../../_images/fig_poisson_distribution_1_thumb.png" src="../../_images/fig_poisson_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_poisson_distribution.html#book-fig-chapter3-fig-poisson-distribution"><span class="std std-ref">Example of a Poisson distribution</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id11">
+<a class="reference external image-reference" href="./fig_cauchy_distribution.html"><img alt="../../_images/fig_cauchy_distribution_1_thumb.png" src="../../_images/fig_cauchy_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_cauchy_distribution.html#book-fig-chapter3-fig-cauchy-distribution"><span class="std std-ref">Example of a Cauchy distribution</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id12">
+<a class="reference external image-reference" href="./fig_cauchy_median_mean.html"><img alt="../../_images/fig_cauchy_median_mean_1_thumb.png" src="../../_images/fig_cauchy_median_mean_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_cauchy_median_mean.html#book-fig-chapter3-fig-cauchy-median-mean"><span class="std std-ref">Median and Mean for Cauchy distribution</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id13">
+<a class="reference external image-reference" href="./fig_laplace_distribution.html"><img alt="../../_images/fig_laplace_distribution_1_thumb.png" src="../../_images/fig_laplace_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_laplace_distribution.html#book-fig-chapter3-fig-laplace-distribution"><span class="std std-ref">Example of a Laplace distribution</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id14">
+<a class="reference external image-reference" href="./fig_chi2_distribution.html"><img alt="../../_images/fig_chi2_distribution_1_thumb.png" src="../../_images/fig_chi2_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_chi2_distribution.html#book-fig-chapter3-fig-chi2-distribution"><span class="std std-ref">Example of a chi-squared distribution</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id15">
+<a class="reference external image-reference" href="./fig_student_t_distribution.html"><img alt="../../_images/fig_student_t_distribution_1_thumb.png" src="../../_images/fig_student_t_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_student_t_distribution.html#book-fig-chapter3-fig-student-t-distribution"><span class="std std-ref">Example of Student’s t distribution</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id16">
+<a class="reference external image-reference" href="./fig_fisher_f_distribution.html"><img alt="../../_images/fig_fisher_f_distribution_1_thumb.png" src="../../_images/fig_fisher_f_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_fisher_f_distribution.html#book-fig-chapter3-fig-fisher-f-distribution"><span class="std std-ref">Example of Fisher’s F distribution</span></a></span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id17">
+<a class="reference external image-reference" href="./fig_beta_distribution.html"><img alt="../../_images/fig_beta_distribution_1_thumb.png" src="../../_images/fig_beta_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_beta_distribution.html#book-fig-chapter3-fig-beta-distribution"><span class="std std-ref">Example of a Beta distribution</span></a></span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id18">
+<a class="reference external image-reference" href="./fig_gamma_distribution.html"><img alt="../../_images/fig_gamma_distribution_1_thumb.png" src="../../_images/fig_gamma_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_gamma_distribution.html#book-fig-chapter3-fig-gamma-distribution"><span class="std std-ref">Example of a Gamma distribution</span></a></span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id19">
+<a class="reference external image-reference" href="./fig_weibull_distribution.html"><img alt="../../_images/fig_weibull_distribution_1_thumb.png" src="../../_images/fig_weibull_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_weibull_distribution.html#book-fig-chapter3-fig-weibull-distribution"><span class="std std-ref">Example of a Weibull distribution</span></a></span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id20">
+<a class="reference external image-reference" href="./fig_central_limit.html"><img alt="../../_images/fig_central_limit_1_thumb.png" src="../../_images/fig_central_limit_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_central_limit.html#book-fig-chapter3-fig-central-limit"><span class="std std-ref">Example of central limit theorem</span></a></span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id21">
+<a class="reference external image-reference" href="./fig_uniform_mean.html"><img alt="../../_images/fig_uniform_mean_1_thumb.png" src="../../_images/fig_uniform_mean_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_uniform_mean.html#book-fig-chapter3-fig-uniform-mean"><span class="std std-ref">Convergence of mean for uniformly distributed values</span></a></span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id22">
+<a class="reference external image-reference" href="./fig_bivariate_gaussian.html"><img alt="../../_images/fig_bivariate_gaussian_1_thumb.png" src="../../_images/fig_bivariate_gaussian_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_bivariate_gaussian.html#book-fig-chapter3-fig-bivariate-gaussian"><span class="std std-ref">Bivariate Gaussian</span></a></span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id23">
+<a class="reference external image-reference" href="./fig_robust_pca.html"><img alt="../../_images/fig_robust_pca_1_thumb.png" src="../../_images/fig_robust_pca_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_robust_pca.html#book-fig-chapter3-fig-robust-pca"><span class="std std-ref">Bivariate Gaussian: Robust Parameter Estimation</span></a></span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id24">
+<a class="reference external image-reference" href="./fig_correlations.html"><img alt="../../_images/fig_correlations_1_thumb.png" src="../../_images/fig_correlations_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_correlations.html#book-fig-chapter3-fig-correlations"><span class="std std-ref">Correlation estimates</span></a></span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id25">
+<a class="reference external image-reference" href="./fig_clone_distribution.html"><img alt="../../_images/fig_clone_distribution_1_thumb.png" src="../../_images/fig_clone_distribution_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_clone_distribution.html#book-fig-chapter3-fig-clone-distribution"><span class="std std-ref">Random Values from an Empirical Distribution</span></a></span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
+</div>
+<div style="clear: both"></div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter3/index.rst.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lynden-Bell Luminosity function &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Chapter 5: Bayesian Statistical Inference" href="../chapter5/index.html" />
+    <link rel="prev" title="Luminosity function code on toy data" href="fig_lyndenbell_toy.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="fig_lyndenbell_toy.html" title="Luminosity function code on toy data"
+	    accesskey="P">Previous
+	    <br/>
+	    <span class="smallrellink">
+	    Luminosity fu...
+	    </span>
+	    <span class="hiddenrellink">
+	    Luminosity function code on toy data
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Chapter 4: Classical Statistical Inference" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Chapter 4: Cl...
+	</span>
+	<span class="hiddenrellink">
+	Chapter 4: Classical Statistical Inference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Lynden-Bell Luminosity function</a></li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lynden-bell-luminosity-function">
+<span id="book-fig-chapter4-fig-lyndenbell-gals"></span><h1>Lynden-Bell Luminosity function<a class="headerlink" href="#lynden-bell-luminosity-function" title="Permalink to this headline">¶</a></h1>
+<p>Figure 4.10.</p>
+<p>An example of computing the luminosity function for two u-r color-selected
+subsamples of SDSS galaxies using Lynden-Bell’s C- method. The galaxies are
+selected from the SDSS spectroscopic sample, with redshift in the range
+0.08 &lt; z &lt; 0.12 and flux limited to r &lt; 17.7. The left panels show the
+distribution of sources as a function of redshift and absolute magnitude. The
+distribution p(z, M) = rho(z) Phi(m) is obtained using Lynden-Bell’s method,
+with errors determined by 20 bootstrap resamples. The results are shown in the
+right panels. For the redshift distribution, we multiply the result by z^2 for
+clarity. Note that the most luminous galaxies belong to the photometrically
+red subsample, as discernible in the bottom-right panel.</p>
+<a class="reference internal image-reference" href="../../_images/fig_lyndenbell_gals_1.png"><img alt="../../_images/fig_lyndenbell_gals_1.png" class="align-center" src="../../_images/fig_lyndenbell_gals_1.png" style="width: 500.0px; height: 500.0px;" /></a>
+<div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">114152</span> <span class="n">red</span> <span class="n">galaxies</span>
+<span class="mi">45010</span> <span class="n">blue</span> <span class="n">galaxies</span>
+<span class="o">-</span> <span class="n">using</span> <span class="n">precomputed</span> <span class="n">bootstrapped</span> <span class="n">luminosity</span> <span class="n">function</span> <span class="n">results</span>
+<span class="o">-</span> <span class="n">using</span> <span class="n">precomputed</span> <span class="n">bootstrapped</span> <span class="n">luminosity</span> <span class="n">function</span> <span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
+</a></div>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Jake VanderPlas</span>
+<span class="c1"># License: BSD</span>
+<span class="c1">#   The figure produced by this code is published in the textbook</span>
+<span class="c1">#   &quot;Statistics, Data Mining, and Machine Learning in Astronomy&quot; (2013)</span>
+<span class="c1">#   For more information, see http://astroML.github.com</span>
+<span class="c1">#   To report a bug or issue, use the following forum:</span>
+<span class="c1">#    https://groups.google.com/forum/#!forum/astroml-general</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">interpolate</span>
+<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="k">import</span> <span class="n">FlatLambdaCDM</span>
+
+<span class="kn">from</span> <span class="nn">astroML.lumfunc</span> <span class="k">import</span> <span class="n">bootstrap_Cminus</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_sdss_specgals</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># This function adjusts matplotlib settings for a uniform feel in the textbook.</span>
+<span class="c1"># Note that with usetex=True, fonts are rendered with LaTeX.  This may</span>
+<span class="c1"># result in an error if LaTeX is not installed on your system.  In that case,</span>
+<span class="c1"># you can set usetex to False.</span>
+<span class="k">if</span> <span class="s2">&quot;setup_text_plots&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="k">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Get the data and perform redshift/magnitude cuts</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_specgals</span><span class="p">()</span>
+
+<span class="n">z_min</span> <span class="o">=</span> <span class="mf">0.08</span>
+<span class="n">z_max</span> <span class="o">=</span> <span class="mf">0.12</span>
+<span class="n">m_max</span> <span class="o">=</span> <span class="mf">17.7</span>
+
+<span class="c1"># redshift and magnitude cuts</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">z_min</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">z_max</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;petroMag_r&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">m_max</span><span class="p">]</span>
+
+<span class="c1"># divide red sample and blue sample based on u-r color</span>
+<span class="n">ur</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;modelMag_u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;modelMag_r&#39;</span><span class="p">]</span>
+<span class="n">flag_red</span> <span class="o">=</span> <span class="p">(</span><span class="n">ur</span> <span class="o">&gt;</span> <span class="mf">2.22</span><span class="p">)</span>
+<span class="n">flag_blue</span> <span class="o">=</span> <span class="o">~</span><span class="n">flag_red</span>
+
+<span class="n">data_red</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">flag_red</span><span class="p">]</span>
+<span class="n">data_blue</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">flag_blue</span><span class="p">]</span>
+
+<span class="c1"># truncate sample (optional: speeds up computation)</span>
+<span class="c1">#data_red = data_red[::10]</span>
+<span class="c1">#data_blue = data_blue[::10]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_red</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="s2">&quot;red galaxies&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_blue</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="s2">&quot;blue galaxies&quot;</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Distance Modulus calculation:</span>
+<span class="c1">#  We need functions approximating mu(z) and z(mu)</span>
+<span class="c1">#  where z is redshift and mu is distance modulus.</span>
+<span class="c1">#  We&#39;ll accomplish this using the cosmology class and</span>
+<span class="c1">#  scipy&#39;s cubic spline interpolation.</span>
+<span class="n">cosmo</span> <span class="o">=</span> <span class="n">FlatLambdaCDM</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mi">71</span><span class="p">,</span> <span class="n">Om0</span><span class="o">=</span><span class="mf">0.27</span><span class="p">,</span> <span class="n">Tcmb0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">z_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">mu_sample</span> <span class="o">=</span> <span class="n">cosmo</span><span class="o">.</span><span class="n">distmod</span><span class="p">(</span><span class="n">z_sample</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">mu_z</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">z_sample</span><span class="p">,</span> <span class="n">mu_sample</span><span class="p">)</span>
+<span class="n">z_mu</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">mu_sample</span><span class="p">,</span> <span class="n">z_sample</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_red</span><span class="p">,</span> <span class="n">data_blue</span><span class="p">]</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$u-r &gt; 2.22$&#39;</span><span class="p">,</span> <span class="s1">&#39;$u-r &lt; 2.22$&#39;</span><span class="p">]</span>
+<span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">]</span>
+<span class="n">archive_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lumfunc_red.npz&#39;</span><span class="p">,</span> <span class="s1">&#39;lumfunc_blue.npz&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">compute_luminosity_function</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">m_max</span><span class="p">,</span> <span class="n">archive_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the luminosity function and archive in the given file.</span>
+
+<span class="sd">    If the file exists, then the saved results are returned.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Mmax</span> <span class="o">=</span> <span class="n">m_max</span> <span class="o">-</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">M</span><span class="p">)</span>
+    <span class="n">zmax</span> <span class="o">=</span> <span class="n">z_mu</span><span class="p">(</span><span class="n">m_max</span> <span class="o">-</span> <span class="n">M</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archive_file</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- computing bootstrapped luminosity function &quot;</span><span class="p">,</span>
+              <span class="s2">&quot;for </span><span class="si">{0}</span><span class="s2"> points&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)))</span>
+
+        <span class="n">zbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+        <span class="n">Mbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">24</span><span class="p">,</span> <span class="o">-</span><span class="mf">20.2</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+        <span class="n">dist_z</span><span class="p">,</span> <span class="n">err_z</span><span class="p">,</span> <span class="n">dist_M</span><span class="p">,</span> <span class="n">err_M</span> <span class="o">=</span> <span class="n">bootstrap_Cminus</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">zmax</span><span class="p">,</span> <span class="n">Mmax</span><span class="p">,</span>
+                                                        <span class="n">zbins</span><span class="p">,</span> <span class="n">Mbins</span><span class="p">,</span>
+                                                        <span class="n">Nbootstraps</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                                        <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">archive_file</span><span class="p">,</span>
+                 <span class="n">zbins</span><span class="o">=</span><span class="n">zbins</span><span class="p">,</span> <span class="n">dist_z</span><span class="o">=</span><span class="n">dist_z</span><span class="p">,</span> <span class="n">err_z</span><span class="o">=</span><span class="n">err_z</span><span class="p">,</span>
+                 <span class="n">Mbins</span><span class="o">=</span><span class="n">Mbins</span><span class="p">,</span> <span class="n">dist_M</span><span class="o">=</span><span class="n">dist_M</span><span class="p">,</span> <span class="n">err_M</span><span class="o">=</span><span class="n">err_M</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- using precomputed bootstrapped luminosity function results&quot;</span><span class="p">)</span>
+        <span class="n">archive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">archive_file</span><span class="p">)</span>
+        <span class="n">zbins</span> <span class="o">=</span> <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;zbins&#39;</span><span class="p">]</span>
+        <span class="n">dist_z</span> <span class="o">=</span> <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;dist_z&#39;</span><span class="p">]</span>
+        <span class="n">err_z</span> <span class="o">=</span> <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;err_z&#39;</span><span class="p">]</span>
+        <span class="n">Mbins</span> <span class="o">=</span> <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;Mbins&#39;</span><span class="p">]</span>
+        <span class="n">dist_M</span> <span class="o">=</span> <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;dist_M&#39;</span><span class="p">]</span>
+        <span class="n">err_M</span> <span class="o">=</span> <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;err_M&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">zbins</span><span class="p">,</span> <span class="n">dist_z</span><span class="p">,</span> <span class="n">err_z</span><span class="p">,</span> <span class="n">Mbins</span><span class="p">,</span> <span class="n">dist_M</span><span class="p">,</span> <span class="n">err_M</span>
+
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Perform the computation and plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.13</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;petroMag_r&#39;</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="n">mu_z</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="c1"># compute the luminosity function for the given subsample</span>
+    <span class="n">zbins</span><span class="p">,</span> <span class="n">dist_z</span><span class="p">,</span> <span class="n">err_z</span><span class="p">,</span> <span class="n">Mbins</span><span class="p">,</span> <span class="n">dist_M</span><span class="p">,</span> <span class="n">err_M</span> <span class="o">=</span> \
+        <span class="n">compute_luminosity_function</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">m_max</span><span class="p">,</span> <span class="n">archive_files</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1">#------------------------------------------------------------</span>
+    <span class="c1"># First axes: plot the observed 2D distribution of (z, M)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">H</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">ybins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span>
+                                                 <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">23</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">41</span><span class="p">)))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+              <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+              <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">xbins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xbins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ybins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ybins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="c1"># plot the cutoff curve</span>
+    <span class="n">zrange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">Mmax</span> <span class="o">=</span> <span class="n">m_max</span> <span class="o">-</span> <span class="n">mu_z</span><span class="p">(</span><span class="n">zrange</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">zrange</span><span class="p">,</span> <span class="n">Mmax</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">$N = </span><span class="si">%i</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">),</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.075</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">22</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$z$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$M$&#39;</span><span class="p">)</span>
+
+    <span class="c1">#------------------------------------------------------------</span>
+    <span class="c1"># Second axes: plot the inferred 1D distribution in z</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">factor</span> <span class="o">=</span> <span class="mf">0.08</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">zbins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">zbins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">zbins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">zbins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                 <span class="n">factor</span> <span class="o">*</span> <span class="n">dist_z</span><span class="p">,</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">err_z</span><span class="p">,</span>
+                 <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;-k&#39;</span> <span class="o">+</span> <span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                 <span class="n">label</span><span class="o">=</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1">#------------------------------------------------------------</span>
+    <span class="c1"># Third axes: plot the inferred 1D distribution in M</span>
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+    <span class="c1"># truncate the bins so the plot looks better</span>
+    <span class="n">Mbins</span> <span class="o">=</span> <span class="n">Mbins</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dist_M</span> <span class="o">=</span> <span class="n">dist_M</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">err_M</span> <span class="o">=</span> <span class="n">err_M</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">ax3</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">Mbins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">Mbins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dist_M</span><span class="p">,</span> <span class="n">err_M</span><span class="p">,</span>
+                 <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;-k&#39;</span> <span class="o">+</span> <span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                 <span class="n">label</span><span class="o">=</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># set labels and limits</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.01</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$z$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\rho(z) / [z / 0.08]^2$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.075</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+
+<span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$M$&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\Phi(M)$&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mf">23.5</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/1130ea661ac639f38c8147b37f871e2e/fig_lyndenbell_gals.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">fig_lyndenbell_gals.py]</span></code></a></p>
+</div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter4/fig_lyndenbell_gals.rst.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter 10: Time Series Analysis &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Fourier Reconstruction of RR-Lyrae Templates" href="fig_rrlyrae_reconstruct.html" />
+    <link rel="prev" title="Star/Quasar Classification ROC Curves" href="../chapter9/fig_star_quasar_ROC.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li><a href="../index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
+            <li><a href="../../examples/index.html">Examples Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="../chapter9/fig_star_quasar_ROC.html" title="Star/Quasar Classification ROC Curves"
+	    accesskey="P">Previous
+	    <br/>
+	    <span class="smallrellink">
+	    Star/Quasar C...
+	    </span>
+	    <span class="hiddenrellink">
+	    Star/Quasar Classification ROC Curves
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Textbook Figures" >
+	Up
+	<br/>
+	<span class="smallrellink">
+	Textbook Figures
+	</span>
+	<span class="hiddenrellink">
+	Textbook Figures
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Chapter 10: Time Series Analysis</a><ul>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <style type="text/css">
+.figure {
+    float: left;
+    margin: 10px;
+    width: auto;
+    height: 200px;
+    width: 180px;
+}
+
+.figure img {
+    display: inline;
+    }
+
+.figure .caption {
+    width: 170px;
+    text-align: center !important;
+}
+</style><div class="section" id="chapter-10-time-series-analysis">
+<span id="book-fig-chapter10"></span><h1>Chapter 10: Time Series Analysis<a class="headerlink" href="#chapter-10-time-series-analysis" title="Permalink to this headline">¶</a></h1>
+<p>This chapter covers the analysis of both periodic and non-periodic time series,
+for both regularly and irregularly spaced data.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="figure align-center" id="id1">
+<a class="reference external image-reference" href="./fig_rrlyrae_reconstruct.html"><img alt="../../_images/fig_rrlyrae_reconstruct_1_thumb.png" src="../../_images/fig_rrlyrae_reconstruct_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_rrlyrae_reconstruct.html#book-fig-chapter10-fig-rrlyrae-reconstruct"><span class="std std-ref">Fourier Reconstruction of RR-Lyrae Templates</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference external image-reference" href="./fig_convolution_diagram.html"><img alt="../../_images/fig_convolution_diagram_1_thumb.png" src="../../_images/fig_convolution_diagram_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_convolution_diagram.html#book-fig-chapter10-fig-convolution-diagram"><span class="std std-ref">Plot a Diagram explaining a Convolution</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference external image-reference" href="./fig_FFT_aliasing.html"><img alt="../../_images/fig_FFT_aliasing_1_thumb.png" src="../../_images/fig_FFT_aliasing_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_FFT_aliasing.html#book-fig-chapter10-fig-fft-aliasing"><span class="std std-ref">The effect of Sampling</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference external image-reference" href="./fig_FFT_sampling.html"><img alt="../../_images/fig_FFT_sampling_1_thumb.png" src="../../_images/fig_FFT_sampling_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_FFT_sampling.html#book-fig-chapter10-fig-fft-sampling"><span class="std std-ref">The effect of Sampling</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id5">
+<a class="reference external image-reference" href="./fig_fft_example.html"><img alt="../../_images/fig_fft_example_1_thumb.png" src="../../_images/fig_fft_example_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_fft_example.html#book-fig-chapter10-fig-fft-example"><span class="std std-ref">Fast Fourier Transform Example</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference external image-reference" href="./fig_LIGO_power_spectrum.html"><img alt="../../_images/fig_LIGO_power_spectrum_1_thumb.png" src="../../_images/fig_LIGO_power_spectrum_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LIGO_power_spectrum.html#book-fig-chapter10-fig-ligo-power-spectrum"><span class="std std-ref">fig_LIGO_power_spectrum.py</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id7">
+<a class="reference external image-reference" href="./fig_wavelet_PSD.html"><img alt="../../_images/fig_wavelet_PSD_1_thumb.png" src="../../_images/fig_wavelet_PSD_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_wavelet_PSD.html#book-fig-chapter10-fig-wavelet-psd"><span class="std std-ref">Wavelet transform of Gaussian Noise</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id8">
+<a class="reference external image-reference" href="./fig_line_wavelet_PSD.html"><img alt="../../_images/fig_line_wavelet_PSD_1_thumb.png" src="../../_images/fig_line_wavelet_PSD_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_line_wavelet_PSD.html#book-fig-chapter10-fig-line-wavelet-psd"><span class="std std-ref">Wavelet transform of a Noisy Spike</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id9">
+<a class="reference external image-reference" href="./fig_wavelets.html"><img alt="../../_images/fig_wavelets_1_thumb.png" src="../../_images/fig_wavelets_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_wavelets.html#book-fig-chapter10-fig-wavelets"><span class="std std-ref">Examples of Wavelets</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id10">
+<a class="reference external image-reference" href="./fig_wiener_filter.html"><img alt="../../_images/fig_wiener_filter_1_thumb.png" src="../../_images/fig_wiener_filter_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_wiener_filter.html#book-fig-chapter10-fig-wiener-filter"><span class="std std-ref">fig_wiener_filter.py</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id11">
+<a class="reference external image-reference" href="./fig_wiener_kernel.html"><img alt="../../_images/fig_wiener_kernel_1_thumb.png" src="../../_images/fig_wiener_kernel_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_wiener_kernel.html#book-fig-chapter10-fig-wiener-kernel"><span class="std std-ref">Wiener Filter / kernel smooting Connection</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id12">
+<a class="reference external image-reference" href="./fig_mincomp_procedure.html"><img alt="../../_images/fig_mincomp_procedure_1_thumb.png" src="../../_images/fig_mincomp_procedure_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_mincomp_procedure.html#book-fig-chapter10-fig-mincomp-procedure"><span class="std std-ref">Minimum component fitting procedure</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id13">
+<a class="reference external image-reference" href="./fig_mincomp.html"><img alt="../../_images/fig_mincomp_1_thumb.png" src="../../_images/fig_mincomp_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_mincomp.html#book-fig-chapter10-fig-mincomp"><span class="std std-ref">Example of Minimum Component Filtering</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id14">
+<a class="reference external image-reference" href="./fig_sampling.html"><img alt="../../_images/fig_sampling_1_thumb.png" src="../../_images/fig_sampling_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_sampling.html#book-fig-chapter10-fig-sampling"><span class="std std-ref">The effect of Sampling</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id15">
+<a class="reference external image-reference" href="./fig_LS_example.html"><img alt="../../_images/fig_LS_example_1_thumb.png" src="../../_images/fig_LS_example_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LS_example.html#book-fig-chapter10-fig-ls-example"><span class="std std-ref">Example of Lomb-Scargle Algorithm</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id16">
+<a class="reference external image-reference" href="./fig_LS_sg_comparison.html"><img alt="../../_images/fig_LS_sg_comparison_1_thumb.png" src="../../_images/fig_LS_sg_comparison_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LS_sg_comparison.html#book-fig-chapter10-fig-ls-sg-comparison"><span class="std std-ref">Generalized vs Standard Lomb-Scargle</span></a></span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id17">
+<a class="reference external image-reference" href="./fig_LINEAR_LS.html"><img alt="../../_images/fig_LINEAR_LS_1_thumb.png" src="../../_images/fig_LINEAR_LS_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LINEAR_LS.html#book-fig-chapter10-fig-linear-ls"><span class="std std-ref">Phased LINEAR Light Curve</span></a></span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id18">
+<a class="reference external image-reference" href="./fig_LS_double_eclipse.html"><img alt="../../_images/fig_LS_double_eclipse_1_thumb.png" src="../../_images/fig_LS_double_eclipse_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LS_double_eclipse.html#book-fig-chapter10-fig-ls-double-eclipse"><span class="std std-ref">Lomb-Scargle Aliasing</span></a></span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id19">
+<a class="reference external image-reference" href="./fig_LINEAR_BIC.html"><img alt="../../_images/fig_LINEAR_BIC_1_thumb.png" src="../../_images/fig_LINEAR_BIC_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LINEAR_BIC.html#book-fig-chapter10-fig-linear-bic"><span class="std std-ref">BIC for LINEAR light curve</span></a></span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id20">
+<a class="reference external image-reference" href="./fig_LINEAR_clustering.html"><img alt="../../_images/fig_LINEAR_clustering_1_thumb.png" src="../../_images/fig_LINEAR_clustering_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LINEAR_clustering.html#book-fig-chapter10-fig-linear-clustering"><span class="std std-ref">Clustering of LINEAR data</span></a></span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id21">
+<a class="reference external image-reference" href="./fig_LINEAR_clustering.html"><img alt="../../_images/fig_LINEAR_clustering_1_thumb.png" src="../../_images/fig_LINEAR_clustering_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LINEAR_clustering.html#book-fig-chapter10-fig-linear-clustering"><span class="std std-ref">Clustering of LINEAR data</span></a></span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id22">
+<a class="reference external image-reference" href="./fig_LINEAR_GMMBayes.html"><img alt="../../_images/fig_LINEAR_GMMBayes_1_thumb.png" src="../../_images/fig_LINEAR_GMMBayes_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LINEAR_GMMBayes.html#book-fig-chapter10-fig-linear-gmmbayes"><span class="std std-ref">GMMBayes classification of LINEAR data</span></a></span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id23">
+<a class="reference external image-reference" href="./fig_LINEAR_SVM.html"><img alt="../../_images/fig_LINEAR_SVM_1_thumb.png" src="../../_images/fig_LINEAR_SVM_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_LINEAR_SVM.html#book-fig-chapter10-fig-linear-svm"><span class="std std-ref">SVM classification of LINEAR data</span></a></span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id24">
+<a class="reference external image-reference" href="./fig_arrival_time.html"><img alt="../../_images/fig_arrival_time_1_thumb.png" src="../../_images/fig_arrival_time_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_arrival_time.html#book-fig-chapter10-fig-arrival-time"><span class="std std-ref">Arrival Time Analysis</span></a></span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id25">
+<a class="reference external image-reference" href="./fig_matchedfilt_burst.html"><img alt="../../_images/fig_matchedfilt_burst_1_thumb.png" src="../../_images/fig_matchedfilt_burst_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_matchedfilt_burst.html#book-fig-chapter10-fig-matchedfilt-burst"><span class="std std-ref">Matched Filter Burst Search</span></a></span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id26">
+<a class="reference external image-reference" href="./fig_matchedfilt_chirp.html"><img alt="../../_images/fig_matchedfilt_chirp_1_thumb.png" src="../../_images/fig_matchedfilt_chirp_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_matchedfilt_chirp.html#book-fig-chapter10-fig-matchedfilt-chirp"><span class="std std-ref">Matched Filter Chirp Search</span></a></span><a class="headerlink" href="#id26" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id27">
+<a class="reference external image-reference" href="./fig_matchedfilt_chirp2.html"><img alt="../../_images/fig_matchedfilt_chirp2_1_thumb.png" src="../../_images/fig_matchedfilt_chirp2_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_matchedfilt_chirp2.html#book-fig-chapter10-fig-matchedfilt-chirp2"><span class="std std-ref">Matched Filter Chirp Search</span></a></span><a class="headerlink" href="#id27" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id28">
+<a class="reference external image-reference" href="./fig_chirp2_PSD.html"><img alt="../../_images/fig_chirp2_PSD_1_thumb.png" src="../../_images/fig_chirp2_PSD_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_chirp2_PSD.html#book-fig-chapter10-fig-chirp2-psd"><span class="std std-ref">Chirp wavelet PSD</span></a></span><a class="headerlink" href="#id28" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id29">
+<a class="reference external image-reference" href="./fig_powerlaw.html"><img alt="../../_images/fig_powerlaw_1_thumb.png" src="../../_images/fig_powerlaw_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_powerlaw.html#book-fig-chapter10-fig-powerlaw"><span class="std std-ref">Generating Power-law Light Curves</span></a></span><a class="headerlink" href="#id29" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id30">
+<a class="reference external image-reference" href="./fig_autocorrelation.html"><img alt="../../_images/fig_autocorrelation_1_thumb.png" src="../../_images/fig_autocorrelation_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="fig_autocorrelation.html#book-fig-chapter10-fig-autocorrelation"><span class="std std-ref">Autocorrelation Function</span></a></span><a class="headerlink" href="#id30" title="Permalink to this image">¶</a></p>
+</div>
+<div style="clear: both"></div></div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/book_figures/chapter10/index.rst.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

@@ -1,35 +1,23 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>SDSS Spectroscopic Galaxy Sample &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>SDSS Spectroscopic Galaxy Sample &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="Data set Examples" href="index.html" />
-    <link rel="next" title="SDSS Spectrum Example" href="plot_sdss_spectrum.html" />
-    <link rel="prev" title="SDSS Standard Star catalog" href="plot_sdss_S82standards.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NASA Sloan Atlas" href="plot_nasa_atlas.html" />
+    <link rel="prev" title="SDSS “Great Wall”" href="plot_great_wall.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../index.html">Examples Plots</a></li>
        </ul>
 
@@ -106,31 +94,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="plot_sdss_S82standards.html" title="SDSS Standard Star catalog"
+	<a href="plot_great_wall.html" title="SDSS “Great Wall”"
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    SDSS Standard St...
+	    SDSS “Great Wall”
 	    </span>
 	    <span class="hiddenrellink">
-	    SDSS Standard Star catalog
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="plot_sdss_spectrum.html" title="SDSS Spectrum Example"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    SDSS Spectrum Ex...
-	    </span>
-	    <span class="hiddenrellink">
-	    SDSS Spectrum Example
+	    SDSS “Great Wall”
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	Data set Example...
+	Data set Examples
 	</span>
 	<span class="hiddenrellink">
 	Data set Examples
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -193,95 +164,92 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="sdss-spectroscopic-galaxy-sample">
 <span id="example-datasets-plot-sdss-specgals"></span><h1>SDSS Spectroscopic Galaxy Sample<a class="headerlink" href="#sdss-spectroscopic-galaxy-sample" title="Permalink to this headline">¶</a></h1>
 <p>This figure shows photometric colors of the SDSS spectroscopic galaxy
 sample.</p>
-<a class="horizontal reference internal image-reference" href="../../_images/plot_sdss_specgals_1.png"><img alt="../../_images/plot_sdss_specgals_1.png" class="horizontal align-center" src="../../_images/plot_sdss_specgals_1.png" style="width: 800.0px; height: 600.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/plot_sdss_specgals_2.png"><img alt="../../_images/plot_sdss_specgals_2.png" class="align-center" src="../../_images/plot_sdss_specgals_2.png" style="width: 800.0px; height: 600.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/plot_sdss_specgals_3.png"><img alt="../../_images/plot_sdss_specgals_3.png" class="align-center" src="../../_images/plot_sdss_specgals_3.png" style="width: 800.0px; height: 600.0px;" /></a>
+<a class="horizontal reference internal image-reference" href="../../_images/plot_sdss_specgals_1.png"><img alt="../../_images/plot_sdss_specgals_1.png" class="horizontal align-center" src="../../_images/plot_sdss_specgals_1.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/plot_sdss_specgals_2.png"><img alt="../../_images/plot_sdss_specgals_2.png" class="align-center" src="../../_images/plot_sdss_specgals_2.png" style="width: 640.0px; height: 480.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/plot_sdss_specgals_3.png"><img alt="../../_images/plot_sdss_specgals_3.png" class="align-center" src="../../_images/plot_sdss_specgals_3.png" style="width: 640.0px; height: 480.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>Optimization terminated successfully.
-         Current function value: -786093.627028
-         Iterations: 25
-         Function evaluations: 65
-</pre>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
-<span class="c"># License: BSD</span>
-<span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c1"># License: BSD</span>
+<span class="c1">#   The figure is an example from astroML: see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_specgals</span>
+<span class="kn">from</span> <span class="nn">astropy.visualization</span> <span class="k">import</span> <span class="n">hist</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_sdss_specgals</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_specgals</span><span class="p">()</span>
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># plot the RA/DEC in an area-preserving projection</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># plot the RA/DEC in an area-preserving projection</span>
 
-<span class="n">RA</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">]</span>
-<span class="n">DEC</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">]</span>
+<span class="n">RA</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span>
+<span class="n">DEC</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span>
 
-<span class="c"># convert coordinates to degrees</span>
+<span class="c1"># convert coordinates to degrees</span>
 <span class="n">RA</span> <span class="o">-=</span> <span class="mi">180</span>
 <span class="n">RA</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
 <span class="n">DEC</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s">&#39;mollweide&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;mollweide&#39;</span><span class="p">)</span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">RA</span><span class="p">,</span> <span class="n">DEC</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">copper</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">RA</span><span class="p">,</span> <span class="n">DEC</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">copper</span><span class="p">,</span>
             <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;SDSS DR8 Spectroscopic Galaxies&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SDSS DR8 Spectroscopic Galaxies&#39;</span><span class="p">)</span>
 <span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]),</span>
-                  <span class="n">orientation</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span>
+                  <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
                   <span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;redshift&#39;</span><span class="p">)</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;redshift&#39;</span><span class="p">)</span>
 
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># plot the r vs u-r color-magnitude diagram</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;modelMag_u&#39;</span><span class="p">]</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;modelMag_r&#39;</span><span class="p">]</span>
-<span class="n">rPetro</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;petroMag_r&#39;</span><span class="p">]</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># plot the r vs u-r color-magnitude diagram</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;modelMag_u&#39;</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;modelMag_r&#39;</span><span class="p">]</span>
+<span class="n">rPetro</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;petroMag_r&#39;</span><span class="p">]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">r</span><span class="p">,</span> <span class="n">rPetro</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">copper</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">r</span><span class="p">,</span> <span class="n">rPetro</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">copper</span><span class="p">,</span>
             <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;redshift&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;redshift&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;u-r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;rPetrosian&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;u-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;rPetrosian&#39;</span><span class="p">)</span>
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># plot a histogram of the redshift</span>
-<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">hist</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># plot a histogram of the redshift</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="s">&#39;knuth&#39;</span><span class="p">,</span>
-     <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">&#39;#F5CCB0&#39;</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;knuth&#39;</span><span class="p">,</span>
+     <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;#F5CCB0&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;z (redshift)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;dN/dz(z)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;z (redshift)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;dN/dz(z)&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div align="right"><p><a class="reference download internal" href="../../_downloads/plot_sdss_specgals.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_sdss_specgals.py]</span></tt></a></p>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/04b78fd4c5532b9aef823d42b24f0ce2/plot_sdss_specgals.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_sdss_specgals.py]</span></code></a></p>
 </div></div>
 
 
@@ -294,11 +262,11 @@ sample.</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/examples/datasets/plot_sdss_specgals.txt"
+    <a href="../../_sources/examples/datasets/plot_sdss_specgals.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

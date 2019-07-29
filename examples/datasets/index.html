@@ -1,35 +1,23 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Data set Examples &mdash; astroML 0.2 documentation</title>
-
+    <meta charset="utf-8" />
+    <title>Data set Examples &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="General astroML Examples" href="../index.html" />
-    <link rel="next" title="Example of downloading and processing SDSS spectra" href="compute_sdss_pca.html" />
-    <link rel="prev" title="Linear Sum of Gaussians" href="../algorithms/plot_spectrum_sum_of_norms.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SDSS Spectrum Example" href="plot_sdss_spectrum.html" />
+    <link rel="prev" title="K-Neighbors for Photometric Redshifts" href="../learning/plot_neighbors_photoz.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../index.html">Examples Plots</a></li>
        </ul>
 
@@ -102,37 +90,20 @@ $(document).ready(function(){
 
         <div class="sphinxsidebar">
 	<div class="rel">
-
+	
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="../algorithms/plot_spectrum_sum_of_norms.html" title="Linear Sum of Gaussians"
+	<a href="../learning/plot_neighbors_photoz.html" title="K-Neighbors for Photometric Redshifts"
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    Linear Sum of Ga...
+	    K-Neighbors f...
 	    </span>
 	    <span class="hiddenrellink">
-	    Linear Sum of Gaussians
+	    K-Neighbors for Photometric Redshifts
 	    </span>
-
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-
-	<div class="rellink">
-	<a href="compute_sdss_pca.html" title="Example of downloading and processing SDSS spectra"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    Example of downl...
-	    </span>
-	    <span class="hiddenrellink">
-	    Example of downloading and processing SDSS spectra
-	    </span>
-
+	    
 	    </a>
 	</div>
 	<!-- Ad a link to the 'up' page -->
@@ -144,22 +115,22 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	General astroML ...
+	General astro...
 	</span>
 	<span class="hiddenrellink">
 	General astroML Examples
 	</span>
-
+	
 	</a>
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
+        
 
-
-
+	
 
         <h3>This page</h3>
          <ul>
@@ -169,7 +140,7 @@ $(document).ready(function(){
 </ul>
 
 
-
+        
 
 	<h3>Links</h3>
 	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
@@ -187,16 +158,16 @@ $(document).ready(function(){
     <a href="/index.html#citing-astroml">citing astroML</a>.</p>
 
 
-
+        
 
         </div>
 
       <div class="content">
-
+            
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
-
+          <div class="body" role="main">
+            
   <style type="text/css">
 .figure {
     float: left;
@@ -219,90 +190,88 @@ $(document).ready(function(){
 <p>These plots show some of the data set loaders available in astroML, and some
 of the ways that astronomical data can be visualized and processed using
 open source python tools.  The dataset loaders are in the submodule
-<a class="reference internal" href="../../modules/classes.html#module-astroML.datasets" title="astroML.datasets"><tt class="xref py py-mod docutils literal"><span class="pre">astroML.datasets</span></tt></a>, and start with the word <tt class="docutils literal"><span class="pre">fetch_</span></tt>.</p>
+<a class="reference internal" href="../../modules/classes.html#module-astroML.datasets" title="astroML.datasets"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.datasets</span></code></a>, and start with the word <code class="docutils literal notranslate"><span class="pre">fetch_</span></code>.</p>
 <p>The first time a dataset loader is called, it will attempt to download the
 dataset from the web and store it locally on disk.  The default location
-is <tt class="docutils literal"><span class="pre">~/astroML_data</span></tt>, but this location can be changed by specifying an
-alternative directory in the <tt class="docutils literal"><span class="pre">ASTROML_DATA</span></tt> environment variable.  On
+is <code class="docutils literal notranslate"><span class="pre">~/astroML_data</span></code>, but this location can be changed by specifying an
+alternative directory in the <code class="docutils literal notranslate"><span class="pre">ASTROML_DATA</span></code> environment variable.  On
 subsequent calls, the cached version of the data is used.</p>
-<p>For more examples, see the <a class="reference internal" href="../../book_figures/index.html#book-fig-root"><em>figures</em></a> from the textbook.</p>
+<p>For more examples, see the <a class="reference internal" href="../../book_figures/index.html#book-fig-root"><span class="std std-ref">figures</span></a> from the textbook.</p>
 <div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
 </div>
 <div class="toctree-wrapper compound">
 </div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./compute_sdss_pca.html"><img alt="../../_images/compute_sdss_pca_1_thumb.png" src="../../_images/compute_sdss_pca_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="compute_sdss_pca.html#example-datasets-compute-sdss-pca"><em>Example of downloading and processing SDSS spectra</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_corrected_spectra.html"><img alt="../../_images/plot_corrected_spectra_1_thumb.png" src="../../_images/plot_corrected_spectra_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_corrected_spectra.html#example-datasets-plot-corrected-spectra"><em>Corrected Spectra</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_dr7_quasar.html"><img alt="../../_images/plot_dr7_quasar_1_thumb.png" src="../../_images/plot_dr7_quasar_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_dr7_quasar.html#example-datasets-plot-dr7-quasar"><em>SDSS Data Release 7 Quasar catalog</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_great_wall.html"><img alt="../../_images/plot_great_wall_1_thumb.png" src="../../_images/plot_great_wall_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_great_wall.html#example-datasets-plot-great-wall"><em>SDSS &#8220;Great Wall&#8221;</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_LIGO_spectrum.html"><img alt="../../_images/plot_LIGO_spectrum_1_thumb.png" src="../../_images/plot_LIGO_spectrum_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_LIGO_spectrum.html#example-datasets-plot-ligo-spectrum"><em>Plot the power spectrum of LIGO</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_moving_objects.html"><img alt="../../_images/plot_moving_objects_1_thumb.png" src="../../_images/plot_moving_objects_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_moving_objects.html#example-datasets-plot-moving-objects"><em>SDSS Moving Object Catalog</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_nasa_atlas.html"><img alt="../../_images/plot_nasa_atlas_1_thumb.png" src="../../_images/plot_nasa_atlas_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_nasa_atlas.html#example-datasets-plot-nasa-atlas"><em>NASA Sloan Atlas</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_rrlyrae_mags.html"><img alt="../../_images/plot_rrlyrae_mags_1_thumb.png" src="../../_images/plot_rrlyrae_mags_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_rrlyrae_mags.html#example-datasets-plot-rrlyrae-mags"><em>RR-Lyrae Magnitudes</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_sdss_filters.html"><img alt="../../_images/plot_sdss_filters_1_thumb.png" src="../../_images/plot_sdss_filters_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_sdss_filters.html#example-datasets-plot-sdss-filters"><em>SDSS Filters</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_sdss_galaxy_colors.html"><img alt="../../_images/plot_sdss_galaxy_colors_1_thumb.png" src="../../_images/plot_sdss_galaxy_colors_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_sdss_galaxy_colors.html#example-datasets-plot-sdss-galaxy-colors"><em>SDSS Galaxy Colors</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_sdss_imaging.html"><img alt="../../_images/plot_sdss_imaging_1_thumb.png" src="../../_images/plot_sdss_imaging_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_sdss_imaging.html#example-datasets-plot-sdss-imaging"><em>SDSS Imaging</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_sdss_line_ratios.html"><img alt="../../_images/plot_sdss_line_ratios_1_thumb.png" src="../../_images/plot_sdss_line_ratios_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_sdss_line_ratios.html#example-datasets-plot-sdss-line-ratios"><em>SDSS Line-ratio Diagrams</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_sdss_S82standards.html"><img alt="../../_images/plot_sdss_S82standards_1_thumb.png" src="../../_images/plot_sdss_S82standards_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_sdss_S82standards.html#example-datasets-plot-sdss-s82standards"><em>SDSS Standard Star catalog</em></a></p>
-</div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_sdss_specgals.html"><img alt="../../_images/plot_sdss_specgals_1_thumb.png" src="../../_images/plot_sdss_specgals_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_sdss_specgals.html#example-datasets-plot-sdss-specgals"><em>SDSS Spectroscopic Galaxy Sample</em></a></p>
-</div>
-<div class="figure align-center">
+<div class="figure align-center" id="id1">
 <a class="reference external image-reference" href="./plot_sdss_spectrum.html"><img alt="../../_images/plot_sdss_spectrum_1_thumb.png" src="../../_images/plot_sdss_spectrum_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_sdss_spectrum.html#example-datasets-plot-sdss-spectrum"><em>SDSS Spectrum Example</em></a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_sdss_spectrum.html#example-datasets-plot-sdss-spectrum"><span class="std std-ref">SDSS Spectrum Example</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center">
+<div class="figure align-center" id="id2">
 <a class="reference external image-reference" href="./plot_SDSS_SSPP.html"><img alt="../../_images/plot_SDSS_SSPP_1_thumb.png" src="../../_images/plot_SDSS_SSPP_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_SDSS_SSPP.html#example-datasets-plot-sdss-sspp"><em>Stellar Parameters Hess Diagram</em></a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_SDSS_SSPP.html#example-datasets-plot-sdss-sspp"><span class="std std-ref">Stellar Parameters Hess Diagram</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center">
-<a class="reference external image-reference" href="./plot_wmap_power_spectra.html"><img alt="../../_images/plot_wmap_power_spectra_1_thumb.png" src="../../_images/plot_wmap_power_spectra_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_wmap_power_spectra.html#example-datasets-plot-wmap-power-spectra"><em>WMAP power spectrum analysis with HealPy</em></a></p>
-</div>
-<div class="figure align-center">
+<div class="figure align-center" id="id3">
 <a class="reference external image-reference" href="./plot_wmap_raw.html"><img alt="../../_images/plot_wmap_raw_1_thumb.png" src="../../_images/plot_wmap_raw_1_thumb.png" /></a>
-<p class="caption"><a class="reference internal" href="plot_wmap_raw.html#example-datasets-plot-wmap-raw"><em>WMAP plotting with HEALPix</em></a></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_wmap_raw.html#example-datasets-plot-wmap-raw"><span class="std std-ref">WMAP plotting with HEALPix</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference external image-reference" href="./plot_dr7_quasar.html"><img alt="../../_images/plot_dr7_quasar_1_thumb.png" src="../../_images/plot_dr7_quasar_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_dr7_quasar.html#example-datasets-plot-dr7-quasar"><span class="std std-ref">SDSS Data Release 7 Quasar catalog</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id5">
+<a class="reference external image-reference" href="./compute_sdss_pca.html"><img alt="../../_images/compute_sdss_pca_1_thumb.png" src="../../_images/compute_sdss_pca_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="compute_sdss_pca.html#example-datasets-compute-sdss-pca"><span class="std std-ref">Example of downloading and processing SDSS spectra</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference external image-reference" href="./plot_sdss_line_ratios.html"><img alt="../../_images/plot_sdss_line_ratios_1_thumb.png" src="../../_images/plot_sdss_line_ratios_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_sdss_line_ratios.html#example-datasets-plot-sdss-line-ratios"><span class="std std-ref">SDSS Line-ratio Diagrams</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id7">
+<a class="reference external image-reference" href="./plot_wmap_power_spectra.html"><img alt="../../_images/plot_wmap_power_spectra_1_thumb.png" src="../../_images/plot_wmap_power_spectra_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_wmap_power_spectra.html#example-datasets-plot-wmap-power-spectra"><span class="std std-ref">WMAP power spectrum analysis with HealPy</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id8">
+<a class="reference external image-reference" href="./plot_sdss_S82standards.html"><img alt="../../_images/plot_sdss_S82standards_1_thumb.png" src="../../_images/plot_sdss_S82standards_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_sdss_S82standards.html#example-datasets-plot-sdss-s82standards"><span class="std std-ref">SDSS Standard Star catalog</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id9">
+<a class="reference external image-reference" href="./plot_great_wall.html"><img alt="../../_images/plot_great_wall_1_thumb.png" src="../../_images/plot_great_wall_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_great_wall.html#example-datasets-plot-great-wall"><span class="std std-ref">SDSS “Great Wall”</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id10">
+<a class="reference external image-reference" href="./plot_sdss_specgals.html"><img alt="../../_images/plot_sdss_specgals_1_thumb.png" src="../../_images/plot_sdss_specgals_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_sdss_specgals.html#example-datasets-plot-sdss-specgals"><span class="std std-ref">SDSS Spectroscopic Galaxy Sample</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id11">
+<a class="reference external image-reference" href="./plot_nasa_atlas.html"><img alt="../../_images/plot_nasa_atlas_1_thumb.png" src="../../_images/plot_nasa_atlas_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_nasa_atlas.html#example-datasets-plot-nasa-atlas"><span class="std std-ref">NASA Sloan Atlas</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id12">
+<a class="reference external image-reference" href="./plot_rrlyrae_mags.html"><img alt="../../_images/plot_rrlyrae_mags_1_thumb.png" src="../../_images/plot_rrlyrae_mags_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_rrlyrae_mags.html#example-datasets-plot-rrlyrae-mags"><span class="std std-ref">RR-Lyrae Magnitudes</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id13">
+<a class="reference external image-reference" href="./plot_corrected_spectra.html"><img alt="../../_images/plot_corrected_spectra_1_thumb.png" src="../../_images/plot_corrected_spectra_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_corrected_spectra.html#example-datasets-plot-corrected-spectra"><span class="std std-ref">Corrected Spectra</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id14">
+<a class="reference external image-reference" href="./plot_sdss_galaxy_colors.html"><img alt="../../_images/plot_sdss_galaxy_colors_1_thumb.png" src="../../_images/plot_sdss_galaxy_colors_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_sdss_galaxy_colors.html#example-datasets-plot-sdss-galaxy-colors"><span class="std std-ref">SDSS Galaxy Colors</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id15">
+<a class="reference external image-reference" href="./plot_LIGO_spectrum.html"><img alt="../../_images/plot_LIGO_spectrum_1_thumb.png" src="../../_images/plot_LIGO_spectrum_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_LIGO_spectrum.html#example-datasets-plot-ligo-spectrum"><span class="std std-ref">Plot the power spectrum of LIGO</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id16">
+<a class="reference external image-reference" href="./plot_sdss_imaging.html"><img alt="../../_images/plot_sdss_imaging_1_thumb.png" src="../../_images/plot_sdss_imaging_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_sdss_imaging.html#example-datasets-plot-sdss-imaging"><span class="std std-ref">SDSS Imaging</span></a></span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id17">
+<a class="reference external image-reference" href="./plot_sdss_filters.html"><img alt="../../_images/plot_sdss_filters_1_thumb.png" src="../../_images/plot_sdss_filters_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_sdss_filters.html#example-datasets-plot-sdss-filters"><span class="std std-ref">SDSS Filters</span></a></span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id18">
+<a class="reference external image-reference" href="./plot_moving_objects.html"><img alt="../../_images/plot_moving_objects_1_thumb.png" src="../../_images/plot_moving_objects_1_thumb.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_moving_objects.html#example-datasets-plot-moving-objects"><span class="std std-ref">SDSS Moving Object Catalog</span></a></span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
 </div>
 <div style="clear: both"></div></div>
 
@@ -316,11 +285,11 @@ subsequent calls, the cached version of the data is used.</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/examples/datasets/index.txt"
+    <a href="../../_sources/examples/datasets/index.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

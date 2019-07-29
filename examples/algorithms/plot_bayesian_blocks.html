@@ -1,35 +1,23 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Bayesian Blocks for Histograms &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>Bayesian Blocks for Histograms &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../../index.html" />
-    <link rel="up" title="Data Processing Algorithms" href="index.html" />
-    <link rel="next" title="Catalog cross-matching" href="plot_crossmatch.html" />
-    <link rel="prev" title="Data Processing Algorithms" href="index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Textbook Figures" href="../../book_figures/index.html" />
+    <link rel="prev" title="Linear Sum of Gaussians" href="plot_spectrum_sum_of_norms.html" />
 <!-- Following code is for Google custom search bar -->
 <script>
   (function() {
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../../index.html">Home</a></li>
 	    <li><a href="../../user_guide/index.html">User Guide</a></li>
             <li><a href="../../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../index.html">Examples Plots</a></li>
        </ul>
 
@@ -106,31 +94,14 @@ $(document).ready(function(){
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="index.html" title="Data Processing Algorithms"
+	<a href="plot_spectrum_sum_of_norms.html" title="Linear Sum of Gaussians"
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    Data Processing ...
+	    Linear Sum of...
 	    </span>
 	    <span class="hiddenrellink">
-	    Data Processing Algorithms
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="plot_crossmatch.html" title="Catalog cross-matching"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    Catalog cross-ma...
-	    </span>
-	    <span class="hiddenrellink">
-	    Catalog cross-matching
+	    Linear Sum of Gaussians
 	    </span>
 	    
 	    </a>
@@ -144,7 +115,7 @@ $(document).ready(function(){
 	Up
 	<br/>
 	<span class="smallrellink">
-	Data Processing ...
+	Data Processi...
 	</span>
 	<span class="hiddenrellink">
 	Data Processing Algorithms
@@ -154,7 +125,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -196,55 +167,48 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="bayesian-blocks-for-histograms">
 <span id="example-algorithms-plot-bayesian-blocks"></span><h1>Bayesian Blocks for Histograms<a class="headerlink" href="#bayesian-blocks-for-histograms" title="Permalink to this headline">¶</a></h1>
 <p>Bayesian Blocks is a dynamic histogramming method which optimizes one of
 several possible fitness functions to determine an optimal binning for
 data, where the bins are not necessarily uniform width.  The astroML
-implementation is based on <a class="footnote-reference" href="#id3" id="id1">[1]</a>.  For more discussion of this technique,
-see the blog post at <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
+implementation is based on <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.  For more discussion of this technique,
+see the blog post at <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
 <p>The code below uses a fitness function suitable for event data with possible
-repeats.  More fitness functions are available: see <tt class="xref py py-mod docutils literal"><span class="pre">density_estimation</span></tt></p>
+repeats.  More fitness functions are available: see <code class="xref py py-mod docutils literal notranslate"><span class="pre">density_estimation</span></code></p>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Scargle, J <cite>et al.</cite> (2012)
-<a class="reference external" href="http://adsabs.harvard.edu/abs/2012arXiv1207.5578S">http://adsabs.harvard.edu/abs/2012arXiv1207.5578S</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://jakevdp.github.com/blog/2012/09/12/dynamic-programming-in-python/">http://jakevdp.github.com/blog/2012/09/12/dynamic-programming-in-python/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Scargle, J <cite>et al.</cite> (2012)
+<a class="reference external" href="http://adsabs.harvard.edu/abs/2012arXiv1207.5578S">http://adsabs.harvard.edu/abs/2012arXiv1207.5578S</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="http://jakevdp.github.com/blog/2012/09/12/dynamic-programming-in-python/">http://jakevdp.github.com/blog/2012/09/12/dynamic-programming-in-python/</a></p>
+</dd>
+</dl>
 <a class="horizontal reference internal image-reference" href="../../_images/plot_bayesian_blocks_1.png"><img alt="../../_images/plot_bayesian_blocks_1.png" class="horizontal align-center" src="../../_images/plot_bayesian_blocks_1.png" style="width: 1000.0px; height: 400.0px;" /></a>
 <a class="reference internal image-reference" href="../../_images/plot_bayesian_blocks_2.png"><img alt="../../_images/plot_bayesian_blocks_2.png" class="align-center" src="../../_images/plot_bayesian_blocks_2.png" style="width: 1000.0px; height: 400.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><pre>Optimization terminated successfully.
-         Current function value: -2707.091713
-         Iterations: 16
-         Function evaluations: 46
-</pre>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
 </div>
 </div>
 <div class="toggle_trigger" id="start_open"><a href="#"><p><strong>Python source code:</strong></p>
 </a></div>
-<div class="toggle_container"><div class="highlight-python"><div class="highlight"><pre><span class="c"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
-<span class="c"># License: BSD</span>
-<span class="c">#   The figure is an example from astroML: see http://astroML.github.com</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Jake VanderPlas &lt;vanderplas@astro.washington.edu&gt;</span>
+<span class="c1"># License: BSD</span>
+<span class="c1">#   The figure is an example from astroML: see http://astroML.github.com</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">hist</span>
+<span class="kn">from</span> <span class="nn">astropy.visualization</span> <span class="k">import</span> <span class="n">hist</span>
 
-<span class="c"># draw a set of variables</span>
+<span class="c1"># draw a set of variables</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">stats</span><span class="o">.</span><span class="n">cauchy</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">500</span><span class="p">),</span>
                     <span class="n">stats</span><span class="o">.</span><span class="n">cauchy</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">2000</span><span class="p">),</span>
@@ -252,51 +216,51 @@ repeats.  More fitness functions are available: see <tt class="xref py py-mod do
                     <span class="n">stats</span><span class="o">.</span><span class="n">cauchy</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span>
                     <span class="n">stats</span><span class="o">.</span><span class="n">cauchy</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">500</span><span class="p">)])</span>
 
-<span class="c"># truncate values to a reasonable range</span>
+<span class="c1"># truncate values to a reasonable range</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">15</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">)]</span>
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># First figure: show normal histogram binning</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># First figure: show normal histogram binning</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
 
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;P(t)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P(t)&#39;</span><span class="p">)</span>
 
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;P(t)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P(t)&#39;</span><span class="p">)</span>
 
-<span class="c">#------------------------------------------------------------</span>
-<span class="c"># Second &amp; Third figure: Knuth bins &amp; Bayesian Blocks</span>
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Second &amp; Third figure: Knuth bins &amp; Bayesian Blocks</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">bins</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">subplot</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s">&#39;knuth&#39;</span><span class="p">,</span> <span class="s">&#39;blocks&#39;</span><span class="p">],</span>
-                                <span class="p">[</span><span class="s">&quot;Knuth&#39;s rule&quot;</span><span class="p">,</span> <span class="s">&#39;Bayesian blocks&#39;</span><span class="p">],</span>
+<span class="k">for</span> <span class="n">bins</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">subplot</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;knuth&#39;</span><span class="p">,</span> <span class="s1">&#39;blocks&#39;</span><span class="p">],</span>
+                                <span class="p">[</span><span class="s2">&quot;Knuth&#39;s rule&quot;</span><span class="p">,</span> <span class="s1">&#39;Bayesian blocks&#39;</span><span class="p">],</span>
                                 <span class="p">[</span><span class="mi">121</span><span class="p">,</span> <span class="mi">122</span><span class="p">]):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">subplot</span><span class="p">)</span>
 
-    <span class="c"># plot a standard histogram in the background, with alpha transparency</span>
-    <span class="n">hist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span>
-         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;standard histogram&#39;</span><span class="p">)</span>
+    <span class="c1"># plot a standard histogram in the background, with alpha transparency</span>
+    <span class="n">hist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span>
+         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;standard histogram&#39;</span><span class="p">)</span>
 
-    <span class="c"># plot an adaptive-width histogram on top</span>
-    <span class="n">hist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span>
-         <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+    <span class="c1"># plot an adaptive-width histogram on top</span>
+    <span class="n">hist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+         <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;t&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;P(t)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P(t)&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div align="right"><p><a class="reference download internal" href="../../_downloads/plot_bayesian_blocks.py"><tt class="xref download docutils literal"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_bayesian_blocks.py]</span></tt></a></p>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/2127755d398be492852f95fb6edb021c/plot_bayesian_blocks.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_bayesian_blocks.py]</span></code></a></p>
 </div></div>
 </div>
 
@@ -310,11 +274,11 @@ repeats.  More fitness functions are available: see <tt class="xref py py-mod do
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../../_sources/examples/algorithms/plot_bayesian_blocks.txt"
+    <a href="../../_sources/examples/algorithms/plot_bayesian_blocks.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>
