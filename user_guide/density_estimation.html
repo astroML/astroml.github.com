@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>4. Unsupervised Learning: Density Estimation &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>4. Unsupervised Learning: Density Estimation &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Unsupervised Learning: Clustering" href="clustering.html" />
     <link rel="prev" title="3. Data Sets" href="datasets.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../index.html">Home</a></li>
 	    <li><a href="index.html">User Guide</a></li>
             <li><a href="../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -118,23 +106,6 @@ $(document).ready(function(){
 	    
 	    </a>
 	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="clustering.html" title="5. Unsupervised Learning: Clustering"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    5. Unsupervised ...
-	    </span>
-	    <span class="hiddenrellink">
-	    5. Unsupervised Learning: Clustering
-	    </span>
-	    
-	    </a>
-	</div>
 	<!-- Ad a link to the 'up' page -->
 	<div class="spacer">
 	&nbsp;
@@ -150,7 +121,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -201,13 +172,13 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="unsupervised-learning-density-estimation">
 <span id="astroml-density-estimation"></span><h1>4. Unsupervised Learning: Density Estimation<a class="headerlink" href="#unsupervised-learning-density-estimation" title="Permalink to this headline">¶</a></h1>
 <p>Density estimation is the act of estimating a continuous density field from
 a discretely sampled set of points drawn from that density field.
-Some examples of density estimation can be found in <a class="reference internal" href="../book_figures/chapter6/index.html#book-fig-chapter6"><em>Chapter 6: Searching for Structure in Point Data</em></a></p>
+Some examples of density estimation can be found in <a class="reference internal" href="../book_figures/chapter6/index.html#book-fig-chapter6"><span class="std std-ref">Chapter 6: Searching for Structure in Point Data</span></a></p>
 <div class="section" id="bayesian-blocks-histograms-the-right-way">
 <h2>4.1. Bayesian Blocks: Histograms the Right Way<a class="headerlink" href="#bayesian-blocks-histograms-the-right-way" title="Permalink to this headline">¶</a></h2>
 <p>One of the simplest density estimation techniques is the histogram, usually
@@ -215,39 +186,39 @@ done in one dimension.  Though
 seemingly simple, the effective use histograms can be surprisingly subtle.
 Consider the following two panels:</p>
 <a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_11.png" class="align-center" src="../_images/plot_bayesian_blocks_11.png" style="width: 800.0px; height: 320.0px;" /></a>
-<p>Though it doesn&#8217;t look like it, these two histograms show the exact same
+<p>Though it doesn’t look like it, these two histograms show the exact same
 dataset (if you find that hard to believe, see the source code that generated
 the figure by clicking on the image).  The difference between the two is
 the bin size: this illustrates the importance of choosing the correct bin
 size when visualizing a dataset.
 In practice, scientists often address this through trial and error: plot the
-data a few times until it looks &#8220;right&#8221;.  But what does it mean for histogram
+data a few times until it looks “right”.  But what does it mean for histogram
 data to look right?</p>
 <p>There have been a number of solutions proposed to address this problem.  They
 range from simple rules-of-thumb to more sophisticated procedures based on
 Bayesian analysis of the data.  Some of the simpler examples used in the
-literature are Scott&#8217;s Rule <a class="footnote-reference" href="#id5" id="id1">[1]</a> and the Freedman-Diaconis Rule <a class="footnote-reference" href="#id6" id="id2">[2]</a>.  Both
+literature are Scott’s Rule <a class="footnote-reference brackets" href="#id5" id="id1">1</a> and the Freedman-Diaconis Rule <a class="footnote-reference brackets" href="#id6" id="id2">2</a>.  Both
 are based on assumptions about the form of the underlying data distribution.
-A slightly more rigorous approach is Knuth&#8217;s rule <a class="footnote-reference" href="#id7" id="id3">[3]</a>, which is based on
+A slightly more rigorous approach is Knuth’s rule <a class="footnote-reference brackets" href="#id7" id="id3">3</a>, which is based on
 optimization of a Bayesian fitness function across fixed-width bins.  A
 further generalization of this approach is that of <cite>Bayesian Blocks</cite>, which
 optimizes a fitness function across an arbitrary configuration of bins, which
-need not be of equal width <a class="footnote-reference" href="#id8" id="id4">[4]</a>.  For an approachable introduction to the
+need not be of equal width <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.  For an approachable introduction to the
 principles behind Bayesian Blocs, see this <a class="reference external" href="http://jakevdp.github.com/blog/2012/09/12/dynamic-programming-in-python/">blog post</a>.</p>
-<p>The function <a class="reference internal" href="../modules/generated/astroML.plotting.hist.html#astroML.plotting.hist" title="astroML.plotting.hist"><tt class="xref py py-func docutils literal"><span class="pre">astroML.plotting.hist()</span></tt></a> implements all four of these
+<p>The function <a class="reference internal" href="../modules/generated/astroML.plotting.hist.html#astroML.plotting.hist" title="astroML.plotting.hist"><code class="xref py py-func docutils literal notranslate"><span class="pre">astroML.plotting.hist()</span></code></a> implements all four of these
 approaches to histogram binning in a natural way.  It can be used as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">hist</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="k">import</span> <span class="n">hist</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s">&#39;blocks&#39;</span><span class="p">)</span>
+<span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;blocks&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The syntax is identical to the <tt class="docutils literal"><span class="pre">hist()</span></tt> function in matplotlib
+<p>The syntax is identical to the <code class="docutils literal notranslate"><span class="pre">hist()</span></code> function in matplotlib
 (including all additional keyword arguments) with the sole exception that
-the <tt class="docutils literal"><span class="pre">bins</span></tt> argument also accepts a string, which can be one of
-<tt class="docutils literal"><span class="pre">'blocks'</span></tt>, <tt class="docutils literal"><span class="pre">'knuth'</span></tt>, <tt class="docutils literal"><span class="pre">'scott'</span></tt>, or <tt class="docutils literal"><span class="pre">'freedman'</span></tt>.
+the <code class="docutils literal notranslate"><span class="pre">bins</span></code> argument also accepts a string, which can be one of
+<code class="docutils literal notranslate"><span class="pre">'blocks'</span></code>, <code class="docutils literal notranslate"><span class="pre">'knuth'</span></code>, <code class="docutils literal notranslate"><span class="pre">'scott'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'freedman'</span></code>.
 Using one of these causes the histogram binning to be chosen using the
-rules or procedures outlined above.  The results on our data using Knuth&#8217;s
+rules or procedures outlined above.  The results on our data using Knuth’s
 rule and Bayesian Blocks are shown below:</p>
 <a class="reference external image-reference" href="../examples/algorithms/plot_bayesian_blocks.html"><img alt="../_images/plot_bayesian_blocks_21.png" class="align-center" src="../_images/plot_bayesian_blocks_21.png" style="width: 800.0px; height: 320.0px;" /></a>
 <p>The Knuth bins on the left do a good job of representing the underlying
@@ -262,61 +233,49 @@ example, if the data is consistent with a uniform distribution, the Bayesian
 blocks representation will reflect this by choosing a single wide bin.</p>
 <div class="section" id="references">
 <h3>4.1.1. References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Scott, D. (1979). <cite>On optimal and data-based histograms</cite> <a class="reference external" href="http://biomet.oxfordjournals.org/content/66/3/605">http://biomet.oxfordjournals.org/content/66/3/605</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Freedman, D. &amp; Diaconis, P. (1981). <cite>On the histogram as a density estimator: L2 theory</cite> <a class="reference external" href="http://www.springerlink.com/content/mp364022824748n3/">http://www.springerlink.com/content/mp364022824748n3/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Knuth, K. H. (2006). <cite>Optimal Data-Based Binning for Histograms</cite> <a class="reference external" href="http://adsabs.harvard.edu/abs/2006physics...5197K">http://adsabs.harvard.edu/abs/2006physics...5197K</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Scargle, J. <cite>et al.</cite> (2012) <cite>Studies in Astronomical Time Series Analysis. VI. Bayesian Block Representations</cite> <a class="reference external" href="http://adsabs.harvard.edu/abs/2012arXiv1207.5578S">http://adsabs.harvard.edu/abs/2012arXiv1207.5578S</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Scott, D. (1979). <cite>On optimal and data-based histograms</cite> <a class="reference external" href="http://biomet.oxfordjournals.org/content/66/3/605">http://biomet.oxfordjournals.org/content/66/3/605</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Freedman, D. &amp; Diaconis, P. (1981). <cite>On the histogram as a density estimator: L2 theory</cite> <a class="reference external" href="http://www.springerlink.com/content/mp364022824748n3/">http://www.springerlink.com/content/mp364022824748n3/</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Knuth, K. H. (2006). <cite>Optimal Data-Based Binning for Histograms</cite> <a class="reference external" href="http://adsabs.harvard.edu/abs/2006physics...5197K">http://adsabs.harvard.edu/abs/2006physics…5197K</a></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Scargle, J. <cite>et al.</cite> (2012) <cite>Studies in Astronomical Time Series Analysis. VI. Bayesian Block Representations</cite> <a class="reference external" href="http://adsabs.harvard.edu/abs/2012arXiv1207.5578S">http://adsabs.harvard.edu/abs/2012arXiv1207.5578S</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="extreme-deconvolution">
 <h2>4.2. Extreme Deconvolution<a class="headerlink" href="#extreme-deconvolution" title="Permalink to this headline">¶</a></h2>
 <p>Extreme deconvolution is a powerful extension of Gaussian Mixture Models which
-takes into account data errors and projections <a class="footnote-reference" href="#id11" id="id9">[5]</a>.
+takes into account data errors and projections <a class="footnote-reference brackets" href="#id11" id="id9">5</a>.
 It is implemented in astroML
-using the object <a class="reference internal" href="../modules/generated/astroML.density_estimation.XDGMM.html#astroML.density_estimation.XDGMM" title="astroML.density_estimation.XDGMM"><tt class="xref py py-class docutils literal"><span class="pre">astroML.density_estimation.XDGMM</span></tt></a>.
-See <a class="reference internal" href="../book_figures/chapter6/fig_XD_example.html#book-fig-chapter6-fig-xd-example"><em>Extreme Deconvolution example</em></a> or
-<a class="reference internal" href="../book_figures/chapter6/fig_stellar_XD.html#book-fig-chapter6-fig-stellar-xd"><em>Extreme Deconvolution of Stellar Data</em></a>
+using the object <a class="reference internal" href="../modules/generated/astroML.density_estimation.XDGMM.html#astroML.density_estimation.XDGMM" title="astroML.density_estimation.XDGMM"><code class="xref py py-class docutils literal notranslate"><span class="pre">astroML.density_estimation.XDGMM</span></code></a>.
+See <a class="reference internal" href="../book_figures/chapter6/fig_XD_example.html#book-fig-chapter6-fig-xd-example"><span class="std std-ref">Extreme Deconvolution example</span></a> or
+<a class="reference internal" href="../book_figures/chapter6/fig_stellar_XD.html#book-fig-chapter6-fig-stellar-xd"><span class="std std-ref">Extreme Deconvolution of Stellar Data</span></a>
 for some examples of this approach.</p>
 <div class="section" id="id10">
 <h3>4.2.1. References<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<table class="docutils footnote" frame="void" id="id11" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td>Bovy, J. <cite>et al.</cite> (2009). <cite>Extreme deconvolution: Inferring complete distribution functions from noisy, heterogeneous and incomplete observations</cite>. <a class="reference external" href="http://arxiv.org/abs/0905.2979">http://arxiv.org/abs/0905.2979</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id9">5</a></span></dt>
+<dd><p>Bovy, J. <cite>et al.</cite> (2009). <cite>Extreme deconvolution: Inferring complete distribution functions from noisy, heterogeneous and incomplete observations</cite>. <a class="reference external" href="http://arxiv.org/abs/0905.2979">http://arxiv.org/abs/0905.2979</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="kernel-density-estimation">
 <h2>4.3. Kernel Density Estimation<a class="headerlink" href="#kernel-density-estimation" title="Permalink to this headline">¶</a></h2>
-<p>Kernel Density estimation is a non-parametric density estimation technique
-which can be very powerful.  It is implemented in astroML using the object
-<a class="reference internal" href="../modules/generated/astroML.density_estimation.KDE.html#astroML.density_estimation.KDE" title="astroML.density_estimation.KDE"><tt class="xref py py-class docutils literal"><span class="pre">astroML.density_estimation.KDE</span></tt></a>, though this estimator is deprecated
-in favor of <tt class="xref py py-class docutils literal"><span class="pre">sklearn.neighbors.KernelDensity</span></tt>, which was added in
-Scikit-learn version 0.14.
-See <a class="reference internal" href="../book_figures/chapter6/fig_great_wall.html#book-fig-chapter6-fig-great-wall"><em>Great Wall Density</em></a> ,
-<a class="reference internal" href="../book_figures/chapter6/fig_great_wall_KDE.html#book-fig-chapter6-fig-great-wall-kde"><em>Great Wall KDE</em></a> or
-<a class="reference internal" href="../book_figures/chapter6/fig_density_estimation.html#book-fig-chapter6-fig-density-estimation"><em>Comparison of 1D Density Estimators</em></a> for examples of how kernel
+<p>Kernel Density estimation (KDE) is a non-parametric density estimation
+technique which can be very powerful.  The estimator has been deprecated and
+removed from astroML in favor of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.neighbors.KernelDensity</span></code>,
+which was added in Scikit-learn version 0.14.  See
+<a class="reference internal" href="../book_figures/chapter6/fig_great_wall.html#book-fig-chapter6-fig-great-wall"><span class="std std-ref">Great Wall Density</span></a> ,
+<a class="reference internal" href="../book_figures/chapter6/fig_great_wall_KDE.html#book-fig-chapter6-fig-great-wall-kde"><span class="std std-ref">Great Wall KDE</span></a> or
+<a class="reference internal" href="../book_figures/chapter6/fig_density_estimation.html#book-fig-chapter6-fig-density-estimation"><span class="std std-ref">Comparison of 1D Density Estimators</span></a> for examples of how kernel
 density estimation is used.</p>
 </div>
 <div class="section" id="nearest-neighbors-density-estimation">
@@ -324,9 +283,9 @@ density estimation is used.</p>
 <p>Nearest Neighbors Density estimation can be a fast alternative to KDE, and is
 similar to KDE with a hard-edged kernel.
 It is implemented in astroML using the object
-<a class="reference internal" href="../modules/generated/astroML.density_estimation.KNeighborsDensity.html#astroML.density_estimation.KNeighborsDensity" title="astroML.density_estimation.KNeighborsDensity"><tt class="xref py py-class docutils literal"><span class="pre">astroML.density_estimation.KNeighborsDensity</span></tt></a>.
-See <a class="reference internal" href="../book_figures/chapter6/fig_great_wall.html#book-fig-chapter6-fig-great-wall"><em>Great Wall Density</em></a> or
-<a class="reference internal" href="../book_figures/chapter6/fig_density_estimation.html#book-fig-chapter6-fig-density-estimation"><em>Comparison of 1D Density Estimators</em></a> for examples of how it
+<a class="reference internal" href="../modules/generated/astroML.density_estimation.KNeighborsDensity.html#astroML.density_estimation.KNeighborsDensity" title="astroML.density_estimation.KNeighborsDensity"><code class="xref py py-class docutils literal notranslate"><span class="pre">astroML.density_estimation.KNeighborsDensity</span></code></a>.
+See <a class="reference internal" href="../book_figures/chapter6/fig_great_wall.html#book-fig-chapter6-fig-great-wall"><span class="std std-ref">Great Wall Density</span></a> or
+<a class="reference internal" href="../book_figures/chapter6/fig_density_estimation.html#book-fig-chapter6-fig-density-estimation"><span class="std std-ref">Comparison of 1D Density Estimators</span></a> for examples of how it
 is used.</p>
 </div>
 </div>
@@ -341,11 +300,11 @@ is used.</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../_sources/user_guide/density_estimation.txt"
+    <a href="../_sources/user_guide/density_estimation.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

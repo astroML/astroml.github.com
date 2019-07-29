@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>1. Obtaining the Source Code &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>1. Obtaining the Source Code &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Authors" href="authors.html" />
     <link rel="prev" title="&lt;no title&gt;" href="index.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../index.html">Home</a></li>
 	    <li><a href="../user_guide/index.html">User Guide</a></li>
             <li><a href="../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -118,23 +106,6 @@ $(document).ready(function(){
 	    
 	    </a>
 	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="authors.html" title="3. Authors"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    3. Authors
-	    </span>
-	    <span class="hiddenrellink">
-	    3. Authors
-	    </span>
-	    
-	    </a>
-	</div>
 	<!-- Ad a link to the 'up' page -->
 	<div class="spacer">
 	&nbsp;
@@ -150,7 +121,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -164,7 +135,6 @@ $(document).ready(function(){
 <li><a class="reference internal" href="#general">2.1. General</a></li>
 <li><a class="reference internal" href="#tests">2.2. Tests</a></li>
 <li><a class="reference internal" href="#documentation-and-examples">2.3. Documentation and Examples</a></li>
-<li><a class="reference internal" href="#add-on-code">2.4. Add-on code</a></li>
 </ul>
 </li>
 </ul>
@@ -196,7 +166,7 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="obtaining-the-source-code">
 <h1>1. Obtaining the Source Code<a class="headerlink" href="#obtaining-the-source-code" title="Permalink to this headline">¶</a></h1>
@@ -204,10 +174,12 @@ $(document).ready(function(){
 and submissions of new routines are encouraged.  After installing the
 version-control system <a class="reference external" href="http://git-scm.com/">git</a>, you can check out
 the latest sources from <a class="reference external" href="http://github.com">github</a> using:</p>
-<div class="highlight-python"><pre>git clone git://github.com/astroML/astroML.git</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">astroML</span><span class="o">/</span><span class="n">astroML</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
 </div>
 <p>or if you have write privileges:</p>
-<div class="highlight-python"><pre>git clone git@github.com:astroML/astroML.git</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">astroML</span><span class="o">/</span><span class="n">astroML</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="contribution">
@@ -221,13 +193,13 @@ guidelines for contribution:</p>
 <p>Any contribution should be done through the github pull request system (for
 more information, see the
 <a class="reference external" href="https://help.github.com/articles/using-pull-requests">help page</a>
-Code submitted to <tt class="docutils literal"><span class="pre">astroML</span></tt> should conform to a BSD-style license,
+Code submitted to <code class="docutils literal notranslate"><span class="pre">astroML</span></code> should conform to a BSD-style license,
 and follow the <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP8 style guide</a>.</p>
 </div>
 <div class="section" id="tests">
 <h2>2.2. Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
 <p>All submitted code should be tested using the nose testing framework.  For
-examples of how these tests work, see the <tt class="docutils literal"><span class="pre">tests</span></tt> within the <tt class="docutils literal"><span class="pre">astroML</span></tt>
+examples of how these tests work, see the <code class="docutils literal notranslate"><span class="pre">tests</span></code> within the <code class="docutils literal notranslate"><span class="pre">astroML</span></code>
 package and each of its submodules.</p>
 </div>
 <div class="section" id="documentation-and-examples">
@@ -237,37 +209,9 @@ package and each of its submodules.</p>
 by many packages in the scipy universe.</p>
 <p>In addition, it is highly recommended to create example scripts that show the
 usefulness of the method on an astronomical dataset (preferably making use
-of datasets available through <tt class="docutils literal"><span class="pre">astroML.datasets</span></tt>).
-Some of these example scripts can be seen in the <tt class="docutils literal"><span class="pre">examples</span></tt> subdirectory
-of the main source repository: <em class="xref std std-ref">examples_root</em>.</p>
-</div>
-<div class="section" id="add-on-code">
-<h2>2.4. Add-on code<a class="headerlink" href="#add-on-code" title="Permalink to this headline">¶</a></h2>
-<p>We made the decision early-on to separate the core routines from
-high-performance compiled routines.
-This is to make sure that installation of the core
-package is as straightforward as possible (i.e. not requiring a C compiler).</p>
-<p>Contributions of efficient compiled code to <tt class="docutils literal"><span class="pre">astroML_addons</span></tt> is encouraged:
-the availability of efficient implementations of common algorithms in python
-is one of the strongest features of the python universe.  The preferred
-method of wrapping compiled libraries is to use
-<a class="reference external" href="http://www.cython.org">cython</a>; other options (weave, SWIG, etc.) are
-harder to build and maintain.</p>
-<p>Currently, the policy is that any efficient algorithm included in
-<tt class="docutils literal"><span class="pre">astroML_addons</span></tt> should have a duplicate python-only implementation in
-<tt class="docutils literal"><span class="pre">astroML</span></tt>, with code that selects the faster routine if it&#8217;s available.
-(For an example of how this works, see the definition of the <tt class="docutils literal"><span class="pre">lomb_scargle</span></tt>
-function in <tt class="docutils literal"><span class="pre">astroML/periodogram.py</span></tt>).
-This policy exists for two reasons:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>it allows novice users to have all the functionality of <tt class="docutils literal"><span class="pre">astroML</span></tt> without
-requiring the headache of complicated installation steps.</li>
-<li>it serves a didactic purpose: python-only implementations are often easier
-to read and understand than equivalent implementations in C or cython.</li>
-</ol>
-</div></blockquote>
-<p>If this policy proves especially burdensome in the future, it may be revisited.</p>
+of datasets available through <code class="docutils literal notranslate"><span class="pre">astroML.datasets</span></code>).
+Some of these example scripts can be seen in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> subdirectory
+of the main source repository: <span class="xref std std-ref">examples_root</span>.</p>
 </div>
 </div>
 
@@ -281,11 +225,11 @@ to read and understand than equivalent implementations in C or cython.</li>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../_sources/development/contribution.txt"
+    <a href="../_sources/development/contribution.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>

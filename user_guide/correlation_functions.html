@@ -1,33 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>6. Two-point Correlation Functions &mdash; astroML 0.2 documentation</title>
-    
+    <meta charset="utf-8" />
+    <title>6. Two-point Correlation Functions &#8212; astroML 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="astroML 0.2 documentation" href="../index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7. Unsupervised Learning: Dimensionality Reduction" href="dimensionality.html" />
     <link rel="prev" title="5. Unsupervised Learning: Clustering" href="clustering.html" />
 <!-- Following code is for Google custom search bar -->
@@ -73,8 +61,7 @@ $(document).ready(function(){
 
 </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="header-wrapper">
       <div class="header">
           <p class="logo"><a href="../index.html">
@@ -85,6 +72,7 @@ $(document).ready(function(){
             <li><a href="../index.html">Home</a></li>
 	    <li><a href="index.html">User Guide</a></li>
             <li><a href="../book_figures/index.html">Book Figures</a></li>
+            <li><a href="../book_figures_1ed/index.html">1st ed Book Figures</a></li>
             <li><a href="../examples/index.html">Examples Plots</a></li>
        </ul>
 
@@ -110,27 +98,10 @@ $(document).ready(function(){
 	    accesskey="P">Previous
 	    <br/>
 	    <span class="smallrellink">
-	    5. Unsupervised ...
+	    5. Unsupervis...
 	    </span>
 	    <span class="hiddenrellink">
 	    5. Unsupervised Learning: Clustering
-	    </span>
-	    
-	    </a>
-	</div>
-	    <div class="spacer">
-	    &nbsp;
-	    </div>
-	
-	<div class="rellink">
-	<a href="dimensionality.html" title="7. Unsupervised Learning: Dimensionality Reduction"
-	    accesskey="N">Next
-	    <br/>
-	    <span class="smallrellink">
-	    7. Unsupervised ...
-	    </span>
-	    <span class="hiddenrellink">
-	    7. Unsupervised Learning: Dimensionality Reduction
 	    </span>
 	    
 	    </a>
@@ -150,7 +121,7 @@ $(document).ready(function(){
 	</div>
     </div>
     <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.2</strong>
+    for astroML <strong>version 0.4</strong>
     <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
     </p>
         
@@ -189,7 +160,7 @@ $(document).ready(function(){
             
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="two-point-correlation-functions">
 <span id="astroml-correlation-functions"></span><h1>6. Two-point Correlation Functions<a class="headerlink" href="#two-point-correlation-functions" title="Permalink to this headline">¶</a></h1>
@@ -200,16 +171,17 @@ description of the process of galaxy formation directly predicts the
 two-point correlation function.</p>
 <p>The computation of the two-point correlation is a <em>generalized N-body problem</em>
 similar to Nearest Neighbor searches and Kernel Density estimation
-(see <a class="reference internal" href="density_estimation.html#astroml-density-estimation"><em>Unsupervised Learning: Density Estimation</em></a>)</p>
+(see <a class="reference internal" href="density_estimation.html#astroml-density-estimation"><span class="std std-ref">Unsupervised Learning: Density Estimation</span></a>)</p>
 <p>AstroML implements a fast correlation function estimator based on the
 scikit-learn <a class="reference external" href="http://scikit-learn.org/stable/modules/neighbors.html#kdtree-and-balltree-classes">BallTree</a> and <a class="reference external" href="http://scikit-learn.org/stable/modules/neighbors.html#kdtree-and-balltree-classes">KDTree</a> data structures.
 Here is an example of computing the correlation function (with bootstrap
 estimates) over the SDSS spectroscopic galaxies within the redshift range
 0.08 &lt; z &lt; 0.12:</p>
 <a class="reference external image-reference" href="../book_figures/chapter6/fig_correlation_function.py"><img alt="../_images/fig_correlation_function_11.png" class="align-center" src="../_images/fig_correlation_function_11.png" style="width: 500.0px; height: 250.0px;" /></a>
-<p>The correlation function interface is very straightforward.  We&#8217;ll construct
+<p>The correlation function interface is very straightforward.  We’ll construct
 some random data in two dimensions and compute the two-point correlation here:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">astroML.correlation</span> <span class="kn">import</span> <span class="n">two_point</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">astroML.correlation</span> <span class="k">import</span> <span class="n">two_point</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
@@ -221,7 +193,8 @@ some random data in two dimensions and compute the two-point correlation here:</
 <p>For uniformly-distributed data, the correlation function is zero (that is,
 there is no excess over a uniformly-distributed background).  If we wish to
 find the error on the result, this can be done via a bootstrap approach:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">astroML.correlation</span> <span class="kn">import</span> <span class="n">bootstrap_two_point</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">astroML.correlation</span> <span class="k">import</span> <span class="n">bootstrap_two_point</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span><span class="p">,</span> <span class="n">dcorr</span> <span class="o">=</span> <span class="n">bootstrap_two_point</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">Nbootstrap</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dcorr</span><span class="p">)</span>
 <span class="go">True</span>
@@ -242,11 +215,11 @@ above figure.</p>
 
     <div class="footer">
         <p style="text-align: center">This documentation is relative
-        to astroML version 0.2<br/>
-        &copy; 2012, Jake Vanderplas.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     <span style="padding-left: 5ex;">
-    <a href="../_sources/user_guide/correlation_functions.txt"
+    <a href="../_sources/user_guide/correlation_functions.rst.txt"
 	    rel="nofollow">Show this page source</a>
     </span></p>
     </div>
