@@ -1,6 +1,6 @@
 """
-Hierarchical Bayes modeling for Gaussian distribution with Gaussian drrors
-------------------------------------------
+Hierarchical Bayes modeling for Gaussian distribution with Gaussian errors
+--------------------------------------------------------------------------
 Figure 5.27
 An example of hierarchical Bayes modeling: estimate systemic velocity and
 velocity dispersion for a set of stellar radial velocity measurements.

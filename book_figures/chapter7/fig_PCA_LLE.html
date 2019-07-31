@@ -70,10 +70,19 @@ $(document).ready(function(){
           </p><div class="navbar">
           <ul>
             <li><a href="../../index.html">Home</a></li>
-	    <li><a href="../../user_guide/index.html">User Guide</a></li>
-            <li><a href="../index.html">Book Figures</a></li>
-            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
-            <li><a href="../../examples/index.html">Examples Plots</a></li>
+	        <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
        </ul>
 
 <!-- Google custom search.  Javascript that enables this is in the header above -->
@@ -176,8 +185,8 @@ shows the segregation using the first three LLE dimensions. The preservation of
 locality in LLE enables nonlinear features within a spectrum (e.g., variation
 in the width of an emission line) to be captured with fewer components. This
 results in better segregation of spectral types with fewer dimensions.</p>
-<a class="horizontal reference internal image-reference" href="../../_images/fig_PCA_LLE_1.png"><img alt="../../_images/fig_PCA_LLE_1.png" class="horizontal align-center" src="../../_images/fig_PCA_LLE_1.png" style="width: 500.0px; height: 375.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/fig_PCA_LLE_2.png"><img alt="../../_images/fig_PCA_LLE_2.png" class="align-center" src="../../_images/fig_PCA_LLE_2.png" style="width: 500.0px; height: 375.0px;" /></a>
+<a class="horizontal reference internal image-reference" href="../../_images/fig_PCA_LLE_2.png"><img alt="../../_images/fig_PCA_LLE_2.png" class="horizontal align-center" src="../../_images/fig_PCA_LLE_2.png" style="width: 500.0px; height: 375.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/fig_PCA_LLE_1.png"><img alt="../../_images/fig_PCA_LLE_1.png" class="align-center" src="../../_images/fig_PCA_LLE_1.png" style="width: 500.0px; height: 375.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@pickle_results</span><span class="p">:</span> <span class="n">computing</span> <span class="n">results</span> <span class="ow">and</span> <span class="n">saving</span> <span class="n">to</span> <span class="s1">&#39;spec_LLE.pkl&#39;</span>

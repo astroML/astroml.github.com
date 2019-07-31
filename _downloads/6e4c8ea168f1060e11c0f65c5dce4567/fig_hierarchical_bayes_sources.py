@@ -1,6 +1,6 @@
 """
 An illustration of Hierarchical Bayes modeling for a Gaussian burst with background
-------------------------------------------
+-----------------------------------------------------------------------------------
 Figure 5.28
 
 An example of hierarchical Bayes modeling: estimate the position, amplitude,

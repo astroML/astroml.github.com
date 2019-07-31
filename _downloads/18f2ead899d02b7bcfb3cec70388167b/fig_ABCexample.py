@@ -1,6 +1,6 @@
 """
 Approximate Bayesian Computation for Gaussian location parameter
-------------------------------------------
+----------------------------------------------------------------
 Figure 5.29
 An example of Approximate Bayesian Computation: estimate the location parameter
 for a sample drawn from Gaussian distribution with known scale parameter.

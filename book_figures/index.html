@@ -70,10 +70,19 @@ $(document).ready(function(){
           </p><div class="navbar">
           <ul>
             <li><a href="../index.html">Home</a></li>
-	    <li><a href="../user_guide/index.html">User Guide</a></li>
-            <li><a href="#">Book Figures</a></li>
-            <li><a href="../book_figures_1ed/index.html">1st ed Book Figures</a></li>
-            <li><a href="../examples/index.html">Examples Plots</a></li>
+	        <li><a href="../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="#">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="#">2nd edition</a></li>
+                    <li><a href="../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../examples/index.html">Example Plots</a></li>
        </ul>
 
 <!-- Google custom search.  Javascript that enables this is in the header above -->
@@ -180,8 +189,8 @@ in the second edition of the book <cite>Statistics, Data Mining, and Machine Lea
 Many of the figures are fairly self-explanatory, though some will be less
 so without the book as a reference.  The table of contents of the book
 can be seen <a class="reference download internal" download="" href="../_downloads/13c92f3e9771808544a36fb195fdc487/DMbookTOC.pdf"><code class="xref download docutils literal notranslate"><span class="pre">here(pdf)</span></code></a>.</p>
-<p>The source code for the figures in the first edition are available following
-the <cite>1st ed Book Figures &lt;../book_figures_1ed/index.html&gt;</cite>.</p>
+<p>The source code for the figures in the first edition are available from the
+dropdown menu.</p>
 <div class="section" id="figure-contents">
 <h2>Figure Contents<a class="headerlink" href="#figure-contents" title="Permalink to this headline">¶</a></h2>
 <p>Each chapter links to a page with thumbnails of the figures from the chapter.</p>

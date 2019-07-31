@@ -70,10 +70,19 @@ $(document).ready(function(){
           </p><div class="navbar">
           <ul>
             <li><a href="../../index.html">Home</a></li>
-	    <li><a href="../../user_guide/index.html">User Guide</a></li>
-            <li><a href="../index.html">Book Figures</a></li>
-            <li><a href="../../book_figures_1ed/index.html">1st ed Book Figures</a></li>
-            <li><a href="../../examples/index.html">Examples Plots</a></li>
+	        <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
        </ul>
 
 <!-- Google custom search.  Javascript that enables this is in the header above -->
@@ -176,8 +185,8 @@ the posterior pdf in the (theta_1, theta_0) plane as each point is added in
 sequence. For clarity, the implied dark regions for sigma &gt; 3 have been
 removed. The fourth point is an upper-limit measurement of y, and the resulting
 posterior cuts off half the parameter space.</p>
-<a class="horizontal reference internal image-reference" href="../../_images/fig_linreg_inline_1.png"><img alt="../../_images/fig_linreg_inline_1.png" class="horizontal align-center" src="../../_images/fig_linreg_inline_1.png" style="width: 500.0px; height: 375.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/fig_linreg_inline_2.png"><img alt="../../_images/fig_linreg_inline_2.png" class="align-center" src="../../_images/fig_linreg_inline_2.png" style="width: 500.0px; height: 500.0px;" /></a>
+<a class="horizontal reference internal image-reference" href="../../_images/fig_linreg_inline_2.png"><img alt="../../_images/fig_linreg_inline_2.png" class="horizontal align-center" src="../../_images/fig_linreg_inline_2.png" style="width: 500.0px; height: 500.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/fig_linreg_inline_1.png"><img alt="../../_images/fig_linreg_inline_1.png" class="align-center" src="../../_images/fig_linreg_inline_1.png" style="width: 500.0px; height: 375.0px;" /></a>
 <div class="toggle_trigger"><a href="#"><p><strong>Code output:</strong></p>
 </a></div>
 <div class="toggle_container"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
