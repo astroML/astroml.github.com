@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>astroML workshop at the 235th Meeting of the American Astronomical Society &#8212; astroML 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../index.html">
+            <img src="../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+	        <li><a href="../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../examples/index.html">Example Plots</a></li>
+       </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 0.4</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">astroML workshop at the 235th Meeting of the American Astronomical Society</a><ul>
+<li><a class="reference internal" href="#monday-6-january-2020-13-00-17-00">Monday, 6 January 2020 | 13:00 – 17:00</a></li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="astroml-workshop-at-the-235th-meeting-of-the-american-astronomical-society">
+<h1>astroML workshop at the 235th Meeting of the American Astronomical Society<a class="headerlink" href="#astroml-workshop-at-the-235th-meeting-of-the-american-astronomical-society" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="monday-6-january-2020-13-00-17-00">
+<h2>Monday, 6 January 2020 | 13:00 – 17:00<a class="headerlink" href="#monday-6-january-2020-13-00-17-00" title="Permalink to this headline">¶</a></h2>
+<p>This workshop will introduce the astronomical community to the 2nd edition
+of the book <strong>Statistics, Data Mining, and Machine Learning in Astronomy</strong>
+and the associated software package <strong>astroML</strong>. The goal is to introduce
+participants to a variety of statistical and machine learning tools
+available within the open source astroML library. The format will be
+interactive, including short presentations on different machine learning
+methodologies followed by instructor-guided, Jupyter notebook based
+tutorials. In these tutorial sessions participants will be able to try out
+the tools and to ask questions from expert users and developers.</p>
+<p>Our primary focus will be on the new material and applications in the 2nd
+edition of the book. These include:</p>
+<ul class="simple">
+<li><p>Traditional machine learning techniques for density estimation,</p></li>
+<li><p>Approximate Bayesian computation,</p></li>
+<li><p>Hierarchical Bayesian models,</p></li>
+<li><p>Autoencoders as tools for data compression,</p></li>
+<li><p>Deep learning and convolutional neural networks.</p></li>
+</ul>
+<p>In each tutorial example applications will be based on astronomical use cases
+and data sets. At the end of the workshop we will present a roadmap for future
+developments in astroML.</p>
+<p>This workshop is suitable for those with existing Python knowledge, including
+familiarity with the core packages in the numerical Python ecosystem such as
+numpy, scipy, scikit-learn, and matplotlib.</p>
+<p>Registration is open at the <a class="reference external" href="https://aas.org/meetings/aas235">website of the meeting</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 0.4<br/>
+        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.2.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../_sources/workshops/AAS235.rst.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>
