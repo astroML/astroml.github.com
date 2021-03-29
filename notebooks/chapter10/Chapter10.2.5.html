@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Filtering &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Digital Filtering</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#import-packages-and-data">Import packages and data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#low-pass-filters">1. Low-pass filters</a><ul>
+<li><a class="reference internal" href="#create-the-noisy-data">Create the noisy data</a></li>
+<li><a class="reference internal" href="#set-up-the-wiener-filter">Set up the Wiener filter</a></li>
+<li><a class="reference internal" href="#set-up-the-savitzky-golay-filter">Set up the Savitzky-Golay filter</a></li>
+<li><a class="reference internal" href="#show-filtered-signal">Show filtered signal</a></li>
+<li><a class="reference internal" href="#show-filtered-psd">Show filtered PSD</a></li>
+<li><a class="reference internal" href="#wiener-filter-and-kernel-smoothing-connection">Wiener Filter and kernel smoothing Connection</a></li>
+<li><a class="reference internal" href="#find-effective-kernel">Find effective kernel</a></li>
+<li><a class="reference internal" href="#perform-kernel-smoothing">perform kernel smoothing</a></li>
+<li><a class="reference internal" href="#show-kernel-and-smoothing-results">Show kernel and smoothing results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#high-pass-filters">2. High-pass filters</a></li>
+<li><a class="reference internal" href="#example-1-show-steps">Example 1 (Show steps)</a><ul>
+<li><a class="reference internal" href="#fetch-the-data">Fetch the data</a></li>
+<li><a class="reference internal" href="#pre-process-the-data">Pre-process the data</a></li>
+<li><a class="reference internal" href="#apply-minimum-component-filtering-steps">Apply minimum component filtering steps</a></li>
+<li><a class="reference internal" href="#show-filter-result">Show filter result</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-2-use-package">Example 2 (use package)</a><ul>
+<li><a class="reference internal" href="#id1">Fetch the data</a></li>
+<li><a class="reference internal" href="#id2">Pre-process the data</a></li>
+<li><a class="reference internal" href="#apply-minimum-component-filtering-using-function">Apply minimum component filtering using function</a></li>
+<li><a class="reference internal" href="#compute-psd-of-filtered-and-unfiltered-versions">Compute PSD of filtered and unfiltered versions</a></li>
+<li><a class="reference internal" href="#id3">Show filter result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="digital-filtering">
+<h1>Digital Filtering<a class="headerlink" href="#digital-filtering" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install astroML
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: astroML in /Users/bsipocz/munka/devel/astroml (1.0.2)
+Requirement already satisfied: scikit-learn&gt;=0.18 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (0.24.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.13 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (1.20.1)
+Requirement already satisfied: scipy&gt;=0.18 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (1.5.4)
+Requirement already satisfied: matplotlib&gt;=3.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (3.3.3)
+Requirement already satisfied: astropy&gt;=3.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (4.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from scikit-learn&gt;=0.18-&gt;astroML) (2.1.0)
+Requirement already satisfied: joblib&gt;=0.11 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from scikit-learn&gt;=0.18-&gt;astroML) (1.0.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (1.3.1)
+Requirement already satisfied: cycler&gt;=0.10 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (0.10.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (8.1.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (2.8.1)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (3.0.0b2)
+Requirement already satisfied: pyerfa in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astropy&gt;=3.0-&gt;astroML) (1.7.1.1)
+Requirement already satisfied: six in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from cycler&gt;=0.10-&gt;matplotlib&gt;=3.0-&gt;astroML) (1.15.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: You are using pip version 20.2.3; however, version 21.0.1 is available.</span>
+<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/Users/bsipocz/.pyenv/versions/3.9.1/bin/python3.9 -m pip install --upgrade pip&#39; command.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Author: Jake VanderPlas<br />
+License: BSD</p>
+<p>The figure produced by this code is published in the textbook<br />
+<em>“Statistics, Data Mining, and Machine Learning in Astronomy”</em> (2013)</p>
+<p>For more information, see http://astroML.github.com<br />
+To report a bug or issue, use the following forum: https://groups.google.com/forum/#!forum/astroml-general</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><strong>Digital filtering</strong> aims to reduce noise in time series data, or to compress data. Common examples
+include low-pass filtering, where high frequencies are suppressed, high-pass filtering, where low
+frequencies are suppressed, passband filtering, where only a finite range of frequencies is admitted,
+and a notch filter, where a finite range of frequencies is blocked. We will use a few examples to illustrate the most common
+applications of filtering.<br />
+Fourier analysis is one of the most useful tools for performing filtering. Numerous other techniques can be found in signal processing literature, including approaches based on the wavelets discussed in the modeling toolkit notebook.</p>
+<p>We emphasize that filtering always decreases the information content of data (despite making
+it appear less noisy). As we have already learned throughout previous chapters, when model
+parameters are estimated from data, raw (unfiltered) data should be used. In some sense, this is
+an analogous situation to binning data to produce a histogram-while very useful for visualization, estimates of model parameters can become biased if one is not careful.</p>
+<div class="section" id="import-packages-and-data">
+<h3>Import packages and data<a class="headerlink" href="#import-packages-and-data" title="Permalink to this headline">¶</a></h3>
+<p>In this notebook, we are going to explore the astroML.filters. The functions we mainly use are savitzky_golay, and wiener_filter. The spectrum of a white dwarf data imported for this notebook is from Sloan Digital Sky
+Survey (SDSS).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">PSD_continuous</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_spectrum</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span><span class="p">,</span> <span class="n">fftpack</span><span class="p">,</span> <span class="n">interpolate</span>
+<span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">IFT_continuous</span>
+<span class="kn">from</span> <span class="nn">astroML.filters</span> <span class="kn">import</span> <span class="n">savitzky_golay</span><span class="p">,</span> <span class="n">wiener_filter</span>
+<span class="kn">from</span> <span class="nn">astroML.filters</span> <span class="kn">import</span> <span class="n">min_component_filter</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="low-pass-filters">
+<h2>1. Low-pass filters<a class="headerlink" href="#low-pass-filters" title="Permalink to this headline">¶</a></h2>
+<p>The power spectrum for common Gaussian noise is
+at and will extend to frequencies as high as
+the Nyquist limit, <img class="math" src="../../_images/math/021383069007e0d6efb42d85a268c12f104b756c.png" alt="f_N = 1=(2\Delta t)"/>. If the data are band limited to a lower frequency, <img class="math" src="../../_images/math/97d9c584e8e228afe50c2041d5760eb9a87b30a4.png" alt="f_c &lt; f_N"/>, then
+they can be smoothed without much impact by suppressing frequencies <img class="math" src="../../_images/math/f71c369493e4b0e198577bbd48de90628f31f5b9.png" alt="|f| &gt; f_c"/>. Given a filter
+in frequency space, <img class="math" src="../../_images/math/050ad9ff99d8cd21765bd3bb7779f191a2bf5a2e.png" alt="\Phi (f)"/>, we can obtain a smoothed version of data by taking the inverse Fourier
+transform of
+$<img class="math" src="../../_images/math/1e59f8279b2b5107956c5275ac6ac7412de27c85.png" alt="\hat{Y}(f)=Y(f) \Phi(f)"/><img class="math" src="../../_images/math/7676b290f25d8e0d4af16f4bd99561ed0b83781c.png" alt="where"/>Y(f)<img class="math" src="../../_images/math/87486d99610e910f1806a7185ff0ce25dc128100.png" alt="is the discrete Fourier transform of data. At least in principle, we could simply set"/>\Phi(f)<img class="math" src="../../_images/math/ccfbbb99e7f3d3f8a02e707da1e9a37fbf27a2da.png" alt="to zero for"/>|f| &gt; f_c<img class="math" src="../../_images/math/2ea0e6a76db19878d00c24e4e3fdbb7398efbb04.png" alt=", but this approach would result in ringing (i.e., unwanted oscillations)
+in the signal. Instead, the optimal filter for this purpose is constructed by minimizing the MISE
+between"/>\hat{Y}(f)<img class="math" src="../../_images/math/5b2ca0fe1cbc1048c2f1ab55d4dafd89e2652079.png" alt="and"/>Y(f)<img class="math" src="../../_images/math/6fc6928766b59916cd1ab820226375876a3d6a32.png" alt="(for detailed derivation see NumRec) and is called the **Wiener filter**:"/><img class="math" src="../../_images/math/4d747c04e7ee9ed180722cda2fd16ef9b55c4e63.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/><img class="math" src="../../_images/math/fbe3e7d8e5c2bab93777cc8765589e70505a7522.png" alt="Here"/>P_S(f)<img class="math" src="../../_images/math/5b2ca0fe1cbc1048c2f1ab55d4dafd89e2652079.png" alt="and"/>P_N(f)<img class="math" src="../../_images/math/51ef0e48882f5539f790b8752c2b371681cc8d79.png" alt="represent components of a two-component (signal and noise) fit to the
+PSD of input data,"/>PSD_Y (f) = P_S(f) + P_N(f)$, which holds as long as the signal and noise are
+uncorrelated. We will see how the filtering works in the example below.</p>
+<div class="section" id="create-the-noisy-data">
+<h3>Create the noisy data<a class="headerlink" href="#create-the-noisy-data" title="Permalink to this headline">¶</a></h3>
+<p>We are going to generate a set of noisy data as the input signal, on which we apply filters. The figure below shows the input data (200 evenly spaced points) with a narrow Gaussian peak centered at x = 20.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the noisy data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">t</span> <span class="o">-</span> <span class="mf">20.</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">hN</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">Df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">Df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">HN</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">hN</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+                    <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># First plot: noisy signal</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">hN</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Input Signal&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;flux&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;flux&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/Chapter10.2.5_8_1.png" src="../../_images/Chapter10.2.5_8_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="set-up-the-wiener-filter">
+<h3>Set up the Wiener filter<a class="headerlink" href="#set-up-the-wiener-filter" title="Permalink to this headline">¶</a></h3>
+<p>We fit a model to the PSD consisting of the sum of a gaussian and white noise using <strong>Wiener filter</strong>. We will see this method in the later sections in this notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+
+<span class="n">Df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="n">dt</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">Df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">HN</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">hN</span><span class="p">)</span>
+
+<span class="c1"># apply the Wiener filter</span>
+<span class="n">h_smooth</span><span class="p">,</span> <span class="n">PSD</span><span class="p">,</span> <span class="n">P_S</span><span class="p">,</span> <span class="n">P_N</span><span class="p">,</span> <span class="n">Phi</span> <span class="o">=</span> <span class="n">wiener_filter</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">hN</span><span class="p">,</span> <span class="n">return_PSDs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="set-up-the-savitzky-golay-filter">
+<h3>Set up the Savitzky-Golay filter<a class="headerlink" href="#set-up-the-savitzky-golay-filter" title="Permalink to this headline">¶</a></h3>
+<p>We use a fourth-order <strong>Savitzky-Golay</strong> filter with a window size of <img class="math" src="../../_images/math/d4c734c962f1e0baf190059709f6199a06730030.png" alt="\Delta \lambda = 10"/> to filter the vales.
+The Savitzky-Golay filter is a very simple but powerful method as a low-pass filter. It fits low-order polynomials
+to data (in the time domain) using sliding windows (it is also known as the least-squares filter).
+For a detailed discussion, see NumRec.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># apply the Savitzky-Golay filter</span>
+<span class="n">h_sg</span> <span class="o">=</span> <span class="n">savitzky_golay</span><span class="p">(</span><span class="n">hN</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">use_fft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: AstroMLDeprecationWarning: The savitzky_golay function is deprecated and may be removed in a future version.
+        Use scipy.signal.savgol_filter instead. [warnings]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-filtered-signal">
+<h3>Show filtered signal<a class="headerlink" href="#show-filtered-signal" title="Permalink to this headline">¶</a></h3>
+<p>Plot below shows noisy signal after filtering.</p>
+<ul class="simple">
+<li><p>Result from Wiener filter is shown in black.</p></li>
+<li><p>Result from Savitzky-Golay filter is shown in gray.</p></li>
+</ul>
+<p>The Gaussian peak at x=20 is clearly seen in both curves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Second plot: filtered signal</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h_smooth</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wiener&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h_sg</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Savitzky-Golay&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Filtered Signal&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;flux&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;flux&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/Chapter10.2.5_14_1.png" src="../../_images/Chapter10.2.5_14_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="show-filtered-psd">
+<h3>Show filtered PSD<a class="headerlink" href="#show-filtered-psd" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The upper panel shows the input power spectral density (PSD) distribution.</p></li>
+<li><p>The lower panel shows the Wiener-filtered power spectral density (PSD) distributions.</p></li>
+</ul>
+<p>The two curves in the upper panel represent two-component fit to PSD given by equation
+$<img class="math" src="../../_images/math/4d747c04e7ee9ed180722cda2fd16ef9b55c4e63.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">Df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">Df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">HN</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">hN</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+                    <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># Third plot: Input PSD</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">f</span><span class="p">[:</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="n">PSD</span><span class="p">[:</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[:</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="n">P_S</span><span class="p">[:</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[:</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="n">P_N</span><span class="p">[:</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Input PSD&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3500</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$f$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$PSD(f)$&#39;</span><span class="p">)</span>
+
+<span class="c1"># Fourth plot: Filtered PSD</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">filtered_PSD</span> <span class="o">=</span> <span class="p">(</span><span class="n">Phi</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">HN</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">f</span><span class="p">[:</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="n">filtered_PSD</span><span class="p">[:</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Filtered PSD&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3500</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$f$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$PSD(f)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$PSD(f)$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/Chapter10.2.5_16_1.png" src="../../_images/Chapter10.2.5_16_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="wiener-filter-and-kernel-smoothing-connection">
+<h3>Wiener Filter and kernel smoothing Connection<a class="headerlink" href="#wiener-filter-and-kernel-smoothing-connection" title="Permalink to this headline">¶</a></h3>
+<p>There is an interesting connection between the kernel density estimation method discussed in the KDE notebook
+and Wiener filtering. By the convolution theorem, the Wiener-filtered result is equivalent to the
+convolution of the unfiltered signal with the inverse Fourier transform of <img class="math" src="../../_images/math/a4de9d658b2f111ca0ed8e23c37d8b7ebb108a5b.png" alt="\Phi(f)"/>.</p>
+<p>This convolution is equivalent to kernel density estimation. When Wiener filtering is viewed in this way, it effectively says that we believe the signal is as wide as the central
+peak, and the statistics of the noise are such that the minor peaks in the
+wings work to cancel out noise in the major peak.</p>
+<p>Hence, the modeling of the PSD in the frequency
+domain via
+$<img class="math" src="../../_images/math/4d747c04e7ee9ed180722cda2fd16ef9b55c4e63.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/>$
+corresponds to choosing the optimal kernel width. Just as detailed modeling
+of the Wiener filter is not of paramount importance, the choice of kernel is not either.</p>
+<p>We will use the same data as the previous Wiener filter figure as an example to explore this connection.</p>
+</div>
+<div class="section" id="find-effective-kernel">
+<h3>Find effective kernel<a class="headerlink" href="#find-effective-kernel" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inverse fourier transform Phi to find the effective kernel</span>
+<span class="n">t_plot</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="n">IFT_continuous</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Phi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="perform-kernel-smoothing">
+<h3>perform kernel smoothing<a class="headerlink" href="#perform-kernel-smoothing" title="Permalink to this headline">¶</a></h3>
+<p>This is faster in frequency
+space (i.e. using the standard Wiener filter above) but we will do it in the slow &amp; simple way here to demonstrate the equivalence explicitly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kernel_func</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">kernel</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">t_KDE</span> <span class="o">=</span> <span class="n">t_eval</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span>
+<span class="n">t_KDE</span><span class="p">[</span><span class="n">t_KDE</span> <span class="o">&lt;</span> <span class="n">t_plot</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">t_plot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t_KDE</span><span class="p">[</span><span class="n">t_KDE</span> <span class="o">&gt;</span> <span class="n">t_plot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">t_plot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">kernel_func</span><span class="p">(</span><span class="n">t_KDE</span><span class="p">)</span>
+
+<span class="n">h_smooth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">hN</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-kernel-and-smoothing-results">
+<h3>Show kernel and smoothing results<a class="headerlink" href="#show-kernel-and-smoothing-results" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The left panel shows the inverse Fourier transform of the Wiener filter <img class="math" src="../../_images/math/a4de9d658b2f111ca0ed8e23c37d8b7ebb108a5b.png" alt="\Phi(f)"/> applied in the sample data we used previously.</p></li>
+<li><p>The right panel shows the data smoothed by this kernel, which is equivalent to the Wiener filter smoothing in the previous figure.</p></li>
+</ul>
+<p>By the convolution theorem, the Wiener-filtered result is equivalent to the convolution of the unfiltered signal with
+the kernel shown above, and thus Wiener filtering and kernel density estimation (KDE) are directly related.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+
+<span class="c1"># First plot: the equivalent Kernel to the WF</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">kernel</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Effective Wiener</span><span class="se">\n</span><span class="s2">Filter Kernel&quot;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$K(\lambda)$&#39;</span><span class="p">)</span>
+
+<span class="c1"># Second axes: Kernel smoothed results</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_eval</span><span class="p">,</span> <span class="n">h_smooth</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_eval</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">t_eval</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Kernel smoothing</span><span class="se">\n</span><span class="s2">result&quot;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;flux&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Chapter10.2.5_23_0.png" src="../../_images/Chapter10.2.5_23_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="high-pass-filters">
+<h2>2. High-pass filters<a class="headerlink" href="#high-pass-filters" title="Permalink to this headline">¶</a></h2>
+<p>The most common example of high-pass filtering in astronomy is baseline estimation in spectral
+data. Unlike the case of low-pass filtering, here there is no universal filter recipe. Baseline estimation
+is usually the first step toward the estimation of model parameters (e.g. location, width, and strength of spectral lines). In such cases, the best approach might be full modeling and
+marginalization of baseline parameters as nuisance parameters at the end of analysis.</p>
+<p>A simple iterative technique for high-pass filtering, called <strong>minimum component filtering</strong>, is discussed
+in detail in WJ03. These are the <strong>main steps</strong>:</p>
+<ol class="simple">
+<li><p>Determine baseline: exclude or mask regions where signal is clearly evident and fit a baseline
+model (e.g., a low-order polynomial) to the unmasked regions.</p></li>
+<li><p>Get FT for the signal: after subtracting the baseline fit in the unmasked regions (i.e., a linear
+regression fit), apply the discrete Fourier transform.</p></li>
+<li><p>Filter the signal: remove high frequencies using a low-pass filter (e.g., Wiener filter), and
+inverse Fourier transform the result.</p></li>
+<li><p>Recombine the baseline and the filtered signal: add the baseline fit subtracted in step 2 to
+the result from step 3. This is the minimum component filtering estimate of baseline.</p></li>
+</ol>
+<p>In the next two examples, we will see the application of a minimum component filter to the spectrum of a white dwarf.</p>
+</div>
+<div class="section" id="example-1-show-steps">
+<h2>Example 1 (Show steps)<a class="headerlink" href="#example-1-show-steps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fetch-the-data">
+<h3>Fetch the data<a class="headerlink" href="#fetch-the-data" title="Permalink to this headline">¶</a></h3>
+<p>We first fetch the spectrum data from SDSS database for use. The intermediate steps of the minimum component filter procedure applied to the spectrum of a white dwarf from the SDSS data set (mjd= 52199, plate=659, fiber=381).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the spectrum from SDSS database</span>
+<span class="n">plate</span> <span class="o">=</span> <span class="mi">659</span>
+<span class="n">mjd</span> <span class="o">=</span> <span class="mi">52199</span>
+<span class="n">fiber</span> <span class="o">=</span> <span class="mi">381</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_spectrum</span><span class="p">(</span><span class="n">plate</span><span class="p">,</span> <span class="n">mjd</span><span class="p">,</span> <span class="n">fiber</span><span class="p">)</span>
+
+<span class="n">lam</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">wavelength</span><span class="p">()</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">spectrum</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pre-process-the-data">
+<h3>Pre-process the data<a class="headerlink" href="#pre-process-the-data" title="Permalink to this headline">¶</a></h3>
+<p>Wavelengths we get are logorithmically spaced: we will work in log(lam).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
+    <span class="n">loglam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
+
+    <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">)</span>
+    <span class="n">lam</span> <span class="o">=</span> <span class="n">lam</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span>
+    <span class="n">loglam</span> <span class="o">=</span> <span class="n">loglam</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">spec</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span>
+
+    <span class="n">lam</span> <span class="o">=</span> <span class="n">lam</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">loglam</span> <span class="o">=</span> <span class="n">loglam</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">spec</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">lam</span><span class="p">,</span> <span class="n">loglam</span><span class="p">,</span> <span class="n">spec</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">lam</span><span class="p">,</span> <span class="n">loglam</span><span class="p">,</span> <span class="n">spec</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-minimum-component-filtering-steps">
+<h3>Apply minimum component filtering steps<a class="headerlink" href="#apply-minimum-component-filtering-steps" title="Permalink to this headline">¶</a></h3>
+<p>First step: mask-out significant features</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_mask</span> <span class="o">=</span> <span class="p">(((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4080</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4130</span><span class="p">))</span> <span class="o">|</span>
+                <span class="p">((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4315</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4370</span><span class="p">))</span> <span class="o">|</span>
+                <span class="p">((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4830</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4900</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Second step: fit a line to the unmasked portion of the spectrum</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XX</span> <span class="o">=</span> <span class="n">loglam</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">XX</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">],</span> <span class="n">spec</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">spec_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+<span class="n">spec_patched</span> <span class="o">=</span> <span class="n">spec</span> <span class="o">-</span> <span class="n">spec_fit</span>
+<span class="n">spec_patched</span><span class="p">[</span><span class="n">feature_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-14-41396d22bb6e&gt;:2: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  beta = np.linalg.lstsq(XX[~feature_mask], spec[~feature_mask])[0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Third step: Fourier transform the patched spectrum</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loglam</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">loglam</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">loglam</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">))</span>
+<span class="n">spec_patched_FT</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">spec_patched</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fourth step: Low-pass filter on the transform</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">-</span> <span class="mf">100.</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">filt</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">spec_filt_FT</span> <span class="o">=</span> <span class="n">spec_patched_FT</span> <span class="o">*</span> <span class="n">filt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fifth step: inverse Fourier transform, and add back the fit</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec_filt</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">spec_filt_FT</span><span class="p">)</span>
+<span class="n">spec_filt</span> <span class="o">+=</span> <span class="n">spec_fit</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-filter-result">
+<h3>Show filter result<a class="headerlink" href="#show-filter-result" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The top panel shows the input spectrum; the masked sections of the input spectrum are shown by thin lines (i.e., step 1 of the process).</p></li>
+<li><p>The bottom panel shows the PSD of the masked spectrum, after the linear fit has been subtracted (gray line).</p></li>
+<li><p>A simple low-pass filter (dashed line) is applied, and the resulting filtered spectrum (dark line) is used to construct the result shown in the next figure.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec_patched</span> <span class="o">+</span> <span class="n">spec_fit</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">110</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\lambda\ {\rm(\AA)}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;flux&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">*</span> <span class="p">(</span><span class="n">loglam</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">loglam</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">f</span><span class="p">),</span>
+        <span class="n">factor</span> <span class="o">*</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">spec_patched_FT</span><span class="p">)</span> <span class="o">**</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;masked/shifted spectrum&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">f</span><span class="p">),</span>
+        <span class="n">factor</span> <span class="o">*</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">spec_filt_FT</span><span class="p">)</span> <span class="o">**</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;filtered spectrum&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">f</span><span class="p">),</span>
+        <span class="n">fftpack</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">filt</span><span class="p">),</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;filter&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$f$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;scaled $PSD(f)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;scaled $PSD(f)$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/Chapter10.2.5_41_1.png" src="../../_images/Chapter10.2.5_41_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-2-use-package">
+<h2>Example 2 (use package)<a class="headerlink" href="#example-2-use-package" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Fetch the data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>We follow the same process to analyze the same white dwarf example. Here instead of explicitly applying steps, we call function <em>min_component_filter</em> to achieve the same goal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plate</span> <span class="o">=</span> <span class="mi">659</span>
+<span class="n">mjd</span> <span class="o">=</span> <span class="mi">52199</span>
+<span class="n">fiber</span> <span class="o">=</span> <span class="mi">381</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_spectrum</span><span class="p">(</span><span class="n">plate</span><span class="p">,</span> <span class="n">mjd</span><span class="p">,</span> <span class="n">fiber</span><span class="p">)</span>
+
+<span class="n">lam</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">wavelength</span><span class="p">()</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">spectrum</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Pre-process the data<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">lam</span><span class="p">,</span> <span class="n">loglam</span><span class="p">,</span> <span class="n">spec</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span><span class="n">spec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-minimum-component-filtering-using-function">
+<h3>Apply minimum component filtering using function<a class="headerlink" href="#apply-minimum-component-filtering-using-function" title="Permalink to this headline">¶</a></h3>
+<p>The function used here is <em>min_component_filter</em> in <em>astroML.filters</em> package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_mask</span> <span class="o">=</span> <span class="p">(((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4080</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4130</span><span class="p">))</span> <span class="o">|</span>
+                <span class="p">((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4315</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4370</span><span class="p">))</span> <span class="o">|</span>
+                <span class="p">((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4830</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4900</span><span class="p">)))</span>
+
+<span class="n">spec_filtered</span> <span class="o">=</span> <span class="n">min_component_filter</span><span class="p">(</span><span class="n">loglam</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">feature_mask</span><span class="p">,</span> <span class="n">fcut</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compute-psd-of-filtered-and-unfiltered-versions">
+<h3>Compute PSD of filtered and unfiltered versions<a class="headerlink" href="#compute-psd-of-filtered-and-unfiltered-versions" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">spec_filt_PSD</span> <span class="o">=</span> <span class="n">PSD_continuous</span><span class="p">(</span><span class="n">loglam</span><span class="p">,</span> <span class="n">spec_filtered</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">spec_PSD</span> <span class="o">=</span> <span class="n">PSD_continuous</span><span class="p">(</span><span class="n">loglam</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Show filter result<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The upper panel shows a portion of the input spectrum, along with the continuum computed via the minimum component filtering procedure described above (See the previous figure).</p></li>
+<li><p>The lower panel shows the PSD for both the input spectrum and the filtered result.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+
+<span class="c1"># Top panel: plot noisy and smoothed spectrum</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec_filtered</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.97</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="s2">&quot;SDSS white dwarf</span><span class="se">\n</span><span class="s2"> </span><span class="si">%i</span><span class="s2">-</span><span class="si">%i</span><span class="s2">-</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mjd</span><span class="p">,</span> <span class="n">plate</span><span class="p">,</span> <span class="n">fiber</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">110</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\lambda\ {\rm (\AA)}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;flux&#39;</span><span class="p">)</span>
+
+<span class="c1"># Bottom panel: plot noisy and smoothed PSD</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">spec_PSD</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">spec_filt_PSD</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$PSD(f)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 2000.0)
+</pre></div>
+</div>
+<img alt="../../_images/Chapter10.2.5_51_1.png" src="../../_images/Chapter10.2.5_51_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter10/Chapter10.2.5.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>
