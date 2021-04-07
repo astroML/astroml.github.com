@@ -184,48 +184,9 @@ $(document).ready(function(){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="digital-filtering">
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/bsipocz/astroML-notebooks/notebooks?filepath=chapter10/Chapter10.2.5.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="digital-filtering">
 <h1>Digital Filtering<a class="headerlink" href="#digital-filtering" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install astroML
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: astroML in /Users/bsipocz/munka/devel/astroml (1.0.2)
-Requirement already satisfied: scikit-learn&gt;=0.18 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (0.24.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.13 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (1.20.1)
-Requirement already satisfied: scipy&gt;=0.18 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (1.5.4)
-Requirement already satisfied: matplotlib&gt;=3.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (3.3.3)
-Requirement already satisfied: astropy&gt;=3.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (4.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from scikit-learn&gt;=0.18-&gt;astroML) (2.1.0)
-Requirement already satisfied: joblib&gt;=0.11 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from scikit-learn&gt;=0.18-&gt;astroML) (1.0.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (1.3.1)
-Requirement already satisfied: cycler&gt;=0.10 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (0.10.0)
-Requirement already satisfied: pillow&gt;=6.2.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (8.1.0)
-Requirement already satisfied: python-dateutil&gt;=2.1 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (2.8.1)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (3.0.0b2)
-Requirement already satisfied: pyerfa in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astropy&gt;=3.0-&gt;astroML) (1.7.1.1)
-Requirement already satisfied: six in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from cycler&gt;=0.10-&gt;matplotlib&gt;=3.0-&gt;astroML) (1.15.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: You are using pip version 20.2.3; however, version 21.0.1 is available.</span>
-<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/Users/bsipocz/.pyenv/versions/3.9.1/bin/python3.9 -m pip install --upgrade pip&#39; command.</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Author: Jake VanderPlas<br />
-License: BSD</p>
-<p>The figure produced by this code is published in the textbook<br />
-<em>“Statistics, Data Mining, and Machine Learning in Astronomy”</em> (2013)</p>
-<p>For more information, see http://astroML.github.com<br />
-To report a bug or issue, use the following forum: https://groups.google.com/forum/#!forum/astroml-general</p>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p><strong>Digital filtering</strong> aims to reduce noise in time series data, or to compress data. Common examples
@@ -240,7 +201,7 @@ parameters are estimated from data, raw (unfiltered) data should be used. In som
 an analogous situation to binning data to produce a histogram-while very useful for visualization, estimates of model parameters can become biased if one is not careful.</p>
 <div class="section" id="import-packages-and-data">
 <h3>Import packages and data<a class="headerlink" href="#import-packages-and-data" title="Permalink to this headline">¶</a></h3>
-<p>In this notebook, we are going to explore the astroML.filters. The functions we mainly use are savitzky_golay, and wiener_filter. The spectrum of a white dwarf data imported for this notebook is from Sloan Digital Sky
+<p>In this notebook, we are going to explore the astroML.filters. We mainly use the Savitzky-Golay and the Wiener filters. The spectrum of a white dwarf data imported for this notebook is from Sloan Digital Sky
 Survey (SDSS).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -251,8 +212,9 @@ Survey (SDSS).</p>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_spectrum</span>
 
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span><span class="p">,</span> <span class="n">fftpack</span><span class="p">,</span> <span class="n">interpolate</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">savgol_filter</span>
 <span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">IFT_continuous</span>
-<span class="kn">from</span> <span class="nn">astroML.filters</span> <span class="kn">import</span> <span class="n">savitzky_golay</span><span class="p">,</span> <span class="n">wiener_filter</span>
+<span class="kn">from</span> <span class="nn">astroML.filters</span> <span class="kn">import</span> <span class="n">wiener_filter</span>
 <span class="kn">from</span> <span class="nn">astroML.filters</span> <span class="kn">import</span> <span class="n">min_component_filter</span>
 </pre></div>
 </div>
@@ -267,11 +229,17 @@ at and will extend to frequencies as high as
 the Nyquist limit, <img class="math" src="../../_images/math/021383069007e0d6efb42d85a268c12f104b756c.png" alt="f_N = 1=(2\Delta t)"/>. If the data are band limited to a lower frequency, <img class="math" src="../../_images/math/97d9c584e8e228afe50c2041d5760eb9a87b30a4.png" alt="f_c &lt; f_N"/>, then
 they can be smoothed without much impact by suppressing frequencies <img class="math" src="../../_images/math/f71c369493e4b0e198577bbd48de90628f31f5b9.png" alt="|f| &gt; f_c"/>. Given a filter
 in frequency space, <img class="math" src="../../_images/math/050ad9ff99d8cd21765bd3bb7779f191a2bf5a2e.png" alt="\Phi (f)"/>, we can obtain a smoothed version of data by taking the inverse Fourier
-transform of
-$<img class="math" src="../../_images/math/1e59f8279b2b5107956c5275ac6ac7412de27c85.png" alt="\hat{Y}(f)=Y(f) \Phi(f)"/><img class="math" src="../../_images/math/7676b290f25d8e0d4af16f4bd99561ed0b83781c.png" alt="where"/>Y(f)<img class="math" src="../../_images/math/87486d99610e910f1806a7185ff0ce25dc128100.png" alt="is the discrete Fourier transform of data. At least in principle, we could simply set"/>\Phi(f)<img class="math" src="../../_images/math/ccfbbb99e7f3d3f8a02e707da1e9a37fbf27a2da.png" alt="to zero for"/>|f| &gt; f_c<img class="math" src="../../_images/math/2ea0e6a76db19878d00c24e4e3fdbb7398efbb04.png" alt=", but this approach would result in ringing (i.e., unwanted oscillations)
+transform of</p>
+<div class="math">
+<p><img src="../../_images/math/b519bbf01a06f921dd7d957729482b2d2844bb59.png" alt="\hat{Y}(f)=Y(f) \Phi(f)"/></p>
+</div><p>where <img class="math" src="../../_images/math/39324378a3a196535c113f680553b2c003a4ee40.png" alt="Y(f)"/> is the discrete Fourier transform of data. At least in principle, we could simply set
+<img class="math" src="../../_images/math/a4de9d658b2f111ca0ed8e23c37d8b7ebb108a5b.png" alt="\Phi(f)"/> to zero for <img class="math" src="../../_images/math/f71c369493e4b0e198577bbd48de90628f31f5b9.png" alt="|f| &gt; f_c"/>, but this approach would result in ringing (i.e., unwanted oscillations)
 in the signal. Instead, the optimal filter for this purpose is constructed by minimizing the MISE
-between"/>\hat{Y}(f)<img class="math" src="../../_images/math/5b2ca0fe1cbc1048c2f1ab55d4dafd89e2652079.png" alt="and"/>Y(f)<img class="math" src="../../_images/math/6fc6928766b59916cd1ab820226375876a3d6a32.png" alt="(for detailed derivation see NumRec) and is called the **Wiener filter**:"/><img class="math" src="../../_images/math/4d747c04e7ee9ed180722cda2fd16ef9b55c4e63.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/><img class="math" src="../../_images/math/fbe3e7d8e5c2bab93777cc8765589e70505a7522.png" alt="Here"/>P_S(f)<img class="math" src="../../_images/math/5b2ca0fe1cbc1048c2f1ab55d4dafd89e2652079.png" alt="and"/>P_N(f)<img class="math" src="../../_images/math/51ef0e48882f5539f790b8752c2b371681cc8d79.png" alt="represent components of a two-component (signal and noise) fit to the
-PSD of input data,"/>PSD_Y (f) = P_S(f) + P_N(f)$, which holds as long as the signal and noise are
+between <img class="math" src="../../_images/math/bf4e7d6ee200dfb51b4214d6e4cc328b1c5fa4ef.png" alt="\hat{Y}(f)"/> and <img class="math" src="../../_images/math/39324378a3a196535c113f680553b2c003a4ee40.png" alt="Y(f)"/> (for detailed derivation see NumRec) and is called the <strong>Wiener filter</strong>:</p>
+<div class="math">
+<p><img src="../../_images/math/bd8425c175c2c7b0ef647d504ca63219aba18a37.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/></p>
+</div><p>Here <img class="math" src="../../_images/math/d6348b8ad6efa5bae77532005f8e25bd2ec33931.png" alt="P_S(f)"/> and <img class="math" src="../../_images/math/1ab651784fe23f5b1a164749a13a95795f6d5837.png" alt="P_N(f)"/> represent components of a two-component (signal and noise) fit to the
+PSD of input data, <img class="math" src="../../_images/math/d69ca964052a58764fc2a8cd47b16497f3aec891.png" alt="PSD_Y (f) = P_S(f) + P_N(f)"/>, which holds as long as the signal and noise are
 uncorrelated. We will see how the filtering works in the example below.</p>
 <div class="section" id="create-the-noisy-data">
 <h3>Create the noisy data<a class="headerlink" href="#create-the-noisy-data" title="Permalink to this headline">¶</a></h3>
@@ -318,7 +286,7 @@ uncorrelated. We will see how the filtering works in the example below.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;flux&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/Chapter10.2.5_8_1.png" src="../../_images/Chapter10.2.5_8_1.png" />
+<img alt="../../_images/Chapter10.2.5_6_1.png" src="../../_images/Chapter10.2.5_6_1.png" />
 </div>
 </div>
 </div>
@@ -349,13 +317,7 @@ For a detailed discussion, see NumRec.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># apply the Savitzky-Golay filter</span>
-<span class="n">h_sg</span> <span class="o">=</span> <span class="n">savitzky_golay</span><span class="p">(</span><span class="n">hN</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">use_fft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: AstroMLDeprecationWarning: The savitzky_golay function is deprecated and may be removed in a future version.
-        Use scipy.signal.savgol_filter instead. [warnings]
+<span class="n">h_sg</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">hN</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;mirror&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -394,7 +356,7 @@ For a detailed discussion, see NumRec.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;flux&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/Chapter10.2.5_14_1.png" src="../../_images/Chapter10.2.5_14_1.png" />
+<img alt="../../_images/Chapter10.2.5_12_1.png" src="../../_images/Chapter10.2.5_12_1.png" />
 </div>
 </div>
 </div>
@@ -404,9 +366,10 @@ For a detailed discussion, see NumRec.</p>
 <li><p>The upper panel shows the input power spectral density (PSD) distribution.</p></li>
 <li><p>The lower panel shows the Wiener-filtered power spectral density (PSD) distributions.</p></li>
 </ul>
-<p>The two curves in the upper panel represent two-component fit to PSD given by equation
-$<img class="math" src="../../_images/math/4d747c04e7ee9ed180722cda2fd16ef9b55c4e63.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/>$</p>
-<div class="cell docutils container">
+<p>The two curves in the upper panel represent two-component fit to PSD given by equation</p>
+<div class="math">
+<p><img src="../../_images/math/bd8425c175c2c7b0ef647d504ca63219aba18a37.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/></p>
+</div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
 <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -458,7 +421,7 @@ $<img class="math" src="../../_images/math/4d747c04e7ee9ed180722cda2fd16ef9b55c4
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$PSD(f)$&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/Chapter10.2.5_16_1.png" src="../../_images/Chapter10.2.5_16_1.png" />
+<img alt="../../_images/Chapter10.2.5_14_1.png" src="../../_images/Chapter10.2.5_14_1.png" />
 </div>
 </div>
 </div>
@@ -471,9 +434,10 @@ convolution of the unfiltered signal with the inverse Fourier transform of <img 
 peak, and the statistics of the noise are such that the minor peaks in the
 wings work to cancel out noise in the major peak.</p>
 <p>Hence, the modeling of the PSD in the frequency
-domain via
-$<img class="math" src="../../_images/math/4d747c04e7ee9ed180722cda2fd16ef9b55c4e63.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/>$
-corresponds to choosing the optimal kernel width. Just as detailed modeling
+domain via</p>
+<div class="math">
+<p><img src="../../_images/math/bd8425c175c2c7b0ef647d504ca63219aba18a37.png" alt="\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}"/></p>
+</div><p>corresponds to choosing the optimal kernel width. Just as detailed modeling
 of the Wiener filter is not of paramount importance, the choice of kernel is not either.</p>
 <p>We will use the same data as the previous Wiener filter figure as an example to explore this connection.</p>
 </div>
@@ -552,7 +516,7 @@ the kernel shown above, and thus Wiener filtering and kernel density estimation 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Chapter10.2.5_23_0.png" src="../../_images/Chapter10.2.5_23_0.png" />
+<img alt="../../_images/Chapter10.2.5_21_0.png" src="../../_images/Chapter10.2.5_21_0.png" />
 </div>
 </div>
 </div>
@@ -639,18 +603,11 @@ the result from step 3. This is the minimum component filtering estimate of base
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XX</span> <span class="o">=</span> <span class="n">loglam</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">XX</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">],</span> <span class="n">spec</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">XX</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">],</span> <span class="n">spec</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">],</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">spec_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
 <span class="n">spec_patched</span> <span class="o">=</span> <span class="n">spec</span> <span class="o">-</span> <span class="n">spec_fit</span>
 <span class="n">spec_patched</span><span class="p">[</span><span class="n">feature_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-14-41396d22bb6e&gt;:2: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
-To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
-  beta = np.linalg.lstsq(XX[~feature_mask], spec[~feature_mask])[0]
 </pre></div>
 </div>
 </div>
@@ -733,7 +690,7 @@ To use the future default and silence this warning we advise to pass `rcond=None
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;scaled $PSD(f)$&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/Chapter10.2.5_41_1.png" src="../../_images/Chapter10.2.5_41_1.png" />
+<img alt="../../_images/Chapter10.2.5_39_1.png" src="../../_images/Chapter10.2.5_39_1.png" />
 </div>
 </div>
 </div>
@@ -835,7 +792,7 @@ To use the future default and silence this warning we advise to pass `rcond=None
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 2000.0)
 </pre></div>
 </div>
-<img alt="../../_images/Chapter10.2.5_51_1.png" src="../../_images/Chapter10.2.5_51_1.png" />
+<img alt="../../_images/Chapter10.2.5_49_1.png" src="../../_images/Chapter10.2.5_49_1.png" />
 </div>
 </div>
 </div>

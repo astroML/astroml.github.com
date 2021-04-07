@@ -177,48 +177,9 @@ $(document).ready(function(){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> pip install astroML
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: astroML in /Users/bsipocz/munka/devel/astroml (1.0.2)
-Requirement already satisfied: scikit-learn&gt;=0.18 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (0.24.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.13 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (1.20.1)
-Requirement already satisfied: scipy&gt;=0.18 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (1.5.4)
-Requirement already satisfied: matplotlib&gt;=3.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (3.3.3)
-Requirement already satisfied: astropy&gt;=3.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astroML) (4.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from scikit-learn&gt;=0.18-&gt;astroML) (2.1.0)
-Requirement already satisfied: joblib&gt;=0.11 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from scikit-learn&gt;=0.18-&gt;astroML) (1.0.0)
-Requirement already satisfied: cycler&gt;=0.10 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (0.10.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (1.3.1)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (3.0.0b2)
-Requirement already satisfied: pillow&gt;=6.2.0 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (8.1.0)
-Requirement already satisfied: python-dateutil&gt;=2.1 in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from matplotlib&gt;=3.0-&gt;astroML) (2.8.1)
-Requirement already satisfied: pyerfa in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from astropy&gt;=3.0-&gt;astroML) (1.7.1.1)
-Requirement already satisfied: six in /Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages (from cycler&gt;=0.10-&gt;matplotlib&gt;=3.0-&gt;astroML) (1.15.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: You are using pip version 20.2.3; however, version 21.0.1 is available.</span>
-<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/Users/bsipocz/.pyenv/versions/3.9.1/bin/python3.9 -m pip install --upgrade pip&#39; command.</span>
-</pre></div>
-</div>
-</div>
-</div>
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/bsipocz/astroML-notebooks/notebooks?filepath=chapter10/10.4.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <div class="section" id="temporally-localized-signals">
 <h1>Temporally localized signals<a class="headerlink" href="#temporally-localized-signals" title="Permalink to this headline">¶</a></h1>
-<p>Author: Jake VanderPlas<br />
-License: BSD</p>
-<p>The figure produced by this code is published in the textbook<br />
-<em>“Statistics, Data Mining, and Machine Learning in Astronomy”</em> (2013)</p>
-<p>For more information, see http://astroML.github.com<br />
-To report a bug or issue, use the following forum: https://groups.google.com/forum/#!forum/astroml-general</p>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>A case frequently encountered in practice is a stationary signal with an event localized in time.<br />
@@ -236,7 +197,7 @@ these two examples.</p>
 </div>
 <div class="section" id="import-functions">
 <h2>Import functions<a class="headerlink" href="#import-functions" title="Permalink to this headline">¶</a></h2>
-<p>We use functions from <em>pymc3</em>. We will also use <em>FT_continuous, IFT_continuous</em>, and <em>wavelet_PSD</em> from <em>astroML.fourier</em> for wavelet PSD analysis.</p>
+<p>We use functions from PyMC3. We will also use <code class="docutils literal notranslate"><span class="pre">FT_continuous</span></code>, <code class="docutils literal notranslate"><span class="pre">IFT_continuous</span></code>, and <code class="docutils literal notranslate"><span class="pre">wavelet_PSD</span></code> from <code class="docutils literal notranslate"><span class="pre">astroML.fourier</span></code> for wavelet PSD analysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -256,9 +217,11 @@ these two examples.</p>
 <h2>Matched Filter Burst Search<a class="headerlink" href="#matched-filter-burst-search" title="Permalink to this headline">¶</a></h2>
 <p>Consider a model where the signal is stationary, <img class="math" src="../../_images/math/ccb170750cc08112c0c5fff2e9b636bbfdacf926.png" alt="y(t) = b_0 + \epsilon"/>, and at some unknown time, T, it
 suddenly increases, followed by a decay to the original level b0 over some unknown time period.
-Let us describe such a burst by
-$<img class="math" src="../../_images/math/ab46486206367d1aabfefff6e5ef555f9d9ae477.png" alt="y_b=(t|T,A,\theta)=A_{gB}(t-T|\theta)"/><img class="math" src="../../_images/math/744f89d1c2b7feb0efa142f257cd342249fdfc1a.png" alt="where the function"/>gB<img class="math" src="../../_images/math/ab8ad341bf7dc1ddb0013ee9973e947f959409e2.png" alt="describes the shape of the burst signal"/>(gB(t &lt; 0) = 0)<img class="math" src="../../_images/math/34d5578615595a9a3a55afc6398a6ff95510a548.png" alt=". This function is
-specified by a vector of parameters"/>\theta$ and can be analytic, tabulated in the form of a template,
+Let us describe such a burst by</p>
+<div class="math">
+<p><img src="../../_images/math/c7b65076397f52553340f4be0a2e38d64774c250.png" alt="y_b=(t|T,A,\theta)=A_{gB}(t-T|\theta)"/></p>
+</div><p>where the function <img class="math" src="../../_images/math/dc1900d602096f76d1bea54711cecfe1e70dc46b.png" alt="gB"/> describes the shape of the burst signal <img class="math" src="../../_images/math/9c1057cec33aaa8fc3eba8ae06287d999433eb76.png" alt="(gB(t &lt; 0) = 0)"/>. This function is
+specified by a vector of parameters <img class="math" src="../../_images/math/8a87f04e7d7cca18343c084cceca5237fae62491.png" alt="\theta"/> and can be analytic, tabulated in the form of a template,
 or treated in a nonparametric form.<br />
 Typically, MCMC methods are used to estimate model parameters.</p>
 <div class="section" id="set-up-a-burst-model-example">
@@ -302,7 +265,7 @@ Here we consider a case with <img class="math" src="../../_images/math/87e09d7eb
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h_{\\rm obs}$&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/10.4_8_1.png" src="../../_images/10.4_8_1.png" />
+<img alt="../../_images/10.4_6_1.png" src="../../_images/10.4_6_1.png" />
 </div>
 </div>
 </div>
@@ -322,7 +285,7 @@ This cell may take more than 2 minutes to run.</p>
         <span class="n">y</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">burst</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_alpha</span><span class="p">),</span> <span class="n">T</span><span class="p">),</span>
                       <span class="n">sd</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y_obs</span><span class="p">)</span>
 
-        <span class="n">traces</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="n">draws</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="n">tune</span><span class="p">)</span>
+        <span class="n">traces</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="n">draws</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="n">tune</span><span class="p">,</span> <span class="n">return_inferencedata</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">traces</span>
 
@@ -339,18 +302,10 @@ This cell may take more than 2 minutes to run.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/pymc3/sampling.py:465: FutureWarning: In an upcoming release, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
-  warnings.warn(
-Auto-assigning NUTS sampler...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initializing NUTS using jitter+adapt_diag...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multiprocess sampling (4 chains in 4 jobs)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NUTS: [log_alpha, T, A, b0]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-assigning NUTS sampler...
+Initializing NUTS using jitter+adapt_diag...
+Multiprocess sampling (4 chains in 4 jobs)
+NUTS: [log_alpha, T, A, b0]
 </pre></div>
 </div>
 <div class="output text_html">
@@ -367,10 +322,23 @@ Auto-assigning NUTS sampler...
             background: #F44336;
         }
     </style>
-  <progress value='15787' class='' max='16000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  98.67% [15787/16000 00:17<00:00 Sampling 4 chains, 410 divergences]
+  <progress value='16000' class='' max='16000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [16000/16000 00:21<00:00 Sampling 4 chains, 419 divergences]
 </div>
-</div></div>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 3_000 draw iterations (4_000 + 12_000 draws total) took 30 seconds.
+There were 101 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.8933143824958532, but should be close to 0.8. Try to increase the number of tuning steps.
+There were 105 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.9714992144629166, but should be close to 0.8. Try to increase the number of tuning steps.
+There were 96 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 117 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.9377623723516028, but should be close to 0.8. Try to increase the number of tuning steps.
+The number of effective samples is smaller than 25% for some parameters.
+/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/arviz/data/io_pymc3.py:87: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="show-estimated-model">
@@ -409,16 +377,17 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10.4_12_0.png" src="../../_images/10.4_12_0.png" />
+<img alt="../../_images/10.4_10_0.png" src="../../_images/10.4_10_0.png" />
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="matched-filter-chirp-search">
 <h2>Matched Filter Chirp Search<a class="headerlink" href="#matched-filter-chirp-search" title="Permalink to this headline">¶</a></h2>
-<p>Here we consider a chirp signal, added to a stationary signal <img class="math" src="../../_images/math/f2b876cbdb49b3b64f320d5c1571d6e1fd808039.png" alt="b_0"/>,
-$<img class="math" src="../../_images/math/646e12c5b94b4dc60ed3379777f3296ba393d8ab.png" alt="y(t) = b_0 + Asin[\omega t + \beta t^2]"/>$
-and analyze it using essentially the same code as for the burst signal.</p>
+<p>Here we consider a chirp signal, added to a stationary signal <img class="math" src="../../_images/math/f2b876cbdb49b3b64f320d5c1571d6e1fd808039.png" alt="b_0"/>,</p>
+<div class="math">
+<p><img src="../../_images/math/886881fb7149e8b091f4c973198ff4ea9321073e.png" alt="y(t) = b_0 + Asin[\omega t + \beta t^2]"/></p>
+</div><p>and analyze it using essentially the same code as for the burst signal.</p>
 <div class="section" id="set-up-a-chirp-model-example">
 <h3>1. set up a chirp model example<a class="headerlink" href="#set-up-a-chirp-model-example" title="Permalink to this headline">¶</a></h3>
 <p>Using equation <img class="math" src="../../_images/math/7b734cb7fa80f4c51879ef05470678a483503079.png" alt="y(t) = b_0 + Asin[\omega t + \beta t^2])"/>, we set up a chirp model as an example to show the matched filter search.<br />
@@ -457,7 +426,7 @@ The chirp data set is shown in the plot below.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h_{\\rm obs}$&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/10.4_15_1.png" src="../../_images/10.4_15_1.png" />
+<img alt="../../_images/10.4_13_1.png" src="../../_images/10.4_13_1.png" />
 </div>
 </div>
 </div>
@@ -478,7 +447,7 @@ The chirp data set is shown in the plot below.</p>
 
     <span class="c1"># Choose the Metropolis-Hastings step rather than rely on the default</span>
     <span class="n">step</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Metropolis</span><span class="p">()</span>
-    <span class="n">traces</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+    <span class="n">traces</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">return_inferencedata</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     
 <span class="c1"># Use the summary() function to provide statistics for each variable</span>
 <span class="n">mean_vals</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">traces</span><span class="p">)[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
@@ -515,12 +484,12 @@ CompoundStep
         }
     </style>
   <progress value='28000' class='' max='28000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [28000/28000 00:07<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [28000/28000 00:06<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 2_000 tune and 5_000 draw iterations (8_000 + 20_000 draws total) took 8 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 2_000 tune and 5_000 draw iterations (8_000 + 20_000 draws total) took 13 seconds.
 The estimated number of effective samples is smaller than 200 for some parameters.
-/astro/users/zhaoz26/.local/lib/python3.7/site-packages/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
-  FutureWarning,
+/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/arviz/data/io_pymc3.py:87: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -562,7 +531,7 @@ leads to a very similar prediction.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10.4_19_0.png" src="../../_images/10.4_19_0.png" />
+<img alt="../../_images/10.4_17_0.png" src="../../_images/10.4_17_0.png" />
 </div>
 </div>
 </div>
@@ -571,9 +540,10 @@ leads to a very similar prediction.</p>
 <div class="section" id="id3">
 <h1>Matched Filter Chirp Search<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
 <p>A more complex ten-parameter case of chirp modeling is show in this matched filter chirp search example. The chirp signal is
-temporally localized and it decays exponentially for t &gt; T:
-$<img class="math" src="../../_images/math/77fd87f7c75d349fd2e43ca6f8531027ade9a7da.png" alt="y_C(t|T, A, \phi, \omega, \beta) = A sin[\phi + \omega(t - T) + \beta(t - T)^2] exp[-\alpha(t - T)]"/>$</p>
-<div class="section" id="id4">
+temporally localized and it decays exponentially for t &gt; T:</p>
+<div class="math">
+<p><img src="../../_images/math/9df8cef6bf77c24f8aa7e79ddb5d195a4d3f4eae.png" alt="y_C(t|T, A, \phi, \omega, \beta) = A sin[\phi + \omega(t - T) + \beta(t - T)^2] exp[-\alpha(t - T)]"/></p>
+</div><div class="section" id="id4">
 <h2>1. set up a chirp model example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>Using equation <img class="math" src="../../_images/math/7b734cb7fa80f4c51879ef05470678a483503079.png" alt="y(t) = b_0 + Asin[\omega t + \beta t^2])"/>, we set up a chirp model as an example to show the matched filter search.<br />
 The chirp data set is shown in the plot below.</p>
@@ -632,7 +602,7 @@ The chirp data set is shown in the plot below.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h_{\\rm obs}$&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/10.4_22_1.png" src="../../_images/10.4_22_1.png" />
+<img alt="../../_images/10.4_20_1.png" src="../../_images/10.4_20_1.png" />
 </div>
 </div>
 </div>
@@ -664,12 +634,49 @@ The chirp data set is shown in the plot below.</p>
 
     <span class="n">step</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Metropolis</span><span class="p">()</span>
 
-    <span class="n">traces</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+    <span class="n">traces</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">return_inferencedata</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$T$&#39;</span><span class="p">,</span> <span class="s1">&#39;$A$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\omega$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\beta$&#39;</span><span class="p">]</span>
 <span class="n">limits</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">29.75</span><span class="p">,</span> <span class="mf">30.25</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.085</span><span class="p">,</span> <span class="mf">0.115</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0197</span><span class="p">,</span> <span class="mf">0.0202</span><span class="p">)]</span>
 <span class="n">true</span> <span class="o">=</span> <span class="p">[</span><span class="n">T_true</span><span class="p">,</span> <span class="n">A_true</span><span class="p">,</span> <span class="n">omega_true</span><span class="p">,</span> <span class="n">beta_true</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multiprocess sampling (4 chains in 4 jobs)
+CompoundStep
+&gt;Metropolis: [beta]
+&gt;Metropolis: [omega]
+&gt;Metropolis: [log_omega2]
+&gt;Metropolis: [log_omega1]
+&gt;Metropolis: [b1]
+&gt;Metropolis: [b0]
+&gt;Metropolis: [phi]
+&gt;Metropolis: [A]
+&gt;Metropolis: [T]
+</pre></div>
+</div>
+<div class="output text_html">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='28000' class='' max='28000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [28000/28000 00:16<00:00 Sampling 4 chains, 0 divergences]
+</div>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 2_000 tune and 5_000 draw iterations (8_000 + 20_000 draws total) took 25 seconds.
+The rhat statistic is larger than 1.2 for some parameters.
+The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div>
 </div>
 </div>
@@ -712,14 +719,16 @@ The chirp data set is shown in the plot below.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h_{\\rm obs}$&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/10.4_26_1.png" src="../../_images/10.4_26_1.png" />
+<img alt="../../_images/10.4_24_1.png" src="../../_images/10.4_24_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="chirp-wavelet-psd">
 <h2>Chirp wavelet PSD<a class="headerlink" href="#chirp-wavelet-psd" title="Permalink to this headline">¶</a></h2>
-<p>The signal in the absence of chirp is taken as
-$<img class="math" src="../../_images/math/e235fe499a213c02feea41e27393da7b7067ddac.png" alt="y(t) = b_0 + b_1 sin(\omega_1 t) sin(\omega_2 t)"/><img class="math" src="../../_images/math/32376cf874a8adbf46fe3e2d7bb57bbc4d5c078b.png" alt="Here, we can consider parameters"/>A<img class="math" src="../../_images/math/841e4d2e9d6c1333a44abb5e3f8112ff3ef7a438.png" alt=","/>\omega<img class="math" src="../../_images/math/841e4d2e9d6c1333a44abb5e3f8112ff3ef7a438.png" alt=","/>\beta<img class="math" src="../../_images/math/1268d01351970b1af6e3628a6a03e07f2f521424.png" alt=", and"/>\alpha$ as “interesting,” and other parameters can
+<p>The signal in the absence of chirp is taken as</p>
+<div class="math">
+<p><img src="../../_images/math/00bfc9cab72c68499fc9e8b0a79a671a66c7a85d.png" alt="y(t) = b_0 + b_1 sin(\omega_1 t) sin(\omega_2 t)"/></p>
+</div><p>Here, we can consider parameters <img class="math" src="../../_images/math/211284f68205c3e66773eaf026f32a0acdd3dfb3.png" alt="A"/>, <img class="math" src="../../_images/math/16cb1e006199f0853a2dc67ea814446a38beb54e.png" alt="\omega"/>, <img class="math" src="../../_images/math/7138dad9ac96835665b17f5817eacfcaa9b834c9.png" alt="\beta"/>, and <img class="math" src="../../_images/math/2f5aa019312e1bbc969deab8dca8b00f76025404.png" alt="\alpha"/> as “interesting,” and other parameters can
 be treated as “nuisance.”<br />
 We will take the same chirp signal above and draw a wavelet PSD for demonstration.</p>
 <div class="section" id="compute-the-wavelet-psd-of-chirp-model">
@@ -784,7 +793,7 @@ We will take the same chirp signal above and draw a wavelet PSD for demonstratio
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/10.4_31_0.png" src="../../_images/10.4_31_0.png" />
+<img alt="../../_images/10.4_29_0.png" src="../../_images/10.4_29_0.png" />
 </div>
 </div>
 </div>
