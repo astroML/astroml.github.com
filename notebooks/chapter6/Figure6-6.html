@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaussian Mixture Models Example &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Gaussian Mixture Models Example</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#import-data-and-functions">1. Import data and functions</a></li>
+<li><a class="reference internal" href="#get-the-segue-stellar-parameters-pipeline-data">2. Get the Segue Stellar Parameters Pipeline data</a></li>
+<li><a class="reference internal" href="#compute-gaussian-mixture-models-aic-bic">3. Compute Gaussian Mixture models &amp; AIC/BIC</a></li>
+<li><a class="reference internal" href="#compute-2d-density">4. Compute 2D density</a></li>
+<li><a class="reference internal" href="#plot-true-data-density">5. Plot true data density</a></li>
+<li><a class="reference internal" href="#plot-aic-bic">6. Plot AIC/BIC</a></li>
+<li><a class="reference internal" href="#best-configurations-for-bic">7. Best configurations for BIC</a></li>
+<li><a class="reference internal" href="#compare-input-data-and-converged-model">8. Compare input data and converged model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/bsipocz/astroML-notebooks/notebooks?filepath=chapter6/Figure6-6.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="gaussian-mixture-models-example">
+<h1>Gaussian Mixture Models Example<a class="headerlink" href="#gaussian-mixture-models-example" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><strong>Gaussian mixture model</strong> is a relatively simple and straightfoward numerical method on obtaining data likelihood function, and expectation maximization algorithm for maximizing the likelihood.<br />
+The likelihood of a datum <img class="math" src="../../_images/math/c67734af70861b2bd4dedf5c41c9aad231466f84.png" alt="x_i"/> for a Gaussian mixture model is given by</p>
+<div class="math">
+<p><img src="../../_images/math/dc58faa9923851cebc7303ae3fedf57704dc52d5.png" alt="p(x_i|\theta) = \sum_{j=1}^{M} \alpha_{j}\mathcal{N}(\mu_j, \sigma_j)"/></p>
+</div><p>where vector of parameters <img class="math" src="../../_images/math/8a87f04e7d7cca18343c084cceca5237fae62491.png" alt="\theta"/> is estimated from Gaussian with parameters <img class="math" src="../../_images/math/bfa3833974052d4ba2a5c5383f88232fafd5ec88.png" alt="\mu_j"/> and <img class="math" src="../../_images/math/c631cca57a2739f3ea1ad80d93087e936296821d.png" alt="\sigma_j"/>.<br />
+<img class="math" src="../../_images/math/5cba7379863dd5f1022e3d672259f0a2b79b888b.png" alt="\alpha_j"/> is the normalization factor for each Gaussian, with <img class="math" src="../../_images/math/c7fd503e3f365dea2f14033731c4c55b0b140d38.png" alt="\sum_{j=1}^{M} \alpha_{j} = 1"/>.<br />
+M is given.</p>
+<p>Both <strong>Akaike information criterion (AIC)</strong> and <strong>Bayesian information criterion (BIC)</strong> are scoring systems for model comparisons in classical statistics dealing with models with different numbers of free parameters.</p>
+<p>Specifically, <strong>AIC</strong> is computed as</p>
+<div class="math">
+<p><img src="../../_images/math/269975e4efb7f555379ff4f8389a4a9b67e46119.png" alt="AIC \equiv -2 ln(L^0(M)) + 2k + \frac{2k(k+1)}{N-k-1}"/></p>
+</div><p><strong>BIC</strong> is computed as</p>
+<div class="math">
+<p><img src="../../_images/math/15a4861a380635b6c991db9f6a070a65bdd376d5.png" alt="BIC \equiv -2ln[L^0(M)] + k lnN"/></p>
+</div><p>In this notebook, we are going to apply Gaussian mixture model on a dataset of stellar metallicity. Then we will use AIC, and BIC for model comparisons, and then plot the best scored model in BIC.</p>
+<div class="section" id="import-data-and-functions">
+<h3>1. Import data and functions<a class="headerlink" href="#import-data-and-functions" title="Permalink to this headline">¶</a></h3>
+<p>The main function we use in this section is GaussianMixture from sklearn package. The data we use in the example is from a subset of SEGUE Stellar Parameters data, in which the parameters are estimated using (SEGUE Stellar Parameters Pipeline). Data reference from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2006IAUJD..13E..26B/abstract">Beers et al 2006</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_sspp</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting.tools</span> <span class="kn">import</span> <span class="n">draw_ellipse</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-the-segue-stellar-parameters-pipeline-data">
+<h3>2. Get the Segue Stellar Parameters Pipeline data<a class="headerlink" href="#get-the-segue-stellar-parameters-pipeline-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_sspp</span><span class="p">(</span><span class="n">cleaned</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;FeH&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;alphFe&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># truncate dataset for speed</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compute-gaussian-mixture-models-aic-bic">
+<h3>3. Compute Gaussian Mixture models &amp; AIC/BIC<a class="headerlink" href="#compute-gaussian-mixture-models-aic-bic" title="Permalink to this headline">¶</a></h3>
+<p>We calculate Gaussian Mixture model using compute_GaussianMixture, and take AIC/BIC from calculated models.
+We will evaluate between 1 and 13 Gaussian components of the model, and pick the number of components with the lowest BIC score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_GaussianMixture</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">covariance_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">N</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">N</span><span class="p">)):</span>
+        <span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+                                    <span class="n">covariance_type</span><span class="o">=</span><span class="n">covariance_type</span><span class="p">)</span>
+        <span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">models</span>
+
+<span class="n">models</span> <span class="o">=</span> <span class="n">compute_GaussianMixture</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="n">AIC</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">aic</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+<span class="n">BIC</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">bic</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+<span class="n">i_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">BIC</span><span class="p">)</span>
+<span class="n">gmm_best</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">i_best</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;best fit converged:&quot;</span><span class="p">,</span> <span class="n">gmm_best</span><span class="o">.</span><span class="n">converged_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BIC: n_components =  </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">N</span><span class="p">[</span><span class="n">i_best</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>best fit converged: True
+BIC: n_components =  5
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compute-2d-density">
+<h3>4. Compute 2D density<a class="headerlink" href="#compute-2d-density" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FeH_bins</span> <span class="o">=</span> <span class="mi">51</span>
+<span class="n">alphFe_bins</span> <span class="o">=</span> <span class="mi">51</span>
+<span class="n">H</span><span class="p">,</span> <span class="n">FeH_bins</span><span class="p">,</span> <span class="n">alphFe_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;FeH&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;alphFe&#39;</span><span class="p">],</span>
+                                          <span class="p">(</span><span class="n">FeH_bins</span><span class="p">,</span> <span class="n">alphFe_bins</span><span class="p">))</span>
+
+<span class="n">Xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">,</span>
+                          <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">FeH_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                                             <span class="o">+</span> <span class="n">FeH_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span>
+                                      <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">alphFe_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                                             <span class="o">+</span> <span class="n">alphFe_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">log_dens</span> <span class="o">=</span> <span class="n">gmm_best</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">Xgrid</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">51</span><span class="p">,</span> <span class="mi">51</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-true-data-density">
+<h3>5. Plot true data density<a class="headerlink" href="#plot-true-data-density" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># define plot_figure to plot all figures with the same format.</span>
+<span class="k">def</span> <span class="nf">plot_figure</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+              <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+              <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">FeH_bins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">FeH_bins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                      <span class="n">alphFe_bins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">alphFe_bins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\rm [Fe/H]$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.101</span><span class="p">,</span> <span class="mf">0.101</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.93</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span>
+            <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">alphFe_bins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">alphFe_bins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;Input&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\rm [\alpha/Fe]$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Figure6-6_11_0.png" src="../../_images/Figure6-6_11_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="plot-aic-bic">
+<h3>6. Plot AIC/BIC<a class="headerlink" href="#plot-aic-bic" title="Permalink to this headline">¶</a></h3>
+<p>We pick the N value for smallest score in BIC for the following calculations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">AIC</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AIC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">BIC</span><span class="p">,</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;BIC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;N components&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[None, None, None, None, None, None, None, None, None, None, None, None]
+</pre></div>
+</div>
+<img alt="../../_images/Figure6-6_13_1.png" src="../../_images/Figure6-6_13_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="best-configurations-for-bic">
+<h3>7. Best configurations for BIC<a class="headerlink" href="#best-configurations-for-bic" title="Permalink to this headline">¶</a></h3>
+<p>Taking N = 5 components as the result of BIC evaluation, we plot the best estimated model.<br />
+The reconstructed density are in grayscale. The Gaussians are solid ellipses in the figure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_dens</span><span class="p">),</span> <span class="s2">&quot;Converged&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">gmm_best</span><span class="o">.</span><span class="n">means_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">gmm_best</span><span class="o">.</span><span class="n">means_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">mu</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">gmm_best</span><span class="o">.</span><span class="n">means_</span><span class="p">,</span> <span class="n">gmm_best</span><span class="o">.</span><span class="n">covariances_</span><span class="p">,</span> <span class="n">gmm_best</span><span class="o">.</span><span class="n">weights_</span><span class="p">):</span>
+    <span class="n">draw_ellipse</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\rm [\alpha/Fe]$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\rm [\\alpha/Fe]$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/Figure6-6_15_1.png" src="../../_images/Figure6-6_15_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compare-input-data-and-converged-model">
+<h3>8. Compare input data and converged model<a class="headerlink" href="#compare-input-data-and-converged-model" title="Permalink to this headline">¶</a></h3>
+<p>We plot the input true density distribution and best scored model from BIC in comparison. As a result, we find component number = 5 best discribes this metallicity dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># plot density</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;Input&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\rm [\alpha/Fe]$&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_dens</span><span class="p">),</span> <span class="s2">&quot;Converged&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">gmm_best</span><span class="o">.</span><span class="n">means_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">gmm_best</span><span class="o">.</span><span class="n">means_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">mu</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">gmm_best</span><span class="o">.</span><span class="n">means_</span><span class="p">,</span> <span class="n">gmm_best</span><span class="o">.</span><span class="n">covariances_</span><span class="p">,</span> <span class="n">gmm_best</span><span class="o">.</span><span class="n">weights_</span><span class="p">):</span>
+    <span class="n">draw_ellipse</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Figure6-6_17_0.png" src="../../_images/Figure6-6_17_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter6/Figure6-6.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

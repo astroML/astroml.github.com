@@ -1,0 +1,902 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approximate Bayesian Computation Example &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Approximate Bayesian Computation Example</a><ul>
+<li><a class="reference internal" href="#january-6-2020">January 6, 2020</a></li>
+<li><a class="reference internal" href="#approximate-bayesian-computation">Approximate Bayesian Computation</a></li>
+<li><a class="reference internal" href="#id1">Approximate Bayesian Computation</a></li>
+<li><a class="reference internal" href="#id2">Approximate Bayesian Computation</a></li>
+<li><a class="reference internal" href="#abc-algorithm">ABC algorithm:</a></li>
+<li><a class="reference internal" href="#id3">ABC algorithm:</a></li>
+<li><a class="reference internal" href="#id4">ABC algorithm:</a></li>
+<li><a class="reference internal" href="#id5">ABC algorithm:</a></li>
+<li><a class="reference internal" href="#conclusions">Conclusions:</a></li>
+<li><a class="reference internal" href="#id6">Conclusions:</a></li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/bsipocz/astroML-notebooks/notebooks?filepath=chapter5/AAS2019_ABCexample.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="approximate-bayesian-computation-example">
+<h1>Approximate Bayesian Computation Example<a class="headerlink" href="#approximate-bayesian-computation-example" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="january-6-2020">
+<h2>January 6, 2020<a class="headerlink" href="#january-6-2020" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.astroml.org/workshops/AAS235.html">astroML workshop at the 235th Meeting of the American Astronomical Society</a></p>
+<p><a class="reference external" href="http://faculty.washington.edu/ivezic/">Zeljko Ivezic, University of Washington</a></p>
+<p><a class="reference external" href="https://github.com/astroML/astroML-workshop_AAS235/blob/master/bayesian/AAS2019_ABCexample.ipynb">This notebook</a></p>
+</div>
+<div class="section" id="approximate-bayesian-computation">
+<h2>Approximate Bayesian Computation<a class="headerlink" href="#approximate-bayesian-computation" title="Permalink to this headline">¶</a></h2>
+<p>Astronomical models are often intrinsically stochastic even when modeling data with negligible measurement errors.</p>
+<p>Good examples include simulations of the temperature map of the cosmic microwave background (CMB), of the large-scale structure of galaxy distribution, and of mass and luminosity distributions for stars and galaxies.</p>
+<p>In such cases it is hard and often impossible to explicitly write down the data likelihood.</p>
+</div>
+<div class="section" id="id1">
+<h2>Approximate Bayesian Computation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>When a simulation is stochastic, one often attempts to vary its input parameters until some adequate metric is well matched between the observed and simulated datasets (e.g., the CMB angular power spectrum, or a parametrized form of the luminosity function).</p>
+<p>With the aid of Approximate Bayesian computation (ABC), this tuning process can be made less ad hoc and much more efficient. An excellent tutorial is Turner &amp; Van Zandt (2012, Journal of Mathematical Psychology 56, 69–85).</p>
+</div>
+<div class="section" id="id2">
+<h2>Approximate Bayesian Computation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>The basic idea of ABC is quite simple: produce a large number of models (simulations) by sampling the plausible (prior) values of input parameters and select those that “look like the data”.</p>
+<p>The distribution of input parameters for the selected subset then approximates the true posterior pdf.</p>
+<p>And then repeat until reaching some pre-defined agreement between the values of a distance metric computed with real and simulated data sets.</p>
+<p>We will consider here a simple example of a 1-dimensional gaussian sample with a known std. deviation. We will use ABC to constrain its location parameter: <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> in <img class="math" src="../../_images/math/403f4159f2dfee6fbdaaf97e7ea22aec1dc231e5.png" alt="N(\mu, \sigma)"/>.</p>
+<p>This toy example is trivial - we already know that <em>the sample mean is the best estimator of the location parameter</em>. Nevertheless, the structure of more complex examples is identical: only the sample simulator, and perhaps distance metric need to be changed.</p>
+<p>For example, we could have a simulator of the distribution of galaxies on the sky and use two-point correlation function as a metric, or a simulator of the star formation process that generates luminosities of stars and use luminosity function to construct the distance metric.</p>
+</div>
+<div class="section" id="abc-algorithm">
+<h2>ABC algorithm:<a class="headerlink" href="#abc-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Let’s assume that data are described by vector <img class="math" src="../../_images/math/9d42ea04b12d9b2453b4546839cd3cd63f5b22b4.png" alt="\{x_i\}"/>, that we have a simulator for producing a model outcome (simulated data vector <img class="math" src="../../_images/math/04b8914debfb4a2afc37826a3b594d4cb45db4ba.png" alt="\{y_i\}"/>) given a vector of input parameters <img class="math" src="../../_images/math/8a87f04e7d7cca18343c084cceca5237fae62491.png" alt="\theta"/>, and that their prior distribution, p<img class="math" src="../../_images/math/6735080704f281927f53d9a90dcb958b710b35a6.png" alt="_0(\theta)"/>, is known.</p>
+<p>In the first iteration, input parameters <img class="math" src="../../_images/math/8a87f04e7d7cca18343c084cceca5237fae62491.png" alt="\theta"/> are repeatedly sampled from the prior until the simulated dataset <img class="math" src="../../_images/math/04b8914debfb4a2afc37826a3b594d4cb45db4ba.png" alt="\{y_i\}"/> agrees with the data <img class="math" src="../../_images/math/9d42ea04b12d9b2453b4546839cd3cd63f5b22b4.png" alt="\{x_i\}"/>, using some distance metric, and within some initial tolerance
+<img class="math" src="../../_images/math/0ad7b30534898f253002222f998f38001e604648.png" alt="\epsilon"/> (which can be very large).</p>
+<div class="math">
+<p><img src="../../_images/math/56e6ec46746e6c8f350d4bf49ff796fa9fd5c4ef.png" alt="D(\{x_i\}|\{y_i\}) &lt; \epsilon"/></p>
+</div></div>
+<div class="section" id="id3">
+<h2>ABC algorithm:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>This sampling is repeated an arbitrary number of times to generate a set of values of desired size (e.g., to estimate precisely its posterior pdf, including higher moments, if needed).</p>
+<p>In every subsequent iteration j, the set of parameter values is improved through incremental approximations to the true posterior distribution.</p>
+</div>
+<div class="section" id="id4">
+<h2>ABC algorithm:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Just as in the first iteration, new input parameter values are repeatedly drawn from p<img class="math" src="../../_images/math/388d1a8314a00e842b616f27ee805e454d81ef7c.png" alt="_j(\theta_j)"/> until</p>
+<div class="math">
+<p><img src="../../_images/math/77fa2932d6054d20bc466a4b0ccfdfd3018def64.png" alt="D(\{x_i\}|\{y_i\}) &lt; \epsilon_j"/></p>
+</div><p>is satisfied.</p>
+</div>
+<div class="section" id="id5">
+<h2>ABC algorithm:<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>p<img class="math" src="../../_images/math/388d1a8314a00e842b616f27ee805e454d81ef7c.png" alt="_j(\theta_j)"/> is generated using the <img class="math" src="../../_images/math/8a87f04e7d7cca18343c084cceca5237fae62491.png" alt="\theta"/> values from the previous iteration in a step akin to MCMC, which
+effectively selects “particles” from the previous weighted pool, and then perturbs them using the kernel K.</p>
+<p>In each iteration j, the threshold value <img class="math" src="../../_images/math/abf4504fd41ff520e49982a7cbe836eb441db687.png" alt="\epsilon_j"/> decreases; it is typically taken as a value in the
+70%–90% range of the cumulative distribution of <img class="math" src="../../_images/math/e0de4ea24881150457ceb5bea0ea5d91b8d320be.png" alt="D(\{x_i\}|\{y_i\})"/> in the previous iteration.
+This sampling algorithm is called <em>Population Monte Carlo ABC</em>.</p>
+<p>The ABC method typically relies on a low-dimensional summary statistic of the data, S(x), such as the sample mean, rather than the full data set. For example, the distance metric between <img class="math" src="../../_images/math/9d42ea04b12d9b2453b4546839cd3cd63f5b22b4.png" alt="\{x_i\}"/> and <img class="math" src="../../_images/math/04b8914debfb4a2afc37826a3b594d4cb45db4ba.png" alt="\{y_i\}"/> is often defined as</p>
+<div class="math">
+<p><img src="../../_images/math/87244d22895c52bd1201c710315f7a1e591ddfd3.png" alt="D(\{x_i\}|\{y_i\}) = D(S(x)|S(y))  = |\, {\rm mean}(x) - {\rm mean}(y) \,|."/></p>
+</div><p>Another example of a distance metric would be <img class="math" src="../../_images/math/1cbe49dd16598c0550b8a7477dd597e6bc04367e.png" alt="\chi^2"/> between two luminosity functions (data vs. simulation), or two two-point correlation functions.</p>
+<p>When <img class="math" src="../../_images/math/df28fe4cdf64cf9ccd09192f839c74522ccfea4f.png" alt="S(x)"/> is a sufficient statistic, ABC converges to the true posterior.</p>
+<p>In summary, the two key ABC aspects are the use of low-dimensional summary statistics of the data (instead of data likelihood) and MCMC-like intelligent parameter optimization.</p>
+<p>The following code is modeled after  Figure 5.29 from the book:
+https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### generic ABC tools </span>
+
+<span class="c1"># return the gaussian kernel values</span>
+<span class="k">def</span> <span class="nf">kernelValues</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">,</span> <span class="n">currentTheta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">norm</span><span class="p">(</span><span class="n">currentTheta</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">)</span>
+
+<span class="c1"># return new values, scattered around an old value using gaussian kernel</span>
+<span class="k">def</span> <span class="nf">kernelSample</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">stdDev</span><span class="p">,</span> <span class="n">Nsample</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># returns 1-D array of length N</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">stdDev</span><span class="p">,</span> <span class="n">Nsample</span><span class="p">)</span>
+
+<span class="c1"># kernel scale </span>
+<span class="k">def</span> <span class="nf">KLscatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">weightedResample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+    <span class="c1"># this optimal scale for the kernel was derived by minimizing </span>
+    <span class="c1"># the Kullback-Leibler divergence</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+
+<span class="c1"># compute new weight</span>
+<span class="k">def</span> <span class="nf">computeWeight</span><span class="p">(</span><span class="n">prevWeights</span><span class="p">,</span> <span class="n">prevThetas</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">,</span> <span class="n">currentTheta</span><span class="p">):</span>
+    <span class="n">denom</span> <span class="o">=</span> <span class="n">prevWeights</span> <span class="o">*</span> <span class="n">kernelValues</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">,</span> <span class="n">currentTheta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prior</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">denom</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">weightedResample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="c1"># resample N elements from x with replacement, with selection </span>
+    <span class="c1"># probabilities proportional to provided weights</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="c1"># returns 1-D array of length N</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### specific ABC tools </span>
+
+<span class="c1"># ABC distance metric </span>
+<span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="c1"># flat prior probability</span>
+<span class="k">def</span> <span class="nf">prior</span><span class="p">(</span><span class="n">allThetas</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">allThetas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABC iterator </span>
+<span class="k">def</span> <span class="nf">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">ssTot</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">Ndata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    
+    <span class="c1">## first sample from uniform prior, draw samples and compute their distance to data</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">):</span>
+        <span class="n">thetaS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">thetaMin</span><span class="p">,</span> <span class="n">thetaMax</span><span class="p">)</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">thetaS</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">)</span>
+        <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+        <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">thetaS</span>
+
+    <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">Ndraw</span>
+    <span class="n">scatter</span> <span class="o">=</span> <span class="n">KLscatter</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Ndraw</span><span class="p">)</span>
+    <span class="n">eps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
+    
+    <span class="c1">## continue with ABC iterations of theta </span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Niter</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;iteration:&#39;</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+        <span class="n">thetaOld</span> <span class="o">=</span> <span class="n">theta</span>
+        <span class="n">weightsOld</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+        <span class="c1"># sample until distance condition fullfilled</span>
+        <span class="n">ss</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">):</span>
+            <span class="n">notdone</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="c1"># sample repeatedly until meeting the distance threshold Ndraw times</span>
+            <span class="k">while</span> <span class="n">notdone</span><span class="p">:</span>
+                <span class="n">ss</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">ssTot</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="c1"># sample from previous theta with probability given by weights: thetaS</span>
+                <span class="c1"># nb: weightedResample returns a 1-D array of length 1</span>
+                <span class="n">thetaS</span> <span class="o">=</span> <span class="n">weightedResample</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># perturb thetaS with kernel</span>
+                <span class="c1"># nb: kernelSample returns a 1-D array of length 1</span>
+                <span class="n">thetaSS</span> <span class="o">=</span> <span class="n">kernelSample</span><span class="p">(</span><span class="n">thetaS</span><span class="p">,</span> <span class="n">scatter</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># generate a simulated sample</span>
+                <span class="n">sample</span> <span class="o">=</span> <span class="n">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">thetaSS</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">)</span>
+                <span class="c1"># and check the distance threshold </span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">dist</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="c1"># met the goal, another acceptable value!</span>
+                    <span class="n">notdone</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="c1"># new accepted parameter value </span>
+            <span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">thetaSS</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span>
+            <span class="c1"># get weight for new theta</span>
+            <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">computeWeight</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">scatter</span><span class="p">,</span> <span class="n">thetaSS</span><span class="p">)</span>
+        <span class="c1"># collected Ndraw values in this iteration, now </span>
+        <span class="c1"># update the kernel scatter value using new values </span>
+        <span class="n">scatter</span> <span class="o">=</span> <span class="n">KLscatter</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Ndraw</span><span class="p">)</span>
+        <span class="c1"># threshold for next iteration </span>
+        <span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">DpercCut</span><span class="p">)</span>
+        <span class="n">accrate</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">*</span><span class="n">Ndraw</span><span class="o">/</span><span class="n">ss</span>
+        <span class="n">simTot</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ssTot</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; number of sim. evals so far:&#39;</span><span class="p">,</span> <span class="n">simTot</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;     sim. evals in this iter:&#39;</span><span class="p">,</span> <span class="n">ss</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;         acceptance rate (%):&#39;</span><span class="p">,</span> <span class="n">accrate</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;                 new epsilon:&#39;</span><span class="p">,</span> <span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;           KL sample scatter:&#39;</span><span class="p">,</span> <span class="n">scatter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ssTot</span>     
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">):</span>
+
+    <span class="n">Nresample</span> <span class="o">=</span> <span class="mi">100000</span>
+    <span class="n">Ndata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">xmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">sigPosterior</span> <span class="o">=</span> <span class="n">sigTrue</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Ndata</span><span class="p">)</span>
+    <span class="n">truedist</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">xmean</span><span class="p">,</span> <span class="n">sigPosterior</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">):</span>
+        <span class="n">meanT</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">stdT</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+    <span class="c1"># plot</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span>
+                        <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+    <span class="c1"># last few iterations</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\mu)$&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">]:</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">weightedResample</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Nresample</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="o">-</span><span class="p">(</span><span class="mf">0.04</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">15</span><span class="p">)))</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">truedist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.12</span><span class="p">,</span> <span class="mf">2.25</span><span class="p">,</span> <span class="s1">&#39;Iter: 15, 20, 25&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+
+
+    <span class="c1"># first few iterations</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\mu)$&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]:</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">weightedResample</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Nresample</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">3.2</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="s1">&#39;Iter: 2, 4, 6&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+
+
+    <span class="c1"># mean and scatter vs. iteration number</span>
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration&#39;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$&lt;\mu&gt; \pm \, \sigma_\mu$&#39;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="n">meanTm</span> <span class="o">=</span> <span class="n">meanT</span> <span class="o">-</span> <span class="n">stdT</span>
+    <span class="n">meanTp</span> <span class="o">=</span> <span class="n">meanT</span> <span class="o">+</span> <span class="n">stdT</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">meanTm</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">meanTp</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">],</span> <span class="p">[</span><span class="n">xmean</span><span class="p">,</span> <span class="n">xmean</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># data</span>
+    <span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">datadist</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">muTrue</span><span class="p">,</span> <span class="n">sigTrue</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">datadist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xmean</span><span class="p">,</span> <span class="n">xmean</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="s1">&#39;|k&#39;</span><span class="p">)</span>
+
+    <span class="c1"># acceptance rate vs. iteration number</span>
+    <span class="n">ax5</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration&#39;</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;acceptance rate (%)&#39;</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="c1"># ax5.set_ylim(0, 4)</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">accrate</span><span class="p">)</span>
+     
+    <span class="c1"># the number of simulations vs. iteration number</span>
+    <span class="n">ax6</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration&#39;</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;total sims evals&#39;</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="c1"># ax6.set_ylim(0, 4)</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="c1"># simple gaussian toy model</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">Ndata</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">getData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="c1"># use simulated data</span>
+    <span class="k">return</span> <span class="n">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;observed&quot; data:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># for repeatability</span>
+<span class="n">Ndata</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">muTrue</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">sigmaTrue</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">getData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">)</span>
+<span class="n">dataMean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># very conservative choice for initial tolerance</span>
+<span class="n">eps0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># (very wide) limits for uniform prior</span>
+<span class="n">thetaMin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="n">thetaMax</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABC sampling parameters</span>
+<span class="n">Ndraw</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">Niter</span> <span class="o">=</span> <span class="mi">26</span>
+<span class="n">DpercCut</span> <span class="o">=</span> <span class="mi">80</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrays for tracking iterations </span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">])</span>
+<span class="n">accrate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">])</span>
+<span class="n">simTot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">])</span>
+<span class="n">meanT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Niter</span><span class="p">)</span>
+<span class="n">stdT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Niter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numberSimEvals</span> <span class="o">=</span> <span class="n">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration: 1
+ number of sim. evals so far: 2810.0
+     sim. evals in this iter: 2810
+         acceptance rate (%): 35.587188612099645
+                 new epsilon: 3.747800742428658
+           KL sample scatter: 3.9088207666206944
+iteration: 2
+ number of sim. evals so far: 4529.0
+     sim. evals in this iter: 1719
+         acceptance rate (%): 58.17335660267597
+                 new epsilon: 2.831756063394538
+           KL sample scatter: 3.0052790682293784
+iteration: 3
+ number of sim. evals so far: 6335.0
+     sim. evals in this iter: 1806
+         acceptance rate (%): 55.370985603543744
+                 new epsilon: 2.160458055603449
+           KL sample scatter: 2.2587673148212857
+iteration: 4
+ number of sim. evals so far: 8134.0
+     sim. evals in this iter: 1799
+         acceptance rate (%): 55.58643690939411
+                 new epsilon: 1.6456625235625149
+           KL sample scatter: 1.8304632418084037
+iteration: 5
+ number of sim. evals so far: 10047.0
+     sim. evals in this iter: 1913
+         acceptance rate (%): 52.27391531625719
+                 new epsilon: 1.257612187267058
+           KL sample scatter: 1.3668563521112371
+iteration: 6
+ number of sim. evals so far: 11907.0
+     sim. evals in this iter: 1860
+         acceptance rate (%): 53.763440860215056
+                 new epsilon: 0.9828161376253346
+           KL sample scatter: 1.042719126541488
+iteration: 7
+ number of sim. evals so far: 13754.0
+     sim. evals in this iter: 1847
+         acceptance rate (%): 54.141851651326476
+                 new epsilon: 0.7296646422530663
+           KL sample scatter: 0.830011249695032
+iteration: 8
+ number of sim. evals so far: 15780.0
+     sim. evals in this iter: 2026
+         acceptance rate (%): 49.35834155972359
+                 new epsilon: 0.5734611153568521
+           KL sample scatter: 0.6471250006146377
+iteration: 9
+ number of sim. evals so far: 17725.0
+     sim. evals in this iter: 1945
+         acceptance rate (%): 51.41388174807198
+                 new epsilon: 0.45045526628923327
+           KL sample scatter: 0.5594171662693772
+iteration: 10
+ number of sim. evals so far: 19780.0
+     sim. evals in this iter: 2055
+         acceptance rate (%): 48.661800486618006
+                 new epsilon: 0.3508712684406295
+           KL sample scatter: 0.4728938684640442
+iteration: 11
+ number of sim. evals so far: 22014.0
+     sim. evals in this iter: 2234
+         acceptance rate (%): 44.76275738585497
+                 new epsilon: 0.27136332572706756
+           KL sample scatter: 0.4023816615583871
+iteration: 12
+ number of sim. evals so far: 24600.0
+     sim. evals in this iter: 2586
+         acceptance rate (%): 38.669760247486465
+                 new epsilon: 0.21467684783100782
+           KL sample scatter: 0.3483870188455545
+iteration: 13
+ number of sim. evals so far: 27366.0
+     sim. evals in this iter: 2766
+         acceptance rate (%): 36.153289949385396
+                 new epsilon: 0.17172532980341643
+           KL sample scatter: 0.3251422736855301
+iteration: 14
+ number of sim. evals so far: 30758.0
+     sim. evals in this iter: 3392
+         acceptance rate (%): 29.4811320754717
+                 new epsilon: 0.1339438876553719
+           KL sample scatter: 0.3161626302391143
+iteration: 15
+ number of sim. evals so far: 34700.0
+     sim. evals in this iter: 3942
+         acceptance rate (%): 25.36783358701167
+                 new epsilon: 0.10851469529879447
+           KL sample scatter: 0.30140014715088465
+iteration: 16
+ number of sim. evals so far: 39649.0
+     sim. evals in this iter: 4949
+         acceptance rate (%): 20.20610224287735
+                 new epsilon: 0.08671394512232951
+           KL sample scatter: 0.29343062978627743
+iteration: 17
+ number of sim. evals so far: 45538.0
+     sim. evals in this iter: 5889
+         acceptance rate (%): 16.98081168279844
+                 new epsilon: 0.06880583399854477
+           KL sample scatter: 0.3167788133378119
+iteration: 18
+ number of sim. evals so far: 53235.0
+     sim. evals in this iter: 7697
+         acceptance rate (%): 12.992074834351046
+                 new epsilon: 0.05684009106567408
+           KL sample scatter: 0.2716148078502225
+iteration: 19
+ number of sim. evals so far: 62099.0
+     sim. evals in this iter: 8864
+         acceptance rate (%): 11.28158844765343
+                 new epsilon: 0.04468885258966929
+           KL sample scatter: 0.291729815450315
+iteration: 20
+ number of sim. evals so far: 73550.0
+     sim. evals in this iter: 11451
+         acceptance rate (%): 8.732861758798359
+                 new epsilon: 0.03523084288062881
+           KL sample scatter: 0.28211371862230267
+iteration: 21
+ number of sim. evals so far: 87723.0
+     sim. evals in this iter: 14173
+         acceptance rate (%): 7.055669230226487
+                 new epsilon: 0.028027171422800822
+           KL sample scatter: 0.28566455425290255
+iteration: 22
+ number of sim. evals so far: 106022.0
+     sim. evals in this iter: 18299
+         acceptance rate (%): 5.46477949614733
+                 new epsilon: 0.022211537013158634
+           KL sample scatter: 0.31089018970552496
+iteration: 23
+ number of sim. evals so far: 130186.0
+     sim. evals in this iter: 24164
+         acceptance rate (%): 4.138387684158252
+                 new epsilon: 0.017310672157556176
+           KL sample scatter: 0.27356884968210093
+iteration: 24
+ number of sim. evals so far: 157464.0
+     sim. evals in this iter: 27278
+         acceptance rate (%): 3.6659579148031383
+                 new epsilon: 0.013681562311032016
+           KL sample scatter: 0.28909520482642886
+iteration: 25
+ number of sim. evals so far: 193965.0
+     sim. evals in this iter: 36501
+         acceptance rate (%): 2.7396509684666173
+                 new epsilon: 0.011164765216288775
+           KL sample scatter: 0.2916672133596475
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
+<span class="n">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/AAS2019_ABCexample_21_0.png" src="../../_images/AAS2019_ABCexample_21_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="conclusions">
+<h2>Conclusions:<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<p>As shown in the top middle panel in the above figure, the ABC algorithm converges to the correct solution in about 15 iterations.</p>
+<p>Between the 15th and the 25th iteration, the tolerance <img class="math" src="../../_images/math/0ad7b30534898f253002222f998f38001e604648.png" alt="\epsilon"/> decreases from 0.1 to 0.01 and the acceptance probability decreases from 25% to 2.7%. As a result, the total number of simulation evaluations increases by about a factor of six (from about 30,000 to about 180,000), although there is very little gain for our inference of <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/>.</p>
+</div>
+<div class="section" id="id6">
+<h2>Conclusions:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>Therefore, the stopping criterion requires careful consideration when the cost of simulations is high (e.g., the maximum acceptable relative change of the estimator can be compared to its uncertainty).</p>
+<p>We can have a much smaller number of sim evals if we don’t care about pretty histograms.</p>
+<p>For 100 times smaller Ndraw, we expect about 100 times fewer simulation evaluations.</p>
+<p>Let’s do it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## LAST POINT: we can have much smaller Ndraw if we don&#39;t care about pretty </span>
+<span class="c1">## histograms for 100 times smaller Ndraw, expect about 100 times fewer </span>
+<span class="c1">## simulation evaluations</span>
+<span class="n">Ndraw</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrays for tracking iterations </span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="c1"># run ABC </span>
+<span class="n">numberSimEvals2</span> <span class="o">=</span> <span class="n">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration: 1
+ number of sim. evals so far: 16.0
+     sim. evals in this iter: 16
+         acceptance rate (%): 62.5
+                 new epsilon: 3.382172501177358
+           KL sample scatter: 4.215968709849081
+iteration: 2
+ number of sim. evals so far: 31.0
+     sim. evals in this iter: 15
+         acceptance rate (%): 66.66666666666667
+                 new epsilon: 2.1589713569679114
+           KL sample scatter: 1.2419989351788945
+iteration: 3
+ number of sim. evals so far: 46.0
+     sim. evals in this iter: 15
+         acceptance rate (%): 66.66666666666667
+                 new epsilon: 1.8210327274810516
+           KL sample scatter: 1.0197054314561427
+iteration: 4
+ number of sim. evals so far: 58.0
+     sim. evals in this iter: 12
+         acceptance rate (%): 83.33333333333333
+                 new epsilon: 0.7750945943459232
+           KL sample scatter: 0.797736358954423
+iteration: 5
+ number of sim. evals so far: 73.0
+     sim. evals in this iter: 15
+         acceptance rate (%): 66.66666666666667
+                 new epsilon: 0.5690041565242981
+           KL sample scatter: 0.6461739019978467
+iteration: 6
+ number of sim. evals so far: 93.0
+     sim. evals in this iter: 20
+         acceptance rate (%): 50.0
+                 new epsilon: 0.33544413819596797
+           KL sample scatter: 0.41271450725802855
+iteration: 7
+ number of sim. evals so far: 115.0
+     sim. evals in this iter: 22
+         acceptance rate (%): 45.45454545454545
+                 new epsilon: 0.23315080652592474
+           KL sample scatter: 0.3900070857100843
+iteration: 8
+ number of sim. evals so far: 142.0
+     sim. evals in this iter: 27
+         acceptance rate (%): 37.03703703703704
+                 new epsilon: 0.13722661732786437
+           KL sample scatter: 0.22127660755219733
+iteration: 9
+ number of sim. evals so far: 164.0
+     sim. evals in this iter: 22
+         acceptance rate (%): 45.45454545454545
+                 new epsilon: 0.11302948977529503
+           KL sample scatter: 0.250449034952723
+iteration: 10
+ number of sim. evals so far: 225.0
+     sim. evals in this iter: 61
+         acceptance rate (%): 16.39344262295082
+                 new epsilon: 0.07858595261148027
+           KL sample scatter: 0.1894978575552935
+iteration: 11
+ number of sim. evals so far: 289.0
+     sim. evals in this iter: 64
+         acceptance rate (%): 15.625
+                 new epsilon: 0.058777201109350495
+           KL sample scatter: 0.20845182384740657
+iteration: 12
+ number of sim. evals so far: 383.0
+     sim. evals in this iter: 94
+         acceptance rate (%): 10.638297872340425
+                 new epsilon: 0.05181113697268893
+           KL sample scatter: 0.16025549597439864
+iteration: 13
+ number of sim. evals so far: 482.0
+     sim. evals in this iter: 99
+         acceptance rate (%): 10.1010101010101
+                 new epsilon: 0.04242079769067413
+           KL sample scatter: 0.1831340381067212
+iteration: 14
+ number of sim. evals so far: 597.0
+     sim. evals in this iter: 115
+         acceptance rate (%): 8.695652173913043
+                 new epsilon: 0.0281600175430186
+           KL sample scatter: 0.24356279104144424
+iteration: 15
+ number of sim. evals so far: 726.0
+     sim. evals in this iter: 129
+         acceptance rate (%): 7.751937984496124
+                 new epsilon: 0.01592375303974274
+           KL sample scatter: 0.1422976280067622
+iteration: 16
+ number of sim. evals so far: 1056.0
+     sim. evals in this iter: 330
+         acceptance rate (%): 3.0303030303030303
+                 new epsilon: 0.009543589371648498
+           KL sample scatter: 0.14508293485217377
+iteration: 17
+ number of sim. evals so far: 1425.0
+     sim. evals in this iter: 369
+         acceptance rate (%): 2.710027100271003
+                 new epsilon: 0.007252405598960721
+           KL sample scatter: 0.2343784242537285
+iteration: 18
+ number of sim. evals so far: 1851.0
+     sim. evals in this iter: 426
+         acceptance rate (%): 2.347417840375587
+                 new epsilon: 0.006186190377834766
+           KL sample scatter: 0.27415472248158285
+iteration: 19
+ number of sim. evals so far: 3415.0
+     sim. evals in this iter: 1564
+         acceptance rate (%): 0.639386189258312
+                 new epsilon: 0.0042522614499568515
+           KL sample scatter: 0.11156624750755727
+iteration: 20
+ number of sim. evals so far: 4950.0
+     sim. evals in this iter: 1535
+         acceptance rate (%): 0.6514657980456026
+                 new epsilon: 0.0030523219136835422
+           KL sample scatter: 0.16733791773803083
+iteration: 21
+ number of sim. evals so far: 6201.0
+     sim. evals in this iter: 1251
+         acceptance rate (%): 0.7993605115907274
+                 new epsilon: 0.0026167158877769656
+           KL sample scatter: 0.14500926988951582
+iteration: 22
+ number of sim. evals so far: 8220.0
+     sim. evals in this iter: 2019
+         acceptance rate (%): 0.4952947003467063
+                 new epsilon: 0.0017704114051227294
+           KL sample scatter: 0.24851827619176742
+iteration: 23
+ number of sim. evals so far: 10402.0
+     sim. evals in this iter: 2182
+         acceptance rate (%): 0.458295142071494
+                 new epsilon: 0.0011809062949680537
+           KL sample scatter: 0.17238435823894685
+iteration: 24
+ number of sim. evals so far: 14219.0
+     sim. evals in this iter: 3817
+         acceptance rate (%): 0.26198585276395076
+                 new epsilon: 0.0009084485215901772
+           KL sample scatter: 0.11822072981714417
+iteration: 25
+ number of sim. evals so far: 20065.0
+     sim. evals in this iter: 5846
+         acceptance rate (%): 0.17105713308244955
+                 new epsilon: 0.0007119057854027666
+           KL sample scatter: 0.22193036173945535
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/AAS2019_ABCexample_26_0.png" src="../../_images/AAS2019_ABCexample_26_0.png" />
+</div>
+</div>
+<p>For “professional” implementations of ABC as an open-source Python code see:</p>
+<p><em><strong>astroABC</strong></em>, <em><strong>abcpmc</strong></em>, and <em><strong>cosmoabc</strong></em></p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter5/AAS2019_ABCexample.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>
