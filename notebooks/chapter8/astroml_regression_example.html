@@ -125,7 +125,6 @@ $(document).ready(function(){
 <li><a class="reference internal" href="#basis-function-regression">Basis function regression</a><ul>
 <li><a class="reference internal" href="#polynomial-basis-functions">Polynomial basis functions</a></li>
 <li><a class="reference internal" href="#gaussian-basis-functions">Gaussian basis functions</a></li>
-<li><a class="reference internal" href="#regularization-and-cross-validation">Regularization and cross-validation</a></li>
 </ul>
 </li>
 </ul>
@@ -371,13 +370,6 @@ For example, one useful pattern is to fit a model that is not a sum of polynomia
 <img alt="../../_images/astroml_regression_example_11_0.png" src="../../_images/astroml_regression_example_11_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="regularization-and-cross-validation">
-<h3>Regularization and cross-validation<a class="headerlink" href="#regularization-and-cross-validation" title="Permalink to this headline">¶</a></h3>
-<p>As the complexity of a model increases the data points fit the model more and more closely.</p>
-<p>This does not result in a better fit to the data. We are overfitting the data (the model has high variance - a small change in a training point can change the model dramatically).</p>
-<p>We can evaluate this using a training set (50-70% of sample), a cross-validation set (15-25%) and a test set (15-25%). See booko sub-chapter 8.11 and e.g. figures <a class="reference external" href="http://www.astroml.org/book_figures/chapter8/fig_cross_val_B.html">8.13</a> and <a class="reference external" href="http://www.astroml.org/book_figures/chapter8/fig_cross_val_C.html">8.14</a>.</p>
-<p>For cases where we are concerned with overfitting we can apply constraints (usually of smoothness, number of coefficients, size of coefficients). See book sub-chapter 8.3, and e.g. figure <a class="reference external" href="http://www.astroml.org/book_figures/chapter8/fig_rbf_ridge_mu_z.html">8.4</a></p>
 </div>
 </div>
 </div>
