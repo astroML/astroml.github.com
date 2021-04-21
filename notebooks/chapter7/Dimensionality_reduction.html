@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensionality reduction &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Dimensionality reduction</a><ul>
+<li><a class="reference internal" href="#the-curse-of-dimensionality">The curse of dimensionality</a></li>
+<li><a class="reference internal" href="#principal-component-analysis">Principal Component Analysis</a><ul>
+<li><a class="reference internal" href="#derivation-of-principal-component-analyses">Derivation of principal component analyses</a></li>
+<li><a class="reference internal" href="#singular-value-decomposition-svd">Singular value decomposition (SVD)</a></li>
+<li><a class="reference internal" href="#application-of-pca">Application of PCA</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pca-reconstruction-of-a-spectrum">PCA Reconstruction of a spectrum</a></li>
+<li><a class="reference internal" href="#eigenvalues">Eigenvalues</a></li>
+<li><a class="reference internal" href="#pca-with-missing-data">PCA with missing data</a></li>
+<li><a class="reference internal" href="#comparing-pca-nmf-and-ica">Comparing PCA, NMF and ICA</a><ul>
+<li><a class="reference internal" href="#nonnegative-matrix-factorization">Nonnegative Matrix Factorization</a></li>
+<li><a class="reference internal" href="#independent-component-analysis">Independent component analysis</a></li>
+<li><a class="reference internal" href="#id1">Comparing PCA, NMF and ICA</a></li>
+<li><a class="reference internal" href="#summary-of-pracical-properties-of-pca-nmf-and-ica">Summary of pracical properties of PCA, NMF, and ICA</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/bsipocz/astroML-notebooks/notebooks?filepath=chapter7/Dimensionality_reduction.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="dimensionality-reduction">
+<h1>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-curse-of-dimensionality">
+<h2>The curse of dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>Fitting and overfitting get worse with ‘’curse of dimensionality’’ Bellman 1961</p>
+<p>Think about a hypersphere. Its volume is  given by</p>
+<div class="math">
+<p><img src="../../_images/math/5c6344dd1245399f1b2f0fd838d791d349ddd92c.png" alt="V_D(r) = \frac{2r^D\pi^{D/2}}{D\  \Gamma(D/2)}"/></p>
+</div><p>where <img class="math" src="../../_images/math/63725d6e0f32a8fa64b35bda21006f691745234f.png" alt="\Gamma(z)"/> is the complete gamma function, <img class="math" src="../../_images/math/0fcab9067b50b87e868c4fd70f213a086addb964.png" alt="D"/> is the dimension, and <img class="math" src="../../_images/math/79a3d439d28652c547386f39b555d90d3aaf102d.png" alt="r"/> the radius of the sphere.</p>
+<p>If you populated a hypercube of size <img class="math" src="../../_images/math/0a33360b80432fd7a3aaaf05db72f0f39e1aaef7.png" alt="2r"/> how much data would be enclosed by the hypersphere</p>
+<ul class="simple">
+<li><p>as <img class="math" src="../../_images/math/0fcab9067b50b87e868c4fd70f213a086addb964.png" alt="D"/> increases the fractional volume enclosed by the hypersphere goes to 0!</p></li>
+</ul>
+<p>For example: the SDSS comprises a sample of 357 million sources.</p>
+<ul class="simple">
+<li><p>each source has 448 measured attributes</p></li>
+<li><p>selecting just 30 (e.g., magnitude, size..) and normalizing the data range <img class="math" src="../../_images/math/bb3bcf4d88dfa961f520a0d0cea612b738596d66.png" alt="-1"/> to <img class="math" src="../../_images/math/ec830c85a5fbb48028fe797044da6bdfb924c2fa.png" alt="1"/></p></li>
+</ul>
+<p>probability of having one of the 357 million sources reside within a unit hypersphere 1 in 1.4<img class="math" src="../../_images/math/ff77cbe666382bbbdc652bf5326716ac379a84d5.png" alt="\times 10^5"/>.</p>
+</div>
+<div class="section" id="principal-component-analysis">
+<h2>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Points are  correlated along a particular direction which doesn’t align with the initial choice of axes.</p>
+<ul class="simple">
+<li><p>we should rotate our axes to align with this correlation.</p></li>
+<li><p>rotation preserves the relative ordering of data</p></li>
+</ul>
+<p>Choose  rotation to maximize the ability to discriminate between the data points</p>
+<ul class="simple">
+<li><p>first axis, or <u>principal component</u>, is direction of maximal variance</p></li>
+<li><p>second principal component is orthogonal to the first component and maximizes the residual variance</p></li>
+<li><p>…</p></li>
+</ul>
+<p>In the following example a distribution of points drawn from a bivariate Gaussian and centered on the
+origin of <img class="math" src="../../_images/math/888f7c323ac0341871e867220ae2d76467d74d6e.png" alt="x"/> and <img class="math" src="../../_images/math/1b5e577d6216dca3af7d87aa122a0b9b360d6cb3.png" alt="y"/>.
+PCA defines a rotation such that the new axes (<img class="math" src="../../_images/math/ab99e9a9ed6746598dd6680ce3eb3e3cab927fe4.png" alt="x’"/> and <img class="math" src="../../_images/math/c62c8de99e456cece8baf9079b6669d0dc244bb8.png" alt="y’"/>) are aligned along the directions of maximal
+variance (the principal components) with zero covariance. This is equivalent to minimizing the square of
+the perpendicular distances between the points and the principal components.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">ticker</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">0.9</span>
+
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">sigma2</span> <span class="o">=</span> <span class="mf">0.08</span>
+<span class="n">rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">s</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot the diagram</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># draw axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="p">),</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># draw rotated axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x^\prime$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">s</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span> <span class="n">s</span><span class="p">),</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y^\prime$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">c</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span> <span class="n">c</span><span class="p">),</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># scatter points</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># draw lines</span>
+<span class="n">vnorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">s</span><span class="p">,</span> <span class="o">-</span><span class="n">c</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vnorm</span><span class="p">)</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">v</span> <span class="o">-</span> <span class="n">d</span> <span class="o">*</span> <span class="n">vnorm</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="c1"># draw ellipses</span>
+<span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">Ellipse</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">sigma1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">sigma2</span><span class="p">,</span>
+                         <span class="n">rotation</span> <span class="o">*</span> <span class="mf">180.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span>
+                         <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Dimensionality_reduction_6_0.png" src="../../_images/Dimensionality_reduction_6_0.png" />
+</div>
+</div>
+<div class="section" id="derivation-of-principal-component-analyses">
+<h3>Derivation of principal component analyses<a class="headerlink" href="#derivation-of-principal-component-analyses" title="Permalink to this headline">¶</a></h3>
+<p>Set of data <img class="math" src="../../_images/math/ed38fa24f1c94891bd312012aab3f6673be3eb83.png" alt="X"/>: <img class="math" src="../../_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> observations by <img class="math" src="../../_images/math/52ddc0cde6d632f631533173562fe3ca375b1f32.png" alt="K"/> measurements</p>
+<p>Center data by subtracting the mean</p>
+<p>The covariance is</p>
+<div class="math">
+<p><img src="../../_images/math/938a93b6ade0be24ec1b8c39a66d9c6869032cd2.png" alt="C_X=\frac{1}{N-1}X^TX,"/></p>
+</div><p><img class="math" src="../../_images/math/f91e7f01955f0d20f5986c6d91696e7f446f669b.png" alt="N-1"/> as the sample covariance matrix.</p>
+<p>We want a projection, <img class="math" src="../../_images/math/1ebe654cc7b8f2a0d8100aa5825cf2b9021adbbc.png" alt="R"/>,  aligned with the directions of maximal variance (<img class="math" src="../../_images/math/8a85b1308d7ddc29f1ad881eb5541386a731798c.png" alt="Y= X R"/>) with covariance</p>
+<div class="math">
+<p><img src="../../_images/math/66bc0c1b5fde76009c03914061d488c26f690ab1.png" alt="C_{Y} = R^T X^T X R = R^T C_X R"/></p>
+</div><p>Derive  principal component by maximizing its variance (using Lagrange multipliers and constraint)</p>
+<div class="math">
+<p><img src="../../_images/math/228887158fdc89a3a3000a3aa38f7114c2d855aa.png" alt="\phi(r_1,\lambda_1) = r_1^TC_X r_1 - \lambda_1(r_1^Tr_1-1)"/></p>
+</div><p>derivative of <img class="math" src="../../_images/math/ec2a4ddbb9b5dca588803fdbd2ed19b4622ff86d.png" alt="\phi(r_1,\lambda)"/> with respect to <img class="math" src="../../_images/math/df1d630a3325c0a544a24b978ce505d8eb08d98b.png" alt="r_1"/> set to 0</p>
+<div class="math">
+<p><img src="../../_images/math/9380c66937ea08af2d1d93dd9e2f18829bad8258.png" alt="C_Xr_1 - \lambda_1 r_1 = 0"/></p>
+</div><p><img class="math" src="../../_images/math/8d68f7e7eaebe94bd63e2087b53662c0228b16f5.png" alt="\lambda_1"/> is the root of the equation <img class="math" src="../../_images/math/04ea589f1141269f3ad6a0ee7e25ebffe6856ade.png" alt="\det(C_X -
+\lambda_1 {\bf I})=0"/> and the largest eigenvalue</p>
+<div class="math">
+<p><img src="../../_images/math/afd648079893180a764cd4837c30581c34910668.png" alt="\lambda_1 =  r_1^T C_X r_1"/></p>
+</div><p>Other  principal components  derived by
+applying additional constraint that components are uncorrelated (e.g., <img class="math" src="../../_images/math/dc5840eca2e85c1df862c2ee03009ca8e8a172d6.png" alt="r^T_2 C_X r_1 = 0"/>).</p>
+</div>
+<div class="section" id="singular-value-decomposition-svd">
+<h3>Singular value decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Permalink to this headline">¶</a></h3>
+<p>Common approach is eigenvalue decomposition of the covariance or correlation matrix,
+or singular value decomposition (SVD) of the data matrix</p>
+<div class="math">
+<p><img src="../../_images/math/857f6efe461d73afde31a8f929f8f74e6609871c.png" alt="U \Sigma V^T = \frac{1}{\sqrt{N - 1}} X"/></p>
+</div><p>columns of <img class="math" src="../../_images/math/9098c1c4618d7a0f321cee441aabee7f1b57a19b.png" alt="U"/> are  <em>left-singular vectors</em></p>
+<p>columns of <img class="math" src="../../_images/math/e4762cec46619bf7781cae62216214f909395368.png" alt="V"/> are the <em>right-singular vectors</em></p>
+<p>The columns of <img class="math" src="../../_images/math/9098c1c4618d7a0f321cee441aabee7f1b57a19b.png" alt="U"/> and <img class="math" src="../../_images/math/e4762cec46619bf7781cae62216214f909395368.png" alt="V"/> form orthonormal bases (<img class="math" src="../../_images/math/d57c7963beef0f712a30daf1dc2a83ee5966acc9.png" alt="U^TU = V^TV = I"/>)</p>
+<p>Covariance matrix is</p>
+<div class="math">
+<p><img src="../../_images/math/531df8a6d139c1e3878068545db360d517259089.png" alt="C_X = \left[\frac{1}{\sqrt{N - 1}}X\right]^T \left[\frac{1}{\sqrt{N - 1}}X\right]\nonumber\\
+      = V \Sigma U^T U \Sigma V^T\nonumber\\
+      = V \Sigma^2 V^T."/></p>
+</div><p>right singular vectors <img class="math" src="../../_images/math/e4762cec46619bf7781cae62216214f909395368.png" alt="V"/> are the principal components so principal from the SVD of <img class="math" src="../../_images/math/ed38fa24f1c94891bd312012aab3f6673be3eb83.png" alt="X"/> dont need <img class="math" src="../../_images/math/64588409ee071391f578d75b378edb2253cc84aa.png" alt="C_X"/>.</p>
+</div>
+<div class="section" id="application-of-pca">
+<h3>Application of PCA<a class="headerlink" href="#application-of-pca" title="Permalink to this headline">¶</a></h3>
+<p>In the following example we have 100 data points in 3 dimensions, <img class="math" src="../../_images/math/ed38fa24f1c94891bd312012aab3f6673be3eb83.png" alt="X"/>, and <img class="math" src="../../_images/math/1ebe654cc7b8f2a0d8100aa5825cf2b9021adbbc.png" alt="R"/> as the projection matrix. To compute the PCA components (4 in our case) we use <code class="docutils literal notranslate"><span class="pre">PCA</span></code> from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">comp</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">mean</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">mean_</span>
+<span class="n">components</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For our astronomy use case, we are using the SDSS spectroscopic dataset.
+The SDSS spectra come from galaxies at a range of redshifts,
+and have sections of unreliable or missing data due to sky absorption, cosmic rays, bad detector pixels,
+or other effects. AstroML provides a set of spectra which have been moved to rest frame, corrected
+for masking using an iterative PCA reconstruction technique, and resampled to 1000 common wavelength bins.</p>
+<p>The spectra can be downloaded using <code class="docutils literal notranslate"><span class="pre">fetch_sdss_corrected_spectra()</span></code>. In the following example we plot
+15 of these spectra:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">sdss_corrected_spectra</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># Use pre-computed PCA to reconstruct spectra</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sdss_corrected_spectra</span><span class="o">.</span><span class="n">fetch_sdss_corrected_spectra</span><span class="p">()</span>
+<span class="n">spectra_raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;spectra&#39;</span><span class="p">]</span>
+<span class="n">spectra_corr</span> <span class="o">=</span> <span class="n">sdss_corrected_spectra</span><span class="o">.</span><span class="n">reconstruct_spectra</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">wavelengths</span> <span class="o">=</span> <span class="n">sdss_corrected_spectra</span><span class="o">.</span><span class="n">compute_wavelengths</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># select random spectra</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">nrows</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">ncols</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">spectra_corr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">nrows</span> <span class="o">*</span> <span class="n">ncols</span><span class="p">)</span>
+<span class="n">spec_sample_raw</span> <span class="o">=</span> <span class="n">spectra_raw</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">spec_sample_corr</span> <span class="o">=</span> <span class="n">spectra_corr</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We show the SDSS downloaded spectra with black, and our corrected spectra with blue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">spec_sample_raw</span><span class="p">[</span><span class="n">ncols</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="n">i</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">spec_sample_corr</span><span class="p">[</span><span class="n">ncols</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="n">i</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>               
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">3100</span><span class="p">,</span> <span class="mi">7999</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nrows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;wavelength $(\AA)$&#39;</span><span class="p">)</span>
+
+        <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">dy</span><span class="p">,</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Dimensionality_reduction_15_0.png" src="../../_images/Dimensionality_reduction_15_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pca-reconstruction-of-a-spectrum">
+<h2>PCA Reconstruction of a spectrum<a class="headerlink" href="#pca-reconstruction-of-a-spectrum" title="Permalink to this headline">¶</a></h2>
+<p>Reconstruction of spectrum, <img class="math" src="../../_images/math/19e4a5c441bac8f5c9cfd7848c940dd6d0bdbb6d.png" alt="{x}(k)"/>, from the
+eigenvectors, <img class="math" src="../../_images/math/ee68b3b8ddd26198cd74b547e2e46726b8a98426.png" alt="{e}_i(k)"/></p>
+<div class="math">
+<p><img src="../../_images/math/424a1e7001c10748090b98d829cdde249af36576.png" alt="{x}_i(k) = {\mu}(k) + \sum_j^R \theta_{ij} {e}_j(k),"/></p>
+</div><p>Truncating this expansion (i.e., <img class="math" src="../../_images/math/ebb57aba9145bd6deb7f4393353fecc97a40ea8f.png" alt="r&lt;R"/>)</p>
+<div class="math">
+<p><img src="../../_images/math/3a1bae8b320efdae57f2487d22f41537971ee295.png" alt="{x}_i(k) = {\mu}(k) + \sum_i^{r&lt;R} \theta_i {e}_i(k),"/></p>
+</div><ul class="simple">
+<li><p>eigenvectors ordered by their associated eigenvalues</p></li>
+<li><p>eigenvalues reflect variance  within each eigenvector (sum of the eigenvalues is total variance of the system).</p></li>
+<li><p>project a each spectrum onto these first few eigenspectra is a compression of the data</p></li>
+</ul>
+<p>This is the sense in which PCA gives for dimensionality reduction.</p>
+<p>In the following example, the input spectrum is shown in gray,
+and the partial reconstruction for progressively more terms is shown in black.
+The top panel shows only the mean of the set of spectra. By the time 20 PCA components are added,
+the reconstruction is very close to the input, as indicated by the expected total variance of 94%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Compute PCA components</span>
+
+<span class="c1"># Eigenvalues can be computed using PCA as in the commented code below:</span>
+
+<span class="c1">#from sklearn.decomposition import PCA</span>
+<span class="c1">#pca = PCA()</span>
+<span class="c1">#pca.fit(spectra_corr)</span>
+<span class="c1">#evals = pca.explained_variance_ratio_</span>
+<span class="c1">#evals_cs = evals.cumsum()</span>
+
+<span class="c1">#  because the spectra have been reconstructed from masked values, this</span>
+<span class="c1">#  is not exactly correct in this case: we&#39;ll use the values computed</span>
+<span class="c1">#  in the file compute_sdss_pca.py</span>
+<span class="n">evals</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;evals&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">evals_cs</span> <span class="o">=</span> <span class="n">evals</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="n">evals_cs</span> <span class="o">/=</span> <span class="n">evals_cs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">evecs</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;evecs&#39;</span><span class="p">]</span>
+<span class="n">spec_mean</span> <span class="o">=</span> <span class="n">spectra_corr</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Find the coefficients of a particular spectrum</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">spectra_corr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">evecs</span><span class="p">,</span> <span class="n">spec</span> <span class="o">-</span> <span class="n">spec_mean</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot the sequence of reconstructions</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.93</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">411</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">spec_mean</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">evecs</span><span class="p">[:</span><span class="n">n</span><span class="p">]),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;flux&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;mean&quot;</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;mean + 1 component</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="sa">r</span><span class="s2">&quot;$(\sigma^2_</span><span class="si">{tot}</span><span class="s2"> = </span><span class="si">%.2f</span><span class="s2">)$&quot;</span> <span class="o">%</span> <span class="n">evals_cs</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;mean + </span><span class="si">%i</span><span class="s2"> components</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="sa">r</span><span class="s2">&quot;$(\sigma^2_</span><span class="si">{tot}</span><span class="s2"> = </span><span class="si">%.2f</span><span class="s2">)$&quot;</span> <span class="o">%</span> <span class="n">evals_cs</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;${\rm wavelength\ (\AA)}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Dimensionality_reduction_18_0.png" src="../../_images/Dimensionality_reduction_18_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="eigenvalues">
+<h2>Eigenvalues<a class="headerlink" href="#eigenvalues" title="Permalink to this headline">¶</a></h2>
+<p>The eigenvalues for the PCA decomposition of the SDSS spectra described in the previous section. The top panel
+shows the decrease in eigenvalue as a function of the number of eigenvectors, with a break in the distribution
+at ten eigenvectors. The lower panel shows the cumulative sum of eigenvalues normalized to unity.
+94% of the variance in the SDSS spectra can be captured using the first ten eigenvectors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.12</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">evals</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Normalized Eigenvalues&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">5E-4</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">evals_cs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Eigenvalue Number&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Eigenvalues&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Dimensionality_reduction_20_0.png" src="../../_images/Dimensionality_reduction_20_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="pca-with-missing-data">
+<h2>PCA with missing data<a class="headerlink" href="#pca-with-missing-data" title="Permalink to this headline">¶</a></h2>
+<p>Observed spectrum, <img class="math" src="../../_images/math/9486322b869dcad5a4b724eda6090304b7b07818.png" alt="x^o"/> is the true spectrum, <img class="math" src="../../_images/math/293367b6910e96be7886302f7ecac9de92aa7a4e.png" alt="{x}"/> plus a wavelength-dependent weight, <img class="math" src="../../_images/math/2d3817ac2626bc73309d3844b40562a414f088b9.png" alt="{w}"/>.</p>
+<p>Weight is zero where data are missing and <img class="math" src="../../_images/math/d92e4735e7e657e103ca8e09a958721e5d6f8d0c.png" alt="1/{\sigma}^2"/> for rest</p>
+<p>Minimizing the quadratic deviation between  <img class="math" src="../../_images/math/632789b97063e66c53c596425b8e5f7e33fb14de.png" alt="{x}^o"/> truncated reconstruction, <img class="math" src="../../_images/math/b90d2be5b35bc8ed453e265d30ce88c49f08f405.png" alt="\sum_i \theta_i {e}_i"/>
+and solving for <img class="math" src="../../_images/math/71b2d54105337cb4f5a4d98c526efca03bbf0b26.png" alt="\theta_i"/> gives</p>
+<div class="math">
+<p><img src="../../_images/math/09f44db5f808ab37b07d649d764a4d0d28e7340a.png" alt="\sum_k \theta_i {w}(k) {e}_i(k) {e}_j(k) =
+	\sum_k {w}(k) {x}^o(k) {e}_j(k),"/></p>
+</div><p>If <img class="math" src="../../_images/math/f91362bf72d6a3b5acbc6efba75cf1c863e07180.png" alt="M_{ij} = \sum_k {w}(k) {e}_i(k) {e}_j(k)"/> and <img class="math" src="../../_images/math/4072db61eb54939b862960deca727874443f5bdf.png" alt="F_i = \sum_k {w}(k) {x}^o(k) {e}_i(k)"/> then</p>
+<div class="math">
+<p><img src="../../_images/math/c28b21d437a1253f7616bf60c2551ebc220378b9.png" alt="\theta_i = \sum_j M_{ij}^{-1} F_{j},"/></p>
+</div><ul class="simple">
+<li><p><img class="math" src="../../_images/math/d029bb52ca47914ea39e54d940827e872e8641e9.png" alt="F_j"/> are  coefficients derived from  gappy data</p></li>
+<li><p><img class="math" src="../../_images/math/40334c23a49e057fd7e811441cbd796f0fc5ebe7.png" alt="M_{ij}^{-1}"/> shows how correlated  eigenvectors are over the missing regions.</p></li>
+</ul>
+<p>An estimate of the uncertainty on the
+reconstruction coefficients is given by</p>
+<div class="math">
+<p><img src="../../_images/math/8f37c9efc0efc612133e569550e0da7ec5289174.png" alt="%Cov(\theta_i,\theta_j) = \frac{1}{N}M_{ij}^{-1}
+{\rm Cov}(\theta_i,\theta_j) = M_{ij}^{-1}."/></p>
+</div><p>Accuracy of this reconstruction will depend on the distribution of
+the gaps within the data vector.</p>
+<p>The principal component vectors defined for the SDSS spectra can be used to interpolate across or reconstruct
+missing data. Examples of three masked spectral regions are shown comparing the reconstruction of the input
+spectrum (black line) using the mean and the first ten eigenspectra (blue line) The gray bands represent the
+masked region of the spectrum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evecs</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;evecs&#39;</span><span class="p">]</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">]</span>
+<span class="n">norms</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;norms&#39;</span><span class="p">]</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># plot the results</span>
+<span class="n">i_plot</span> <span class="o">=</span> <span class="p">((</span><span class="n">wavelengths</span> <span class="o">&gt;</span> <span class="mi">5750</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">wavelengths</span> <span class="o">&lt;</span> <span class="mi">6350</span><span class="p">))</span>
+<span class="n">wavelength</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="n">i_plot</span><span class="p">]</span>
+
+<span class="n">specnums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="n">subplots</span> <span class="o">=</span> <span class="p">[</span><span class="mi">311</span><span class="p">,</span> <span class="mi">312</span><span class="p">,</span> <span class="mi">313</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.92</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">subplot</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">subplots</span><span class="p">,</span> <span class="n">specnums</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">subplot</span><span class="p">)</span>
+
+    <span class="c1"># compute eigen-coefficients</span>
+    <span class="n">spectra_i_centered</span> <span class="o">=</span> <span class="n">spectra_corr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">norms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span>
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">spectra_i_centered</span><span class="p">,</span> <span class="n">evecs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="c1"># blank out masked regions</span>
+    <span class="n">spectra_i</span> <span class="o">=</span> <span class="n">spectra_corr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">mask_i</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">spectra_i</span><span class="p">[</span><span class="n">mask_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># plot the raw masked spectrum</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">spectra_i</span><span class="p">[</span><span class="n">i_plot</span><span class="p">],</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True spectrum&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+
+    <span class="c1"># plot two levels of reconstruction</span>
+    <span class="k">for</span> <span class="n">nev</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">nev</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;reconstruction</span><span class="se">\n</span><span class="s1">(nev=</span><span class="si">%i</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">nev</span>
+        <span class="n">spectra_i_recons</span> <span class="o">=</span> <span class="n">norms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">mu</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeffs</span><span class="p">[:</span><span class="n">nev</span><span class="p">],</span> <span class="n">evecs</span><span class="p">[:</span><span class="n">nev</span><span class="p">]))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">spectra_i_recons</span><span class="p">[</span><span class="n">i_plot</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+    <span class="c1"># plot shaded background in masked region</span>
+    <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+    <span class="n">mask_shade</span> <span class="o">=</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">mask</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i_plot</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">wavelength</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span> <span class="n">wavelength</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]]),</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">mask_shade</span><span class="p">,</span> <span class="p">[</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]),</span>
+             <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">wavelength</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wavelength</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">subplot</span> <span class="o">==</span> <span class="mi">311</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\lambda\ (\AA)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;normalized flux&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Dimensionality_reduction_24_0.png" src="../../_images/Dimensionality_reduction_24_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="comparing-pca-nmf-and-ica">
+<h2>Comparing PCA, NMF and ICA<a class="headerlink" href="#comparing-pca-nmf-and-ica" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nonnegative-matrix-factorization">
+<h3>Nonnegative Matrix Factorization<a class="headerlink" href="#nonnegative-matrix-factorization" title="Permalink to this headline">¶</a></h3>
+<p>Eigenvectors are defined relative to mean data vector. Principal components that can be positive or
+negative but for many physical systems we know data are a linear sum of positive components (e.g. galaxy
+spectrum is a linear sum of stellar components</p>
+<p>Nonnegative matrix factorization (NMF) applies positivity constraint</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">NMF</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># 100 points in 3 dims, all positive</span>
+<span class="n">nmf</span> <span class="o">=</span> <span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># setting n_components is optional</span>
+<span class="n">nmf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">nmf</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># project to 3 dimensions</span>
+
+<span class="n">comp</span> <span class="o">=</span> <span class="n">nmf</span><span class="o">.</span><span class="n">components_</span>  <span class="c1"># 3 x 10 array of components</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">nmf</span><span class="o">.</span><span class="n">reconstruction_err_</span>  <span class="c1"># how well 3 components captures data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/sklearn/decomposition/_nmf.py:312: FutureWarning: The &#39;init&#39; value, when &#39;init=None&#39; and n_components is less than n_samples and n_features, will be changed from &#39;nndsvd&#39; to &#39;nndsvda&#39; in 1.1 (renaming of 0.26).
+  warnings.warn((&quot;The &#39;init&#39; value, when &#39;init=None&#39; and &quot;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="independent-component-analysis">
+<h3>Independent component analysis<a class="headerlink" href="#independent-component-analysis" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">FastICA</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 100 pts in 2 dims</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># mixing matrix</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>  <span class="c1"># X is now 2D data in 5D space</span>
+<span class="n">ica</span> <span class="o">=</span> <span class="n">FastICA</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># fit two components</span>
+
+<span class="n">sources</span> <span class="o">=</span> <span class="n">ica</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">ica</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># 100 x 2 projection of data</span>
+<span class="n">comp</span> <span class="o">=</span> <span class="n">ica</span><span class="o">.</span><span class="n">components_</span>  <span class="c1"># the 2 x 5 matrix of indep. components</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Comparing PCA, NMF and ICA<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>A comparison of the decomposition of SDSS spectra using PCA (left panel), ICA (middle panel) and
+NMF (right panel). The rank of the component increases from top to bottom. For the ICA and PCA
+the first component is the mean spectrum (NMF does not require mean subtraction). All of these
+techniques isolate a common set of spectral features (identifying features associated with the
+continuum and line emission). The ordering of the spectral components is technique dependent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">NMF</span><span class="p">,</span> <span class="n">FastICA</span><span class="p">,</span> <span class="n">PCA</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sdss_corrected_spectra</span><span class="o">.</span><span class="n">fetch_sdss_corrected_spectra</span><span class="p">()</span>
+<span class="n">spectra</span> <span class="o">=</span> <span class="n">sdss_corrected_spectra</span><span class="o">.</span><span class="n">reconstruct_spectra</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">wavelengths</span> <span class="o">=</span> <span class="n">sdss_corrected_spectra</span><span class="o">.</span><span class="n">compute_wavelengths</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># Compute PCA, ICA, and NMF components</span>
+<span class="k">def</span> <span class="nf">compute_PCA_ICA_NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">spec_mean</span> <span class="o">=</span> <span class="n">spectra</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># PCA: use randomized PCA for speed</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;randomized&#39;</span><span class="p">)</span>
+    <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">spectra</span><span class="p">)</span>
+    <span class="n">pca_comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">spec_mean</span><span class="p">,</span>
+                          <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">])</span>
+
+    <span class="c1"># ICA treats sequential observations as related.  Because of this, we need</span>
+    <span class="c1"># to fit with the transpose of the spectra</span>
+    <span class="n">ica</span> <span class="o">=</span> <span class="n">FastICA</span><span class="p">(</span><span class="n">n_components</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ica</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">spectra</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">ica_comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">spec_mean</span><span class="p">,</span>
+                          <span class="n">ica</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">spectra</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">])</span>
+
+    <span class="c1"># NMF requires all elements of the input to be greater than zero</span>
+    <span class="n">spectra</span><span class="p">[</span><span class="n">spectra</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">nmf</span> <span class="o">=</span> <span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">nmf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">spectra</span><span class="p">)</span>
+    <span class="n">nmf_comp</span> <span class="o">=</span> <span class="n">nmf</span><span class="o">.</span><span class="n">components_</span>
+
+    <span class="k">return</span> <span class="n">pca_comp</span><span class="p">,</span> <span class="n">ica_comp</span><span class="p">,</span> <span class="n">nmf_comp</span>
+
+<span class="n">n_components</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">decompositions</span> <span class="o">=</span> <span class="n">compute_PCA_ICA_NMF</span><span class="p">(</span><span class="n">n_components</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;PCA components&#39;</span><span class="p">,</span> <span class="s1">&#39;ICA components&#39;</span><span class="p">,</span> <span class="s1">&#39;NMF components&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">comp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">decompositions</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_components</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n_components</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">7999</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))))</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;wavelength ${\rm (\AA)}$&#39;</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">comp</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># plot zero line</span>
+        <span class="n">xlim</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlim</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;PCA&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ICA&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;component </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">j</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;component </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.94</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklines</span><span class="p">()</span> <span class="o">+</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_yticklines</span><span class="p">():</span>
+            <span class="n">l</span><span class="o">.</span><span class="n">set_markersize</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># adjust y limits</span>
+        <span class="n">ylim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">dy</span><span class="p">,</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">dy</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/sklearn/decomposition/_nmf.py:312: FutureWarning: The &#39;init&#39; value, when &#39;init=None&#39; and n_components is less than n_samples and n_features, will be changed from &#39;nndsvd&#39; to &#39;nndsvda&#39; in 1.1 (renaming of 0.26).
+  warnings.warn((&quot;The &#39;init&#39; value, when &#39;init=None&#39; and &quot;
+/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/sklearn/decomposition/_nmf.py:1090: ConvergenceWarning: Maximum number of iterations 200 reached. Increase it to improve convergence.
+  warnings.warn(&quot;Maximum number of iterations %d reached. Increase it to&quot;
+</pre></div>
+</div>
+<img alt="../../_images/Dimensionality_reduction_32_1.png" src="../../_images/Dimensionality_reduction_32_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="summary-of-pracical-properties-of-pca-nmf-and-ica">
+<h3>Summary of pracical properties of PCA, NMF, and ICA<a class="headerlink" href="#summary-of-pracical-properties-of-pca-nmf-and-ica" title="Permalink to this headline">¶</a></h3>
+<p>The following table is a simple summary of the trade-offs along our axes of
+accuracy, interpretability, simplicity, and speed in dimension
+reduction methods, expressed in terms of high (H), medium
+(M), and low (L) categories.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Accuracy</p></th>
+<th class="head"><p>Interpretability</p></th>
+<th class="head"><p>Simplicity</p></th>
+<th class="head"><p>Speed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Principal component analysis</p></td>
+<td><p>H</p></td>
+<td><p>H</p></td>
+<td><p>H</p></td>
+<td><p>H</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nonnegative matrix factorization</p></td>
+<td><p>H</p></td>
+<td><p>H</p></td>
+<td><p>M</p></td>
+<td><p>M</p></td>
+</tr>
+<tr class="row-even"><td><p>Independent component analysis</p></td>
+<td><p>M</p></td>
+<td><p>M</p></td>
+<td><p>L</p></td>
+<td><p>L</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter7/Dimensionality_reduction.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>
