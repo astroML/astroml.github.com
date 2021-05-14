@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wavelets &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Wavelets</a><ul>
+<li><a class="reference internal" href="#wavelet-transform-of-gaussian-noise">Wavelet transform of Gaussian Noise</a><ul>
+<li><a class="reference internal" href="#imput-signal">Imput signal</a></li>
+<li><a class="reference internal" href="#compute-wavelet">Compute wavelet</a></li>
+<li><a class="reference internal" href="#compute-psd">Compute PSD</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wavelet-transform-of-a-noisy-spike">Wavelet transform of a Noisy Spike</a><ul>
+<li><a class="reference internal" href="#define-functions-and-construct-imput-noise">Define functions and construct imput noise</a></li>
+<li><a class="reference internal" href="#id1">Compute wavelet</a></li>
+<li><a class="reference internal" href="#compute-spectrogram">Compute spectrogram</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples-of-wavelets">Examples of Wavelets</a></li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter10/astroml_chapter10_Wavelets.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="wavelets">
+<h1>Wavelets<a class="headerlink" href="#wavelets" title="Permalink to this headline">¶</a></h1>
+<p>An increasingly popular family of basis functions is called <strong>wavelets</strong>. By construction, wavelets are localized in both frequency and time domains. Individual wavelets are specified by a set of wavelet filter coefficients. Given a wavelet, a complete
+orthonormal set of basis functions can be constructed by scalings and translations. Different wavelet families trade the localization of a wavelet with its smoothness.</p>
+<div class="section" id="wavelet-transform-of-gaussian-noise">
+<h2>Wavelet transform of Gaussian Noise<a class="headerlink" href="#wavelet-transform-of-gaussian-noise" title="Permalink to this headline">¶</a></h2>
+<p>Below we have an example using a particular wavelet to compute a wavelet PSD as a
+function of time <img class="math" src="../../_images/math/ec0f4b5ec85f2c2005b5f78c12cf51c1cb2bb167.png" alt="t_0"/> and frequency <img class="math" src="../../_images/math/4219fbe33be36f254f9093809318b9fb7b889a9a.png" alt="f_0"/>. The wavelet used is of the form</p>
+<div class="math">
+<p><img src="../../_images/math/4042dfb1b6c80686dfb91a66f49628a90de4bf99.png" alt="w(t|t_0,f_0,Q) = A exp[i2\pi f_0 (t-t_0)]exp[-f_0^2(t-t_0)^2/Q^2]"/></p>
+</div><p>where <img class="math" src="../../_images/math/ec0f4b5ec85f2c2005b5f78c12cf51c1cb2bb167.png" alt="t_0"/> is the central time, <img class="math" src="../../_images/math/4219fbe33be36f254f9093809318b9fb7b889a9a.png" alt="f_0"/> is the central frequency, and the dimensionless parameter Q is
+a model parameter which controls the width of the frequency window.<br />
+The Fourier transform of this form is</p>
+<div class="math">
+<p><img src="../../_images/math/a6a667456c5996e043b433f77a646c849689f577.png" alt="W(f|t_0,f_0,Q)=(\frac{\pi}{f^2_0/Q^2})^{1/2} exp(-i2\pi f t_0) exp[\frac{-\pi^2Q^2(f-f_0)^2}{Qf^2_0}]"/></p>
+</div><p>Note that the form given by above equations is not technically a wavelet because it
+does not meet the admissibility criterion (the equivalent of orthogonality in Fourier transforms).
+This form is closely related to a true wavelet, the <em>Morlet wavelet</em>, through a simple scaling and offset. Therefore, these equations should probaly be referred to as “matched filters” rather than “wavelets”.<br />
+However, these functions display quite nicely one
+main property of wavelets: the localization of power in both time and frequency. For this reason,
+we will refer to these functions as “wavelets,” and explore their ability to localize frequency signals.</p>
+<div class="section" id="imput-signal">
+<h3>Imput signal<a class="headerlink" href="#imput-signal" title="Permalink to this headline">¶</a></h3>
+<p>We take a localized Gaussian noise as imput signal, as shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">sinegauss</span><span class="p">,</span> <span class="n">wavelet_PSD</span><span class="p">,</span> <span class="n">FT_continuous</span><span class="p">,</span> <span class="n">IFT_continuous</span>
+
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample the function: localized noise</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">h</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Show signal</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Input Signal:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                     <span class="s2">&quot;Localized Gaussian noise&quot;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.9</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$h(t)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h(t)$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Wavelets_4_12.png" src="../../_images/astroml_chapter10_Wavelets_4_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compute-wavelet">
+<h3>Compute wavelet<a class="headerlink" href="#compute-wavelet" title="Permalink to this headline">¶</a></h3>
+<p>We compute the wavelet from sample data using <em>sinegauss</em> function in <em>astroML.fourier</em>.<br />
+Here we take Q=1.0 to control the width of the frequency window.
+In the plot, solid line and dashed line show the real part and imaginary part respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute an example wavelet</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">sinegauss</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Show the example wavelet</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;real part&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;imag part&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Example Wavelet</span><span class="se">\n</span><span class="s2">&quot;</span>
+                     <span class="s2">&quot;$t_0 = 0$, $f_0=1.5$, $Q=1.0$&quot;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span>
+        <span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$w(t; t_0, f_0, Q) = e^{-[f_0 (t - t_0) / Q]^2}&quot;</span>
+         <span class="s2">&quot;e^{2 \pi i f_0 (t - t_0)}$&quot;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$w(t; t_0, f_0, Q)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$w(t; t_0, f_0, Q)$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Wavelets_6_12.png" src="../../_images/astroml_chapter10_Wavelets_6_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compute-psd">
+<h3>Compute PSD<a class="headerlink" href="#compute-psd" title="Permalink to this headline">¶</a></h3>
+<p>The wavelet PSD (power spectral density) is defined by <img class="math" src="../../_images/math/61509b39ddfcc7d417ea1350cde9c421a39c8d02.png" alt="PSD_w(f0, t0;Q) = |Hw(t_0; f_0,Q)|^2"/>. Unlike
+the typical Fourier-transform PSD, the wavelet PSD allows detection of frequency information
+which is localized in time.<br />
+Here we compute the wavelet PSD from sample wavelet using <em>wavelet_PSD</em> function in <em>astroML.fourier</em>.</p>
+<p>The plot shows the PSD as a function of the frequency <img class="math" src="../../_images/math/4219fbe33be36f254f9093809318b9fb7b889a9a.png" alt="f_0"/> and the time <img class="math" src="../../_images/math/ec0f4b5ec85f2c2005b5f78c12cf51c1cb2bb167.png" alt="t_0"/>, for Q = 1.0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the wavelet PSD</span>
+<span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">wPSD</span> <span class="o">=</span> <span class="n">wavelet_PSD</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># Third panel: the spectrogram</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wPSD</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">f0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">f0</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Wavelet PSD&quot;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$f_0$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$f_0$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Wavelets_8_12.png" src="../../_images/astroml_chapter10_Wavelets_8_12.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="wavelet-transform-of-a-noisy-spike">
+<h2>Wavelet transform of a Noisy Spike<a class="headerlink" href="#wavelet-transform-of-a-noisy-spike" title="Permalink to this headline">¶</a></h2>
+<p>Here we use wavelet transform when the imput data is noisy spike rather than local Gaussian.</p>
+<div class="section" id="define-functions-and-construct-imput-noise">
+<h3>Define functions and construct imput noise<a class="headerlink" href="#define-functions-and-construct-imput-noise" title="Permalink to this headline">¶</a></h3>
+<p>This example uses a Gaussian spike in the presence of white (Gaussian) noise as the imput noise. The imput signal is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wavelet</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">f0</span> <span class="o">/</span> <span class="n">Q</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f0</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">wavelet_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+    <span class="c1"># this is its fourier transform using</span>
+    <span class="c1"># H(f) = integral[ h(t) exp(-2pi i f t) dt]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">Q</span> <span class="o">/</span> <span class="n">f0</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">t0</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span> <span class="o">*</span> <span class="n">Q</span> <span class="o">/</span> <span class="n">f0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">check_funcs</span><span class="p">(</span><span class="n">t0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">wavelet</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="p">)</span>
+
+    <span class="n">f</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">FT_continuous</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">wavelet_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Q</span><span class="p">))</span>
+
+    
+<span class="c1"># Create the simulated dataset</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">t</span> <span class="o">-</span> <span class="mf">20.</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">hN</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># plot the signal</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">hN</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Input Signal:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                     <span class="s2">&quot;Localized spike plus noise&quot;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$h(t)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h(t)$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Wavelets_11_12.png" src="../../_images/astroml_chapter10_Wavelets_11_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Compute wavelet<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Compute the convolution via the continuous Fourier transform. This is more exact than using the discrete transform, because we have an analytic expression for the FT of the wavelet. The wavelet transform applied to data h(t) is given by</p>
+<div class="math">
+<p><img src="../../_images/math/9b517ab071b22a51188663cdc874873eda5fab40.png" alt="H_w(t_0;f_0,Q)=\int^{\infty}_{\infty} h(t)w(t|t_0,f_0,Q)dt"/></p>
+</div><p>By the convolution theorem <img class="math" src="../../_images/math/1a53b31a5a831b5d272176284eeb6c3ea2d0c346.png" alt="H(f) = A(f)B(f)"/>, we can write the Fourier transform
+of <img class="math" src="../../_images/math/cce714890d6976d5b9883dd7d77c06567702b946.png" alt="H_w"/> as the pointwise product of the Fourier transforms of h(t) and <img class="math" src="../../_images/math/ce9fa37f9715bc1fe664cce06e7039cfbf3a557f.png" alt="w*(t; t_0; f_0, Q)"/>. The first can
+be approximated using the discrete Fourier transform as shown in appendix E in the textbook; the second can be found using the analytic formula for W(f) in the prevoius section. This allows us to quickly evaluate <img class="math" src="../../_images/math/cce714890d6976d5b9883dd7d77c06567702b946.png" alt="H_w"/> as a
+function of <img class="math" src="../../_images/math/ec0f4b5ec85f2c2005b5f78c12cf51c1cb2bb167.png" alt="t_0"/> and <img class="math" src="../../_images/math/4219fbe33be36f254f9093809318b9fb7b889a9a.png" alt="f_0"/>, using two <img class="math" src="../../_images/math/8fb35e2612347fa5811aa0ae158e6cc2c45b949f.png" alt="O(N logN)"/> fast Fourier transforms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">f0</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">FT_continuous</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">hN</span><span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># plot the wavelet</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">wavelet</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="n">Q</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;real part&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;imag part&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Example Wavelet</span><span class="se">\n</span><span class="s2">&quot;</span>
+                     <span class="s2">&quot;$t_0 = 0$, $f_0=1/8$, $Q=0.3$&quot;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span>
+        <span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$w(t; t_0, f_0, Q) = e^{-[f_0 (t - t_0) / Q]^2}&quot;</span>
+         <span class="s2">&quot;e^{2 \pi i f_0 (t - t_0)}$&quot;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$w(t; t_0, f_0, Q)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$w(t; t_0, f_0, Q)$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Wavelets_13_12.png" src="../../_images/astroml_chapter10_Wavelets_13_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compute-spectrogram">
+<h3>Compute spectrogram<a class="headerlink" href="#compute-spectrogram" title="Permalink to this headline">¶</a></h3>
+<p>We compute spectrogram using <em>IFT_continuous</em> in <em>astroML.fourier</em>.<br />
+The plot below shows the power spectral density as a function of the frequency <img class="math" src="../../_images/math/4219fbe33be36f254f9093809318b9fb7b889a9a.png" alt="f_0"/> and the time <img class="math" src="../../_images/math/ec0f4b5ec85f2c2005b5f78c12cf51c1cb2bb167.png" alt="t_0"/>, for Q = 0.3.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">wavelet_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Q</span><span class="p">))</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">HW</span> <span class="o">=</span> <span class="n">IFT_continuous</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">H</span> <span class="o">*</span> <span class="n">W</span><span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># plot the spectrogram</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">HW</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f0</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Wavelet PSD&quot;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f0</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$f_0$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;1/</span><span class="si">%i</span><span class="s2">&quot;</span>
+                                                                 <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="o">-</span><span class="n">x</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Wavelets_15_02.png" src="../../_images/astroml_chapter10_Wavelets_15_02.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="examples-of-wavelets">
+<h2>Examples of Wavelets<a class="headerlink" href="#examples-of-wavelets" title="Permalink to this headline">¶</a></h2>
+<p>The resulting wavelets vary from different parameters Q and <img class="math" src="../../_images/math/4219fbe33be36f254f9093809318b9fb7b889a9a.png" alt="f_0"/>.
+Here we take several different parameters Q and <img class="math" src="../../_images/math/4219fbe33be36f254f9093809318b9fb7b889a9a.png" alt="f_0"/> and show the result wavelets, taking the prevoius Gaussian sample imput.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the wavelets</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+
+<span class="c1"># compute wavelets all at once</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">sinegauss</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">f0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Q</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Solid lines show the real part and dashed lines show the imaginary part.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the wavelets</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># in each panel, plot and label a different wavelet</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="s1">&#39;--k&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;$f_0 = </span><span class="si">%i</span><span class="s2">$</span><span class="se">\n</span><span class="s2">$Q = </span><span class="si">%.1f</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$w(t)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Wavelets_19_02.png" src="../../_images/astroml_chapter10_Wavelets_19_02.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter10/astroml_chapter10_Wavelets.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hierarchical Bayes Example &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Hierarchical Bayes Example</a><ul>
+<li><a class="reference internal" href="#january-6-2020">January 6, 2020</a><ul>
+<li><a class="reference internal" href="#resources-for-this-notebook-include">Resources for this notebook include:</a></li>
+<li><a class="reference internal" href="#highly-recommended-supplemental-background-reading">Highly recommended supplemental background reading:</a></li>
+<li><a class="reference internal" href="#for-those-who-want-to-dive-deep">For those who want to dive deep:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hierarchical-bayes-modeling">Hierarchical Bayes Modeling</a><ul>
+<li><a class="reference internal" href="#simple-case-of-gaussian-prior-and-likelihood">Simple case of Gaussian prior and likelihood</a></li>
+<li><a class="reference internal" href="#id1">Simple case of Gaussian prior and likelihood</a></li>
+<li><a class="reference internal" href="#id2">Simple case of Gaussian prior and likelihood</a><ul>
+<li><a class="reference internal" href="#let-s-now-assume-we-have-n-measurements-data-points">Let’s now assume we have N measurements (data points)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#estimating-parameters-of-a-gaussian-distribution-using-data-with-homoscedastic-gaussian-uncertainties">Estimating parameters of a Gaussian distribution using data with homoscedastic Gaussian uncertainties</a><ul>
+<li><a class="reference internal" href="#id3">Let’s now assume we have N measurements (data points)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">Estimating parameters of a Gaussian distribution using data with homoscedastic Gaussian uncertainties</a><ul>
+<li><a class="reference internal" href="#here-is-another-relatively-simple-case-to-bring-us-closer-to-the-main-idea-of-hierarchical-bayes">Here is another relatively simple case to bring us closer to the main idea of Hierarchical Bayes:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#estimating-parameters-of-a-gaussian-distribution-using-data-with-heteroscedastic-gaussian-uncertainties">Estimating parameters of a Gaussian distribution using data with heteroscedastic Gaussian uncertainties</a></li>
+<li><a class="reference internal" href="#id5">Estimating parameters of a Gaussian distribution using data with heteroscedastic Gaussian uncertainties</a></li>
+<li><a class="reference internal" href="#an-astrophysical-example-radial-velocity-dispersion-for-a-cluster">An astrophysical example: radial velocity dispersion for a cluster</a></li>
+<li><a class="reference internal" href="#id6">An astrophysical example: radial velocity dispersion for a cluster</a></li>
+<li><a class="reference internal" href="#id7">An astrophysical example: radial velocity dispersion for a cluster</a></li>
+<li><a class="reference internal" href="#hierarchical-bayes">Hierarchical Bayes</a></li>
+<li><a class="reference internal" href="#id8">Hierarchical Bayes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+<li><a class="reference internal" href="#id9">Discussion</a></li>
+<li><a class="reference internal" href="#id10">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/astroml_chapter5_Hierarchical_Bayes.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="hierarchical-bayes-example">
+<h1>Hierarchical Bayes Example<a class="headerlink" href="#hierarchical-bayes-example" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="january-6-2020">
+<h2>January 6, 2020<a class="headerlink" href="#january-6-2020" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.astroml.org/workshops/AAS235.html">astroML workshop at the 235th Meeting of the American Astronomical Society</a></p>
+<p><a class="reference external" href="http://faculty.washington.edu/ivezic/">Zeljko Ivezic, University of Washington</a></p>
+<p><a class="reference external" href="https://github.com/astroML/astroML-workshop_AAS235/blob/master/bayesian/AAS2019_HBexample.ipynb">This notebook</a></p>
+<div class="section" id="resources-for-this-notebook-include">
+<h3>Resources for this notebook include:<a class="headerlink" href="#resources-for-this-notebook-include" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="http://press.princeton.edu/titles/10159.html">Textbook</a> Chapter 5.</p></li>
+<li><p><a class="reference external" href="https://github.com/jakevdp/BayesianAstronomy">Jake VanderPlas’ workshop “Bayesian Astronomy”</a></p></li>
+<li><p><a class="reference external" href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Jake VanderPlas’ blog “Frequentism and Bayesianism: A Practical Introduction”</a></p></li>
+</ul>
+</div>
+<div class="section" id="highly-recommended-supplemental-background-reading">
+<h3>Highly recommended supplemental background reading:<a class="headerlink" href="#highly-recommended-supplemental-background-reading" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/LSSTC-DSFP/LSSTC-DSFP-Sessions/tree/master/Session4/Day1">Mario Juric: Frequentist vs. Bayesian Perspectives (LSSTC Data Science Fellowship Program Lecture)</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/1411.5018">Jake VanderPlas: ``Frequentism and Bayesianism: A Python-driven Primer”</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/1008.4686">Hogg, Bovy and Lang: ``Data analysis recipes: Fitting a model to data”</a></p></li>
+</ul>
+</div>
+<div class="section" id="for-those-who-want-to-dive-deep">
+<h3>For those who want to dive deep:<a class="headerlink" href="#for-those-who-want-to-dive-deep" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amazon.com/Data-Analysis-Bayesian-Devinderjit-Sivia/dp/0198568320">D. Sivia and J. Skilling: ``Data Analysis: A Bayesian Tutorial’’</a></p></li>
+<li><p><a class="reference external" href="http://bayes.wustl.edu/etj/prob/book.pdf">E.T. Jaynes: ``Probability Theory: The Logic of Science’’</a></p></li>
+<li><p><a class="reference external" href="http://bayes.wustl.edu/etj/articles/confidence.pdf">E.T. Jaynes: ``Confidence Intervals vs. Bayesian intervals’’</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="hierarchical-bayes-modeling">
+<h2>Hierarchical Bayes Modeling<a class="headerlink" href="#hierarchical-bayes-modeling" title="Permalink to this headline">¶</a></h2>
+<p>(a.k.a. multilevel models, Bayesian belief networks, or graphical models)</p>
+<p>We’ll start with a quick reminder of Bayes’ Theorem and its implications for today’s discussion</p>
+<img src="bayes2.jpg" style="height:670px"><div class="section" id="simple-case-of-gaussian-prior-and-likelihood">
+<h3>Simple case of Gaussian prior and likelihood<a class="headerlink" href="#simple-case-of-gaussian-prior-and-likelihood" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><em><strong>Bayes’ Theorem:</strong></em> $<img class="math" src="../../_images/math/d93b48506dec3fd53e66b248944f24e113c7a00c.png" alt="p(M|D) = \frac{p(D|M)p(M)}{p(D)}"/>$</p>
+</div></blockquote>
+<p>Let’s assume a one-dimensional problem: we measure length (or mass, or velocity, or metallicity, or …) <img class="math" src="../../_images/math/888f7c323ac0341871e867220ae2d76467d74d6e.png" alt="x"/>, with measurement uncertainty <img class="math" src="../../_images/math/60f4822f02b44d931c5d0595da71dcf34e270437.png" alt="e"/>, and we are trying to estimate <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/>, the true length.</p>
+<p>We have prior information (belief) for the value of <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> that can be summarized as N(<img class="math" src="../../_images/math/f350e0816ab400c406dd43da0b53f7532a4d49ce.png" alt="\mu_0"/>, <img class="math" src="../../_images/math/44b89e7df07f8039300c6593f0deb5b9682e94af.png" alt="\sigma_0"/>). For example, this could be the result of a number of older (prior) measurements.</p>
+</div>
+<div class="section" id="id1">
+<h3>Simple case of Gaussian prior and likelihood<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><em><strong>Bayes’ Theorem:</strong></em> $<img class="math" src="../../_images/math/d93b48506dec3fd53e66b248944f24e113c7a00c.png" alt="p(M|D) = \frac{p(D|M)p(M)}{p(D)}"/>$</p>
+</div></blockquote>
+<p>The posterior probability density function is then</p>
+<div class="math">
+<p><img src="../../_images/math/8ca97768cb26402741f006d8de0283e009383f0f.png" alt="p(\mu | x, e, \mu_0, \sigma_0) \propto \frac{1}{e\sqrt{2\pi}} \exp\left(\frac{-(\mu - x)^2}{2e^2}\right) \times"/></p>
+</div><div class="math">
+<p><img src="../../_images/math/6ebdc58e8ffa3e984ae3302440767ac12710d6ab.png" alt="\frac{1}{\sigma_0\sqrt{2\pi}} \exp\left(\frac{-(\mu - \mu_0)^2}{2 \sigma_0^2}\right)."/></p>
+</div><p>When the posterior probability density function is a product of two Gaussians,
+it is easy to show that <img class="math" src="../../_images/math/73ce59552e329565b00a0a61e9aa8798485d0862.png" alt="p(\mu | x, e, \mu_0, \sigma_0)"/> can be summarized as a Gaussian
+$<img class="math" src="../../_images/math/d04599700e5db7d76e49c261ef8b0c2d2a81cbb8.png" alt="p(\mu | x, e, \mu_0, \sigma_0) = \frac{1}{\sigma_p\sqrt{2\pi}} \exp\left(\frac{-(\mu - \mu_p)^2}{2\sigma_p^2}\right),"/>$</p>
+<p>with
+$<img class="math" src="../../_images/math/70348bb26305f15952ce940340f6d297238a53d6.png" alt="\mu_p = \frac{(x/e^2) + (\mu_0/\sigma_0^2)}{1/e^2 + 1/\sigma_0^2}"/><img class="math" src="../../_images/math/91981f91dfd6ea205a061d5e119294461115c12f.png" alt="and"/><img class="math" src="../../_images/math/4be4a74fc35b9d092b2d76da34dbb6135c5c1330.png" alt="\sigma_p = \left( 1/e^2 + 1/\sigma_0^2 \right)^{-1/2}"/>$</p>
+</div>
+<div class="section" id="id2">
+<h3>Simple case of Gaussian prior and likelihood<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>This result, where <img class="math" src="../../_images/math/86f4abfacef17a042f0861f21635edd85336501d.png" alt="\mu_p"/> is obtained by inverse variance weighting,
+$<img class="math" src="../../_images/math/56ec91e0f8fb958d27f13c65081a670ccda30c3b.png" alt="\mu_p = \frac{(x/e^2) + (\mu_0/\sigma_0^2)}{1/e^2 + 1/\sigma_0^2} \,\,\,\, {\rm and} \,\,\,\, \sigma_p = \left( 1/e^2 + 1/\sigma_0^2 \right)^{-1/2}"/>$
+is quite simple, but very educational. Let’s plot an example…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## case of conjugate prior: both prior and posterior pdfs are gaussian</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">0.7</span> 
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mf">1.4</span>
+<span class="n">sigma0</span> <span class="o">=</span> <span class="mf">0.3</span> 
+<span class="n">muGrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">n1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">muGrid</span><span class="p">)</span> 
+<span class="n">n2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">mu0</span><span class="p">,</span> <span class="n">sigma0</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">muGrid</span><span class="p">)</span> 
+<span class="n">P</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">*</span> <span class="n">n2</span> 
+<span class="c1"># need to properly normalize P to make it pdf </span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">simps</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">P</span><span class="o">/</span><span class="n">simps</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">muGrid</span><span class="p">)</span>
+
+<span class="c1"># for fun, compute mu_p and sigma_p and compare to direct multiplication of n1 and n2</span>
+<span class="n">sigma_p</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">e</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="n">sigma0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mu_p</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">e</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">mu0</span><span class="o">/</span><span class="n">sigma0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sigma_p</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">posterior</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">mu_p</span><span class="p">,</span> <span class="n">sigma_p</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">muGrid</span><span class="p">)</span> 
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">muGrid</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;measurement&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">muGrid</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;prior&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">muGrid</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;direct product&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">muGrid</span><span class="p">,</span> <span class="n">posterior</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;posterior&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x_i|\mu,\sigma)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian prior and Gaussian Likelihood&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+ 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter5_Hierarchical_Bayes_10_02.png" src="../../_images/astroml_chapter5_Hierarchical_Bayes_10_02.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>The posterior pdf is <em><strong>narrower</strong></em> than both measurement pdf (i.e. likelihood) and prior pdf (recall that measurement precision often scales as <img class="math" src="../../_images/math/bba43197c09e37217e6af6b92df3ef613996bf77.png" alt="1/\sqrt{N}"/>, where <img class="math" src="../../_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> is the number of data points)</p></li>
+<li><p>The posterior pdf is <em><strong>biased</strong></em> compared to the maximum likelihood estimate!</p></li>
+<li><p>In this example, the likelihood and prior pdfs can be switched and the posterior pdf will remain unchanged</p></li>
+<li><p>The same posterior pdf is the solution when prior is based on <img class="math" src="../../_images/math/f91e7f01955f0d20f5986c6d91696e7f446f669b.png" alt="N-1"/> data points and likelihood corresponds to the <img class="math" src="../../_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/>th data point: an online algorithm!</p></li>
+</ul>
+<div class="section" id="let-s-now-assume-we-have-n-measurements-data-points">
+<h4>Let’s now assume we have N measurements (data points)<a class="headerlink" href="#let-s-now-assume-we-have-n-measurements-data-points" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="estimating-parameters-of-a-gaussian-distribution-using-data-with-homoscedastic-gaussian-uncertainties">
+<h3>Estimating parameters of a Gaussian distribution using data with homoscedastic Gaussian uncertainties<a class="headerlink" href="#estimating-parameters-of-a-gaussian-distribution-using-data-with-homoscedastic-gaussian-uncertainties" title="Permalink to this headline">¶</a></h3>
+<p>The data likelihood can be written as:</p>
+<div class="math">
+<p><img src="../../_images/math/fd0c92d38d571827d69849cbe769405b62e3ce97.png" alt="p(\{x_i\}|\mu,\sigma,I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e^2)^{1/2}}
+                   \exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e^2)}\right)}"/></p>
+</div><p>Here, <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> can still describe the prior pdf (after rearragning to posterior pdf
+via Bayes’ theorem). But we can also interpret <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> as describing an additional
+(part of the) process that generates data, and that are themselves drawn from flat priors - math
+is exactly the same.</p>
+<div class="section" id="id3">
+<h4>Let’s now assume we have N measurements (data points)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Estimating parameters of a Gaussian distribution using data with homoscedastic Gaussian uncertainties<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The posterior pdf for <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> is:</p>
+<div class="math">
+<p><img src="../../_images/math/ca952fc6827247b0b3ef9dced6016cf155c75096.png" alt="p(\mu,\sigma | \{x_i\},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e^2)^{1/2}}
+                   \exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e^2)}\right)}"/></p>
+</div><p>Because errors are homoscedastic (all data points have uncertainty <img class="math" src="../../_images/math/60f4822f02b44d931c5d0595da71dcf34e270437.png" alt="e"/>), there is a
+closed-form solution. For example, we can estimate <img class="math" src="../../_images/math/5406eadc281dbd20de843b0034c8497320dae5cb.png" alt="\sigma^2"/> by subtracting <img class="math" src="../../_images/math/f41fdbd89b24e323790a84abe8b481251b1c73ba.png" alt="e^2"/> from
+the variance of <img class="math" src="../../_images/math/9d42ea04b12d9b2453b4546839cd3cd63f5b22b4.png" alt="\{x_i\}"/> (i.e. if <img class="math" src="../../_images/math/378a9265e1e66f939bb97f7877ed534354a55a0e.png" alt="\sigma=0"/>, the width of <img class="math" src="../../_images/math/9d42ea04b12d9b2453b4546839cd3cd63f5b22b4.png" alt="\{x_i\}"/> distribution would be simply <img class="math" src="../../_images/math/60f4822f02b44d931c5d0595da71dcf34e270437.png" alt="e"/>).</p>
+<div class="section" id="here-is-another-relatively-simple-case-to-bring-us-closer-to-the-main-idea-of-hierarchical-bayes">
+<h4>Here is another relatively simple case to bring us closer to the main idea of Hierarchical Bayes:<a class="headerlink" href="#here-is-another-relatively-simple-case-to-bring-us-closer-to-the-main-idea-of-hierarchical-bayes" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="estimating-parameters-of-a-gaussian-distribution-using-data-with-heteroscedastic-gaussian-uncertainties">
+<h3>Estimating parameters of a Gaussian distribution using data with heteroscedastic Gaussian uncertainties<a class="headerlink" href="#estimating-parameters-of-a-gaussian-distribution-using-data-with-heteroscedastic-gaussian-uncertainties" title="Permalink to this headline">¶</a></h3>
+<p>The posterior pdf for <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> is:<br />
+$<img class="math" src="../../_images/math/95f12f68cf459f3fe7941913d02aff14e9b6f4fd.png" alt="p(\mu,\sigma | \{x_i\},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e_i^2)^{1/2}}
+                   \exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e_i^2)}\right)}"/>$</p>
+<p>There is no closed-form solution here because errors are heteroscedastic (each data point
+has a different uncertainty <img class="math" src="../../_images/math/e7cb247a7fb1bf53fae4b0fb0c2d4d3ffc535f22.png" alt="e_i"/>), but we can easily evaluate posterior pdf (say, with uniform priors)
+on a grid of <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> (or use more sophisticated methods such as MCMC).</p>
+</div>
+<div class="section" id="id5">
+<h3>Estimating parameters of a Gaussian distribution using data with heteroscedastic Gaussian uncertainties<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>The posterior pdf for <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> is:<br />
+$<img class="math" src="../../_images/math/95f12f68cf459f3fe7941913d02aff14e9b6f4fd.png" alt="p(\mu,\sigma | \{x_i\},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e_i^2)^{1/2}}
+                   \exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e_i^2)}\right)}"/>$</p>
+<p>There is no closed-form solution here because errors are heteroscedastic (each data point
+has a different uncertainty <img class="math" src="../../_images/math/e7cb247a7fb1bf53fae4b0fb0c2d4d3ffc535f22.png" alt="e_i"/>), but we can easily evaluate posterior pdf (say, with uniform priors)
+on a grid of <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> (or use more sophisticated methods such as MCMC).</p>
+<p>The key point is that the scatter of <img class="math" src="../../_images/math/9d42ea04b12d9b2453b4546839cd3cd63f5b22b4.png" alt="\{x_i\}"/> is larger than it would be for <img class="math" src="../../_images/math/378a9265e1e66f939bb97f7877ed534354a55a0e.png" alt="\sigma=0"/> (that is, <img class="math" src="../../_images/math/4581906c2800b5a9eabf16907f911623feef51c7.png" alt="\chi^2&gt;1"/>)
+and thus it constrains <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/>.</p>
+</div>
+<div class="section" id="an-astrophysical-example-radial-velocity-dispersion-for-a-cluster">
+<h3>An astrophysical example: radial velocity dispersion for a cluster<a class="headerlink" href="#an-astrophysical-example-radial-velocity-dispersion-for-a-cluster" title="Permalink to this headline">¶</a></h3>
+<p>Consider measurements of the radial velocities of <img class="math" src="../../_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> stars from a stellar or
+galaxy cluster.</p>
+<p>Assume that the cluster radial velocity distribution can be
+fully characterized by its mean, the systemic velocity (because the whole
+cluster is moving relative to the observer), and its standard deviation,
+the cluster velocity dispersion (because objects are gravitationally tied to
+the cluster and have orbital motions).</p>
+</div>
+<div class="section" id="id6">
+<h3>An astrophysical example: radial velocity dispersion for a cluster<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Consider measurements of the radial velocities of <img class="math" src="../../_images/math/3bfb3a64189a14b2704f4610827762d5e3145114.png" alt="N"/> stars from a stellar or
+galaxy cluster.</p>
+<p>The observed dispersion (i.e. standard deviation) of measured velocities
+is always larger than the cluster velocity dispersion because of measurement
+errors.</p>
+<p>When measurement errors are homoscedastic, we can estimate the cluster velocity
+dispersion, by subtracting the measurement error contribution from the observed
+dispersion (i.e. standard deviation) of measured velocities.</p>
+</div>
+<div class="section" id="id7">
+<h3>An astrophysical example: radial velocity dispersion for a cluster<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>When errors are heteroscedastic, we don’t have a closed-form solution.</p>
+<p>We can assume that the true radial velocity of a single object is drawn
+from a Gaussian described by <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> (systemic velocity) and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> (velocity
+dispersion). But we don’t know them and thus they need to be estimated from data!</p>
+<p>In case of many objects, they will collectively constrain <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/>.
+Many independent measurement sets (here a set of one measurement per object)
+that share same priors constrain them better together than can any single
+measurement alone. This is the key idea of Hierarchical Bayes modeling.</p>
+</div>
+<div class="section" id="hierarchical-bayes">
+<h3>Hierarchical Bayes<a class="headerlink" href="#hierarchical-bayes" title="Permalink to this headline">¶</a></h3>
+<p>In hierarchical, or multilevel, Bayesian analysis a prior distribution depends
+on unknown variables, the hyperparameters, that describe the group (population)
+level probabilistic model.</p>
+<p>Their priors, called hyperpriors, resemble the priors in simple (single-level)
+Bayesian models.</p>
+<p>In the radial velocity example above, <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> are priors, and their
+corresponding prior distributions (assumed flat below), are hyperpriors.</p>
+</div>
+<div class="section" id="id8">
+<h3>Hierarchical Bayes<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>In hierarchical, or multilevel, Bayesian analysis a prior distribution depends
+on unknown variables, the hyperparameters, that describe the group (population)
+level probabilistic model.</p>
+<p>When there are many independent measurement sets that share same priors, they together constrain priors better than can any single measurement alone.</p>
+<p>In statistics, this effect is known as borrowing strength and is related to
+the concept of shrinkage estimators.</p>
+<p>Let’s now look at our radial velocity example numerically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting.mcmc</span> <span class="kn">import</span> <span class="n">convert_to_stdev</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Equation 5.63: gaussian likelihood with gaussian errors&quot;&quot;&quot;</span>
+    <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ndim</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">ei</span> <span class="o">=</span> <span class="n">ei</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ei</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ndim</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">s2_e2</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">s2_e2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">xi</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">s2_e2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">getExpStD</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;given p(x), compute expectation value and std. dev.&quot;&quot;&quot;</span>
+    <span class="n">Ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">Sx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">Ex</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">Sx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ------------------------------------------------------------</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>    <span class="c1"># for repeatability</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>               <span class="c1"># number of measured stars</span>
+<span class="n">mu_true</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>      <span class="c1"># km/s, true systemic velocity</span>
+<span class="n">sigma_true</span> <span class="o">=</span> <span class="mf">20.0</span>    <span class="c1"># km/s, true velocity dispersion</span>
+<span class="n">ei</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">40</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>   <span class="c1"># n.b. heteroscedastic errors</span>
+<span class="c1"># generate measurements</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu_true</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_true</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">wi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># weighted mean</span>
+<span class="n">wmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">wi</span> <span class="o">*</span> <span class="n">xi</span><span class="p">)</span>
+<span class="c1"># uncertainty of weighted mean</span>
+<span class="n">wmeane</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="c1"># other stats</span>
+<span class="n">medvel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+<span class="n">meanvel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+<span class="n">velstd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+
+<span class="c1"># define the grids and compute logL</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="n">logL</span> <span class="o">=</span> <span class="n">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="n">logL</span> <span class="o">-=</span> <span class="n">logL</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logL</span><span class="p">)</span>
+
+<span class="c1"># integrate L to get marginal prob. distributions</span>
+<span class="n">p_sigma</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">p_sigma</span> <span class="o">/=</span> <span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">p_sigma</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">p_mu</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p_mu</span> <span class="o">/=</span> <span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">p_mu</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">logL</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+           <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\log(L)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">convert_to_stdev</span><span class="p">(</span><span class="n">logL</span><span class="p">),</span>
+            <span class="n">levels</span><span class="o">=</span><span class="p">(</span><span class="mf">0.683</span><span class="p">,</span> <span class="mf">0.955</span><span class="p">,</span> <span class="mf">0.997</span><span class="p">),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;${\rm systemic \, velocity \, } v_s \, {\rm (km/s)}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;${\rm intrinsic \, vel. \, dispersion \,} \sigma \, {\rm (km/s)}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># plot true values</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">mu_true</span><span class="p">,</span> <span class="n">mu_true</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mf">200.0</span><span class="p">],</span> <span class="p">[</span><span class="n">sigma_true</span><span class="p">,</span> <span class="n">sigma_true</span><span class="p">],</span> <span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># second axis: marginalized over mu</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">p_mu</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$v_s$ (km/s)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(v_s)$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">)</span>
+<span class="c1"># mark expectation value for radial velocity</span>
+<span class="n">Ev</span><span class="p">,</span> <span class="n">Sv</span> <span class="o">=</span> <span class="n">getExpStD</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">p_mu</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">Ev</span><span class="p">,</span> <span class="n">Ev</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># mark true systemic velocity and weighted mean of data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">mu_true</span><span class="p">,</span> <span class="n">mu_true</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">wmean</span><span class="p">,</span> <span class="n">wmean</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;--b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># plot the marginalized distribution for sigma</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">))</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">p_sigma</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$ (km/s)&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\sigma)$&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">sigma_true</span><span class="p">,</span> <span class="n">sigma_true</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Ed</span><span class="p">,</span> <span class="n">Sd</span> <span class="o">=</span> <span class="n">getExpStD</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">p_sigma</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">Ed</span><span class="p">,</span> <span class="n">Ed</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># plot data</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">))</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$v_</span><span class="si">{obs}</span><span class="s1">$ (km/s)&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;measurement index&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="c1"># mark +-error ranges</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">xL</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">ei</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">xR</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">ei</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xL</span><span class="p">,</span> <span class="n">xR</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># mark true systemic velocity and weighted mean of data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">wmean</span><span class="p">,</span> <span class="n">wmean</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;--b&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">mu_true</span><span class="p">,</span> <span class="n">mu_true</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># mark posterior range for each star</span>
+<span class="n">mup</span> <span class="o">=</span> <span class="n">Ev</span>
+<span class="n">sigp</span> <span class="o">=</span> <span class="n">Ed</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">sig0</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sigp</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">ei</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">mu0</span> <span class="o">=</span> <span class="p">(</span><span class="n">mup</span> <span class="o">/</span> <span class="n">sigp</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">xi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">ei</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig0</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">xL</span> <span class="o">=</span> <span class="n">mu0</span> <span class="o">-</span> <span class="n">sig0</span>
+    <span class="n">xR</span> <span class="o">=</span> <span class="n">mu0</span> <span class="o">+</span> <span class="n">sig0</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xL</span><span class="p">,</span> <span class="n">xR</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mf">0.7</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># and expectation value for systemic velocity</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">mup</span><span class="p">,</span> <span class="n">mup</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter5_Hierarchical_Bayes_24_02.png" src="../../_images/astroml_chapter5_Hierarchical_Bayes_24_02.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>In this particular example, the cluster velocity dispersion is astrophysically the most interesting quantity, while the posterior constraints on radial velocities for individual stars are less important.</p>
+<p>However, in other settings described by the same mathematical model the posterior pdfs for the individually measured quantities (i.e., the true radial velocity for each star in the above example) may be of more interest than the priors. In such cases the posterior pdf is marginalized over the priors.</p>
+<p>An approximate shortcut approach is to fix the priors at their most probable or expectation values. This method is known as empirical Bayes.</p>
+<p>Note that the posterior estimates of true velocities are biased relative to ML estimates,
+and have <em>smaller</em> uncertainies (hence the name shrinkage) than their measurement uncertainties!</p>
+</div>
+<div class="section" id="id9">
+<h2>Discussion<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>Recently, HB modeling has become an increasingly popular subfield of astrostatistics.</p>
+<p>HB modeling in astronomy is often applied to a set of sets of measurements that have
+something in common, such as measurements of individual phenomena that come from the
+same population (c.f. the above radial velocity example).</p>
+<p>Good examples include measurements of faint sources that share the same background, of individual supernova luminosities
+drawn from a population of cosmological type Ia supernovae, estimates of spectral energy
+distribution of stars that are all behind the same dust layer with unknown extinction
+properties, and estimates of planetary orbital eccentricity distribution.</p>
+</div>
+<div class="section" id="id10">
+<h2>Discussion<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>Another very important application of HB modeling, that is becoming more common, is
+accounting for measurement errors, intrinsic variance across a population, and various
+astronomical selection effects; a rather complex modeling framework is discussed in detail
+in a landmark study by Kelly et al. 2007 (ApJ 665, 1489).</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter5/astroml_chapter5_Hierarchical_Bayes.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

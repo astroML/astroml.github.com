@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Density Estimation for SDSS “Great Wall” &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Density Estimation for SDSS “Great Wall”</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#import-data-and-methods">Import Data and Methods</a></li>
+<li><a class="reference internal" href="#create-grids-and-define-figure-format">Create Grids and Define Figure Format</a></li>
+<li><a class="reference internal" href="#show-input-data-in-scattered-points">Show Input Data in Scattered Points</a></li>
+<li><a class="reference internal" href="#evaluate-kde-with-gaussian-kernel">Evaluate KDE with Gaussian Kernel</a></li>
+<li><a class="reference internal" href="#evaluate-kde-with-top-hat-kernel">Evaluate KDE with Top-hat Kernel</a></li>
+<li><a class="reference internal" href="#evaluate-kde-with-exponential-kernel">Evaluate KDE with Exponential Kernel</a></li>
+<li><a class="reference internal" href="#evaluate-density-using-k-nearest-neighbor-estimation">Evaluate density using K-Nearest-Neighbor Estimation</a></li>
+<li><a class="reference internal" href="#compare-estimated-results">Compare Estimated Results</a></li>
+<li><a class="reference internal" href="#use-gaussian-mixture-model">Use Gaussian Mixture Model</a></li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="density-estimation-for-sdss-great-wall">
+<h1>Density Estimation for SDSS “Great Wall”<a class="headerlink" href="#density-estimation-for-sdss-great-wall" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, we are going to estimate density of galaxies in the SDSS “Great Wall” using different methods.<br />
+Raw data are often displayed in a way like scattered point or sorted with different sized bins in histogram. However, it hard to see a smooth distribution pattern in dots and histogram bins. Therefore, we need estimators for mining the underlying distribution pattern.</p>
+<p>Firstly, we will apply <strong>Kernal Density Estimation (KDE)</strong> with different kernels (Gaussian, top-hat, and exponential kernels).
+For a set of measurements <img class="math" src="../../_images/math/3e1ec45166cdaa8b56d39241caaa79e3528f2e9c.png" alt="{x_i}"/>, the KDE at x is</p>
+<div class="math">
+<p><img src="../../_images/math/8e1f256d62e07f6af9ef7783bbe6e0f386486e2f.png" alt="\hat{f_{N}}(x) = \frac{1}{Nh^D} \sum_{i=1}^{N} K(\frac{d(x,x_i)}{h})"/></p>
+</div><p>where D is the dimensions of the parameter space.</p>
+<p>Secondly, we will use <strong>K-Nearest-Neighbor Estimation</strong> with different structure scales (different K values). The estimated function is calculated as</p>
+<div class="math">
+<p><img src="../../_images/math/3af64ecf25b5876e4ab8dcb87298959afd53994f.png" alt="\hat{f_K}(x) = \frac{K}{V_D(d_K)}"/></p>
+</div><p>Lastly, we will use <strong>Gaussian Mixture Model (GMM)</strong> on the same dataset. The density function of points is given by</p>
+<div class="math">
+<p><img src="../../_images/math/7ee8142a4a7984fbd61c8d0f9f226642bba99b9c.png" alt="\rho(x) = Np(x) = N \sum_{j=1}^{M} \alpha_j \mathcal{N}(\mu_j, \Sigma_j)"/></p>
+</div></div>
+<div class="section" id="import-data-and-methods">
+<h2>Import Data and Methods<a class="headerlink" href="#import-data-and-methods" title="Permalink to this headline">¶</a></h2>
+<p>The sample data used in this notebook is the a galaxy sample contains 8014 galaxies centered in the SDSS “Great Wall”. Data reference from <a class="reference external" href="https://arxiv.org/abs/astro-ph/0310571">Gott III et al 2005</a>.<br />
+The main methods used here are KernalDensity, KNeighborsDensity, and GaussianMixture.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LogNorm</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
+<span class="kn">from</span> <span class="nn">astroML.density_estimation</span> <span class="kn">import</span> <span class="n">KNeighborsDensity</span>
+<span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_great_wall</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-grids-and-define-figure-format">
+<h2>Create Grids and Define Figure Format<a class="headerlink" href="#create-grids-and-define-figure-format" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the grid on which to evaluate the results</span>
+<span class="n">Nx</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">Ny</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">375</span><span class="p">,</span> <span class="o">-</span><span class="mi">175</span><span class="p">)</span>
+<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">Xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">Nx</span><span class="p">),</span>
+                                            <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">Ny</span><span class="p">))))</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># adjust figure into the same size</span>
+<span class="k">def</span> <span class="nf">adjust_figure</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+                    <span class="n">hspace</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># define plot_figure to plot all KDE figures with the same format.</span>
+<span class="k">def</span> <span class="nf">plot_figure</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">(),</span>
+               <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+             <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+             <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">-</span> <span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+    <span class="c1">#ax.images[0].set_clim(0.01, 0.8)</span>
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-2-8a6e15f89c3f&gt;:6: FutureWarning: arrays to stack must be passed as a &quot;sequence&quot; type such as list or tuple. Support for non-sequence iterables such as generators is deprecated as of NumPy 1.16 and will raise an error in the future.
+  Xgrid = np.vstack(map(np.ravel, np.meshgrid(np.linspace(xmin, xmax, Nx),
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-input-data-in-scattered-points">
+<h2>Show Input Data in Scattered Points<a class="headerlink" href="#show-input-data-in-scattered-points" title="Permalink to this headline">¶</a></h2>
+<p>The plot projects galaxies in SDSS “Great Wall” as scatted points by their spatial locations onto the equatorial plane (declination ~ 0<img class="math" src="../../_images/math/aa7ccbffb40dcc75237a404052776566b273623b.png" alt="^{\circ}"/>). The graph below shows the location of each point, but it is hard to get “clustered information” from.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the great wall data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">fetch_great_wall</span><span class="p">()</span>
+
+<span class="n">adjust_figure</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.2</span><span class="p">)</span>
+
+<span class="c1"># First plot: scatter the points</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+         <span class="n">transform</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">-</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+    
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_7_02.png" src="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_7_02.png" />
+</div>
+</div>
+</div>
+<div class="section" id="evaluate-kde-with-gaussian-kernel">
+<h2>Evaluate KDE with Gaussian Kernel<a class="headerlink" href="#evaluate-kde-with-gaussian-kernel" title="Permalink to this headline">¶</a></h2>
+<p>Use a <em>Gaussian kernel</em> to evaluate the kernel density. The function <img class="math" src="../../_images/math/4ea4f16a882309087f7e07f8026df597c67df7a0.png" alt="K(u)"/>, a smooth function, represents the weight at a given point, which is normalized such that <img class="math" src="../../_images/math/36626f87a438348d6e0fa3c4b7d6bf8a3b7d9542.png" alt="\int K(u)du = 1"/>.<br />
+The expression for Gaussian kernel is</p>
+<div class="math">
+<p><img src="../../_images/math/0b890fad706e62778e04ee3ff13a431067d010fb.png" alt="K(u) = \frac{1}{ {2\pi}^{\frac{D}{2}} } e^{\frac{-{u}^2}{2}}"/></p>
+</div><p>where D is the number of dimensions of the parameter space and <img class="math" src="../../_images/math/ea3f55c60b519ce8161001aa824770cfcdcdb92b.png" alt="u = d(x, x_i) /h"/>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># evaluate Gaussian kernel</span>
+<span class="k">def</span> <span class="nf">estimate_kde</span><span class="p">(</span><span class="n">ker</span><span class="p">):</span>
+    <span class="n">kde</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="n">bandwidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="n">ker</span><span class="p">)</span>
+    <span class="n">log_dens</span> <span class="o">=</span> <span class="n">kde</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">Xgrid</span><span class="p">)</span>
+    <span class="n">dens</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_dens</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Ny</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dens</span>
+   
+<span class="n">dens1</span> <span class="o">=</span> <span class="n">estimate_kde</span><span class="p">(</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span>
+
+<span class="n">adjust_figure</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">dens1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;Gaussian $(h=5)$&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$x$ (Mpc)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_9_12.png" src="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_9_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="evaluate-kde-with-top-hat-kernel">
+<h2>Evaluate KDE with Top-hat Kernel<a class="headerlink" href="#evaluate-kde-with-top-hat-kernel" title="Permalink to this headline">¶</a></h2>
+<p>Use a <em>top-hat (box) kernel</em> to evaluate the kernel density. The expression for top-hat kernel is</p>
+<div class="math">
+<p><img src="../../_images/math/0d800bd95919746e8cf93b2e5a1652a8d4343fa3.png" alt="f(z) = \left\{ \begin{array}{rcl}
+\frac{1}{V_{D}(1)} &amp; \mbox{if} &amp; |u|\leq1, \\
+0 &amp; \mbox{if} &amp; |u|&gt;1.
+\end{array}\right."/></p>
+</div><p>This kernel gives the most “spread out” estimation for each distribution freature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third plot: top-hat kernel</span>
+<span class="n">dens2</span> <span class="o">=</span> <span class="n">estimate_kde</span><span class="p">(</span><span class="s1">&#39;tophat&#39;</span><span class="p">)</span>
+
+<span class="n">adjust_figure</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">dens2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;top-hat $(h=5)$&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$x$ (Mpc)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_11_12.png" src="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_11_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="evaluate-kde-with-exponential-kernel">
+<h2>Evaluate KDE with Exponential Kernel<a class="headerlink" href="#evaluate-kde-with-exponential-kernel" title="Permalink to this headline">¶</a></h2>
+<p>Use a <em>exponential kernel</em> to evaluate the kernel density. The expression for exponential kernel is</p>
+<div class="math">
+<p><img src="../../_images/math/7028f6494e706a55be84dee4dc50e06555be8467.png" alt="K(u) = \frac{1}{D!V_{D}(1)}e^{-|u|}."/></p>
+</div><p>where <img class="math" src="../../_images/math/a1af9389135927d0475236e8ec5e89817f667f23.png" alt="V_D(r)"/> is the volume of a D-dimensional hypersphere of radius r.<br />
+This kernel gives the “sharpest” estimation for each distribution feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fourth plot: exponential kernel</span>
+<span class="n">dens3</span> <span class="o">=</span> <span class="n">estimate_kde</span><span class="p">(</span><span class="s1">&#39;exponential&#39;</span><span class="p">)</span>
+
+<span class="n">adjust_figure</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">dens3</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;exponential $(h=5)$&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$x$ (Mpc)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_13_12.png" src="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_13_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="evaluate-density-using-k-nearest-neighbor-estimation">
+<h2>Evaluate density using K-Nearest-Neighbor Estimation<a class="headerlink" href="#evaluate-density-using-k-nearest-neighbor-estimation" title="Permalink to this headline">¶</a></h2>
+<p>Another estimator is the K-nearest-neighbor estimator, originally proposed by <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1980ApJ...236..351D/abstract">Dressler et al. 1980</a> . In this method, the implied point density at an arbitrary position x is estimated as</p>
+<div class="math">
+<p><img src="../../_images/math/3af64ecf25b5876e4ab8dcb87298959afd53994f.png" alt="\hat{f_K}(x) = \frac{K}{V_D(d_K)}"/></p>
+</div><p>where <img class="math" src="../../_images/math/5cd85c16e53731a70c03f1a1f8ade09aa98bd724.png" alt="V_D"/> is evaluated volume, and D is the problem dimensionality.</p>
+<p>By taking the assumption that the underlying density field is locally constant, we can further simplify this method as</p>
+<div class="math">
+<p><img src="../../_images/math/09e4528e435ba4d976c0f23769dbaa05c1decab3.png" alt="\hat{f_K}(x) = \frac{C}{d_K^D}"/></p>
+</div><p>where C is a scaling factor evaluated by requiring that the sum of the product of <img class="math" src="../../_images/math/383e266b81ef916c4e65141d16393db6ae9171e6.png" alt="\hat{f_K}(x)"/> and
+pixel volume is equal to the total number of data points.</p>
+<p>In this method, we can change parameter k to get different estimation result.
+K should be at least 5 because the estimator is biased and has a large variance for smaller K; see <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1985ApJ...298...80C/abstract">Casertano, S. and Hut, P.</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate K Neighbors Density with k = 5</span>
+<span class="n">knn5</span> <span class="o">=</span> <span class="n">KNeighborsDensity</span><span class="p">(</span><span class="s1">&#39;bayesian&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">dens_k5</span> <span class="o">=</span> <span class="n">knn5</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">Xgrid</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Ny</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>
+
+<span class="c1"># plot K Neighbor with k = 5</span>
+<span class="n">adjust_figure</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">dens_k5</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;$k$-neighbors $(k=5)$&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$x$ (Mpc)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_16_12.png" src="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_16_12.png" />
+</div>
+</div>
+<p>The fractional accuracy increases with K at the expense of the spatial resolution. Taking k = 40 instead of k = 5, we see different estimation result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate K Neighbors Density with k = 40</span>
+<span class="n">knn40</span> <span class="o">=</span> <span class="n">KNeighborsDensity</span><span class="p">(</span><span class="s1">&#39;bayesian&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">dens_k40</span> <span class="o">=</span> <span class="n">knn40</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">Xgrid</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Ny</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>
+
+<span class="c1"># plot K Neighbor with k = 40</span>
+<span class="n">adjust_figure</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">dens_k40</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;$k$-neighbors $(k=40)$&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$x$ (Mpc)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_18_12.png" src="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_18_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compare-estimated-results">
+<h2>Compare Estimated Results<a class="headerlink" href="#compare-estimated-results" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adjust_figure</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mf">4.4</span><span class="p">)</span>
+
+<span class="c1"># First plot: scatter the points</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">231</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+         <span class="n">transform</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">-</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+
+<span class="c1"># Second plot: gaussian kernel</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">232</span><span class="p">,</span> <span class="n">dens1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;Gaussian $(h=5)$&quot;</span><span class="p">)</span>
+
+<span class="c1"># Third plot: K nearest neighbor with k=5</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">233</span><span class="p">,</span> <span class="n">dens_k5</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;$k$-neighbors $(k=5)$&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fourth plot: exponential kernel</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">234</span><span class="p">,</span> <span class="n">dens3</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;exponential $(h=5)$&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fifth plot: top-hat kernel</span>
+<span class="n">ax5</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">235</span><span class="p">,</span> <span class="n">dens2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;top-hat $(h=5)$&quot;</span><span class="p">)</span>
+
+<span class="c1"># sixth plot: K nearest neighbor with k=40</span>
+<span class="n">ax6</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">236</span><span class="p">,</span> <span class="n">dens_k40</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;$k$-neighbors $(k=40)$&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ax4</span><span class="p">,</span> <span class="n">ax5</span><span class="p">,</span> <span class="n">ax6</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$ (Mpc)&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax5</span><span class="p">,</span> <span class="n">ax6</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax4</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$x$ (Mpc)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_20_02.png" src="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_20_02.png" />
+</div>
+</div>
+</div>
+<div class="section" id="use-gaussian-mixture-model">
+<h2>Use Gaussian Mixture Model<a class="headerlink" href="#use-gaussian-mixture-model" title="Permalink to this headline">¶</a></h2>
+<p>GMM calculate the underlying pdf of a point as a sum of multi-dimensional Gaussians using the equation below</p>
+<div class="math">
+<p><img src="../../_images/math/7ee8142a4a7984fbd61c8d0f9f226642bba99b9c.png" alt="\rho(x) = Np(x) = N \sum_{j=1}^{M} \alpha_j \mathcal{N}(\mu_j, \Sigma_j)"/></p>
+</div><p>where M is the number of Gaussians, <img class="math" src="../../_images/math/bfa3833974052d4ba2a5c5383f88232fafd5ec88.png" alt="\mu_j"/> is the the location, and <img class="math" src="../../_images/math/f954071383a4c2f436422dd23fc4afa0ed8a5927.png" alt="\Sigma_j"/> is the covariance of a Gaussian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate GMM</span>
+<span class="k">def</span> <span class="nf">compute_GMM</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">covariance_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">):</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">covariance_type</span><span class="o">=</span><span class="n">covariance_type</span><span class="p">,</span>
+                          <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;converged:&quot;</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">converged_</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">compute_GMM</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">log_dens</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">Xgrid</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Ny</span><span class="p">,</span> <span class="n">Nx</span><span class="p">)</span>
+
+<span class="c1"># plot figures</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.13</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">-</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x\ {\rm (Mpc)}$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_dens</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+          <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y\ {\rm (Mpc)}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x\ {\rm (Mpc)}$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>converged: True
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_22_12.png" src="../../_images/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall_22_12.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

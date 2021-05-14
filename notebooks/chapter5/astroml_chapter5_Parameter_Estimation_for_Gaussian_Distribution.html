@@ -1,0 +1,818 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parameter Estimation for a Gaussian Distribution &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Parameter Estimation for a Gaussian Distribution</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#import-data-and-functions">Import Data and Functions</a></li>
+<li><a class="reference internal" href="#log-likelihood-for-gaussian-distribution">Log-likelihood for Gaussian Distribution</a><ul>
+<li><a class="reference internal" href="#define-function">1. Define function</a></li>
+<li><a class="reference internal" href="#generate-distribution-diagram">2. Generate Distribution diagram</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#posterior-for-gaussian-distribution">Posterior for Gaussian Distribution</a><ul>
+<li><a class="reference internal" href="#define-functions-for-computations">1. Define functions for computations</a></li>
+<li><a class="reference internal" href="#computation">2. Computation</a></li>
+<li><a class="reference internal" href="#generate-diagram-of-methods">3. Generate diagram of methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gaussian-gaussian-distribution">Gaussian/Gaussian distribution</a><ul>
+<li><a class="reference internal" href="#create-distributions">1. Create distributions</a></li>
+<li><a class="reference internal" href="#plot-fit-results">2. Plot fit results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gaussian-distribution-with-gaussian-errors">Gaussian Distribution with Gaussian Errors</a><ul>
+<li><a class="reference internal" href="#id1">1. Define function</a></li>
+<li><a class="reference internal" href="#id2">2. Generate Distribution diagram</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">Gaussian Distribution with Gaussian Errors</a><ul>
+<li><a class="reference internal" href="#define-functions">1. Define functions</a></li>
+<li><a class="reference internal" href="#generate-data">2. Generate data</a></li>
+<li><a class="reference internal" href="#plot-and-compare-data">3. Plot and compare data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="parameter-estimation-for-a-gaussian-distribution">
+<h1>Parameter Estimation for a Gaussian Distribution<a class="headerlink" href="#parameter-estimation-for-a-gaussian-distribution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This chapter illustrates the uses of parameter estimation in generating Gaussian distribution for a set of measurement, and investigates how the change of parameters (<img class="math" src="../../_images/math/1a3a2e815d4fdc50538155daa01f9b91d388fa9b.png" alt="\mu,\sigma"/>) will change the pdf result.
+Moreover, we will compare the posterior parameter estimation with other estimation methods, such as Gaussian distribution and bootstrap estimation.<br />
+See <em>“Statistics, Data Mining, and Machine Learning in Astronomy:
+A Practical Python Guide for the Analysis of Survey Data”</em> Chapter 5.6.1 for reference.</p>
+</div>
+<div class="section" id="import-data-and-functions">
+<h2>Import Data and Functions<a class="headerlink" href="#import-data-and-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting.mcmc</span> <span class="kn">import</span> <span class="n">convert_to_stdev</span>
+
+<span class="kn">from</span> <span class="nn">astroML.resample</span> <span class="kn">import</span> <span class="n">bootstrap</span>
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">anderson</span>
+<span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="kn">import</span> <span class="n">mean_sigma</span><span class="p">,</span> <span class="n">median_sigmaG</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="log-likelihood-for-gaussian-distribution">
+<h2>Log-likelihood for Gaussian Distribution<a class="headerlink" href="#log-likelihood-for-gaussian-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have N measurements, <img class="math" src="../../_images/math/3e1ec45166cdaa8b56d39241caaa79e3528f2e9c.png" alt="{x_i}"/>. The measurement errors are Gaussian, and the measurement error for each
+measurement is <img class="math" src="../../_images/math/e08876b8d4da4e902c0c1f892d0cd3181c9cf25e.png" alt="\sigma_i"/> (heteroscedastic errors). This method applies logrithm in searching the posterior probability density function (pdf) as <img class="math" src="../../_images/math/352d84979401c54db03f8d902b0192edf519b16a.png" alt="\mu: p(\mu|{x_i},{\sigma_i})"/>.<br />
+Given that the likelihood function for a single measurement, <img class="math" src="../../_images/math/c67734af70861b2bd4dedf5c41c9aad231466f84.png" alt="x_i"/>, is assumed to follow a Gaussian
+distribution <img class="math" src="../../_images/math/81157ce7f2c9467a9e7aa12bf5a25a8b1f4d0d5e.png" alt="\mathcal{N}(\mu,\sigma)"/>, the likelihood for all measurements is given by
+<img class="math" src="../../_images/math/87788de0bc5d5bea3ce401f3bf35b21755120bf6.png" alt="p({x_i}|\mu,\sigma,I) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi} \sigma} exp(\frac{-(x_i-\mu)^2)}{2\sigma^2})"/>
+Here we have <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> to be estimated.</p>
+<p>Adopting a uniform prior distribution for the location parameter <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and a uniform prior distribution for <img class="math" src="../../_images/math/9b8fb37e36380bb4d177689939eb6028fe68ba86.png" alt="ln\sigma"/>, we have
+<img class="math" src="../../_images/math/7976a3a19b9cbe00382915a49622b13a1073d0d8.png" alt="p(\mu,\sigma|I)\propto \large{\frac{1}{\sigma}}"/>, for <img class="math" src="../../_images/math/350b8732763139c12f26bf029038c997df599357.png" alt="\mu_{min}\leq \mu \leq \mu_{max}"/>
+and <img class="math" src="../../_images/math/7692688fc21bccf52f23f898aee827300c4459ec.png" alt="\sigma_{min} \leq \sigma \leq \sigma_{max}"/>.</p>
+<p>And the logarithm of the posterior pdf is
+$<img class="math" src="../../_images/math/5adde7c0315f235684bf0e296882043c8099d28a.png" alt="L_p = constant - (N+1)ln\sigma - \frac{N}{2\sigma^2}((\bar{x}-\mu)^2 + V)"/>$</p>
+<p>where N is the sample size, and V is defined as
+<img class="math" src="../../_images/math/7f47f6208a69bf0f915e3bd13c5efadd0cbf0f2c.png" alt="V = \normalsize{N^{-1}\sum_{i=1}^N(x_i - \bar{x})^2} = \large{\frac{(N-1)s^2}{N}}"/>,</p>
+<p>in which s is the sample standard deviation from equation <img class="math" src="../../_images/math/6bf5ed59147a76a99e07d1f6b6935c3a4ec43c9b.png" alt="s=\normalsize{\sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i-\bar{x})^2}}"/>,<br />
+and <img class="math" src="../../_images/math/9c3bdbab48a2177b8e46ec59561cee6f11e3ed28.png" alt="\bar{x}"/> is the sample arithmetic mean from <img class="math" src="../../_images/math/13c44840c457cd686b3b1058048f58912e50b37e.png" alt="\normalsize{x_i = \frac{1}{N}\sum_{i=1}^{N}x_i}"/>.</p>
+<div class="section" id="define-function">
+<h3>1. Define function<a class="headerlink" href="#define-function" title="Permalink to this headline">¶</a></h3>
+<p>First we define function to calculate Log-likelihood Gaussian distribution. Taking <img class="math" src="../../_images/math/904a5938f8d69aa5b0b7a66fd987e2fe47bb5d40.png" alt="\bar{x}, V, n, \sigma, \mu"/> as parameters.<br />
+In this example, we have N = 10, <img class="math" src="../../_images/math/9c3bdbab48a2177b8e46ec59561cee6f11e3ed28.png" alt="\bar{x}"/> = 1, and V = 4. The maximum of <img class="math" src="../../_images/math/9f36d1d47f078103b249b815d68df216780df112.png" alt="L_p"/> is renormalized to 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the function for calculating log-likelihood Gaussian distribution</span>
+<span class="k">def</span> <span class="nf">gauss_logL</span><span class="p">(</span><span class="n">xbar</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Gaussian likelihood&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+            <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="p">((</span><span class="n">xbar</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Define the grid and compute logL</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">xbar</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">logL</span> <span class="o">=</span> <span class="n">gauss_logL</span><span class="p">(</span><span class="n">xbar</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">sigma</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">logL</span> <span class="o">-=</span> <span class="n">logL</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-distribution-diagram">
+<h3>2. Generate Distribution diagram<a class="headerlink" href="#generate-distribution-diagram" title="Permalink to this headline">¶</a></h3>
+<p>Next, we draw a Gaussian distribution using the logarithm of the posterior probability density finction for  <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/>, <img class="math" src="../../_images/math/8f306a54ecd2359bb2fa4318e7b7fb969dc4d57c.png" alt="L_p(\mu,\sigma)"/> in the equation described above.<br />
+In this example, the maximum value of <img class="math" src="../../_images/math/9f36d1d47f078103b249b815d68df216780df112.png" alt="L_p"/> is at <img class="math" src="../../_images/math/d058bd1a2b3bf575333f0fbba57bd07ecfbc39fe.png" alt="\mu_0 = 1.0"/> and <img class="math" src="../../_images/math/07ca1ae7d07ade572fddb092385bebad77bcbf1e.png" alt="\sigma_0 = 1.8"/>. Color code for the density is shown in the legend. The contours enclose the regions that contain 0.683, 0.955, and 0.997 of the cumulative (integrated) posterior probability.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">logL</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+           <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\log(L)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">convert_to_stdev</span><span class="p">(</span><span class="n">logL</span><span class="p">),</span>
+            <span class="n">levels</span><span class="o">=</span><span class="p">(</span><span class="mf">0.683</span><span class="p">,</span> <span class="mf">0.955</span><span class="p">,</span> <span class="mf">0.997</span><span class="p">),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$L(\mu,\sigma)\ \mathrm</span><span class="si">{for}</span><span class="s1">\ \bar</span><span class="si">{x}</span><span class="s1">=1,\ V=4,\ n=10$&#39;</span><span class="p">,</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">),</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_8_02.png" src="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_8_02.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="posterior-for-gaussian-distribution">
+<h2>Posterior for Gaussian Distribution<a class="headerlink" href="#posterior-for-gaussian-distribution" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>We calculate the result from the <strong>posterior probability density function</strong> <img class="math" src="../../_images/math/1d10cfadf77a0e02d05439e86b2b1d64aa455a5a.png" alt="p(\mu|{x_i},I)"/> using equation</p></li>
+</ol>
+<div class="math">
+<p><img src="../../_images/math/378956bdb0ac7ccfcee45b2e0e1bf166d1adc357.png" alt="p(\mu|{x_i},I)\propto[1+\frac{(\bar{x}-\mu)^2}{V}]^{\frac{-N}{2}}"/></p>
+</div><p>with respect to <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> (integral over <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> for the two-dimensional distribution shown in figure in the above section) when taking uniform prior of <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> and prior of <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> that is propotional to <img class="math" src="../../_images/math/9e3228898bec647bbe41d2349cd56b9dd8ceb081.png" alt="\sigma^{-1}"/>.<br />
+We compare this result with <strong>Gaussian distribution</strong> calculated using parameters <img class="math" src="../../_images/math/9c3bdbab48a2177b8e46ec59561cee6f11e3ed28.png" alt="\bar{x}"/> and <img class="math" src="../../_images/math/8337329d5d3729330f3d91ddc187015bf9baf386.png" alt="\sigma_{\bar{x}}"/> from</p>
+<div class="math">
+<p><img src="../../_images/math/bf0e431ff0b6074ca9afe123185f0b496759946c.png" alt="\normalsize{\bar{x} = \frac{1}{N}\sum_{i=1}^{N}x_i}"/></p>
+</div><div class="math">
+<p><img src="../../_images/math/35d4194910ebc1640616e955b9e38eb0b562e2dd.png" alt="\sigma_{\bar{x}}=\frac{s}{\sqrt{N}}"/></p>
+</div><p>we as well compare it with the mean given by the equation above using <strong>bootstrap estimation</strong>.</p>
+<ol class="simple">
+<li><p>Also we calculate the result from the <strong>posterior probability density function</strong> <img class="math" src="../../_images/math/bd7df0581cf0ddf5c43faa8f5de73a061c3624fb.png" alt="p(\sigma|{x_i},I)"/> by</p></li>
+</ol>
+<div class="math">
+<p><img src="../../_images/math/86d629aa3a298b8697af2fa59d12e13a1ef3d5d7.png" alt="p(\sigma|{x_i},I)\propto \frac{1}{\sigma^N}exp(\frac{-NV}{2\sigma^2})"/></p>
+</div><p>with respect to <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> (integral over <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> for the two-dimensional distribution shown in figure in the above section) when taking uniform prior of <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> and prior of <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> that is propotional to <img class="math" src="../../_images/math/9e3228898bec647bbe41d2349cd56b9dd8ceb081.png" alt="\sigma^{-1}"/>.<br />
+We compare this result with <strong>Gaussian distribution</strong> calculated using parameters <img class="math" src="../../_images/math/106b04b320e75010b1d8029e59244f234f75e6f9.png" alt="s"/> and <img class="math" src="../../_images/math/ba09f30f51f141ccac9d0376c048f3987a59e5c3.png" alt="\sigma_{s}"/> from</p>
+<div class="math">
+<p><img src="../../_images/math/c68e5cb5e5ee12c463b427ee706dbdd609dc749d.png" alt="s=\sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i-\bar{x})^2}"/></p>
+</div><div class="math">
+<p><img src="../../_images/math/44ec6ee68f0bcb6659087236bdf2c7b6289899a9.png" alt="\sigma_s = \frac{s}{\sqrt{2(N-1)}} = \frac{1}{\sqrt{2}}\sqrt{\frac{N}{N-1}}\sigma_{\bar{x}}"/></p>
+</div><p>we as well compare it with the mean given by the equation above using <strong>bootstrap estimation</strong>.</p>
+<ol class="simple">
+<li><p>The result of probability distribution and a cululative distribution will be displayed.</p></li>
+</ol>
+<div class="section" id="define-functions-for-computations">
+<h3>1. Define functions for computations<a class="headerlink" href="#define-functions-for-computations" title="Permalink to this headline">¶</a></h3>
+<p>These are expected analytic fits to the posterior distributions. The functions defined below follows the equation above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_pmu</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">xbar</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">xbar</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">V</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_pmu_alt</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">xbar</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">xbar</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">V</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">compute_psig</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">sig</span> <span class="o">**</span> <span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">V</span> <span class="o">/</span> <span class="n">sig</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_psig_alt</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">sig</span> <span class="o">**</span> <span class="o">-</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">V</span> <span class="o">/</span> <span class="n">sig</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Equivalently, we can instead use function (sciypy.stats.norm) in Scipy package to draw a gaussian distribution from sample. See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html">documentation</a> for reference. Examples are shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw normal gaussian function</span>
+<span class="c1"># scipy.stats.norm(mean, std) </span>
+
+<span class="c1"># probability density function </span>
+<span class="c1"># norm.pdf(x, loc, scale)</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># mean = 0, stdev = 1</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">rvs</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># ten random draws</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># pdf evaluated at x=0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, in Python 3.8 we have function NormalDist in statistics, which takes <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> as arguments.
+See <a class="reference external" href="https://docs.python.org/3.8/library/statistics.html?highlight=normaldist#statistics.NormalDist">documentation</a> for more information. Example is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from statistics import NormalDist</span>
+<span class="c1"># NormalDist(mu=100, sigma=10).pdf(x)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="computation">
+<h3>2. Computation<a class="headerlink" href="#computation" title="Permalink to this headline">¶</a></h3>
+<p>Draw a random sample from the distribution, and compute some quantities. Here we take the posterior probability density functions <img class="math" src="../../_images/math/68a5a74f9b6a0d7dc99f241a8b6907f94a577ad5.png" alt="p(\mu|\{x_i\},I)"/> and <img class="math" src="../../_images/math/076c7a29c6900bcb0f21d79601918d811cfba367.png" alt="p(\sigma|\{x_i\},I)"/> with N = 10, x = 1 and V = 4 parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">xbar</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">sigma_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">xbar</span><span class="p">,</span> <span class="n">sigma_x</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">mu_mean</span><span class="p">,</span> <span class="n">sig_mean</span> <span class="o">=</span> <span class="n">mean_sigma</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># compute the analytically expected spread in measurements</span>
+<span class="n">mu_std</span> <span class="o">=</span> <span class="n">sig_mean</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">sig_std</span> <span class="o">=</span> <span class="n">sig_mean</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># bootstrap estimates</span>
+<span class="n">mu_bootstrap</span><span class="p">,</span> <span class="n">sig_bootstrap</span> <span class="o">=</span> <span class="n">bootstrap</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1E6</span><span class="p">),</span> <span class="n">mean_sigma</span><span class="p">,</span>
+                                        <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Compute analytic posteriors</span>
+
+<span class="c1"># distributions for the mean</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">dmu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">pmu</span> <span class="o">=</span> <span class="n">compute_pmu</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">pmu</span> <span class="o">/=</span> <span class="p">(</span><span class="n">dmu</span> <span class="o">*</span> <span class="n">pmu</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">pmu2</span> <span class="o">=</span> <span class="n">compute_pmu_alt</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">pmu2</span> <span class="o">/=</span> <span class="p">(</span><span class="n">dmu</span> <span class="o">*</span> <span class="n">pmu2</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">pmu_norm</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">mu_mean</span><span class="p">,</span> <span class="n">mu_std</span><span class="p">)</span>
+<span class="n">pmu_norm</span> <span class="o">/=</span> <span class="p">(</span><span class="n">dmu</span> <span class="o">*</span> <span class="n">pmu_norm</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">mu_hist</span><span class="p">,</span> <span class="n">mu_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">mu_bootstrap</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">mu_dbin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">mu_bins</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">mu_hist</span> <span class="o">=</span> <span class="n">mu_hist</span> <span class="o">/</span> <span class="n">mu_dbin</span> <span class="o">/</span> <span class="n">mu_hist</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># distributions for the standard deviation</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1E-4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">dsig</span> <span class="o">=</span> <span class="n">sig</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">psig</span> <span class="o">=</span> <span class="n">compute_psig</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">psig</span> <span class="o">/=</span> <span class="p">(</span><span class="n">dsig</span> <span class="o">*</span> <span class="n">psig</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">psig2</span> <span class="o">=</span> <span class="n">compute_psig_alt</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">psig2</span> <span class="o">/=</span> <span class="p">(</span><span class="n">dsig</span> <span class="o">*</span> <span class="n">psig2</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">psig_norm</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">sig_mean</span><span class="p">,</span> <span class="n">sig_std</span><span class="p">)</span>
+<span class="n">psig_norm</span> <span class="o">/=</span> <span class="p">(</span><span class="n">dsig</span> <span class="o">*</span> <span class="n">psig_norm</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">sig_hist</span><span class="p">,</span> <span class="n">sig_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">sig_bootstrap</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">sig_dbin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">sig_bins</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">sig_hist</span> <span class="o">=</span> <span class="n">sig_hist</span> <span class="o">/</span> <span class="n">sig_dbin</span> <span class="o">/</span> <span class="n">sig_hist</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-diagram-of-methods">
+<h3>3. Generate diagram of methods<a class="headerlink" href="#generate-diagram-of-methods" title="Permalink to this headline">¶</a></h3>
+<p>The top two diagrams show how the estimated probability density change with the variations of <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> and <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> parameters, with a comparison of Gaussian distribution and bootstrap estimation of mean value.</p>
+<ul class="simple">
+<li><p>The solid lines represent the posterior pdf with prior of <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> proportional to <img class="math" src="../../_images/math/9e3228898bec647bbe41d2349cd56b9dd8ceb081.png" alt="\sigma^{-1}"/>.</p></li>
+<li><p>The dotted lines represent the same pdf with uniform prior of <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/>.</p></li>
+<li><p>The dashed lines represent Gaussian distribution with parameters calculated using equations given above.</p></li>
+<li><p>The circles represent the bootstrap estimated distribution of mean.</p></li>
+</ul>
+<p>The bottom two diagrams show the percentage confidence from the above methods. The dotted line shows an equivalent result when the prior for <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> is uniform and is proportional.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+                    <span class="n">hspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># plot posteriors for mu</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">pmu</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">pmu2</span><span class="p">,</span> <span class="s1">&#39;:m&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">pmu_norm</span><span class="p">,</span> <span class="s1">&#39;--r&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mu_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mu_dbin</span><span class="p">,</span> <span class="n">mu_hist</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\mu|x,I)$&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">pmu</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">*</span> <span class="n">dmu</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">pmu_norm</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">*</span> <span class="n">dmu</span><span class="p">,</span> <span class="s1">&#39;--r&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mu_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mu_dbin</span><span class="p">,</span> <span class="n">mu_hist</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">*</span> <span class="n">mu_dbin</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$P(&lt;\mu|x,I)$&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot posteriors for sigma</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">psig</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">psig2</span><span class="p">,</span> <span class="s1">&#39;:m&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">psig_norm</span><span class="p">,</span> <span class="s1">&#39;--r&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sig_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sig_dbin</span><span class="p">,</span> <span class="n">sig_hist</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\sigma|x,I)$&#39;</span><span class="p">)</span>
+
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">psig</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">*</span> <span class="n">dsig</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">psig_norm</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">*</span> <span class="n">dsig</span><span class="p">,</span> <span class="s1">&#39;--r&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sig_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sig_dbin</span><span class="p">,</span> <span class="n">sig_hist</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">*</span> <span class="n">sig_dbin</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$P(&lt;\sigma|x,I)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$P(&lt;\\sigma|x,I)$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_19_12.png" src="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_19_12.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gaussian-gaussian-distribution">
+<h2>Gaussian/Gaussian distribution<a class="headerlink" href="#gaussian-gaussian-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The posterior pdfs correspond to a case where <img class="math" src="../../_images/math/3e1ec45166cdaa8b56d39241caaa79e3528f2e9c.png" alt="{x_i}"/> are drawn from an unspecifed Gaussian distribution, <img class="math" src="../../_images/math/b72a809ef5e3c10838bd036b4534928edc05f8ce.png" alt="\mathcal{N}(\mu, \sigma)"/>. The width <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> can be interpreted in two ways: it could correspond to the intrinsic spread <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> of the measured quantity when measurement errors are always negligible, or it could simply be the unknown <strong>homoscedastic</strong> measurement error when measuring a single-valued quantity. A more general case is when the measured quantity is drawn from some distribution whose parameters we are trying to estimate, and the known measurement errors are <strong>heteroscedastic</strong>.</p>
+<p>If the errors are homoscedastic, the resulting distribution of measurements is Gaussian. If the errors are heteroscedastic, then the resulting distribution of the measurements is not Gaussian. In this section we explore how the distribution behaves when the errors are heteroscedastic, by taking the same steps in the first section.
+A linear superposition of these Gaussian distributions with widths equal to <img class="math" src="../../_images/math/e9e9327fcc428e01284926102604bff7f85c495b.png" alt="\sqrt{1 + e_i^2}"/> results in a non-Gaussian distribution.</p>
+<div class="section" id="create-distributions">
+<h3>1. Create distributions<a class="headerlink" href="#create-distributions" title="Permalink to this headline">¶</a></h3>
+<p>The distribution of <img class="math" src="../../_images/math/9e3885f47c3c5bee7e1d9d2899c8d490ce833f4e.png" alt="10^6"/> points drawn from <img class="math" src="../../_images/math/a963655a01fb22852c131f0d8e66066026c39fb8.png" alt="\mathcal{N}(0,1)"/> and sampled with heteroscedastic Gaussian errors with widths, <img class="math" src="../../_images/math/e7cb247a7fb1bf53fae4b0fb0c2d4d3ffc535f22.png" alt="e_i"/>, uniformly distributed between 0 and 3.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw underlying points</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Npts</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1E6</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">Npts</span><span class="p">)</span>
+
+<span class="c1"># add error for each point</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">Npts</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># compute point statistics</span>
+<span class="n">mu_sample</span><span class="p">,</span> <span class="n">sig_sample</span> <span class="o">=</span> <span class="n">mean_sigma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">med_sample</span><span class="p">,</span> <span class="n">sigG_sample</span> <span class="o">=</span> <span class="n">median_sigmaG</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-fit-results">
+<h3>2. Plot fit results<a class="headerlink" href="#plot-fit-results" title="Permalink to this headline">¶</a></h3>
+<p>Here we have shadowed histogram representing the original x data generated.</p>
+<ul class="simple">
+<li><p>The solid line shows the best-fit Gaussians centered on the sample median with widths equal to sample standard deviation <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/>.</p></li>
+<li><p>The dashed line shows the best-fit Gaussians centered on the sample median with widths equal to the quartile-based deviation <img class="math" src="../../_images/math/e3830ea58a7f73711e7d6423edfebeb670de8db1.png" alt="\sigma_G"/>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># plot the fitting normal curves</span>
+<span class="n">x_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_sample</span><span class="p">,</span> <span class="n">norm</span><span class="p">(</span><span class="n">mu_sample</span><span class="p">,</span> <span class="n">sig_sample</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_sample</span><span class="p">),</span>
+        <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\sigma$ fit&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_sample</span><span class="p">,</span> <span class="n">norm</span><span class="p">(</span><span class="n">med_sample</span><span class="p">,</span> <span class="n">sigG_sample</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_sample</span><span class="p">),</span>
+        <span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\sigma_G$ fit&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$p(x)$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_24_12.png" src="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_24_12.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gaussian-distribution-with-gaussian-errors">
+<h2>Gaussian Distribution with Gaussian Errors<a class="headerlink" href="#gaussian-distribution-with-gaussian-errors" title="Permalink to this headline">¶</a></h2>
+<p>The logarithm of the posterior probability density function for <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/>, <img class="math" src="../../_images/math/8f306a54ecd2359bb2fa4318e7b7fb969dc4d57c.png" alt="L_p(\mu,\sigma)"/>, for a Gaussian distribution with <strong>heteroscedastic Gaussian measurement errors</strong> (sampled uniformly from the 0-3 interval), given by</p>
+<div class="math">
+<p><img src="../../_images/math/8025751fb7295d89a997383136c575143aec6c18.png" alt="L_p = constant - \frac{1}{2}\sum^N_{i=1}(ln(\sigma^2+e_i^2)+\frac{(x_i-\mu)^2}{\sigma^2+e^2_i})"/></p>
+</div><div class="section" id="id1">
+<h3>1. Define function<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>We define function based on Gaussian Distribution with Gaussian errors as described above, with input values <img class="math" src="../../_images/math/4f5448b7ed5ea19b143efa2f54d851b8a31632da.png" alt="\mu = 1"/> and <img class="math" src="../../_images/math/b8ab1fc24ec229c43710b6b382461cebfa7f53f7.png" alt="\sigma = 1"/>, and a randomly generated sample has 10 points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Equation 5.63: gaussian likelihood with gaussian errors&quot;&quot;&quot;</span>
+    <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ndim</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">ei</span> <span class="o">=</span> <span class="n">ei</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ei</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ndim</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">s2_e2</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">s2_e2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">xi</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">s2_e2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Define the grid and compute logL</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">mu_true</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">sigma_true</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">ei</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu_true</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_true</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="n">logL</span> <span class="o">=</span> <span class="n">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="n">logL</span> <span class="o">-=</span> <span class="n">logL</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>2. Generate Distribution diagram<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Next, we draw a Gaussian distribution using the logarithm of the posterior probability density finction for  <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/>, <img class="math" src="../../_images/math/8f306a54ecd2359bb2fa4318e7b7fb969dc4d57c.png" alt="L_p(\mu,\sigma)"/> in the equation described above.</p>
+<p>Note that the posterior pdf is not symmetric with respect to the <img class="math" src="../../_images/math/4f5448b7ed5ea19b143efa2f54d851b8a31632da.png" alt="\mu = 1"/> line, and that the outermost contour, which encloses the region that contains 0.997 of the cumulative (integrated) posterior probability, allows solutions with <img class="math" src="../../_images/math/4df7c6eea4f39e98f3545ec59693409db1331b0a.png" alt="\sigma = 0"/>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">logL</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+           <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\log(L)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span>
+         <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$L(\mu,\sigma)\ \mathrm</span><span class="si">{for}</span><span class="s1">\ \bar</span><span class="si">{x}</span><span class="s1">=1,\ &#39;</span>
+          <span class="sa">r</span><span class="s1">&#39;\sigma_{\rm true}=1,\ n=10$&#39;</span><span class="p">),</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">),</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">convert_to_stdev</span><span class="p">(</span><span class="n">logL</span><span class="p">),</span>
+            <span class="n">levels</span><span class="o">=</span><span class="p">(</span><span class="mf">0.683</span><span class="p">,</span> <span class="mf">0.955</span><span class="p">,</span> <span class="mf">0.997</span><span class="p">),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\sigma$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_29_12.png" src="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_29_12.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Gaussian Distribution with Gaussian Errors<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>In this section we compare the <strong>marginalized posterior pdfs</strong> for <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> (left) and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> (right) for a Gaussian distribution with heteroscedastic Gaussian measurement errors (i.e., integrals over <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> and <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> for the two-dimensional distribution), with the distributions of approximate estimates for <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> (the median and given by</p>
+<div class="math">
+<p><img src="../../_images/math/ccb9235dff40d06061f5280f118870c161ca8313.png" alt="\sigma_0^2=\zeta^2\sigma^2_G-e^2_{50}"/></p>
+</div><p>, respectively) for 10,000 <strong>bootstrap resamples</strong> of the same data set. The true values of <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> are indicated by the vertical dotted lines.</p>
+<div class="section" id="define-functions">
+<h3>1. Define functions<a class="headerlink" href="#define-functions" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Equation 5.63: gaussian likelihood with gaussian errors&quot;&quot;&quot;</span>
+    <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ndim</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">ei</span> <span class="o">=</span> <span class="n">ei</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ei</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ndim</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">s2_e2</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">s2_e2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">xi</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">s2_e2</span><span class="p">,</span>
+                         <span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ndim</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">approximate_mu_sigma</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Estimates of mu0 and sigma0 via equations 5.67 - 5.68&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rollaxis</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+        <span class="n">ei</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rollaxis</span><span class="p">(</span><span class="n">ei</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+        <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">mu_approx</span><span class="p">,</span> <span class="n">sigmaG</span> <span class="o">=</span> <span class="n">median_sigmaG</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="n">e50</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ei</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="n">var_twiddle</span> <span class="o">=</span> <span class="p">(</span><span class="n">sigmaG</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">e50</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">sigma_twiddle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">var_twiddle</span><span class="p">))</span>
+
+    <span class="n">med</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">sigma_twiddle</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sigma_twiddle</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+    <span class="n">zeta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+    <span class="n">zeta</span><span class="p">[</span><span class="n">mu</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">med</span><span class="p">[</span><span class="n">mu</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">mu</span><span class="p">[</span><span class="n">mu</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">var_approx</span> <span class="o">=</span> <span class="n">zeta</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigmaG</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">e50</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">sigma_approx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">var_approx</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">mu_approx</span><span class="p">,</span> <span class="n">sigma_approx</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-data">
+<h3>2. Generate data<a class="headerlink" href="#generate-data" title="Permalink to this headline">¶</a></h3>
+<p>We generate data with hesteroscedatic Gaussian measurement errors. And we calculate 10,000 bootstrap resamples of the same data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">mu_true</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">sigma_true</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">ei</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu_true</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_true</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ei</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="n">logL</span> <span class="o">=</span> <span class="n">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="n">logL</span> <span class="o">-=</span> <span class="n">logL</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logL</span><span class="p">)</span>
+
+<span class="n">p_sigma</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">p_sigma</span> <span class="o">/=</span> <span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">p_sigma</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">p_mu</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p_mu</span> <span class="o">/=</span> <span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">p_mu</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Compute bootstrap estimates</span>
+<span class="n">Nbootstraps</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="mi">10000</span><span class="p">))</span>
+
+<span class="n">xi_boot</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+<span class="n">ei_boot</span> <span class="o">=</span> <span class="n">ei</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+
+<span class="n">mu_boot</span><span class="p">,</span> <span class="n">sigma_boot</span> <span class="o">=</span> <span class="n">approximate_mu_sigma</span><span class="p">(</span><span class="n">xi_boot</span><span class="p">,</span> <span class="n">ei_boot</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-and-compare-data">
+<h3>3. Plot and compare data<a class="headerlink" href="#plot-and-compare-data" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The solid lines show marginalized posterior pdfs for <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> (left) and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> (right) for a Gaussian distribution with heteroscedastic Gaussian measurement errors (i.e., integrals over <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> and <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> for the two-dimensional distribution shown in figure in the above section).</p></li>
+<li><p>The dashed histograms show the distributions of approximate estimates for <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> for bootstrap resamples of the same data set.</p></li>
+<li><p>The true values of <img class="math" src="../../_images/math/4a3598141469c2555591e66606a1b86d4ec6dca9.png" alt="\mu"/> and <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> are indicated by the vertical dotted lines.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot data</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+
+<span class="c1"># first plot the histograms for mu</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+
+<span class="c1"># plot the marginalized distribution</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">p_mu</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;marginalized&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the bootstrap distribution</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mu_boot</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;approximate&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot vertical line: newer matplotlib versions can use ax.vlines(x)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">mu_true</span><span class="p">,</span> <span class="n">mu_true</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\mu)$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+
+<span class="c1"># first plot the histograms for sigma</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+
+<span class="c1"># plot the marginalized distribution</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">p_sigma</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;marginalized&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the bootstrap distribution</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sigma_boot</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;approximate&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot vertical line: newer matplotlib versions can use ax.vlines(x)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">sigma_true</span><span class="p">,</span> <span class="n">sigma_true</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\sigma)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_36_02.png" src="../../_images/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution_36_02.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

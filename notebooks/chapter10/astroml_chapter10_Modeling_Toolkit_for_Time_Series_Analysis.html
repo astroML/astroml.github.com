@@ -1,0 +1,1150 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modeling Toolkit For Time Series Analysis &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Modeling Toolkit For Time Series Analysis</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#main-concepts-for-time-series-analysis">Main concepts for time series analysis</a><ul>
+<li><a class="reference internal" href="#import-functions-and-packages">Import Functions and Packages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fourier-analysis">1. Fourier analysis</a></li>
+<li><a class="reference internal" href="#some-useful-concepts">Some useful concepts</a><ul>
+<li><a class="reference internal" href="#fourier-reconstruction-of-rr-lyrae-templates">(1) Fourier Reconstruction of RR-Lyrae Templates</a><ul>
+<li><a class="reference internal" href="#import-a-rr-lyrae-template">Import a RR Lyrae template</a></li>
+<li><a class="reference internal" href="#show-fourier-reconstruction-results">Show Fourier reconstruction results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#convolution-theorem">(2) Convolution Theorem</a><ul>
+<li><a class="reference internal" href="#generate-data-and-define-function">Generate data and define function</a></li>
+<li><a class="reference internal" href="#show-data-and-window-function">Show data and window function</a></li>
+<li><a class="reference internal" href="#compute-the-fourier-transforms-of-the-signal-and-window">Compute the Fourier transforms of the signal and window</a></li>
+<li><a class="reference internal" href="#show-fourier-transform-result-of-two-functions">Show Fourier Transform result of two functions</a></li>
+<li><a class="reference internal" href="#calculate-the-product-of-fourier-transforms">Calculate the product of Fourier transforms</a></li>
+<li><a class="reference internal" href="#perform-the-convolution">Perform the convolution</a></li>
+<li><a class="reference internal" href="#show-convolution-result">Show convolution result</a></li>
+<li><a class="reference internal" href="#show-convolution-diagram">Show Convolution Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#discrete-fourier-transform">2. Discrete Fourier Transform</a><ul>
+<li><a class="reference internal" href="#the-nyquist-sampling-theorem">(1) The Nyquist sampling theorem</a><ul>
+<li><a class="reference internal" href="#define-functions-and-terms">Define functions and terms</a></li>
+<li><a class="reference internal" href="#show-a-comparison-of-well-sampled-and-over-sampled-results">Show a comparison of well-sampled and over-sampled results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-window-function">(2) The window function</a><ul>
+<li><a class="reference internal" href="#generate-the-data">Generate the data</a></li>
+<li><a class="reference internal" href="#select-observations-and-compute-psd">Select observations and compute PSD</a></li>
+<li><a class="reference internal" href="#scale-psds-for-plotting">Scale PSDs for plotting</a></li>
+<li><a class="reference internal" href="#show-figure">Show figure</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-fast-fourier-transform-fft">(3) The Fast Fourier Transform (FFT)</a><ul>
+<li><a class="reference internal" href="#id1">Generate the data</a></li>
+<li><a class="reference internal" href="#show-result-with-data-and-calculated-psd">Show result with data and calculated PSD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="modeling-toolkit-for-time-series-analysis">
+<h1>Modeling Toolkit For Time Series Analysis<a class="headerlink" href="#modeling-toolkit-for-time-series-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, we are going to learn fundamental concepts and tools for analyzing time series data. From an astronomical perspective, this field has predominantly focused on unevenly sampled data, low signal-to-noise data, and heteroscedastic errors. The most common applications range from the detection of variability and periodicity to the treatment of nonperiodic
+variability and searches for localized events.<br />
+Despite being set in the context of time series, many tools and results are readily applicable in other domains, which we will see later in this notebook. We will extend this toolkit by introducing tools for analysis
+in the frequency domain, such as Fourier analysis, discrete Fourier transform, wavelet analysis and
+digital filtering.<br />
+The main data sets used in this chapter include light curves obtained by the <a class="reference external" href="https://arxiv.org/abs/1505.02082">LINEAR survey</a> (Lincoln Near-Earth Asteroid Research).</p>
+</div>
+<div class="section" id="main-concepts-for-time-series-analysis">
+<h2>Main concepts for time series analysis<a class="headerlink" href="#main-concepts-for-time-series-analysis" title="Permalink to this headline">¶</a></h2>
+<p>The time series discussed here will be limited to two-dimensional scalar data sets: pairs of random variables, (<img class="math" src="../../_images/math/802e1ea255de5805b557aea4e0ad643e51ea0450.png" alt="t_1"/>, <img class="math" src="../../_images/math/7a4a430067dab11b32cfcddbd7d7fd6b5f4d3070.png" alt="y_1"/>),…,(<img class="math" src="../../_images/math/f0ec4b2ff48148a54442b15b95e0ea5448feb75e.png" alt="t_N"/>; <img class="math" src="../../_images/math/a4473a15bc5390477fb5a63eca100f45e47a8b14.png" alt="y_N"/>), with no assumptions about the sampling of the time coordinate t. In many ways, analysis methods discussed here are closely related to the parameter estimation and model selection problems discussed in the context of regression. However, unlike regression problems where different y measurements are typically treated as independent random
+variables, in such models the value of <img class="math" src="../../_images/math/e01e0e0153a7cb57b0a9c96191c0bf6eec0d7875.png" alt="y_{i+1}"/> directly depends on the preceding value <img class="math" src="../../_images/math/09f199ae634ca653278cddfd301f2394bacb1777.png" alt="y_i"/>.</p>
+<p>The main tasks of time series analysis are:</p>
+<ol class="simple">
+<li><p>To characterize the presumed temporal correlation between different values of y, including its significance.</p></li>
+<li><p>To forecast (predict) future values of y.</p></li>
+</ol>
+<div class="section" id="import-functions-and-packages">
+<h3>Import Functions and Packages<a class="headerlink" href="#import-functions-and-packages" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_rrlyrae_templates</span>
+
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">fftconvolve</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">fftpack</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">mlab</span>
+
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_LIGO_large</span>
+
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">PSD_continuous</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fourier-analysis">
+<h2>1. Fourier analysis<a class="headerlink" href="#fourier-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Fourier analysis plays a major role in the analysis of time series data. In Fourier analysis, general
+functions are represented or approximated by integrals or sums of simpler trigonometric functions.</p>
+<p>For periodic functions, such as periodic light curves
+in astronomy, it is often true that a relatively small number of terms (less than 10) suffices to reach
+an approximation precision level similar to the measurement precision.</p>
+</div>
+<div class="section" id="some-useful-concepts">
+<h2>Some useful concepts<a class="headerlink" href="#some-useful-concepts" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Fourier transform</strong> of function h(t) is defined as</p>
+<div class="math">
+<p><img src="../../_images/math/ca980521f2582baad0903b58f9b5c0b652514799.png" alt="H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt"/></p>
+</div><p>with <strong>inverse transformation</strong></p>
+<div class="math">
+<p><img src="../../_images/math/c20a5019d45e9bb658e8ea4cc9dbd51efc73fecf.png" alt="h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df"/></p>
+</div><p>where t is time and f is frequency (for time in seconds, the unit for frequency is hertz, or Hz; the
+units for H(f) are the product of the units for h(t) and inverse hertz.<br />
+For a real function h(t), H(f) is in general a complex function.<br />
+In the special case when h(t) is an even function such that h(-t) = h(t), H(f) is real and even as well. For example, the
+Fourier transform of a pdf of a zero-mean Gaussian <img class="math" src="../../_images/math/fff8caaea88bd50b2acec9bcf9d9e5c2961b2e90.png" alt="N(0, \sigma)"/> in the time domain is a Gaussian
+<img class="math" src="../../_images/math/e2d77cd8b54f874ad2c228d88f1b3609ae4469c1.png" alt="H(f) = exp(-2\pi^2 \sigma^2 f^2)"/> in the frequency domain.<br />
+When the time axis of an arbitrary function
+h(t) is shifted by <img class="math" src="../../_images/math/b4ed9c2e208e08edeca8b1550ec0840acd090276.png" alt="\Delta t"/>, then the Fourier transform of <img class="math" src="../../_images/math/24c4be0a089b7f448ca838687c2ecbb86373aeac.png" alt="h(t + \Delta t)"/> is</p>
+<div class="math">
+<p><img src="../../_images/math/b6e1fd0d7e6ab76f97ae5aad46d66553f752b629.png" alt="\int_{-\infty}^{\infty}h(t+\Delta t)exp(-i2\pi ft)dt = H(f)exp(i2\pi f\Delta t)"/></p>
+</div><p>Therefore, the <strong>Fourier transform of a Gaussian <img class="math" src="../../_images/math/403f4159f2dfee6fbdaaf97e7ea22aec1dc231e5.png" alt="N(\mu, \sigma)"/></strong> is</p>
+<div class="math">
+<p><img src="../../_images/math/2a49504d7f965b966524a45252b57f925a6d8de4.png" alt="H_{Gauss}(f)=exp(-2\pi^2\sigma^2f^2)[cos(2\pi f\mu)+isin(2\pi f \mu)]"/></p>
+</div><p>This is known as <strong>“white noise”</strong> since there is no frequency
+dependence (also known as “thermal noise” or Johnson’s noise).<br />
+An important quantity in time series analysis is the one-sided <strong>power spectral density (PSD)</strong> function
+(or power spectrum) defined for <img class="math" src="../../_images/math/3f61a8eb381e8905f3f821f11c8aa79bccb88b22.png" alt="0 \leq f &lt; \infty"/> as</p>
+<div class="math">
+<p><img src="../../_images/math/7f3b69ab3850813735040495053fd65c0c7fee97.png" alt="PSD(f) \equiv |H(f)|^2+|H(-f)|^2"/></p>
+</div><p>The PSD gives the amount of power contained in the frequency interval between f and f + df.<br />
+The total power is the same whether computed in the frequency or the time domain:</p>
+<div class="math">
+<p><img src="../../_images/math/6ea1cf7a61abcc47ebc299e5e6d9541d23445dc4.png" alt="P_{tot} \equiv \int_0^{\infty}PSD(f)df=\int_{-\infty}^{\infty}|h(t)|^2dt"/></p>
+</div><p>This result is known as <strong>Parseval’s theorem</strong>.</p>
+<div class="section" id="fourier-reconstruction-of-rr-lyrae-templates">
+<h3>(1) Fourier Reconstruction of RR-Lyrae Templates<a class="headerlink" href="#fourier-reconstruction-of-rr-lyrae-templates" title="Permalink to this headline">¶</a></h3>
+<p>Below is an example of a truncated Fourier representation of an RR Lyrae light curve. As we can see, the more terms that are included in the sum, the better is the resulting approximation.</p>
+<div class="section" id="import-a-rr-lyrae-template">
+<h4>Import a RR Lyrae template<a class="headerlink" href="#import-a-rr-lyrae-template" title="Permalink to this headline">¶</a></h4>
+<p>From astroML.datasets, we take the RR Lyrae (variable star) light curve as an example. RR Lyrae has a periodical pulsation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">templates</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_templates</span><span class="p">()</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">templates</span><span class="p">[</span><span class="s1">&#39;115r&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-fourier-reconstruction-results">
+<h4>Show Fourier reconstruction results<a class="headerlink" href="#show-fourier-reconstruction-results" title="Permalink to this headline">¶</a></h4>
+<p>The thick dashed line shows the true curve; the gray lines show the approximation based on 1, 3, and 8 Fourier modes (sinusoids).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">kvals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">subplots</span> <span class="o">=</span> <span class="p">[</span><span class="mi">311</span><span class="p">,</span> <span class="mi">312</span><span class="p">,</span> <span class="mi">313</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">subplot</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">kvals</span><span class="p">,</span> <span class="n">subplots</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">subplot</span><span class="p">)</span>
+
+    <span class="c1"># Use FFT to fit a truncated Fourier series</span>
+    <span class="n">y_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y_fft</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">y_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">y_fft</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+
+    <span class="c1"># plot the true value and the k-term reconstruction</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">]),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">]),</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">]),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_fit</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%i</span><span class="s2"> mode&quot;</span> <span class="o">%</span> <span class="n">k</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">label</span> <span class="o">+=</span> <span class="s1">&#39;s&#39;</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">subplot</span> <span class="o">==</span> <span class="n">subplots</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;phase&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">subplot</span> <span class="o">==</span> <span class="n">subplots</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;amplitude&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_12_02.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_12_02.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="convolution-theorem">
+<h3>(2) Convolution Theorem<a class="headerlink" href="#convolution-theorem" title="Permalink to this headline">¶</a></h3>
+<p>A convolution of two functions <img class="math" src="../../_images/math/1a4ceb146679388d6f4b3f78cda11e8a5972fc12.png" alt="a(t)"/> and <img class="math" src="../../_images/math/30c6c329c95ab654c4d0b3289fb5999a06918a71.png" alt="b(t)"/> is given by</p>
+<div class="math">
+<p><img src="../../_images/math/c4ba006cff380685a55dc77cad8e723dd502c9d5.png" alt="(a*b)(t) \equiv \int_{-\infty}^{\infty} a(t')b(t-t')dt'"/></p>
+</div><p>In the above equation, the function a can
+be thought of as the “convolving pattern” of the measuring apparatus, and the function <img class="math" src="../../_images/math/68c7c8c65602677ab56cf7fd88002023f0edc575.png" alt="b"/> is the
+signal. In practice, we measure the convolved (or smoothed) version of our signal, <img class="math" src="../../_images/math/bb504887120da6dac0a7a1424fb45279cea19a00.png" alt="[a * b](t)"/>, and
+seek to uncover the original signal <img class="math" src="../../_images/math/68c7c8c65602677ab56cf7fd88002023f0edc575.png" alt="b"/> using the presumably known <img class="math" src="../../_images/math/b3e65e3b6408fcfa00452530b73f55d1755f9965.png" alt="a"/>.<br />
+The convolution theorem states that if <img class="math" src="../../_images/math/4c1ff1d0e58e62d17b34fe01a6d8db0bd45eed65.png" alt="h = a * b"/>, then the Fourier transforms of <img class="math" src="../../_images/math/4c120f773ab4e1c59ad2bd44aae969ce24dd190a.png" alt="h"/>, <img class="math" src="../../_images/math/b3e65e3b6408fcfa00452530b73f55d1755f9965.png" alt="a"/>, and <img class="math" src="../../_images/math/68c7c8c65602677ab56cf7fd88002023f0edc575.png" alt="b"/> are
+related by their pointwise products:</p>
+<div class="math">
+<p><img src="../../_images/math/eb3c697768a8c8ee255a205bc3a5e7fb6ef76845.png" alt="H(f)=A(f)B(f)"/></p>
+</div><p>Thus a convolution of two functions is transformed into a simple multiplication of the associated
+Fourier representations. Therefore, to obtain <img class="math" src="../../_images/math/68c7c8c65602677ab56cf7fd88002023f0edc575.png" alt="b"/>, we can simply take the inverse Fourier transform
+of the ratio <img class="math" src="../../_images/math/fb393a037fc03a3b039ef181a91b236a48241d2b.png" alt="H(f)=A(f)"/>. In the absence of noise, this operation is exact.</p>
+<p>For further explanation, we will see a schematic representation of the convolution theorem below.</p>
+<div class="section" id="generate-data-and-define-function">
+<h4>Generate data and define function<a class="headerlink" href="#generate-data-and-define-function" title="Permalink to this headline">¶</a></h4>
+<p>Generate random x, y with a given covariance length. Then we define a normalized top-hat window function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">h</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">C</span><span class="p">)</span>
+
+<span class="c1"># define function</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">w</span><span class="p">[(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mf">0.12</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.28</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-data-and-window-function">
+<h4>Show data and window function<a class="headerlink" href="#show-data-and-window-function" title="Permalink to this headline">¶</a></h4>
+<p>The graph below show simulated data <img class="math" src="../../_images/math/0719265b8f2322b3662b12ecc911adddf2a4e15c.png" alt="D(x)"/> in black line, and top-hat window function <img class="math" src="../../_images/math/cda72f23182e9a1a4993fd264e7ab25c9d7eec7a.png" alt="W(x)"/> in gray boxes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="c1"># plot the data and window function</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;data $D(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;window $W(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$D$&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 2.0)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_17_12.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_17_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compute-the-fourier-transforms-of-the-signal-and-window">
+<h4>Compute the Fourier transforms of the signal and window<a class="headerlink" href="#compute-the-fourier-transforms-of-the-signal-and-window" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">w_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+
+<span class="n">yw_fft</span> <span class="o">=</span> <span class="n">y_fft</span> <span class="o">*</span> <span class="n">w_fft</span>
+<span class="n">yw_final</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">yw_fft</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-fourier-transform-result-of-two-functions">
+<h4>Show Fourier Transform result of two functions<a class="headerlink" href="#show-fourier-transform-result-of-two-functions" title="Permalink to this headline">¶</a></h4>
+<p>The function on the top shows the Fourier transform of <img class="math" src="../../_images/math/0719265b8f2322b3662b12ecc911adddf2a4e15c.png" alt="D(x)"/> and the bottom shows the transform of <img class="math" src="../../_images/math/cda72f23182e9a1a4993fd264e7ab25c9d7eec7a.png" alt="W(x)"/>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># plot the Fourier transforms</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">N</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">y_fft</span><span class="p">)),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{F}</span><span class="s1">(D)$&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">85</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">w_fft</span><span class="p">)),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span>  <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{F}</span><span class="s1">(W)$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">85</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;$x$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_21_12.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_21_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="calculate-the-product-of-fourier-transforms">
+<h4>Calculate the product of Fourier transforms<a class="headerlink" href="#calculate-the-product-of-fourier-transforms" title="Permalink to this headline">¶</a></h4>
+<p>We multiply the above two Fourier transform functions and get the product of them (shown below). The inverse transformation of this product give us the convolution of <img class="math" src="../../_images/math/5747e306fddb216fc350bda25944adb86236ac0f.png" alt="[D*W](x)"/>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">yw_fft</span><span class="p">)),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Pointwise</span><span class="se">\n</span><span class="s1">product:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
+                     <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{F}</span><span class="s1">(D) \cdot \mathcal</span><span class="si">{F}</span><span class="s1">(W)$&#39;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3500</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$k$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;$k$&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_23_12.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_23_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="perform-the-convolution">
+<h4>Perform the convolution<a class="headerlink" href="#perform-the-convolution" title="Permalink to this headline">¶</a></h4>
+<p>Use equation <img class="math" src="../../_images/math/15145b554a5d627a06bc5bb6b50399c6117d6834.png" alt="(a*b)(t) \equiv \int_{-\infty}^{\infty} a(t')b(t-t')dt'"/> we take the convolution of D(x) and W(x).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">w</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="n">valid_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_norm</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">y_norm</span> <span class="o">=</span> <span class="n">y_norm</span><span class="p">[</span><span class="n">valid_indices</span><span class="p">]</span>
+
+<span class="n">y_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)[</span><span class="n">valid_indices</span><span class="p">]</span> <span class="o">/</span> <span class="n">y_norm</span>
+
+<span class="c1"># trick: convolve with x-coordinate to find the center of the window at</span>
+<span class="c1">#        each point.</span>
+<span class="n">x_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)[</span><span class="n">valid_indices</span><span class="p">]</span> <span class="o">/</span> <span class="n">y_norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-convolution-result">
+<h4>Show convolution result<a class="headerlink" href="#show-convolution-result" title="Permalink to this headline">¶</a></h4>
+<p>The result of <img class="math" src="../../_images/math/5747e306fddb216fc350bda25944adb86236ac0f.png" alt="[D*W](x)"/> can be viewed as the data signal smoothed with the window (top-hat) function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the convolution</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_w</span><span class="p">,</span> <span class="n">y_w</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Convolution:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;$[D \ast W](x)$&quot;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span>
+        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$[D \ast W](x)$&#39;</span> <span class="o">+</span>
+         <span class="sa">r</span><span class="s1">&#39;$= \mathcal</span><span class="si">{F}</span><span class="s1">^{-1}\{\mathcal</span><span class="si">{F}</span><span class="s1">[D] \cdot \mathcal</span><span class="si">{F}</span><span class="s1">[W]\}$&#39;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$D_W$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.99)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_27_12.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_27_12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="show-convolution-diagram">
+<h4>Show Convolution Diagram<a class="headerlink" href="#show-convolution-diagram" title="Permalink to this headline">¶</a></h4>
+<p>Here we take all the process together and express them in a clockwise order.</p>
+<ul class="simple">
+<li><p>Top-left are the original data signal <img class="math" src="../../_images/math/0719265b8f2322b3662b12ecc911adddf2a4e15c.png" alt="D(x)"/> (solid line) and top-hat window functions <img class="math" src="../../_images/math/cda72f23182e9a1a4993fd264e7ab25c9d7eec7a.png" alt="W(x)"/> (gray box).</p></li>
+<li><p>Moving on to the top-right panel, we have the Fourier transform of two functions, with <img class="math" src="../../_images/math/37d39de99200a0954393c93753e5b71b97c46c45.png" alt="F(D)"/> as the Fourier of <img class="math" src="../../_images/math/0719265b8f2322b3662b12ecc911adddf2a4e15c.png" alt="D(x)"/> at the top, and <img class="math" src="../../_images/math/4998c69ae338fbb6ff30c9fce26ebdc87a4c2e5c.png" alt="F(W)"/> as the Fourier of <img class="math" src="../../_images/math/cda72f23182e9a1a4993fd264e7ab25c9d7eec7a.png" alt="W(x)"/> at the bottom.</p></li>
+<li><p>Next we multiply <img class="math" src="../../_images/math/37d39de99200a0954393c93753e5b71b97c46c45.png" alt="F(D)"/> and <img class="math" src="../../_images/math/4998c69ae338fbb6ff30c9fce26ebdc87a4c2e5c.png" alt="F(W)"/> to get a pointwise function in the bottom-right panel.</p></li>
+<li><p>At last, we can take the inverse Fourier of <img class="math" src="../../_images/math/e6a8e9e820767f206f78f669d30d1dd23e8a68fe.png" alt="F(D) \cdot F(W)"/> and get the convolution of function <img class="math" src="../../_images/math/0719265b8f2322b3662b12ecc911adddf2a4e15c.png" alt="D(x)"/> and <img class="math" src="../../_images/math/cda72f23182e9a1a4993fd264e7ab25c9d7eec7a.png" alt="W(x)"/>, as shown in the bottom-left panel.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+                    <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------</span>
+<span class="c1"># plot the data and window function</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;data $D(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;window $W(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$D$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------</span>
+<span class="c1"># plot the convolution</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_w</span><span class="p">,</span> <span class="n">y_w</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Convolution:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;$[D \ast W](x)$&quot;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span>
+        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$[D \ast W](x)$&#39;</span> <span class="o">+</span>
+         <span class="sa">r</span><span class="s1">&#39;$= \mathcal</span><span class="si">{F}</span><span class="s1">^{-1}\{\mathcal</span><span class="si">{F}</span><span class="s1">[D] \cdot \mathcal</span><span class="si">{F}</span><span class="s1">[W]\}$&#39;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">x_loc</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">):</span>
+    <span class="n">y_loc</span> <span class="o">=</span> <span class="n">y_w</span><span class="p">[</span><span class="n">x_w</span> <span class="o">&lt;=</span> <span class="n">x_loc</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x_loc</span><span class="p">,</span> <span class="n">y_loc</span><span class="p">),</span> <span class="p">(</span><span class="n">x_loc</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$D_W$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------</span>
+<span class="c1"># plot the Fourier transforms</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">N</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">422</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">y_fft</span><span class="p">)),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{F}</span><span class="s1">(D)$&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">85</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">424</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">w_fft</span><span class="p">)),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span>  <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{F}</span><span class="s1">(W)$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">85</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="c1">#----------------------------------------</span>
+<span class="c1"># plot the product of Fourier transforms</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">yw_fft</span><span class="p">)),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Pointwise</span><span class="se">\n</span><span class="s1">product:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
+                     <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{F}</span><span class="s1">(D) \cdot \mathcal</span><span class="si">{F}</span><span class="s1">(W)$&#39;</span><span class="p">),</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3500</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$k$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot flow arrows</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">arrowprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+                  <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                  <span class="n">shrinkA</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                  <span class="n">patchA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">patchB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=-0.35&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.57</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.47</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">],</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="n">arrowprops</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.57</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.57</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">],</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="n">arrowprops</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.47</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.57</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">],</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="n">arrowprops</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_29_02.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_29_02.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="discrete-fourier-transform">
+<h2>2. Discrete Fourier Transform<a class="headerlink" href="#discrete-fourier-transform" title="Permalink to this headline">¶</a></h2>
+<p>In practice, data are always discretely sampled. When the spacing of the time interval is constant,
+the discrete Fourier transform is a powerful tool.
+Although in astronomy, temporal data are rarely sampled with uniform spacing (LIGO data, however, as a counterexample, will be discussed in the later notebook), uniformly sampled data is a good place to start because we have fast algorithm for this situation.<br />
+When computing the Fourier transform for discretely and uniformly sampled data, the Fourier
+integrals from</p>
+<div class="math">
+<p><img src="../../_images/math/ca980521f2582baad0903b58f9b5c0b652514799.png" alt="H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt"/></p>
+</div><div class="math">
+<p><img src="../../_images/math/c20a5019d45e9bb658e8ea4cc9dbd51efc73fecf.png" alt="h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df"/></p>
+</div><p>are translated to sums. Here we have t for time and f for frequency.</p>
+<p>The discrete Fourier transform of the vector of values hj is a complex vector of length N defined
+by</p>
+<div class="math">
+<p><img src="../../_images/math/c5a93763c8e1399f30b2a1db786990f22f52508f.png" alt="H_k=\sum_{j=0}^{N-1}h_j exp[-i2\pi jk/N]"/></p>
+</div><p>where k=0,…,(N-1).<br />
+The corresponding inverse discrete Fourier transform is defined by</p>
+<div class="math">
+<p><img src="../../_images/math/d722852bca06c6829811a2c33ff1693c9028c849.png" alt="h_j=\sum_{j=0}^{N-1}H_k exp[-i2\pi jk/N]"/></p>
+</div><p>where j=0,…,(N-1). Unlike the continuous transforms, here the units for <img class="math" src="../../_images/math/7cdcfa63578549b38b04442eaf8bea6a4f1f65b2.png" alt="H_k"/> are the same as
+the units for <img class="math" src="../../_images/math/62392d64151f07fa5f984d2f5898716cf5637d9e.png" alt="h_j"/> . Given <img class="math" src="../../_images/math/7cdcfa63578549b38b04442eaf8bea6a4f1f65b2.png" alt="H_k"/>, we can represent the function described by <img class="math" src="../../_images/math/62392d64151f07fa5f984d2f5898716cf5637d9e.png" alt="h_j"/> as a sum of sinusoids,
+as was done in the first figure.</p>
+<div class="section" id="the-nyquist-sampling-theorem">
+<h3>(1) The Nyquist sampling theorem<a class="headerlink" href="#the-nyquist-sampling-theorem" title="Permalink to this headline">¶</a></h3>
+<p>Let us define <img class="math" src="../../_images/math/fe0bfc3d8e7d7ed05b0b0820f31c21f9689d3eda.png" alt="h(t)"/> to be band limited if <img class="math" src="../../_images/math/9ca4c50cadc7017f2ef8d923981f6f06c3e5f1fc.png" alt="H(f) = 0"/> for <img class="math" src="../../_images/math/f71c369493e4b0e198577bbd48de90628f31f5b9.png" alt="|f| &gt; f_c"/>, where <img class="math" src="../../_images/math/f3c754ede5a325f045a10fe57b2f387ad53341c4.png" alt="f_c"/> is the band limit, or the
+Nyquist critical frequency. If <img class="math" src="../../_images/math/fe0bfc3d8e7d7ed05b0b0820f31c21f9689d3eda.png" alt="h(t)"/> is band limited, then there is some “resolution” limit in <img class="math" src="../../_images/math/907a4add6d5db5b7f197f7924f1371b8ac404fe6.png" alt="t"/> space,
+<img class="math" src="../../_images/math/b3f4b1714309adacf9b90e98ad5ef6b8bd1af5f9.png" alt="t_c = 1/(2f_c)"/> below which h(t) appears “smooth.” When <img class="math" src="../../_images/math/fe0bfc3d8e7d7ed05b0b0820f31c21f9689d3eda.png" alt="h(t)"/> is band limited, then according to the Nyquist sampling theorem we can exactly reconstruct h(t) from evenly sampled data when <img class="math" src="../../_images/math/0bf0232a80e1708847bb5fc7595c3c070d54f3ac.png" alt="\Delta t &lt; t_c"/>,
+as</p>
+<div class="math">
+<p><img src="../../_images/math/c08e4b64d5eaadc26a21bd08507f9aac3d224abf.png" alt="h(t)=\frac{\Delta t}{t_c} \sum_{k=-\infty}^{k=\infty} h_k \frac{sin[2\pi f_c (t-k\Delta t)]}{2\pi f_c (t-k\Delta t)}"/></p>
+</div><p>This result is known as the Whittaker-Shannon, or often just Shannon, interpolation formula
+(or “sinc-shifting” formula).<br />
+Note that the summation goes to infinity, but also that the term
+multiplying <img class="math" src="../../_images/math/b0bd8f891877dd2d309f39993245678af42fca2a.png" alt="h_k"/> vanishes for large values of <img class="math" src="../../_images/math/49d937ff7143433071f098da92a5f63fa1fc6a58.png" alt="|t - k\Delta t|"/>.<br />
+For example <img class="math" src="../../_images/math/9eb42d0d809313f0e6349dbd8d99ea0f5a55d189.png" alt="h(t) = sin(2 \pi t/P )"/> has a period
+P and is band limited with <img class="math" src="../../_images/math/3c892cc435f1f2950c94f27b9774439ff54511a6.png" alt="f_c = 1/P"/>. If it is sampled with <img class="math" src="../../_images/math/b4ed9c2e208e08edeca8b1550ec0840acd090276.png" alt="\Delta t"/> not larger than <img class="math" src="../../_images/math/1d983e3bf0e60170b77595b9d4b649036524b4f9.png" alt="P/2"/>, it can be fully
+reconstructed at any <img class="math" src="../../_images/math/907a4add6d5db5b7f197f7924f1371b8ac404fe6.png" alt="t"/> (it is important to note that this entire discussion assumes that there is no
+noise associated with sampled values <img class="math" src="../../_images/math/62392d64151f07fa5f984d2f5898716cf5637d9e.png" alt="h_j"/> ). On the other hand, when the sampled function h(t) is not
+band limited, or when the sampling rate is not sufficient (i.e., <img class="math" src="../../_images/math/cdb2405d97a9856afd5ce64441a4cf4e817181d1.png" alt="\Delta t &gt; t_c"/>), an effect called <strong>“aliasing”</strong>
+prevents us from exactly reconstructing h(t). In such a case, all of the power
+spectral density from frequencies <img class="math" src="../../_images/math/f71c369493e4b0e198577bbd48de90628f31f5b9.png" alt="|f| &gt; f_c"/> is aliased (falsely transferred) into the <img class="math" src="../../_images/math/661f53344ad78f7ab0559b429bf4aa6c22224d2d.png" alt="-f_c &lt; f &lt; f_c"/>
+range. The aliasing can be thought of as inability to resolve details in a time series at a finer detail
+than that set by <img class="math" src="../../_images/math/f3c754ede5a325f045a10fe57b2f387ad53341c4.png" alt="f_c"/>. The figure below will show us the effect of aliasing.</p>
+<div class="section" id="define-functions-and-terms">
+<h4>Define functions and terms<a class="headerlink" href="#define-functions-and-terms" title="Permalink to this headline">¶</a></h4>
+<p>Here we defind a Gaussian shaped data and its Fourier transform as an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">gaussian_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">gaussian_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-a-comparison-of-well-sampled-and-over-sampled-results">
+<h4>Show a comparison of well-sampled and over-sampled results<a class="headerlink" href="#show-a-comparison-of-well-sampled-and-over-sampled-results" title="Permalink to this headline">¶</a></h4>
+<p>A visualization of aliasing in the Fourier transform.
+We have two sets of four panels, and in each set:</p>
+<ul class="simple">
+<li><p>the top-left panel shows a signal and a regular sampling function</p></li>
+<li><p>the top-right panel shows the Fourier transform of the signal and sampling function</p></li>
+<li><p>the bottom-left panel shows the sampled data</p></li>
+<li><p>the bottom-right panel shows the convolution of the Fourier-space representations</p></li>
+</ul>
+<p>In the top four panels, the data is well sampled, and there is little to no aliasing.<br />
+In the bottom panels, the data is not well sampled (the spacing between two data points is larger) which leads to aliasing, as seen in the overlap of the convolved Fourier transforms. The aliasing effect can be recognized if the Fourier transform is nonzero at <img class="math" src="../../_images/math/c9e803486231d342a77664b15546ee3003d9a412.png" alt="|f| = 1/(2 \Delta t)"/> in this example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Two plots: one well-sampled, one over-sampled</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="k">def</span> <span class="nf">plot_aliasing</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    dt : float</span>
+<span class="sd">       </span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># define time-space sampling</span>
+    <span class="n">t_sample</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">h_sample</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">t_sample</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+    <span class="c1"># Fourier transform of time-space sampling</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">dt</span>
+    <span class="n">f_sample</span> <span class="o">=</span> <span class="n">df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Plot the results</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.16</span><span class="p">,</span>
+                        <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="c1"># First plot: sampled time-series</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">ts</span> <span class="ow">in</span> <span class="n">t_sample</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span>
+            <span class="p">(</span><span class="s2">&quot;Signal and Sampling Window</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+             <span class="sa">r</span><span class="s2">&quot;Sampling Rate $\Delta t$&quot;</span><span class="p">),</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$h(t)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time Domain: Multiplication&#39;</span><span class="p">)</span>
+
+    <span class="c1"># second plot: frequency space</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">fs</span> <span class="ow">in</span> <span class="n">f_sample</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">fs</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="p">(</span><span class="n">fs</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span>
+            <span class="p">(</span><span class="s2">&quot;FT of Signal and Sampling Window</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+             <span class="sa">r</span><span class="s2">&quot;$\Delta f = 1 / \Delta t$&quot;</span><span class="p">),</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$H(f)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Frequency Domain: Convolution&#39;</span><span class="p">)</span>
+
+    <span class="c1"># third plot: windowed function</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">hs</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">t_sample</span><span class="p">,</span> <span class="n">h_sample</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">hs</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">hs</span><span class="p">),</span> <span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s1">&#39;:k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Sampled signal: pointwise</span><span class="se">\n</span><span class="s2">multiplication&quot;</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$h(t)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+    <span class="c1"># fourth plot: convolved PSD</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">gaussian_FT</span><span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">fs</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">fs</span> <span class="ow">in</span> <span class="n">f_sample</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">window</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">window</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;:k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">&quot;Convolution of signal FT</span><span class="se">\n</span><span class="s2">and window FT&quot;</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$f$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$H(f)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">dt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Undersampled data: $\Delta t &gt; t_c$&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Well-sampled data: $\Delta t &lt; t_c$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_36_02.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_36_02.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_37_02.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_37_02.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-window-function">
+<h3>(2) The window function<a class="headerlink" href="#the-window-function" title="Permalink to this headline">¶</a></h3>
+<p>The figure above shows the relationship between sampling and the window function: the sampling window
+function in the time domain can be expressed as the sum of delta functions placed at sampled
+observation times. The Fourier transform of a set of delta functions with spacing <img class="math" src="../../_images/math/b4ed9c2e208e08edeca8b1550ec0840acd090276.png" alt="\Delta t"/> is another set of delta functions with spacing <img class="math" src="../../_images/math/2d0508ad75742249d8fd0bdb72f30a3a9b98c783.png" alt="1/\Delta t"/>; this result is at the core of the Nyquist sampling theorem. By the convolution theorem, pointwise multiplication of this sampling window with the data is equivalent to the convolution of their Fourier
+representations, as seen in the right-hand panels. When data are nonuniformly sampled, the impact of sampling can be understood using the same framework.<br />
+The sampling window is the sum of delta functions, but because the delta functions
+are not regularly spaced, the Fourier transform is a more complicated, and in general complex,
+function of f. The PSD can be computed using the discrete Fourier transform by constructing a
+fine grid of times and setting the window function to one at the sampled times and zero otherwise.
+The resulting PSD is called the <strong>spectral window function</strong>, and models how the Fourier-space signal
+is affected by the sampling. As discussed in detail in <a class="reference external" href="http://adsabs.harvard.edu/full/1975Ap%26SS..36..137D">Fourier analysis with unequally-spaced data</a>, the observed <strong>power spectral density (PSD)</strong> is a convolution of
+the true underlying PSD and this spectral window function.<br />
+We will see an example of an irregular sampling window in the figure below.</p>
+<div class="section" id="generate-the-data">
+<h4>Generate the data<a class="headerlink" href="#generate-the-data" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nbins</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">15</span>
+<span class="n">Nobs</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">Nbins</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="select-observations-and-compute-psd">
+<h4>Select observations and compute PSD<a class="headerlink" href="#select-observations-and-compute-psd" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select observations</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">t_obs</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_obs</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">t_obs</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">y_obs</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nbins</span><span class="p">)</span>
+<span class="n">window</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Compute PSDs</span>
+<span class="n">Nfreq</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Nbins</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nbins</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">df</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Nfreq</span><span class="p">)</span>
+
+<span class="n">PSD_window</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">window</span><span class="p">)[:</span><span class="n">Nfreq</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">PSD_y</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)[:</span><span class="n">Nfreq</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">PSD_obs</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">window</span><span class="p">)[:</span><span class="n">Nfreq</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="scale-psds-for-plotting">
+<h4>Scale PSDs for plotting<a class="headerlink" href="#scale-psds-for-plotting" title="Permalink to this headline">¶</a></h4>
+<p>Normalize the true PSD so it can be shown in the plot: in theory it’s a delta function, so normalization is arbitrary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PSD_window</span> <span class="o">/=</span> <span class="mi">500</span>
+<span class="n">PSD_y</span> <span class="o">/=</span> <span class="n">PSD_y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">PSD_obs</span> <span class="o">/=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-figure">
+<h4>Show figure<a class="headerlink" href="#show-figure" title="Permalink to this headline">¶</a></h4>
+<p>An illustration of the impact of a sampling window function of resulting PSD.</p>
+<ul class="simple">
+<li><p>The top-left panel shows a simulated data set with 40 points drawn from the function <img class="math" src="../../_images/math/db312e2d1fae14185b0fc27777cad0f5d4b0beeb.png" alt="y(t|P) = sin(t)"/> (i.e., <img class="math" src="../../_images/math/06c0de93c0a94169d6423ec37cdac04436f89664.png" alt="f = 1/(2\pi) ~ 0.16"/>).</p></li>
+<li><p>The bottom-left panel shows radom sampling illustracted by the vertical lines.</p></li>
+<li><p>The bottom-right panel shows the PSD of sampling times, or spectral window.</p></li>
+<li><p>The top-right panel shows the PSD computed for the data set from the top-left panel; it is equal to a convolution of the single peak (shaded in gray) with the window PSD shown in the bottom-right panel (e.g., the peak at f ~ 0.42 in the top-right panel can be traced to a peak at f ~ 0.26 in the bottom-right panel).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the figures</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                    <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># First panel: data vs time</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_obs</span><span class="p">,</span> <span class="n">y_obs</span><span class="p">,</span> <span class="s1">&#39;.k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y(t)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">)</span>
+
+<span class="c1"># Second panel: PSD of data</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">PSD_y</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">PSD_obs</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="s2">&quot;Data PSD&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$P(f)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+
+<span class="c1"># Third panel: window vs time</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="s2">&quot;Window&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y(t)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1"># Fourth panel: PSD of window</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">PSD_window</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="s2">&quot;Window PSD&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$f$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$P(f)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_46_02.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_46_02.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-fast-fourier-transform-fft">
+<h3>(3) The Fast Fourier Transform (FFT)<a class="headerlink" href="#the-fast-fourier-transform-fft" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Fast Fourier transform (FFT)</strong> is an algorithm for computing discrete Fourier transforms in
+O(N logN) time, rather than O(N2) using a naive implementation. The algorithmic details for
+the FFT can be found in NumRec. The speed of FFT makes it a widespread tool in the analysis
+of evenly sampled, high signal-to-noise ratio, time series data.<br />
+An example below shows such analysis for a function with a single dominant frequency: a sine wave whose amplitude is modulated by a Gaussian.</p>
+<div class="section" id="id1">
+<h4>Generate the data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+<span class="n">hj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">tj</span><span class="p">)</span>
+<span class="n">hj</span> <span class="o">*=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">tj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-result-with-data-and-calculated-psd">
+<h4>Show result with data and calculated PSD<a class="headerlink" href="#show-result-with-data-and-calculated-psd" title="Permalink to this headline">¶</a></h4>
+<p>The discrete Fourier transform (bottom panel) for two noisy data sets shown in the top panel. For 512 evenly sampled times t (dt = 0.977), points are drawn from h(t) = a + sin(t)G(t), where G(t) is a Gaussian N(mu = 0,sigma = 10). Gaussian noise with sigma = 0.05 (top data set) and 0.005 (bottom data set) is added to signal h(t). The value of the offset a is 0.15 and 0, respectively. The discrete Fourier transform is computed as described in this section. For both noise realizations, the correct frequency f = (2pi)-1 ~ 0.159 is easily discernible in the bottom panel. Note that the height of peaks is the same for both noise realizations. The large value of abs(H(f = 0)) for data with larger noise is due to the vertical offset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+
+<span class="n">offsets</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">linewidths</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">linewidth</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">offsets</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span>
+                                             <span class="n">errors</span><span class="p">,</span> <span class="n">linewidths</span><span class="p">):</span>
+    <span class="c1"># compute the PSD</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">hj</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">hj_N</span> <span class="o">=</span> <span class="n">hj</span> <span class="o">+</span> <span class="n">err</span> <span class="o">+</span> <span class="n">offset</span>
+    <span class="n">fk</span><span class="p">,</span> <span class="n">PSD</span> <span class="o">=</span> <span class="n">PSD_continuous</span><span class="p">(</span><span class="n">tj</span><span class="p">,</span> <span class="n">hj_N</span><span class="p">)</span>
+
+    <span class="c1"># plot the data and PSD</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tj</span><span class="p">,</span> <span class="n">hj_N</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tj</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">tj</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fk</span><span class="p">,</span> <span class="n">PSD</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">linewidth</span><span class="p">)</span>
+
+<span class="c1"># vertical line marking the expected peak location</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3001</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$h(t)$&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.101</span><span class="p">,</span> <span class="mf">0.801</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$f$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$PSD(f)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_51_02.png" src="../../_images/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis_51_02.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,549 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis of Stochastic Processes &#8212; astroML 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<!-- Following code is for Google custom search bar -->
+<script>
+  (function() {
+    var cx = '011400076584591653333:hjd_fbqk1u0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Following code is for toggle/glide features -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".toggle_container").hide();
+
+	$(".toggle_trigger").click(function(){
+		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
+                return false; <!-- Prevent the link from being followed -->
+	});
+
+        $(".toggle_trigger#start_open").toggleClass("active").next().show();
+
+});
+</script>
+
+<!-- Following code is for Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35748160-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head><body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/Logo.gif" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+	    <li><a href="../../user_guide/index.html">User Guide</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="../../book_figures/index.html">Book Figures</a>
+                <div class="dropdown-content">
+                  <ul>
+                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
+                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="../../examples/index.html">Example Plots</a></li>
+            <li><a href="../index.html">Notebooks</a></li>
+          </ul>
+
+<!-- Google custom search.  Javascript that enables this is in the header above -->
+<div class="search_form">
+  <gcse:search></gcse:search>
+</div>
+
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+        <div class="sphinxsidebar">
+	<div class="rel rellarge">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<!-- Ad a link to the 'up' page -->
+    </div>
+    <p style="text-align: center">This documentation is
+    for astroML <strong>version 1.0</strong>
+    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
+    </p>
+        
+
+	
+
+        <h3>This page</h3>
+         <ul>
+<li><a class="reference internal" href="#">Analysis of Stochastic Processes</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#import-functions">Import functions</a></li>
+<li><a class="reference internal" href="#the-autocorrelation-and-structure-functions">The autocorrelation and structure functions</a><ul>
+<li><a class="reference internal" href="#examples-of-stochastic-processes-1-f-and-1-f-2-processes">Examples of stochastic processes: <img class="math" src="../../_images/math/420bc020cc1b78a904f9a586cc0613f9a3ab43a1.png" alt="1/f"/> and <img class="math" src="../../_images/math/728c455029e20ee6ae855e48eb78ba70c33b4538.png" alt="1/f^2"/> processes</a><ul>
+<li><a class="reference internal" href="#generate-data-for-plotting">1. Generate data for plotting</a></li>
+<li><a class="reference internal" href="#calculate-psd-and-compare-results">2. Calculate PSD and compare results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#autocorrelation-and-structure-function-for-evenly-and-unevenly-sampled-data">Autocorrelation and structure function for evenly and unevenly sampled data</a><ul>
+<li><a class="reference internal" href="#evenly-sampled-data">Evenly sampled data</a></li>
+<li><a class="reference internal" href="#unevenly-sampled-data">Unevenly sampled data</a></li>
+<li><a class="reference internal" href="#edelson-and-krolik-s-dcf-method-and-the-scargle-method-demonstration">Edelson and Krolik’s DCF method and the Scargle method Demonstration</a><ul>
+<li><a class="reference internal" href="#generate-time-series-data">1. Generate time-series data</a></li>
+<li><a class="reference internal" href="#compute-acf-via-scargle-method">2. Compute ACF via Scargle method</a></li>
+<li><a class="reference internal" href="#compute-acf-via-e-k-method">3. Compute ACF via E-K method</a></li>
+<li><a class="reference internal" href="#compare-results">4. Compare results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#autoregressive-models">Autoregressive models</a></li>
+<li><a class="reference internal" href="#damped-random-walk-model">Damped random walk model</a></li>
+</ul>
+</li>
+</ul>
+
+
+        
+
+	<h3>Links</h3>
+	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
+	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
+
+	<h3>Videos</h3>
+	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
+	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
+
+
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+
+    <!-- hard-coded link here because pathto() adds an extra # -->
+    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
+
+
+        
+
+        </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="analysis-of-stochastic-processes">
+<h1>Analysis of Stochastic Processes<a class="headerlink" href="#analysis-of-stochastic-processes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Stochastic variability includes behavior that is not predictable forever as in the periodic case, but
+unlike temporally localized events, variability is always there. Typically, the underlying physics is
+so complex that we cannot deterministically predict future values.<br />
+Despite their seemingly irregular behavior, stochastic processes can be quantified. In this notebook, we will mainly discuss <strong>autocorrelation</strong>, <strong>autoregressive</strong> and <strong>damped random walk</strong> models in analyzing stochastic processes.</p>
+</div>
+<div class="section" id="import-functions">
+<h2>Import functions<a class="headerlink" href="#import-functions" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, we mainly use functions from <em>astroML.time_series</em> and from <em>astroML.fourier</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.time_series</span> <span class="kn">import</span> <span class="n">generate_power_law</span>
+<span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">PSD_continuous</span>
+
+<span class="kn">from</span> <span class="nn">astroML.time_series</span> <span class="kn">import</span> <span class="n">lomb_scargle</span><span class="p">,</span> <span class="n">generate_damped_RW</span>
+<span class="kn">from</span> <span class="nn">astroML.time_series</span> <span class="kn">import</span> <span class="n">ACF_scargle</span><span class="p">,</span> <span class="n">ACF_EK</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-autocorrelation-and-structure-functions">
+<h2>The autocorrelation and structure functions<a class="headerlink" href="#the-autocorrelation-and-structure-functions" title="Permalink to this headline">¶</a></h2>
+<p>One of the main statistical tools for the analysis of stochastic variability is the <strong>autocorrelation
+function</strong>. It represents a specialized case of the correlation function of two functions, f(t) and g(t),
+scaled by their standard deviations, and defined at time lag <img class="math" src="../../_images/math/b4ed9c2e208e08edeca8b1550ec0840acd090276.png" alt="\Delta t"/> as</p>
+<div class="math">
+<p><img src="../../_images/math/3e7dedd195f6e5fca4a418e95849d8a130728def.png" alt="CF(\Delta t) = \frac{lim_{T \rightarrow \infty} \frac{1}{T} \int_{(T)}f(t)g(t+ \Delta t)dt}{\sigma_f \sigma_g}"/></p>
+</div><p>where <img class="math" src="../../_images/math/7bd6e71b23712140f30f9bdf600a4b93313514ed.png" alt="\sigma_f"/> and <img class="math" src="../../_images/math/e6cc416635affa831e22434cb19cd8b8f710b935.png" alt="\sigma_g"/> are standard deviations of f(t) and g(t), respectively. With this normalization, the
+correlation function is unity for <img class="math" src="../../_images/math/b4ed9c2e208e08edeca8b1550ec0840acd090276.png" alt="\Delta t"/> = 0 (without normalization by standard deviation, the above
+expression is equal to the covariance function). It is assumed that both f and g are statistically
+weakly stationary functions, which means that their mean and autocorrelation function (see below)
+do not depend on time. The correlation function yields information about the time delay
+between two processes. If one time series is produced from another one by simply shifting the time
+axis by tlag, their correlation function has a peak at <img class="math" src="../../_images/math/986cfb1e295921928212bf1c12eb02613f08f590.png" alt="\Delta t = t_{lag}"/>.</p>
+<p>With <img class="math" src="../../_images/math/19ce414c8a69d4ca0ca02f9ddaee2977caeb8bfd.png" alt="f(t) = g(t) = y(t)"/>, the autocorrelation of y(t) defined at time lag <img class="math" src="../../_images/math/b4ed9c2e208e08edeca8b1550ec0840acd090276.png" alt="\Delta t"/> is</p>
+<div class="math">
+<p><img src="../../_images/math/c994bdcc9265f738cfe56e0f9a2e57513d9eb8ee.png" alt="ACF(\Delta t) = \frac{lim_{T \rightarrow \infty} \frac{1}{T} \int_{(T)}y(t)y(t+ \Delta t)dt}{\sigma_y^2}"/></p>
+</div><p>The autocorrelation function yields information about the variable timescales present in a process.
+When y values are uncorrelated (e.g., due to white noise without any signal), <img class="math" src="../../_images/math/e268b81e7f8e14986db2f7af54cfcd579ac2a626.png" alt="ACF(\Delta t) = 0"/>, except for <img class="math" src="../../_images/math/085f7aa508d805e1aa6761827623fbe2574b6309.png" alt="ACF(0) =1"/>. For processes that “retain memory” of previous states only for some characteristic
+time <img class="math" src="../../_images/math/914b2d4b6659b86d3153d5510839dfb254dfc8a3.png" alt="\tau"/>, the autocorrelation function vanishes for <img class="math" src="../../_images/math/98160aba5fe07b76f57b2c063d3785a37f3e432f.png" alt="\Delta t \gg \tau"/>.</p>
+<p>The autocorrelation function and the PSD of function y(t) (i.e. <img class="math" src="../../_images/math/f506bdbee1c804abab50790ff6d35f91ef06576e.png" alt="PSD(f) \equiv |H(f)|^2 + |H(-f)|^2"/>) are Fourier pairs; this
+fact is known as the Wiener-Khinchin theorem and applies to stationary random processes. The
+former represents an analysis method in the time domain, and the latter in the frequency domain.</p>
+<p>The <strong>structure function</strong> is another quantity closely related to the autocorrelation function,</p>
+<div class="math">
+<p><img src="../../_images/math/7d209272d498687a64d2c145752ea64f8932ffbd.png" alt="SF(\Delta t) = SF_\infty [1-ACF(\Delta t)]^{\frac{1}{2}}"/></p>
+</div><p>where <img class="math" src="../../_images/math/cca786e7a8bf9084f21bcb0e472cbd24dba03c20.png" alt="SF_\infty"/> is the standard deviation of the time series evaluated over an infinitely large time
+interval (or at least much longer than any characteristic timescale <img class="math" src="../../_images/math/914b2d4b6659b86d3153d5510839dfb254dfc8a3.png" alt="\tau"/>).</p>
+<div class="section" id="examples-of-stochastic-processes-1-f-and-1-f-2-processes">
+<h3>Examples of stochastic processes: <img class="math" src="../../_images/math/420bc020cc1b78a904f9a586cc0613f9a3ab43a1.png" alt="1/f"/> and <img class="math" src="../../_images/math/728c455029e20ee6ae855e48eb78ba70c33b4538.png" alt="1/f^2"/> processes<a class="headerlink" href="#examples-of-stochastic-processes-1-f-and-1-f-2-processes" title="Permalink to this headline">¶</a></h3>
+<p>For a given autocorrelation function or PSD, the corresponding time series can be generated using
+the algorithm described in <a class="reference external" href="http://adsabs.harvard.edu/full/1995A%26A...300..707T">On generating power law noise</a>. Essentially, the amplitude of the Fourier transform is given by the
+PSD, and phases are assigned randomly; the inverse Fourier transform then generates time series.<br />
+The connection between the PSD and the appearance of time series of two power-law PSDs: <img class="math" src="../../_images/math/420bc020cc1b78a904f9a586cc0613f9a3ab43a1.png" alt="1/f"/> and <img class="math" src="../../_images/math/728c455029e20ee6ae855e48eb78ba70c33b4538.png" alt="1/f^2"/> is illustrated in figure below.</p>
+<div class="section" id="generate-data-for-plotting">
+<h4>1. Generate data for plotting<a class="headerlink" href="#generate-data-for-plotting" title="Permalink to this headline">¶</a></h4>
+<p>Let us use 1024 data points, and let <img class="math" src="../../_images/math/355e29c952a9c2be38eaa83105f3a572258331ea.png" alt="\Delta t = 0.01"/> in this case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculate-psd-and-compare-results">
+<h4>2. Calculate PSD and compare results<a class="headerlink" href="#calculate-psd-and-compare-results" title="Permalink to this headline">¶</a></h4>
+<p>We use <em>generate_power_law</em> in <em>astroML_time_series</em> package to apply the algorithm <a class="reference external" href="http://adsabs.harvard.edu/full/1995A%26A...300..707T">On generating power law noise</a> on our generated data.<br />
+In the plot below shows examples of stochastic time series generated from power-law PSDs.</p>
+<ul class="simple">
+<li><p>Plots of generated data (top panels) and the corresponding PSD (bottom panels) are shown.</p></li>
+<li><p>Results from <img class="math" src="../../_images/math/420bc020cc1b78a904f9a586cc0613f9a3ab43a1.png" alt="1/f"/> power-law (left panels) and from <img class="math" src="../../_images/math/728c455029e20ee6ae855e48eb78ba70c33b4538.png" alt="1/f^2"/> (right panel) are shown.</p></li>
+<li><p>Dashed lines indicate input PSD, and solid lines are determined from time series shown in the top panels.</p></li>
+</ul>
+<p>The PSD normalization is such that both cases have similar
+power at low frequencies. For this reason, the overall amplitudes (more precisely, the variance) of
+the two time series are similar. The power at high frequencies is much larger for the <img class="math" src="../../_images/math/420bc020cc1b78a904f9a586cc0613f9a3ab43a1.png" alt="1/f"/> case, and
+this is why the corresponding time series has the appearance of noisy data.<br />
+The structure function for the <img class="math" src="../../_images/math/420bc020cc1b78a904f9a586cc0613f9a3ab43a1.png" alt="1/f"/> process is constant, and proportional to <img class="math" src="../../_images/math/34dbb8cbb95e806e9bc49b4f2c259b48552de1bb.png" alt="t^{1/2}"/> for
+the <img class="math" src="../../_images/math/728c455029e20ee6ae855e48eb78ba70c33b4538.png" alt="1/f^2"/> process (remember that we defined structure function with a square root).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">beta</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]):</span>
+    <span class="c1"># Generate the light curve and compute the PSD</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">generate_power_law</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">PSD</span> <span class="o">=</span> <span class="n">PSD_continuous</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># First axes: plot the time series</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$P(f) \propto f^{-</span><span class="si">%i</span><span class="s2">}$&quot;</span> <span class="o">%</span> <span class="n">beta</span><span class="p">,</span>
+             <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.24</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Second axes: plot the PSD</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">PSD</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">**</span> <span class="o">-</span><span class="n">beta</span><span class="p">,</span> <span class="s1">&#39;--k&#39;</span><span class="p">)</span>
+
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">1E-1</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-6</span><span class="p">,</span> <span class="mf">1E1</span><span class="p">)</span>
+
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f$&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;${\rm counts}$&#39;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$PSD(f)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/astroml_chapter10_Analysis_of_Stochastic_Processes_10_02.png" src="../../_images/astroml_chapter10_Analysis_of_Stochastic_Processes_10_02.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="autocorrelation-and-structure-function-for-evenly-and-unevenly-sampled-data">
+<h2>Autocorrelation and structure function for evenly and unevenly sampled data<a class="headerlink" href="#autocorrelation-and-structure-function-for-evenly-and-unevenly-sampled-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="evenly-sampled-data">
+<h3>Evenly sampled data<a class="headerlink" href="#evenly-sampled-data" title="Permalink to this headline">¶</a></h3>
+<p>In the case of <strong>evenly sampled data</strong>, with <img class="math" src="../../_images/math/fc5a5aba3fc76982d42f60771cd0f12920bb76ee.png" alt="t_i = (i-1)\Delta t"/>, the autocorrelation function of a discretely sampled <img class="math" src="../../_images/math/9d6e964bef461182515a91eec6e4d57918744a2b.png" alt="y(t)"/> is defined as</p>
+<div class="math">
+<p><img src="../../_images/math/a8963b055947176ce724e19188356bce5ef9b1c8.png" alt="ACF(j) = \frac{\sum^{N-j}_{i=1} [(y_i-\bar{y})(y_{i+j}-\bar{y})]}{\sum^{N}_{i=1}(y_i-\bar{y})^2}"/></p>
+</div><p>The uncertainty of the mean is</p>
+<div class="math">
+<p><img src="../../_images/math/857ff4729429752e4862403b0ada5305cfaa5b9b.png" alt="\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}}[1+2 \sum^N_{j=1}(1-\frac{j}{N})ACF(j)]^{1/2}"/></p>
+</div><p>where <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> is the homoscedastic measurement error.<br />
+When a time series has a nonvanishing ACF, the uncertainty of its mean is larger than for an uncorrelated data set, where <img class="math" src="../../_images/math/5ceb8b1dc1cfd688569f3898bcf25711e93f8e84.png" alt="\sigma_{\bar{x}} = \frac{s}{\sqrt{N}}"/>.<br />
+When data are unevenly sampled, the ACF cannot be computed using equations above.</p>
+</div>
+<div class="section" id="unevenly-sampled-data">
+<h3>Unevenly sampled data<a class="headerlink" href="#unevenly-sampled-data" title="Permalink to this headline">¶</a></h3>
+<p>For the case of <strong>unevenly sampled data</strong>, Edelson and Krolik proposed the <strong>“discrete correlation function” (DCF)</strong> in an astronomical context (called the “slot autocorrelation function” in physics). See <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1988ApJ...333..646E/abstract">The Discrete Correlation Function</a>.<br />
+For discrete unevenly sampled data with homoscedastic errors, they defined a quantity</p>
+<div class="math">
+<p><img src="../../_images/math/520ad0836ec3b2c53fcfae2bc1b5c898d6376003.png" alt="UDCF_{ij} = \frac{(y_i-\bar{y})(g_j-\bar{g})}{[(\sigma_y^2-e_y^2)(\sigma_g^2-e_g^2)^{1/2}]}"/></p>
+</div><p>where <img class="math" src="../../_images/math/4a858aabf4157aa35e26c0a957c5bc211086494e.png" alt="e_y"/> and <img class="math" src="../../_images/math/02210dc30b6db275a200fb3e2fd75239a8157b7d.png" alt="e_g"/> are homoscedastic measurement errors for time series y and g. The associated time
+lag is <img class="math" src="../../_images/math/daf2c593608f9b38251cd61bda9db7c556df4aad.png" alt="\Delta t_{ij} = ti - tj"/>. The discrete correlation function at time lag <img class="math" src="../../_images/math/b4ed9c2e208e08edeca8b1550ec0840acd090276.png" alt="\Delta t"/> is then computed by binning
+and averaging <img class="math" src="../../_images/math/46387c99f896bbf40b687f27e7e510ffbe7b4cbd.png" alt="UDCF_{ij}"/> over M pairs of points for which <img class="math" src="../../_images/math/ecc5023f88c164fabd66b919d856cde18cff1fe4.png" alt="\Delta t-\delta t=2 \leq \delta t_{ij} \leq \Delta t+\delta t/2"/>, where <img class="math" src="../../_images/math/c89dcd6141b11c7a0be0bcaa59887f7d6ec241a4.png" alt="\delta t"/> is
+the bin size. The bin size is a trade-of between accuracy of <img class="math" src="../../_images/math/5fee8883988b5878e0eefdb0f5bcab5ccf89ea38.png" alt="DCF(\Delta t)"/> and its resolution. Edelson and Krolik showed that even uncorrelated time series will produce values of the cross-correlation <img class="math" src="../../_images/math/0a8abccadf5f39f10c2f9e4819f6c55f0cb8a7ce.png" alt="DCF(\Delta t) \sim \pm 1/ \sqrt{M}"/>.</p>
+<p>Scargle has developed different techniques to evaluate the discrete Fourier transform, correlation
+function and autocorrelation function of unevenly sampled time series (see <a class="reference external" href="https://www.osti.gov/biblio/5344858-studies-astronomical-time-series-analysis-iii-fourier-transforms-autocorrelation-functions-cross-correlation-functions-unevenly-spaced-data">Studies in astronomical time series analysis. III.</a>).<br />
+Given an unevenly sampled time series, y(t), the essential steps of Scargle’s
+procedure are as follows:</p>
+<ol class="simple">
+<li><p>Compute the generalized Lomb-Scargle periodogram for <img class="math" src="../../_images/math/0f1604bf1ff386f2187152ae70cd41659bcd6039.png" alt="y(t_i), i = 1,..., N"/>, namely <img class="math" src="../../_images/math/da53bfe9bdcfabee9f79dff77fe2b40f07f2802b.png" alt="P_{LS}(\omega)"/>.</p></li>
+<li><p>Compute the sampling window function using the generalized Lomb-Scargle periodogram using <img class="math" src="../../_images/math/ea4bbf7f1b60960217d826079635a3e053d0d05b.png" alt="z(t_i) = 1, i = 1,..., N"/>, namely <img class="math" src="../../_images/math/ba9c76832ff550f4054e7cb2a9097579318d16ee.png" alt="P_{LS}^W(\omega)"/>.</p></li>
+<li><p>Compute inverse Fourier transforms for <img class="math" src="../../_images/math/da53bfe9bdcfabee9f79dff77fe2b40f07f2802b.png" alt="P_{LS}(\omega)"/> and <img class="math" src="../../_images/math/08c4878e682606ab6aeae571ca4659bd0503c912.png" alt="P^W_{LS}(\omega)"/>, namely <img class="math" src="../../_images/math/de8cb406ac689500e41f9026e2cb88a2ca6bff13.png" alt="\rho(t)"/> and <img class="math" src="../../_images/math/cb3fc05a5c2e069611514221855e42d0c77bcfa0.png" alt="\rho^W(t)"/>, respectively.</p></li>
+<li><p>The autocorrelation function at lag t is <img class="math" src="../../_images/math/b03e982649f3c222717cf5ded82b4915af273768.png" alt="ACF(t) = \rho(t)/ \rho^W(t)"/>.</p></li>
+</ol>
+</div>
+<div class="section" id="edelson-and-krolik-s-dcf-method-and-the-scargle-method-demonstration">
+<h3>Edelson and Krolik’s DCF method and the Scargle method Demonstration<a class="headerlink" href="#edelson-and-krolik-s-dcf-method-and-the-scargle-method-demonstration" title="Permalink to this headline">¶</a></h3>
+<p>We will see an example of the use of Edelson and Krolik’s DCF method and the Scargle method.</p>
+<div class="section" id="generate-time-series-data">
+<h4>1. Generate time-series data<a class="headerlink" href="#generate-time-series-data" title="Permalink to this headline">¶</a></h4>
+<p>We use do 1000 days worth of magnitudes for this sample data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1E3</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">tau_obs</span> <span class="o">=</span> <span class="n">tau</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">generate_damped_RW</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">xmean</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># randomly sample 100 of these</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">ind</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">ind</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+<span class="c1"># add errors</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">y_obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compute-acf-via-scargle-method">
+<h4>2. Compute ACF via Scargle method<a class="headerlink" href="#compute-acf-via-scargle-method" title="Permalink to this headline">¶</a></h4>
+<p>We calculate the ACF following Scargle method process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_S</span><span class="p">,</span> <span class="n">t_S</span> <span class="o">=</span> <span class="n">ACF_scargle</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_obs</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span>
+                       <span class="n">n_omega</span><span class="o">=</span><span class="mf">2.</span> <span class="o">**</span> <span class="mi">12</span><span class="p">,</span> <span class="n">omega_max</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">5.0</span><span class="p">)</span>
+
+<span class="n">ind</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_S</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">t_S</span> <span class="o">&lt;=</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">t_S</span> <span class="o">=</span> <span class="n">t_S</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">C_S</span> <span class="o">=</span> <span class="n">C_S</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compute-acf-via-e-k-method">
+<h4>3. Compute ACF via E-K method<a class="headerlink" href="#compute-acf-via-e-k-method" title="Permalink to this headline">¶</a></h4>
+<p>We calculate ACF using Edelson and Krolik’s DCF method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_EK</span><span class="p">,</span> <span class="n">C_EK_err</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">ACF_EK</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_obs</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">51</span><span class="p">))</span>
+<span class="n">t_EK</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compare-results">
+<h4>4. Compare results<a class="headerlink" href="#compare-results" title="Permalink to this headline">¶</a></h4>
+<p>Example of the autocorrelation function for a stochastic process is shown below.</p>
+<ul class="simple">
+<li><p>The top panel shows a simulated light curve generated using a damped random walk model.</p></li>
+<li><p>The bottom panel shows the corresponding autocorrelation function computed using Edelson and Krolik’s DCF method and the Scargle method.</p></li>
+<li><p>The solid line shows the input autocorrelation function used to generate the light curve.</p></li>
+</ul>
+<p>The two methods produce similar results. Errors are easier to compute for the DCF method and this advantage
+is crucial when fitting models to the autocorrelation function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># plot the input data</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_obs</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t (days)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;observed flux&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the ACF</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_S</span><span class="p">,</span> <span class="n">C_S</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Scargle&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">t_EK</span><span class="p">,</span> <span class="n">C_EK</span><span class="p">,</span> <span class="n">C_EK_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Edelson-Krolik&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_S</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_S</span><span class="p">)</span> <span class="o">/</span> <span class="n">tau_obs</span><span class="p">),</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_S</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">t_S</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t (days)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;ACF(t)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;ACF(t)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/astroml_chapter10_Analysis_of_Stochastic_Processes_20_12.png" src="../../_images/astroml_chapter10_Analysis_of_Stochastic_Processes_20_12.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="autoregressive-models">
+<h2>Autoregressive models<a class="headerlink" href="#autoregressive-models" title="Permalink to this headline">¶</a></h2>
+<p>Autocorrelated time series can be analyzed and characterized using stochastic <strong>“autoregressive models.”</strong>
+Autoregressive models provide a good general description of processes that “retain memory”
+of previous states (but are not periodic). An example of such a model is the <strong>random walk</strong>, where
+each new value is obtained by adding noise to the preceding value:</p>
+<div class="math">
+<p><img src="../../_images/math/53888b3dccb190b037b93f34b3a585a7070045f4.png" alt="y_i = y_{i-1} + e_i"/></p>
+</div><p>When <img class="math" src="../../_images/math/da0afa0c815a7f2740def7d9accbab1a0baa5e3a.png" alt="y_{i-1}"/> is multiplied by a constant factor greater than 1, the model is known as a geometric
+random walk model (used extensively to model stock market data). The noise need not be Gaussian.</p>
+<p>The random walk can be generalized to the <strong>linear autoregressive (AR) model</strong> with dependencies
+on k past values (i.e., not just one as in the case of random walk). An autoregressive process of
+order k, AR(k), for a discrete data set is defined by</p>
+<div class="math">
+<p><img src="../../_images/math/1a75fce117a310218c034c73f1efc345b9bd1987.png" alt="y_i = \sum^{k}_{j=1} a_j y_{i-j} + e_i"/></p>
+</div><p>That is, the latest value of y is expressed as a linear combination of the k previous values of y, with
+the addition of noise (for random walk, k = 1 and a1 = 1). If the data are drawn from a stationary
+process, coefficients aj satisfy certain conditions. The ACF for an AR(k) process is nonzero for all
+lags, but it decays quickly.</p>
+<p>An autoregressive process defined by <img class="math" src="../../_images/math/7e344d89bcab5e6535ca5b9415253467fad1360e.png" alt="y_i = \sum^{k}_{j=1} a_j y_{i-j} + e_i"/> applies only to evenly sampled time series. A
+generalization is called the <strong>continuous autoregressive process, CAR(k)</strong>; see <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2009ApJ...698..895K/abstract">Are the Variations in Quasar Optical Flux Driven by Thermal Fluctuations</a>. The CAR(1)
+process has recently received a lot of attention in the context of quasar variability.</p>
+<p>In addition to autoregressive models, data can be modeled using the <strong>covariance matrix</strong> (e.g., using
+Gaussian process in Gaussian process regression section). For example, for the CAR(1) process,</p>
+<div class="math">
+<p><img src="../../_images/math/249df0b99e3edd395a4ecaec61b49509284771f7.png" alt="S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)"/></p>
+</div><p>where <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> and <img class="math" src="../../_images/math/914b2d4b6659b86d3153d5510839dfb254dfc8a3.png" alt="\tau"/> are model parameters; <img class="math" src="../../_images/math/5406eadc281dbd20de843b0034c8497320dae5cb.png" alt="\sigma^2"/> controls the short timescale covariance (<img class="math" src="../../_images/math/dc084e9d46b1b73a7c202a9ba4538612c95d992c.png" alt="t_{ij} \ll \tau"/>),
+which decays exponentially on a timescale given by <img class="math" src="../../_images/math/914b2d4b6659b86d3153d5510839dfb254dfc8a3.png" alt="\tau"/>. A number of other convenient models
+and parametrizations for the covariance matrix are discussed in the context of quasar variability
+in <a class="reference external" href="https://arxiv.org/abs/1202.3783">Is quasar variability a damped random walk?</a>.</p>
+</div>
+<div class="section" id="damped-random-walk-model">
+<h2>Damped random walk model<a class="headerlink" href="#damped-random-walk-model" title="Permalink to this headline">¶</a></h2>
+<p>The CAR(1) process is described by a stochastic differential equation which includes a damping
+term that pushes y(t) back to its mean (see <a class="reference external" href="https://arxiv.org/abs/1202.3783">Is quasar variability a damped random walk?</a>);</p>
+<p>hence, it is also known as damped random walk. In analogy with calling random walk “drunkard’s walk,” damped random walk could
+be called “married drunkard’s walk” (who always comes home instead of drifting away).
+Following <img class="math" src="../../_images/math/2b8d0b65a6e262aec954e3fe137aa02f22aa92ae.png" alt="S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)"/>, the autocorrelation function for a damped random walk is</p>
+<div class="math">
+<p><img src="../../_images/math/4677f7cd562e2091554566b6cfb3fffedaa4b533.png" alt="ACF(t) = exp(-t/ \tau)"/></p>
+</div><p>where <img class="math" src="../../_images/math/914b2d4b6659b86d3153d5510839dfb254dfc8a3.png" alt="\tau"/> is the characteristic timescale (relaxation time, or damping timescale). Given the <img class="math" src="../../_images/math/d811af854a3cb134c4bf9817723005e7497e1e21.png" alt="ACF"/>,
+it is easy to show that the structure function is</p>
+<div class="math">
+<p><img src="../../_images/math/50b582b71ab2b585722d373a851f52207d2e999d.png" alt="SF(t) = SF_{\infty} [1-exp(-t/ \tau)]^{1/2}"/></p>
+</div><p>where <img class="math" src="../../_images/math/9228cce3790e27e363131ad6c2fe6062d54259d3.png" alt="SF_{\infty}"/> is the asymptotic value of the structure function equal to <img class="math" src="../../_images/math/9251d996a005acd1d1dd768d6c4f3a45007ed4b2.png" alt="\sqrt{2} \sigma"/>, where <img class="math" src="../../_images/math/b52df27bfb0b1e3af0c2c68a7b9da459178c2a7d.png" alt="\sigma"/> has the same definition as in <img class="math" src="../../_images/math/2b8d0b65a6e262aec954e3fe137aa02f22aa92ae.png" alt="S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)"/>. When the structure function applies to differences of the analyzed process</p>
+<div class="math">
+<p><img src="../../_images/math/fcc4a1c2727aacd6a94af0e5e87799025bc45ad7.png" alt="PSD(f) = \frac{\tau^2 SF^2_{\infty}}{1+(2 \pi f \tau)^2}"/></p>
+</div><p>Therefore, the damped random walk is a <img class="math" src="../../_images/math/728c455029e20ee6ae855e48eb78ba70c33b4538.png" alt="1/f^2"/> process at high frequencies, just as ordinary random
+walk. The “damped nature” is seen as the at PSD at low frequencies (<img class="math" src="../../_images/math/4491b876d3609583e9d201311a09a93f39dd2005.png" alt="f \ll 2\pi / \tau"/>). In the previous figure demonstrating E-K method and Scargle method, a light curve generated using a damped random walk is shown in the top panel.</p>
+<p>For evenly sampled data, the <img class="math" src="../../_images/math/a474fb9d12d3b7c825226975f6b6c52cb671b0f3.png" alt="CAR(1)"/> process is equivalent to the <img class="math" src="../../_images/math/6bfbbe4de6c955d3343aabe3476caf86bedcac97.png" alt="AR(1)"/> process with <img class="math" src="../../_images/math/567bfd5f5e49bd06b73b65afc852949d026010ee.png" alt="a_1 =
+exp(-1 / \tau)"/>, that is, the next value of <img class="math" src="../../_images/math/1b5e577d6216dca3af7d87aa122a0b9b360d6cb3.png" alt="y"/> is the damping factor times the previous value plus noise.
+The noise for the <img class="math" src="../../_images/math/6bfbbe4de6c955d3343aabe3476caf86bedcac97.png" alt="AR(1)"/> process, <img class="math" src="../../_images/math/c75ec3b134f5f048cfd8b7771c3f72e5b6fda170.png" alt="\sigma_{AR}"/> is related to <img class="math" src="../../_images/math/9228cce3790e27e363131ad6c2fe6062d54259d3.png" alt="SF_{\infty}"/> via</p>
+<div class="math">
+<p><img src="../../_images/math/01853e15c670450713da2990bf4a913d776d25ed.png" alt="\sigma_{AR} = \frac{SF_{\infty}}{\sqrt{2}} [1-exp(-2 / \tau)]^{1/2}"/></p>
+</div></div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This documentation is relative
+        to astroML version 1.0<br/>
+        &copy; 2012-2020, Jake Vanderplas &amp; AstroML Developers.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/notebooks/chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.ipynb.txt"
+	    rel="nofollow">Show this page source</a>
+    </span></p>
+    </div>
+  </body>
+</html>
