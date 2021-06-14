@@ -40,7 +40,7 @@ n_points = 1100
 n_neighbors = 10
 out_dim = 2
 
-X, color = datasets.samples_generator.make_s_curve(n_points)
+X, color = datasets.make_s_curve(n_points)
 
 # change the proportions to emphasize the weakness of PCA
 X[:, 1] -= 1
