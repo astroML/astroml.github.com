@@ -1,205 +1,749 @@
 
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>3. Data Sets &#8212; astroML 0.4 documentation</title>
-    <link rel="stylesheet" href="../_static/astroMLstyle.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Data Sets &#8212; astroML 1.0 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Unsupervised Learning: Density Estimation" href="density_estimation.html" />
     <link rel="prev" title="2. Installation of astroML" href="installation.html" />
-<!-- Following code is for Google custom search bar -->
-<script>
-  (function() {
-    var cx = '011400076584591653333:hjd_fbqk1u0';
-    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-<!-- Following code is for toggle/glide features -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
 
-	$(".toggle_container").hide();
+  <div id="navbar-start">
+    
+    
 
-	$(".toggle_trigger").click(function(){
-		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
-                return false; <!-- Prevent the link from being followed -->
-	});
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/Logo.gif" class="logo" alt="logo">
+</a>
 
-        $(".toggle_trigger#start_open").toggleClass("active").next().show();
 
-});
-</script>
+    
+  </div>
 
-<!-- Following code is for Google Analytics -->
-<script type="text/javascript">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35748160-1']);
-  _gaq.push(['_trackPageview']);
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  User Guide
+ </a>
+</li>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples/index.html">
+  Examples
+ </a>
+</li>
 
-</script>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../notebooks/index.html">
+  Notebooks
+ </a>
+</li>
 
-  </head><body>
-    <div class="header-wrapper">
-      <div class="header">
-          <p class="logo"><a href="../index.html">
-            <img src="../_static/Logo.gif" alt="Logo"/>
-          </a>
-          </p><div class="navbar">
-          <ul>
-            <li><a href="../index.html">Home</a></li>
-	        <li><a href="index.html">User Guide</a></li>
-            <li>
-              <div class="dropdown">
-                <a href="../book_figures/index.html">Book Figures</a>
-                <div class="dropdown-content">
-                  <ul>
-                    <li><a href="../book_figures/index.html">2nd edition</a></li>
-                    <li><a href="../book_figures_1ed/index.html">1st edition</a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li><a href="../examples/index.html">Example Plots</a></li>
-       </ul>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../book_figures_index.html">
+  Book Figures
+ </a>
+</li>
 
-<!-- Google custom search.  Javascript that enables this is in the header above -->
-<div class="search_form">
-  <gcse:search></gcse:search>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../development/index.html">
+  Development
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   2. Installation of astroML
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Data Sets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="density_estimation.html">
+   4. Unsupervised Learning: Density Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="clustering.html">
+   5. Unsupervised Learning: Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="correlation_functions.html">
+   6. Two-point Correlation Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dimensionality.html">
+   7. Unsupervised Learning: Dimensionality Reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regression.html">
+   8. Supervised Learning: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="classification.html">
+   9. Supervised Learning: Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series.html">
+   10. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modules/classes.html">
+   11. Class reference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.plotting.hist.html">
+     11.1.1.1. astroML.plotting.hist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.plotting.scatter_contour.html">
+     11.1.1.2. astroML.plotting.scatter_contour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.plotting.MultiAxes.html">
+     11.1.2.1. astroML.plotting.MultiAxes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.histogram.html">
+     11.2.1.1. astroML.density_estimation.histogram
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.bayesian_blocks.html">
+     11.2.1.2. astroML.density_estimation.bayesian_blocks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.knuth_bin_width.html">
+     11.2.1.3. astroML.density_estimation.knuth_bin_width
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.scotts_bin_width.html">
+     11.2.1.4. astroML.density_estimation.scotts_bin_width
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.freedman_bin_width.html">
+     11.2.1.5. astroML.density_estimation.freedman_bin_width
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.XDGMM.html">
+     11.2.2.1. astroML.density_estimation.XDGMM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.KNeighborsDensity.html">
+     11.2.2.2. astroML.density_estimation.KNeighborsDensity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.EmpiricalDistribution.html">
+     11.2.2.3. astroML.density_estimation.EmpiricalDistribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.density_estimation.FunctionDistribution.html">
+     11.2.2.4. astroML.density_estimation.FunctionDistribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.linear_model.LinearRegression.html">
+     11.3.1.1. astroML.linear_model.LinearRegression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.linear_model.PolynomialRegression.html">
+     11.3.1.2. astroML.linear_model.PolynomialRegression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.linear_model.BasisFunctionRegression.html">
+     11.3.1.3. astroML.linear_model.BasisFunctionRegression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.linear_model.NadarayaWatson.html">
+     11.3.1.4. astroML.linear_model.NadarayaWatson
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.linear_model.TLS_logL.html">
+     11.3.2.1. astroML.linear_model.TLS_logL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_spectrum.html">
+     11.4.2. astroML.datasets.fetch_sdss_spectrum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_corrected_spectra.html">
+     11.4.3. astroML.datasets.fetch_sdss_corrected_spectra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_S82standards.html">
+     11.4.4. astroML.datasets.fetch_sdss_S82standards
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_dr7_quasar.html">
+     11.4.5. astroML.datasets.fetch_dr7_quasar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_moving_objects.html">
+     11.4.6. astroML.datasets.fetch_moving_objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_galaxy_colors.html">
+     11.4.7. astroML.datasets.fetch_sdss_galaxy_colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_nasa_atlas.html">
+     11.4.8. astroML.datasets.fetch_nasa_atlas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_sspp.html">
+     11.4.9. astroML.datasets.fetch_sdss_sspp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_specgals.html">
+     11.4.10. astroML.datasets.fetch_sdss_specgals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_great_wall.html">
+     11.4.11. astroML.datasets.fetch_great_wall
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_imaging_sample.html">
+     11.4.12. astroML.datasets.fetch_imaging_sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_wmap_temperatures.html">
+     11.4.13. astroML.datasets.fetch_wmap_temperatures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_mags.html">
+     11.4.14. astroML.datasets.fetch_rrlyrae_mags
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_combined.html">
+     11.4.15. astroML.datasets.fetch_rrlyrae_combined
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_LINEAR_sample.html">
+     11.4.16. astroML.datasets.fetch_LINEAR_sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_LINEAR_geneva.html">
+     11.4.17. astroML.datasets.fetch_LINEAR_geneva
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_LIGO_bigdog.html">
+     11.4.18. astroML.datasets.fetch_LIGO_bigdog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_LIGO_large.html">
+     11.4.19. astroML.datasets.fetch_LIGO_large
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_hogg2010test.html">
+     11.4.20. astroML.datasets.fetch_hogg2010test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_templates.html">
+     11.4.21. astroML.datasets.fetch_rrlyrae_templates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_filter.html">
+     11.4.22. astroML.datasets.fetch_sdss_filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_vega_spectrum.html">
+     11.4.23. astroML.datasets.fetch_vega_spectrum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.datasets.generate_mu_z.html">
+     11.4.24. astroML.datasets.generate_mu_z
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.lomb_scargle.html">
+     11.5.1.1. astroML.time_series.lomb_scargle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.lomb_scargle_bootstrap.html">
+     11.5.1.2. astroML.time_series.lomb_scargle_bootstrap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.multiterm_periodogram.html">
+     11.5.1.3. astroML.time_series.multiterm_periodogram
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.search_frequencies.html">
+     11.5.1.4. astroML.time_series.search_frequencies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.MultiTermFit.html">
+     11.5.1.5. astroML.time_series.MultiTermFit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.ACF_scargle.html">
+     11.5.2.1. astroML.time_series.ACF_scargle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.ACF_EK.html">
+     11.5.2.2. astroML.time_series.ACF_EK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.generate_power_law.html">
+     11.5.2.3. astroML.time_series.generate_power_law
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.time_series.generate_damped_RW.html">
+     11.5.2.4. astroML.time_series.generate_damped_RW
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.binned_statistic.html">
+     11.6.1. astroML.stats.binned_statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.binned_statistic_2d.html">
+     11.6.2. astroML.stats.binned_statistic_2d
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.binned_statistic_dd.html">
+     11.6.3. astroML.stats.binned_statistic_dd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.sigmaG.html">
+     11.6.4. astroML.stats.sigmaG
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.median_sigmaG.html">
+     11.6.5. astroML.stats.median_sigmaG
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.mean_sigma.html">
+     11.6.6. astroML.stats.mean_sigma
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.fit_bivariate_normal.html">
+     11.6.7. astroML.stats.fit_bivariate_normal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.bivariate_normal.html">
+     11.6.8. astroML.stats.bivariate_normal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.trunc_exp.html">
+     11.6.9. astroML.stats.trunc_exp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.stats.linear.html">
+     11.6.10. astroML.stats.linear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.dimensionality.iterative_pca.html">
+     11.7.1. astroML.dimensionality.iterative_pca
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.correlation.two_point.html">
+     11.8.1. astroML.correlation.two_point
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.correlation.two_point_angular.html">
+     11.8.2. astroML.correlation.two_point_angular
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.correlation.bootstrap_two_point.html">
+     11.8.3. astroML.correlation.bootstrap_two_point
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.correlation.bootstrap_two_point_angular.html">
+     11.8.4. astroML.correlation.bootstrap_two_point_angular
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.filters.savitzky_golay.html">
+     11.9.1. astroML.filters.savitzky_golay
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.filters.wiener_filter.html">
+     11.9.2. astroML.filters.wiener_filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.filters.min_component_filter.html">
+     11.9.3. astroML.filters.min_component_filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.fourier.FT_continuous.html">
+     11.10.1. astroML.fourier.FT_continuous
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.fourier.IFT_continuous.html">
+     11.10.2. astroML.fourier.IFT_continuous
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.fourier.PSD_continuous.html">
+     11.10.3. astroML.fourier.PSD_continuous
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.fourier.wavelet_PSD.html">
+     11.10.4. astroML.fourier.wavelet_PSD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.fourier.sinegauss.html">
+     11.10.5. astroML.fourier.sinegauss
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.fourier.sinegauss_FT.html">
+     11.10.6. astroML.fourier.sinegauss_FT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.fourier.sinegauss_PSD.html">
+     11.10.7. astroML.fourier.sinegauss_PSD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.lumfunc.Cminus.html">
+     11.11.1. astroML.lumfunc.Cminus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.lumfunc.binned_Cminus.html">
+     11.11.2. astroML.lumfunc.binned_Cminus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.lumfunc.bootstrap_Cminus.html">
+     11.11.3. astroML.lumfunc.bootstrap_Cminus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.classification.GMMBayes.html">
+     11.12.1. astroML.classification.GMMBayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.resample.bootstrap.html">
+     11.13.1. astroML.resample.bootstrap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modules/generated/astroML.resample.jackknife.html">
+     11.13.2. astroML.resample.jackknife
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resources.html">
+   12. Other Resources
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
 </div>
 
-          </div> <!-- end navbar --></div>
-    </div>
-
-    <div class="content-wrapper">
-
-    <!-- <div id="blue_tile"></div> -->
-
-        <div class="sphinxsidebar">
-	<div class="rel">
-	
-	<!-- rellinks[1:] is an ugly hack to avoid link to module
-	    index  -->
-	<div class="rellink">
-	<a href="installation.html" title="2. Installation of astroML"
-	    accesskey="P">Previous
-	    <br/>
-	    <span class="smallrellink">
-	    2. Installati...
-	    </span>
-	    <span class="hiddenrellink">
-	    2. Installation of astroML
-	    </span>
-	    
-	    </a>
-	</div>
-	<!-- Ad a link to the 'up' page -->
-	<div class="spacer">
-	&nbsp;
-	</div>
-	<div class="rellink">
-	<a href="index.html" title="<no title>" >
-	Up
-	<br/>
-	<span class="smallrellink">
-	<no title>
-	</span>
-	</a>
-	</div>
-    </div>
-    <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.4</strong>
-    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
-    </p>
-        
-
-	
-
-        <h3>This page</h3>
-         <ul>
-<li><a class="reference internal" href="#">3. Data Sets</a><ul>
-<li><a class="reference internal" href="#data-set-cache-location">3.1. Data Set Cache Location</a></li>
-<li><a class="reference internal" href="#sdss-data">3.2. SDSS Data</a><ul>
-<li><a class="reference internal" href="#sdss-spectra">3.2.1. SDSS Spectra</a></li>
-<li><a class="reference internal" href="#sdss-photometry">3.2.2. SDSS Photometry</a></li>
-<li><a class="reference internal" href="#sdss-corrected-spectra">3.2.3. SDSS Corrected Spectra</a></li>
-<li><a class="reference internal" href="#sdss-spectroscopic-sample">3.2.4. SDSS Spectroscopic Sample</a></li>
-<li><a class="reference internal" href="#sdss-dr7-quasar-catalog">3.2.5. SDSS DR7 Quasar Catalog</a></li>
-<li><a class="reference internal" href="#sdss-imaging-sample">3.2.6. SDSS Imaging Sample</a></li>
-<li><a class="reference internal" href="#sdss-segue-stellar-parameters-pipeline">3.2.7. SDSS Segue Stellar Parameters Pipeline</a></li>
-<li><a class="reference internal" href="#stripe-82-time-domain">3.2.8. Stripe 82: Time Domain</a></li>
-<li><a class="reference internal" href="#stripe-82-standard-stars">3.2.9. Stripe 82: Standard Stars</a></li>
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-set-cache-location">
+   3.1. Data Set Cache Location
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sdss-data">
+   3.2. SDSS Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sdss-spectra">
+     3.2.1. SDSS Spectra
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sdss-photometry">
+     3.2.2. SDSS Photometry
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sdss-corrected-spectra">
+     3.2.3. SDSS Corrected Spectra
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sdss-spectroscopic-sample">
+     3.2.4. SDSS Spectroscopic Sample
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sdss-dr7-quasar-catalog">
+     3.2.5. SDSS DR7 Quasar Catalog
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sdss-imaging-sample">
+     3.2.6. SDSS Imaging Sample
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sdss-segue-stellar-parameters-pipeline">
+     3.2.7. SDSS Segue Stellar Parameters Pipeline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stripe-82-time-domain">
+     3.2.8. Stripe 82: Time Domain
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stripe-82-standard-stars">
+     3.2.9. Stripe 82: Standard Stars
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combined-surveys">
+   3.3. Combined Surveys
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nasa-sloan-atlas">
+     3.3.1. Nasa Sloan Atlas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stripe-82-standards-2mass">
+     3.3.2. Stripe 82 Standards + 2MASS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-domain-data">
+   3.4. Time Domain Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rr-lyrae-templates">
+     3.4.1. RR Lyrae Templates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-light-curves">
+     3.4.2. LINEAR Light Curves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ligo-data">
+     3.4.3. LIGO data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wmap-temperature-map">
+   3.5. WMAP temperature map
+  </a>
+ </li>
 </ul>
-</li>
-<li><a class="reference internal" href="#combined-surveys">3.3. Combined Surveys</a><ul>
-<li><a class="reference internal" href="#nasa-sloan-atlas">3.3.1. Nasa Sloan Atlas</a></li>
-<li><a class="reference internal" href="#stripe-82-standards-2mass">3.3.2. Stripe 82 Standards + 2MASS</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#time-domain-data">3.4. Time Domain Data</a><ul>
-<li><a class="reference internal" href="#rr-lyrae-templates">3.4.1. RR Lyrae Templates</a></li>
-<li><a class="reference internal" href="#linear-light-curves">3.4.2. LINEAR Light Curves</a></li>
-<li><a class="reference internal" href="#ligo-data">3.4.3. LIGO data</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#wmap-temperature-map">3.5. WMAP temperature map</a></li>
-</ul>
-</li>
-</ul>
 
-
-        
-
-	<h3>Links</h3>
-	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
-
-	<h3>Videos</h3>
-	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
-	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
-
-
-    <h3>Citing</h3>
-    <p>If you use the software, please consider
-
-    <!-- hard-coded link here because pathto() adds an extra # -->
-    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
-
-
-        
-
-        </div>
-
-      <div class="content">
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
             
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          </div>
+          
+
+          
+          
             
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
   <div class="section" id="data-sets">
-<span id="datasets-description"></span><h1>3. Data Sets<a class="headerlink" href="#data-sets" title="Permalink to this headline">¶</a></h1>
+<span id="datasets-description"></span><h1><span class="section-number">3. </span>Data Sets<a class="headerlink" href="#data-sets" title="Permalink to this headline">¶</a></h1>
 <p>One of the major components of astroML is its tools for downloading and
 working with astronomical data sets.  The available routines are available
 in the module <a class="reference internal" href="../modules/classes.html#module-astroML.datasets" title="astroML.datasets"><code class="xref py py-mod docutils literal notranslate"><span class="pre">astroML.datasets</span></code></a>, and details are available in the
@@ -207,7 +751,7 @@ documentation of the functions therein.  In this section we will summarize
 some of the data sets made available by the code, and show some visualizations
 of this data</p>
 <div class="section" id="data-set-cache-location">
-<span id="datasets-cache"></span><h2>3.1. Data Set Cache Location<a class="headerlink" href="#data-set-cache-location" title="Permalink to this headline">¶</a></h2>
+<span id="datasets-cache"></span><h2><span class="section-number">3.1. </span>Data Set Cache Location<a class="headerlink" href="#data-set-cache-location" title="Permalink to this headline">¶</a></h2>
 <p>The total size of the data sets is in the hundreds of megabytes, too large to
 be bundled with the astroML source distribution.  To make working with
 data sets more convenient, astroML contains routines which download the
@@ -221,7 +765,7 @@ is <code class="docutils literal notranslate"><span class="pre">~/astroML_data</
 is called, the cached version of the data is used automatically.</p>
 </div>
 <div class="section" id="sdss-data">
-<span id="datasets-sdss"></span><h2>3.2. SDSS Data<a class="headerlink" href="#sdss-data" title="Permalink to this headline">¶</a></h2>
+<span id="datasets-sdss"></span><h2><span class="section-number">3.2. </span>SDSS Data<a class="headerlink" href="#sdss-data" title="Permalink to this headline">¶</a></h2>
 <p>Much of the data made available by astroML comes from the
 <a class="reference external" href="http://www.sdss.org">Sloan Digital Sky Survey (SDSS)</a>, a decade-plus
 photometric and spectroscopic survey at the Apache Point Observatory in
@@ -232,30 +776,30 @@ imaging over a small portion of the sky, called Stripe 82, enabling the
 study of the time-variation of many objects.</p>
 <p>SDSS photometric data are observed through five filters, <cite>u</cite>, <cite>g</cite>, <cite>r</cite>, <cite>i</cite>,
 and <cite>z</cite>.  A visualization of the range of these filters is shown below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_filters.html"><img alt="../_images/plot_sdss_filters_11.png" class="align-center" src="../_images/plot_sdss_filters_11.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_filters.html"><img alt="../_images/plot_sdss_filters_1.png" class="align-center" src="../_images/plot_sdss_filters_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 <div class="section" id="sdss-spectra">
-<span id="datasets-sdss-spectra"></span><h3>3.2.1. SDSS Spectra<a class="headerlink" href="#sdss-spectra" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-sdss-spectra"></span><h3><span class="section-number">3.2.1. </span>SDSS Spectra<a class="headerlink" href="#sdss-spectra" title="Permalink to this headline">¶</a></h3>
 <p>The SDSS spectroscopic data is available as individual FITS files, indexed by three
 numbers: the plate, date, and fiber number.  The <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_spectrum.html#astroML.datasets.fetch_sdss_spectrum" title="astroML.datasets.fetch_sdss_spectrum"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_sdss_spectrum()</span></code></a>
 takes a plate, mjd, and fiber, and downloads the spectrum to disk.  The
 spectral data can be visualized as follows:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_spectrum.html"><img alt="../_images/plot_sdss_spectrum_11.png" class="align-center" src="../_images/plot_sdss_spectrum_11.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_spectrum.html"><img alt="../_images/plot_sdss_spectrum_1.png" class="align-center" src="../_images/plot_sdss_spectrum_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 <p>As with all figures in this documentation, clicking on the image will link
 to a page showing the source code used to download the data and plot the
 result.</p>
 </div>
 <div class="section" id="sdss-photometry">
-<span id="datasets-sdss-photometry"></span><h3>3.2.2. SDSS Photometry<a class="headerlink" href="#sdss-photometry" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-sdss-photometry"></span><h3><span class="section-number">3.2.2. </span>SDSS Photometry<a class="headerlink" href="#sdss-photometry" title="Permalink to this headline">¶</a></h3>
 <p>The photometric data can be accessed directly using the SQL interface to the
 SDSS Catalog Archive Server (CAS).
 astroML contains a function which accesses this data directly using a Python SQL
 query tool.  The function is called <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_galaxy_colors.html#astroML.datasets.fetch_sdss_galaxy_colors" title="astroML.datasets.fetch_sdss_galaxy_colors"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_sdss_galaxy_colors()</span></code></a> and
 can be used as a template for making custom data sets available with a
 simple Python command.  Some of the results are visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_galaxy_colors.html"><img alt="../_images/plot_sdss_galaxy_colors_11.png" class="align-center" src="../_images/plot_sdss_galaxy_colors_11.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_galaxy_colors.html"><img alt="../_images/plot_sdss_galaxy_colors_1.png" class="align-center" src="../_images/plot_sdss_galaxy_colors_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 </div>
 <div class="section" id="sdss-corrected-spectra">
-<span id="datasets-sdss-corrected-spectra"></span><h3>3.2.3. SDSS Corrected Spectra<a class="headerlink" href="#sdss-corrected-spectra" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-sdss-corrected-spectra"></span><h3><span class="section-number">3.2.3. </span>SDSS Corrected Spectra<a class="headerlink" href="#sdss-corrected-spectra" title="Permalink to this headline">¶</a></h3>
 <p>The SDSS spectra come from galaxies at a range of redshifts, and have sections
 of unreliable or missing data due to sky absorption, cosmic rays, bad detector
 pixels, or other effects.  AstroML provides a set of spectra which have been
@@ -264,42 +808,42 @@ technique (see <a class="reference internal" href="../examples/datasets/compute_
 1000 common wavelength bins.  The spectra can be downloaded using
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_corrected_spectra.html#astroML.datasets.fetch_sdss_corrected_spectra" title="astroML.datasets.fetch_sdss_corrected_spectra"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_sdss_corrected_spectra()</span></code></a>; some examples of these are shown
 below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_corrected_spectra.html"><img alt="../_images/plot_corrected_spectra_11.png" class="align-center" src="../_images/plot_corrected_spectra_11.png" style="width: 640.0px; height: 640.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_corrected_spectra.html"><img alt="../_images/plot_corrected_spectra_1.png" class="align-center" src="../_images/plot_corrected_spectra_1.png" style="width: 640.0px; height: 640.0px;" /></a>
 <p>These data are used in several of the example figures from
-<a class="reference internal" href="../book_figures/chapter7/index.html#book-fig-chapter7"><span class="std std-ref">Chapter 7: Dimensionality and its Reduction</span></a>.</p>
+<span class="xref std std-ref">book_fig_chapter7</span>.</p>
 <p>Because these spectra are meant to enable high-dimensional classification and
 visualization routines, it is useful to have some extra classification data
 for these objects.  One set of features available in the data set is the
 line ratio measurements.  These can be visualized as shown below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_line_ratios.html"><img alt="../_images/plot_sdss_line_ratios_12.png" class="align-center" src="../_images/plot_sdss_line_ratios_12.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_line_ratios.html"><img alt="../_images/plot_sdss_line_ratios_1.png" class="align-center" src="../_images/plot_sdss_line_ratios_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 </div>
 <div class="section" id="sdss-spectroscopic-sample">
-<span id="datasets-sdss-spec-gals"></span><h3>3.2.4. SDSS Spectroscopic Sample<a class="headerlink" href="#sdss-spectroscopic-sample" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-sdss-spec-gals"></span><h3><span class="section-number">3.2.4. </span>SDSS Spectroscopic Sample<a class="headerlink" href="#sdss-spectroscopic-sample" title="Permalink to this headline">¶</a></h3>
 <p>Along with spectra, SDSS catalogued photometric observations of the objects
 in the survey area.  Those objects with both spectra and photometry available
 provide a wealth of information about many classes of objects in the night
 sky.  The photometry from the SDSS spectroscopic galaxy sample is available
 using the routine <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_specgals.html#astroML.datasets.fetch_sdss_specgals" title="astroML.datasets.fetch_sdss_specgals"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_sdss_specgals()</span></code></a>, and some of the attributes
 are shown in the following visualization:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_specgals.html"><img alt="../_images/plot_sdss_specgals_11.png" class="align-center" src="../_images/plot_sdss_specgals_11.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_specgals.html"><img alt="../_images/plot_sdss_specgals_1.png" class="align-center" src="../_images/plot_sdss_specgals_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 <p>One well-known feature of the SDSS spectroscopic sample is the “great wall”,
 a filament of galaxies located several hundred megaparsecs away.  The
 great wall data is among the spectroscopic sample: to enable easily working
 with it, astroML contains the function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_great_wall.html#astroML.datasets.fetch_great_wall" title="astroML.datasets.fetch_great_wall"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_great_wall()</span></code></a>.  The data
 can be seen below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_great_wall.html"><img alt="../_images/plot_great_wall_11.png" class="align-center" src="../_images/plot_great_wall_11.png" style="width: 640.0px; height: 320.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_great_wall.html"><img alt="../_images/plot_great_wall_1.png" class="align-center" src="../_images/plot_great_wall_1.png" style="width: 640.0px; height: 320.0px;" /></a>
 </div>
 <div class="section" id="sdss-dr7-quasar-catalog">
-<span id="datasets-dr7-quasar"></span><h3>3.2.5. SDSS DR7 Quasar Catalog<a class="headerlink" href="#sdss-dr7-quasar-catalog" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-dr7-quasar"></span><h3><span class="section-number">3.2.5. </span>SDSS DR7 Quasar Catalog<a class="headerlink" href="#sdss-dr7-quasar-catalog" title="Permalink to this headline">¶</a></h3>
 <p>The SDSS has obtained the spectra of over 100,000 distant quasars.  The quasar
 catalog is described on the
 <a class="reference external" href="http://www.sdss.org/dr7/products/value_added/qsocat_dr7.html">SDSS website</a>,
 and can be downloaded using the function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_dr7_quasar.html#astroML.datasets.fetch_dr7_quasar" title="astroML.datasets.fetch_dr7_quasar"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_dr7_quasar()</span></code></a>.  Some of
 this quasar data is used in the visualization below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_dr7_quasar.html"><img alt="../_images/plot_dr7_quasar_11.png" class="align-center" src="../_images/plot_dr7_quasar_11.png" style="width: 800.0px; height: 800.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_dr7_quasar.html"><img alt="../_images/plot_dr7_quasar_1.png" class="align-center" src="../_images/plot_dr7_quasar_1.png" style="width: 800.0px; height: 800.0px;" /></a>
 </div>
 <div class="section" id="sdss-imaging-sample">
-<span id="datasets-sdss-imaging"></span><h3>3.2.6. SDSS Imaging Sample<a class="headerlink" href="#sdss-imaging-sample" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-sdss-imaging"></span><h3><span class="section-number">3.2.6. </span>SDSS Imaging Sample<a class="headerlink" href="#sdss-imaging-sample" title="Permalink to this headline">¶</a></h3>
 <p>While the spectroscopically observed objects in SDSS offer a large number of
 measured features for each object, the total number of observed objects of
 each class (star, galaxy, quasar) is under one million.  The full photometric
@@ -307,10 +851,10 @@ sample goes much deeper, and thus contains photometric measurements of
 hundreds of millions of objects.  astroML has a function called
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_imaging_sample.html#astroML.datasets.fetch_imaging_sample" title="astroML.datasets.fetch_imaging_sample"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_imaging_sample()</span></code></a> which loads a selection of this data.  Some
 of the returned attributes are visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_imaging.html"><img alt="../_images/plot_sdss_imaging_11.png" class="align-center" src="../_images/plot_sdss_imaging_11.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_imaging.html"><img alt="../_images/plot_sdss_imaging_1.png" class="align-center" src="../_images/plot_sdss_imaging_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 </div>
 <div class="section" id="sdss-segue-stellar-parameters-pipeline">
-<span id="datasets-sdss-sspp"></span><h3>3.2.7. SDSS Segue Stellar Parameters Pipeline<a class="headerlink" href="#sdss-segue-stellar-parameters-pipeline" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-sdss-sspp"></span><h3><span class="section-number">3.2.7. </span>SDSS Segue Stellar Parameters Pipeline<a class="headerlink" href="#sdss-segue-stellar-parameters-pipeline" title="Permalink to this headline">¶</a></h3>
 <p>Several groups have produced various value-added catalogs which contain
 additional observed features for objects in the SDSS database.  One example
 is the Segue Stellar Parameters Pipeline (SSPP), which makes available a
@@ -318,7 +862,7 @@ large number of additional object features derived from SDSS photometry
 and spectra.  This data can be downloaded using the function
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_sspp.html#astroML.datasets.fetch_sdss_sspp" title="astroML.datasets.fetch_sdss_sspp"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_sdss_sspp()</span></code></a>.  Some of the metallicity and temperature data is
 visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_SDSS_SSPP.html"><img alt="../_images/plot_SDSS_SSPP_11.png" class="align-center" src="../_images/plot_SDSS_SSPP_11.png" style="width: 800.0px; height: 400.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_SDSS_SSPP.html"><img alt="../_images/plot_SDSS_SSPP_1.png" class="align-center" src="../_images/plot_SDSS_SSPP_1.png" style="width: 800.0px; height: 400.0px;" /></a>
 <p>The left panel shows the density of point on the temperature / log(g) plot.
 These parameters correlate with the familiar HR diagram based on photometric
 colors.  The right panel shows the average metallicity in each pixel, and the
@@ -327,7 +871,7 @@ Many more attributes are available in the SSPP data set; see the
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_sspp.html#astroML.datasets.fetch_sdss_sspp" title="astroML.datasets.fetch_sdss_sspp"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_sdss_sspp()</span></code></a> documentation for details.</p>
 </div>
 <div class="section" id="stripe-82-time-domain">
-<span id="datasets-stripe82-time"></span><h3>3.2.8. Stripe 82: Time Domain<a class="headerlink" href="#stripe-82-time-domain" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-stripe82-time"></span><h3><span class="section-number">3.2.8. </span>Stripe 82: Time Domain<a class="headerlink" href="#stripe-82-time-domain" title="Permalink to this headline">¶</a></h3>
 <p>During the second phase of the SDSS, the project repeatedly surveyed a small
 swath of sky known as <cite>Stripe 82</cite>.  This yielded an unprecedented set of
 data in the time domain, which yielded insight into phenomena as wide-ranging
@@ -338,15 +882,15 @@ observations of RR-Lyrae stars, and one containing observations of moving
 objects (i.e. asteroids) within the solar system.</p>
 <p>The RR-Lyrae data can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_mags.html#astroML.datasets.fetch_rrlyrae_mags" title="astroML.datasets.fetch_rrlyrae_mags"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_rrlyrae_mags()</span></code></a>
 function, and result in the dataset visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_rrlyrae_mags.html"><img alt="../_images/plot_rrlyrae_mags_11.png" class="align-center" src="../_images/plot_rrlyrae_mags_11.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_rrlyrae_mags.html"><img alt="../_images/plot_rrlyrae_mags_1.png" class="align-center" src="../_images/plot_rrlyrae_mags_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 <p>The moving objects can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_moving_objects.html#astroML.datasets.fetch_moving_objects" title="astroML.datasets.fetch_moving_objects"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_moving_objects()</span></code></a>
 function, giving a dataset containing not only photometric observations,
 but also orbital parameters.  A portion of this information went into the
 following visualization:</p>
 <p class="centered">
-<strong><a class="reference external" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC1" src="../_images/plot_moving_objects_12.png" style="width: 320.0px; height: 240.0px;" /></a> <a class="reference external" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC2" src="../_images/plot_moving_objects_22.png" style="width: 320.0px; height: 240.0px;" /></a></strong></p></div>
+<strong><a class="reference external" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC1" src="../_images/plot_moving_objects_1.png" style="width: 320.0px; height: 240.0px;" /></a> <a class="reference external" href="../examples/datasets/plot_moving_objects.html"><img alt="MOC2" src="../_images/plot_moving_objects_2.png" style="width: 320.0px; height: 240.0px;" /></a></strong></p></div>
 <div class="section" id="stripe-82-standard-stars">
-<span id="datasets-s82-standards"></span><h3>3.2.9. Stripe 82: Standard Stars<a class="headerlink" href="#stripe-82-standard-stars" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-s82-standards"></span><h3><span class="section-number">3.2.9. </span>Stripe 82: Standard Stars<a class="headerlink" href="#stripe-82-standard-stars" title="Permalink to this headline">¶</a></h3>
 <p>Along with time-domain data, the repeated observations in Stripe 82 enabled
 stacked photometry of sources to minimize the statistical error in their
 measured fluxes.  The Stripe 82 standard stars are a set of stars in this
@@ -354,39 +898,39 @@ region which are below a specified variability criterion.  The multiple
 exposures were combined to yield a highly precise catalog of stars.  This
 data can be obtained using the <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_S82standards.html#astroML.datasets.fetch_sdss_S82standards" title="astroML.datasets.fetch_sdss_S82standards"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_sdss_S82standards()</span></code></a> function.
 Some of the data in this catalog is visualized below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_11.png" class="align-center" src="../_images/plot_sdss_S82standards_11.png" style="width: 800.0px; height: 800.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_1.png" class="align-center" src="../_images/plot_sdss_S82standards_1.png" style="width: 800.0px; height: 800.0px;" /></a>
 </div>
 </div>
 <div class="section" id="combined-surveys">
-<h2>3.3. Combined Surveys<a class="headerlink" href="#combined-surveys" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3. </span>Combined Surveys<a class="headerlink" href="#combined-surveys" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nasa-sloan-atlas">
-<span id="datasets-sloan-atlas"></span><h3>3.3.1. Nasa Sloan Atlas<a class="headerlink" href="#nasa-sloan-atlas" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-sloan-atlas"></span><h3><span class="section-number">3.3.1. </span>Nasa Sloan Atlas<a class="headerlink" href="#nasa-sloan-atlas" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference external" href="http://www.nsatlas.org/">NASA Sloan atlas</a> is a cross-matched catalog of
 observations and parameters for nearby galaxies, compiled from SDSS, GALEX,
 2MASS, annd WISE.  The full dataset is ~500MB; an astroML dataset loader for
 ~50MB of this data is available in <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_nasa_atlas.html#astroML.datasets.fetch_nasa_atlas" title="astroML.datasets.fetch_nasa_atlas"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_nasa_atlas()</span></code></a>.  The footprint
 of the available data can be seen below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_nasa_atlas.html"><img alt="../_images/plot_nasa_atlas_12.png" class="align-center" src="../_images/plot_nasa_atlas_12.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_nasa_atlas.html"><img alt="../_images/plot_nasa_atlas_1.png" class="align-center" src="../_images/plot_nasa_atlas_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 </div>
 <div class="section" id="stripe-82-standards-2mass">
-<span id="datasets-s82-2mass"></span><h3>3.3.2. Stripe 82 Standards + 2MASS<a class="headerlink" href="#stripe-82-standards-2mass" title="Permalink to this headline">¶</a></h3>
+<span id="datasets-s82-2mass"></span><h3><span class="section-number">3.3.2. </span>Stripe 82 Standards + 2MASS<a class="headerlink" href="#stripe-82-standards-2mass" title="Permalink to this headline">¶</a></h3>
 <p>Above, we introduced the stripe 82 standard star catalog.  There is also
 a version of this catalog which is cross-matched with the 2 Micron All Sky
 Survey (2MASS) data.  This can be obtained using the
 <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_sdss_S82standards.html#astroML.datasets.fetch_sdss_S82standards" title="astroML.datasets.fetch_sdss_S82standards"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_sdss_S82standards()</span></code></a> function, with the keyword
 <code class="docutils literal notranslate"><span class="pre">crossmatch_2mass=True</span></code>.  Some of the combined data are shown below:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_21.png" class="align-center" src="../_images/plot_sdss_S82standards_21.png" style="width: 800.0px; height: 800.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_sdss_S82standards.html"><img alt="../_images/plot_sdss_S82standards_2.png" class="align-center" src="../_images/plot_sdss_S82standards_2.png" style="width: 800.0px; height: 800.0px;" /></a>
 </div>
 </div>
 <div class="section" id="time-domain-data">
-<h2>3.4. Time Domain Data<a class="headerlink" href="#time-domain-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.4. </span>Time Domain Data<a class="headerlink" href="#time-domain-data" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="rr-lyrae-templates">
-<h3>3.4.1. RR Lyrae Templates<a class="headerlink" href="#rr-lyrae-templates" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.1. </span>RR Lyrae Templates<a class="headerlink" href="#rr-lyrae-templates" title="Permalink to this headline">¶</a></h3>
 <p>RR Lyrae light curve templates can be useful when analyzing time-series data.
 The function <a class="reference internal" href="../modules/generated/astroML.datasets.fetch_rrlyrae_templates.html#astroML.datasets.fetch_rrlyrae_templates" title="astroML.datasets.fetch_rrlyrae_templates"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_rrlyrae_templates()</span></code></a> fetches the templates used in
 <a class="footnote-reference brackets" href="#id3" id="id2">1</a>.  The following is a figure from the <a class="reference internal" href="introduction.html#textbook"><span class="std std-ref">textbook</span></a>
 that reconstructs one of these templates using a Fourier series:</p>
-<a class="reference external image-reference" href="../book_figures/chapter10/fig_rrlyrae_reconstruct.html"><img alt="../_images/fig_rrlyrae_reconstruct_11.png" class="align-center" src="../_images/fig_rrlyrae_reconstruct_11.png" style="width: 400.0px; height: 400.0px;" /></a>
+<a class="reference external image-reference" href="../book_figures/chapter10/fig_rrlyrae_reconstruct.html"><img alt="book_figures/images/chapter10/fig_rrlyrae_reconstruct_1.png" class="align-center" src="book_figures/images/chapter10/fig_rrlyrae_reconstruct_1.png" /></a>
 <p>The dashed line is the RR Lyrae template; the grey lines show the reconstruction
 with 1, 3, and 8 Fourier modes.</p>
 <dl class="footnote brackets">
@@ -396,7 +940,7 @@ with 1, 3, and 8 Fourier modes.</p>
 </dl>
 </div>
 <div class="section" id="linear-light-curves">
-<h3>3.4.2. LINEAR Light Curves<a class="headerlink" href="#linear-light-curves" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.2. </span>LINEAR Light Curves<a class="headerlink" href="#linear-light-curves" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference external" href="http://www.ll.mit.edu/mission/space/linear/">Lincoln Near Earth Asteroid Research</a>
 (LINEAR) project, in existance since 1998, is designed to discover
 and track near-earth asteroids.  Its archive contains several million images of
@@ -408,12 +952,12 @@ astroML has two functions relating to the LINEAR sample:
 of these.  Phased light curves for six of the LINEAR objects can be seen in
 the following figure.  Here, the periods were found using a Lomb-Scargle
 periodogram.</p>
-<a class="reference external image-reference" href="../book_figures/chapter10/fig_LINEAR_LS.html"><img alt="../_images/fig_LINEAR_LS_11.png" class="align-center" src="../_images/fig_LINEAR_LS_11.png" style="width: 400.0px; height: 520.0px;" /></a>
+<a class="reference external image-reference" href="../book_figures/chapter10/fig_LINEAR_LS.html"><img alt="book_figures/images/chapter10/fig_LINEAR_LS_1.png" class="align-center" src="book_figures/images/chapter10/fig_LINEAR_LS_1.png" /></a>
 <p>See chapter 10 of the <a class="reference internal" href="introduction.html#textbook"><span class="std std-ref">text</span></a>
 for a discussion of the mismatched period seen in the upper left object.</p>
 </div>
 <div class="section" id="ligo-data">
-<h3>3.4.3. LIGO data<a class="headerlink" href="#ligo-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.3. </span>LIGO data<a class="headerlink" href="#ligo-data" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference external" href="http://www.ligo.caltech.edu/">Laser Interferometer Gravitaional-Wave Observatory</a> (LIGO) is an effort to use laser interferometry to measure the
 expansion and contraction of space predicted to be the result of gravitational
 waves passing by earth.  It is an example of a regularly sampled time series
@@ -426,11 +970,11 @@ useful for characterizing the background noise of the survey.
 blind-injection test designed to measure the response of the instrument and
 the survey team to a potential signal.  The figure below shows an example of
 using a Hanning filter to obtain the noise spectrum from the LIGO data:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_LIGO_spectrum.html"><img alt="../_images/plot_LIGO_spectrum_11.png" class="align-center" src="../_images/plot_LIGO_spectrum_11.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_LIGO_spectrum.html"><img alt="../_images/plot_LIGO_spectrum_1.png" class="align-center" src="../_images/plot_LIGO_spectrum_1.png" style="width: 512.0px; height: 384.0px;" /></a>
 </div>
 </div>
 <div class="section" id="wmap-temperature-map">
-<span id="datasets-wmap"></span><h2>3.5. WMAP temperature map<a class="headerlink" href="#wmap-temperature-map" title="Permalink to this headline">¶</a></h2>
+<span id="datasets-wmap"></span><h2><span class="section-number">3.5. </span>WMAP temperature map<a class="headerlink" href="#wmap-temperature-map" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://map.gsfc.nasa.gov/">WMAP</a> project used a satellite to observed
 the details of the fluctuations in the cosmic microwave background, and during
 the last decade has led to unprecedented and ever-improving constraints on
@@ -439,31 +983,49 @@ WMAP data, using the routine <a class="reference internal" href="../modules/gene
 <a class="reference external" href="https://github.com/healpy/healpy">healpy</a> package, we can visualize the
 raw WMAP data:</p>
 <p class="centered">
-<strong><a class="reference external" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP1" src="../_images/plot_wmap_power_spectra_12.png" style="width: 320.0px; height: 240.0px;" /></a> <a class="reference external" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP2" src="../_images/plot_wmap_power_spectra_21.png" style="width: 320.0px; height: 240.0px;" /></a></strong></p><p>healpy also has some routines for computing fast spherical harmonic transforms.
+<strong><a class="reference external" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP1" src="examples/images/datasets/plot_wmap_power_spectra_1.png" /></a> <a class="reference external" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="WMAP2" src="examples/images/datasets/plot_wmap_power_spectra_2.png" /></a></strong></p><p>healpy also has some routines for computing fast spherical harmonic transforms.
 A rigorous treatment involves correcting for the mask pattern seen in the
 right image.  Neglecting this correction, a simple power spectral analysis
 can be performed using the tools in healpy:</p>
-<a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="../_images/plot_wmap_power_spectra_31.png" class="align-center" src="../_images/plot_wmap_power_spectra_31.png" style="width: 512.0px; height: 384.0px;" /></a>
+<a class="reference external image-reference" href="../examples/datasets/plot_wmap_power_spectra.html"><img alt="examples/images/datasets/plot_wmap_power_spectra_3.png" class="align-center" src="examples/images/datasets/plot_wmap_power_spectra_3.png" /></a>
 </div>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-        <div class="clearer"></div>
-      </div>
-    </div>
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="installation.html" title="previous page"><span class="section-number">2. </span>Installation of astroML</a>
+    <a class='right-next' id="next-link" href="density_estimation.html" title="next page"><span class="section-number">4. </span>Unsupervised Learning: Density Estimation</a>
 
-    <div class="footer">
-        <p style="text-align: center">This documentation is relative
-        to astroML version 0.4<br/>
-        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
-    <span style="padding-left: 5ex;">
-    <a href="../_sources/user_guide/datasets.rst.txt"
-	    rel="nofollow">Show this page source</a>
-    </span></p>
+              </div>
+              
+          </main>
+          
+
+      </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2012-2021, Jake Vanderplas &amp; AstroML Developers.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
   </body>
 </html>

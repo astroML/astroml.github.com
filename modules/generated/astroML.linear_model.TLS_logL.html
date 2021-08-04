@@ -1,185 +1,646 @@
 
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>11.3.2.1. astroML.linear_model.TLS_logL &#8212; astroML 0.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11.3.2.1. astroML.linear_model.TLS_logL &#8212; astroML 1.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="11.4.2. astroML.datasets.fetch_sdss_spectrum" href="astroML.datasets.fetch_sdss_spectrum.html" />
     <link rel="prev" title="11.3.1.4. astroML.linear_model.NadarayaWatson" href="astroML.linear_model.NadarayaWatson.html" />
-<!-- Following code is for Google custom search bar -->
-<script>
-  (function() {
-    var cx = '011400076584591653333:hjd_fbqk1u0';
-    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-<!-- Following code is for toggle/glide features -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
 
-	$(".toggle_container").hide();
+  <div id="navbar-start">
+    
+    
 
-	$(".toggle_trigger").click(function(){
-		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
-                return false; <!-- Prevent the link from being followed -->
-	});
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/Logo.gif" class="logo" alt="logo">
+</a>
 
-        $(".toggle_trigger#start_open").toggleClass("active").next().show();
 
-});
-</script>
+    
+  </div>
 
-<!-- Following code is for Google Analytics -->
-<script type="text/javascript">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35748160-1']);
-  _gaq.push(['_trackPageview']);
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../user_guide/index.html">
+  User Guide
+ </a>
+</li>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../examples/index.html">
+  Examples
+ </a>
+</li>
 
-</script>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../notebooks/index.html">
+  Notebooks
+ </a>
+</li>
 
-  </head><body>
-    <div class="header-wrapper">
-      <div class="header">
-          <p class="logo"><a href="../../index.html">
-            <img src="../../_static/Logo.gif" alt="Logo"/>
-          </a>
-          </p><div class="navbar">
-          <ul>
-            <li><a href="../../index.html">Home</a></li>
-	        <li><a href="../../user_guide/index.html">User Guide</a></li>
-            <li>
-              <div class="dropdown">
-                <a href="../../book_figures/index.html">Book Figures</a>
-                <div class="dropdown-content">
-                  <ul>
-                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
-                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li><a href="../../examples/index.html">Example Plots</a></li>
-       </ul>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../book_figures_index.html">
+  Book Figures
+ </a>
+</li>
 
-<!-- Google custom search.  Javascript that enables this is in the header above -->
-<div class="search_form">
-  <gcse:search></gcse:search>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../development/index.html">
+  Development
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
 </div>
+    </nav>
+    
 
-          </div> <!-- end navbar --></div>
-    </div>
-
-    <div class="content-wrapper">
-
-    <!-- <div id="blue_tile"></div> -->
-
-        <div class="sphinxsidebar">
-	<div class="rel">
-	
-	<!-- rellinks[1:] is an ugly hack to avoid link to module
-	    index  -->
-	<div class="rellink">
-	<a href="astroML.linear_model.NadarayaWatson.html" title="11.3.1.4. astroML.linear_model.NadarayaWatson"
-	    accesskey="P">Previous
-	    <br/>
-	    <span class="smallrellink">
-	    11.3.1.4. ast...
-	    </span>
-	    <span class="hiddenrellink">
-	    11.3.1.4. astroML.linear_model.NadarayaWatson
-	    </span>
-	    
-	    </a>
-	</div>
-	<!-- Ad a link to the 'up' page -->
-	<div class="spacer">
-	&nbsp;
-	</div>
-	<div class="rellink">
-	<a href="../classes.html" title="11. Class reference" >
-	Up
-	<br/>
-	<span class="smallrellink">
-	11. Class reference
-	</span>
-	<span class="hiddenrellink">
-	11. Class reference
-	</span>
-	
-	</a>
-	</div>
-    </div>
-    <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.4</strong>
-    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
-    </p>
-        
-
-	
-
-        <h3>This page</h3>
-         <ul>
-<li><a class="reference internal" href="#">11.3.2.1. astroML.linear_model.TLS_logL</a></li>
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/introduction.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/installation.html">
+   2. Installation of astroML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/datasets.html">
+   3. Data Sets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/density_estimation.html">
+   4. Unsupervised Learning: Density Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/clustering.html">
+   5. Unsupervised Learning: Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/correlation_functions.html">
+   6. Two-point Correlation Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/dimensionality.html">
+   7. Unsupervised Learning: Dimensionality Reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/regression.html">
+   8. Supervised Learning: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/classification.html">
+   9. Supervised Learning: Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/time_series.html">
+   10. Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../classes.html">
+   11. Class reference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.plotting.hist.html">
+     11.1.1.1. astroML.plotting.hist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.plotting.scatter_contour.html">
+     11.1.1.2. astroML.plotting.scatter_contour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.plotting.MultiAxes.html">
+     11.1.2.1. astroML.plotting.MultiAxes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.histogram.html">
+     11.2.1.1. astroML.density_estimation.histogram
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.bayesian_blocks.html">
+     11.2.1.2. astroML.density_estimation.bayesian_blocks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.knuth_bin_width.html">
+     11.2.1.3. astroML.density_estimation.knuth_bin_width
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.scotts_bin_width.html">
+     11.2.1.4. astroML.density_estimation.scotts_bin_width
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.freedman_bin_width.html">
+     11.2.1.5. astroML.density_estimation.freedman_bin_width
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.XDGMM.html">
+     11.2.2.1. astroML.density_estimation.XDGMM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.KNeighborsDensity.html">
+     11.2.2.2. astroML.density_estimation.KNeighborsDensity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.EmpiricalDistribution.html">
+     11.2.2.3. astroML.density_estimation.EmpiricalDistribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.density_estimation.FunctionDistribution.html">
+     11.2.2.4. astroML.density_estimation.FunctionDistribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.linear_model.LinearRegression.html">
+     11.3.1.1. astroML.linear_model.LinearRegression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.linear_model.PolynomialRegression.html">
+     11.3.1.2. astroML.linear_model.PolynomialRegression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.linear_model.BasisFunctionRegression.html">
+     11.3.1.3. astroML.linear_model.BasisFunctionRegression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.linear_model.NadarayaWatson.html">
+     11.3.1.4. astroML.linear_model.NadarayaWatson
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     11.3.2.1. astroML.linear_model.TLS_logL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_sdss_spectrum.html">
+     11.4.2. astroML.datasets.fetch_sdss_spectrum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_sdss_corrected_spectra.html">
+     11.4.3. astroML.datasets.fetch_sdss_corrected_spectra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_sdss_S82standards.html">
+     11.4.4. astroML.datasets.fetch_sdss_S82standards
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_dr7_quasar.html">
+     11.4.5. astroML.datasets.fetch_dr7_quasar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_moving_objects.html">
+     11.4.6. astroML.datasets.fetch_moving_objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_sdss_galaxy_colors.html">
+     11.4.7. astroML.datasets.fetch_sdss_galaxy_colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_nasa_atlas.html">
+     11.4.8. astroML.datasets.fetch_nasa_atlas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_sdss_sspp.html">
+     11.4.9. astroML.datasets.fetch_sdss_sspp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_sdss_specgals.html">
+     11.4.10. astroML.datasets.fetch_sdss_specgals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_great_wall.html">
+     11.4.11. astroML.datasets.fetch_great_wall
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_imaging_sample.html">
+     11.4.12. astroML.datasets.fetch_imaging_sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_wmap_temperatures.html">
+     11.4.13. astroML.datasets.fetch_wmap_temperatures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_rrlyrae_mags.html">
+     11.4.14. astroML.datasets.fetch_rrlyrae_mags
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_rrlyrae_combined.html">
+     11.4.15. astroML.datasets.fetch_rrlyrae_combined
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_LINEAR_sample.html">
+     11.4.16. astroML.datasets.fetch_LINEAR_sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_LINEAR_geneva.html">
+     11.4.17. astroML.datasets.fetch_LINEAR_geneva
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_LIGO_bigdog.html">
+     11.4.18. astroML.datasets.fetch_LIGO_bigdog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_LIGO_large.html">
+     11.4.19. astroML.datasets.fetch_LIGO_large
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_hogg2010test.html">
+     11.4.20. astroML.datasets.fetch_hogg2010test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_rrlyrae_templates.html">
+     11.4.21. astroML.datasets.fetch_rrlyrae_templates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_sdss_filter.html">
+     11.4.22. astroML.datasets.fetch_sdss_filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.fetch_vega_spectrum.html">
+     11.4.23. astroML.datasets.fetch_vega_spectrum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.datasets.generate_mu_z.html">
+     11.4.24. astroML.datasets.generate_mu_z
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.lomb_scargle.html">
+     11.5.1.1. astroML.time_series.lomb_scargle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.lomb_scargle_bootstrap.html">
+     11.5.1.2. astroML.time_series.lomb_scargle_bootstrap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.multiterm_periodogram.html">
+     11.5.1.3. astroML.time_series.multiterm_periodogram
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.search_frequencies.html">
+     11.5.1.4. astroML.time_series.search_frequencies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.MultiTermFit.html">
+     11.5.1.5. astroML.time_series.MultiTermFit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.ACF_scargle.html">
+     11.5.2.1. astroML.time_series.ACF_scargle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.ACF_EK.html">
+     11.5.2.2. astroML.time_series.ACF_EK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.generate_power_law.html">
+     11.5.2.3. astroML.time_series.generate_power_law
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.time_series.generate_damped_RW.html">
+     11.5.2.4. astroML.time_series.generate_damped_RW
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.binned_statistic.html">
+     11.6.1. astroML.stats.binned_statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.binned_statistic_2d.html">
+     11.6.2. astroML.stats.binned_statistic_2d
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.binned_statistic_dd.html">
+     11.6.3. astroML.stats.binned_statistic_dd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.sigmaG.html">
+     11.6.4. astroML.stats.sigmaG
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.median_sigmaG.html">
+     11.6.5. astroML.stats.median_sigmaG
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.mean_sigma.html">
+     11.6.6. astroML.stats.mean_sigma
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.fit_bivariate_normal.html">
+     11.6.7. astroML.stats.fit_bivariate_normal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.bivariate_normal.html">
+     11.6.8. astroML.stats.bivariate_normal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.trunc_exp.html">
+     11.6.9. astroML.stats.trunc_exp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.stats.linear.html">
+     11.6.10. astroML.stats.linear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.dimensionality.iterative_pca.html">
+     11.7.1. astroML.dimensionality.iterative_pca
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.correlation.two_point.html">
+     11.8.1. astroML.correlation.two_point
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.correlation.two_point_angular.html">
+     11.8.2. astroML.correlation.two_point_angular
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.correlation.bootstrap_two_point.html">
+     11.8.3. astroML.correlation.bootstrap_two_point
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.correlation.bootstrap_two_point_angular.html">
+     11.8.4. astroML.correlation.bootstrap_two_point_angular
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.filters.savitzky_golay.html">
+     11.9.1. astroML.filters.savitzky_golay
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.filters.wiener_filter.html">
+     11.9.2. astroML.filters.wiener_filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.filters.min_component_filter.html">
+     11.9.3. astroML.filters.min_component_filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.fourier.FT_continuous.html">
+     11.10.1. astroML.fourier.FT_continuous
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.fourier.IFT_continuous.html">
+     11.10.2. astroML.fourier.IFT_continuous
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.fourier.PSD_continuous.html">
+     11.10.3. astroML.fourier.PSD_continuous
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.fourier.wavelet_PSD.html">
+     11.10.4. astroML.fourier.wavelet_PSD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.fourier.sinegauss.html">
+     11.10.5. astroML.fourier.sinegauss
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.fourier.sinegauss_FT.html">
+     11.10.6. astroML.fourier.sinegauss_FT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.fourier.sinegauss_PSD.html">
+     11.10.7. astroML.fourier.sinegauss_PSD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.lumfunc.Cminus.html">
+     11.11.1. astroML.lumfunc.Cminus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.lumfunc.binned_Cminus.html">
+     11.11.2. astroML.lumfunc.binned_Cminus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.lumfunc.bootstrap_Cminus.html">
+     11.11.3. astroML.lumfunc.bootstrap_Cminus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.classification.GMMBayes.html">
+     11.12.1. astroML.classification.GMMBayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.resample.bootstrap.html">
+     11.13.1. astroML.resample.bootstrap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroML.resample.jackknife.html">
+     11.13.2. astroML.resample.jackknife
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/resources.html">
+   12. Other Resources
+  </a>
+ </li>
 </ul>
 
-
-        
-
-	<h3>Links</h3>
-	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
-
-	<h3>Videos</h3>
-	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
-	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
-
-
-    <h3>Citing</h3>
-    <p>If you use the software, please consider
-
-    <!-- hard-coded link here because pathto() adds an extra # -->
-    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
-
-
-        
-
-        </div>
-
-      <div class="content">
+  </div>
+</nav>
+            </div>
             
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
             
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
   <div class="section" id="astroml-linear-model-tls-logl">
-<h1>11.3.2.1. astroML.linear_model.TLS_logL<a class="headerlink" href="#astroml-linear-model-tls-logl" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<h1><span class="section-number">11.3.2.1. </span>astroML.linear_model.TLS_logL<a class="headerlink" href="#astroml-linear-model-tls-logl" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
 <dt id="astroML.linear_model.TLS_logL">
-<code class="sig-prename descclassname">astroML.linear_model.</code><code class="sig-name descname">TLS_logL</code><span class="sig-paren">(</span><em class="sig-param">v</em>, <em class="sig-param">X</em>, <em class="sig-param">dX</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/linear_model/TLS.html#TLS_logL"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#astroML.linear_model.TLS_logL" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">astroML.linear_model.</span></code><code class="sig-name descname"><span class="pre">TLS_logL</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dX</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/astroML/linear_model/TLS.html#TLS_logL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#astroML.linear_model.TLS_logL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the total least squares log-likelihood</p>
 <p>This uses Hogg et al eq. 29-32</p>
 <dl class="field-list simple">
@@ -212,22 +673,40 @@ dX[i] = Cov(X[i], X[i]), the full error covariance.</p>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-        <div class="clearer"></div>
-      </div>
-    </div>
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="astroML.linear_model.NadarayaWatson.html" title="previous page"><span class="section-number">11.3.1.4. </span>astroML.linear_model.NadarayaWatson</a>
+    <a class='right-next' id="next-link" href="astroML.datasets.fetch_sdss_spectrum.html" title="next page"><span class="section-number">11.4.2. </span>astroML.datasets.fetch_sdss_spectrum</a>
 
-    <div class="footer">
-        <p style="text-align: center">This documentation is relative
-        to astroML version 0.4<br/>
-        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
-    <span style="padding-left: 5ex;">
-    <a href="../../_sources/modules/generated/astroML.linear_model.TLS_logL.rst.txt"
-	    rel="nofollow">Show this page source</a>
-    </span></p>
+              </div>
+              
+          </main>
+          
+
+      </div>
     </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2012-2021, Jake Vanderplas &amp; AstroML Developers.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
   </body>
 </html>

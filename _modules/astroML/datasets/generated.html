@@ -1,168 +1,158 @@
 
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>astroML.datasets.generated &#8212; astroML 0.4 documentation</title>
-    <link rel="stylesheet" href="../../../_static/astroMLstyle.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>astroML.datasets.generated &#8212; astroML 1.0 documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-<!-- Following code is for Google custom search bar -->
-<script>
-  (function() {
-    var cx = '011400076584591653333:hjd_fbqk1u0';
-    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-<!-- Following code is for toggle/glide features -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
 
-	$(".toggle_container").hide();
+  <div id="navbar-start">
+    
+    
 
-	$(".toggle_trigger").click(function(){
-		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
-                return false; <!-- Prevent the link from being followed -->
-	});
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/Logo.gif" class="logo" alt="logo">
+</a>
 
-        $(".toggle_trigger#start_open").toggleClass("active").next().show();
 
-});
-</script>
+    
+  </div>
 
-<!-- Following code is for Google Analytics -->
-<script type="text/javascript">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35748160-1']);
-  _gaq.push(['_trackPageview']);
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../user_guide/index.html">
+  User Guide
+ </a>
+</li>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../examples/index.html">
+  General astroML Examples
+ </a>
+</li>
 
-</script>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../development/index.html">
+  Development
+ </a>
+</li>
 
-  </head><body>
-    <div class="header-wrapper">
-      <div class="header">
-          <p class="logo"><a href="../../../index.html">
-            <img src="../../../_static/Logo.gif" alt="Logo"/>
-          </a>
-          </p><div class="navbar">
-          <ul>
-            <li><a href="../../../index.html">Home</a></li>
-	        <li><a href="../../../user_guide/index.html">User Guide</a></li>
-            <li>
-              <div class="dropdown">
-                <a href="../../../book_figures/index.html">Book Figures</a>
-                <div class="dropdown-content">
-                  <ul>
-                    <li><a href="../../../book_figures/index.html">2nd edition</a></li>
-                    <li><a href="../../../book_figures_1ed/index.html">1st edition</a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li><a href="../../../examples/index.html">Example Plots</a></li>
-       </ul>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://astroml.org/astroML-notebooks">Notebooks<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="http://www.astroml.org/book_figures/index.html">Book Figures<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
 
-<!-- Google custom search.  Javascript that enables this is in the header above -->
-<div class="search_form">
-  <gcse:search></gcse:search>
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
 </div>
+    </nav>
+    
 
-          </div> <!-- end navbar --></div>
-    </div>
-
-    <div class="content-wrapper">
-
-    <!-- <div id="blue_tile"></div> -->
-
-        <div class="sphinxsidebar">
-	<div class="rel">
-	
-	<!-- rellinks[1:] is an ugly hack to avoid link to module
-	    index  -->
-	<!-- Ad a link to the 'up' page -->
-	<div class="spacer">
-	&nbsp;
-	</div>
-	<div class="rellink">
-	<a href="../../index.html" title="Module code" >
-	Up
-	<br/>
-	<span class="smallrellink">
-	Module code
-	</span>
-	<span class="hiddenrellink">
-	Module code
-	</span>
-	
-	</a>
-	</div>
-    </div>
-    <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.4</strong>
-    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
-    </p>
-        
-
-	
-
-        <h3>This page</h3>
-         
-
-        
-
-	<h3>Links</h3>
-	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
-
-	<h3>Videos</h3>
-	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
-	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
-
-
-    <h3>Citing</h3>
-    <p>If you use the software, please consider
-
-    <!-- hard-coded link here because pathto() adds an extra # -->
-    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
-
-
-        
-
-        </div>
-
-      <div class="content">
+    <div class="container-xl">
+      <div class="row">
+          
             
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
             
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
   <h1>Source code for astroML.datasets.generated</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="k">import</span> <span class="n">FlatLambdaCDM</span>
+<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="kn">import</span> <span class="n">FlatLambdaCDM</span>
 
-<span class="kn">from</span> <span class="nn">..density_estimation</span> <span class="k">import</span> <span class="n">FunctionDistribution</span>
-<span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="n">check_random_state</span>
+<span class="kn">from</span> <span class="nn">..density_estimation</span> <span class="kn">import</span> <span class="n">FunctionDistribution</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_random_state</span>
 
 
 <span class="k">def</span> <span class="nf">redshift_distribution</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">z0</span><span class="p">):</span>
@@ -215,18 +205,38 @@ $(document).ready(function(){
     <span class="k">return</span> <span class="n">z_sample</span><span class="p">,</span> <span class="n">mu_sample</span><span class="p">,</span> <span class="n">dmu</span></div>
 </pre></div>
 
-          </div>
-        </div>
-      </div>
-        <div class="clearer"></div>
-      </div>
-    </div>
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
 
-    <div class="footer">
-        <p style="text-align: center">This documentation is relative
-        to astroML version 0.4<br/>
-        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+              </div>
+              
+          </main>
+          
+
+      </div>
     </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2012-2021, Jake Vanderplas &amp; AstroML Developers.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
   </body>
 </html>

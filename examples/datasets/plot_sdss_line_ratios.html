@@ -1,183 +1,335 @@
 
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>SDSS Line-ratio Diagrams &#8212; astroML 0.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/astroMLstyle.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDSS Line-ratio Diagrams &#8212; astroML 1.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="WMAP power spectrum analysis with HealPy" href="plot_wmap_power_spectra.html" />
     <link rel="prev" title="Example of downloading and processing SDSS spectra" href="compute_sdss_pca.html" />
-<!-- Following code is for Google custom search bar -->
-<script>
-  (function() {
-    var cx = '011400076584591653333:hjd_fbqk1u0';
-    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-<!-- Following code is for toggle/glide features -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
 
-	$(".toggle_container").hide();
+  <div id="navbar-start">
+    
+    
 
-	$(".toggle_trigger").click(function(){
-		$(this).toggleClass("active").next(".toggle_container").slideToggle("fast");
-                return false; <!-- Prevent the link from being followed -->
-	});
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/Logo.gif" class="logo" alt="logo">
+</a>
 
-        $(".toggle_trigger#start_open").toggleClass("active").next().show();
 
-});
-</script>
+    
+  </div>
 
-<!-- Following code is for Google Analytics -->
-<script type="text/javascript">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35748160-1']);
-  _gaq.push(['_trackPageview']);
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../user_guide/index.html">
+  User Guide
+ </a>
+</li>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Examples
+ </a>
+</li>
 
-</script>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../notebooks/index.html">
+  Notebooks
+ </a>
+</li>
 
-  </head><body>
-    <div class="header-wrapper">
-      <div class="header">
-          <p class="logo"><a href="../../index.html">
-            <img src="../../_static/Logo.gif" alt="Logo"/>
-          </a>
-          </p><div class="navbar">
-          <ul>
-            <li><a href="../../index.html">Home</a></li>
-	        <li><a href="../../user_guide/index.html">User Guide</a></li>
-            <li>
-              <div class="dropdown">
-                <a href="../../book_figures/index.html">Book Figures</a>
-                <div class="dropdown-content">
-                  <ul>
-                    <li><a href="../../book_figures/index.html">2nd edition</a></li>
-                    <li><a href="../../book_figures_1ed/index.html">1st edition</a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li><a href="../index.html">Example Plots</a></li>
-       </ul>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../book_figures_index.html">
+  Book Figures
+ </a>
+</li>
 
-<!-- Google custom search.  Javascript that enables this is in the header above -->
-<div class="search_form">
-  <gcse:search></gcse:search>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../development/index.html">
+  Development
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../learning/index.html">
+   Machine Learning and Data Modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../learning/plot_neighbors_photoz.html">
+     K-Neighbors for Photometric Redshifts
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Data set Examples
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_sdss_spectrum.html">
+     SDSS Spectrum Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_SDSS_SSPP.html">
+     Stellar Parameters Hess Diagram
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_wmap_raw.html">
+     WMAP plotting with HEALPix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_dr7_quasar.html">
+     SDSS Data Release 7 Quasar catalog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="compute_sdss_pca.html">
+     Example of downloading and processing SDSS spectra
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     SDSS Line-ratio Diagrams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_wmap_power_spectra.html">
+     WMAP power spectrum analysis with HealPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_sdss_S82standards.html">
+     SDSS Standard Star catalog
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_great_wall.html">
+     SDSS “Great Wall”
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_sdss_specgals.html">
+     SDSS Spectroscopic Galaxy Sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_nasa_atlas.html">
+     NASA Sloan Atlas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_rrlyrae_mags.html">
+     RR-Lyrae Magnitudes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_corrected_spectra.html">
+     Corrected Spectra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_sdss_galaxy_colors.html">
+     SDSS Galaxy Colors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_LIGO_spectrum.html">
+     Plot the power spectrum of LIGO
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_sdss_imaging.html">
+     SDSS Imaging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_sdss_filters.html">
+     SDSS Filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_moving_objects.html">
+     SDSS Moving Object Catalog
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../algorithms/index.html">
+   Data Processing Algorithms
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algorithms/fig_volume_ratio.html">
+     Curse of Dimensionality: Volume Ratio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algorithms/plot_crossmatch.html">
+     Catalog cross-matching
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algorithms/plot_spectrum_sum_of_norms.html">
+     Linear Sum of Gaussians
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algorithms/plot_bayesian_blocks.html">
+     Bayesian Blocks for Histograms
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
 </div>
 
-          </div> <!-- end navbar --></div>
-    </div>
-
-    <div class="content-wrapper">
-
-    <!-- <div id="blue_tile"></div> -->
-
-        <div class="sphinxsidebar">
-	<div class="rel">
-	
-	<!-- rellinks[1:] is an ugly hack to avoid link to module
-	    index  -->
-	<div class="rellink">
-	<a href="compute_sdss_pca.html" title="Example of downloading and processing SDSS spectra"
-	    accesskey="P">Previous
-	    <br/>
-	    <span class="smallrellink">
-	    Example of do...
-	    </span>
-	    <span class="hiddenrellink">
-	    Example of downloading and processing SDSS spectra
-	    </span>
-	    
-	    </a>
-	</div>
-	<!-- Ad a link to the 'up' page -->
-	<div class="spacer">
-	&nbsp;
-	</div>
-	<div class="rellink">
-	<a href="index.html" title="Data set Examples" >
-	Up
-	<br/>
-	<span class="smallrellink">
-	Data set Examples
-	</span>
-	<span class="hiddenrellink">
-	Data set Examples
-	</span>
-	
-	</a>
-	</div>
-    </div>
-    <p style="text-align: center">This documentation is
-    for astroML <strong>version 0.4</strong>
-    <!-- &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a> -->
-    </p>
-        
-
-	
-
-        <h3>This page</h3>
-         <ul>
-<li><a class="reference internal" href="#">SDSS Line-ratio Diagrams</a><ul>
-<li><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
 </ul>
 
-
-        
-
-	<h3>Links</h3>
-	<p><a href="https://groups.google.com/forum/#!forum/astroml-general">astroML Mailing List</a></p>
-	<p><a href="http://github.com/astroML/astroML/issues">GitHub Issue Tracker</a></p>
-
-	<h3>Videos</h3>
-	<p><a href="http://pyvideo.org/video/1218/astroml-data-mining-and-machine-learning-for-ast">Scipy 2012</a> (15 minute talk)</p>
-	<p><a href="http://pyvideo.org/video/2035/opening-up-astronomy-with-python-and-astroml-sci">Scipy 2013</a> (20 minute talk)</p>
-
-
-    <h3>Citing</h3>
-    <p>If you use the software, please consider
-
-    <!-- hard-coded link here because pathto() adds an extra # -->
-    <a href="/index.html#citing-astroml">citing astroML</a>.</p>
-
-
-        
-
-        </div>
-
-      <div class="content">
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
             
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          </div>
+          
+
+          
+          
             
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
   <div class="section" id="sdss-line-ratio-diagrams">
 <span id="example-datasets-plot-sdss-line-ratios"></span><h1>SDSS Line-ratio Diagrams<a class="headerlink" href="#sdss-line-ratio-diagrams" title="Permalink to this headline">¶</a></h1>
 <p>This shows how to plot line-ratio diagrams for the SDSS spectra.  These
@@ -213,10 +365,10 @@ from Kewley et al 2001.</p>
 <span class="c1"># License: BSD</span>
 <span class="c1">#   The figure is an example from astroML: see http://astroML.github.com</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="k">import</span> <span class="n">fetch_sdss_corrected_spectra</span>
-<span class="kn">from</span> <span class="nn">astroML.datasets.tools.sdss_fits</span> <span class="k">import</span> <span class="n">log_OIII_Hb_NII</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_corrected_spectra</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets.tools.sdss_fits</span> <span class="kn">import</span> <span class="n">log_OIII_Hb_NII</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_corrected_spectra</span><span class="p">()</span>
 
@@ -238,27 +390,45 @@ from Kewley et al 2001.</p>
 </pre></div>
 </div>
 </div>
-<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/a93e085464813b930788eb27e6236f42/plot_sdss_line_ratios.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_sdss_line_ratios.py]</span></code></a></p>
+<div align="right"><p><a class="reference download internal" download="" href="../../_downloads/d151328c50587e8be0bd88b5c2c9cc9d/plot_sdss_line_ratios.py"><code class="xref download docutils literal notranslate"><span class="pre">[download</span> <span class="pre">source:</span> <span class="pre">plot_sdss_line_ratios.py]</span></code></a></p>
 </div></div>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-        <div class="clearer"></div>
-      </div>
-    </div>
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="compute_sdss_pca.html" title="previous page">Example of downloading and processing SDSS spectra</a>
+    <a class='right-next' id="next-link" href="plot_wmap_power_spectra.html" title="next page">WMAP power spectrum analysis with HealPy</a>
 
-    <div class="footer">
-        <p style="text-align: center">This documentation is relative
-        to astroML version 0.4<br/>
-        &copy; 2012-2019, Jake Vanderplas &amp; AstroML Developers.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
-    <span style="padding-left: 5ex;">
-    <a href="../../_sources/examples/datasets/plot_sdss_line_ratios.rst.txt"
-	    rel="nofollow">Show this page source</a>
-    </span></p>
+              </div>
+              
+          </main>
+          
+
+      </div>
     </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2012-2021, Jake Vanderplas &amp; AstroML Developers.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
   </body>
 </html>
